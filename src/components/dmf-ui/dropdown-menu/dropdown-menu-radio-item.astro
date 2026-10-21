@@ -1,0 +1,49 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import CheckIcon from "@lucide/astro/icons/check"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"button"> & {
+  value: string
+  defaultChecked?: boolean
+  disabled?: boolean
+  variant?: "default" | "destructive"
+  inset?: boolean
+}
+
+const {
+  class: className,
+  type = "button",
+  value,
+  defaultChecked,
+  disabled,
+  variant,
+  inset,
+  ...props
+} = Astro.props
+---
+
+<button
+  data-slot="dropdown-menu-radio-item"
+  data-value={value}
+  data-default-checked={defaultChecked}
+  data-disabled={disabled || undefined}
+  data-variant={variant}
+  data-inset={inset || undefined}
+  disabled={disabled ? true : undefined}
+  type={type}
+  class={cn(
+    "data-highlighted:bg-accent data-highlighted:text-accent-foreground data-highlighted:**:text-accent-foreground gap-2 rounded-sm py-1.5 pe-8 ps-2 text-sm data-inset:ps-8 [&_svg:not([class*='size-'])]:size-4 group/dropdown-menu-radio-item relative flex w-full cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+    className
+  )}
+  {...props}
+>
+  <span
+    data-slot="dropdown-menu-radio-item-indicator"
+    class="absolute end-2 flex items-center justify-center pointer-events-none"
+  >
+    <CheckIcon class="opacity-0 group-data-checked/dropdown-menu-radio-item:opacity-100" />
+  </span>
+  <slot />
+</button>

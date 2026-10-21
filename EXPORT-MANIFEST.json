@@ -1,0 +1,460 @@
+{
+  "source": "dmf-web source-owned DMF UI",
+  "format": 1,
+  "transformations": [
+    "Remove portfolio-only Tailwind sources",
+    "Replace portfolio breadcrumb with local main anchor",
+    "Use external CB reconstruction evidence link",
+    "Adapt browser suite to independent preview"
+  ],
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "f8a0f0ac8e6c935332351c9705aedf275fe11e66f7287b64c130d0e6630a0dce"
+    },
+    {
+      "path": "astro.config.mjs",
+      "sha256": "51c1a327356a07c7f62a2e02833e0469f7d1bc6fd4e2ff400205ec9e51e39e41"
+    },
+    {
+      "path": "docs/DMF-UI-CB-PRESET.md",
+      "sha256": "d0ce6673dc28b67b2cd436ff605e5e717c73dee6663282c6e9fdd3910b81aa9b"
+    },
+    {
+      "path": "docs/DMF-UI-EXTRACTION.md",
+      "sha256": "867366b2340b6f35befaaa4299c97fdbda7653ba3783684f50e5989f0fbac06b"
+    },
+    {
+      "path": "docs/DMF-UI-PILOT.md",
+      "sha256": "bb711819049c36cb0892f8d529661923f17e964706d3f6859f4ce1550c8afbd8"
+    },
+    {
+      "path": "docs/DMF-UI-UPSTREAM.json",
+      "sha256": "451cb00baae74d0888efe797926021139e8a974f793d52fdc82a17012120abe7"
+    },
+    {
+      "path": "package.json",
+      "sha256": "597a268e82636928da1d366d3fa5ca08a7d10fa96b09cdac4e3ddbc6dff582bd"
+    },
+    {
+      "path": "public/dmf-ui-notices.txt",
+      "sha256": "58f61e3a790c170593612cc90417b28591809c983f68fba4e90b0beee48a2517"
+    },
+    {
+      "path": "public/dmf-ui/fonts/nunito.ttf",
+      "sha256": "bb55a5ca5c2042335b3991af27c4d0705d0ef41cac6164ac737fd8f2a1e85207"
+    },
+    {
+      "path": "README.md",
+      "sha256": "d119650c491f8b2e25fd599525c3fb965723fc4c1a8752f932150bf4b5fefe4e"
+    },
+    {
+      "path": "src/components/dmf-ui/button/button-variants.ts",
+      "sha256": "c1bba35af3e0ff379c59576a16d01a2539de691bab2a2fca23e2c1150fe55fc7"
+    },
+    {
+      "path": "src/components/dmf-ui/button/button.astro",
+      "sha256": "b3fa128e52ab683722a0abe8d7c9fc62f07848856a1960c4ebfa9ba4d1b651a8"
+    },
+    {
+      "path": "src/components/dmf-ui/button/index.ts",
+      "sha256": "ce244da713807baaf5f86d3f8a9066ca4411d9c48cac614326eae7f4e90817e0"
+    },
+    {
+      "path": "src/components/dmf-ui/checkbox/checkbox.astro",
+      "sha256": "6fe69caa85df4f561cc69dcd3047e9eac6bee11b26d0bb214e525346c8acd47a"
+    },
+    {
+      "path": "src/components/dmf-ui/checkbox/index.ts",
+      "sha256": "1d0b4215f24dc6b49433d3d099a45842a18584f2f4c5c9b835fb024929d1fec3"
+    },
+    {
+      "path": "src/components/dmf-ui/dialog/dialog-close.astro",
+      "sha256": "3b3d81d5f7508d94973ce1fa76d578d5a421b6353b6d8ff6fe8d9aba3450dda8"
+    },
+    {
+      "path": "src/components/dmf-ui/dialog/dialog-content.astro",
+      "sha256": "3164bdf6ccc449d1c141a8a9a7fd8a5f2928ec5951fff832714938eec410b73e"
+    },
+    {
+      "path": "src/components/dmf-ui/dialog/dialog-description.astro",
+      "sha256": "48cd3d91fbc55762f0e340e63c33f63b6b7603eeed6683a4fe3661243867ddf4"
+    },
+    {
+      "path": "src/components/dmf-ui/dialog/dialog-footer.astro",
+      "sha256": "c91368768bf8c2c357ab98c44bcebc558d802495e81c4cb65eb1a6cc4ce20394"
+    },
+    {
+      "path": "src/components/dmf-ui/dialog/dialog-header.astro",
+      "sha256": "03da9fd9ac01c4dffb27f72bd1ad80df8741daba9a10d4723a2b3de0b3b63a27"
+    },
+    {
+      "path": "src/components/dmf-ui/dialog/dialog-overlay.astro",
+      "sha256": "fb6016427915ead178ce3d15a0135ac61910fc41f6c78bbf22177fc58833dd69"
+    },
+    {
+      "path": "src/components/dmf-ui/dialog/dialog-portal.astro",
+      "sha256": "f4ada8fcd87999306fa674152ea7362c30f2f84ba3a362665febe1ed0f51f20c"
+    },
+    {
+      "path": "src/components/dmf-ui/dialog/dialog-title.astro",
+      "sha256": "af88428ecbde365ee7bf5665a6798da888893abafaf521f337ccbec2386ea2e4"
+    },
+    {
+      "path": "src/components/dmf-ui/dialog/dialog-trigger.astro",
+      "sha256": "8899219bafef4ad99899fe97ec1d4b7a8cb3f3f8f7361a313e8ceff7292eab92"
+    },
+    {
+      "path": "src/components/dmf-ui/dialog/dialog.astro",
+      "sha256": "83ee3ee73a218839739a9a53761ae2b6b10c155ecd2f2eb2320bb9c15606daaf"
+    },
+    {
+      "path": "src/components/dmf-ui/dialog/index.ts",
+      "sha256": "6e3cdf8bd0b230955bc9f69ad8704109db6d2c850e379765648d6d1cb51280ea"
+    },
+    {
+      "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-checkbox-item.astro",
+      "sha256": "54af608fe52513448ba8d6e38620ef16f8930cb671b059116ca92a3f600328dd"
+    },
+    {
+      "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-content.astro",
+      "sha256": "f78058139677f180d01f98e0fb5851f71430d831e1f93c2bc72fe1526ca16c88"
+    },
+    {
+      "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-group.astro",
+      "sha256": "44dc65f39a4e45375e68b5a1f7ecd4459e6586a1ceb4d048c3cf7dc4a6210b0b"
+    },
+    {
+      "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-item.astro",
+      "sha256": "1b40d0018f7d5f47adfeb2abb7478038f7c68233b1f65e1ad14cae54c1520a2c"
+    },
+    {
+      "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-label.astro",
+      "sha256": "d8f4ce89a3c24f2dacef4b8af4bcd32256f2fcd856bda865f31a3191a1642b1a"
+    },
+    {
+      "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-portal.astro",
+      "sha256": "fa85cb7f4bc57caad7f169b0e265ec6fec8a0d4b9d1b7b8a703aa4f1f848852f"
+    },
+    {
+      "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-radio-item.astro",
+      "sha256": "1187edbf46c70ee0b88bb51d815f18a3c5f09ee30fd0cc07ba72886baece058e"
+    },
+    {
+      "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-separator.astro",
+      "sha256": "54ea7aaa1515f79260cd586d674892b12766e25c4b35593f8fa15fe63de72f98"
+    },
+    {
+      "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-shortcut.astro",
+      "sha256": "4325bbd465d6df975f17bb30e057d76f807dc99def6b3022ecefd722a932909f"
+    },
+    {
+      "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-trigger.astro",
+      "sha256": "aee140eec41baf1084a3d330cf16dd09d642266b75e416766b5c7b087eea3b12"
+    },
+    {
+      "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu.astro",
+      "sha256": "1732915b6f0ff442552a6de7c8bb6e44936256aa9fd15ba6c0f5da612f43a3a0"
+    },
+    {
+      "path": "src/components/dmf-ui/dropdown-menu/index.ts",
+      "sha256": "1ef4c50ed0af9f796916b72cf448f052dbefadc246f1065d9a8b522083796add"
+    },
+    {
+      "path": "src/components/dmf-ui/examples/FormExample.astro",
+      "sha256": "737db31bbee118f47e190c022e9e10d16ee77a2aec33b5ea34156a6708c65f42"
+    },
+    {
+      "path": "src/components/dmf-ui/examples/OverlayExamples.astro",
+      "sha256": "ebd3357d42cd94c041cf0b50d6c74f548386300009c8ebd62a25b92690cd0da2"
+    },
+    {
+      "path": "src/components/dmf-ui/examples/SystemExamples.astro",
+      "sha256": "3ab551e7a14eabf18cffd754eda54b412b4d3f2a1ddac1d271e6eee0445f4703"
+    },
+    {
+      "path": "src/components/dmf-ui/examples/TabsExamples.astro",
+      "sha256": "8fb3e4d0c0025549b04a8f0f47aebd40796c2483eaf4f78c842018ee443406ab"
+    },
+    {
+      "path": "src/components/dmf-ui/field/field-content.astro",
+      "sha256": "9eb6349adee2e6bb1bf4bb32572f0ed744d0f1a67440e9b73bbb4d1270ca8459"
+    },
+    {
+      "path": "src/components/dmf-ui/field/field-description.astro",
+      "sha256": "a3a92c9febd8b7c019a7442220d8491abb18a238d292a1a7cb127856204f0fd0"
+    },
+    {
+      "path": "src/components/dmf-ui/field/field-error.astro",
+      "sha256": "9ba65f8985e5e85e7e1816287e8e8df2211829891b5a910b653fe6187018161d"
+    },
+    {
+      "path": "src/components/dmf-ui/field/field-group.astro",
+      "sha256": "796eab05c829992807c7c77b15ab7e62a0b0bc5b2b6e754b443ec7d1e912be05"
+    },
+    {
+      "path": "src/components/dmf-ui/field/field-label.astro",
+      "sha256": "2cdb2f04cb8ec9a452e7b6905f507ece495164a10d5e1f52c5870709e2cd694c"
+    },
+    {
+      "path": "src/components/dmf-ui/field/field-legend.astro",
+      "sha256": "9c68523ddc4572221636aac0421a39f271bde2547400c8a1d08c1a55fe6c3a01"
+    },
+    {
+      "path": "src/components/dmf-ui/field/field-separator.astro",
+      "sha256": "f2061b835d41cfa2f4664d4be765b9e784ee9c538fc46c255af185b01673566f"
+    },
+    {
+      "path": "src/components/dmf-ui/field/field-set.astro",
+      "sha256": "da6439a0836f9eb5020bb650c11d0c72637023adf99cf4edbe277b8966eea32f"
+    },
+    {
+      "path": "src/components/dmf-ui/field/field-title.astro",
+      "sha256": "88212567da3398ce3dd092a05436b5568231b124772e850a3a008e600549a849"
+    },
+    {
+      "path": "src/components/dmf-ui/field/field.astro",
+      "sha256": "a9736742ccb5af9f1bcea9f6de124f39cd9c14e43df1e7e1dda5e8779efce0fd"
+    },
+    {
+      "path": "src/components/dmf-ui/field/index.ts",
+      "sha256": "ee24bcc53785026d8fba86fb0d05b6bfc14fef552b4079564c6b23f5a69196fe"
+    },
+    {
+      "path": "src/components/dmf-ui/input/index.ts",
+      "sha256": "cea57946499976da89a1e34e4720fb79dd0a9687dffc449c92b06545de369923"
+    },
+    {
+      "path": "src/components/dmf-ui/input/input.astro",
+      "sha256": "3e970e54b7fb354e0b8719190bb154f659fb8d673d012e6413467d05267ef860"
+    },
+    {
+      "path": "src/components/dmf-ui/label/index.ts",
+      "sha256": "962c044a2b95261bb6e453b72171ff5650ff805e0256654434fb23b7a0b14907"
+    },
+    {
+      "path": "src/components/dmf-ui/label/label.astro",
+      "sha256": "c189e0fda48b45b43b5cbf6c8a1ec05498056ab1b37db3953a01041474ef8be7"
+    },
+    {
+      "path": "src/components/dmf-ui/overlay-scope.ts",
+      "sha256": "2ab20752711a202985f9055d9d81bb9c02d2c339c8aa6dfbe0c6e46445fa9061"
+    },
+    {
+      "path": "src/components/dmf-ui/popover/index.ts",
+      "sha256": "634ef2f30fc83dc8bfc1f793a1022fa833f2df4c9edfd008c8d5e641876fcd0b"
+    },
+    {
+      "path": "src/components/dmf-ui/popover/popover-content.astro",
+      "sha256": "1cb346578e04fd785e226ad31cf1e99befcef50df4cc4acfa38bff3af3be8fd6"
+    },
+    {
+      "path": "src/components/dmf-ui/popover/popover-description.astro",
+      "sha256": "c2264cba3d70e4195e496242dc4c0eaecabe6e5c8be66a9815c325a37e60663a"
+    },
+    {
+      "path": "src/components/dmf-ui/popover/popover-header.astro",
+      "sha256": "aefb1124266042e1919e8e28fd73138cd5dd431004f0772c04fbd74de6d5fe97"
+    },
+    {
+      "path": "src/components/dmf-ui/popover/popover-title.astro",
+      "sha256": "1ee5068d2817a536213cd59a7cf08a9115d2feeaf506ef498f5036ae173b3e9a"
+    },
+    {
+      "path": "src/components/dmf-ui/popover/popover-trigger.astro",
+      "sha256": "2598f419235ebd2ba2cb34db8e7b40778c7cda7f6ea91fe5259d42162bac548b"
+    },
+    {
+      "path": "src/components/dmf-ui/popover/popover.astro",
+      "sha256": "a95acf820dd18c265e62d533aea43b0f79b66ed2af9936b12c1c67ac33805183"
+    },
+    {
+      "path": "src/components/dmf-ui/radio-group/index.ts",
+      "sha256": "27375716599d16834b697858670667c4ede1f8e85a252401ff24792f9de6e607"
+    },
+    {
+      "path": "src/components/dmf-ui/radio-group/radio-group-item.astro",
+      "sha256": "a8896b42e764ea174a5cf7363186a0fef332175db6ae47abb4179c13cbde5320"
+    },
+    {
+      "path": "src/components/dmf-ui/radio-group/radio-group.astro",
+      "sha256": "5af5b1eb9306bf91757912d6fc1f6b29ad2eae4a497314315339f97b31b27baa"
+    },
+    {
+      "path": "src/components/dmf-ui/select/index.ts",
+      "sha256": "054df9d9cde0e731ef748ec6ec179d4ace5d3638b589638985b8038ab24dc872"
+    },
+    {
+      "path": "src/components/dmf-ui/select/select-content.astro",
+      "sha256": "c7bd055ed71cda72b5dc5b22a8fee69de9031c635a2eab0c48a6a103cc45e41f"
+    },
+    {
+      "path": "src/components/dmf-ui/select/select-group.astro",
+      "sha256": "6b02a473925b2c145cdbee6877a2232d8e89339a37c98ebb33e6056ab64978ac"
+    },
+    {
+      "path": "src/components/dmf-ui/select/select-item.astro",
+      "sha256": "e1820fe247b29cedcacd8bd8822a755cd03a1a639b1a6f87b7f1289603a2fd39"
+    },
+    {
+      "path": "src/components/dmf-ui/select/select-label.astro",
+      "sha256": "59bc812b646ad37ffa5af720077d124f3b6db63aa9278908d04d4e029b1a279b"
+    },
+    {
+      "path": "src/components/dmf-ui/select/select-separator.astro",
+      "sha256": "1c301c12491e57a533caab81da1f8dbf7dbcb7b176704e15940f0794fab628f7"
+    },
+    {
+      "path": "src/components/dmf-ui/select/select-trigger.astro",
+      "sha256": "90a5c827d4c6a03e2416c0d21bf90bb4f17fb0dd895eb2cfdd399e9725360c7e"
+    },
+    {
+      "path": "src/components/dmf-ui/select/select-value.astro",
+      "sha256": "679e5b9dc19cc513afabc77e887303fed6e2ab7f9fcd183af809b38011651787"
+    },
+    {
+      "path": "src/components/dmf-ui/select/select.astro",
+      "sha256": "ae3aba746ed19574047fa1b5e40dd37ae20197bd93f9062ed8a1d6f9b2e154a8"
+    },
+    {
+      "path": "src/components/dmf-ui/separator/index.ts",
+      "sha256": "df3fadf3bf2f3a62095a79ac2de1f747d026ed133f78b57819a03db25e9cad95"
+    },
+    {
+      "path": "src/components/dmf-ui/separator/separator.astro",
+      "sha256": "c2930f440d7f18e81b9f7552db94478926aedf69a47ed5e3b2bd8ee6f6e40eae"
+    },
+    {
+      "path": "src/components/dmf-ui/switch/index.ts",
+      "sha256": "50538848ad9a59deeac0226496ef75708b7adab024e8c90543949953765d4d7e"
+    },
+    {
+      "path": "src/components/dmf-ui/switch/switch.astro",
+      "sha256": "176969c2f92c77f7855c7a3f09838d84a475877450a99e5cdaee75b7b32beeba"
+    },
+    {
+      "path": "src/components/dmf-ui/tabs/index.ts",
+      "sha256": "41ea67bb67dd1df6d714f29cb42fc19aef12e86b3c798b393680f1a626d54ef5"
+    },
+    {
+      "path": "src/components/dmf-ui/tabs/tabs-content.astro",
+      "sha256": "cba66ed453b8c495542f11de3f6ed0926aa1bb7970f17eef808d79cf2c99e7e6"
+    },
+    {
+      "path": "src/components/dmf-ui/tabs/tabs-list-variants.ts",
+      "sha256": "f78b991edca3c5b52c16504de1ab6ee9fdfd950cbb758fff3198dbdf1998146f"
+    },
+    {
+      "path": "src/components/dmf-ui/tabs/tabs-list.astro",
+      "sha256": "0aceb0b91fdbd1f01b5a403df7f968d9e4db055beaf1181d752575c8bd96ebe7"
+    },
+    {
+      "path": "src/components/dmf-ui/tabs/tabs-trigger.astro",
+      "sha256": "d59186ca71d96fe62cf2fd13fc0f6e5f08ac0186f95b4505c98e5f3e86bddddc"
+    },
+    {
+      "path": "src/components/dmf-ui/tabs/tabs.astro",
+      "sha256": "b3d9c213eeecc509945d730999fbe4d71a5f8a5cccae6590e5e0b03232f5df97"
+    },
+    {
+      "path": "src/components/dmf-ui/textarea/index.ts",
+      "sha256": "59ebf485964b638834078dbfeb51aafb3dc7d630a1e4a845535b7f1fa69b2514"
+    },
+    {
+      "path": "src/components/dmf-ui/textarea/textarea.astro",
+      "sha256": "88a8a17c24b46438826fb9650a99ee29ee7443285051b4a1c5ccf516bed599fb"
+    },
+    {
+      "path": "src/components/dmf-ui/toast/index.ts",
+      "sha256": "061e959ae4a851669a72e5ced7b9918842d5ae2ec82da2ab0546bc0134ea93c7"
+    },
+    {
+      "path": "src/components/dmf-ui/toast/toast-action.astro",
+      "sha256": "24789f03be2e2d8cbc3933eba2f5047c23861f3d59e262833c8557059e783bd0"
+    },
+    {
+      "path": "src/components/dmf-ui/toast/toast-close.astro",
+      "sha256": "262ef7085be9dca96f250f14ec312d047a82917757366d7009aebc056b660c5a"
+    },
+    {
+      "path": "src/components/dmf-ui/toast/toast-content.astro",
+      "sha256": "5eb2fd6f1fc1d4b03304197444e97e79659e01664fdfc2a3c09193f97736d0e1"
+    },
+    {
+      "path": "src/components/dmf-ui/toast/toast-description.astro",
+      "sha256": "18df58c954f2b72ad06a5912a0a71bba4fdd3388e29315a2afb76fa4bc2394cb"
+    },
+    {
+      "path": "src/components/dmf-ui/toast/toast-icon.astro",
+      "sha256": "9e223f52894d4ce2cd21fddb4578812d92a26e48e3e8756c03ff75a5807765b7"
+    },
+    {
+      "path": "src/components/dmf-ui/toast/toast-item.astro",
+      "sha256": "f1874ecad016a6e7f78ba8ef80ba95e15caff25cee44f7242e87c1a33a8f3270"
+    },
+    {
+      "path": "src/components/dmf-ui/toast/toast-template.astro",
+      "sha256": "5b12a676c06d5db41ddae99fb0dd2b92ed276a3759bbd77bc751edd949df724f"
+    },
+    {
+      "path": "src/components/dmf-ui/toast/toast-title.astro",
+      "sha256": "f49eb2b0a9cc76d1e4264f8196616a6c21bd890bee4a84dff04d11456e4ea620"
+    },
+    {
+      "path": "src/components/dmf-ui/toast/toast-viewport.astro",
+      "sha256": "7f927aaaa694d4bdc0b7dc9eb2785706d2259b93c2c8e5da1232fdf7a0d5e266"
+    },
+    {
+      "path": "src/components/dmf-ui/toast/toast.astro",
+      "sha256": "d5c185e3c720c5850a89dac1d15e1c6fe917c056f368c04d614d2bfc47d8cf6e"
+    },
+    {
+      "path": "src/components/dmf-ui/toast/toaster.astro",
+      "sha256": "fa9218b63615eb5346d0780161ae9e42fc1f71eeaadab76555656250125a666a"
+    },
+    {
+      "path": "src/components/dmf-ui/utils.ts",
+      "sha256": "55bbdc94cef3e0c8a8bba386e94f97228dd2c967fe61466fc565378890550c08"
+    },
+    {
+      "path": "src/pages/examples/dmf-ui/index.astro",
+      "sha256": "6823b32462b0cedf05dcbdc86ad65a6cf1bca7dc035a96e723863c669b099e53"
+    },
+    {
+      "path": "src/pages/index.astro",
+      "sha256": "ff2db8aeda468dd1e7eff781786830c3b4d24ef97e3a95c52ce95f160274b0d6"
+    },
+    {
+      "path": "src/styles/dmf-ui-cb.css",
+      "sha256": "d8789a70020790b93bd7966b7e746dbb54b3be8fc6a67235b8cda554be5a129d"
+    },
+    {
+      "path": "src/styles/dmf-ui-tokens.css",
+      "sha256": "a3fb7a5873b2495839fc7e98c9c5f105179648b9247d82cbf84593db13f3e3f3"
+    },
+    {
+      "path": "src/styles/dmf-ui.css",
+      "sha256": "566340da716484abe21af8cc598cf66be80057f9836b67d140c9ec9d038e5140"
+    },
+    {
+      "path": "src/styles/upstream/fulldev-base.json",
+      "sha256": "2b14265b2f63a816582c2ac8ec378d3292160b08903301bd66cf06907b3bc817"
+    },
+    {
+      "path": "src/styles/upstream/shadcn.css",
+      "sha256": "4c371f7a1ff5d219ae2f7ff28bd256b4346fd546fe46fbae22092e57db2f0fae"
+    },
+    {
+      "path": "tests/browser/consumer.mjs",
+      "sha256": "019d5d7d01025e9a1b4aeeef45d5ff774041737182ead45f63f45b719e9fabc4"
+    },
+    {
+      "path": "tests/structure.test.mjs",
+      "sha256": "5cf7b0b05b852f862bd9d14eff9a144e8cdebd8e0c8cd6df995b79f48f71e030"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "3b26bcd1eb0f4de19eb74674755e77a9a10f857934748d5af615b9903da6bea5"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+---
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '../tabs';
+interface Props { prefix: string; }
+const { prefix } = Astro.props;
+---
+<div class="dmf-tabs-examples">
+  <div>
+    <h3 class="dmf-tabs-heading">Rounded tabs</h3>
+    <p class="dmf-tabs-hint">Arrow keys select a tab. Home and End move to the first and last available tabs.</p>
+    <Tabs id={`${prefix}-automatic`} defaultValue="overview">
+      <TabsList aria-label="Automatic activation example">
+        <TabsTrigger value="overview">Overview</TabsTrigger>
+        <TabsTrigger value="unavailable" disabled>Unavailable</TabsTrigger>
+        <TabsTrigger value="details">Details</TabsTrigger>
+        <TabsTrigger value="usage">Usage</TabsTrigger>
+      </TabsList>
+      <TabsContent value="overview"><p>Overview is selected initially. This tab set is independent of the examples below.</p></TabsContent>
+      <TabsContent value="unavailable"><p>This tab is unavailable.</p></TabsContent>
+      <TabsContent value="details"><p>Details are visible after selecting this tab. Disabled tabs are skipped by keyboard navigation.</p></TabsContent>
+      <TabsContent value="usage"><p>Use Tabs for related panels within a page. Keep navigation links for separate pages.</p></TabsContent>
+    </Tabs>
+  </div>
+  <div>
+    <h3 class="dmf-tabs-heading">Underline tabs</h3>
+    <p class="dmf-tabs-hint">Manual activation: arrow keys move focus; Enter or Space selects. Details is selected initially.</p>
+    <Tabs id={`${prefix}-manual`} defaultValue="details" activationMode="manual">
+      <TabsList variant="line" aria-label="Manual activation example">
+        <TabsTrigger value="overview">Overview</TabsTrigger>
+        <TabsTrigger value="details">Details</TabsTrigger>
+      </TabsList>
+      <TabsContent value="overview"><p>Overview selected with manual activation.</p></TabsContent>
+      <TabsContent value="details"><p>Moving focus alone does not change this panel.</p></TabsContent>
+    </Tabs>
+  </div>
+  <div>
+    <h3 class="dmf-tabs-heading">Vertical tabs</h3>
+    <p class="dmf-tabs-hint">Up and Down move between tabs in a vertical list.</p>
+    <Tabs id={`${prefix}-vertical`} defaultValue="overview" orientation="vertical">
+      <TabsList aria-label="Vertical orientation example">
+        <TabsTrigger value="overview">Overview</TabsTrigger>
+        <TabsTrigger value="details">Details</TabsTrigger>
+      </TabsList>
+      <TabsContent value="overview"><p>Vertical overview. Tab moves into the selected panel.</p></TabsContent>
+      <TabsContent value="details"><p>Vertical details. The list keeps its own selected state.</p></TabsContent>
+    </Tabs>
+  </div>
+</div>

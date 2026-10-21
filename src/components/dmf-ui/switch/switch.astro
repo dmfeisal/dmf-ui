@@ -1,0 +1,85 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"button"> & {
+  defaultChecked?: boolean
+  disabled?: boolean
+  readOnly?: boolean
+  required?: boolean
+  name?: string
+  size?: "default" | "sm"
+  value?: string
+  uncheckedValue?: string
+}
+
+const {
+  class: className,
+  defaultChecked,
+  disabled,
+  readOnly,
+  required,
+  name,
+  size = "default",
+  value,
+  uncheckedValue,
+  ...props
+} = Astro.props
+
+const initialChecked = defaultChecked === true
+const switchStyle =
+  "data-checked:bg-primary data-unchecked:bg-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 dark:data-unchecked:bg-input/80 shrink-0 rounded-full border border-transparent shadow-xs focus-visible:ring-3 aria-invalid:ring-3 group-has-[:focus-visible]/field-label:ring-0 group-has-[:focus-visible]/field-label:border-transparent data-[size=default]:h-[18.4px] data-[size=default]:w-[32px] data-[size=sm]:h-[14px] data-[size=sm]:w-[24px] peer group/switch relative inline-flex flex-row items-center p-0 transition-all outline-none after:absolute after:-inset-x-3 after:-inset-y-2 data-disabled:cursor-not-allowed data-disabled:opacity-50 data-readonly:cursor-default"
+---
+
+<button
+  type="button"
+  role="switch"
+  disabled={disabled}
+  aria-checked={initialChecked ? "true" : "false"}
+  aria-disabled={disabled ? "true" : undefined}
+  aria-readonly={readOnly ? "true" : undefined}
+  aria-required={required ? "true" : undefined}
+  data-slot="switch"
+  data-dmf-switch
+  data-size={size}
+  data-checked={initialChecked ? "" : undefined}
+  data-unchecked={initialChecked ? undefined : ""}
+  data-default-checked={defaultChecked}
+  data-disabled={disabled ? "true" : undefined}
+  data-read-only={readOnly}
+  data-readonly={readOnly ? "" : undefined}
+  data-required={required}
+  data-name={name}
+  data-value={value}
+  data-unchecked-value={uncheckedValue}
+  class={cn(switchStyle, className)}
+  {...props}
+>
+  <span
+    aria-hidden="true"
+    data-slot="switch-thumb"
+    data-checked={initialChecked ? "" : undefined}
+    data-unchecked={initialChecked ? undefined : ""}
+    class="bg-background dark:data-unchecked:bg-foreground dark:data-checked:bg-primary-foreground rounded-full pointer-events-none block ring-0 transition-transform"
+  ></span>
+</button>
+
+<script>
+  import { createSwitch, type SwitchController } from "@data-slot/switch";
+  const controllers = new Map<HTMLElement, SwitchController>();
+  function initialize() {
+    for (const root of document.querySelectorAll<HTMLElement>('[data-dmf-switch]')) {
+      if (controllers.has(root)) continue;
+      controllers.set(root, createSwitch(root));
+      root.dataset.dmfSwitchReady = 'true';
+    }
+    document.dispatchEvent(new Event('dmf:form-controls-ready'));
+  }
+  initialize();
+  document.addEventListener('astro:page-load', initialize);
+  document.addEventListener('astro:before-swap', () => {
+    for (const [root, controller] of controllers) { controller.destroy(); delete root.dataset.dmfSwitchReady; }
+    controllers.clear();
+  });
+</script>

@@ -1,0 +1,25 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+import DialogClose from "./dialog-close.astro"
+
+type Props = HTMLAttributes<"div"> & {
+  showCloseButton?: boolean
+}
+
+const { class: className, showCloseButton = false, ...props } = Astro.props
+---
+
+<div
+  data-slot="dialog-footer"
+  class={cn(
+    "gap-2 flex flex-col-reverse sm:flex-row sm:justify-end",
+    className
+  )}
+  {...props}
+>
+  <slot />
+  {showCloseButton && <DialogClose variant="outline">Close</DialogClose>}
+</div>

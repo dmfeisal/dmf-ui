@@ -1,0 +1,22 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"div"> & {
+  as?: "div" | "span"
+}
+
+const { as: Tag = "div", class: className, ...props } = Astro.props
+---
+
+<Tag
+  data-slot="field-content"
+  class={cn(
+    "gap-1 group/field-content flex flex-1 flex-col leading-snug",
+    className
+  )}
+  {...props}
+>
+  <slot />
+</Tag>

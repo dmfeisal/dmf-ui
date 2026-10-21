@@ -1,0 +1,40 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"button"> &
+  HTMLAttributes<"a"> & {
+    // "div" holds block content such as an Item, like a Base UI menu item.
+    as?: "button" | "a" | "div"
+    disabled?: boolean
+    variant?: "default" | "destructive"
+    inset?: boolean
+  }
+
+const {
+  as: Tag = "href" in Astro.props ? "a" : "button",
+  class: className,
+  type = "button",
+  disabled,
+  variant,
+  inset,
+  ...props
+} = Astro.props
+---
+
+<Tag
+  data-slot="dropdown-menu-item"
+  data-disabled={disabled || undefined}
+  data-variant={variant}
+  data-inset={inset || undefined}
+  disabled={Tag === "button" && disabled ? true : undefined}
+  type={Tag === "button" ? type : undefined}
+  class={cn(
+    "data-highlighted:bg-accent data-highlighted:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:data-highlighted:bg-destructive/10 dark:data-[variant=destructive]:data-highlighted:bg-destructive/20 data-[variant=destructive]:data-highlighted:text-destructive data-[variant=destructive]:*:[svg]:text-destructive not-data-[variant=destructive]:data-highlighted:**:text-accent-foreground gap-2 rounded-sm px-2 py-1.5 text-sm data-inset:ps-8 [&_svg:not([class*='size-'])]:size-4 group/dropdown-menu-item relative flex w-full cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+    className
+  )}
+  {...props}
+>
+  <slot />
+</Tag>

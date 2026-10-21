@@ -1,0 +1,19 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"div"> & {
+  as?: "div" | "span"
+}
+
+const { as: Tag = "div", class: className, ...props } = Astro.props
+---
+
+<Tag
+  data-slot="field-label"
+  class={cn("gap-2 text-sm font-medium group-data-[disabled=true]/field:opacity-50 flex w-fit items-center", className)}
+  {...props}
+>
+  <slot />
+</Tag>

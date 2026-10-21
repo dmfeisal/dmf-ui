@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+import { buttonVariants } from "../button"
+
+type Props = HTMLAttributes<"button">
+
+const {
+  class: className,
+  hidden = true,
+  type = "button",
+  ...props
+} = Astro.props
+---
+
+<button
+  data-slot="toast-action"
+  data-variant="outline"
+  data-size="sm"
+  type={type}
+  class={cn(buttonVariants({ variant: "outline", size: "sm" }), className)}
+  hidden={hidden}
+  {...props}
+>
+  <slot />
+</button>

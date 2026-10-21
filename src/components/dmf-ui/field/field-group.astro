@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"div">
+
+const {
+  class: className,
+  "data-slot": dataSlot = "field-group",
+  ...props
+} = Astro.props
+---
+
+<div
+  data-slot={dataSlot}
+  class={cn(
+    "gap-7 data-[slot=checkbox-group]:gap-3 *:data-[slot=field-group]:gap-4 group/field-group @container/field-group flex w-full flex-col",
+    className
+  )}
+  {...props}
+>
+  <slot />
+</div>

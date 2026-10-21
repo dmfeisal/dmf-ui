@@ -1,0 +1,148 @@
+---
+import { Button } from '../button';
+import { Input } from '../input';
+import { Label } from '../label';
+import { Textarea } from '../textarea';
+import { Checkbox } from '../checkbox';
+import { RadioGroup, RadioGroupItem } from '../radio-group';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectLabel, SelectItem, SelectSeparator } from '../select';
+import { Switch } from '../switch';
+import { Field, FieldContent, FieldDescription, FieldError, FieldGroup, FieldLabel, FieldLegend, FieldSeparator, FieldSet } from '../field';
+interface Props { prefix: string; }
+const { prefix } = Astro.props;
+---
+<form data-dmf-form={prefix} class="dmf-form-example" aria-label={`${prefix.includes("cb-ui") ? "CB UI" : "DMF UI"} local form preview`}>
+  <p data-form-loading role="status">Loading the form example…</p>
+  <fieldset disabled data-form-controls>
+    <FieldGroup>
+      <Field data-form-field>
+        <FieldLabel for={`${prefix}-name`}>Display name</FieldLabel>
+        <Input id={`${prefix}-name`} name="name" autocomplete="nickname" required minlength="2" aria-describedby={`${prefix}-name-help ${prefix}-name-error`} />
+        <FieldDescription id={`${prefix}-name-help`}>At least two characters. Required.</FieldDescription>
+        <FieldError id={`${prefix}-name-error`} hidden>Enter a display name with at least two characters.</FieldError>
+      </Field>
+      <Field data-form-field>
+        <FieldLabel for={`${prefix}-email`}>Email</FieldLabel>
+        <Input id={`${prefix}-email`} name="email" type="email" autocomplete="email" required aria-describedby={`${prefix}-email-error`} />
+        <FieldError id={`${prefix}-email-error`} hidden>Enter a complete email address.</FieldError>
+      </Field>
+      <Field data-form-field>
+        <Label for={`${prefix}-message`}>Message</Label>
+        <Textarea id={`${prefix}-message`} name="message" required minlength="12" maxlength="500" rows="3" aria-describedby={`${prefix}-message-help ${prefix}-message-error`} />
+        <FieldDescription id={`${prefix}-message-help`}>12–500 characters. This stays in the example.</FieldDescription>
+        <FieldError id={`${prefix}-message-error`} hidden>Enter a message with at least 12 characters.</FieldError>
+      </Field>
+      <Field data-form-field>
+        <FieldLabel for={`${prefix}-channel`}>Preferred channel</FieldLabel>
+        <Select name="channel" required placeholder="Choose a channel" position="popper">
+          <SelectTrigger id={`${prefix}-channel`} aria-describedby={`${prefix}-channel-error`}><SelectValue /></SelectTrigger>
+          <SelectContent><SelectGroup><SelectLabel>Updates</SelectLabel>
+            <SelectItem value="email">Email</SelectItem>
+            <SelectItem value="sms" disabled>SMS (unavailable)</SelectItem>
+            <SelectItem value="digest">Weekly digest</SelectItem>
+          </SelectGroup><SelectSeparator /><SelectGroup><SelectItem value="none">No updates</SelectItem></SelectGroup></SelectContent>
+        </Select>
+        <FieldError id={`${prefix}-channel-error`} hidden>Choose a preferred channel.</FieldError>
+      </Field>
+      <Field data-disabled="true"><FieldLabel for={`${prefix}-disabled-select`}>Unavailable channel</FieldLabel>
+        <Select name="disabled-channel" disabled defaultValue="email"><SelectTrigger id={`${prefix}-disabled-select`}><SelectValue /></SelectTrigger><SelectContent><SelectItem value="email">Email</SelectItem></SelectContent></Select>
+      </Field>
+      <Field data-form-field>
+        <FieldSet>
+          <FieldLegend variant="label" id={`${prefix}-schedule-label`}>Update schedule</FieldLegend>
+          <RadioGroup name="schedule" required aria-labelledby={`${prefix}-schedule-label`} aria-describedby={`${prefix}-schedule-error`}>
+            <Field orientation="horizontal"><RadioGroupItem id={`${prefix}-weekly`} value="weekly" /><FieldLabel for={`${prefix}-weekly`}>Weekly</FieldLabel></Field>
+            <Field orientation="horizontal" data-disabled="true"><RadioGroupItem id={`${prefix}-daily`} value="daily" disabled /><FieldLabel for={`${prefix}-daily`}>Daily (unavailable)</FieldLabel></Field>
+            <Field orientation="horizontal"><RadioGroupItem id={`${prefix}-monthly`} value="monthly" /><FieldLabel for={`${prefix}-monthly`}>Monthly</FieldLabel></Field>
+          </RadioGroup>
+        </FieldSet>
+        <FieldError id={`${prefix}-schedule-error`} hidden>Choose an update schedule.</FieldError>
+      </Field>
+      <Field orientation="horizontal" data-form-field>
+        <Checkbox id={`${prefix}-terms`} name="terms" value="accepted" required aria-describedby={`${prefix}-terms-error`} />
+        <FieldContent><FieldLabel for={`${prefix}-terms`}>I understand this is a local example</FieldLabel><FieldError id={`${prefix}-terms-error`} hidden>Confirm before previewing the form.</FieldError></FieldContent>
+      </Field>
+      <Field orientation="horizontal">
+        <Switch id={`${prefix}-updates`} name="updates" value="yes" uncheckedValue="no" defaultChecked />
+        <FieldContent><FieldLabel for={`${prefix}-updates`}>Enable updates</FieldLabel><FieldDescription>Demonstrates a switch value in the preview.</FieldDescription></FieldContent>
+      </Field>
+      <Field orientation="horizontal" data-disabled="true">
+        <Switch id={`${prefix}-disabled-switch`} name="disabled-switch" disabled />
+        <FieldLabel for={`${prefix}-disabled-switch`}>Unavailable switch</FieldLabel>
+      </Field>
+      <Field orientation="horizontal" data-disabled="true">
+        <Checkbox id={`${prefix}-disabled-checkbox`} name="disabled-checkbox" disabled />
+        <FieldLabel for={`${prefix}-disabled-checkbox`}>Unavailable checkbox</FieldLabel>
+      </Field>
+      <FieldSeparator />
+      <Field><FieldLabel for={`${prefix}-reference`}>Read-only reference</FieldLabel><Input id={`${prefix}-reference`} name="reference" readonly value="Local example" /></Field>
+      <Field data-disabled="true"><FieldLabel for={`${prefix}-disabled`}>Disabled field</FieldLabel><Input id={`${prefix}-disabled`} name="disabled-field" disabled value="Excluded from submission" /></Field>
+      <div class="dmf-pilot-row"><Button type="submit">Preview form</Button><Button type="reset" variant="outline">Reset form</Button></div>
+    </FieldGroup>
+  </fieldset>
+  <noscript><p>JavaScript is needed to enable this local form example. No data will be submitted.</p></noscript>
+  <p data-form-status role="status" aria-live="polite">Nothing has been submitted.</p>
+  <pre data-form-output hidden aria-label="Form data preview"></pre>
+</form>
+<script>
+  const bindings = new Map<HTMLFormElement, AbortController>();
+  function initialize() {
+    for (const form of document.querySelectorAll<HTMLFormElement>('[data-dmf-form]')) {
+      if (bindings.has(form) || form.querySelector('[data-dmf-radio-group]:not([data-dmf-radio-group-ready]), [data-dmf-switch]:not([data-dmf-switch-ready]), [data-dmf-select]:not([data-dmf-select-ready])')) continue;
+      const abort = new AbortController(); bindings.set(form, abort);
+      const status = form.querySelector<HTMLElement>('[data-form-status]')!;
+      const output = form.querySelector<HTMLElement>('[data-form-output]')!;
+      function showValidity(target: Element, invalid: boolean) {
+        const field = target.closest<HTMLElement>('[data-form-field]');
+        if (!field) return;
+        field.dataset.invalid = String(invalid);
+        const error = field.querySelector<HTMLElement>('[data-slot=field-error]');
+        if (error) error.hidden = !invalid;
+        const group = field.querySelector<HTMLElement>('[data-slot=radio-group], [data-slot=select-trigger]');
+        (group ?? target).setAttribute('aria-invalid', String(invalid));
+      }
+      form.addEventListener('invalid', event => {
+        if (event.target instanceof Element) showValidity(event.target, true);
+        status.textContent = 'Check the marked fields before previewing.';
+      }, { capture: true, signal: abort.signal });
+      function update(event: Event) {
+        const target = event.target;
+        if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target instanceof HTMLSelectElement) {
+          if (target.closest('[data-form-field]')?.getAttribute('data-invalid') === 'true') showValidity(target, !target.validity.valid);
+        }
+        output.hidden = true;
+        status.textContent = 'Changes stay in this example. Preview again when ready.';
+      }
+      form.addEventListener('input', update, { signal: abort.signal });
+      form.addEventListener('change', update, { signal: abort.signal });
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        output.textContent = JSON.stringify(Object.fromEntries(new FormData(form)), null, 2);
+        output.hidden = false;
+        status.textContent = 'Preview ready. No data was sent or saved.';
+      }, { signal: abort.signal });
+      form.addEventListener('reset', () => {
+        for (const field of form.querySelectorAll<HTMLElement>('[data-form-field]')) {
+          field.dataset.invalid = 'false';
+          field.querySelectorAll('[aria-invalid]').forEach(control => control.removeAttribute('aria-invalid'));
+          field.querySelectorAll<HTMLElement>('[data-slot=field-error]').forEach(error => { error.hidden = true; });
+        }
+        output.hidden = true; output.textContent = '';
+        status.textContent = 'Form reset. Nothing was sent or saved.';
+      }, { signal: abort.signal });
+      form.querySelector<HTMLFieldSetElement>('[data-form-controls]')!.disabled = false;
+      form.querySelector<HTMLElement>('[data-form-loading]')!.hidden = true;
+      form.dataset.dmfFormReady = 'true';
+    }
+  }
+  initialize();
+  document.addEventListener('dmf:form-controls-ready', initialize);
+  document.addEventListener('astro:page-load', initialize);
+  document.addEventListener('astro:before-swap', () => {
+    for (const [form, abort] of bindings) {
+      abort.abort(); delete form.dataset.dmfFormReady;
+      form.querySelector<HTMLFieldSetElement>('[data-form-controls]')!.disabled = true;
+    }
+    bindings.clear();
+  });
+</script>

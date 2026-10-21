@@ -1,0 +1,17 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"h3">
+
+const { class: className, ...props } = Astro.props
+---
+
+<h3
+  data-slot="popover-title"
+  class={cn("font-medium", className)}
+  {...props}
+>
+  <slot />
+</h3>

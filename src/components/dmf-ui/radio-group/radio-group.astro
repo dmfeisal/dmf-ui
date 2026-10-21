@@ -1,0 +1,56 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"div"> & {
+  defaultValue?: string
+  name?: string
+  disabled?: boolean
+  readOnly?: boolean
+  required?: boolean
+}
+
+const {
+  class: className,
+  defaultValue,
+  name,
+  disabled,
+  readOnly,
+  required,
+  ...props
+} = Astro.props
+---
+
+<div
+  data-slot="radio-group"
+  data-dmf-radio-group
+  data-default-value={defaultValue}
+  data-name={name}
+  data-disabled={disabled}
+  data-read-only={readOnly}
+  data-required={required}
+  class={cn("grid gap-3 w-full", className)}
+  {...props}
+>
+  <slot />
+</div>
+
+<script>
+  import { createRadioGroup, type RadioGroupController } from "@data-slot/radio-group";
+  const controllers = new Map<HTMLElement, RadioGroupController>();
+  function initialize() {
+    for (const root of document.querySelectorAll<HTMLElement>('[data-dmf-radio-group]')) {
+      if (controllers.has(root)) continue;
+      controllers.set(root, createRadioGroup(root));
+      root.dataset.dmfRadioGroupReady = 'true';
+    }
+    document.dispatchEvent(new Event('dmf:form-controls-ready'));
+  }
+  initialize();
+  document.addEventListener('astro:page-load', initialize);
+  document.addEventListener('astro:before-swap', () => {
+    for (const [root, controller] of controllers) { controller.destroy(); delete root.dataset.dmfRadioGroupReady; }
+    controllers.clear();
+  });
+</script>

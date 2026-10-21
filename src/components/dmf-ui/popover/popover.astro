@@ -1,0 +1,76 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import type { PopoverAlign, PopoverSide } from "@data-slot/popover"
+
+type Props = HTMLAttributes<"div"> & {
+  defaultOpen?: boolean
+  side?: PopoverSide
+  align?: PopoverAlign
+  sideOffset?: number
+  alignOffset?: number
+  avoidCollisions?: boolean
+  collisionPadding?: number
+  portal?: boolean
+  /** Compatibility alias. Prefer `side`. */
+  position?: PopoverSide
+  closeOnClickOutside?: boolean
+  closeOnEscape?: boolean
+}
+
+const {
+  class: className,
+  defaultOpen,
+  side,
+  align,
+  sideOffset,
+  alignOffset,
+  avoidCollisions,
+  collisionPadding,
+  portal,
+  position,
+  closeOnClickOutside,
+  closeOnEscape,
+  ...props
+} = Astro.props
+---
+
+<div
+  data-slot="popover"
+  data-dmf-popover
+  data-default-open={defaultOpen}
+  data-side={side}
+  data-align={align}
+  data-side-offset={sideOffset}
+  data-align-offset={alignOffset}
+  data-avoid-collisions={avoidCollisions}
+  data-collision-padding={collisionPadding}
+  data-portal={portal}
+  data-position={position}
+  data-close-on-click-outside={closeOnClickOutside}
+  data-close-on-escape={closeOnEscape}
+  class={className}
+  {...props}
+>
+  <slot />
+</div>
+
+<script>
+  import { createPopover, type PopoverController } from '@data-slot/popover';
+  import { prepareOverlayScope } from '../overlay-scope';
+  const bindings = new Map<HTMLElement, { controller: PopoverController; cleanup: () => void }>();
+  function initialize() {
+    for (const root of document.querySelectorAll<HTMLElement>('[data-dmf-popover]')) {
+      if (bindings.has(root)) continue;
+      const scope = prepareOverlayScope(root, 'popover');
+      const controller = createPopover(root, { onOpenChange: scope.sync });
+      bindings.set(root, { controller, cleanup: scope.cleanup });
+      root.dataset.dmfOverlayReady = 'true';
+    }
+  }
+  initialize();
+  document.addEventListener('astro:page-load', initialize);
+  document.addEventListener('astro:before-swap', () => {
+    for (const [root, binding] of bindings) { binding.controller.destroy(); binding.cleanup(); delete root.dataset.dmfOverlayReady; }
+    bindings.clear();
+  });
+</script>

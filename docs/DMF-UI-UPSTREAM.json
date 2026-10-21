@@ -1,0 +1,188 @@
+{
+  "retrieved": "2026-10-21",
+  "repository": "https://github.com/fulldotdev/ui",
+  "observedRevision": "343dc8a9170a9f86c87524349e46b3865b9ce94b",
+  "note": "Registry payload hashes identify exact adopted source; live registry and observed Git revision may differ.",
+  "style": "base-vega",
+  "components": [
+    {
+      "component": "button",
+      "url": "https://ui.full.dev/r/styles/base-vega/button.json",
+      "sha256": "021fb85358babe4b57e41c067a3c25eb15c34837afc36da30e611e1979329d6f",
+      "dependencies": []
+    },
+    {
+      "component": "input",
+      "url": "https://ui.full.dev/r/styles/base-vega/input.json",
+      "sha256": "f242b51d6c43664a70efa422225955de5b43dc5309567a9ddab83a960f7316ba",
+      "dependencies": []
+    },
+    {
+      "component": "dialog",
+      "url": "https://ui.full.dev/r/styles/base-vega/dialog.json",
+      "sha256": "2d7ce2ce8b23dcb3406e3fea6b5e5890dc4190ab656f850faee44374ed1e102b",
+      "dependencies": [
+        "@data-slot/dialog@^1.1.2",
+        "@lucide/astro"
+      ]
+    },
+    {
+      "component": "toast",
+      "url": "https://ui.full.dev/r/styles/base-vega/toast.json",
+      "sha256": "83ab87c897bf63ca1cb5724e3d8b5ccce60bc2abedd91df1c1c682b74138b0bd",
+      "dependencies": [
+        "@data-slot/toast@^1.1.2",
+        "@lucide/astro"
+      ]
+    },
+    {
+      "component": "tabs",
+      "url": "https://ui.full.dev/r/styles/base-vega/tabs.json",
+      "sha256": "a03a2105743d67fc2f17b6729b88638c15b584f55f94c87de15ee14eac5e8f43",
+      "dependencies": [
+        "@data-slot/tabs@^1.1.2"
+      ]
+    },
+    {
+      "component": "label",
+      "url": "https://ui.full.dev/r/styles/base-vega/label.json",
+      "sha256": "41432bd909fb89bc808a8f0890e1cb20273b855678d0584591e389afca367075",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "component": "field",
+      "url": "https://ui.full.dev/r/styles/base-vega/field.json",
+      "sha256": "785651244fa55cce1756e4c74d7aa5de25127902289af5c45b84f90cf3ad1c9b",
+      "dependencies": [],
+      "registryDependencies": [
+        "@fulldev/label",
+        "@fulldev/separator"
+      ]
+    },
+    {
+      "component": "textarea",
+      "url": "https://ui.full.dev/r/styles/base-vega/textarea.json",
+      "sha256": "7d5214ae925263a0ac1a5424affcfd6355d9f74067f38f8daf07f9706ef7886b",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "component": "checkbox",
+      "url": "https://ui.full.dev/r/styles/base-vega/checkbox.json",
+      "sha256": "97086f67d3ac7f1b8fb3e209bfa797e0fd088b6d7461d1656909b0313110cc74",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "component": "radio-group",
+      "url": "https://ui.full.dev/r/styles/base-vega/radio-group.json",
+      "sha256": "a09b96ebe40fd15adc796dd0b5aa808021da7acb9c562b9f2a1d0d73922ee1ec",
+      "dependencies": [
+        "@data-slot/radio-group@^1.1.2"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "component": "switch",
+      "url": "https://ui.full.dev/r/styles/base-vega/switch.json",
+      "sha256": "5229c15a6cbccc8f24f1ec712fe5f8d626a6963359efa8d8f05487d693d97bb2",
+      "dependencies": [
+        "@data-slot/switch@^1.1.2"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "component": "separator",
+      "url": "https://ui.full.dev/r/styles/base-vega/separator.json",
+      "sha256": "717373d95a860b9ff91fd5b5ed8395e09cdba1ff0adaf8ceae29f5fa273691c4",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "component": "select",
+      "url": "https://ui.full.dev/r/styles/base-vega/select.json",
+      "sha256": "4ef2ad3ac42771fc262d50f81a707b66df26e1ca664204261381244ca723c463",
+      "dependencies": [
+        "@data-slot/select@^1.1.2",
+        "@lucide/astro"
+      ]
+    },
+    {
+      "component": "popover",
+      "url": "https://ui.full.dev/r/styles/base-vega/popover.json",
+      "sha256": "2247278875676c37be5dc399d36c551746f3e2746451c0e4a85394323b794519",
+      "dependencies": [
+        "@data-slot/popover@^1.1.2"
+      ]
+    },
+    {
+      "component": "dropdown-menu",
+      "url": "https://ui.full.dev/r/styles/base-vega/dropdown-menu.json",
+      "sha256": "336fa174099beb9371ef923f96b35260f29ef70dfb1fd761d177e4b62733469b",
+      "dependencies": [
+        "@data-slot/dropdown-menu@^1.1.2",
+        "@lucide/astro"
+      ]
+    }
+  ],
+  "modifications": [
+    "DMF local imports and scoped native normalization/utilities",
+    "Upstream base-vega tokens replace former portfolio mapping",
+    "Site dark-mode selector bridge; Yellow falls back to upstream light",
+    "Explicit component-root dialog discovery and host-owned toast controllers",
+    "Dialog viewport bounds and notification stacking",
+    "Coarse-pointer 44px targets and reduced motion safeguards",
+    "Tabs discovers explicit component roots with idempotent initialization and Astro teardown; upstream SSR initial-panel selection retained",
+    "Tabs horizontal RTL arrow adapter preserves computed direction, manual activation, disabled skipping and nested-root boundaries",
+    "Radio Group and Switch explicit component-root lifecycle with ready events for host forms",
+    "Field description uses logical text-start; switch track direction isolated for RTL",
+    "Native demo form validation, FormData preview, reset and disabled-until-ready host behavior",
+    "Coarse-pointer label targets preserve checkbox/radio/switch artwork geometry",
+    "Switch clears native button padding and uses matched pixel geometry with equal 2px thumb endpoint insets for default/small sizes across root font sizes",
+    "Select uses explicit idempotent DMF roots, preset-aware portal scopes, logical spacing/alignment and form readiness events",
+    "Popover and Dropdown Menu use explicit idempotent roots, preset-aware scoped portals and teardown; logical menu spacing, viewport bounds and coarse-pointer targets; link activation listener is portal-scoped"
+  ],
+  "installedDependencies": {
+    "@data-slot/dialog": "1.1.2",
+    "@data-slot/toast": "1.1.2",
+    "@data-slot/core": "1.1.2",
+    "@lucide/astro": "1.60.0",
+    "class-variance-authority": "0.7.1",
+    "cn": "0.5.0",
+    "tw-animate-css": "1.4.0",
+    "tailwindcss": "4.3.3",
+    "@tailwindcss/vite": "4.3.3",
+    "@data-slot/tabs": "1.1.2",
+    "@data-slot/radio-group": "1.1.2",
+    "@data-slot/switch": "1.1.2",
+    "@data-slot/select": "1.1.2",
+    "@data-slot/popover": "1.1.2",
+    "@data-slot/dropdown-menu": "1.1.2"
+  },
+  "foundation": {
+    "url": "https://ui.full.dev/r/styles/base-vega/base.json",
+    "sha256": "8dfe19aa3f7fa8d36aed6c6c69f5ac89cbfd91015810b1c87133843b624ca92d",
+    "localSource": "src/styles/upstream/fulldev-base.json"
+  },
+  "stylesheets": [
+    {
+      "package": "shadcn",
+      "version": "4.22.1",
+      "path": "src/styles/upstream/shadcn.css",
+      "sha256": "4c371f7a1ff5d219ae2f7ff28bd256b4346fd546fe46fbae22092e57db2f0fae"
+    }
+  ],
+  "presets": [
+    {
+      "name": "cb-ui",
+      "status": "2026 reconstruction preset; light only",
+      "source": "public/css/cb-ui-tokens.css",
+      "sourceSha256": "555625e0a8afdba57e92b2838e5f0f6e6383179a3bc6bcec4f1d3968d5e550c6",
+      "file": "src/styles/dmf-ui-cb.css",
+      "fontSource": "https://github.com/google/fonts/blob/main/ofl/nunito/Nunito%5Bwght%5D.ttf",
+      "fontSha256": "bb55a5ca5c2042335b3991af27c4d0705d0ef41cac6164ac737fd8f2a1e85207",
+      "license": "SIL OFL 1.1; full notice in public/dmf-ui-notices.txt"
+    }
+  ]
+}

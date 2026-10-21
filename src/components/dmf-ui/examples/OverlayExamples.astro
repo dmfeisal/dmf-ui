@@ -1,0 +1,56 @@
+---
+import { Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverTitle, PopoverDescription } from '../popover';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuCheckboxItem, DropdownMenuRadioItem, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuSeparator } from '../dropdown-menu';
+import { Button } from '../button';
+import { Input } from '../input';
+import { Label } from '../label';
+import { buttonVariants } from '../button/button-variants';
+interface Props { prefix: string; }
+const { prefix } = Astro.props;
+---
+<div data-overlay-example={prefix}>
+  <h4 class="dmf-pilot-heading">Popover and Dropdown Menu</h4>
+  <p class="dmf-system-note">Local examples. Edit the draft or try menu choices; nothing is sent or saved.</p>
+  <div class="dmf-pilot-row">
+    <Popover id={`${prefix}-popover`}>
+      <PopoverTrigger id={`${prefix}-popover-trigger`} class={buttonVariants({ variant: 'outline' })}>Edit preview</PopoverTrigger>
+      <PopoverContent role="dialog" aria-labelledby={`${prefix}-popover-title`} aria-describedby={`${prefix}-popover-description`}>
+        <PopoverHeader><PopoverTitle id={`${prefix}-popover-title`}>Preview settings</PopoverTitle><PopoverDescription id={`${prefix}-popover-description`}>This draft lasts for this visit.</PopoverDescription></PopoverHeader>
+        <Label for={`${prefix}-draft`}>Draft label</Label><Input id={`${prefix}-draft`} value="Local preview" /><Button data-slot="popover-close" variant="secondary">Done</Button>
+      </PopoverContent>
+    </Popover>
+    <DropdownMenu id={`${prefix}-menu`} defaultValue="comfortable" defaultValues={['hints']} closeOnSelect={false}>
+      <DropdownMenuTrigger id={`${prefix}-menu-trigger`} class={buttonVariants({ variant: 'outline' })}>Preview menu</DropdownMenuTrigger>
+      <DropdownMenuContent class="min-w-56" aria-label="Preview actions">
+        <DropdownMenuGroup><DropdownMenuLabel>Local actions</DropdownMenuLabel>
+          <DropdownMenuItem data-value="preview">Preview selection</DropdownMenuItem>
+          <DropdownMenuItem disabled>Export (unavailable)</DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup><DropdownMenuLabel>Display</DropdownMenuLabel>
+          <DropdownMenuCheckboxItem value="hints">Show hints</DropdownMenuCheckboxItem>
+          <DropdownMenuRadioItem value="comfortable">Comfortable</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="compact">Compact</DropdownMenuRadioItem>
+        </DropdownMenuGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  </div>
+  <p data-overlay-status role="status" aria-live="polite" class="dmf-system-note">No menu action selected.</p>
+</div>
+
+<script>
+  import type { DropdownMenuSelectDetail } from '@data-slot/dropdown-menu';
+  const bindings = new Map<HTMLElement, AbortController>();
+  function initialize() {
+    for (const host of document.querySelectorAll<HTMLElement>('[data-overlay-example]')) {
+      if (bindings.has(host)) continue;
+      const abort = new AbortController(); bindings.set(host, abort);
+      host.querySelector('[data-dmf-dropdown-menu]')!.addEventListener('dropdown-menu:select', event => {
+        const detail = (event as CustomEvent<DropdownMenuSelectDetail>).detail;
+        host.querySelector('[data-overlay-status]')!.textContent = `${detail.item.textContent?.trim()} selected. Nothing was sent or saved.`;
+      }, { signal: abort.signal });
+    }
+  }
+  initialize(); document.addEventListener('astro:page-load', initialize);
+  document.addEventListener('astro:before-swap', () => { for (const abort of bindings.values()) abort.abort(); bindings.clear(); });
+</script>

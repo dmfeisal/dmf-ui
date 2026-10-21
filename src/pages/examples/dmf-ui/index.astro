@@ -1,0 +1,151 @@
+---
+// Deliberately no portfolio layout, styles, fonts, scripts or Canvas.
+import '../../../styles/dmf-ui.css';
+import { Button } from '../../../components/dmf-ui/button';
+import { Input } from '../../../components/dmf-ui/input';
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from '../../../components/dmf-ui/dialog';
+import SystemExamples from '../../../components/dmf-ui/examples/SystemExamples.astro';
+import TabsExamples from '../../../components/dmf-ui/examples/TabsExamples.astro';
+import { Toaster } from '../../../components/dmf-ui/toast';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Standalone DMF UI</title>
+    <meta name="description" content="A standalone example of the Fulldev-first DMF UI foundation." />
+  </head>
+  <body class="dmf-ui">
+    <a class="skip-link" href="#main">Skip to examples</a>
+    <header class="example-header">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol>
+        <li><a href="../../" aria-label="Home" class="home-link"><span aria-hidden="true">●</span></a></li>
+        <li><a href="#main">DMF UI</a></li>
+        <li aria-current="page">Standalone</li>
+      </ol></nav>
+      <Button id="example-theme" variant="outline">Theme: System</Button>
+    </header>
+    <main id="main">
+      <div class="example-intro">
+        <h1>DMF UI, on its own.</h1>
+        <p>The same Button, Input, Dialog, Toast and Tabs components, without portfolio styles or scripts. These examples do not save or publish anything.</p>
+      </div>
+      <div class="example-grid">
+        {[{ id: 'first', title: 'Primary example' }, { id: 'second', title: 'Independent example' }].map(({ id, title }) => (
+          <section class="example-surface" data-dmf-example={id} aria-labelledby={`${id}-heading`}>
+            <h2 id={`${id}-heading`}>{title}</h2>
+            <p>Each example owns its dialog and notifications.</p>
+            <div class="example-actions">
+              <Button>Primary</Button><Button variant="outline">Outline</Button><Button variant="secondary">Secondary</Button><Button variant="ghost">Ghost</Button><Button disabled>Disabled</Button>
+            </div>
+            <form data-example-form>
+              <label for={`${id}-name`}>Display name</label>
+              <Input id={`${id}-name`} name="display-name" autocomplete="nickname" required aria-describedby={`${id}-hint`} placeholder="Your name" />
+              <p id={`${id}-hint`} class="example-hint">Required. Used only in this example.</p>
+              <Button type="submit" variant="outline">Check name</Button>
+            </form>
+            <Dialog>
+              <DialogTrigger>Open {id} dialog</DialogTrigger>
+              <DialogContent id={`${id}-dialog`}>
+                <DialogHeader><DialogTitle>{title} dialog</DialogTitle><DialogDescription>This dialog is independent of the other example. Close it to return to its trigger.</DialogDescription></DialogHeader>
+                <label for={`${id}-dialog-name`}>Display name</label><Input id={`${id}-dialog-name`} autocomplete="nickname" />
+                <DialogFooter><DialogClose variant="outline">Close {id} dialog</DialogClose></DialogFooter>
+              </DialogContent>
+            </Dialog>
+            <div class="example-actions">
+              <Button data-example-notify="success">Show {id} success</Button>
+              <Button variant="outline" data-example-notify="error">Show {id} error</Button>
+            </div>
+            <Toaster id={`${id}-toaster`} portal={false} limit={2} duration={6000} position={id === 'first' ? 'bottom-left' : 'bottom-right'} />
+          </section>
+        ))}
+      </div>
+      <section class="example-surface example-tabs" aria-labelledby="standalone-tabs-title">
+        <h2 id="standalone-tabs-title">Tabs</h2>
+        <TabsExamples prefix="standalone-tabs" />
+      </section>
+      <section class="example-presets" aria-labelledby="standalone-forms-title">
+        <h2 id="standalone-forms-title">Forms and design-system presets</h2>
+        <SystemExamples prefix="standalone-form" />
+      </section>
+      <p class="example-footer">Adapted from <a href="https://ui.full.dev/">Fulldev UI</a>, with shadcn/ui, Tailwind CSS, Data Slot and Lucide. <a href="../../dmf-ui-notices.txt">Credits and license notices</a>.</p>
+    </main>
+  </body>
+</html>
+<script>
+  import { createToast } from '@data-slot/toast';
+  let dispose: (() => void) | undefined;
+  function initialize() {
+    if (dispose) return;
+    const events = new AbortController();
+    const controllers: ReturnType<typeof createToast>[] = [];
+    for (const root of document.querySelectorAll<HTMLElement>('[data-dmf-example]')) {
+      const target = root.querySelector<HTMLElement>('[data-slot=toast]');
+      if (!target) continue;
+      const toast = createToast(target, { portal: false });
+      controllers.push(toast);
+      root.addEventListener('click', event => {
+        const trigger = (event.target as Element).closest<HTMLElement>('[data-example-notify]');
+        if (!trigger || !root.contains(trigger)) return;
+        const error = trigger.dataset.exampleNotify === 'error';
+        toast.show({ title: `${root.dataset.dmfExample} ${error ? 'error' : 'success'}`, type: error ? 'error' : 'success', description: 'Example only. No data was saved.' });
+      }, { signal: events.signal });
+      root.querySelector('form')?.addEventListener('submit', event => {
+        event.preventDefault();
+        toast.show({ title: `${root.dataset.dmfExample} name checked`, description: 'Native required-field validation passed. Nothing was saved.', type: 'success' });
+      }, { signal: events.signal });
+    }
+    const media = matchMedia('(prefers-color-scheme: dark)');
+    const modes = ['system', 'light', 'dark'] as const;
+    let index = 0;
+    function applyTheme() {
+      const mode = modes[index];
+      document.documentElement.dataset.theme = mode === 'system' ? (media.matches ? 'dark' : 'light') : mode;
+      const button = document.querySelector('#example-theme');
+      if (button) button.textContent = `Theme: ${mode[0].toUpperCase()}${mode.slice(1)}`;
+    }
+    document.querySelector('#example-theme')?.addEventListener('click', () => { index = (index + 1) % modes.length; applyTheme(); }, { signal: events.signal });
+    media.addEventListener('change', applyTheme, { signal: events.signal });
+    applyTheme();
+    document.documentElement.dataset.dmfExampleReady = 'true';
+    dispose = () => {
+      events.abort(); controllers.forEach(controller => controller.destroy());
+      delete document.documentElement.dataset.dmfExampleReady;
+      dispose = undefined;
+    };
+  }
+  initialize();
+  document.addEventListener('astro:page-load', initialize);
+  document.addEventListener('astro:before-swap', () => dispose?.());
+</script>
+<style>
+  :global(html) { font-size: 87.5%; }
+  :global(body) { margin: 0; }
+  .example-header, main { max-width: 100rem; margin-inline: auto; padding-inline: clamp(20px, 4vw, 64px); }
+  .example-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding-block: 24px; border-block-end: 1px solid var(--border); }
+  .breadcrumb ol { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; list-style: none; padding: 0; margin: 0; }
+  .breadcrumb li + li::before { content: '/'; margin-inline-end: 12px; color: var(--muted-foreground); }
+  .breadcrumb a, .example-footer a { color: inherit; text-underline-offset: 4px; }
+  .home-link { display: inline-flex; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+  .example-intro { max-width: 55rem; padding-block: 64px 40px; }
+  .example-intro h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -.04em; margin-block-end: 20px; }
+  .example-intro p { font-size: 1.25rem; color: var(--muted-foreground); }
+  .example-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .example-surface { min-width: 0; padding: clamp(20px, 3vw, 32px); border: 1px solid var(--border); border-radius: var(--radius); }
+  .example-surface h2 { font-size: 1.5rem; font-weight: 600; margin-block-end: 8px; }
+  .example-surface > p, .example-hint { color: var(--muted-foreground); }
+  .example-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-block: 24px; }
+  form { display: grid; gap: 8px; margin-block: 24px; }
+  form button { justify-self: start; margin-block-start: 8px; }
+  .example-hint { font-size: .875rem; }
+  .example-tabs { margin-block-start: 24px; }
+  .example-presets { margin-block-start: 40px; }
+  .example-presets > h2 { font-size: 2rem; font-weight: 600; margin-block-end: 24px; }
+  .example-footer { padding-block: 32px 64px; color: var(--muted-foreground); }
+  .skip-link { position: absolute; inset-inline-start: 20px; top: -100px; padding: 12px; background: var(--background); color: var(--foreground); z-index: 100; }
+  .skip-link:focus { top: 8px; }
+  a:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
+  @media(max-width: 760px) { .example-grid { grid-template-columns: 1fr; } .example-intro { padding-block: 40px 32px; } }
+</style>

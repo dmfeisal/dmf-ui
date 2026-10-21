@@ -1,0 +1,87 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import type { Align, Side } from "@data-slot/dropdown-menu"
+
+type Props = HTMLAttributes<"div"> & {
+  defaultOpen?: boolean
+  defaultValue?: string | null
+  defaultValues?: string[]
+  closeOnClickOutside?: boolean
+  closeOnEscape?: boolean
+  closeOnSelect?: boolean
+  highlightItemOnHover?: boolean
+  side?: Side
+  align?: Align
+  sideOffset?: number
+  alignOffset?: number
+  avoidCollisions?: boolean
+  collisionPadding?: number
+  lockScroll?: boolean
+}
+
+const {
+  class: className,
+  defaultOpen,
+  defaultValue,
+  defaultValues,
+  closeOnClickOutside,
+  closeOnEscape,
+  closeOnSelect,
+  highlightItemOnHover,
+  side,
+  align,
+  sideOffset,
+  alignOffset,
+  avoidCollisions,
+  collisionPadding,
+  lockScroll,
+  ...props
+} = Astro.props
+
+const defaultValuesAttr =
+  defaultValues === undefined ? undefined : JSON.stringify(defaultValues)
+---
+
+<div
+  data-slot="dropdown-menu"
+  data-dmf-dropdown-menu
+  data-default-open={defaultOpen}
+  data-default-value={defaultValue === null ? "" : defaultValue}
+  data-default-values={defaultValuesAttr}
+  data-close-on-click-outside={closeOnClickOutside}
+  data-close-on-escape={closeOnEscape}
+  data-close-on-select={closeOnSelect}
+  data-highlight-item-on-hover={highlightItemOnHover}
+  data-side={side}
+  data-align={align}
+  data-side-offset={sideOffset}
+  data-align-offset={alignOffset}
+  data-avoid-collisions={avoidCollisions}
+  data-collision-padding={collisionPadding}
+  data-lock-scroll={lockScroll}
+  class={className}
+  {...props}
+>
+  <slot />
+</div>
+
+<script>
+  import { createDropdownMenu, type DropdownMenuController } from '@data-slot/dropdown-menu';
+  import { prepareOverlayScope } from '../overlay-scope';
+  const bindings = new Map<HTMLElement, { controller: DropdownMenuController; cleanup: () => void }>();
+  function initialize() {
+    for (const root of document.querySelectorAll<HTMLElement>('[data-dmf-dropdown-menu]')) {
+      if (bindings.has(root)) continue;
+      const scope = prepareOverlayScope(root, 'dropdown-menu');
+      const controller = createDropdownMenu(root, { onOpenChange: scope.sync });
+      bindings.set(root, { controller, cleanup: scope.cleanup });
+      root.dataset.dmfOverlayReady = 'true';
+    }
+  }
+  initialize();
+  document.addEventListener('astro:page-load', initialize);
+  document.addEventListener('astro:before-swap', () => {
+    for (const [root, binding] of bindings) { binding.controller.destroy(); binding.cleanup(); delete root.dataset.dmfOverlayReady; }
+    bindings.clear();
+  });
+</script>

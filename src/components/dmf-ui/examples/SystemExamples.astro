@@ -1,0 +1,22 @@
+---
+import { Button } from '../button';
+import TabsExamples from './TabsExamples.astro';
+import OverlayExamples from './OverlayExamples.astro';
+import FormExample from './FormExample.astro';
+interface Props { prefix: string; }
+const { prefix } = Astro.props;
+---
+<div class="dmf-system-examples">
+  {[{ system: 'dmf', title: 'DMF UI · Fulldev default' }, { system: 'cb-ui', title: 'CB UI · 2026 reconstruction preset' }].map(({ system, title }) => (
+    <section class="dmf-ui dmf-system-surface" data-system={system} data-color-mode={system === 'cb-ui' ? 'light' : undefined} aria-labelledby={`${prefix}-${system}-title`}>
+      <h3 id={`${prefix}-${system}-title`} class="dmf-pilot-heading">{title}</h3>
+      {system === 'cb-ui' && <p class="dmf-system-note">Based on the documented <a href="https://feisal.id/playground/cb-ui-2026/">CB UI reconstruction</a>. This light preset uses recovered Cashbac colors, Nunito, and shape values with present-day accessible role mapping. It is not a historical shipped-system claim.</p>}
+      <div class="dmf-pilot-row"><Button>Primary action</Button><Button variant="outline">Outline action</Button><Button variant="secondary">Secondary action</Button><Button disabled>Unavailable</Button></div>
+      <TabsExamples prefix={`${prefix}-${system}-tabs`} />
+      <OverlayExamples prefix={`${prefix}-${system}`} />
+      <h4 class="dmf-pilot-heading">Complete form example</h4>
+      <p class="dmf-system-note">Required fields, native validation, keyboard controls, read-only and disabled states. Preview shows local form values; nothing is sent or saved.</p>
+      <FormExample prefix={`${prefix}-${system}`} />
+    </section>
+  ))}
+</div>
