@@ -141,7 +141,8 @@
     "Coarse-pointer label targets preserve checkbox/radio/switch artwork geometry",
     "Switch clears native button padding and uses matched pixel geometry with equal 2px thumb endpoint insets for default/small sizes across root font sizes",
     "Select uses explicit idempotent DMF roots, preset-aware portal scopes, logical spacing/alignment and form readiness events",
-    "Popover and Dropdown Menu use explicit idempotent roots, preset-aware scoped portals and teardown; logical menu spacing, viewport bounds and coarse-pointer targets; link activation listener is portal-scoped"
+    "Popover and Dropdown Menu use explicit idempotent roots, preset-aware scoped portals and teardown; logical menu spacing, viewport bounds and coarse-pointer targets; link activation listener is portal-scoped",
+    "Source-owned Astro package exports; documentation styles separated; CB Nunito is a bundler-owned relative font asset"
   ],
   "installedDependencies": {
     "@data-slot/dialog": "1.1.2",
@@ -182,7 +183,8 @@
       "file": "src/styles/dmf-ui-cb.css",
       "fontSource": "https://github.com/google/fonts/blob/main/ofl/nunito/Nunito%5Bwght%5D.ttf",
       "fontSha256": "bb55a5ca5c2042335b3991af27c4d0705d0ef41cac6164ac737fd8f2a1e85207",
-      "license": "SIL OFL 1.1; full notice in public/dmf-ui-notices.txt"
+      "license": "SIL OFL 1.1; full notice in public/dmf-ui-notices.txt",
+      "fontFile": "src/assets/fonts/nunito.ttf"
     }
   ]
 }

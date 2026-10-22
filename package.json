@@ -1,6 +1,6 @@
 {
   "name": "dmf-ui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,7 +8,7 @@
     "check": "astro check",
     "build": "astro build",
     "preview": "astro preview",
-    "test": "node --test tests/structure.test.mjs"
+    "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {
     "@data-slot/dialog": "1.1.2",
@@ -30,5 +30,53 @@
     "@tailwindcss/vite": "4.3.3",
     "tailwindcss": "4.3.3",
     "typescript": "6.0.3"
+  },
+  "description": "Experimental Fulldev-based Astro UI components and DMF/CB presets",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dmfeisal/dmf-ui.git"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "exports": {
+    ".": "./src/components/dmf-ui/index.ts",
+    "./button": "./src/components/dmf-ui/button/index.ts",
+    "./checkbox": "./src/components/dmf-ui/checkbox/index.ts",
+    "./dialog": "./src/components/dmf-ui/dialog/index.ts",
+    "./dropdown-menu": "./src/components/dmf-ui/dropdown-menu/index.ts",
+    "./field": "./src/components/dmf-ui/field/index.ts",
+    "./input": "./src/components/dmf-ui/input/index.ts",
+    "./label": "./src/components/dmf-ui/label/index.ts",
+    "./popover": "./src/components/dmf-ui/popover/index.ts",
+    "./radio-group": "./src/components/dmf-ui/radio-group/index.ts",
+    "./select": "./src/components/dmf-ui/select/index.ts",
+    "./separator": "./src/components/dmf-ui/separator/index.ts",
+    "./switch": "./src/components/dmf-ui/switch/index.ts",
+    "./tabs": "./src/components/dmf-ui/tabs/index.ts",
+    "./textarea": "./src/components/dmf-ui/textarea/index.ts",
+    "./toast": "./src/components/dmf-ui/toast/index.ts",
+    "./button/variants": "./src/components/dmf-ui/button/button-variants.ts",
+    "./styles.css": "./src/styles/dmf-ui.css",
+    "./examples.css": "./src/styles/dmf-ui-examples.css",
+    "./tokens.css": "./src/styles/dmf-ui-tokens.css",
+    "./presets/cb-ui.css": "./src/styles/dmf-ui-cb.css",
+    "./examples/*": "./src/components/dmf-ui/examples/*.astro",
+    "./notices": "./public/dmf-ui-notices.txt",
+    "./package.json": "./package.json",
+    "./provenance": "./docs/DMF-UI-UPSTREAM.json"
+  },
+  "files": [
+    "src/components/dmf-ui",
+    "src/styles/dmf-ui*.css",
+    "src/assets",
+    "public/dmf-ui-notices.txt",
+    "README.md",
+    "docs/DMF-UI-UPSTREAM.json",
+    "src/styles/upstream"
+  ],
+  "peerDependencies": {
+    "astro": "^7.3.2",
+    "tailwindcss": "^4.3.3"
   }
 }

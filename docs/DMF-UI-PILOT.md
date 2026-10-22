@@ -6,7 +6,7 @@ Status: experimental, Astro-first. Live reference: `/ui/#fulldev-pilot`. Standal
 
 Fulldev is the primary reference for DMF UI component anatomy, tokens, styling, variants and interaction behavior. Prefer upstream defaults over inferior or conflicting legacy DMF rules. Button, Input, Dialog, Toast, Tabs and the core forms retain base-vega source structure and Data Slot behavior. The former palette mapping, square shapes, desktop 44px sizing and extra focus outline have been removed. The old button/input specimens now render shared components instead of maintaining competing styles.
 
-Source is in `src/components/dmf-ui/`; `DmfUIPilot.astro` composes the foundation examples and notification triggers. This is not yet a standalone package or a React/WordPress API. Existing Canvas, publishing and storage remain page-owned. Portfolio token/color/media specimens are explicitly labeled as existing site references; they do not override the new foundation.
+Source is in `src/components/dmf-ui/`; The portfolio composes its foundation examples from package exports. This repository now provides the experimental Astro package; React/WordPress APIs remain future work. Existing Canvas, publishing and storage remain page-owned. Portfolio token/color/media specimens are explicitly labeled as existing site references; they do not override the new foundation.
 
 `DMF-UI-UPSTREAM.json` records upstream source URLs, the observed repository revision, exact downloaded registry hashes, dependency versions and modifications. Live registry responses may differ from that Git revision. Review changes before updating local source.
 
@@ -46,7 +46,7 @@ The CB UI preset and independent Astro consumer now have dedicated examples and 
 
 `src/pages/examples/dmf-ui/index.astro` imports the shared component directories and `src/styles/dmf-ui.css` directly, without BaseLayout or StyleguideLayout. Its local CSS owns page layout, breadcrumbs and the relative 14px root; shared component styles own component appearance. The examples have independent dialog roots, form inputs and toast controllers. Theme switching is page-local with System/Light/Dark and no storage writes.
 
-For a future clean Astro consumer, copy `src/components/dmf-ui/`, `src/styles/dmf-ui*.css`, and `src/styles/upstream/`, retaining their notices. Install the versions recorded in `DMF-UI-UPSTREAM.json`, enable the Tailwind Vite plugin, import the shared stylesheet, and add the consumer's example/page files to Tailwind's source discovery. Wrap rendered UI in `.dmf-ui`; do not import portfolio tokens or scripts. Toast currently requires a host-owned controller and disposal; the standalone page demonstrates that integration. This is source consumption guidance, not a stable public package API.
+Consume the package exports described in README.md. Use `dmf-ui/styles.css` for components and optional `dmf-ui/examples.css` for specimen layout. Do not recreate component copies in consumers. Host-owned toast creation and disposal are available through `dmf-ui/toast`.
 
 ## Tabs
 
@@ -70,7 +70,7 @@ Label, Field (including content/description/error/group/legend/set/separator/tit
 
 Run `ego-browser nodejs < tests/browser/dmf-ui-forms.mjs` for native validation, error states, keyboard checkbox/radio/switch operation, exact FormData, disabled exclusions, read-only inclusion, reset, instance isolation, preset/theme isolation, coarse-pointer RTL geometry and controller teardown/rebinding. The standalone example passes without portfolio assets. This is a source-owned Astro implementation; other framework adapters remain future work; the separate Astro consumer is documented in `DMF-UI-EXTRACTION.md`.
 
-Copy `public/dmf-ui/` and `public/dmf-ui-notices.txt` with the styles and components when testing a clean consumer: the optional CB UI preset references its bundled Nunito font. No Google Fonts request or portfolio stylesheet is required.
+The CB font is bundled from `src/assets/fonts/nunito.ttf` through relative CSS asset resolution. Distribute the exported `dmf-ui/notices`; no consumer font route, Google Fonts request or portfolio stylesheet is required.
 
 ## Select
 

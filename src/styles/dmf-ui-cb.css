@@ -1,7 +1,7 @@
 /* Present-day CB UI preset: source values in public/css/cb-ui-tokens.css.
    This is a reconstruction preset, not a claim about historical shipped UI. */
 @font-face {
- font-family: 'DMF CB Nunito'; src: url('/dmf-ui/fonts/nunito.ttf') format('truetype');
+ font-family: 'DMF CB Nunito'; src: url('../assets/fonts/nunito.ttf') format('truetype');
  font-style: normal; font-weight: 200 900; font-display: swap;
 }
 :root .dmf-ui[data-system="cb-ui"] {

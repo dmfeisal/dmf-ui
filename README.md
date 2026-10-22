@@ -1,29 +1,40 @@
 # DMF UI
 
-Experimental, source-owned Astro components adapted from Fulldev base-vega, using Tailwind v4 and Data Slot. This independent repository includes DMF and the light-only CB UI 2026 reconstruction preset. It has no portfolio layout, Canvas, storage, publishing or Netlify dependency.
+Experimental Astro UI components adapted from Fulldev base-vega, using Tailwind v4 and Data Slot. This repository is the source of truth for component source, semantic tokens and the DMF / CB UI reconstruction presets. The portfolio consumes a pinned package snapshot.
 
-## Run
+## Develop
 
-Use Node 22.12 or newer (see installed Astro engine requirements).
+Use Node >=22.12. Run `npm ci`, `npm run check`, `npm run build` and `npm test`. `npm run dev` opens the local documentation; `/examples/dmf-ui/` contains independent examples. The existing Ego browser acceptance suite uses preview on port 4402.
 
-```sh
-npm ci
-npm run check
-npm run build
-npm test
-npm run preview -- --host 127.0.0.1 --port 4402
+## Consume
+
+Install a packed version of this repository with `npm install ./vendor/dmf-ui-0.1.0.tgz --save-exact`. The package is private and has not been published to npm.
+
+```astro
+---
+import { Button } from 'dmf-ui/button';
+import 'dmf-ui/styles.css';
+---
+<div class="dmf-ui"><Button>Continue</Button></div>
 ```
 
-For a fresh export before its lockfile is generated, run `npm install` once. Open /examples/dmf-ui/. Run `ego-browser nodejs < tests/browser/consumer.mjs` with preview running on port 4402.
+Enable the Tailwind Vite plugin in your Astro configuration. Component classes are discovered from the installed package. Add explicit `@source` paths for consumer-authored utility classes in your own stylesheet. Core styles preserve scoped normalization instead of global Preflight and never set a global root font size. The examples retain a relative 14px root.
 
-## Source contract
+Public imports include component directories (`dmf-ui/dialog`, `dmf-ui/select`, etc.), the aggregate `dmf-ui` entry, `dmf-ui/button/variants`, `dmf-ui/styles.css`, `dmf-ui/tokens.css`, and `dmf-ui/presets/cb-ui.css`. Host-owned toast controllers are available from `dmf-ui/toast`. Optional specimens use `dmf-ui/examples/*` and `dmf-ui/examples.css`; component CSS does not import documentation layout rules.
 
-Components live in src/components/dmf-ui; import their directory index files. Import src/styles/dmf-ui.css and wrap rendered components in .dmf-ui. The example page demonstrates independent forms, host-owned notifications and themes; component controllers dispose before Astro swaps. Include public/dmf-ui fonts and public/dmf-ui-notices.txt. CB wrappers use data-system="cb-ui" and data-color-mode="light"; its primary is --dmf-cb-ui-color-primary: #26ade4.
+The CB preset uses `data-system="cb-ui" data-color-mode="light"` on `.dmf-ui` and retains `--dmf-cb-ui-color-primary: #26ade4`. Its licensed Nunito font is bundled through CSS asset URLs, without a consumer-owned font route. The preset is a 2026 reconstruction, not a historical shipped-system claim.
 
-Add consumer source paths to Tailwind discovery when moving examples. Preserve scoped utilities and native normalization instead of global Preflight. Shared component styles currently include example layout classes; these can be separated in a later packaging pass.
+## Update a consumer
 
-## Status and attribution
+1. Make and verify changes here. Bump `package.json` and its lockfile for a new snapshot.
+2. Run `npm pack --ignore-scripts --pack-destination /tmp`.
+3. Put the new archive in the consumer's `vendor/` directory and install that exact file with `npm install --save-exact`.
+4. Verify the consumer and review its package-lock integrity change. Commit source and consumer changes when requested.
 
-This is an Astro source distribution, not a published npm package or a React/WordPress adapter. Keep local development private until distribution licensing and API governance are decided. Preserve upstream notices for Fulldev, shadcn/ui, Tailwind CSS, Data Slot, Lucide and other bundled dependencies. Radix is not a runtime dependency. Source URLs, exact hashes and modifications are in docs/DMF-UI-UPSTREAM.json; license text is in public/dmf-ui-notices.txt. The CB preset is a present-day reconstruction, not a historical shipped-system claim.
+Do not edit installed package files or recreate component copies in consumers. A future Git SHA or registry release can replace archive pins. No local folder link is required for clean builds.
 
-Exported by scripts/export-dmf-ui.mjs in the portfolio repository. The local snapshot is independent; subsequent changes should be deliberately synchronized rather than assuming automatic updates.
+Preserve `dmf-ui/notices` in distributed sites and source. `dmf-ui/provenance` records source URLs, hashes, dependency versions and adaptations. The portfolio mirrors those two files during dev/build; fonts are resolved by Vite.
+
+## Scope and attribution
+
+Astro is the implemented adapter. React and WordPress support, stable API guarantees and npm publication remain future work. Preserve notices for Fulldev, shadcn/ui, Tailwind CSS, Data Slot, Lucide and bundled dependencies. Radix is not a runtime dependency. Full notices are in `public/dmf-ui-notices.txt`. `EXPORT-MANIFEST.json` records the original extraction snapshot and is historical, not a current package inventory.

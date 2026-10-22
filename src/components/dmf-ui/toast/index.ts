@@ -24,3 +24,5 @@ export type {
   ToastShowOptions,
   ToastUpdateOptions,
 } from "@data-slot/toast"
+
+export { createToast } from "@data-slot/toast";
