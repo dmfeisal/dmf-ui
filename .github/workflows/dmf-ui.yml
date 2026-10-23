@@ -30,5 +30,7 @@ jobs:
         run: npm run check
       - name: Build documentation
         run: npm run build
+      - name: Build real Astro navigation fixture
+        run: npm run build:dmf-ui:navigation
       - name: Verify distribution and browser harness contracts
         run: npm test

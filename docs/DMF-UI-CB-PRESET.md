@@ -33,3 +33,5 @@ Select, Popover and Dropdown Menu propagate the CB preset and light color mode o
 `tests/browser/dmf-ui-forms.mjs` checks both preset forms and their independent state, native validation and submission values, reset, keyboard, mobile/RTL geometry, light-only CB behavior in dark surroundings, and absence of duplicate native proxies on repeated initialization. Existing Tabs/browser regressions cover the shared interactions. Contrast numbers above are calculated from the documented sRGB colors; they do not represent a complete accessibility certification.
 
 Keep product-specific patterns and governance separate from the shared implementation. The next step after this source-owned proof is a separately built consumer and a deliberate production component migration, not an automatic rewrite of historical product documentation.
+
+The 0.1.1 accessibility follow-up raises shared inactive Tabs text opacity without changing the CB primary color. See `DMF-UI-ACCESSIBILITY.md` for measured failures, regression coverage and manual verification gaps.

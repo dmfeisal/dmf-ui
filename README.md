@@ -38,3 +38,5 @@ Preserve `dmf-ui/notices` in distributed sites and source. `dmf-ui/provenance` r
 ## Scope and attribution
 
 Astro is the implemented adapter. React and WordPress support, stable API guarantees and npm publication remain future work. Preserve notices for Fulldev, shadcn/ui, Tailwind CSS, Data Slot, Lucide and bundled dependencies. Radix is not a runtime dependency. Full notices are in `public/dmf-ui-notices.txt`. `EXPORT-MANIFEST.json` records the original extraction snapshot and is historical, not a current package inventory.
+
+Quality follow-up: `npm run test:dmf-ui:accessibility` runs the pinned axe audit and focused keyboard/AX checks. `npm run test:dmf-ui:navigation` builds an isolated ClientRouter fixture and tests actual links/history. These local browser commands require Ego Browser; see docs/DMF-UI-QUALITY.md for exact coverage and manual browser/screen-reader gaps.

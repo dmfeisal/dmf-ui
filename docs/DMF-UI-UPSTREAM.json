@@ -142,7 +142,8 @@
     "Switch clears native button padding and uses matched pixel geometry with equal 2px thumb endpoint insets for default/small sizes across root font sizes",
     "Select uses explicit idempotent DMF roots, preset-aware portal scopes, logical spacing/alignment and form readiness events",
     "Popover and Dropdown Menu use explicit idempotent roots, preset-aware scoped portals and teardown; logical menu spacing, viewport bounds and coarse-pointer targets; link activation listener is portal-scoped",
-    "Source-owned Astro package exports; documentation styles separated; CB Nunito is a bundler-owned relative font asset"
+    "Source-owned Astro package exports; documentation styles separated; CB Nunito is a bundler-owned relative font asset",
+    "0.1.1 accessibility: primary button hover retains 95% fill for contrast; dark primary/sidebar-primary foreground uses dark ink; inactive Tabs text opacity raised to 75%; Toaster accepts distinct viewportLabel names. Original source hashes above remain unchanged."
   ],
   "installedDependencies": {
     "@data-slot/dialog": "1.1.2",

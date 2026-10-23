@@ -58,7 +58,7 @@ import { Toaster } from '../../../components/dmf-ui/toast';
               <Button data-example-notify="success">Show {id} success</Button>
               <Button variant="outline" data-example-notify="error">Show {id} error</Button>
             </div>
-            <Toaster id={`${id}-toaster`} portal={false} limit={2} duration={6000} position={id === 'first' ? 'bottom-left' : 'bottom-right'} />
+            <Toaster viewportLabel={`${title} notifications`} id={`${id}-toaster`} portal={false} limit={2} duration={6000} position={id === 'first' ? 'bottom-left' : 'bottom-right'} />
           </section>
         ))}
       </div>

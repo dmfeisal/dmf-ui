@@ -1,12 +1,12 @@
 # DMF UI quality checks
 
-This checkpoint implements the first two Group 2 tasks: GitHub validation and a reliable local browser runner. It does not certify accessibility, Firefox/Safari support or real Astro client-navigation behavior.
+Group 2 now includes GitHub validation, a local browser runner, automated accessibility state checks and a real Astro ClientRouter fixture. Safari/Firefox and spoken screen-reader verification remain pending; see `DMF-UI-ACCESSIBILITY.md` for scope and the manual matrix.
 
 ## Automated checks
 
 `.github/workflows/dmf-ui.yml` runs on pushes to main, pull requests and manual dispatch. It uses immutable action revisions, read-only repository permissions, a 15-minute job limit and Node 22/24. Each matrix job performs `npm ci`, source checks, the production build and `npm test`. The portfolio workflow additionally rejects uncommitted generated notice/provenance changes. The standalone DMF UI repository has its own matching workflow, running its distribution, isolation and harness tests with `npm test`.
 
-The workflows do not deploy, publish packages, contact application APIs or require secrets. They are configured locally; hosted checks begin only after these files are committed and pushed. The local validation environment may use a different Node/OS version, so local success is not a claim that the hosted matrix has already passed.
+The workflows do not deploy, publish packages, contact application APIs or require secrets. The initial pushed workflows passed on source `d1e357c` and consumer `8a17942`; see the linked runs in `DMF-UI-ACCESSIBILITY.md`. Later local changes require a fresh hosted run after commit/push. The local validation environment may use a different Node/OS version, so local success is not a claim that the hosted matrix has already passed.
 
 ## Local browser runner
 
@@ -35,9 +35,9 @@ The runner contract tests verify read-only serving, decoded/symlink containment,
 
 ## What remains
 
-- A dedicated accessibility audit, including contrast, screen-reader announcements and manual keyboard review beyond existing regression assertions.
+- Spoken screen-reader verification and remaining manual accessibility review. Automated contrast, naming, state, focus trap and AX status checks now have a dedicated source-owned suite.
 - Firefox and Safari verification. Ego's Chromium checks are not evidence for those engines.
-- Real Astro client navigation. Existing dispatch-based teardown/rebind tests only verify lifecycle handlers.
+- Broader host-specific navigation coverage. The new source-owned fixture verifies real ClientRouter links/history; old dispatch-based regressions remain handler tests.
 - CI-hosted browser interaction checks. Normal GitHub-hosted runners do not have the Ego desktop app; the current workflow intentionally runs Node/build contracts, not a fictitious browser gate.
 
-No component runtime, package snapshot or source ownership changes are required for this tooling checkpoint.
+The follow-up accessibility changes ship as `0.1.1`; source ownership is unchanged. Run `npm run test:dmf-ui:accessibility` and `npm run test:dmf-ui:navigation` in the source repository. CI additionally builds the navigation fixture; the desktop interaction suites remain local. See `DMF-UI-ACCESSIBILITY.md` for the exact exceptions and manual checks.

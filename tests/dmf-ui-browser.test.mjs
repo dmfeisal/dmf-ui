@@ -58,3 +58,11 @@ test('empty or unknown filters cannot report a zero-test success',async()=>{
     if(previous===undefined)delete process.env.DMF_UI_TEST_FILTER;else process.env.DMF_UI_TEST_FILTER=previous;
   }
 });
+
+test('navigation runner serves only its explicitly selected fixture build',async()=>fixture(async root=>{
+  const buildDir=join(root,'navigation-dist');await mkdir(buildDir);await writeFile(join(buildDir,'index.html'),'Navigation fixture');
+  await runBrowserSuite({root,buildDir,scenarios:['navigation'],taskName:'unit-fixture',executeBrowser:async source=>{
+    const config=JSON.parse(source.match(/^const config=(.*);/)[1]);
+    assert.equal(await (await fetch(config.baseURL+'/')).text(),'Navigation fixture');return 0;
+  }});
+}));

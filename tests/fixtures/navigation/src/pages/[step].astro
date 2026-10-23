@@ -1,0 +1,41 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../../styles.css';
+import SystemExamples from '../../../../../src/components/dmf-ui/examples/SystemExamples.astro';
+import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose } from '../../../../../src/components/dmf-ui/dialog';
+import { Button } from '../../../../../src/components/dmf-ui/button';
+import { Toaster } from '../../../../../src/components/dmf-ui/toast';
+export function getStaticPaths() { return ['a', 'b', 'empty'].map(step => ({ params: { step } })); }
+const { step } = Astro.params;
+---
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><meta name="robots" content="noindex,nofollow" /><title>DMF UI navigation {step}</title><ClientRouter /></head>
+<body class="dmf-ui" data-fixture-step={step}>
+<main>
+<h1>DMF UI navigation {step}</h1>
+<p>Local test fixture. No storage, submission or publishing.</p>
+<nav aria-label="Test pages"><a id="nav-a" href="/a/">Page A</a> <a id="nav-b" href="/b/">Page B</a> <a id="nav-empty" href="/empty/">Empty page</a></nav>
+{step !== 'empty' && <>
+<Dialog><DialogTrigger id="nav-dialog-trigger">Open dialog</DialogTrigger><DialogContent id="nav-dialog"><DialogTitle>Navigation dialog</DialogTitle><DialogDescription>Escape returns to its trigger.</DialogDescription><DialogClose>Close dialog</DialogClose></DialogContent></Dialog>
+<Button id="nav-notify">Show notification</Button><Toaster id="nav-toast" portal={false} duration={60000} />
+<SystemExamples prefix="nav" />
+</>}
+</main>
+</body>
+</html>
+<script>
+  import { createToast } from '../../../../../src/components/dmf-ui/toast';
+  let cleanup: (() => void) | undefined;
+  function initialize() {
+    if (cleanup) return;
+    const root = document.getElementById('nav-toast');
+    if (!root) return;
+    const toast = createToast(root, { portal: false });
+    const abort = new AbortController();
+    document.getElementById('nav-notify')?.addEventListener('click', () => toast.show({title:'Navigation notification',type:'success'}), {signal:abort.signal});
+    cleanup = () => { abort.abort(); toast.destroy(); cleanup=undefined; };
+  }
+  initialize(); document.addEventListener('astro:page-load',initialize);
+  document.addEventListener('astro:before-swap',()=>cleanup?.());
+</script>

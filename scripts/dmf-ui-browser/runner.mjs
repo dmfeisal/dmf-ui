@@ -41,17 +41,17 @@ async function execute(source, cwd) {
     child.once('exit',code=>resolve(code??1));
   });}finally{process.removeListener('SIGINT',interrupt);process.removeListener('SIGTERM',interrupt);}
 }
-export async function runBrowserSuite({root,scenarios,taskName,executeBrowser=execute,spaceId=null}) {
+export async function runBrowserSuite({root,scenarios,taskName,executeBrowser=execute,spaceId=null,buildDir=join(root,'dist')}) {
   const selected=process.env.DMF_UI_TEST_FILTER?.split(',').map(x=>x.trim()).filter(Boolean);
   if(selected&&selected.length===0)throw new Error('Select at least one DMF UI suite.');
   if(selected?.some(name=>!scenarios.includes(name)))throw new Error(`Unknown DMF UI suite; choose ${scenarios.join(', ')}`);
   if(spaceId!==null&&(!Number.isSafeInteger(spaceId)||spaceId<1))throw new Error('DMF_UI_TEST_SPACE_ID must be an agent-owned positive test-space number.');
-  await access(join(root,'dist/index.html')).catch(()=>{throw new Error('Build the site first, or run npm run test:dmf-ui.');});
+  await access(join(buildDir,'index.html')).catch(()=>{throw new Error('Build the site first, or run npm run test:dmf-ui.');});
   const artifacts=join(root,'.dmf-ui-test-results');await mkdir(artifacts,{recursive:true});
   const snapshot=await mkdtemp(join(tmpdir(),'dmf-ui-browser-build-'));
   let server;
   try {
-    await cp(join(root,'dist'),snapshot,{recursive:true,mode:constants.COPYFILE_FICLONE});
+    await cp(buildDir,snapshot,{recursive:true,mode:constants.COPYFILE_FICLONE});
     server=await serveBuild(snapshot);
     const options={finish:spaceId===null&&process.env.DMF_UI_TEST_KEEP_SPACE!=='1',baseURL:server.baseURL,taskName,spaceId,artifacts,runtime:pathToFileURL(join(root,'tests/browser/dmf-ui-runtime.mjs')).href,scenarios:scenarios.filter(name=>!selected||selected.includes(name)).map(name=>[name,pathToFileURL(join(root,`tests/browser/dmf-ui-${name}.mjs`)).href])};
     const source=bootstrap(options);await writeFile(join(artifacts,'run.mjs'),source);
