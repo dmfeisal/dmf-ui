@@ -11,7 +11,7 @@ test('documentation catalog covers every exported component family',async()=>{
   const slug=key.slice(2);await access(`dist/components/${slug}/index.html`);
   assert(catalog.includes(`href="/components/${slug}/"`),`Missing catalog entry: ${slug}`);
  }
- for(const path of ['index.html','components/index.html','docs/index.html','docs/installation/index.html','examples/dmf-ui/index.html'])await access(join('dist',path));
+ for(const path of ['index.html','create/index.html','components/index.html','docs/index.html','docs/installation/index.html','examples/dmf-ui/index.html'])await access(join('dist',path));
 });
 test('built local documentation links and fragment targets resolve',async()=>{
  for(const file of await htmlFiles('dist')){

@@ -11,11 +11,12 @@ The portfolio's `/ui/` remains an integration lab. Its pages, Canvas, navigation
 - `/`: Home. Explain the foundation, show real component previews and lead to Components or installation.
 - `/components/`: Searchable catalog of the 17 implemented component families, grouped by purpose. Static links remain available without JavaScript; search is progressive enhancement with a result count and an empty state.
 - `/components/<slug>/`: One page per exported family, with DMF/CB previews where supported, a complete Astro usage snippet, focused option table and behavior notes. Dialog and Toast preview DMF only while CB portal acceptance remains pending.
+- `/create/`: Local preset configurator with live components, CSS export, JSON download and shareable query links. Astro only; CB primary stays #26ade4 and CB appearance stays light.
 - `/docs/`: Guide index.
 - `/docs/introduction/`, `/docs/installation/`, `/docs/theming/`, `/docs/presets/`, `/docs/accessibility/`, `/docs/credits/`: Six guides covering setup, ownership, customization and verified limits.
 - `/examples/dmf-ui/`: Existing independent integration examples; its route and anchors remain available.
 
-The 27-page build includes only implemented families. React, WordPress, additional product presets and complete accessibility/cross-browser certification remain future or manual-verification work. No npm publication or live documentation domain is implied.
+The 28-page build includes only implemented families. React, WordPress, additional product presets and complete accessibility/cross-browser certification remain future or manual-verification work. No npm publication or live documentation domain is implied.
 
 ## Source boundaries
 
@@ -42,3 +43,11 @@ Use `npm run dev` in this repository for a local preview. Publishing the documen
 ## Future platforms
 
 See [the accepted cross-platform direction](DMF-UI-PLATFORMS.md) for portable tokens and separate React, React Native and SwiftUI implementations. These adapters remain planned.
+
+## Create configurator
+
+The Create page uses a compact control column and live shared Button, Input, Switch and Tabs previews. DMF/CB foundation, accent (DMF only), radius, existing bundled Nunito/system font, preview appearance and direction are supported. Light/dark preview tokens are derived from the canonical token stylesheet at build time. No parallel token source is maintained.
+
+Settings are visit-local and encoded as allowlisted query parameters; no localStorage or server writes occur. Copy CSS, Copy link and JSON download export the current choices. Clipboard failure announces a manual-copy fallback. Reset restores DMF defaults and clears query settings. Generated CSS loads after library styles on a `data-preset="custom"` wrapper; CB also needs its existing preset import and `data-system="cb-ui" data-color-mode="light"`. Exported JSON is settings metadata, not a published package or native adapter. No installer, registry, deployment or shadcn preset-code compatibility is claimed.
+
+Fulldev’s [Create page](https://ui.full.dev/create/) is the flow reference. DMF supports only options backed by its existing implementation. Host configurator files stay outside the library archive. Browser checks cover exported values, URL restoration and invalid-query handling, reset, CB restrictions, live interaction, download, clipboard error handling, dark/mobile/RTL containment and axe checks.

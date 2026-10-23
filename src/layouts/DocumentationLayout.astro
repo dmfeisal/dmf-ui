@@ -1,7 +1,7 @@
 ---
 import '../styles/documentation.css';
 import {components,guides} from '../data/documentation';
-interface Props { title:string;description:string;section:'home'|'components'|'docs';crumbs?:{name:string;href?:string}[];toc?:{id:string;title:string}[]; }
+interface Props { title:string;description:string;section:'home'|'components'|'docs'|'create';crumbs?:{name:string;href?:string}[];toc?:{id:string;title:string}[]; }
 const {title,description,section,crumbs=[],toc=[]}=Astro.props;
 const sidebar=section==='components'?components.map(item=>({title:item.name,href:`/components/${item.slug}/`})) : section==='docs'?guides.map(item=>({title:item.title,href:`/docs/${item.slug}/`})) : [];
 ---
@@ -11,7 +11,7 @@ const sidebar=section==='components'?components.map(item=>({title:item.name,href
 <a href="#main" class="docs-skip">Skip to content</a>
 <header class="docs-header"><div class="docs-header-inner">
 <a href="/" class="docs-logo" aria-label="DMF UI Home">DMF UI</a>
-<nav aria-label="Primary" class="docs-primary">{[['home','Home','/'],['components','Components','/components/'],['docs','Docs','/docs/']].map(([key,label,href])=><a href={href} aria-current={section===key?'page':undefined}>{label}</a>)}</nav>
+<nav aria-label="Primary" class="docs-primary">{[['home','Home','/'],['components','Components','/components/'],['docs','Docs','/docs/'],['create','Create','/create/']].map(([key,label,href])=><a href={href} aria-current={section===key?'page':undefined}>{label}</a>)}</nav>
 <button id="docs-theme" type="button" class="docs-theme">Theme: System</button>
 </div>{crumbs.length>0&&<nav class="docs-breadcrumb" aria-label="Breadcrumb"><ol><li><a href={Astro.url.pathname.split('/').filter(Boolean).map(()=>'..').join('/')+'/'}>Home</a></li>{crumbs.map(crumb=><li>{crumb.href?<a href={crumb.href}>{crumb.name}</a>:<span aria-current="page">{crumb.name}</span>}</li>)}</ol></nav>}</header>
 <div class:list={['docs-layout',{'docs-has-sidebar':sidebar.length>0,'docs-has-toc':toc.length>0}]}>

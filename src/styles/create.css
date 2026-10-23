@@ -1,0 +1,24 @@
+.create-heading { margin-bottom:40px; }
+.create-workspace { display:grid;grid-template-columns:240px minmax(0,1fr);gap:40px;align-items:start; }
+.create-controls { display:grid;gap:20px;position:sticky;top:144px; }
+.create-field { display:grid;gap:8px; }
+.create-field label { font-weight:600; }
+.create-field small { color:var(--muted-foreground);line-height:1.5; }
+.create-field select { min-height:44px;max-width:100%;width:100%;border:1px solid var(--border);border-radius:var(--radius-md);padding:8px;color:var(--foreground);background:var(--background);font:inherit; }
+.create-field select:focus-visible {outline:2px solid var(--foreground);outline-offset:3px;}
+.create-field select:disabled {opacity:.65;}
+.create-result {min-width:0;}
+.create-preview-bar {display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;}
+.create-preview-bar h2,.create-export h2 {font-size:1.25rem;margin:0;}
+.create-preview-bar span {color:var(--muted-foreground);}
+.create-surface {background:var(--background);color:var(--foreground);border:1px solid var(--border);border-radius:var(--radius);padding:clamp(20px,3vw,40px);display:grid;grid-template-columns:1fr 1fr;gap:32px;min-height:340px;}
+.create-sample {min-width:0;}
+.create-sample h3 {font-size:1.5rem;font-weight:600;letter-spacing:-.025em;margin:0 0 12px;}
+.create-sample p {color:var(--muted-foreground);line-height:1.65;margin-block:0 24px;}
+.create-sample input {margin-block:8px 20px;}
+.create-buttons {display:flex;flex-wrap:wrap;gap:12px;}
+.create-switch {display:flex;align-items:center;gap:12px;}
+.create-export {margin-top:32px;line-height:1.7;}
+#preset-status {min-height:1.7em;margin-block:8px;}
+@media(max-width:900px){.create-workspace{grid-template-columns:1fr;gap:28px;}.create-controls{position:static;grid-template-columns:repeat(2,minmax(0,1fr));}.create-surface{grid-template-columns:1fr;}.create-preview-bar{flex-wrap:wrap;}}
+@media(max-width:480px){.create-controls{grid-template-columns:1fr;}.docs-header-inner{gap:12px;flex-wrap:wrap;padding-block:12px;}.docs-primary{gap:16px;order:3;width:100%;}.docs-theme{margin-inline-start:auto;}}

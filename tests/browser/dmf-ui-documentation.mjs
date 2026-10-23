@@ -12,7 +12,7 @@ export async function run({page,baseURL,navigate,settle,opened,focused,mobile,ta
  }
  async function follow(selector,path){await page.focus(selector);await page.keyboard.press('Enter');await page.waitForURL(`${baseURL}${path}`);await settle();}
  await navigate(`${baseURL}/`);
- assert(await page.evaluate(()=>[...document.querySelectorAll('.docs-primary a')].map(a=>a.textContent).join(',')==='Home,Components,Docs'),'Primary documentation navigation missing');
+ assert(await page.evaluate(()=>[...document.querySelectorAll('.docs-primary a')].map(a=>a.textContent).join(',')==='Home,Components,Docs,Create'),'Primary documentation navigation missing');
  await audit('Home light/system');console.log(await page.screenshot({path:'/tmp/dmf-ui-documentation-home.png'}));
  await page.focus('#docs-theme');await page.keyboard.press('Enter');await page.keyboard.press('Enter');
  assert(await page.evaluate(()=>document.documentElement.dataset.theme==='dark'),'Documentation dark theme failed');await audit('Home dark');

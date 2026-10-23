@@ -1,0 +1,41 @@
+---
+import DocumentationLayout from '../layouts/DocumentationLayout.astro';
+import {Button} from '../components/dmf-ui/button';
+import {Input} from '../components/dmf-ui/input';
+import {Label} from '../components/dmf-ui/label';
+import {Switch} from '../components/dmf-ui/switch';
+import {Tabs,TabsList,TabsTrigger,TabsContent} from '../components/dmf-ui/tabs';
+import '../styles/create.css';
+import tokenSource from '../styles/dmf-ui-tokens.css?raw';
+// Re-scope the actual foundation tokens; do not maintain a second palette.
+const light=tokenSource.match(/\.dmf-ui \{([^}]+)\}/)?.[1];
+const dark=tokenSource.match(/:root\[data-theme="dark"\] \.dmf-ui \{([^}]+)\}/)?.[1];
+if(!light||!dark)throw new Error('Create preview requires foundation light and dark tokens');
+const previewTokens=`.create-preview-host[data-theme="light"] .dmf-ui[data-system="dmf"] {${light}} .create-preview-host[data-theme="dark"] .dmf-ui[data-system="dmf"] {${dark}}`;
+---
+<DocumentationLayout title="Create a preset" description="Configure and preview a DMF UI preset, then export its CSS and settings." section="create" crumbs={[{name:'Create'}]}>
+<header class="create-heading"><h1>Create your preset.</h1><p class="docs-lead">Start with a foundation. Adjust the details. See your components change together.</p></header>
+<div class="create-workspace" data-create>
+<form id="preset-controls" class="create-controls" aria-label="Preset options">
+<div class="create-field"><label for="preset-system">Foundation</label><select id="preset-system" name="system"><option value="dmf">DMF UI</option><option value="cb-ui">CB UI reconstruction</option></select></div>
+<div class="create-field"><label for="preset-platform">Platform</label><select id="preset-platform"><option>Astro</option><option disabled>React — planned</option><option disabled>React Native — planned</option><option disabled>SwiftUI — planned</option></select></div>
+<div class="create-field"><label for="preset-accent">Accent</label><select id="preset-accent" name="accent" aria-describedby="accent-note"><option value="default">Foundation default</option><option value="blue">Blue</option><option value="violet">Violet</option><option value="teal">Teal</option></select><small id="accent-note">CB UI keeps its primary color #26ade4.</small></div>
+<div class="create-field"><label for="preset-radius">Radius</label><select id="preset-radius" name="radius"><option value="default">Foundation default</option><option value="none">None</option><option value="small">Small</option><option value="large">Large</option></select></div>
+<div class="create-field"><label for="preset-font">Font</label><select id="preset-font" name="font"><option value="default">Foundation default</option><option value="system">System sans</option><option value="nunito">Nunito</option></select></div>
+<div class="create-field"><label for="preset-mode">Preview appearance</label><select id="preset-mode" name="mode"><option value="light">Light</option><option value="dark">Dark</option></select><small>CB UI currently supports light appearance.</small></div>
+<div class="create-field"><label for="preset-direction">Reading direction</label><select id="preset-direction" name="direction"><option value="ltr">Left to right</option><option value="rtl">Right to left</option></select></div>
+<Button type="reset" variant="outline">Reset preset</Button>
+</form>
+<div class="create-result">
+<div class="create-preview-bar"><h2>Live preview</h2><span id="preset-summary">DMF UI · Astro</span></div>
+<div id="preset-preview" class="create-preview-host" data-theme="light">
+<section id="preset-surface" class="dmf-ui create-surface" data-system="dmf" aria-label="Preset component preview">
+<div class="create-sample"><h3>A place for your next idea.</h3><p>Explore the components with your selected preset. Changes stay in this preview.</p><Label for="preview-name">Project name</Label><Input id="preview-name" placeholder="My next project"/><div class="create-buttons"><Button>Continue</Button><Button variant="outline">Cancel</Button><Button disabled>Unavailable</Button></div></div>
+<div class="create-sample"><Tabs id="create-preview-tabs" defaultValue="general"><TabsList aria-label="Project settings"><TabsTrigger value="general">General</TabsTrigger><TabsTrigger value="team">Team</TabsTrigger></TabsList><TabsContent value="general"><h3>Make it yours.</h3><p>Your foundation sets a consistent starting point for every component.</p><div class="create-switch"><Switch id="preview-updates" aria-label="Enable updates" defaultChecked/><Label for="preview-updates">Enable updates</Label></div></TabsContent><TabsContent value="team"><h3>Built to share.</h3><p>Export the same preset for your team to use in an existing Astro project.</p></TabsContent></Tabs></div>
+</section></div>
+<section class="create-export" aria-labelledby="export-title"><h2 id="export-title">Use this preset</h2><p>Import DMF UI in your Astro project, then load this stylesheet after the library styles. Wrap your components with <code>class="dmf-ui" data-preset="custom"</code>.</p><div class="create-buttons"><Button id="preset-copy" type="button">Copy CSS</Button><Button id="preset-download" type="button" variant="outline">Download preset JSON</Button><Button id="preset-link" type="button" variant="outline">Copy link</Button></div><p id="preset-status" role="status" aria-live="polite"></p><pre class="docs-code" tabindex="0" role="region" aria-label="Generated preset CSS"><code id="preset-code">/* Enable JavaScript to generate your preset. */</code></pre><p class="docs-note">This exports design settings for the current Astro library. It does not install components or create an application. <a href="/docs/installation/">Installation guide</a> · <a href="/docs/presets/">About presets</a></p></section>
+</div></div>
+<noscript><p>Enable JavaScript for the interactive preset builder. You can still <a href="/docs/theming/">customize tokens manually</a>.</p></noscript>
+</DocumentationLayout>
+<style is:inline set:html={previewTokens}></style>
+<script>import '../scripts/create';</script>
