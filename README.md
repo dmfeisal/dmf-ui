@@ -8,7 +8,7 @@ Use Node >=22.12. Run `npm ci`, `npm run check`, `npm run build` and `npm test`.
 
 ## Consume
 
-Install a packed version of this repository with `npm install ./vendor/dmf-ui-0.2.0.tgz --save-exact`. The package is private and has not been published to npm.
+Install a packed version of this repository with `npm install ./vendor/dmf-ui-0.3.0.tgz --save-exact`. The package is private and has not been published to npm.
 
 ```astro
 ---
@@ -42,6 +42,10 @@ Astro is the implemented adapter. React and WordPress support, stable API guaran
 Quality follow-up: `npm run test:dmf-ui:accessibility` runs the pinned axe audit and focused keyboard/AX checks. `npm run test:dmf-ui:navigation` builds an isolated ClientRouter fixture and tests actual links/history. These local browser commands require Ego Browser; see docs/DMF-UI-QUALITY.md for exact coverage and manual browser/screen-reader gaps.
 
 Version 0.2.0 adds `dmf-ui/accordion` and `dmf-ui/tooltip`, with shared DMF/CB examples and the `disclosures` browser family. See docs/DMF-UI-DISCLOSURES.md for usage and behavior boundaries.
+
+## Portable tokens in 0.3.0
+
+Edit `tokens/design.tokens.json`, then run `npm run tokens:build`. The generated CSS keeps existing public custom-property names and theme selectors. `npm run tokens:check` rejects stale output during development, checks and builds. Consumers can import `dmf-ui/tokens.json` or `dmf-ui/tokens/resolved.json` for typed token data. This prepares future adapters; React, React Native and SwiftUI components are not included. See [token authoring and migration](docs/DMF-UI-TOKENS.md).
 
 ## Documentation site
 

@@ -1,9 +1,16 @@
 {
   "name": "dmf-ui",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "scripts": {
+    "tokens:build": "node scripts/design-tokens.mjs",
+    "tokens:check": "node scripts/design-tokens.mjs --check",
+    "test:dmf-ui:tokens": "npm run build && node scripts/test-dmf-ui-tokens.mjs",
+    "predev": "npm run tokens:check",
+    "precheck": "npm run tokens:check",
+    "prebuild": "npm run tokens:check",
+    "prepack": "npm run tokens:check",
     "dev": "astro dev",
     "check": "astro check",
     "build": "astro build",
@@ -75,9 +82,12 @@
     "./package.json": "./package.json",
     "./provenance": "./docs/DMF-UI-UPSTREAM.json",
     "./accordion": "./src/components/dmf-ui/accordion/index.ts",
-    "./tooltip": "./src/components/dmf-ui/tooltip/index.ts"
+    "./tooltip": "./src/components/dmf-ui/tooltip/index.ts",
+    "./tokens.json": "./tokens/design.tokens.json",
+    "./tokens/resolved.json": "./tokens/resolved.json"
   },
   "files": [
+    "tokens/*.json",
     "src/components/dmf-ui",
     "src/styles/dmf-ui*.css",
     "src/assets",

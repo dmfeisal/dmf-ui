@@ -1,22 +1,32 @@
-/* Present-day CB UI preset: source values in public/css/cb-ui-tokens.css.
-   This is a reconstruction preset, not a claim about historical shipped UI. */
+/* Generated from tokens/design.tokens.json. Run npm run tokens:build.
+   Fulldev / CB reconstruction provenance: docs/DMF-UI-UPSTREAM.json. */
+/* Present-day CB UI reconstruction; light-only, not historical shipped UI. */
 @font-face {
  font-family: 'DMF CB Nunito'; src: url('../assets/fonts/nunito.ttf') format('truetype');
  font-style: normal; font-weight: 200 900; font-display: swap;
 }
 :root .dmf-ui[data-system="cb-ui"] {
- --background: #ffffff; --foreground: #23282c;
- --card: #ffffff; --card-foreground: #23282c;
- --popover: #ffffff; --popover-foreground: #23282c;
- --dmf-cb-ui-color-primary: #26ade4;
- --primary: var(--dmf-cb-ui-color-primary); --primary-foreground: #23282c;
- --secondary: #ebfffc; --secondary-foreground: #0d4a41;
- --muted: #e9eaec; --muted-foreground: #4b5764;
- --accent: #e9f6fc; --accent-foreground: #166788;
- --border: #c8ced3; --input: #4b5764; --ring: #166788;
- --destructive: color-mix(in srgb, #f86c6b 60%, #0c1218);
- --radius: .25rem;
- --font-sans: 'DMF CB Nunito', 'Nunito', 'Roboto', 'Helvetica', 'Arial', sans-serif;
- --font-heading: var(--font-sans);
- --cb-brand: var(--dmf-cb-ui-color-primary);
+  --background: #ffffff;
+  --foreground: #23282c;
+  --card: #ffffff;
+  --card-foreground: #23282c;
+  --popover: #ffffff;
+  --popover-foreground: #23282c;
+  --dmf-cb-ui-color-primary: #26ade4;
+  --primary: var(--dmf-cb-ui-color-primary);
+  --primary-foreground: #23282c;
+  --secondary: #ebfffc;
+  --secondary-foreground: #0d4a41;
+  --muted: #e9eaec;
+  --muted-foreground: #4b5764;
+  --accent: #e9f6fc;
+  --accent-foreground: #166788;
+  --border: #c8ced3;
+  --input: #4b5764;
+  --ring: #166788;
+  --destructive: color-mix(in srgb, #f86c6b 60%, #0c1218);
+  --radius: 0.25rem;
+  --font-sans: 'DMF CB Nunito', 'Nunito', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  --font-heading: var(--font-sans);
+  --cb-brand: var(--dmf-cb-ui-color-primary);
 }

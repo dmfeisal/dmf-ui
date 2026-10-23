@@ -48,4 +48,8 @@ The `disclosures` browser family covers Accordion and Tooltip. The source access
 
 ## Documentation site
 
-The normal source build now contains 27 pages: Home, the component catalog and 17 detail pages, the Docs index and six guides, plus the existing standalone gallery. `npm test` checks catalog/export coverage, local links/fragments and host-file distribution boundaries. `npm run test:dmf-ui:docs` runs the dedicated local browser suite; it is separate from the seven component regression families and the real-navigation fixture. See `DMF-UI-DOCUMENTATION.md`.
+The normal source build now contains 28 pages: Home, Create, the component catalog and 17 detail pages, the Docs index and six guides, plus the existing standalone gallery. `npm test` checks catalog/export coverage, local links/fragments and host-file distribution boundaries. `npm run test:dmf-ui:docs` runs the documentation and Create browser suites; these are separate from the seven component regression families and the real-navigation fixture. See `DMF-UI-DOCUMENTATION.md`.
+
+## Portable tokens in 0.3.0
+
+`npm run tokens:check` rejects stale generated CSS/data. Source contracts validate typed values, alias failures and the 0.2.0 token inventory. `npm run test:dmf-ui:tokens` compares computed properties against immutable 0.2.0 fixtures in both presets and explicit/system modes. See `DMF-UI-TOKENS.md`; this is not native adapter verification.

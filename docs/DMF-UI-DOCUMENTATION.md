@@ -24,6 +24,8 @@ The 28-page build includes only implemented families. React, WordPress, addition
 
 The documentation uses static Astro page navigation. Its theme control is page-local and does not write preferences. Shared component roots still own their normal lifecycle. If ClientRouter is later added to the documentation shell, its shell listeners need lifecycle review; the existing separate navigation fixture tests the library components rather than promising this shell's client routing.
 
+Since 0.3.0, shared token CSS is generated from typed JSON. See [token authoring and migration](DMF-UI-TOKENS.md). The installation guide derives its archive version from package metadata. Create continues to derive its preview themes from the generated foundation stylesheet.
+
 Documentation pages, layouts, data, preview wrappers and host CSS are excluded from the component archive. Keep package exports and source ownership unchanged. Update metadata when a component API changes; the option tables are a focused overview, not a generated exhaustive API reference.
 
 ## Design and accessibility

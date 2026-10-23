@@ -12,6 +12,8 @@ Use interoperable design-token JSON as the eventual canonical source, generating
 
 ## Delivery order
 
+The 0.3.0 milestone establishes typed token JSON, deterministic web CSS and resolved data exports. It preserves existing web behavior; no native code generator or component adapter is included. See [token authoring](DMF-UI-TOKENS.md).
+
 1. Stabilize the Astro library and documentation.
 2. Extract portable tokens and document component contracts while preserving existing web output.
 3. Implement React web with shared web styling and React-owned behavior.

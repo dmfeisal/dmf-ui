@@ -25,12 +25,14 @@ export async function run({page,baseURL,navigate}) {
   await page.click('[data-dmf-example=first] button[type=submit]');
   await page.waitForSelector('[data-slot=toast-title]:text-is("first name checked")', { state: 'visible' });
   assert(await page.evaluate(() => !document.querySelector('#second-toaster [data-slot=toast-item]')), 'First form triggered second notification');
-  await page.click('#first-toaster [data-slot=toast-close]');
+  await page.focus('#first-toaster [data-slot=toast-close]');
+  await page.keyboard.press('Enter');
   await page.waitForSelector('#first-toaster [data-slot=toast-item]', { state: 'hidden' });
   await page.click('text="Show second success"');
   await page.waitForSelector('#second-toaster [data-slot=toast-title]:text-is("second success")', { state: 'visible' });
   assert(await page.evaluate(() => !document.querySelector('#first-toaster [data-slot=toast-item]')), 'Second notification changed first instance');
-  await page.click('#second-toaster [data-slot=toast-close]');
+  await page.focus('#second-toaster [data-slot=toast-close]');
+  await page.keyboard.press('Enter');
   await page.waitForSelector('#second-toaster [data-slot=toast-item]', { state: 'hidden' });
   await page.click('#example-theme'); // System -> Light
   await page.click('#example-theme'); // Light -> Dark
