@@ -4,3 +4,6 @@ dist/
 .DS_Store
 .env
 .env.*
+
+# Local DMF UI browser diagnostics
+.dmf-ui-test-results/

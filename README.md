@@ -4,7 +4,7 @@ Experimental Astro UI components adapted from Fulldev base-vega, using Tailwind 
 
 ## Develop
 
-Use Node >=22.12. Run `npm ci`, `npm run check`, `npm run build` and `npm test`. `npm run dev` opens the local documentation; `/examples/dmf-ui/` contains independent examples. The existing Ego browser acceptance suite uses preview on port 4402.
+Use Node >=22.12. Run `npm ci`, `npm run check`, `npm run build` and `npm test`. `npm run dev` opens the local documentation; `/examples/dmf-ui/` contains independent examples. Run `npm run test:dmf-ui` for local Ego Browser acceptance checks against an isolated build snapshot on a free port. See docs/DMF-UI-QUALITY.md for CI, filtering and failure recovery.
 
 ## Consume
 

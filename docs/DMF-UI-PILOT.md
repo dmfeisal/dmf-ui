@@ -32,15 +32,7 @@ Dialog initialization discovers explicit `data-dmf-dialog` component roots, inde
 
 ## Verification
 
-Run `npm run check` and `npm run build`. With a server on port 4399, run:
-
-```
-ego-browser nodejs < tests/browser/dmf-ui-pilot.mjs
-```
-
-The browser regression checks upstream token inheritance, rounded button defaults, dialog semantics/initial focus/trapping/editing/Escape/close/focus return, notification rendering/dismissal, utility isolation, and 390px RTL with reduced motion. The same regression also visits the standalone page, rejects portfolio assets/tokens, checks two independent dialogs and toast controllers, native required-field validation, dark mode and 390px RTL. Other browser engines, Astro client navigation remain future validation; the independent Astro consumer is documented in `DMF-UI-EXTRACTION.md`.
-
-The CB UI preset and independent Astro consumer now have dedicated examples and acceptance checks. See `DMF-UI-EXTRACTION.md` for reproducible export, repository boundaries and remaining packaging work. Dependencies should be audited at release; the existing seven toolchain advisories were present before this foundation change.
+Run `npm run check`, `npm run build`, `npm test` and the local `npm run test:dmf-ui` command. The browser runner requires Ego Browser CLI and its desktop browser, serves an isolated production snapshot on a free port, and runs all six scenario families. See `DMF-UI-QUALITY.md` for CI coverage, filters, failure artifacts, same-space recovery and remaining audit work. Hosted workflows are only configured until committed and pushed.
 
 ## Standalone consumption contract
 
@@ -58,7 +50,7 @@ Each rendered root has `data-dmf-tabs`. Initialization is idempotent, scoped to 
 
 Existing foundation rules provide coarse-pointer 44px targets and reduced motion. Tab-list height can grow on coarse pointers so the target size does not clip. Themes and local scope use the same foundation tokens as the other components.
 
-Run `ego-browser nodejs < tests/browser/dmf-ui-tabs.mjs` with the preview on port 4399. It checks both pages: server-rendered default panels, ARIA/IDs, disabled skipping, roving focus, Home/End, Enter/Space manual activation, vertical arrows, independent instances, RTL mirrored arrows, 390px targets/overflow, reduced-motion layout, dark tokens, repeated initialization and teardown/reinitialization. Source provenance and dependency version are recorded in `DMF-UI-UPSTREAM.json`; the existing Fulldev/Data Slot notices cover this addition.
+Run `DMF_UI_TEST_FILTER=tabs npm run test:dmf-ui`. It checks both pages: server-rendered default panels, ARIA/IDs, disabled skipping, roving focus, Home/End, Enter/Space manual activation, vertical arrows, independent instances, RTL mirrored arrows, 390px targets/overflow, reduced-motion layout, dark tokens, repeated initialization and teardown/reinitialization. Source provenance and dependency version are recorded in `DMF-UI-UPSTREAM.json`; the existing Fulldev/Data Slot notices cover this addition.
 
 ## Core forms and native behavior
 
@@ -68,7 +60,7 @@ Label, Field (including content/description/error/group/legend/set/separator/tit
 
 `examples/SystemExamples.astro` renders independent DMF and CB UI forms plus Buttons and Tabs in both documentation pages. The CB UI preset is scoped and light-only; see `docs/DMF-UI-CB-PRESET.md`. Checkbox/radio/switch artwork retains upstream geometry on touch layouts, while associated labels offer 44px targets. Textarea receives scoped native font normalization. Switch tracks explicitly clear native button padding and use pixel-matched thumbs with equal 2px endpoint insets at both sizes, independent of root font size. Switch artwork uses an LTR track in RTL reading layouts, retaining correct checked-state positioning. Field descriptions use logical start alignment.
 
-Run `ego-browser nodejs < tests/browser/dmf-ui-forms.mjs` for native validation, error states, keyboard checkbox/radio/switch operation, exact FormData, disabled exclusions, read-only inclusion, reset, instance isolation, preset/theme isolation, coarse-pointer RTL geometry and controller teardown/rebinding. The standalone example passes without portfolio assets. This is a source-owned Astro implementation; other framework adapters remain future work; the separate Astro consumer is documented in `DMF-UI-EXTRACTION.md`.
+Run `DMF_UI_TEST_FILTER=forms npm run test:dmf-ui` for native validation, error states, keyboard checkbox/radio/switch operation, exact FormData, disabled exclusions, read-only inclusion, reset, instance isolation, preset/theme isolation, coarse-pointer RTL geometry and controller teardown/rebinding. The standalone example passes without portfolio assets. This is a source-owned Astro implementation; other framework adapters remain future work; the separate Astro consumer is documented in `DMF-UI-EXTRACTION.md`.
 
 The CB font is bundled from `src/assets/fonts/nunito.ttf` through relative CSS asset resolution. Distribute the exported `dmf-ui/notices`; no consumer font route, Google Fonts request or portfolio stylesheet is required.
 
@@ -78,7 +70,7 @@ The CB font is bundled from `src/assets/fonts/nunito.ttf` through relative CSS a
 
 Both presets demonstrate a required channel with a disabled option, plus a disabled default-valued control. Native generated select controls own validity, FormData and reset; the host associates errors with the visible trigger. Data Slot owns arrows, Home/End, typeahead, Enter/Space, Escape, outside dismissal and focus return. Popups carry their own `.dmf-ui` scope and the source preset/color mode, with logical direction refreshed on open. Long option text wraps, content stays viewport-bounded, and coarse-pointer options have 44px targets. No values are persisted or sent.
 
-Run `ego-browser nodejs < tests/browser/dmf-ui-select.mjs` and the existing form regression. Other framework adapters remain future work. Existing Fulldev, Data Slot and Lucide notices cover this addition.
+Run `DMF_UI_TEST_FILTER=select npm run test:dmf-ui` and the existing form regression. Other framework adapters remain future work. Existing Fulldev, Data Slot and Lucide notices cover this addition.
 
 ## Popover and Dropdown Menu
 
@@ -86,4 +78,9 @@ Run `ego-browser nodejs < tests/browser/dmf-ui-select.mjs` and the existing form
 
 Explicit DMF roots initialize once and destroy controllers before Astro swaps. `overlay-scope.ts` gives relocated portals their source preset/color mode and reading direction, updated on open. Native link keyboard activation is delegated to the menu portal with scoped cleanup. Data Slot owns positioning/collision handling, focus return, Escape/outside dismissal, menu roving navigation and checked state. Popover is nonmodal; native field editing and Tab remain available. Panel dimensions are viewport-bounded; menu items offer 44px coarse-pointer targets and logical spacing supports RTL. Existing Fulldev/Data Slot/Lucide notices apply.
 
-Run `ego-browser nodejs < tests/browser/dmf-ui-overlays.mjs` for both pages/presets: editing, close/reopen, focus return, disabled skipping, checkbox/radio state, action feedback, outside dismissal, mobile RTL theme/containment/targets and repeated init/destroy/rebind. These examples do not migrate portfolio or Canvas menus.
+Run `DMF_UI_TEST_FILTER=overlays npm run test:dmf-ui` for both pages/presets: editing, close/reopen, focus return, disabled skipping, checkbox/radio state, action feedback, outside dismissal, mobile RTL theme/containment/targets and repeated init/destroy/rebind. These examples do not migrate portfolio or Canvas menus.
+
+
+## Reliable validation runner
+
+Use `npm run test:dmf-ui` for all six local browser families; individual `tests/browser/dmf-ui-*.mjs` files are importable scenarios, not CLI entry points. The runner owns a private static snapshot/free port, resets emulation, waits for readiness/fonts/finite animations and preserves failures. GitHub clean-install/source/build/contract checks are configured separately. See `DMF-UI-QUALITY.md` for scope, filtering, same-space recovery and outstanding accessibility/engine/navigation work.

@@ -8,7 +8,8 @@
     "check": "astro check",
     "build": "astro build",
     "preview": "astro preview",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "test:dmf-ui": "npm run build && node scripts/test-dmf-ui.mjs"
   },
   "dependencies": {
     "@data-slot/dialog": "1.1.2",
