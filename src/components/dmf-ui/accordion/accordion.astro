@@ -1,0 +1,64 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"div"> & {
+  multiple?: boolean
+  defaultValue?: string | string[]
+  disabled?: boolean
+  orientation?: "horizontal" | "vertical"
+  loopFocus?: boolean
+  hiddenUntilFound?: boolean
+  collapsible?: boolean
+}
+
+const {
+  class: className,
+  multiple,
+  defaultValue,
+  disabled,
+  orientation = "vertical",
+  loopFocus,
+  hiddenUntilFound,
+  collapsible,
+  ...props
+} = Astro.props
+
+const serializedDefaultValue = Array.isArray(defaultValue)
+  ? JSON.stringify(defaultValue)
+  : defaultValue
+---
+
+<div
+  data-slot="accordion"
+  data-dmf-accordion
+  data-multiple={multiple}
+  data-default-value={serializedDefaultValue}
+  data-disabled={disabled}
+  data-orientation={orientation}
+  data-loop-focus={loopFocus}
+  data-hidden-until-found={hiddenUntilFound}
+  data-collapsible={collapsible}
+  class={cn("flex w-full flex-col", className)}
+  {...props}
+>
+  <slot />
+</div>
+
+<script>
+  import { createAccordion, type AccordionController } from '@data-slot/accordion';
+  const controllers = new Map<HTMLElement, AccordionController>();
+  function initialize() {
+    for (const root of document.querySelectorAll<HTMLElement>('[data-dmf-accordion]')) {
+      if (controllers.has(root)) continue;
+      controllers.set(root, createAccordion(root));
+      root.dataset.dmfAccordionReady = 'true';
+    }
+  }
+  initialize(); document.addEventListener('astro:page-load', initialize);
+  document.addEventListener('astro:before-swap', () => {
+    for (const [root, controller] of controllers) { controller.destroy(); delete root.dataset.dmfAccordionReady; }
+    controllers.clear();
+  });
+</script>

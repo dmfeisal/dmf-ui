@@ -23,7 +23,7 @@ DMF_UI_AUDIT_BUILD=/absolute/path/to/dmf-web/dist node scripts/test-dmf-ui-acces
 
 No UI source or axe dependency is copied into the portfolio. Build the consumer first. The audit runs its independent `/examples/dmf-ui/` page; it does not certify all portfolio or Canvas UI.
 
-The audit fails every violation except a narrowly reviewed `region` best-practice finding on named Select/Menu portal wrappers. These transient popups deliberately live outside reading landmarks and remain named and linked to their triggers. The finding is retained in the report rather than hidden by changing roles or disabling a rule. New region findings elsewhere still fail. Incomplete findings require review: lazy closed-popup `aria-controls` targets (confirm resolution when opened), a decorative Home symbol whose accessible name is Home, and contrast where a floating popup obscures underlying content. Existing keyboard regressions cover Tabs activation/disabled/RTL, native form values/reset, Select and overlay dismissal/focus.
+The audit fails every violation except a narrowly reviewed `region` best-practice finding on Select/Menu/Tooltip portal wrappers with accessible trigger relationships. These transient popups deliberately live outside reading landmarks. Select/Menu remain named and linked to their triggers; plain Tooltip text supplies the focused trigger's aria-describedby. The finding is retained in the report rather than hidden by changing roles or disabling a rule. New region findings elsewhere still fail. Incomplete findings require review: lazy closed-popup `aria-controls` targets (confirm resolution when opened), a decorative Home symbol whose accessible name is Home, and contrast where a floating popup obscures underlying content. Existing keyboard regressions cover Tabs activation/disabled/RTL, native form values/reset, Select and overlay dismissal/focus.
 
 ## Real Astro navigation
 
@@ -46,10 +46,14 @@ For screen readers, confirm control names/roles/states, selected/disabled tabs, 
 
 ## Hosted checks already observed
 
-The previously pushed source commit `d1e357c` passed [DMF UI source](https://github.com/dmfeisal/dmf-ui/actions/runs/39909964018). The consumer commit `8a17942` passed [DMF UI consumer](https://github.com/dmfeisal/dmf-web/actions/runs/39909946791). These are evidence for those commits only; the new 0.1.1 local changes need another hosted run after commit/push.
+The 0.1.1 source commit `1b86918` passed [DMF UI source](https://github.com/dmfeisal/dmf-ui/actions/runs/39913592682). The consumer commit `f4d6a0f` passed [DMF UI consumer](https://github.com/dmfeisal/dmf-web/actions/runs/39913597111). These results were checked before starting 0.2.0; the new local component additions need their own hosted run after commit/push.
 
 References: [Astro view transitions](https://docs.astro.build/en/guides/view-transitions/), [axe API](https://github.com/dequelabs/axe-core/blob/develop/doc/API.md).
 
 ## Local verification on 2026-10-23
 
 Both the source build and the installed portfolio 0.1.1 standalone page passed 26 audited states with axe 4.14.0 in Ego (reported Chromium 154). There were no blocking violations; eight open Select/Menu states retained the reviewed `region` best-practice warning. The three incomplete rule families described above remain explicit manual-review findings. The real navigation fixture passed, all six existing regression families passed on both portfolio UI pages, source contract tests passed 8/8 and consumer contract tests passed 7/7. Source checks reported no errors, warnings or hints; portfolio checks reported no errors/warnings and eight existing hints. Clean temporary installs passed for both lockfiles. This is local evidence for the working changes, not a new hosted matrix result or Safari/Firefox/screen-reader certification.
+
+## Component expansion in 0.2.0
+
+The source audit now includes open Accordion and Tooltip in both presets/themes, for 34 states. Real navigation also covers their owner cleanup and reinitialization. The region-label suffixes in the examples distinguish DMF and CB landmarks. See `DMF-UI-DISCLOSURES.md`; manual engine/screen-reader rows remain pending.

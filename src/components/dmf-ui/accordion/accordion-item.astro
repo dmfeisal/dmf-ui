@@ -1,0 +1,22 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"div"> & {
+  value: string
+  disabled?: boolean
+}
+
+const { class: className, value, disabled, ...props } = Astro.props
+---
+
+<div
+  data-slot="accordion-item"
+  data-value={value}
+  data-disabled={disabled ? "" : undefined}
+  class={cn("not-last:border-b", className)}
+  {...props}
+>
+  <slot />
+</div>

@@ -13,3 +13,5 @@ export * from "./switch/index";
 export * from "./tabs/index";
 export * from "./textarea/index";
 export * from "./toast/index";
+export * from "./accordion/index";
+export * from "./tooltip/index";

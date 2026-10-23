@@ -121,3 +121,6 @@
 @media (pointer: coarse) {
   .dmf-ui [data-slot^="dropdown-menu-"][role^="menuitem"] { min-height: 44px; }
 }
+
+/* Supplemental tooltip copy stays readable within narrow viewports. */
+.dmf-ui [data-slot="tooltip-content"] { max-width: min(20rem, calc(100dvw - 16px)); white-space: normal; overflow-wrap: anywhere; }

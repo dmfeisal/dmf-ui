@@ -124,6 +124,25 @@
         "@data-slot/dropdown-menu@^1.1.2",
         "@lucide/astro"
       ]
+    },
+    {
+      "component": "accordion",
+      "url": "https://ui.full.dev/r/styles/base-vega/accordion.json",
+      "sha256": "e419f7a7b9ac028c5c086e5dfbf8fb2af17191854d2499b83540240031604c80",
+      "dependencies": [
+        "@data-slot/accordion@^1.1.2",
+        "@lucide/astro"
+      ],
+      "retrieved": "2026-10-23"
+    },
+    {
+      "component": "tooltip",
+      "url": "https://ui.full.dev/r/styles/base-vega/tooltip.json",
+      "sha256": "d377a152a92be29c432bfbe1501d4ac96fbea1481a05e4130602f07f838cb820",
+      "dependencies": [
+        "@data-slot/tooltip@^1.1.2"
+      ],
+      "retrieved": "2026-10-23"
     }
   ],
   "modifications": [
@@ -143,7 +162,8 @@
     "Select uses explicit idempotent DMF roots, preset-aware portal scopes, logical spacing/alignment and form readiness events",
     "Popover and Dropdown Menu use explicit idempotent roots, preset-aware scoped portals and teardown; logical menu spacing, viewport bounds and coarse-pointer targets; link activation listener is portal-scoped",
     "Source-owned Astro package exports; documentation styles separated; CB Nunito is a bundler-owned relative font asset",
-    "0.1.1 accessibility: primary button hover retains 95% fill for contrast; dark primary/sidebar-primary foreground uses dark ink; inactive Tabs text opacity raised to 75%; Toaster accepts distinct viewportLabel names. Original source hashes above remain unchanged."
+    "0.1.1 accessibility: primary button hover retains 95% fill for contrast; dark primary/sidebar-primary foreground uses dark ink; inactive Tabs text opacity raised to 75%; Toaster accepts distinct viewportLabel names. Original source hashes above remain unchanged.",
+    "0.2.0 Accordion and Tooltip retain recorded Fulldev anatomy/classes with explicit idempotent roots and Astro teardown; logical Accordion alignment; Tooltip reuses preset-aware portal scopes and viewport bounds."
   ],
   "installedDependencies": {
     "@data-slot/dialog": "1.1.2",
@@ -160,7 +180,9 @@
     "@data-slot/switch": "1.1.2",
     "@data-slot/select": "1.1.2",
     "@data-slot/popover": "1.1.2",
-    "@data-slot/dropdown-menu": "1.1.2"
+    "@data-slot/dropdown-menu": "1.1.2",
+    "@data-slot/accordion": "1.1.2",
+    "@data-slot/tooltip": "1.1.2"
   },
   "foundation": {
     "url": "https://ui.full.dev/r/styles/base-vega/base.json",

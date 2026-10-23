@@ -1,0 +1,30 @@
+---
+import '../styles/documentation.css';
+import {components,guides} from '../data/documentation';
+interface Props { title:string;description:string;section:'home'|'components'|'docs';crumbs?:{name:string;href?:string}[];toc?:{id:string;title:string}[]; }
+const {title,description,section,crumbs=[],toc=[]}=Astro.props;
+const sidebar=section==='components'?components.map(item=>({title:item.name,href:`/components/${item.slug}/`})) : section==='docs'?guides.map(item=>({title:item.title,href:`/docs/${item.slug}/`})) : [];
+---
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="description" content={description}/><title>{title==='DMF UI'?title:`${title} · DMF UI`}</title></head>
+<body class="dmf-ui docs-shell">
+<a href="#main" class="docs-skip">Skip to content</a>
+<header class="docs-header"><div class="docs-header-inner">
+<a href="/" class="docs-logo" aria-label="DMF UI Home">DMF UI</a>
+<nav aria-label="Primary" class="docs-primary">{[['home','Home','/'],['components','Components','/components/'],['docs','Docs','/docs/']].map(([key,label,href])=><a href={href} aria-current={section===key?'page':undefined}>{label}</a>)}</nav>
+<button id="docs-theme" type="button" class="docs-theme">Theme: System</button>
+</div>{crumbs.length>0&&<nav class="docs-breadcrumb" aria-label="Breadcrumb"><ol><li><a href={Astro.url.pathname.split('/').filter(Boolean).map(()=>'..').join('/')+'/'}>Home</a></li>{crumbs.map(crumb=><li>{crumb.href?<a href={crumb.href}>{crumb.name}</a>:<span aria-current="page">{crumb.name}</span>}</li>)}</ol></nav>}</header>
+<div class:list={['docs-layout',{'docs-has-sidebar':sidebar.length>0,'docs-has-toc':toc.length>0}]}>
+{sidebar.length>0&&<aside class="docs-sidebar" aria-label={section==='components'?'Component list':'Guide list'}><nav aria-label={section==='components'?'Component navigation':'Documentation navigation'}><p class="docs-nav-title">{section==='components'?'Components':'Documentation'}</p>{sidebar.map(item=><a href={item.href} aria-current={Astro.url.pathname===item.href?'page':undefined}>{item.title}</a>)}</nav></aside>}
+{sidebar.length>0&&<details class="docs-mobile-navigation"><summary>Browse {section==='components'?'components':'documentation'}</summary><nav aria-label="Section navigation">{sidebar.map(item=><a href={item.href} aria-current={Astro.url.pathname===item.href?'page':undefined}>{item.title}</a>)}</nav></details>}
+<main id="main" class="docs-page" tabindex="-1"><slot /></main>
+{toc.length>0&&<aside class="docs-toc" aria-label="Page contents"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p>{toc.map(item=><a href={`#${item.id}`}>{item.title}</a>)}</nav></aside>}
+</div>
+<footer class="docs-footer"><span>DMF UI · Experimental Astro foundation</span><nav aria-label="Project links"><a href="/docs/credits/">Credits</a><a href="/dmf-ui-notices.txt">License notices</a><a href="https://github.com/dmfeisal/dmf-ui">GitHub</a></nav></footer>
+</body></html>
+<script>
+ const media=matchMedia('(prefers-color-scheme: dark)');
+ const modes=['system','light','dark'] as const;let mode=0;
+ function apply(){document.documentElement.dataset.theme=modes[mode]==='system'?(media.matches?'dark':'light'):modes[mode];const button=document.getElementById('docs-theme');if(button)button.textContent=`Theme: ${modes[mode][0].toUpperCase()}${modes[mode].slice(1)}`;}
+ document.getElementById('docs-theme')?.addEventListener('click',()=>{mode=(mode+1)%modes.length;apply();});media.addEventListener('change',apply);apply();
+</script>

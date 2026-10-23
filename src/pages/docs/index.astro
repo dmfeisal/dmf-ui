@@ -1,0 +1,7 @@
+---
+import DocumentationLayout from '../../layouts/DocumentationLayout.astro';
+import {guides} from '../../data/documentation';
+---
+<DocumentationLayout title="Docs" description="Set up DMF UI, customize its presets and understand its verified scope." section="docs" crumbs={[{name:'Docs'}]}>
+<h1>Docs</h1><p class="docs-lead">Start with the foundation, bring it into your Astro project and customize it with clear ownership.</p><div class="docs-grid docs-section">{guides.map(guide=><article class="docs-entry"><a href={`/docs/${guide.slug}/`}>{guide.title}</a><p>{guide.description}</p></article>)}</div><p class="docs-note">The <a href="../examples/dmf-ui/">standalone examples</a> remain available for testing complete component interactions.</p>
+</DocumentationLayout>

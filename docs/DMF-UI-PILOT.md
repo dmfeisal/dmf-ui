@@ -32,7 +32,7 @@ Dialog initialization discovers explicit `data-dmf-dialog` component roots, inde
 
 ## Verification
 
-Run `npm run check`, `npm run build`, `npm test` and the local `npm run test:dmf-ui` command. The browser runner requires Ego Browser CLI and its desktop browser, serves an isolated production snapshot on a free port, and runs all six scenario families. See `DMF-UI-QUALITY.md` for CI coverage, filters, failure artifacts, same-space recovery and remaining audit work. Hosted workflows are only configured until committed and pushed.
+Run `npm run check`, `npm run build`, `npm test` and the local `npm run test:dmf-ui` command. The browser runner requires Ego Browser CLI and its desktop browser, serves an isolated production snapshot on a free port, and runs all seven scenario families. See `DMF-UI-QUALITY.md` for CI coverage, filters, failure artifacts, same-space recovery and remaining audit work. Hosted workflows are only configured until committed and pushed.
 
 ## Standalone consumption contract
 
@@ -83,8 +83,16 @@ Run `DMF_UI_TEST_FILTER=overlays npm run test:dmf-ui` for both pages/presets: ed
 
 ## Reliable validation runner
 
-Use `npm run test:dmf-ui` for all six local browser families; individual `tests/browser/dmf-ui-*.mjs` files are importable scenarios, not CLI entry points. The runner owns a private static snapshot/free port, resets emulation, waits for readiness/fonts/finite animations and preserves failures. GitHub clean-install/source/build/contract checks are configured separately. See `DMF-UI-QUALITY.md` for scope, filtering, same-space recovery and outstanding accessibility/engine/navigation work.
+Use `npm run test:dmf-ui` for all seven local browser families; individual `tests/browser/dmf-ui-*.mjs` files are importable scenarios, not CLI entry points. The runner owns a private static snapshot/free port, resets emulation, waits for readiness/fonts/finite animations and preserves failures. GitHub clean-install/source/build/contract checks are configured separately. See `DMF-UI-QUALITY.md` for scope, filtering, same-space recovery and outstanding accessibility/engine/navigation work.
 
 ## Accessibility and navigation follow-up
 
 Version 0.1.1 improves inactive Tabs and dark primary contrast and adds distinct Toaster `viewportLabel` names. See `DMF-UI-ACCESSIBILITY.md` for source-owned axe/keyboard/AX checks, real ClientRouter verification and the pending Safari/Firefox/screen-reader matrix. These checks do not certify cross-browser or complete accessibility support.
+
+## Accordion and Tooltip
+
+Version 0.2.0 adds the recorded Fulldev Accordion and Tooltip with Data Slot 1.1.2, explicit root lifecycle, logical Accordion alignment and preset-aware Tooltip portals. Both presets share `examples/DisclosureExamples.astro`. See `DMF-UI-DISCLOSURES.md` for authoring contracts, SSR defaults, plain-text tooltip limits, touch behavior and the `disclosures` browser checks.
+
+## Standalone documentation
+
+Home, Components and Docs are now source-owned routes in this repository. Component pages compose library previews and typed usage/options; guides keep support, preset and verification boundaries explicit. The portfolio remains a consumer and `/examples/dmf-ui/` retains its integration-gallery role. See `DMF-UI-DOCUMENTATION.md`.

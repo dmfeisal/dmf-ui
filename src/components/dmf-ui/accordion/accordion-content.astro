@@ -1,0 +1,26 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"div">
+
+const { class: className, hidden = true, ...props } = Astro.props
+---
+
+<div
+  data-slot="accordion-content"
+  hidden={hidden}
+  class="data-open:animate-accordion-down data-closed:animate-accordion-up text-sm overflow-hidden"
+  {...props}
+>
+  <div
+    data-slot="accordion-content-inner"
+    class={cn(
+      "pt-0 pb-4 [&_a]:hover:text-foreground h-(--accordion-panel-height) data-ending-style:h-0 data-starting-style:h-0 [&_a]:underline [&_a]:underline-offset-3 [&_p:not(:last-child)]:mb-4",
+      className
+    )}
+  >
+    <slot />
+  </div>
+</div>

@@ -2,6 +2,7 @@
 import { Button } from '../button';
 import TabsExamples from './TabsExamples.astro';
 import OverlayExamples from './OverlayExamples.astro';
+import DisclosureExamples from './DisclosureExamples.astro';
 import FormExample from './FormExample.astro';
 interface Props { prefix: string; }
 const { prefix } = Astro.props;
@@ -14,6 +15,7 @@ const { prefix } = Astro.props;
       <div class="dmf-pilot-row"><Button>Primary action</Button><Button variant="outline">Outline action</Button><Button variant="secondary">Secondary action</Button><Button disabled>Unavailable</Button></div>
       <TabsExamples prefix={`${prefix}-${system}-tabs`} />
       <OverlayExamples prefix={`${prefix}-${system}`} />
+      <DisclosureExamples prefix={`${prefix}-${system}`} />
       <h4 class="dmf-pilot-heading">Complete form example</h4>
       <p class="dmf-system-note">Required fields, native validation, keyboard controls, read-only and disabled states. Preview shows local form values; nothing is sent or saved.</p>
       <FormExample prefix={`${prefix}-${system}`} />

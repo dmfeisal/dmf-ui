@@ -14,10 +14,10 @@ export async function run({page,baseURL,navigate,settle,opened,focused}) {
     if(step!=='empty')await page.waitForSelector('[data-dmf-form="nav-cb-ui"][data-dmf-form-ready=true]');
     await settle();
     assert(await page.evaluate(identity=>window.__dmfNavigation?.identity===identity,identity),'Navigation performed a hard reload');
-    assert(await page.evaluate(()=>window.__dmfNavigation.old.every(root=>!root.isConnected&&!root.hasAttribute('data-dmf-overlay-ready')&&!root.hasAttribute('data-dmf-select-ready')&&!root.hasAttribute('data-dmf-tabs-ready'))),'Old owners were retained or not torn down');
-    assert(await page.evaluate(()=>!document.querySelector('[data-slot=dropdown-menu-content][data-open],[data-slot=popover-content][data-open],[data-slot=select-content][data-open],[data-slot=toast-item]')),'Navigation leaked open panels or notifications');
+    assert(await page.evaluate(()=>window.__dmfNavigation.old.every(root=>!root.isConnected&&!root.hasAttribute('data-dmf-overlay-ready')&&!root.hasAttribute('data-dmf-select-ready')&&!root.hasAttribute('data-dmf-tabs-ready')&&!root.hasAttribute('data-dmf-accordion-ready')&&!root.hasAttribute('data-dmf-tooltip-ready'))),'Old owners were retained or not torn down');
+    assert(await page.evaluate(()=>!document.querySelector('[data-slot=dropdown-menu-content][data-open],[data-slot=popover-content][data-open],[data-slot=select-content][data-open],[data-slot=tooltip-content][data-open],[data-slot=toast-item]')),'Navigation leaked open panels or notifications');
   }
-  async function retain() { await page.evaluate(()=>{window.__dmfNavigation.old=[...document.querySelectorAll('[data-dmf-dropdown-menu],[data-dmf-popover],[data-dmf-select],[data-dmf-tabs]')];}); }
+  async function retain() { await page.evaluate(()=>{window.__dmfNavigation.old=[...document.querySelectorAll('[data-dmf-dropdown-menu],[data-dmf-popover],[data-dmf-select],[data-dmf-tabs],[data-dmf-accordion],[data-dmf-tooltip]')];}); }
   async function link(step) { await retain();await page.focus(`#nav-${step}`);await page.keyboard.press('Enter');await ready(step); }
   async function interact() {
     await page.focus('#nav-dialog-trigger');await page.keyboard.press('Enter');
@@ -26,6 +26,9 @@ export async function run({page,baseURL,navigate,settle,opened,focused}) {
     await page.focus('#nav-dmf-tabs-automatic [data-value=overview][data-slot=tabs-trigger]');
     await page.keyboard.press('ArrowRight');
     assert(await page.evaluate(()=>document.querySelector('#nav-dmf-tabs-automatic [data-value=details][data-slot=tabs-trigger]').getAttribute('aria-selected')==='true'),'Tabs not rebound after navigation');
+    await page.focus('#nav-dmf-accordion-customization');await page.keyboard.press('Enter');
+    assert(await page.evaluate(()=>document.getElementById('nav-dmf-accordion-customization').getAttribute('aria-expanded')==='true'),'Accordion handlers missing or duplicated after navigation');
+    await page.focus('#nav-dmf-tooltip-trigger');await opened('#nav-dmf-tooltip-content');await page.keyboard.press('Escape');await focused('nav-dmf-tooltip-trigger');
     await page.focus('#nav-dmf-updates');
     const before=await page.evaluate(()=>document.getElementById('nav-dmf-updates').getAttribute('aria-checked'));
     await page.keyboard.press('Space');
@@ -48,6 +51,9 @@ export async function run({page,baseURL,navigate,settle,opened,focused}) {
   // Leave a Select open during one final swap, covering its portal teardown as well.
   await page.focus('#nav-dmf-channel');await page.keyboard.press('Space');await opened('[data-slot=select-content][data-open]');
   await link('empty');
+  await link('a');await interact();
+  await page.focus('#nav-cb-ui-tooltip-trigger');await opened('#nav-cb-ui-tooltip-content');await link('empty');
+  assert(await page.evaluate(()=>!document.querySelector('[data-slot=tooltip-content]')),'Tooltip survived navigation to an empty page');
   await page.evaluate(()=>{window.__dmfNavigation.old=[];});
-  console.log('PASS real Astro links, Back/Forward, empty-page return, open menu/popover/Select and toast teardown, form bindings, dialog focus and non-duplicated handlers');
+  console.log('PASS real Astro links, Back/Forward, empty-page return, open menu/popover/Select/Tooltip and toast teardown, Accordion/Tabs/form bindings, dialog focus and non-duplicated handlers');
 }

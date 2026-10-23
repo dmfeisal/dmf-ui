@@ -40,6 +40,10 @@ export async function tap(page, selector) {
   await page.cdp('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...point,id:1}]});
   await page.cdp('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
 }
+export async function hover(page, selector) {
+  const point=await targetPoint(page,selector);
+  await page.cdp('Input.dispatchMouseEvent',{type:'mouseMoved',...point});
+}
 export async function click(page, selector) {
   const point=await targetPoint(page,selector);
   await page.cdp('Input.dispatchMouseEvent',{type:'mouseMoved',...point});

@@ -1,0 +1,46 @@
+---
+import { Button } from '../dmf-ui/button';
+import { Input } from '../dmf-ui/input';
+import { Label } from '../dmf-ui/label';
+import { Textarea } from '../dmf-ui/textarea';
+import { Checkbox } from '../dmf-ui/checkbox';
+import { Switch } from '../dmf-ui/switch';
+import { Separator } from '../dmf-ui/separator';
+import { Field, FieldLabel, FieldDescription } from '../dmf-ui/field';
+import { RadioGroup, RadioGroupItem } from '../dmf-ui/radio-group';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '../dmf-ui/select';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '../dmf-ui/tabs';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../dmf-ui/accordion';
+import { Tooltip, TooltipTrigger, TooltipContent } from '../dmf-ui/tooltip';
+import { Popover, PopoverTrigger, PopoverContent, PopoverTitle } from '../dmf-ui/popover';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '../dmf-ui/dropdown-menu';
+import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose } from '../dmf-ui/dialog';
+import { Toaster } from '../dmf-ui/toast';
+import { buttonVariants } from '../dmf-ui/button/button-variants';
+interface Props {slug:string;system?:'dmf'|'cb-ui';}
+const {slug,system='dmf'}=Astro.props;
+const id=`docs-${slug}-${system}`;
+const presetName=system==='dmf'?'DMF UI':'CB UI reconstruction';
+---
+<section class="dmf-ui docs-preview" data-system={system} data-color-mode={system==='cb-ui'?'light':undefined} aria-label={`${presetName} ${slug} example`} data-docs-preview={slug}>
+<p class="docs-preview-label">{presetName}</p>
+{slug==='button'&&<div class="docs-preview-row"><Button>Continue</Button><Button variant="outline">Cancel</Button><Button disabled>Unavailable</Button></div>}
+{['input','label','textarea','checkbox','switch'].includes(slug)&&<div class="docs-preview-stack"><Label for={id}>{slug==='checkbox'?'Accept the local preview':slug==='switch'?'Enable updates':slug==='textarea'?'Message':'Display name'}</Label>{slug==='textarea'?<Textarea id={id} rows={3} placeholder="Write a local note"/>:slug==='checkbox'?<Checkbox id={id}/>:slug==='switch'?<Switch id={id} defaultChecked/>:<Input id={id} autocomplete="nickname" placeholder="Your name"/>}</div>}
+{slug==='field'&&<Field><FieldLabel for={id}>Display name</FieldLabel><Input id={id} aria-describedby={`${id}-hint`}/><FieldDescription id={`${id}-hint`}>Used only in this local example.</FieldDescription></Field>}
+{slug==='separator'&&<div class="docs-preview-stack"><p>Shared foundation</p><Separator/><p>Product customization</p></div>}
+{slug==='radio-group'&&<div class="docs-preview-stack"><p id={`${id}-label`}>Schedule</p><RadioGroup name={id} defaultValue="weekly" aria-labelledby={`${id}-label`}><div class="docs-preview-row"><RadioGroupItem id={`${id}-weekly`} value="weekly"/><Label for={`${id}-weekly`}>Weekly</Label></div><div class="docs-preview-row"><RadioGroupItem id={`${id}-monthly`} value="monthly"/><Label for={`${id}-monthly`}>Monthly</Label></div></RadioGroup></div>}
+{slug==='select'&&<div class="docs-preview-stack"><Label for={id}>Channel</Label><Select name={id} defaultValue="email"><SelectTrigger id={id}><SelectValue/></SelectTrigger><SelectContent><SelectItem value="email">Email</SelectItem><SelectItem value="digest">Digest</SelectItem></SelectContent></Select></div>}
+{slug==='tabs'&&<Tabs defaultValue="overview" id={id}><TabsList aria-label={`${presetName} sections`}><TabsTrigger value="overview">Overview</TabsTrigger><TabsTrigger value="details">Details</TabsTrigger></TabsList><TabsContent value="overview"><p>The shared foundation.</p></TabsContent><TabsContent value="details"><p>Room for your product’s identity.</p></TabsContent></Tabs>}
+{slug==='accordion'&&<Accordion defaultValue="foundation" id={id}><AccordionItem value="foundation"><h3><AccordionTrigger aria-expanded="true">What is shared?<span class="sr-only"> in {presetName}</span></AccordionTrigger></h3><AccordionContent hidden={false}><p>The components share the Fulldev foundation.</p></AccordionContent></AccordionItem><AccordionItem value="customization"><h3><AccordionTrigger>Can I customize it?<span class="sr-only"> in {presetName}</span></AccordionTrigger></h3><AccordionContent><p>Use semantic tokens and product presets.</p></AccordionContent></AccordionItem></Accordion>}
+{slug==='tooltip'&&<Tooltip id={id}><TooltipTrigger id={`${id}-trigger`} class={buttonVariants({variant:'outline'})}>Preview help</TooltipTrigger><TooltipContent id={`${id}-content`}>This example stays local to the page.</TooltipContent></Tooltip>}
+{slug==='popover'&&<Popover id={id}><PopoverTrigger class={buttonVariants({variant:'outline'})}>Preview settings</PopoverTrigger><PopoverContent role="dialog" aria-labelledby={`${id}-title`}><PopoverTitle id={`${id}-title`}>Preview settings</PopoverTitle><Label for={`${id}-name`}>Draft label</Label><Input id={`${id}-name`} value="Local preview"/><Button data-slot="popover-close" variant="secondary">Done</Button></PopoverContent></Popover>}
+{slug==='dropdown-menu'&&<DropdownMenu id={id}><DropdownMenuTrigger class={buttonVariants({variant:'outline'})}>Actions</DropdownMenuTrigger><DropdownMenuContent aria-label={`${presetName} preview actions`}><DropdownMenuItem data-value="preview">Preview selection</DropdownMenuItem><DropdownMenuItem disabled>Export (unavailable)</DropdownMenuItem></DropdownMenuContent></DropdownMenu>}
+{slug==='dialog'&&<Dialog><DialogTrigger>Open preview</DialogTrigger><DialogContent><DialogTitle>Preview settings</DialogTitle><DialogDescription>Changes stay in this example.</DialogDescription><DialogClose>Done</DialogClose></DialogContent></Dialog>}
+{slug==='toast'&&<div data-docs-toast><Button data-docs-toast-show>Show notification</Button><Toaster id={id} portal={false} viewportLabel={`${presetName} preview notifications`}/></div>}
+</section>
+<script>
+ import {createToast,type ToastController} from '../dmf-ui/toast';
+ const bindings=new Map<HTMLElement,{toast:ToastController;abort:AbortController}>();
+ function initialize(){for(const root of document.querySelectorAll<HTMLElement>('[data-docs-toast]')){if(bindings.has(root))continue;const target=root.querySelector<HTMLElement>('[data-slot=toast]');if(!target)continue;const toast=createToast(target,{portal:false});const abort=new AbortController();root.querySelector('[data-docs-toast-show]')?.addEventListener('click',()=>toast.show({title:'Preview complete',description:'Nothing was saved or sent.',type:'success'}),{signal:abort.signal});bindings.set(root,{toast,abort});}}
+ initialize();document.addEventListener('astro:page-load',initialize);document.addEventListener('astro:before-swap',()=>{for(const {toast,abort} of bindings.values()){abort.abort();toast.destroy();}bindings.clear();});
+</script>

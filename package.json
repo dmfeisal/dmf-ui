@@ -1,6 +1,6 @@
 {
   "name": "dmf-ui",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -13,9 +13,11 @@
     "test:dmf-ui:accessibility": "npm run build && node scripts/test-dmf-ui-accessibility.mjs",
     "test:dmf-ui:navigation": "npm run build:dmf-ui:navigation && node scripts/test-dmf-ui-navigation.mjs",
     "build:dmf-ui:navigation": "astro build --config tests/fixtures/navigation/astro.config.mjs",
-    "preview:dmf-ui:navigation": "npm run build:dmf-ui:navigation && node scripts/preview-dmf-ui-navigation.mjs"
+    "preview:dmf-ui:navigation": "npm run build:dmf-ui:navigation && node scripts/preview-dmf-ui-navigation.mjs",
+    "test:dmf-ui:docs": "npm run build && node scripts/test-dmf-ui-documentation.mjs"
   },
   "dependencies": {
+    "@data-slot/accordion": "1.1.2",
     "@data-slot/dialog": "1.1.2",
     "@data-slot/dropdown-menu": "1.1.2",
     "@data-slot/popover": "1.1.2",
@@ -24,6 +26,7 @@
     "@data-slot/switch": "1.1.2",
     "@data-slot/tabs": "1.1.2",
     "@data-slot/toast": "1.1.2",
+    "@data-slot/tooltip": "1.1.2",
     "@lucide/astro": "1.60.0",
     "class-variance-authority": "0.7.1",
     "cn": "0.5.0",
@@ -70,7 +73,9 @@
     "./examples/*": "./src/components/dmf-ui/examples/*.astro",
     "./notices": "./public/dmf-ui-notices.txt",
     "./package.json": "./package.json",
-    "./provenance": "./docs/DMF-UI-UPSTREAM.json"
+    "./provenance": "./docs/DMF-UI-UPSTREAM.json",
+    "./accordion": "./src/components/dmf-ui/accordion/index.ts",
+    "./tooltip": "./src/components/dmf-ui/tooltip/index.ts"
   },
   "files": [
     "src/components/dmf-ui",

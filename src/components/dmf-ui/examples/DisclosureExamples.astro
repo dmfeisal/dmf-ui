@@ -1,0 +1,29 @@
+---
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../accordion';
+import { Tooltip, TooltipTrigger, TooltipContent } from '../tooltip';
+import { buttonVariants } from '../button/button-variants';
+interface Props { prefix: string; }
+const { prefix } = Astro.props;
+const systemName = prefix.includes('cb-ui') ? 'CB UI' : 'DMF UI';
+---
+<div data-disclosure-example={prefix}>
+  <h4 id={`${prefix}-accordion-title`} class="dmf-pilot-heading">Accordion</h4>
+  <p class="dmf-system-note">Open one section at a time. Use arrow keys, Home and End to move between available headings.</p>
+  <Accordion id={`${prefix}-accordion-single`} defaultValue="foundation">
+    <AccordionItem value="foundation"><h5 class="m-0"><AccordionTrigger id={`${prefix}-accordion-foundation`} aria-expanded="true" aria-controls={`${prefix}-accordion-foundation-panel`}>What is shared?<span class="sr-only"> in {systemName}</span></AccordionTrigger></h5><AccordionContent id={`${prefix}-accordion-foundation-panel`} hidden={false}><p>Components share the Fulldev foundation. Each product preset keeps its own identity.</p><a class="text-foreground underline" href={`#${prefix}-tooltip-title`}>Explore Tooltip</a></AccordionContent></AccordionItem>
+    <AccordionItem value="unavailable" disabled><h5 class="m-0"><AccordionTrigger id={`${prefix}-accordion-unavailable`} aria-disabled="true">Unavailable section<span class="sr-only"> in {systemName}</span></AccordionTrigger></h5><AccordionContent><p>This example is unavailable.</p></AccordionContent></AccordionItem>
+    <AccordionItem value="customization"><h5 class="m-0"><AccordionTrigger id={`${prefix}-accordion-customization`}>Can I customize it later?<span class="sr-only"> in {systemName}</span></AccordionTrigger></h5><AccordionContent><p>Use semantic tokens and product presets to customize the shared components.</p></AccordionContent></AccordionItem>
+  </Accordion>
+  <h5 class="dmf-pilot-heading">Multiple open sections</h5>
+  <Accordion id={`${prefix}-accordion-multiple`} multiple defaultValue={['appearance']}>
+    <AccordionItem value="appearance"><h6 class="m-0"><AccordionTrigger id={`${prefix}-accordion-appearance`} aria-expanded="true" aria-controls={`${prefix}-accordion-appearance-panel`}>Appearance<span class="sr-only"> in {systemName}</span></AccordionTrigger></h6><AccordionContent id={`${prefix}-accordion-appearance-panel`} hidden={false}><p>Colors and typography come from the current preset.</p></AccordionContent></AccordionItem>
+    <AccordionItem value="behavior"><h6 class="m-0"><AccordionTrigger id={`${prefix}-accordion-behavior`}>Behavior<span class="sr-only"> in {systemName}</span></AccordionTrigger></h6><AccordionContent><p>Opening this section keeps Appearance open.</p></AccordionContent></AccordionItem>
+  </Accordion>
+  <h4 id={`${prefix}-tooltip-title`} class="dmf-pilot-heading">Tooltip</h4>
+  <p class="dmf-system-note">Hover or focus Preview help for a short explanation. Escape dismisses it. Essential instructions stay visible here.</p>
+  <div class="dmf-pilot-row">
+    <Tooltip id={`${prefix}-tooltip`}><TooltipTrigger id={`${prefix}-tooltip-trigger`} class={buttonVariants({variant:'outline'})}>Preview help</TooltipTrigger><TooltipContent id={`${prefix}-tooltip-content`}>Examples are local. Nothing is saved or sent.</TooltipContent></Tooltip>
+    <Tooltip id={`${prefix}-tooltip-link`} side="inline-end"><TooltipTrigger id={`${prefix}-tooltip-link-trigger`} href={`#${prefix}-accordion-title`} class={buttonVariants({variant:'outline'}) + ' text-foreground no-underline'}>Return to Accordion</TooltipTrigger><TooltipContent id={`${prefix}-tooltip-link-content`}>Jump to the Accordion examples above.</TooltipContent></Tooltip>
+    <Tooltip id={`${prefix}-tooltip-disabled`}><TooltipTrigger id={`${prefix}-tooltip-disabled-trigger`} disabled class={buttonVariants({variant:'outline'})}>Unavailable help</TooltipTrigger><TooltipContent id={`${prefix}-tooltip-disabled-content`}>This control is unavailable.</TooltipContent></Tooltip>
+  </div>
+</div>

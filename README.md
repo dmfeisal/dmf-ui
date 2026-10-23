@@ -8,7 +8,7 @@ Use Node >=22.12. Run `npm ci`, `npm run check`, `npm run build` and `npm test`.
 
 ## Consume
 
-Install a packed version of this repository with `npm install ./vendor/dmf-ui-0.1.0.tgz --save-exact`. The package is private and has not been published to npm.
+Install a packed version of this repository with `npm install ./vendor/dmf-ui-0.2.0.tgz --save-exact`. The package is private and has not been published to npm.
 
 ```astro
 ---
@@ -40,3 +40,9 @@ Preserve `dmf-ui/notices` in distributed sites and source. `dmf-ui/provenance` r
 Astro is the implemented adapter. React and WordPress support, stable API guarantees and npm publication remain future work. Preserve notices for Fulldev, shadcn/ui, Tailwind CSS, Data Slot, Lucide and bundled dependencies. Radix is not a runtime dependency. Full notices are in `public/dmf-ui-notices.txt`. `EXPORT-MANIFEST.json` records the original extraction snapshot and is historical, not a current package inventory.
 
 Quality follow-up: `npm run test:dmf-ui:accessibility` runs the pinned axe audit and focused keyboard/AX checks. `npm run test:dmf-ui:navigation` builds an isolated ClientRouter fixture and tests actual links/history. These local browser commands require Ego Browser; see docs/DMF-UI-QUALITY.md for exact coverage and manual browser/screen-reader gaps.
+
+Version 0.2.0 adds `dmf-ui/accordion` and `dmf-ui/tooltip`, with shared DMF/CB examples and the `disclosures` browser family. See docs/DMF-UI-DISCLOSURES.md for usage and behavior boundaries.
+
+## Documentation site
+
+The source repository builds Home (`/`), the searchable Components catalog (`/components/`), individual component pages and Docs (`/docs/`). The existing `/examples/dmf-ui/` remains the independent integration gallery. Run `npm run dev` to view it locally and `npm run test:dmf-ui:docs` for documentation browser checks. See [documentation ownership and routes](docs/DMF-UI-DOCUMENTATION.md). Documentation host files are excluded from the component archive.
