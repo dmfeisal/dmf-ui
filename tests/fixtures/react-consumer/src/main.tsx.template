@@ -1,0 +1,11 @@
+import {StrictMode} from 'react';
+import {createRoot,hydrateRoot} from 'react-dom/client';
+import {App} from './App';
+import {identifierPrefix} from './config';
+import './styles.css';
+const element=document.getElementById('root');
+if(!element)throw new Error('Missing React host');
+const app=<StrictMode><App/></StrictMode>;
+const options={identifierPrefix};
+if(element.hasChildNodes())hydrateRoot(element,app,options);
+else createRoot(element,options).render(app);

@@ -16,7 +16,7 @@ The portfolio's `/ui/` remains an integration lab. Its pages, Canvas, navigation
 - `/docs/contracts/`, `/docs/introduction/`, `/docs/installation/`, `/docs/theming/`, `/docs/presets/`, `/docs/accessibility/`, `/docs/credits/`: Seven guides covering component intent, setup, ownership, customization and verified limits.
 - `/examples/dmf-ui/`: Existing independent integration examples; its route and anchors remain available.
 
-The 33-page build includes only implemented families. React, WordPress, additional product presets and complete accessibility/cross-browser certification remain future or manual-verification work. No npm publication or live documentation domain is implied.
+The 34-page build includes implemented Astro families and an experimental five-component React proof at `/examples/react/`. Stable React support, WordPress, native adapters, additional product presets and complete accessibility/cross-browser certification remain future or manual-verification work. No npm publication or live documentation domain is implied.
 
 ## Source boundaries
 
@@ -46,7 +46,7 @@ Use `npm run dev` in this repository for a local preview. Publishing the documen
 
 ## Future platforms
 
-See [the accepted cross-platform direction](DMF-UI-PLATFORMS.md) for portable tokens and separate React, React Native and SwiftUI implementations. These adapters remain planned.
+See [the accepted cross-platform direction](DMF-UI-PLATFORMS.md) for portable tokens and separate platform implementations. A private [React web alpha](DMF-UI-REACT.md) now has a packed consumer proof; stable React support, React Native and SwiftUI remain planned.
 
 ## Create configurator
 

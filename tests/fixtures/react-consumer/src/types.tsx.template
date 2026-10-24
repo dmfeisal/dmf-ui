@@ -1,0 +1,17 @@
+import {createRef} from 'react';
+import {Button,Input,Switch,Text,Card} from '@dmf-ui/react';
+const input=createRef<HTMLInputElement>();
+const button=createRef<HTMLButtonElement>();
+const heading=createRef<HTMLHeadingElement>();
+const card=createRef<HTMLDivElement>();
+const valid=<Card ref={card}><Text as="h2" ref={heading}>Typed form</Text><Input ref={input} name="name" readOnly value="DMF"/><Switch ref={input} defaultChecked>Updates</Switch><Button ref={button} type="submit">Save</Button></Card>;
+// Invalid variants and element-specific refs must fail in an external TypeScript host.
+// @ts-expect-error Button has no invented variant.
+const variant=<Button variant="invented"/>;
+// @ts-expect-error Input ref must refer to an input element.
+const invalidRef=<Input ref={button}/>;
+// @ts-expect-error Switch is a native checkbox, without a read-only contract.
+const readonlySwitch=<Switch readOnly>Updates</Switch>;
+// @ts-expect-error The button primitive does not implement anchor navigation.
+const href=<Button href="/docs/">Docs</Button>;
+void [valid,variant,invalidRef,readonlySwitch,href];

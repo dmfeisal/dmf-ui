@@ -48,8 +48,12 @@ The `disclosures` browser family covers Accordion and Tooltip. The source access
 
 ## Documentation site
 
-The normal source build now contains 33 pages: Home, Create, the component catalog and 21 detail pages, the Docs index and seven guides, plus the existing standalone gallery. `npm test` checks catalog/export coverage, local links/fragments and host-file distribution boundaries. `npm run test:dmf-ui:docs` runs documentation, Create and content-documentation browser suites; these are separate from the eight component regression families and the real-navigation fixture. See `DMF-UI-DOCUMENTATION.md`.
+The normal source build now contains 34 pages: Home, Create, the component catalog and 21 detail pages, the Docs index and seven guides, the standalone gallery and the experimental React proof. `npm test` checks catalog/export coverage, local links/fragments and host-file distribution boundaries. `npm run test:dmf-ui:docs` runs documentation, Create and content-documentation browser suites; these are separate from the eight component regression families and the real-navigation fixture. See `DMF-UI-DOCUMENTATION.md`.
 
 ## Portable tokens in 0.3.0
 
 `npm run tokens:check` rejects stale generated CSS/data. Source contracts validate typed values, alias failures and the 0.2.0 token inventory. `npm run test:dmf-ui:tokens` compares computed properties against immutable 0.2.0 fixtures in both presets and explicit/system modes. See `DMF-UI-TOKENS.md`; this is not native adapter verification.
+
+## React packed-consumer acceptance
+
+Source CI installs the separate adapter lock and runs its three type/server/hydration contracts. `npm run test:dmf-ui:react-consumer` additionally builds compiled ESM/declarations, packs both packages, installs a clean Vite fixture and runs four acceptance tests covering production CSS/font/notices/server HTML, native ESM refs, simulated keyboard/forms and both-preset hydration. The fixture dependency graph is locked; generated archive integrity values are updated only in the temporary lock. Version/dependency changes require an intentional fixture lock update. See `DMF-UI-REACT.md` for setup and limitations. This is not a browser runner, screenshot, computed-contrast or native-device check.

@@ -1,0 +1,37 @@
+import {useEffect,useId,useRef,useState} from 'react';
+import {Button,Card,Input,Switch,Text} from '@dmf-ui/react';
+export function App({initialPreset='dmf'}:{initialPreset?:'dmf'|'cb-ui'}){
+ const [preset,setPreset]=useState<'dmf'|'cb-ui'>(initialPreset);
+ const [ready,setReady]=useState(false);
+ const id=useId();
+ useEffect(()=>setReady(true),[]);
+ const [dark,setDark]=useState(false);
+ const [name,setName]=useState('Feisal');
+ const [updates,setUpdates]=useState(false);
+ const [result,setResult]=useState('No values submitted.');
+ const input=useRef<HTMLInputElement>(null);
+ return <main className="consumer-shell dmf-ui" data-system={preset} data-color-mode={preset==='cb-ui'?'light':undefined}>
+  <h1>React consumer proof</h1>
+  <Text tone="muted">Installed from packed packages. Preview values stay on this page.</Text>
+  <div className="consumer-actions">
+   <Button disabled={!ready} variant="outline" aria-pressed={preset==='dmf'} onClick={()=>setPreset('dmf')}>DMF preset</Button>
+   <Button disabled={!ready} variant="outline" aria-pressed={preset==='cb-ui'} onClick={()=>setPreset('cb-ui')}>CB UI preset</Button>
+   <Button disabled={!ready} variant="outline" aria-pressed={dark} onClick={()=>{setDark(!dark);document.documentElement.dataset.theme=dark?'light':'dark';}}>Dark surroundings</Button>
+  </div>
+  <Card aria-labelledby={`${id}-title`}>
+   <Text as="h2" id={`${id}-title`} size="title">Local preferences</Text>
+   <form onSubmit={event=>{event.preventDefault();setResult(JSON.stringify(Object.fromEntries(new FormData(event.currentTarget))));}} onReset={()=>{setName('Feisal');setUpdates(false);setResult('Form reset.');}}>
+    <fieldset disabled={!ready} aria-labelledby={`${id}-title`}>
+    <label htmlFor={`${id}-name`}>Display name</label>
+    <Input ref={input} id={`${id}-name`} name="name" required value={name} onChange={event=>setName(event.currentTarget.value)}/>
+    <Switch name="updates" value="enabled" checked={updates} onChange={event=>setUpdates(event.currentTarget.checked)}>Enable updates</Switch>
+    <Switch name="digest" defaultChecked>Weekly digest</Switch>
+    <Switch name="disabled" defaultChecked disabled>Unavailable preference</Switch>
+    <Switch name="consent" required>Required consent</Switch>
+    <div className="consumer-actions"><Button type="submit">Preview values</Button><Button type="reset" variant="outline">Reset form</Button><Button variant="ghost" onClick={()=>input.current?.focus()}>Focus display name</Button></div>
+    </fieldset>
+   </form>
+   <Text role="status" size="sm">{result}</Text>
+  </Card>
+ </main>;
+}
