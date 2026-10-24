@@ -1,6 +1,6 @@
 # React web alpha
 
-24 October 2026. The separate private `@dmf-ui/react` package at `packages/react`, version `0.1.0-alpha.2`, implements Button, Text, Input, Switch and Card. The Astro archive remains 0.4.0. This is preparation for the 0.5.0 React milestone, not a stable release, native adapter or npm publication.
+24 October 2026. The separate private `@dmf-ui/react` package at `packages/react`, version `0.1.0-alpha.3`, implements Button, Text, Input, Switch and Card. The Astro archive remains 0.4.0. This is preparation for the 0.5.0 React milestone, not a stable release, native adapter or npm publication.
 
 ## Ownership and setup
 
@@ -32,7 +32,11 @@ Switch read-only behavior, unchecked-value submission, compact sizes and Astro c
 
 The separate app checks TypeScript consumption, including invalid variant/ref contracts; native ESM imports; all five refs and cleanup; controlled typing; simulated Tab/Space and disabled skipping; validation; local submission; native and controlled reset; independent roots; and preset/theme host attributes. Production asset checks verify generated utilities/focus rules, DMF/CB selectors, primary #26ade4, and a locally bundled Nunito file whose hash matches the installed core asset. Bundled notices preserve Fulldev, shadcn/ui, Tailwind, CVA and clsx credit.
 
-These are build, asset and JSDOM checks. They do not establish browser keyboard behavior, computed contrast, actual font decoding, mobile/RTL layout, visible focus or screenshot parity. The owner selected existing verification only; no replacement browser space is created. Those visual and assistive-technology checks remain pending before broader React support or a completed 0.5.0 claim. See [verification record](DMF-UI-REACT-VERIFICATION.md).
+The subsequent owner-authorized Chromium review covers native keyboard/form/ref/reset behavior, touch toggling/reset, both presets in light/dark surroundings, bundled Nunito loading, 390px LTR/RTL layout and 200% text. Twelve axe states have no violations or incomplete rules. Measured enabled input/Switch boundary and thumb contrast is at least 4.74:1. Alpha.3 fixes the earlier light DMF boundaries, which measured only 1.26:1, using existing semantic colors. It also adds explicit native-input focus and removes a redundant label from the fixture's generic Card container.
+
+Run `npm run test:dmf-ui:react-consumer -- --keep`, then `npm run test:dmf-ui:react-browser -- <printed-consumer-directory>`. The latter serves its production output read-only and runs the local Ego browser scenario; it does not run on ordinary GitHub runners. Reports and screenshots stay under ignored `.dmf-ui-test-results/react/`. Explicit `DMF_UI_TEST_SPACE_ID` reuses an accessible agent-owned space and leaves lifecycle to the caller; the default run finishes its space on success. Failure retains its space for diagnosis, without permission to replace a missing/inactive one.
+
+Safari, Firefox, spoken screen-reader, forced-colors and broader application integration remain unverified. This review is not full WCAG certification or native-platform support. See [verification record](DMF-UI-REACT-VERIFICATION.md).
 
 React Native and SwiftUI need separate implementations using shared token data and contracts. They cannot reuse this CSS or browser implementation.
 
@@ -42,8 +46,9 @@ React Native and SwiftUI need separate implementations using shared token data a
 - [x] Build compiled ESM/types and preserve shared CSS, font assets and notices.
 - [x] Verify native refs, controlled forms, simulated keyboard input and independent roots.
 - [x] Produce server-rendered HTML and verify both-preset hydration without replacing nodes.
-- [ ] Complete actual browser checks for mobile/RTL, themes, visible focus, font rendering and contrast. Deferred by the owner's current verification choice.
-- [ ] Commit/push this alpha.2 checkpoint and confirm the hosted Node 22/24 matrix. Local checks do not establish hosted success.
-- [ ] Review the accepted React API scope and release/version notes before declaring the broader 0.5.0 milestone complete. No tag or npm publication is implied.
+- [x] Complete the scoped Chromium checks for mobile/RTL, themes, visible focus, font loading and contrast. Other engines and spoken screen readers remain separate manual work.
+- [x] Commit/push alpha.2 and confirm the hosted Node 22/24 matrix: [source](https://github.com/dmfeisal/dmf-ui/actions/runs/40090789479), [portfolio](https://github.com/dmfeisal/dmf-web/actions/runs/40090790578).
+- [x] Review the five-component alpha API: React 19 ESM, native refs/form ownership, opt-in text semantics, non-interactive Card and deliberate Switch exclusions. Existing API limitations above remain accepted alpha boundaries; no stable API guarantee is added.
+- [ ] Commit/push the browser-driven alpha.3 fixes and confirm its hosted matrix before closing the 0.5.0 checkpoint. Core remains 0.4.0 and React alpha.3; no root version bump, Git tag or npm publication is implied by browser acceptance.
 
-References: [React native input contracts](https://react.dev/reference/react-dom/components/input), [React refs](https://react.dev/reference/react/useRef), [React hydration](https://react.dev/reference/react-dom/client/hydrateRoot), [React server/client ID prefixes](https://react.dev/reference/react/useId), [Vite production builds](https://vite.dev/guide/build).
+References: [React native input contracts](https://react.dev/reference/react-dom/components/input), [React refs](https://react.dev/reference/react/useRef), [React hydration](https://react.dev/reference/react-dom/client/hydrateRoot), [React server/client ID prefixes](https://react.dev/reference/react/useId), [W3C non-text contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast), [Vite production builds](https://vite.dev/guide/build).

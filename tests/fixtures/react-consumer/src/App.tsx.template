@@ -18,7 +18,7 @@ export function App({initialPreset='dmf'}:{initialPreset?:'dmf'|'cb-ui'}){
    <Button disabled={!ready} variant="outline" aria-pressed={preset==='cb-ui'} onClick={()=>setPreset('cb-ui')}>CB UI preset</Button>
    <Button disabled={!ready} variant="outline" aria-pressed={dark} onClick={()=>{setDark(!dark);document.documentElement.dataset.theme=dark?'light':'dark';}}>Dark surroundings</Button>
   </div>
-  <Card aria-labelledby={`${id}-title`}>
+  <Card>
    <Text as="h2" id={`${id}-title`} size="title">Local preferences</Text>
    <form onSubmit={event=>{event.preventDefault();setResult(JSON.stringify(Object.fromEntries(new FormData(event.currentTarget))));}} onReset={()=>{setName('Feisal');setUpdates(false);setResult('Form reset.');}}>
     <fieldset disabled={!ready} aria-labelledby={`${id}-title`}>

@@ -1,36 +1,41 @@
-# React alpha.2 consumer verification
+# React alpha.3 browser verification
 
-24 October 2026. Scope: separate packed React web consumer, compiled adapter exports, shared asset inclusion and simulated input/ref contracts. The owner selected existing verification only; no replacement browser test space was created. This is an automated acceptance checkpoint, not completed visual acceptance or a 0.5.0 release.
+24 October 2026. Scope: the five-component packed React web consumer, source/build regressions and a real Chromium review. The owner subsequently authorized the pending browser checks after initially choosing existing verification only. This completes that scoped browser review, not a stable API, native adapter or full accessibility certification.
 
 ## Evidence
 
-- Prior source checks: 185 files with zero errors/warnings/hints; 34-page documentation build; 16 core tests and three original React adapter tests pass. The expanded consumer now adds four passing acceptance tests. Hosted CI for this uncommitted change has not run.
+- The separate locked consumer installs real core/adapter archives without sibling links, builds its production CSS/font assets and server-rendered HTML, and passes four acceptance tests for assets, forms/keyboard simulation, refs/cleanup and both-preset hydration. The original React adapter's three tests also pass.
+- A local Ego Chromium space ran native Tab/Space, required consent, form values, disabled skipping, ref focus, reset and mobile touch toggle/reset checks. Captured runtime/hydration errors are failures; none were reported.
+- Twelve axe-core 4.14.0 states pass with zero violations and zero incomplete rules: DMF/CB in light/dark surroundings on desktop, plus each preset at 390px in LTR/RTL at normal and 200% root text size. Browser identification: Chromium 154 on macOS. This is not Safari evidence despite its compatibility user-agent string.
+- Computed boundary/indicator checks cover enabled native-input borders and Switch outlines/thumbs. The lowest measured ratio is 4.7417:1; the test requires at least 3:1. Disabled controls are excluded. Text contrast is covered by the axe states, without claiming every possible caller-provided variant or background.
+- The initial review found 1.2597:1 light DMF input and unchecked Switch boundaries. Alpha.3 uses existing muted-foreground/foreground roles for stronger boundaries and explicit input focus. No core token, CB primary #26ade4 or Astro 0.4.0 runtime source is changed.
+- The fixture now gives its body shared theme scope, removing white margins around the DMF dark preview. Its generic Card container no longer carries an unnecessary accessible label; the visible heading and named fieldset remain. The prior manual-review axe item is gone.
+- The browser loads DMF CB Nunito, confirms its applied font family and primary value, and retains the separate asset-byte hash check. Coarse-pointer controls/label hit areas are at least 44px. The measured mobile document remains 390px wide, with no inspected content clipping at either text size.
+- Desktop theme/preset, mobile LTR/RTL, enlarged RTL and keyboard Input/Switch focus screenshots were captured. Desktop dark, mobile CB RTL, enlarged CB RTL and input-focus captures were visually inspected; remaining captures are retained for review. Reports and screenshots are local ignored artifacts under `.dmf-ui-test-results/react/`.
+- Alpha.2 previously passed hosted [source Node 22/24](https://github.com/dmfeisal/dmf-ui/actions/runs/40090789479) and [portfolio validation](https://github.com/dmfeisal/dmf-web/actions/runs/40090790578). Alpha.3 is a new local snapshot; its hosted run remains pending commit/push. The portfolio still consumes core 0.4.0; no archive pin, publication, tag or deployment is changed.
 
-- Both packages install as real directories inside a temporary consumer outside the repository. Installed versions are checked against the packed metadata, and neither package may link back to the checkout.
-- The first independent app exposed a JSX-runtime failure hidden by the source checkout configuration. Alpha.2 exports compiled ESM and declarations, retains source only for Tailwind scanning, and supports direct native Node ESM imports in acceptance tests.
-- The clean consumer runs strict TypeScript checks, including expected rejection of invented variants, wrong native refs, read-only Switch and Button href props.
-- Vite produces a production app. CSS tests find adapter rules, generated utility and focus rules, DMF/dark/CB selectors and primary #26ade4. The emitted local Nunito asset matches the installed core font SHA-256. This verifies asset inclusion and identity, not actual font decoding or browser computed styles.
-- Four consumer tests pass: production CSS/font/notices and server HTML; controlled typing and simulated Tab/Space, disabled skipping, validation/submission/reset/preset state and independent roots; native refs for all five components and cleanup; packed-package server rendering and both-preset hydration. React warnings and recoverable hydration errors fail the tests. The original adapter hydration suite remains separate.
-- The generated production HTML includes the form before scripts run, with its local fieldset disabled until hydration. Server rendering requires no browser globals. Both presets hydrate without replacing the original input or changing its label association, then submit local values and unmount correctly. Shared identifier configuration and `useId` also prevent duplicate labels/headings across independent roots. These checks use JSDOM, not a real browser.
-- Generated adapter notices retain the core attribution plus the bundled clsx MIT license. The core archive remains 0.4.0; the portfolio pin is not changed. Temporary test packs are not published or substituted for distributed archives.
-- Actual browser layout, mobile/RTL, screenshots, computed contrast, visible focus, font rendering and spoken screen-reader behavior remain unverified. React Native and SwiftUI have no implementation or device evidence from this work.
+## Limits
 
-## Anti Slop validation report
+Safari, Firefox, spoken VoiceOver/NVDA, forced-colors, native device testing and broader application integrations remain pending. The browser matrix uses the fixture's existing variants/content and the documented DMF/CB scopes. It does not approve arbitrary author styles, every future component state or a stable 0.5.0 release.
 
-Mode: during, owner-selected. This report applies to the packaging/test change and the local acceptance fixture; it does not approve the experimental UI for production. Direction remains Fulldev-based DMF/CB, with ENERGY 1 / RHYTHM 1 / MOTION 1.
+## Anti Slop delivery gate
+
+Mode: during, owner-selected. Direction remains the owner's Fulldev foundation, DMF semantics and CB reconstruction. ENERGY 1 / RHYTHM 1 / MOTION 1 apply to this quiet reference fixture.
 
 ### Hard Gate
 
-PASS for automated scope: archives build and install without checkout links; all fixture controls are exercised through local DOM tests; form validation/reset and disabled behavior are observed; reports distinguish simulation from browser evidence. No invented claims, testimonials, assets, live services or dead marketing controls are added. The fixture has a visible empty result state, native validation errors and local submission feedback. Visual acceptance stays pending under the owner's existing-verification constraint.
+PASS for the reviewed scope: the application builds and runs; all fixture actions are exercised with real browser keyboard/pointer/touch or the separate DOM suite; native validation/reset and disabled states work. Mobile LTR/RTL and 200% text have no measured clipping. Twelve axe states and explicit non-text measurements pass; input/Switch keyboard focus is visible. Presets and dark surroundings render coherently. No invented assets, testimonials, metrics, security claims, marketing sections or live services were introduced. Native platform support and full conformance are not claimed.
 
 ### Purpose-Gate
 
-PASS for scope: existing semantic tokens, component anatomy and CB primary are reused. No decorative icon, pattern, glass, glow, illustration, new font or motion system is introduced. The fixture's simple stacked form demonstrates native state ownership; its preset controls compare the two existing systems. The Nunito font is an existing preset asset and its bytes are verified.
+PASS: control-boundary changes have a measured accessibility reason and reuse semantic colors. The body uses the existing theme scope. Form grouping, restrained spacing and the existing accent explain every visual choice. No new decoration, illustration, icon family, pattern, glass, glow, motion system or typeface was added. Nunito remains the existing CB font.
 
 ### Liveliness
 
-PASS for scope: quiet reference content, a clear form heading, structural spacing and the existing primary accent match ENERGY 1 / RHYTHM 1 / MOTION 1. No marketing composition or additional decorative lever is warranted by a consumer acceptance fixture.
+PASS: headings establish focus; spacing separates preset selection from form content; the primary accent marks submission and checked controls. Repeated component anatomy and existing typography preserve identity. ENERGY 1 / RHYTHM 1 / MOTION 1 match the fixture's reference purpose.
 
 ### Craftsmanship and quality locks
 
-PASS for automated scope: the external app found and resolved a real distribution failure; locks, version/dependency guards, native ESM imports, ref cleanup and independent roots provide evidence beyond source-local tests. Existing identity, typography, radii and themes are reused. No broad accessibility, cross-browser, performance or production-readiness claim is made. Full visual delivery remains pending rather than being inferred from simulated tests.
+PASS: the browser review found and corrected concrete contrast/theme/semantics issues, rather than assuming build success established visual quality. Screenshots, font loading, native interactions, scope-specific contrast checks and source-owned regression commands support the result. Existing component-specific radii, palettes and brand direction are preserved. Remaining manual checks and hosted status are explicit; no production-readiness or native support claim is fabricated.
+
+Reference: [W3C Understanding Non-text Contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast).

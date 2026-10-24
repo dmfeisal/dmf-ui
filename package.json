@@ -23,7 +23,8 @@
     "build:dmf-ui:navigation": "astro build --config tests/fixtures/navigation/astro.config.mjs",
     "preview:dmf-ui:navigation": "npm run build:dmf-ui:navigation && node scripts/preview-dmf-ui-navigation.mjs",
     "test:dmf-ui:docs": "npm run build && node scripts/test-dmf-ui-documentation.mjs",
-    "test:dmf-ui:react-consumer": "node scripts/test-dmf-ui-react-consumer.mjs"
+    "test:dmf-ui:react-consumer": "node scripts/test-dmf-ui-react-consumer.mjs",
+    "test:dmf-ui:react-browser": "node scripts/test-dmf-ui-react-browser.mjs"
   },
   "dependencies": {
     "@data-slot/accordion": "1.1.2",

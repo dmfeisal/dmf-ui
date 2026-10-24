@@ -7,7 +7,7 @@ export function Button({variant,size,className,type='button',...props}:ButtonPro
 }
 export type InputProps = ComponentPropsWithRef<'input'>;
 export function Input({className,...props}:InputProps) {
- return <input {...props} data-slot="input" className={join('border-input focus-visible:border-ring focus-visible:ring-ring/50 h-9 rounded-md border bg-transparent px-2.5 py-1 text-base shadow-xs focus-visible:ring-3 w-full min-w-0 outline-none disabled:opacity-50',className)} />;
+ return <input {...props} data-slot="input" className={join('dmf-react-input border-input focus-visible:border-ring focus-visible:ring-ring/50 h-9 rounded-md border bg-transparent px-2.5 py-1 text-base shadow-xs focus-visible:ring-3 w-full min-w-0 outline-none disabled:opacity-50',className)} />;
 }
 type TextTag='p'|'span'|'div'|'h1'|'h2'|'h3'|'h4'|'h5'|'h6';
 export type TextProps<T extends TextTag='p'> = Omit<ComponentPropsWithRef<T>,'as'|'size'> & {as?:T;size?:'sm'|'default'|'lg'|'title';tone?:'default'|'muted';weight?:'normal'|'medium'|'semibold'};
