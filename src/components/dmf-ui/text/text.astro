@@ -1,0 +1,11 @@
+---
+import type { Polymorphic } from 'astro/types';
+import {cn} from '../utils';
+type TextTag='p'|'span'|'div'|'h1'|'h2'|'h3'|'h4'|'h5'|'h6';
+type Props<Tag extends TextTag = 'p'>=Polymorphic<{as:Tag;size?:'sm'|'default'|'lg'|'title';tone?:'default'|'muted';weight?:'normal'|'medium'|'semibold'}>;
+const {as:Tag='p',size='default',tone='default',weight='normal',class:className,...props}=Astro.props;
+const sizes={sm:'text-sm leading-relaxed',default:'text-base leading-7',lg:'text-lg leading-relaxed',title:'text-2xl leading-tight tracking-tight font-heading'};
+const tones={default:'text-foreground',muted:'text-muted-foreground'};
+const weights={normal:'font-normal',medium:'font-medium',semibold:'font-semibold'};
+---
+<Tag data-slot="text" data-size={size} data-tone={tone} data-weight={weight} class={cn('m-0 min-w-0 max-w-full text-start [overflow-wrap:anywhere]',sizes[size],tones[tone],weights[weight],className)} {...props}><slot /></Tag>

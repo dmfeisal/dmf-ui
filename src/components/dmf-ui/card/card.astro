@@ -1,0 +1,26 @@
+---
+import type { HTMLTag, Polymorphic } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props<Tag extends HTMLTag = "div"> = Polymorphic<{
+  as: Tag
+  size?: "default" | "sm"
+}>
+
+const {
+  as: Tag = "div",
+  class: className,
+  size = "default",
+  ...props
+} = Astro.props
+---
+
+<Tag
+  data-slot="card"
+  data-size={size}
+  class={cn("ring-foreground/10 bg-card text-card-foreground gap-(--card-spacing) min-w-0 max-w-full rounded-xl py-(--card-spacing) text-sm shadow-xs ring-1 [--card-spacing:--spacing(6)] has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(4)] *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl group/card flex flex-col [overflow-wrap:anywhere]", className)}
+  {...props}
+>
+  <slot />
+</Tag>

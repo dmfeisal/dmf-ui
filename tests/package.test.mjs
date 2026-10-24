@@ -14,5 +14,6 @@ test('package exports exist and npm pack excludes host pages and example layout 
  assert(paths.includes('public/dmf-ui-notices.txt'));
  assert(paths.includes('tokens/design.tokens.json'));
  assert(paths.includes('tokens/resolved.json'));
+ assert(paths.includes('contracts/components.json'));
  assert(paths.every(path=>!path.startsWith('src/pages/')&&!path.startsWith('tests/')&&!path.startsWith('src/layouts/')&&!path.startsWith('src/data/')&&!path.startsWith('src/components/docs/')&&!path.startsWith('src/scripts/')&&path!=='src/styles/create.css'&&path!=='src/styles/documentation.css'&&path!=='EXPORT-MANIFEST.json'));
 });

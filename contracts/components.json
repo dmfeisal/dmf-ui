@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "status": "experimental",
+  "scope": "0.4.0 content primitives; web adapter implemented, native adapters planned",
+  "shared": {
+    "content": "Authored slot content; no generated business data",
+    "presets": ["dmf", "cb-ui"],
+    "states": "Static primitives have no synthetic disabled, loading or selected state. Authors supply meaningful content and native attributes.",
+    "semantics": "Element names describe platform intent; adapters preserve meaning rather than identical DOM or prop signatures.",
+    "layout": "Relative type sizes, logical alignment, natural wrapping and explicit semantic colors"
+  },
+  "components": {
+    "text": {
+      "defaultElement": "p",
+      "elements": ["p", "span", "div", "h1", "h2", "h3", "h4", "h5", "h6"],
+      "sizes": ["sm", "default", "lg", "title"],
+      "tones": ["default", "muted"],
+      "weights": ["normal", "medium", "semibold"],
+      "defaultProps": {"size": "default", "tone": "default", "weight": "normal"},
+      "states": ["static"],
+      "accessibility": "Heading level is authored with as; visual size never selects heading semantics. No truncation or automatic live region."
+    },
+    "card": {
+      "defaultElement": "div",
+      "sizes": ["default", "sm"],
+      "defaultProps": {"size": "default"},
+      "parts": ["Card", "CardHeader", "CardTitle", "CardDescription", "CardAction", "CardContent", "CardFooter"],
+      "states": ["static", "authored-empty", "authored-loading", "authored-error"],
+      "accessibility": "A grouping surface, not a button. Use real child links/buttons. Authors choose article/section semantics and title heading levels."
+    },
+    "badge": {
+      "defaultElement": "span",
+      "variants": ["default", "secondary", "destructive", "outline", "ghost", "link"],
+      "defaultProps": {"variant": "default"},
+      "states": ["static", "native-link-focus", "native-link-hover"],
+      "accessibility": "Status meaning is explicit text. Native anchor navigation needs href and an authored name. Changing labels do not announce automatically. No clipping of long labels."
+    },
+    "alert": {
+      "defaultElement": "div",
+      "defaultRole": "note",
+      "variants": ["default", "destructive"],
+      "defaultProps": {"variant": "default"},
+      "parts": ["Alert", "AlertTitle", "AlertDescription", "AlertAction"],
+      "states": ["static", "authored-polite-status", "authored-urgent-alert"],
+      "accessibility": "Default static note. Authors opt into role=status for polite updates or role=alert for urgent updates, with meaningful content and native child actions. No auto-dismiss."
+    }
+  }
+}

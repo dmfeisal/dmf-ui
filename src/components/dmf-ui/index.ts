@@ -15,3 +15,7 @@ export * from "./textarea/index";
 export * from "./toast/index";
 export * from "./accordion/index";
 export * from "./tooltip/index";
+export * from './text/index';
+export * from './card/index';
+export * from './badge/index';
+export * from './alert/index';

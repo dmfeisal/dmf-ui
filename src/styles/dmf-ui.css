@@ -124,3 +124,10 @@
 
 /* Supplemental tooltip copy stays readable within narrow viewports. */
 .dmf-ui [data-slot="tooltip-content"] { max-width: min(20rem, calc(100dvw - 16px)); white-space: normal; overflow-wrap: anywhere; }
+
+.dmf-ui [data-slot="card"] { container: dmf-card / inline-size; }
+@container dmf-card (max-width: 24rem) {
+  .dmf-ui [data-slot="card"] [data-slot="card-header"] { grid-template-columns:minmax(0,1fr);grid-template-rows:auto; }
+  .dmf-ui [data-slot="card"] [data-slot="card-header"]>* { grid-column:1;grid-row:auto; }
+  .dmf-ui [data-slot="card"] [data-slot="card-action"] { justify-self:start; }
+}

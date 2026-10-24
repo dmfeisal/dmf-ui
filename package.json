@@ -1,12 +1,13 @@
 {
   "name": "dmf-ui",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "type": "module",
   "scripts": {
     "tokens:build": "node scripts/design-tokens.mjs",
     "tokens:check": "node scripts/design-tokens.mjs --check",
     "test:dmf-ui:tokens": "npm run build && node scripts/test-dmf-ui-tokens.mjs",
+    "test:dmf-ui:content": "npm run build && node scripts/test-dmf-ui-content.mjs",
     "predev": "npm run tokens:check",
     "precheck": "npm run tokens:check",
     "prebuild": "npm run tokens:check",
@@ -84,9 +85,15 @@
     "./accordion": "./src/components/dmf-ui/accordion/index.ts",
     "./tooltip": "./src/components/dmf-ui/tooltip/index.ts",
     "./tokens.json": "./tokens/design.tokens.json",
-    "./tokens/resolved.json": "./tokens/resolved.json"
+    "./tokens/resolved.json": "./tokens/resolved.json",
+    "./text": "./src/components/dmf-ui/text/index.ts",
+    "./card": "./src/components/dmf-ui/card/index.ts",
+    "./badge": "./src/components/dmf-ui/badge/index.ts",
+    "./alert": "./src/components/dmf-ui/alert/index.ts",
+    "./contracts.json": "./contracts/components.json"
   },
   "files": [
+    "contracts/*.json",
     "tokens/*.json",
     "src/components/dmf-ui",
     "src/styles/dmf-ui*.css",

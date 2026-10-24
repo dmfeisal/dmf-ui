@@ -1,0 +1,17 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"div">
+
+const { class: className, ...props } = Astro.props
+---
+
+<div
+  data-slot="card-footer"
+  class={cn("rounded-b-xl px-(--card-spacing) [.border-t]:pt-(--card-spacing) flex flex-wrap gap-3 items-center", className)}
+  {...props}
+>
+  <slot />
+</div>

@@ -1,0 +1,32 @@
+---
+import {Text} from '../text';
+import {Card,CardHeader,CardTitle,CardDescription,CardContent,CardFooter,CardAction} from '../card';
+import {Badge} from '../badge';
+import {Alert,AlertTitle,AlertDescription,AlertAction} from '../alert';
+interface Props {prefix:string;}
+const {prefix}=Astro.props;
+const presetName=prefix.endsWith('cb-ui')?'CB UI':'DMF UI';
+---
+<section id={`${prefix}-content`} class="dmf-content-examples" aria-labelledby={`${prefix}-content-title`}>
+<h4 id={`${prefix}-content-title`} class="dmf-pilot-heading">Text and content surfaces<span class="sr-only"> in {presetName}</span></h4>
+<div class="dmf-content-stack" data-content-text>
+<Text as="h5" size="title" weight="semibold">A shared language for your interface.</Text>
+<Text>Use semantic text, grouped content and clear feedback.</Text>
+<Text size="sm" tone="muted">These are local component examples. Nothing is saved or sent.</Text>
+</div>
+<div class="dmf-content-grid">
+<Card as="article" aria-labelledby={`${prefix}-card-title`} data-content-card>
+<CardHeader><CardTitle as="h5" id={`${prefix}-card-title`}>Component preview</CardTitle><CardDescription>Group related content without changing its behavior.</CardDescription><CardAction><Badge variant="secondary">Local example</Badge></CardAction></CardHeader>
+<CardContent><Text size="sm">A card provides structure. Its links keep their native navigation.</Text></CardContent>
+<CardFooter><Badge as="a" href={`#${prefix}-content-title`} variant="link" data-content-link>Back to these examples</Badge></CardFooter>
+</Card>
+<Card size="sm" data-content-small><CardHeader><CardTitle as="h5">No saved presets</CardTitle><CardDescription>Empty-state example</CardDescription></CardHeader><CardContent><Text size="sm" tone="muted">Create a preset in the documentation to export its settings.</Text></CardContent><CardFooter><Badge variant="outline">Nothing saved</Badge></CardFooter></Card>
+</div>
+<div class="dmf-content-row" data-content-badges>{(['default','secondary','destructive','outline','ghost'] as const).map(variant=><Badge variant={variant}>{variant==='destructive'?'Needs review':variant==='default'?'Preview':variant==='secondary'?'Draft':variant==='outline'?'Not published':'Local only'}</Badge>)}<Badge as="a" variant="link" href={`#${prefix}-content-title`}>Review examples</Badge></div>
+<Alert aria-labelledby={`${prefix}-notice-title`} data-content-alert><AlertTitle id={`${prefix}-notice-title`}>Preview only</AlertTitle><AlertDescription>This static note stays visible and does not announce itself as an urgent update.</AlertDescription><AlertAction><Badge as="a" variant="link" href={`#${prefix}-content-title`}>Review the examples</Badge></AlertAction></Alert>
+<Alert variant="destructive" data-content-error><AlertTitle>Example error</AlertTitle><AlertDescription>No request was sent. This demonstrates persistent error text.</AlertDescription></Alert>
+<details class="dmf-content-stress"><summary>Long-content and state examples</summary><div class="dmf-content-stack">
+<Badge variant="outline" data-content-long-badge>UnpublishedPresetWithAnIntentionallyLongUnbrokenNameForTheWrappingExample</Badge>
+<Card size="sm" data-content-long-card><CardHeader><CardTitle as="h5">A title that remains readable when text is enlarged or the available space becomes narrow</CardTitle></CardHeader><CardContent><Text data-content-long-text>LongUnbrokenContentShouldRemainVisibleWithoutClippingOrMakingThePageScrollSidewaysOnSmallScreens</Text><Text size="sm" tone="muted">Loading-state example: waiting for an authored result.</Text><Alert variant="destructive"><AlertTitle>Example error state</AlertTitle><AlertDescription>Loading did not complete in this illustrative state. No background request is running.</AlertDescription></Alert></CardContent></Card>
+</div></details>
+</section>

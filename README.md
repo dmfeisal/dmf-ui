@@ -8,7 +8,7 @@ Use Node >=22.12. Run `npm ci`, `npm run check`, `npm run build` and `npm test`.
 
 ## Consume
 
-Install a packed version of this repository with `npm install ./vendor/dmf-ui-0.3.0.tgz --save-exact`. The package is private and has not been published to npm.
+Install a packed version of this repository with `npm install ./vendor/dmf-ui-0.4.0.tgz --save-exact`. The package is private and has not been published to npm.
 
 ```astro
 ---
@@ -48,5 +48,7 @@ Version 0.2.0 adds `dmf-ui/accordion` and `dmf-ui/tooltip`, with shared DMF/CB e
 Edit `tokens/design.tokens.json`, then run `npm run tokens:build`. The generated CSS keeps existing public custom-property names and theme selectors. `npm run tokens:check` rejects stale output during development, checks and builds. Consumers can import `dmf-ui/tokens.json` or `dmf-ui/tokens/resolved.json` for typed token data. This prepares future adapters; React, React Native and SwiftUI components are not included. See [token authoring and migration](docs/DMF-UI-TOKENS.md).
 
 ## Documentation site
+
+Version 0.4.0 adds Text, Card, Badge and Alert, with both-preset previews, a Component contracts guide and the experimental `dmf-ui/contracts.json` export. The catalog contains 21 families. See [content contracts and authoring](docs/DMF-UI-CONTENT.md).
 
 The source repository builds Home (`/`), the searchable Components catalog (`/components/`), individual component pages and Docs (`/docs/`). The existing `/examples/dmf-ui/` remains the independent integration gallery. Run `npm run dev` to view it locally and `npm run test:dmf-ui:docs` for documentation browser checks. See [documentation ownership and routes](docs/DMF-UI-DOCUMENTATION.md). Documentation host files are excluded from the component archive.

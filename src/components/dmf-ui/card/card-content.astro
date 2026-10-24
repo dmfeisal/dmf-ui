@@ -1,0 +1,17 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"div">
+
+const { class: className, ...props } = Astro.props
+---
+
+<div
+  data-slot="card-content"
+  class={cn("min-w-0 flex flex-col gap-3 px-(--card-spacing)", className)}
+  {...props}
+>
+  <slot />
+</div>

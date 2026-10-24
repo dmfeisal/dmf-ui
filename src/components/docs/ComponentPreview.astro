@@ -17,6 +17,10 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuIte
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose } from '../dmf-ui/dialog';
 import { Toaster } from '../dmf-ui/toast';
 import { buttonVariants } from '../dmf-ui/button/button-variants';
+import {Text} from '../dmf-ui/text';
+import {Card,CardHeader,CardTitle,CardDescription,CardContent,CardFooter} from '../dmf-ui/card';
+import {Badge} from '../dmf-ui/badge';
+import {Alert,AlertTitle,AlertDescription,AlertAction} from '../dmf-ui/alert';
 interface Props {slug:string;system?:'dmf'|'cb-ui';}
 const {slug,system='dmf'}=Astro.props;
 const id=`docs-${slug}-${system}`;
@@ -24,6 +28,10 @@ const presetName=system==='dmf'?'DMF UI':'CB UI reconstruction';
 ---
 <section class="dmf-ui docs-preview" data-system={system} data-color-mode={system==='cb-ui'?'light':undefined} aria-label={`${presetName} ${slug} example`} data-docs-preview={slug}>
 <p class="docs-preview-label">{presetName}</p>
+{slug==='text'&&<div class="docs-preview-stack"><Text as="h3" size="title" weight="semibold">A clear starting point.</Text><Text>Semantic text follows the product’s font.</Text><Text tone="muted" size="sm">Choose the right heading level for your document.</Text></div>}
+{slug==='card'&&<Card as="article" aria-labelledby={`${id}-title`}><CardHeader><CardTitle as="h3" id={`${id}-title`}>Preset preview</CardTitle><CardDescription>Grouped content with native navigation.</CardDescription></CardHeader><CardContent><Text size="sm">A shared foundation leaves room for your product.</Text></CardContent><CardFooter><Badge as="a" variant="link" href="/create/">Configure a preset</Badge></CardFooter></Card>}
+{slug==='badge'&&<div class="docs-preview-row">{(['default','secondary','destructive','outline','ghost'] as const).map(variant=><Badge variant={variant}>{variant==='destructive'?'Needs review':variant==='default'?'Preview':variant==='secondary'?'Draft':variant==='outline'?'Not published':'Local only'}</Badge>)}<Badge as="a" variant="link" href="/docs/presets/">Read about presets</Badge></div>}
+{slug==='alert'&&<div class="docs-preview-stack"><Alert aria-labelledby={`${id}-title`}><AlertTitle id={`${id}-title`}>Preview only</AlertTitle><AlertDescription>Nothing is saved or sent.</AlertDescription><AlertAction><Badge as="a" variant="link" href="/docs/presets/">Read about presets</Badge></AlertAction></Alert><Alert variant="destructive"><AlertTitle>Example error</AlertTitle><AlertDescription>No request was sent. This demonstrates persistent error text.</AlertDescription></Alert></div>}
 {slug==='button'&&<div class="docs-preview-row"><Button>Continue</Button><Button variant="outline">Cancel</Button><Button disabled>Unavailable</Button></div>}
 {['input','label','textarea','checkbox','switch'].includes(slug)&&<div class="docs-preview-stack"><Label for={id}>{slug==='checkbox'?'Accept the local preview':slug==='switch'?'Enable updates':slug==='textarea'?'Message':'Display name'}</Label>{slug==='textarea'?<Textarea id={id} rows={3} placeholder="Write a local note"/>:slug==='checkbox'?<Checkbox id={id}/>:slug==='switch'?<Switch id={id} defaultChecked/>:<Input id={id} autocomplete="nickname" placeholder="Your name"/>}</div>}
 {slug==='field'&&<Field><FieldLabel for={id}>Display name</FieldLabel><Input id={id} aria-describedby={`${id}-hint`}/><FieldDescription id={`${id}-hint`}>Used only in this local example.</FieldDescription></Field>}

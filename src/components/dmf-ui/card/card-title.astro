@@ -1,0 +1,17 @@
+---
+import type { HTMLTag, Polymorphic } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props<Tag extends HTMLTag = "div"> = Polymorphic<{ as: Tag }>
+
+const { as: Tag = "div", class: className, ...props } = Astro.props
+---
+
+<Tag
+  data-slot="card-title"
+  class={cn("m-0 text-base leading-normal font-medium group-data-[size=sm]/card:text-sm font-heading", className)}
+  {...props}
+>
+  <slot />
+</Tag>

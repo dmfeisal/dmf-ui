@@ -9,14 +9,14 @@ The portfolio's `/ui/` remains an integration lab. Its pages, Canvas, navigation
 ## Information architecture
 
 - `/`: Home. Explain the foundation, show real component previews and lead to Components or installation.
-- `/components/`: Searchable catalog of the 17 implemented component families, grouped by purpose. Static links remain available without JavaScript; search is progressive enhancement with a result count and an empty state.
+- `/components/`: Searchable catalog of the 21 implemented component families, grouped by purpose. Static links remain available without JavaScript; search is progressive enhancement with a result count and an empty state.
 - `/components/<slug>/`: One page per exported family, with DMF/CB previews where supported, a complete Astro usage snippet, focused option table and behavior notes. Dialog and Toast preview DMF only while CB portal acceptance remains pending.
 - `/create/`: Local preset configurator with live components, CSS export, JSON download and shareable query links. Astro only; CB primary stays #26ade4 and CB appearance stays light.
 - `/docs/`: Guide index.
-- `/docs/introduction/`, `/docs/installation/`, `/docs/theming/`, `/docs/presets/`, `/docs/accessibility/`, `/docs/credits/`: Six guides covering setup, ownership, customization and verified limits.
+- `/docs/contracts/`, `/docs/introduction/`, `/docs/installation/`, `/docs/theming/`, `/docs/presets/`, `/docs/accessibility/`, `/docs/credits/`: Seven guides covering component intent, setup, ownership, customization and verified limits.
 - `/examples/dmf-ui/`: Existing independent integration examples; its route and anchors remain available.
 
-The 28-page build includes only implemented families. React, WordPress, additional product presets and complete accessibility/cross-browser certification remain future or manual-verification work. No npm publication or live documentation domain is implied.
+The 33-page build includes only implemented families. React, WordPress, additional product presets and complete accessibility/cross-browser certification remain future or manual-verification work. No npm publication or live documentation domain is implied.
 
 ## Source boundaries
 
@@ -25,6 +25,8 @@ The 28-page build includes only implemented families. React, WordPress, addition
 The documentation uses static Astro page navigation. Its theme control is page-local and does not write preferences. Shared component roots still own their normal lifecycle. If ClientRouter is later added to the documentation shell, its shell listeners need lifecycle review; the existing separate navigation fixture tests the library components rather than promising this shell's client routing.
 
 Since 0.3.0, shared token CSS is generated from typed JSON. See [token authoring and migration](DMF-UI-TOKENS.md). The installation guide derives its archive version from package metadata. Create continues to derive its preview themes from the generated foundation stylesheet.
+
+Version 0.4.0 adds four content primitive pages, a contract guide and a shared Card/Text/Badge/Alert composition in Create. See [content contracts](DMF-UI-CONTENT.md).
 
 Documentation pages, layouts, data, preview wrappers and host CSS are excluded from the component archive. Keep package exports and source ownership unchanged. Update metadata when a component API changes; the option tables are a focused overview, not a generated exhaustive API reference.
 

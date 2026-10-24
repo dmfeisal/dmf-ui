@@ -143,6 +143,38 @@
         "@data-slot/tooltip@^1.1.2"
       ],
       "retrieved": "2026-10-23"
+    },
+    {
+      "component": "card",
+      "url": "https://ui.full.dev/r/styles/base-vega/card.json",
+      "sha256": "4363f09bf9db9f13b1a10073e17f3edd10d85723a20f9c2403f4c82dc698e9fb",
+      "retrieved": "2026-10-24",
+      "dependencies": [],
+      "adaptation": "Import mapping, unclipped content and focus, min-width-safe header/content and wrapping footer."
+    },
+    {
+      "component": "badge",
+      "url": "https://ui.full.dev/r/styles/base-vega/badge.json",
+      "sha256": "f333fd3000f45dad97cd0a2001efb22311dab525b10df809a34a3215d671dade",
+      "retrieved": "2026-10-24",
+      "dependencies": [],
+      "adaptation": "Wrapping labels, logical padding, 44px native links and contrast adaptations."
+    },
+    {
+      "component": "alert",
+      "url": "https://ui.full.dev/r/styles/base-vega/alert.json",
+      "sha256": "79177f945c5cb987f4f79259e0b8934c23bd255560287535371224c78ffd6b5f",
+      "retrieved": "2026-10-24",
+      "dependencies": [],
+      "adaptation": "Logical alignment, static note by default, native role override and flowing action row."
+    },
+    {
+      "component": "text",
+      "url": "https://ui.full.dev/r/styles/base-vega/typography.json",
+      "sha256": "c7ac0d00ef07e6d3167ce75665a56efb711d59059ff7e39eb1f10f8c46ecde99",
+      "retrieved": "2026-10-24",
+      "dependencies": [],
+      "adaptation": "DMF Text API adapts selected Fulldev paragraph, lead and heading typography guidance; not a copy of the complete Typography family."
     }
   ],
   "modifications": [
