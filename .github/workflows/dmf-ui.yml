@@ -26,6 +26,10 @@ jobs:
           cache: npm
       - name: Install locked dependencies
         run: npm ci
+      - name: Install isolated React alpha dependencies
+        run: npm ci --prefix packages/react
+      - name: Verify React alpha contracts and hydration
+        run: npm test --prefix packages/react
       - name: Check source
         run: npm run check
       - name: Build documentation

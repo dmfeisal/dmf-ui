@@ -4,7 +4,7 @@ Recorded 23 October 2026 following the owner’s request.
 
 ## Accepted direction
 
-Maintain one DMF design system with separate implementations for Astro, React web, React Native and native iOS using SwiftUI. Keep Fulldev as the existing web foundation. React, React Native and SwiftUI are planned, not currently supported adapters. WordPress remains a future web integration.
+Maintain one DMF design system with separate implementations for Astro, React web, React Native and native iOS using SwiftUI. Keep Fulldev as the existing web foundation. React web now has a five-component private alpha proof; stable React support, React Native and SwiftUI remain planned. WordPress remains a future web integration. See [React alpha boundaries](DMF-UI-REACT.md).
 
 Share portable design tokens, semantic names, brand presets, component variants, states and behavior specifications. Keep rendering, interaction, accessibility and lifecycle code platform-specific. Do not attempt to reuse Astro components, browser DOM behavior or CSS directly as native components.
 
