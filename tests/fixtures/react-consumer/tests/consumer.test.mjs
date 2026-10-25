@@ -4,7 +4,7 @@ import {JSDOM} from 'jsdom';
 import {act,createElement as h,createRef,StrictMode} from 'react';
 import {userEvent} from '@testing-library/user-event';
 import {App,render,identifierPrefix} from '../.test-dist/server.mjs';
-import {Button,Input,Switch,Card,Text,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator,CardHeader,CardTitle,CardDescription,CardAction,CardContent,CardFooter,Field,FieldGroup,FieldContent,FieldLabel,FieldTitle,FieldDescription,FieldError,FieldSet,FieldLegend,FieldSeparator} from '@dmf-ui/react';
+import {Button,Input,Switch,Card,Text,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator,CardHeader,CardTitle,CardDescription,CardAction,CardContent,CardFooter,Field,FieldGroup,FieldContent,FieldLabel,FieldTitle,FieldDescription,FieldError,FieldSet,FieldLegend,FieldSeparator,RadioGroup,RadioGroupItem,Select,SelectOption,SelectGroup} from '@dmf-ui/react';
 async function withDOM(run,html=''){
  const dom=new JSDOM(`<div id="root">${html}</div><div id="other"></div>`,{url:'https://consumer.test'});
  const saved=new Map();const errors=[];const originalError=console.error;
@@ -107,4 +107,19 @@ test('packed Field and Card composition preserves error ownership, semantics and
  assert.equal(extra[3].current.control.id,'composition-input');
  await act(async()=>root.render(h(FieldError,{errors:[{message:'Ignored'}],role:'status'},'Authored override')));assert.equal(document.querySelector('[data-slot=field-error]').textContent,'Authored override');
  await act(async()=>root.render(h(FieldError,{errors:[{message:' '}]})));assert.equal(document.querySelector('[data-slot=field-error]'),null);assert.ok([...refs,...extra].every(r=>r.current===null));
+}));
+
+test('packed selection controls preserve grouping, controlled/native resets and all refs',()=>withDOM(async({mount,user})=>{
+ await mount(h(App));const form=document.querySelector('form[data-choice-controls]'),select=form.elements.namedItem('channel'),monthly=form.querySelector('[name=delivery][value=monthly]');
+ assert.equal(form.checkValidity(),false);assert.equal(select.value,'');
+ await act(async()=>{await user.click(monthly.closest('label'));await user.selectOptions(select,'digest');await user.click(form.querySelector('[name=format][value=full]'));});
+ assert.equal(form.checkValidity(),true);assert.deepEqual(Object.fromEntries(new FormData(form)),{delivery:'monthly',format:'full',channel:'digest'});
+ await act(async()=>user.click(form.querySelector('button[type=submit]')));assert.match(document.querySelector('[data-choice-result]').textContent,/monthly/);
+ await act(async()=>user.click(form.querySelector('button[type=reset]')));assert.equal(form.querySelector('[name=delivery][value=weekly]').checked,true);assert.equal(form.querySelector('[name=format][value=summary]').checked,true);assert.equal(select.value,'');
+ const refs=Array.from({length:5},()=>createRef());const root=await mount(h('div',{},h(RadioGroup,{ref:refs[0],defaultValue:'one'},h(FieldLegend,{},'First'),h(RadioGroupItem,{value:'one',ref:refs[1]})),h(RadioGroup,{},h(FieldLegend,{},'Second'),h(RadioGroupItem,{value:'one'})),h(Select,{ref:refs[2],multiple:true,defaultValue:['a'],'aria-label':'Multiple choices'},h(SelectGroup,{label:'Options',ref:refs[3]},h(SelectOption,{value:'a',ref:refs[4]},'A'),h(SelectOption,{value:'b'},'B')))),'#other');
+ assert.deepEqual(refs.map(r=>r.current.tagName),['FIELDSET','INPUT','SELECT','OPTGROUP','OPTION']);
+ const radios=[...document.querySelectorAll('#other input[type=radio]')];assert.notEqual(radios[0].name,radios[1].name);
+ await act(async()=>user.click(radios[1]));assert.equal(radios[0].checked,true,'Generated names isolate separate groups');
+ await act(async()=>user.selectOptions(refs[2].current,['a','b']));assert.deepEqual([...refs[2].current.selectedOptions].map(o=>o.value),['a','b']);
+ await act(async()=>root.render(null));assert.ok(refs.every(r=>r.current===null));
 }));

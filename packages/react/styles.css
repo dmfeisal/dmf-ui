@@ -26,3 +26,11 @@
 .dmf-ui .dmf-react-textarea:focus-visible,
 .dmf-ui .dmf-react-checkbox:focus-visible { outline:2px solid var(--foreground); outline-offset:3px; }
 .dmf-ui .dmf-react-checkbox { appearance:auto; accent-color:var(--primary); margin:0; }
+
+.dmf-ui .dmf-react-radio { appearance:auto; accent-color:var(--primary); margin:0; }
+.dmf-ui .dmf-react-select { appearance:auto; font:inherit; }
+.dmf-ui .dmf-react-select:not([aria-invalid=true]) { border-color:var(--muted-foreground); }
+.dmf-ui .dmf-react-select[aria-invalid=true] { border-color:var(--destructive); }
+.dmf-ui .dmf-react-radio:focus-visible,
+.dmf-ui .dmf-react-select:focus-visible { outline:2px solid var(--foreground); outline-offset:3px; }
+@media (pointer:coarse) { .dmf-ui .dmf-react-select { min-height:44px; } }

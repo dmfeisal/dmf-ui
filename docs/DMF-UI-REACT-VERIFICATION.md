@@ -105,3 +105,13 @@ Isolated Chrome 155 passes the twelve axe/layout states (including host-rendered
 Anti Slop during-mode review retains ENERGY 1 / RHYTHM 1 / MOTION 1 and DMF/CB direction. Existing spacing/colors and native semantics define composition; no new dependency, effect, global listener, timer, invented data or visual decoration is introduced. The adapter supplies structure while the host authors content and error timing.
 
 The packed fixture grows from 234.22 kB JavaScript (72.71 kB gzip) to 238.88 kB (73.71 kB gzip), and 90.42 kB CSS (14.25 kB gzip) to 90.83 kB (14.33 kB gzip). This is an asset-size comparison; CPU/memory were not profiled.
+
+## Radio Group and Select — 25 October 2026
+
+The fourteen-family adapter adds RadioGroup/RadioGroupItem and native Select/SelectOption/SelectGroup. No Data Slot runtime, portals, effects or global listeners are added. RadioGroup uses native inputs and React context for names, selection and required/disabled state. Controlled values and reset remain host-owned; omitted names use unique React IDs. Native Select preserves option/optgroup and multiple semantics. These are deliberately native React APIs, not copies of Astro's custom trigger/content API.
+
+Seven adapter tests and eight packed-consumer tests pass: source/types, server semantics, required/disabled attributes, orphan-radio error, all five native refs and cleanup, independent radio names, controlled and native resets, multi-select values and both-preset SSR hydration. Astro check covers 188 files without errors/warnings/hints; the 34-page build, tokens and all 17 source tests pass. Packed JS is 242.60 kB (74.48 kB gzip); CSS is 91.32 kB (14.37 kB gzip), compared with the previous 238.88/73.71 and 90.83/14.33 kB. This is an asset-size comparison, not CPU/memory profiling.
+
+Isolated Chrome 155 passes twelve axe/layout states and four forced-colors states with the new controls. Native radio ArrowDown skips disabled choices. Select typeahead selects Email; disabled optgroups are natively disabled. Required selection, submission and host reset pass. The test uses native typeahead because macOS Select does not commit choices using the assumed ArrowUp/End sequence. Forced-colors checks cover native appearance, keyboard focus and radio selection. This does not certify native artwork contrast or physical OS picker behavior. Safari/Firefox, spoken readers and real-device testing remain pending.
+
+Anti Slop during-mode scope retains ENERGY 1 / RHYTHM 1 / MOTION 1, existing semantic tokens and 44px host label targets. Native browser artwork and a labeled local sample form serve real selection behavior; no new decoration or data source is introduced. Earlier CI links do not verify this later batch.

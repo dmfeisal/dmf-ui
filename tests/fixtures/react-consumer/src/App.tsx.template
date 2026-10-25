@@ -1,5 +1,5 @@
 import {useEffect,useId,useRef,useState} from 'react';
-import {Button,Card,Input,Switch,Text,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator,CardHeader,CardTitle,CardDescription,CardAction,CardContent,CardFooter,Field,FieldGroup,FieldContent,FieldLabel,FieldTitle,FieldDescription,FieldError,FieldSet,FieldLegend,FieldSeparator} from '@dmf-ui/react';
+import {Button,Card,Input,Switch,Text,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator,CardHeader,CardTitle,CardDescription,CardAction,CardContent,CardFooter,Field,FieldGroup,FieldContent,FieldLabel,FieldTitle,FieldDescription,FieldError,FieldSet,FieldLegend,FieldSeparator,RadioGroup,RadioGroupItem,Select,SelectOption,SelectGroup} from '@dmf-ui/react';
 export function App({initialPreset='dmf'}:{initialPreset?:'dmf'|'cb-ui'}){
  const [preset,setPreset]=useState<'dmf'|'cb-ui'>(initialPreset);
  const [ready,setReady]=useState(false);
@@ -9,6 +9,9 @@ export function App({initialPreset='dmf'}:{initialPreset?:'dmf'|'cb-ui'}){
  const [name,setName]=useState('Feisal');
  const [updates,setUpdates]=useState(false);
  const [result,setResult]=useState('No values submitted.');
+ const [delivery,setDelivery]=useState('weekly');
+ const [channel,setChannel]=useState('');
+ const [choiceResult,setChoiceResult]=useState('No selection preview yet.');
  const [attempted,setAttempted]=useState(false);
  const [notes,setNotes]=useState('');
  const [accepted,setAccepted]=useState(false);
@@ -88,6 +91,33 @@ export function App({initialPreset='dmf'}:{initialPreset?:'dmf'|'cb-ui'}){
    </form>
    <Text data-basic-result size="sm">{basicResult}</Text>
    <Separator decorative={false} aria-label="End of native form example"/>
+  </section>
+  <Separator/>
+  <section aria-labelledby={`${id}-choice-title`}>
+   <Text as="h2" id={`${id}-choice-title`} size="title">Selection controls</Text>
+   <form data-choice-controls onSubmit={event=>{event.preventDefault();setChoiceResult(JSON.stringify(Object.fromEntries(new FormData(event.currentTarget))));}} onReset={()=>{setDelivery('weekly');setChannel('');setChoiceResult('Selections reset.');}}>
+    <FieldSet disabled={!ready}>
+     <FieldLegend>Local delivery settings</FieldLegend>
+     <RadioGroup name="delivery" value={delivery} onValueChange={setDelivery} required>
+      <FieldLegend variant="label">Delivery frequency</FieldLegend>
+      <Label className="consumer-check-label"><RadioGroupItem value="weekly"/>Weekly</Label>
+      <Label className="consumer-check-label"><RadioGroupItem value="unavailable" disabled/>Unavailable frequency</Label>
+      <Label className="consumer-check-label"><RadioGroupItem value="monthly"/>Monthly</Label>
+     </RadioGroup>
+     <RadioGroup name="format" defaultValue="summary">
+      <FieldLegend variant="label">Message format</FieldLegend>
+      <Label className="consumer-check-label"><RadioGroupItem value="summary"/>Summary</Label>
+      <Label className="consumer-check-label"><RadioGroupItem value="full"/>Full details</Label>
+     </RadioGroup>
+     <Field><FieldLabel htmlFor={`${id}-channel`}>Delivery channel</FieldLabel><Select id={`${id}-channel`} name="channel" value={channel} onChange={event=>setChannel(event.currentTarget.value)} required>
+      <SelectOption value="" disabled>Choose a channel</SelectOption>
+      <SelectGroup label="Available channels"><SelectOption value="email">Email</SelectOption><SelectOption value="digest">Digest</SelectOption></SelectGroup>
+      <SelectGroup label="Unavailable channels" disabled><SelectOption value="sms">SMS (unavailable)</SelectOption></SelectGroup>
+     </Select></Field>
+     <div className="consumer-actions"><Button type="submit">Preview selections</Button><Button type="reset" variant="outline">Reset selections</Button></div>
+    </FieldSet>
+   </form>
+   <Text data-choice-result size="sm">{choiceResult}</Text>
   </section>
  </main>;
 }

@@ -1,5 +1,5 @@
 import {useEffect,useState} from 'react';
-import {Button,Text,Input,Switch,Card,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator,CardHeader,CardTitle,CardDescription,CardContent,CardFooter,Field,FieldGroup,FieldContent,FieldLabel,FieldDescription,FieldSet,FieldLegend} from '../src/index';
+import {Button,Text,Input,Switch,Card,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator,CardHeader,CardTitle,CardDescription,CardContent,CardFooter,Field,FieldGroup,FieldContent,FieldLabel,FieldDescription,FieldSet,FieldLegend,RadioGroup,RadioGroupItem,Select,SelectOption} from '../src/index';
 export function Proof({prefix='react'}:{prefix?:string}) {
  const [checked,setChecked]=useState(false);
  const [ready,setReady]=useState(false);
@@ -26,6 +26,8 @@ export function Proof({prefix='react'}:{prefix?:string}) {
    <Field><FieldLabel htmlFor={`${prefix}-notes`}>Local notes</FieldLabel><FieldContent><Textarea id={`${prefix}-notes`} defaultValue="" aria-describedby={`${prefix}-notes-help`}/><FieldDescription id={`${prefix}-notes-help`}>Notes remain in this local demonstration.</FieldDescription></FieldContent></Field>
    <Field orientation="horizontal"><Checkbox id={`${prefix}-optional`}/><FieldLabel className="min-h-[44px]" htmlFor={`${prefix}-optional`}>Optional local preference</FieldLabel></Field>
   </FieldGroup>
+  <RadioGroup defaultValue="weekly" name={`${prefix}-frequency`}><FieldLegend>Frequency</FieldLegend><Label className="min-h-[44px]"><RadioGroupItem value="weekly"/>Weekly</Label><Label className="min-h-[44px]"><RadioGroupItem value="monthly"/>Monthly</Label></RadioGroup>
+  <Label htmlFor={`${prefix}-channel`}>Channel</Label><Select id={`${prefix}-channel`} defaultValue="email"><SelectOption value="email">Email</SelectOption><SelectOption value="digest">Digest</SelectOption></Select>
   <Badge variant="secondary">Local preview</Badge>
   <Alert>
    <AlertTitle>Preview values stay here</AlertTitle>

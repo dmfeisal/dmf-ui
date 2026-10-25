@@ -1,6 +1,6 @@
 # React web alpha
 
-24 October 2026. The separate private `@dmf-ui/react` package at `packages/react`, version `0.1.0-alpha.3`, implements Button, Text, Input, Switch, Card, Badge, Alert (with AlertTitle, AlertDescription and AlertAction), Label, Textarea, Checkbox, Separator and Field. The Astro archive remains 0.4.0. This is preparation for the 0.5.0 React milestone, not a stable release, native adapter or npm publication.
+24 October 2026. The separate private `@dmf-ui/react` package at `packages/react`, version `0.1.0-alpha.3`, implements Button, Text, Input, Switch, Card, Badge, Alert (with AlertTitle, AlertDescription and AlertAction), Label, Textarea, Checkbox, Separator, Field, Radio Group and Select. The Astro archive remains 0.4.0. This is preparation for the 0.5.0 React milestone, not a stable release, native adapter or npm publication.
 
 ## Ownership and setup
 
@@ -33,6 +33,8 @@ Badge defaults to a static span; `as="a"` requires `href` and preserves native a
 Label preserves authored label/control association and native refs. Textarea uses native controlled/uncontrolled values, validation, form participation and host-owned reset/error descriptions. Checkbox preserves native checkbox artwork, keyboard and form behavior; its indeterminate property is host-owned through the input ref. Native label hit areas remain a host responsibility. Separator is decorative by default; opt into semantic orientation with `decorative={false}`. It is not a focusable splitter. The adapter README documents exclusions and usage.
 
 Field adds native FieldSet/FieldLegend, FieldLabel, FieldDescription, FieldContent, FieldGroup, FieldTitle, FieldSeparator and FieldError composition. Hosts own IDs, descriptions, native disabled state and validation. FieldError deduplicates supplied messages, is absent when empty and defaults to role=alert; authored children and role override that output. No automatic validation, generated associations or root is added. Field orientation can be vertical/horizontal/responsive; responsive layout requires FieldGroup's container. The README records the fixed native elements and usage.
+
+RadioGroup/RadioGroupItem use a native fieldset and radios with shared or uniquely generated names. Hosts author group labels and controlled reset. Select/SelectOption/SelectGroup are native select/option/optgroup with browser-owned pickers, native events, refs, required/disabled/multiple and form/reset behavior. They do not expose the Astro custom-popup API. The README describes mode constraints and form naming.
 
 ## Verification and limits
 

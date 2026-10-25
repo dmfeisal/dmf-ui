@@ -72,6 +72,16 @@ export async function run({page,baseURL,artifacts,settle,mobile,tap,resetBrowser
   assert(await page.evaluate(()=>!document.querySelector('form[data-basic-controls]').checkValidity()&&document.activeElement.name==='notes'),'Required Textarea failed validation');
   await page.waitForFunction(()=>document.querySelector('[data-slot=field-error]')?.textContent==='Enter preview notes.');
   assert(await page.evaluate(()=>{const textarea=document.querySelector('[name=notes]'),error=document.querySelector('[data-slot=field-error]');return textarea.getAttribute('aria-invalid')==='true'&&textarea.getAttribute('aria-describedby').split(' ').includes(error.id)&&error.getAttribute('role')==='alert';}),'Host-owned Field error association missing');
+  await page.focus('[name=delivery][value=weekly]');await page.keyboard.press('ArrowDown');
+  assert(await page.evaluate(()=>document.activeElement.value==='monthly'&&document.querySelector('[name=delivery][value=monthly]').checked),'Native radio arrows did not skip the disabled choice');
+  await page.selectOption('select[name=channel]','digest');await page.focus('select[name=channel]');await page.keyboard.press('e');
+  assert(await page.evaluate(()=>document.querySelector('select[name=channel]').value==='email'),'Native Select typeahead failed');
+  assert(await page.evaluate(()=>document.querySelector('select[name=channel] option[value=sms]').matches(':disabled')),'Native optgroup disabled semantics missing');
+  await page.selectOption('select[name=channel]','digest');
+  await page.click('form[data-choice-controls] button[type=submit]');
+  assert(await page.evaluate(()=>{const v=JSON.parse(document.querySelector('[data-choice-result]').textContent);return v.delivery==='monthly'&&v.format==='summary'&&v.channel==='digest';}),'Selection form submission failed');
+  await page.click('form[data-choice-controls] button[type=reset]');assert(await page.evaluate(()=>document.querySelector('[name=delivery][value=weekly]').checked&&document.querySelector('select[name=channel]').value===''),'Selection host reset failed');
+  await page.click('form[data-choice-controls] button[type=submit]');assert(await page.evaluate(()=>document.activeElement.name==='channel'&&!document.querySelector('form[data-choice-controls]').checkValidity()),'Required Select validation failed');
   for(const system of ['dmf','cb-ui'])for(const dark of [false,true]){
    await preset(system,dark);await audit(`desktop ${system} ${dark?'dark':'light'} surroundings`);
    if(system==='cb-ui'){
@@ -99,7 +109,7 @@ export async function run({page,baseURL,artifacts,settle,mobile,tap,resetBrowser
   }
   await tap('label.dmf-react-switch:has(input[name=updates])');
   assert(await page.evaluate(()=>document.querySelector('[name=updates]').checked),'Mobile label touch did not toggle Switch');
-  await tap('form:not([data-basic-controls]) button[type=reset]');
+  await tap('form:not([data-basic-controls]):not([data-choice-controls]) button[type=reset]');
   assert(await page.evaluate(()=>!document.querySelector('[name=updates]').checked&&document.querySelector('[role=status]').textContent==='Form reset.'),'Mobile reset touch failed');
   await resetBrowser();
   await page.evaluate(()=>{document.documentElement.dir='ltr';document.documentElement.style.fontSize='87.5%';});
@@ -121,11 +131,16 @@ export async function run({page,baseURL,artifacts,settle,mobile,tap,resetBrowser
     assert(state.controls.find(c=>c.name==='digest').offset>state.controls.find(c=>c.name==='updates').offset+5,'Forced colors lost checked position');
     assert(state.controls.find(c=>c.name==='updates').outlineWidth>=2,'Forced colors focus outline missing');
     await page.keyboard.press('Space');assert(await page.evaluate(()=>document.querySelector('[name=updates]').checked),'Forced colors Space toggle failed');
-    await page.click('form:not([data-basic-controls]) button[type=reset]');assert(await page.evaluate(()=>!document.querySelector('[name=updates]').checked),'Forced colors reset failed');
+    await page.click('form:not([data-basic-controls]):not([data-choice-controls]) button[type=reset]');assert(await page.evaluate(()=>!document.querySelector('[name=updates]').checked),'Forced colors reset failed');
     await page.focus('textarea[name=notes]');await page.keyboard.press('Tab');
     assert(await page.evaluate(()=>document.activeElement.name==='accepted'&&document.activeElement.matches(':focus-visible')&&getComputedStyle(document.activeElement).appearance==='auto'&&parseFloat(getComputedStyle(document.activeElement).outlineWidth)>=2),'Forced colors native Checkbox focus missing');
     await page.keyboard.press('Space');assert(await page.evaluate(()=>document.querySelector('[name=accepted]').checked),'Forced colors Checkbox Space toggle failed');
     await page.click('form[data-basic-controls] button[type=reset]');
+    await page.focus('[name=delivery][value=weekly]');await page.keyboard.press('ArrowDown');
+    assert(await page.evaluate(()=>document.activeElement.value==='monthly'&&document.activeElement.checked&&getComputedStyle(document.activeElement).appearance==='auto'&&parseFloat(getComputedStyle(document.activeElement).outlineWidth)>=2),'Forced-colors native radio state/focus failed');
+    await page.selectOption('select[name=channel]','digest');await page.focus('select[name=channel]');
+    assert(await page.evaluate(()=>document.activeElement.value==='digest'&&getComputedStyle(document.activeElement).appearance==='auto'&&parseFloat(getComputedStyle(document.activeElement).outlineWidth)>=2),'Forced-colors native Select focus failed');
+    await page.click('form[data-choice-controls] button[type=reset]');
     forced.push({scheme,system,...state});await page.screenshot({path:`${artifacts}/forced-${system}-${scheme}.png`});
    }
   }

@@ -4,7 +4,7 @@ Private proof `0.1.0-alpha.3`, not published. Install the root repository depend
 
 A separate Vite consumer installs packed archives and verifies production assets, TypeScript, native ESM imports, refs, simulated keyboard input and controlled forms. Run `npm run test:dmf-ui:react-consumer` from the root. The optional `test:dmf-ui:react-browser` command reviews its retained production build in Ego Browser. Chromium keyboard/touch, preset/theme, font, focus, mobile/RTL, 200% text and contrast checks pass; Safari desktop/narrow-frame checks passed for the earlier five-component scope. The expanded Badge/Alert fixture passes Chromium; Firefox and spoken screen-reader checks remain pending. Alpha.3 strengthens Input and Switch boundaries using existing semantic colors and provides explicit native-input focus. The core dependency currently brings its full Astro/Data Slot dependency graph; the React runtime does not initialize those controllers.
 
-The current twelve component families are Button, Text, Input, Switch, Card, Badge, Alert, Label, Textarea, Checkbox, Separator and Field. Alert also exports AlertTitle, AlertDescription and AlertAction.
+The current fourteen component families are Button, Text, Input, Switch, Card, Badge, Alert, Label, Textarea, Checkbox, Separator, Field, Radio Group and Select. Alert also exports AlertTitle, AlertDescription and AlertAction.
 
 Button uses the shared Fulldev-based variant definition. Text preserves author-selected heading semantics; Card is a non-interactive content container. Input forwards native React input props and refs. Switch is a labeled native checkbox with `role="switch"`; use `checked` plus `onChange` for controlled state, or `defaultChecked` for native uncontrolled state. Do not switch between those modes. Native required/disabled/name/value/form/reset behavior applies. Switch read-only behavior, unchecked-value submission, compact sizes and Astro controller attributes are not exposed.
 
@@ -82,3 +82,11 @@ FieldError renders nothing without meaningful errors or children. The optional `
 ```
 
 Current validation: six adapter tests and seven clean packed-consumer tests, plus the expanded Chrome matrix. Core 0.4.0 and unpublished React alpha.3 are unchanged. The new composition batch remains outside the earlier Safari/hosted CI evidence.
+
+## Native selection controls
+
+RadioGroup renders a fieldset with radiogroup semantics; give it a FieldLegend or authored accessible name. Its items are native radio inputs. Supply one shared name for form submission; omitted names use a unique React ID to isolate groups. Use value/onValueChange together for controlled selection or defaultValue for native uncontrolled selection. Keep the mode stable. Group required/disabled propagate to items; an item can be individually disabled. Hosts reset controlled values. Item checked/defaultChecked/name/type/readOnly overrides are excluded; items require a RadioGroup ancestor. Native browser arrows and label activation handle interaction without an adapter keyboard controller.
+
+Select, SelectOption and SelectGroup render select, option and optgroup. They forward native props/refs, controlled onChange, defaultValue, multiple arrays, required/disabled, name and form. SelectGroup requires an authored label. Use a separate Label and unique ID. Native picker appearance and keyboard details vary by browser/OS; this API does not include custom Trigger/Content/listbox parts or portals.
+
+The selection batch passes seven adapter tests and eight packed-consumer tests, including five new refs, type contracts, independent radio names, controlled/native resets, multiple selections and both-preset SSR hydration. Chrome checks native radio arrows/disabled skipping, Select typeahead and disabled optgroup semantics, validation, submission/reset and forced-colors focus. Safari/Firefox, spoken readers and physical-device pickers remain pending. Versions remain core 0.4.0 and unpublished React alpha.3.

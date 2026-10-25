@@ -1,5 +1,5 @@
 import {createRef} from 'react';
-import {Button,Input,Switch,Text,Card,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator,CardTitle,Field,FieldSet,FieldLegend,FieldDescription,FieldLabel} from '@dmf-ui/react';
+import {Button,Input,Switch,Text,Card,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator,CardTitle,Field,FieldSet,FieldLegend,FieldDescription,FieldLabel,RadioGroup,RadioGroupItem,Select,SelectOption,SelectGroup} from '@dmf-ui/react';
 const input=createRef<HTMLInputElement>();
 const button=createRef<HTMLButtonElement>();
 const heading=createRef<HTMLHeadingElement>();
@@ -46,3 +46,14 @@ const fieldsetRef=<FieldSet ref={card}/>;
 // @ts-expect-error CardTitle does not implement links.
 const cardTitleLink=<CardTitle as="a" href="/">Title</CardTitle>;
 void [composed,fieldOrientation,fieldsetRef,cardTitleLink];
+
+const choices=<><RadioGroup name="frequency" value="weekly" onValueChange={()=>{}} ref={createRef<HTMLFieldSetElement>()}><RadioGroupItem value="weekly" ref={input}/></RadioGroup><Select multiple defaultValue={['email']} ref={createRef<HTMLSelectElement>()}><SelectGroup label="Channels" ref={createRef<HTMLOptGroupElement>()}><SelectOption value="email" ref={createRef<HTMLOptionElement>()}>Email</SelectOption></SelectGroup></Select></>;
+// @ts-expect-error Controlled groups require a change callback.
+const lockedRadio=<RadioGroup value="weekly"/>;
+// @ts-expect-error Item checked state belongs to its group.
+const itemChecked=<RadioGroupItem value="weekly" checked/>;
+// @ts-expect-error Select uses native select refs.
+const wrongSelectRef=<Select ref={input}/>;
+// @ts-expect-error Optgroups require authored labels.
+const unnamedOptions=<SelectGroup/>;
+void [choices,lockedRadio,itemChecked,wrongSelectRef,unnamedOptions];

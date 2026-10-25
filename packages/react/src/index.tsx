@@ -1,3 +1,4 @@
+import {createContext,useContext,useId} from 'react';
 import type { ComponentPropsWithRef, ReactNode } from 'react';
 import { buttonVariants } from 'dmf-ui/button/variants';
 const join = (...parts:(string|undefined|null|false)[]) => parts.filter(Boolean).join(' ');
@@ -131,3 +132,26 @@ export type FieldLegendProps=ComponentPropsWithRef<'legend'> & {variant?:'legend
 export function FieldLegend({variant='legend',className,...props}:FieldLegendProps){return <legend {...props} data-slot="field-legend" data-variant={variant} className={join('mb-3 font-medium',variant==='label'?'text-sm':'text-base',className)}/>;}
 export type FieldSeparatorProps=ComponentPropsWithRef<'div'>;
 export function FieldSeparator({children,className,...props}:FieldSeparatorProps){return <div {...props} data-slot="field-separator" className={join('flex min-w-0 items-center gap-3 text-sm',className)}><Separator className="flex-1 w-auto"/>{children!=null&&children!==false&&children!==''&&<><span className="text-muted-foreground min-w-0 [overflow-wrap:anywhere]">{children}</span><Separator className="flex-1 w-auto"/></>}</div>;}
+
+
+type RadioState={value:string;defaultValue?:never;onValueChange:(value:string)=>void}|{value?:undefined;defaultValue?:string;onValueChange?:(value:string)=>void};
+export type RadioGroupProps=Omit<ComponentPropsWithRef<'fieldset'>,'name'|'defaultValue'|'value'|'role'> & RadioState & {name?:string;required?:boolean;orientation?:'vertical'|'horizontal'};
+type RadioContextValue={name:string;value?:string;defaultValue?:string;required:boolean;disabled:boolean;onValueChange?:(value:string)=>void};
+const RadioContext=createContext<RadioContextValue|null>(null);
+export function RadioGroup({name,value,defaultValue,onValueChange,required=false,disabled=false,orientation='vertical',className,children,...props}:RadioGroupProps){
+ const id=useId();
+ return <RadioContext.Provider value={{name:name??`dmf-radio-${id}`,value,defaultValue,required,disabled,onValueChange}}><fieldset {...props} disabled={disabled} role="radiogroup" data-slot="radio-group" data-orientation={orientation} className={join('flex min-w-0 gap-3',orientation==='horizontal'?'flex-row flex-wrap':'flex-col',className)}>{children}</fieldset></RadioContext.Provider>;
+}
+export type RadioGroupItemProps=Omit<ComponentPropsWithRef<'input'>,'name'|'type'|'role'|'checked'|'defaultChecked'|'required'|'readOnly'|'children'|'size'|'value'> & {value:string};
+export function RadioGroupItem({value,disabled=false,onChange,className,...props}:RadioGroupItemProps){
+ const group=useContext(RadioContext);
+ if(!group)throw new Error('RadioGroupItem must be rendered inside RadioGroup.');
+ const selection=group.value===undefined?{defaultChecked:group.defaultValue===value}:{checked:group.value===value};
+ return <input {...props} {...selection} value={value} type="radio" name={group.name} required={group.required} disabled={group.disabled||disabled} onChange={event=>{onChange?.(event);if(!event.defaultPrevented&&event.currentTarget.checked)group.onValueChange?.(value);}} data-slot="radio-group-item" className={join('dmf-react-radio size-4 shrink-0 disabled:cursor-not-allowed disabled:opacity-50',className)}/>;
+}
+export type SelectProps=ComponentPropsWithRef<'select'>;
+export function Select({className,...props}:SelectProps){return <select {...props} data-slot="select" className={join('dmf-react-select min-h-9 min-w-0 w-full rounded-md border bg-background px-2.5 py-2 text-base text-foreground disabled:cursor-not-allowed disabled:opacity-50',className)}/>;}
+export type SelectOptionProps=ComponentPropsWithRef<'option'>;
+export function SelectOption(props:SelectOptionProps){return <option {...props} data-slot="select-option"/>;}
+export type SelectGroupProps=Omit<ComponentPropsWithRef<'optgroup'>,'label'> & {label:string};
+export function SelectGroup(props:SelectGroupProps){return <optgroup {...props} data-slot="select-group"/>;}
