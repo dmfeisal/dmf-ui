@@ -6,7 +6,7 @@ export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
  const axe=await readFile(require.resolve('axe-core/axe.min.js'),'utf8');const reports=[];
  for(const slug of ['text','card','badge','alert']){
   await resetBrowser();await navigate(`${baseURL}/components/${slug}/`);
-  assert(await page.evaluate(slug=>document.querySelectorAll(`[data-docs-preview="${slug}"]`).length===2,slug),`Missing preset previews: ${slug}`);
+  assert(await page.evaluate(slug=>document.querySelectorAll(`[data-docs-preview="${slug}"]`).length===1,slug),`Expected one DMF preview: ${slug}`);
   for(const mode of ['light','dark']){
    await page.evaluate(mode=>document.documentElement.dataset.theme=mode,mode);await settle();
    await page.evaluate(source=>{if(!window.axe){const script=document.createElement('script');script.textContent=source;document.head.append(script);}},axe);
@@ -17,5 +17,5 @@ export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
  await resetBrowser();await navigate(`${baseURL}/components/card/`);await page.focus('[data-docs-preview=card][data-system=dmf] a');await page.keyboard.press('Enter');await page.waitForURL(`${baseURL}/create/`);
  assert(await page.evaluate(()=>!!document.querySelector('[data-create-card] [data-slot=text]')&&!!document.querySelector('[data-create-card] [data-slot=badge]')&&!!document.querySelector('[data-create-card] [data-slot=alert]')),'Create does not compose all new content primitives');
  await navigate(`${baseURL}/docs/contracts/`);assert(await page.evaluate(()=>document.querySelector('h1').textContent==='Component contracts'),'Contract guide missing');
- console.log('PASS four content documentation pages, both presets/light-dark axe states, mobile width, native Card navigation and Create composition');
+ console.log('PASS four content documentation pages, DMF light-dark axe states, mobile width, native Card navigation and Create composition');
 }

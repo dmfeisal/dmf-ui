@@ -21,18 +21,18 @@ import {Text} from '../dmf-ui/text';
 import {Card,CardHeader,CardTitle,CardDescription,CardContent,CardFooter} from '../dmf-ui/card';
 import {Badge} from '../dmf-ui/badge';
 import {Alert,AlertTitle,AlertDescription,AlertAction} from '../dmf-ui/alert';
-interface Props {slug:string;system?:'dmf'|'cb-ui';}
-const {slug,system='dmf'}=Astro.props;
-const id=`docs-${slug}-${system}`;
-const presetName=system==='dmf'?'DMF UI':'CB UI reconstruction';
+interface Props {slug:string;}
+const {slug}=Astro.props;
+const id=`docs-${slug}-dmf`;
+const presetName='DMF UI';
 ---
-<section class="dmf-ui docs-preview" data-system={system} data-color-mode={system==='cb-ui'?'light':undefined} aria-label={`${presetName} ${slug} example`} data-docs-preview={slug}>
+<section class="dmf-ui docs-preview" data-system="dmf" aria-label={`${presetName} ${slug} example`} data-docs-preview={slug}>
 <p class="docs-preview-label">{presetName}</p>
 {slug==='text'&&<div class="docs-preview-stack"><Text as="h3" size="title" weight="semibold">A clear starting point.</Text><Text>Semantic text follows the product’s font.</Text><Text tone="muted" size="sm">Choose the right heading level for your document.</Text></div>}
 {slug==='card'&&<Card as="article" aria-labelledby={`${id}-title`}><CardHeader><CardTitle as="h3" id={`${id}-title`}>Preset preview</CardTitle><CardDescription>Grouped content with native navigation.</CardDescription></CardHeader><CardContent><Text size="sm">A shared foundation leaves room for your product.</Text></CardContent><CardFooter><Badge as="a" variant="link" href="/create/">Configure a preset</Badge></CardFooter></Card>}
 {slug==='badge'&&<div class="docs-preview-row">{(['default','secondary','destructive','outline','ghost'] as const).map(variant=><Badge variant={variant}>{variant==='destructive'?'Needs review':variant==='default'?'Preview':variant==='secondary'?'Draft':variant==='outline'?'Not published':'Local only'}</Badge>)}<Badge as="a" variant="link" href="/docs/presets/">Read about presets</Badge></div>}
 {slug==='alert'&&<div class="docs-preview-stack"><Alert aria-labelledby={`${id}-title`}><AlertTitle id={`${id}-title`}>Preview only</AlertTitle><AlertDescription>Nothing is saved or sent.</AlertDescription><AlertAction><Badge as="a" variant="link" href="/docs/presets/">Read about presets</Badge></AlertAction></Alert><Alert variant="destructive"><AlertTitle>Example error</AlertTitle><AlertDescription>No request was sent. This demonstrates persistent error text.</AlertDescription></Alert></div>}
-{slug==='button'&&<div class="docs-preview-row"><Button>Continue</Button><Button variant="outline">Cancel</Button><Button disabled>Unavailable</Button></div>}
+{slug==='button'&&<div class="docs-preview-stack"><div class="docs-preview-row"><Button data-docs-action="Continue">Continue</Button><Button data-docs-action="Cancel" variant="outline">Cancel</Button><Button disabled>Unavailable</Button></div><p class="docs-note" data-docs-feedback role="status">Choose an action to try this local preview.</p></div>}
 {['input','label','textarea','checkbox','switch'].includes(slug)&&<div class="docs-preview-stack"><Label for={id}>{slug==='checkbox'?'Accept the local preview':slug==='switch'?'Enable updates':slug==='textarea'?'Message':'Display name'}</Label>{slug==='textarea'?<Textarea id={id} rows={3} placeholder="Write a local note"/>:slug==='checkbox'?<Checkbox id={id}/>:slug==='switch'?<Switch id={id} defaultChecked/>:<Input id={id} autocomplete="nickname" placeholder="Your name"/>}</div>}
 {slug==='field'&&<Field><FieldLabel for={id}>Display name</FieldLabel><Input id={id} aria-describedby={`${id}-hint`}/><FieldDescription id={`${id}-hint`}>Used only in this local example.</FieldDescription></Field>}
 {slug==='separator'&&<div class="docs-preview-stack"><p>Shared foundation</p><Separator/><p>Product customization</p></div>}
@@ -40,15 +40,25 @@ const presetName=system==='dmf'?'DMF UI':'CB UI reconstruction';
 {slug==='select'&&<div class="docs-preview-stack"><Label for={id}>Channel</Label><Select name={id} defaultValue="email"><SelectTrigger id={id}><SelectValue/></SelectTrigger><SelectContent><SelectItem value="email">Email</SelectItem><SelectItem value="digest">Digest</SelectItem></SelectContent></Select></div>}
 {slug==='tabs'&&<Tabs defaultValue="overview" id={id}><TabsList aria-label={`${presetName} sections`}><TabsTrigger value="overview">Overview</TabsTrigger><TabsTrigger value="details">Details</TabsTrigger></TabsList><TabsContent value="overview"><p>The shared foundation.</p></TabsContent><TabsContent value="details"><p>Room for your product’s identity.</p></TabsContent></Tabs>}
 {slug==='accordion'&&<Accordion defaultValue="foundation" id={id}><AccordionItem value="foundation"><h3><AccordionTrigger aria-expanded="true">What is shared?<span class="sr-only"> in {presetName}</span></AccordionTrigger></h3><AccordionContent hidden={false}><p>The components share the Fulldev foundation.</p></AccordionContent></AccordionItem><AccordionItem value="customization"><h3><AccordionTrigger>Can I customize it?<span class="sr-only"> in {presetName}</span></AccordionTrigger></h3><AccordionContent><p>Use semantic tokens and product presets.</p></AccordionContent></AccordionItem></Accordion>}
-{slug==='tooltip'&&<Tooltip id={id}><TooltipTrigger id={`${id}-trigger`} class={buttonVariants({variant:'outline'})}>Preview help</TooltipTrigger><TooltipContent id={`${id}-content`}>This example stays local to the page.</TooltipContent></Tooltip>}
+{slug==='tooltip'&&<Tooltip id={id} portal={false}><TooltipTrigger id={`${id}-trigger`} class={buttonVariants({variant:'outline'})}>Preview help</TooltipTrigger><TooltipContent id={`${id}-content`}>This example stays local to the page.</TooltipContent></Tooltip>}
 {slug==='popover'&&<Popover id={id}><PopoverTrigger class={buttonVariants({variant:'outline'})}>Preview settings</PopoverTrigger><PopoverContent role="dialog" aria-labelledby={`${id}-title`}><PopoverTitle id={`${id}-title`}>Preview settings</PopoverTitle><Label for={`${id}-name`}>Draft label</Label><Input id={`${id}-name`} value="Local preview"/><Button data-slot="popover-close" variant="secondary">Done</Button></PopoverContent></Popover>}
-{slug==='dropdown-menu'&&<DropdownMenu id={id}><DropdownMenuTrigger class={buttonVariants({variant:'outline'})}>Actions</DropdownMenuTrigger><DropdownMenuContent aria-label={`${presetName} preview actions`}><DropdownMenuItem data-value="preview">Preview selection</DropdownMenuItem><DropdownMenuItem disabled>Export (unavailable)</DropdownMenuItem></DropdownMenuContent></DropdownMenu>}
+{slug==='dropdown-menu'&&<div class="docs-preview-stack"><DropdownMenu id={id}><DropdownMenuTrigger class={buttonVariants({variant:'outline'})}>Actions</DropdownMenuTrigger><DropdownMenuContent aria-label={`${presetName} preview actions`}><DropdownMenuItem data-value="preview">Preview selection</DropdownMenuItem><DropdownMenuItem disabled>Export (unavailable)</DropdownMenuItem></DropdownMenuContent></DropdownMenu><p class="docs-note" data-docs-feedback role="status">No menu action selected.</p></div>}
 {slug==='dialog'&&<Dialog><DialogTrigger>Open preview</DialogTrigger><DialogContent><DialogTitle>Preview settings</DialogTitle><DialogDescription>Changes stay in this example.</DialogDescription><DialogClose>Done</DialogClose></DialogContent></Dialog>}
 {slug==='toast'&&<div data-docs-toast><Button data-docs-toast-show>Show notification</Button><Toaster id={id} portal={false} viewportLabel={`${presetName} preview notifications`}/></div>}
 </section>
 <script>
  import {createToast,type ToastController} from '../dmf-ui/toast';
  const bindings=new Map<HTMLElement,{toast:ToastController;abort:AbortController}>();
- function initialize(){for(const root of document.querySelectorAll<HTMLElement>('[data-docs-toast]')){if(bindings.has(root))continue;const target=root.querySelector<HTMLElement>('[data-slot=toast]');if(!target)continue;const toast=createToast(target,{portal:false});const abort=new AbortController();root.querySelector('[data-docs-toast-show]')?.addEventListener('click',()=>toast.show({title:'Preview complete',description:'Nothing was saved or sent.',type:'success'}),{signal:abort.signal});bindings.set(root,{toast,abort});}}
- initialize();document.addEventListener('astro:page-load',initialize);document.addEventListener('astro:before-swap',()=>{for(const {toast,abort} of bindings.values()){abort.abort();toast.destroy();}bindings.clear();});
+ const actions=new Map<HTMLElement,AbortController>();
+ function initialize(){
+  for(const preview of document.querySelectorAll<HTMLElement>('[data-docs-preview]')){
+   if(actions.has(preview))continue;
+   const feedback=preview.querySelector<HTMLElement>('[data-docs-feedback]');
+   if(!feedback)continue;
+   const abort=new AbortController();actions.set(preview,abort);
+   preview.addEventListener('click',event=>{const button=event.target instanceof Element?event.target.closest<HTMLButtonElement>('[data-docs-action]'):null;if(button&&feedback)feedback.textContent=`${button.dataset.docsAction} selected. Nothing was saved or sent.`;},{signal:abort.signal});
+   preview.querySelector('[data-dmf-dropdown-menu]')?.addEventListener('dropdown-menu:select',()=>{if(feedback)feedback.textContent='Preview selection selected. Nothing was saved or sent.';},{signal:abort.signal});
+  }
+  for(const root of document.querySelectorAll<HTMLElement>('[data-docs-toast]')){if(bindings.has(root))continue;const target=root.querySelector<HTMLElement>('[data-slot=toast]');if(!target)continue;const toast=createToast(target,{portal:false});const abort=new AbortController();root.querySelector('[data-docs-toast-show]')?.addEventListener('click',()=>toast.show({title:'Preview complete',description:'Nothing was saved or sent.',type:'success'}),{signal:abort.signal});bindings.set(root,{toast,abort});}}
+ initialize();document.addEventListener('astro:page-load',initialize);document.addEventListener('astro:before-swap',()=>{for(const {toast,abort} of bindings.values()){abort.abort();toast.destroy();}bindings.clear();for(const abort of actions.values())abort.abort();actions.clear();});
 </script>

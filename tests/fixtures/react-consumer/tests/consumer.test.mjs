@@ -4,7 +4,7 @@ import {JSDOM} from 'jsdom';
 import {act,createElement as h,createRef,StrictMode} from 'react';
 import {userEvent} from '@testing-library/user-event';
 import {App,render,identifierPrefix} from '../.test-dist/server.mjs';
-import {Button,Input,Switch,Card,Text,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator} from '@dmf-ui/react';
+import {Button,Input,Switch,Card,Text,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator,CardHeader,CardTitle,CardDescription,CardAction,CardContent,CardFooter,Field,FieldGroup,FieldContent,FieldLabel,FieldTitle,FieldDescription,FieldError,FieldSet,FieldLegend,FieldSeparator} from '@dmf-ui/react';
 async function withDOM(run,html=''){
  const dom=new JSDOM(`<div id="root">${html}</div><div id="other"></div>`,{url:'https://consumer.test'});
  const saved=new Map();const errors=[];const originalError=console.error;
@@ -27,7 +27,7 @@ test('packed consumer owns typed controlled forms, simulated keyboard and indepe
  await mount(h(App));await mount(h(App),'#other');
  const ids=[...document.querySelectorAll('[id]')].map(node=>node.id);assert.equal(new Set(ids).size,ids.length,'Independent roots must not duplicate label or heading IDs');
  const host=document.querySelector('#root'),form=host.querySelector('form'),name=form.elements.namedItem('name'),updates=form.elements.namedItem('updates'),consent=form.elements.namedItem('consent');
- assert.equal(form.checkValidity(),false);
+ await act(async()=>{assert.equal(form.checkValidity(),false);});
  await act(async()=>user.click([...form.querySelectorAll('button')].find(button=>button.type==='submit')));
  assert.equal(host.querySelector('[role=status]').textContent,'No values submitted.');
  await act(async()=>{await user.clear(name);await user.type(name,'DMF React');});
@@ -44,7 +44,7 @@ test('packed consumer owns typed controlled forms, simulated keyboard and indepe
  await click('CB UI preset');assert.equal(host.querySelector('main').dataset.system,'cb-ui');assert.equal(host.querySelector('main').dataset.colorMode,'light');
  await click('Dark surroundings');assert.equal(document.documentElement.dataset.theme,'dark');assert.equal(host.querySelector('main').dataset.colorMode,'light');
  await click('DMF preset');assert.equal(host.querySelector('main').hasAttribute('data-color-mode'),false);
- await click('Reset form');assert.equal(name.value,'Feisal');assert.equal(updates.checked,false);assert.equal(consent.checked,false);assert.equal(form.elements.namedItem('digest').checked,true);assert.equal(form.checkValidity(),false);
+ await click('Reset form');assert.equal(name.value,'Feisal');assert.equal(updates.checked,false);assert.equal(consent.checked,false);assert.equal(form.elements.namedItem('digest').checked,true);await act(async()=>{assert.equal(form.checkValidity(),false);});
  assert.equal(document.querySelector('#other [role=status]').textContent,'No values submitted.');
 }));
 test('all five exported components forward refs to native nodes and clear them on removal',()=>withDOM(async({mount,user})=>{
@@ -87,8 +87,8 @@ test('packed content components preserve native links and all refs through clean
 
 test('packed native form controls validate, submit, reset and clean up refs',()=>withDOM(async({mount,user})=>{
  await mount(h(App));const form=document.querySelector('form[data-basic-controls]'),notes=form.elements.namedItem('notes'),accepted=form.elements.namedItem('accepted'),extras=form.elements.namedItem('extras');
- assert.equal(form.checkValidity(),false);assert.equal(document.querySelector(`label[for="${notes.id}"]`).control,notes);
- await act(async()=>{await user.type(notes,'Local multiline\nnotes');await user.click(accepted.closest('label'));});
+ await act(async()=>{assert.equal(form.checkValidity(),false);});assert.equal(document.querySelector(`label[for="${notes.id}"]`).control,notes);
+ await act(async()=>{await user.type(notes,'Local multiline\nnotes');await user.click(document.querySelector(`label[for="${accepted.id}"]`));});
  assert.equal(form.checkValidity(),true);assert.deepEqual(Object.fromEntries(new FormData(form)),{notes:'Local multiline\nnotes',accepted:'on',extras:'on'});
  await act(async()=>user.click(form.querySelector('button[type=submit]')));assert.match(document.querySelector('[data-basic-result]').textContent,/Local multiline/);
  await act(async()=>user.click(form.querySelector('button[type=reset]')));assert.equal(notes.value,'');assert.equal(accepted.checked,false);assert.equal(extras.checked,true);
@@ -96,4 +96,15 @@ test('packed native form controls validate, submit, reset and clean up refs',()=
  assert.deepEqual(refs.map(r=>r.current.tagName),['LABEL','TEXTAREA','INPUT','DIV']);
  refs[2].current.indeterminate=true;assert.equal(refs[2].current.indeterminate,true);await act(async()=>user.click(refs[2].current));assert.equal(refs[2].current.indeterminate,false);
  await act(async()=>root.render(null));assert.ok(refs.every(r=>r.current===null));
+}));
+
+test('packed Field and Card composition preserves error ownership, semantics and refs',()=>withDOM(async({mount})=>{
+ const divParts=[CardHeader,CardDescription,CardAction,CardContent,CardFooter,Field,FieldGroup,FieldContent,FieldTitle];
+ const refs=divParts.map(()=>createRef());const extra=Array.from({length:7},()=>createRef());
+ const root=await mount(h(Card,{},...divParts.map((Part,i)=>h(Part,{ref:refs[i],key:i},'Authored content')),h(CardTitle,{as:'h3',ref:extra[0]},'Authored heading'),h(FieldSet,{ref:extra[1]},h(FieldLegend,{ref:extra[2]},'Native group'),h(FieldLabel,{ref:extra[3],htmlFor:'composition-input'},'Value'),h(Input,{id:'composition-input'}),h(FieldDescription,{ref:extra[4]},'Description'),h(FieldError,{ref:extra[5],errors:[{message:'Required'},undefined,{message:' Required '},{message:'Too short'}]})),h(FieldSeparator,{ref:extra[6]},'Or')));
+ assert.ok(refs.every(r=>r.current.tagName==='DIV'));assert.deepEqual(extra.map(r=>r.current.tagName),['H3','FIELDSET','LEGEND','LABEL','P','DIV','DIV']);
+ const error=extra[5].current;assert.equal(error.getAttribute('role'),'alert');assert.deepEqual([...error.querySelectorAll('li')].map(n=>n.textContent),['Required','Too short']);
+ assert.equal(extra[3].current.control.id,'composition-input');
+ await act(async()=>root.render(h(FieldError,{errors:[{message:'Ignored'}],role:'status'},'Authored override')));assert.equal(document.querySelector('[data-slot=field-error]').textContent,'Authored override');
+ await act(async()=>root.render(h(FieldError,{errors:[{message:' '}]})));assert.equal(document.querySelector('[data-slot=field-error]'),null);assert.ok([...refs,...extra].every(r=>r.current===null));
 }));

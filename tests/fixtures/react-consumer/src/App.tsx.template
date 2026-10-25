@@ -1,5 +1,5 @@
 import {useEffect,useId,useRef,useState} from 'react';
-import {Button,Card,Input,Switch,Text,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator} from '@dmf-ui/react';
+import {Button,Card,Input,Switch,Text,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator,CardHeader,CardTitle,CardDescription,CardAction,CardContent,CardFooter,Field,FieldGroup,FieldContent,FieldLabel,FieldTitle,FieldDescription,FieldError,FieldSet,FieldLegend,FieldSeparator} from '@dmf-ui/react';
 export function App({initialPreset='dmf'}:{initialPreset?:'dmf'|'cb-ui'}){
  const [preset,setPreset]=useState<'dmf'|'cb-ui'>(initialPreset);
  const [ready,setReady]=useState(false);
@@ -9,6 +9,7 @@ export function App({initialPreset='dmf'}:{initialPreset?:'dmf'|'cb-ui'}){
  const [name,setName]=useState('Feisal');
  const [updates,setUpdates]=useState(false);
  const [result,setResult]=useState('No values submitted.');
+ const [attempted,setAttempted]=useState(false);
  const [notes,setNotes]=useState('');
  const [accepted,setAccepted]=useState(false);
  const [basicResult,setBasicResult]=useState('No form preview yet.');
@@ -22,7 +23,12 @@ export function App({initialPreset='dmf'}:{initialPreset?:'dmf'|'cb-ui'}){
    <Button disabled={!ready} variant="outline" aria-pressed={dark} onClick={()=>{setDark(!dark);document.documentElement.dataset.theme=dark?'light':'dark';}}>Dark surroundings</Button>
   </div>
   <Card>
-   <Text as="h2" id={`${id}-title`} size="title">Local preferences</Text>
+   <CardHeader>
+    <CardTitle as="h2" id={`${id}-title`}>Local preferences</CardTitle>
+    <CardDescription>Preview form values without sending them anywhere.</CardDescription>
+    <CardAction><Badge variant="secondary">Local</Badge></CardAction>
+   </CardHeader>
+   <CardContent>
    <form onSubmit={event=>{event.preventDefault();setResult(JSON.stringify(Object.fromEntries(new FormData(event.currentTarget))));}} onReset={()=>{setName('Feisal');setUpdates(false);setResult('Form reset.');}}>
     <fieldset disabled={!ready} aria-labelledby={`${id}-title`}>
     <Label htmlFor={`${id}-name`}>Display name</Label>
@@ -34,7 +40,8 @@ export function App({initialPreset='dmf'}:{initialPreset?:'dmf'|'cb-ui'}){
     <div className="consumer-actions"><Button type="submit">Preview values</Button><Button type="reset" variant="outline">Reset form</Button><Button variant="ghost" onClick={()=>input.current?.focus()}>Focus display name</Button></div>
     </fieldset>
    </form>
-   <Text role="status" size="sm">{result}</Text>
+   </CardContent>
+   <CardFooter><Text role="status" size="sm">{result}</Text></CardFooter>
   </Card>
   <section id={`${id}-content-proof`} aria-labelledby={`${id}-content-title`}>
    <Text as="h2" id={`${id}-content-title`} size="title">Content components</Text>
@@ -56,16 +63,28 @@ export function App({initialPreset='dmf'}:{initialPreset?:'dmf'|'cb-ui'}){
   <Separator/>
   <section aria-labelledby={`${id}-basic-title`}>
    <Text as="h2" id={`${id}-basic-title`} size="title">Native form controls</Text>
-   <form data-basic-controls onSubmit={event=>{event.preventDefault();setBasicResult(JSON.stringify(Object.fromEntries(new FormData(event.currentTarget))));}} onReset={()=>{setNotes('');setAccepted(false);setBasicResult('Basic form reset.');}}>
-    <fieldset disabled={!ready} aria-labelledby={`${id}-basic-title`}>
-     <Label htmlFor={`${id}-notes`}>Preview notes</Label>
-     <Textarea id={`${id}-notes`} name="notes" value={notes} onChange={event=>setNotes(event.currentTarget.value)} required aria-describedby={`${id}-notes-help`}/>
-     <Text id={`${id}-notes-help`} size="sm" tone="muted">Local sample form. Notes are not sent anywhere.</Text>
-     <Label className="consumer-check-label"><Checkbox name="accepted" checked={accepted} onChange={event=>setAccepted(event.currentTarget.checked)} required/>Confirm this local preview</Label>
-     <Label className="consumer-check-label"><Checkbox name="extras" defaultChecked/>Include optional details</Label>
-     <Label className="consumer-check-label"><Checkbox name="unavailable" disabled defaultChecked/>Unavailable option</Label>
+   <form data-basic-controls onInvalid={()=>setAttempted(true)} onSubmit={event=>{event.preventDefault();setBasicResult(JSON.stringify(Object.fromEntries(new FormData(event.currentTarget))));}} onReset={()=>{setNotes('');setAccepted(false);setAttempted(false);setBasicResult('Basic form reset.');}}>
+    <FieldSet disabled={!ready}>
+     <FieldLegend>Local form values</FieldLegend>
+     <FieldGroup>
+      <Field data-invalid={attempted&&notes.length===0||undefined}>
+       <FieldLabel htmlFor={`${id}-notes`}>Preview notes</FieldLabel>
+       <FieldContent>
+        <Textarea id={`${id}-notes`} name="notes" value={notes} onChange={event=>setNotes(event.currentTarget.value)} required aria-invalid={attempted&&notes.length===0||undefined} aria-describedby={`${id}-notes-help${attempted&&notes.length===0?' '+id+'-notes-error':''}`}/>
+        <FieldDescription id={`${id}-notes-help`}>Local sample form. Notes are not sent anywhere.</FieldDescription>
+        <FieldError id={`${id}-notes-error`} errors={attempted&&notes.length===0?[{message:'Enter preview notes.'}]:[]}/>
+       </FieldContent>
+      </Field>
+      <Field orientation="horizontal">
+       <Checkbox className="mt-[15px]!" id={`${id}-accepted`} name="accepted" checked={accepted} onChange={event=>setAccepted(event.currentTarget.checked)} required/>
+       <FieldContent><FieldLabel className="consumer-check-label" htmlFor={`${id}-accepted`}>Confirm this local preview</FieldLabel><FieldDescription>Required for this local example.</FieldDescription></FieldContent>
+      </Field>
+      <FieldSeparator>Optional settings</FieldSeparator>
+      <Field orientation="responsive"><FieldLabel className="consumer-check-label" htmlFor={`${id}-extras`}>Include optional details</FieldLabel><Checkbox className="@md/field-group:mt-[15px]!" id={`${id}-extras`} name="extras" defaultChecked/></Field>
+      <Field data-disabled="true"><FieldTitle>Availability</FieldTitle><Label className="consumer-check-label"><Checkbox name="unavailable" disabled defaultChecked/>Unavailable option</Label></Field>
+     </FieldGroup>
      <div className="consumer-actions"><Button type="submit">Preview notes</Button><Button type="reset" variant="outline">Reset notes</Button></div>
-    </fieldset>
+    </FieldSet>
    </form>
    <Text data-basic-result size="sm">{basicResult}</Text>
    <Separator decorative={false} aria-label="End of native form example"/>

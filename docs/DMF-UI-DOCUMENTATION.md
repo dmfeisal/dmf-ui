@@ -10,13 +10,13 @@ The portfolio's `/ui/` remains an integration lab. Its pages, Canvas, navigation
 
 - `/`: Home. Explain the foundation, show real component previews and lead to Components or installation.
 - `/components/`: Searchable catalog of the 21 implemented component families, grouped by purpose. Static links remain available without JavaScript; search is progressive enhancement with a result count and an empty state.
-- `/components/<slug>/`: One page per exported family, with DMF/CB previews where supported, a complete Astro usage snippet, focused option table and behavior notes. Dialog and Toast preview DMF only while CB portal acceptance remains pending.
+- `/components/<slug>/`: One page per exported family, with one full-width DMF preview, a complete Astro usage snippet, focused option table and behavior notes. CB reconstruction customization is shown on Create rather than repeated across component pages.
 - `/create/`: Local preset configurator with live components, CSS export, JSON download and shareable query links. Astro only; CB primary stays #26ade4 and CB appearance stays light.
 - `/docs/`: Guide index.
 - `/docs/contracts/`, `/docs/introduction/`, `/docs/installation/`, `/docs/theming/`, `/docs/presets/`, `/docs/accessibility/`, `/docs/credits/`: Seven guides covering component intent, setup, ownership, customization and verified limits.
 - `/examples/dmf-ui/`: Existing independent integration examples; its route and anchors remain available.
 
-The 34-page build includes implemented Astro families and an experimental five-component React proof at `/examples/react/`. Stable React support, WordPress, native adapters, additional product presets and complete accessibility/cross-browser certification remain future or manual-verification work. No npm publication or live documentation domain is implied.
+The 34-page build includes implemented Astro families and an experimental React proof at `/examples/react/`. Stable React support, WordPress, native adapters, additional product presets and complete accessibility/cross-browser certification remain future or manual-verification work. No npm publication or live documentation domain is implied.
 
 ## Source boundaries
 
@@ -40,7 +40,7 @@ Native navigation and mobile details/summary remain keyboard accessible. Sidebar
 
 Run `npm run check`, `npm run build` and `npm test`. Contract tests check that every exported component has a catalog/detail page, that built local links and fragments resolve, and that documentation host files stay out of the package.
 
-Run `npm run test:dmf-ui:docs` for the local Ego Browser suite. It checks navigation, search/reset/empty state, a live Accordion, guide selection, light/dark themes, mobile section navigation, Tooltip containment/focus and axe page states. Reports remain in ignored `.dmf-ui-test-results/`. Browser-space recovery follows the existing managed runner rules; do not silently replace unavailable spaces.
+Run `npm run test:dmf-ui:docs` for the local Ego Browser suite. It checks navigation, search/reset/empty state, all scripted component previews and local Button/menu feedback, guide selection, light/dark themes, mobile section navigation, Tooltip containment/focus and axe page states. Reports remain in ignored `.dmf-ui-test-results/`. Browser-space recovery follows the existing managed runner rules; do not silently replace unavailable spaces.
 
 Use `npm run dev` in this repository for a local preview. Publishing the documentation, configuring a domain and changing the portfolio's navigation are separate actions. Safari/Firefox and spoken screen-reader checks remain pending as recorded in `DMF-UI-ACCESSIBILITY.md`.
 
@@ -55,3 +55,23 @@ The Create page uses a compact control column and live shared Button, Input, Swi
 Settings are visit-local and encoded as allowlisted query parameters; no localStorage or server writes occur. Copy CSS, Copy link and JSON download export the current choices. Clipboard failure announces a manual-copy fallback. Reset restores DMF defaults and clears query settings. Generated CSS loads after library styles on a `data-preset="custom"` wrapper; CB also needs its existing preset import and `data-system="cb-ui" data-color-mode="light"`. Exported JSON is settings metadata, not a published package or native adapter. No installer, registry, deployment or shadcn preset-code compatibility is claimed.
 
 Fulldev’s [Create page](https://ui.full.dev/create/) is the flow reference. DMF supports only options backed by its existing implementation. Host configurator files stay outside the library archive. Browser checks cover exported values, URL restoration and invalid-query handling, reset, CB restrictions, live interaction, download, clipboard error handling, dark/mobile/RTL containment and axe checks.
+
+## Development interaction fix — 25 October 2026
+
+The running localhost documentation server reproduced `504 Outdated Optimize Dep` responses for interaction modules, leaving controls inert. Vite caches are now isolated by Astro command (dev/build/preview/sync), so validation does not share the running development optimizer directory. All ten Data Slot packages are explicitly prebundled instead of being discovered as individual preview pages are visited. This changes host tooling only; core package versions and component controllers are unchanged.
+
+Each component detail now contains one DMF preview. Create retains its CB foundation option, primary/light restrictions and working Switch/Tabs. Button and menu examples provide local polite feedback; unavailable actions remain disabled. Their page-local listeners are idempotent and cleaned up before a swap, with no persistence or network writes.
+
+The live server was kept open while Astro check/build and the source suite ran, then rechecked with isolated Chrome 155. Documentation/Create/content browser scenarios pass with no runtime errors or failed document/script/style requests. Coverage includes all scripted previews, Checkbox/Switch label activation, keyboard radio/select/Tabs, Accordion disclosure, modal Escape/focus return, Popover Done, menu selection feedback, Toast/Tooltip, search/navigation, themes, mobile containment and Create exports/reset. There are 17 passing source tests, including the new single-DMF-preview/CB-on-Create contract. Earlier historical two-preset detail-page evidence no longer describes the current component-page layout. Local evidence remains under ignored `.dmf-ui-test-results/`.
+
+The documentation Tooltip stays within the main preview landmark (`portal={false}`), avoiding the prior supplemental-content landmark exception while retaining collision positioning and Escape/focus behavior. The documentation browser audit now requires zero violations and zero incomplete rules.
+
+Final verification also passes against a read-only server for the production build. The six documentation, four Create and eight content-detail axe states have zero violations and zero incomplete rules. Live and production network reports contain no runtime errors or failed page/script/style requests. Astro check reports 188 files with zero errors/warnings/hints; the production build contains 34 pages. The mobile single-preview Tooltip capture was visually inspected. Component pages now instantiate one preset preview instead of two; no new core controller or persistence layer was added. Existing Field/Card work and unrelated portfolio changes remain preserved. This documentation fix requires its own hosted CI result.
+
+## Netlify hosting
+
+The production hostname is `ui.feisal.id`. `netlify.toml` builds the static documentation into `dist` on Node 24. Netlify installs root dependencies; the build command also installs the separate locked React dependencies because `/examples/react/` imports the experimental adapter source. No Astro server adapter or SPA fallback is needed. Missing routes should retain Netlify's 404 response.
+
+Local Netlify linkage is ignored under `.netlify/` and must not be committed. Keep custom-domain DNS separate from the portfolio's apex hostname. The external DNS provider is Cloudflare; only the `ui` subdomain needs a record pointing at this documentation project's assigned Netlify hostname. Deployment/domain verification is recorded after the project is configured.
+
+Netlify project created: `dmf-ui` (`fa4ed270-7ba4-4172-8f0d-5aa285632415`) in workspace `daengdoang`. Assigned hostname: `dmf-ui.netlify.app`. Project dashboard: https://app.netlify.com/projects/dmf-ui. At preparation time the project has no deploy; repository connection, `ui.feisal.id` assignment, Cloudflare CNAME and HTTPS verification remain pending authentication/configuration.

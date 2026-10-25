@@ -1,6 +1,6 @@
 # React web alpha
 
-24 October 2026. The separate private `@dmf-ui/react` package at `packages/react`, version `0.1.0-alpha.3`, implements Button, Text, Input, Switch, Card, Badge, Alert (with AlertTitle, AlertDescription and AlertAction), Label, Textarea, Checkbox and Separator. The Astro archive remains 0.4.0. This is preparation for the 0.5.0 React milestone, not a stable release, native adapter or npm publication.
+24 October 2026. The separate private `@dmf-ui/react` package at `packages/react`, version `0.1.0-alpha.3`, implements Button, Text, Input, Switch, Card, Badge, Alert (with AlertTitle, AlertDescription and AlertAction), Label, Textarea, Checkbox, Separator and Field. The Astro archive remains 0.4.0. This is preparation for the 0.5.0 React milestone, not a stable release, native adapter or npm publication.
 
 ## Ownership and setup
 
@@ -26,11 +26,13 @@ The production build also renders the app into its HTML using the installed adap
 
 Input forwards native React input props and refs. Switch uses a labeled native checkbox with `role="switch"`. Use `checked` and `onChange` for controlled state, or `defaultChecked` for uncontrolled state; do not change modes. Native required/disabled/name/value/form/reset behavior applies. Controlled values must be reset by the host; the consumer demonstrates that responsibility.
 
-Switch read-only behavior, unchecked-value submission, compact sizes and Astro controller attributes are not exposed. Card currently provides a non-interactive root, without the complete Astro slot family. The package creates no React roots; hosts own rendering, hydration and unmount.
+Switch read-only behavior, unchecked-value submission, compact sizes and Astro controller attributes are not exposed. Card provides a non-interactive div root plus CardHeader, CardTitle, CardDescription, CardAction, CardContent and CardFooter. CardTitle supports authored div/h1–h6 semantics; other parts are divs. Existing root padding is preserved, so parts add no double padding. The package creates no React roots; hosts own rendering, hydration and unmount.
 
 Badge defaults to a static span; `as="a"` requires `href` and preserves native anchor props/ref/keyboard behavior. Its six variants follow the shared content contract. It does not infer status meaning, announce changing text or render a button. Alert defaults to a static note; authors opt into status/alert roles, supply meaningful title/description content and real actions, and own dynamic updates. AlertTitle, AlertDescription and AlertAction forward div refs; title styling does not choose a heading level. No dismiss timer, root or global listener is created. See the adapter README for usage.
 
 Label preserves authored label/control association and native refs. Textarea uses native controlled/uncontrolled values, validation, form participation and host-owned reset/error descriptions. Checkbox preserves native checkbox artwork, keyboard and form behavior; its indeterminate property is host-owned through the input ref. Native label hit areas remain a host responsibility. Separator is decorative by default; opt into semantic orientation with `decorative={false}`. It is not a focusable splitter. The adapter README documents exclusions and usage.
+
+Field adds native FieldSet/FieldLegend, FieldLabel, FieldDescription, FieldContent, FieldGroup, FieldTitle, FieldSeparator and FieldError composition. Hosts own IDs, descriptions, native disabled state and validation. FieldError deduplicates supplied messages, is absent when empty and defaults to role=alert; authored children and role override that output. No automatic validation, generated associations or root is added. Field orientation can be vertical/horizontal/responsive; responsive layout requires FieldGroup's container. The README records the fixed native elements and usage.
 
 ## Verification and limits
 

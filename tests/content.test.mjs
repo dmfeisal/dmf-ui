@@ -8,7 +8,8 @@ test('0.4.0 content contracts are exported and have verified documentation',asyn
  for(const slug of Object.keys(contracts.components)){
   assert(pkg.exports[`./${slug}`]);
   const html=await readFile(`dist/components/${slug}/index.html`,'utf8');
-  assert(html.includes('data-system="dmf"')&&html.includes('data-system="cb-ui"'));
+  assert(html.includes('data-system="dmf"'));
+  assert(!html.includes('data-system="cb-ui"'));
  }
 });
 test('static content semantics and full labels survive server rendering without controllers',async()=>{

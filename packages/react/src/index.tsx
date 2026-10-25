@@ -84,3 +84,50 @@ export type SeparatorProps=Omit<ComponentPropsWithRef<'div'>,'role'|'aria-orient
 export function Separator({orientation='horizontal',decorative=true,className,...props}:SeparatorProps){
  return <div {...props} data-slot="separator" data-orientation={orientation} role={decorative?'none':'separator'} aria-orientation={decorative?undefined:orientation} className={join('bg-border shrink-0',orientation==='horizontal'?'h-px w-full':'w-px self-stretch',className)}/>;
 }
+
+export type CardHeaderProps=ComponentPropsWithRef<'div'>;
+export function CardHeader({className,...props}:CardHeaderProps){
+ return <div {...props} data-slot="card-header" className={join('grid min-w-0 gap-1 items-start has-[[data-slot=card-action]]:grid-cols-[minmax(0,1fr)_auto]',className)}/>;
+}
+type HeadingTag='div'|'h1'|'h2'|'h3'|'h4'|'h5'|'h6';
+export type CardTitleProps<T extends HeadingTag='div'>=Omit<ComponentPropsWithRef<T>,'as'> & {as?:T};
+export function CardTitle<T extends HeadingTag='div'>({as,className,...props}:CardTitleProps<T>){
+ const Tag=as??'div';return <Tag {...props as ComponentPropsWithRef<'div'>} data-slot="card-title" className={join('m-0 min-w-0 font-heading text-base leading-normal font-medium [overflow-wrap:anywhere]',className)}/>;
+}
+export type CardDescriptionProps=ComponentPropsWithRef<'div'>;
+export function CardDescription({className,...props}:CardDescriptionProps){return <div {...props} data-slot="card-description" className={join('min-w-0 text-muted-foreground text-sm [overflow-wrap:anywhere]',className)}/>;}
+export type CardActionProps=ComponentPropsWithRef<'div'>;
+export function CardAction({className,...props}:CardActionProps){return <div {...props} data-slot="card-action" className={join('col-start-2 row-span-2 row-start-1 self-start justify-self-end min-w-0 max-w-full',className)}/>;}
+export type CardContentProps=ComponentPropsWithRef<'div'>;
+export function CardContent({className,...props}:CardContentProps){return <div {...props} data-slot="card-content" className={join('min-w-0 flex flex-col gap-3',className)}/>;}
+export type CardFooterProps=ComponentPropsWithRef<'div'>;
+export function CardFooter({className,...props}:CardFooterProps){return <div {...props} data-slot="card-footer" className={join('flex min-w-0 flex-wrap items-center gap-3',className)}/>;}
+
+export type FieldProps=ComponentPropsWithRef<'div'> & {orientation?:'vertical'|'horizontal'|'responsive'};
+export function Field({orientation='vertical',role='group',className,...props}:FieldProps){
+ const layout={vertical:'flex-col',horizontal:'flex-row items-start',responsive:'flex-col @md/field-group:flex-row @md/field-group:items-start'};
+ return <div {...props} role={role} data-slot="field" data-orientation={orientation} className={join('group/field flex min-w-0 w-full gap-3 data-[invalid=true]:text-destructive',layout[orientation],className)}/>;
+}
+export type FieldGroupProps=ComponentPropsWithRef<'div'>;
+export function FieldGroup({className,...props}:FieldGroupProps){return <div {...props} data-slot="field-group" className={join('@container/field-group flex min-w-0 w-full flex-col gap-7',className)}/>;}
+export type FieldContentProps=ComponentPropsWithRef<'div'>;
+export function FieldContent({className,...props}:FieldContentProps){return <div {...props} data-slot="field-content" className={join('flex min-w-0 flex-1 flex-col gap-1 leading-snug',className)}/>;}
+export type FieldLabelProps=LabelProps;
+export function FieldLabel({className,...props}:FieldLabelProps){return <label {...props} data-slot="field-label" className={join('flex min-w-0 items-center gap-2 text-sm font-medium leading-snug [overflow-wrap:anywhere] group-data-[disabled=true]/field:opacity-50',className)}/>;}
+export type FieldTitleProps=ComponentPropsWithRef<'div'>;
+export function FieldTitle({className,...props}:FieldTitleProps){return <div {...props} data-slot="field-title" className={join('min-w-0 text-sm font-medium [overflow-wrap:anywhere]',className)}/>;}
+export type FieldDescriptionProps=ComponentPropsWithRef<'p'>;
+export function FieldDescription({className,...props}:FieldDescriptionProps){return <p {...props} data-slot="field-description" className={join('m-0 min-w-0 text-muted-foreground text-start text-sm leading-normal [overflow-wrap:anywhere] [&_a]:underline [&_a]:underline-offset-4',className)}/>;}
+export type FieldErrorProps=ComponentPropsWithRef<'div'> & {errors?:Array<{message?:string}|undefined>};
+export function FieldError({errors,children,role='alert',className,...props}:FieldErrorProps){
+ const messages=[...new Set((errors??[]).map(error=>error?.message?.trim()).filter((message):message is string=>Boolean(message)))];
+ const authored=children!==undefined&&children!==null&&children!==false&&children!=='';
+ if(!authored&&!messages.length)return null;
+ return <div {...props} role={role} data-slot="field-error" className={join('min-w-0 text-destructive text-sm font-normal [overflow-wrap:anywhere]',className)}>{authored?children:messages.length===1?messages[0]:<ul className="m-0 list-disc ps-4">{messages.map(message=><li key={message}>{message}</li>)}</ul>}</div>;
+}
+export type FieldSetProps=ComponentPropsWithRef<'fieldset'>;
+export function FieldSet({className,...props}:FieldSetProps){return <fieldset {...props} data-slot="field-set" className={join('flex min-w-0 flex-col gap-6',className)}/>;}
+export type FieldLegendProps=ComponentPropsWithRef<'legend'> & {variant?:'legend'|'label'};
+export function FieldLegend({variant='legend',className,...props}:FieldLegendProps){return <legend {...props} data-slot="field-legend" data-variant={variant} className={join('mb-3 font-medium',variant==='label'?'text-sm':'text-base',className)}/>;}
+export type FieldSeparatorProps=ComponentPropsWithRef<'div'>;
+export function FieldSeparator({children,className,...props}:FieldSeparatorProps){return <div {...props} data-slot="field-separator" className={join('flex min-w-0 items-center gap-3 text-sm',className)}><Separator className="flex-1 w-auto"/>{children!=null&&children!==false&&children!==''&&<><span className="text-muted-foreground min-w-0 [overflow-wrap:anywhere]">{children}</span><Separator className="flex-1 w-auto"/></>}</div>;}

@@ -1,5 +1,5 @@
 import {createRef} from 'react';
-import {Button,Input,Switch,Text,Card,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator} from '@dmf-ui/react';
+import {Button,Input,Switch,Text,Card,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator,CardTitle,Field,FieldSet,FieldLegend,FieldDescription,FieldLabel} from '@dmf-ui/react';
 const input=createRef<HTMLInputElement>();
 const button=createRef<HTMLButtonElement>();
 const heading=createRef<HTMLHeadingElement>();
@@ -37,3 +37,12 @@ const separatorFocus=<Separator tabIndex={0}/>;
 // @ts-expect-error Checkbox readOnly does not prevent native toggling.
 const readonlyCheckbox=<Checkbox readOnly/>;
 void [basics,checkboxType,textareaRef,separatorFocus,readonlyCheckbox];
+
+const composed=<FieldSet ref={createRef<HTMLFieldSetElement>()} disabled><FieldLegend ref={createRef<HTMLLegendElement>()}>Group</FieldLegend><Field orientation="responsive"><FieldLabel htmlFor="field-notes">Notes</FieldLabel><FieldDescription ref={createRef<HTMLParagraphElement>()}>Help</FieldDescription><CardTitle as="h3" ref={heading}>Section</CardTitle></Field></FieldSet>;
+// @ts-expect-error Field orientation has a bounded contract.
+const fieldOrientation=<Field orientation="diagonal"/>;
+// @ts-expect-error FieldSet is a native fieldset, not a generic div.
+const fieldsetRef=<FieldSet ref={card}/>;
+// @ts-expect-error CardTitle does not implement links.
+const cardTitleLink=<CardTitle as="a" href="/">Title</CardTitle>;
+void [composed,fieldOrientation,fieldsetRef,cardTitleLink];

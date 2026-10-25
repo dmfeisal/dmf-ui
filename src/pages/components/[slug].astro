@@ -6,11 +6,10 @@ export function getStaticPaths(){return components.map(component=>({params:{slug
 const {component}=Astro.props;
 const importEnd=component.usage.indexOf('\n\n');
 const usage=importEnd>0?`---\n${component.usage.slice(0,importEnd)}\n---\n${component.usage.slice(importEnd+2)}`:component.usage;
-const systems:('dmf'|'cb-ui')[]= ['dialog','toast'].includes(component.slug)?['dmf']:['dmf','cb-ui'];
 ---
 <DocumentationLayout title={component.name} description={component.description} section="components" crumbs={[{name:'Components',href:'../'},{name:component.name}]} toc={[{id:'preview',title:'Preview'},{id:'usage',title:'Usage'},{id:'options',title:'Core options'},{id:'behavior',title:'Behavior'}]}>
 <h1>{component.name}</h1><p class="docs-lead">{component.description}</p>
-<section id="preview" class="docs-section"><h2>Preview</h2><div class="docs-preview-grid">{systems.map(system=><ComponentPreview slug={component.slug} system={system}/>)}</div><p class="docs-note">Examples are local. They do not save or send data.</p></section>
+<section id="preview" class="docs-section"><h2>Preview</h2><ComponentPreview slug={component.slug}/><p class="docs-note">Examples are local. They do not save or send data.</p></section>
 <section id="usage" class="docs-section"><h2>Usage</h2><p class="docs-note">Import the shared stylesheet in your layout and place components inside <code>.dmf-ui</code>. See <a href="../../docs/installation/">installation</a> for the project setup.</p><pre class="docs-code" tabindex="0" role="region" aria-label={`${component.name} usage example`}><code>{usage}</code></pre></section>
 <section id="options" class="docs-section"><h2>Core options</h2><div class="docs-table-scroll"><table class="docs-options"><thead><tr><th scope="col">Option</th><th scope="col">Type</th><th scope="col">Default</th></tr></thead><tbody>{component.options.map(([name,type,value])=><tr><th scope="row"><code>{name}</code></th><td>{type}</td><td>{value}</td></tr>)}</tbody></table></div><p class="docs-note">This is a focused overview. The exported component source defines the complete inherited HTML attributes and adapter options.</p></section>
 <section id="behavior" class="docs-section docs-prose"><h2>Behavior and accessibility</h2><ul>{component.notes.map(note=><li>{note}</li>)}</ul><p><a href="../../docs/accessibility/">Read the verification boundaries</a> and <a href="../../examples/dmf-ui/">try the complete integration examples</a>.</p></section>

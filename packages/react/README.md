@@ -4,11 +4,11 @@ Private proof `0.1.0-alpha.3`, not published. Install the root repository depend
 
 A separate Vite consumer installs packed archives and verifies production assets, TypeScript, native ESM imports, refs, simulated keyboard input and controlled forms. Run `npm run test:dmf-ui:react-consumer` from the root. The optional `test:dmf-ui:react-browser` command reviews its retained production build in Ego Browser. Chromium keyboard/touch, preset/theme, font, focus, mobile/RTL, 200% text and contrast checks pass; Safari desktop/narrow-frame checks passed for the earlier five-component scope. The expanded Badge/Alert fixture passes Chromium; Firefox and spoken screen-reader checks remain pending. Alpha.3 strengthens Input and Switch boundaries using existing semantic colors and provides explicit native-input focus. The core dependency currently brings its full Astro/Data Slot dependency graph; the React runtime does not initialize those controllers.
 
-The current eleven component families are Button, Text, Input, Switch, Card, Badge, Alert, Label, Textarea, Checkbox and Separator. Alert also exports AlertTitle, AlertDescription and AlertAction.
+The current twelve component families are Button, Text, Input, Switch, Card, Badge, Alert, Label, Textarea, Checkbox, Separator and Field. Alert also exports AlertTitle, AlertDescription and AlertAction.
 
 Button uses the shared Fulldev-based variant definition. Text preserves author-selected heading semantics; Card is a non-interactive content container. Input forwards native React input props and refs. Switch is a labeled native checkbox with `role="switch"`; use `checked` plus `onChange` for controlled state, or `defaultChecked` for native uncontrolled state. Do not switch between those modes. Native required/disabled/name/value/form/reset behavior applies. Switch read-only behavior, unchecked-value submission, compact sizes and Astro controller attributes are not exposed.
 
-The component package does not import React DOM or create roots. Hosts own rendering, hydration, controlled form reset and unmount. The source documentation proof uses Strict Mode, server rendering, hydration and an explicit unmount action. It sends no requests and disables its form until hydrated. Card subcomponents, overlays and other families are outside this proof.
+The component package does not import React DOM or create roots. Hosts own rendering, hydration, controlled form reset and unmount. The source documentation proof uses Strict Mode, server rendering, hydration and an explicit unmount action. It sends no requests and disables its form until hydrated. Overlays and later families remain outside this proof.
 
 React Native and SwiftUI cannot consume this CSS or browser implementation. `@dmf-ui/react/notices` includes core attribution and the bundled clsx license. React dependency licensing remains in the installed React distribution.
 
@@ -28,7 +28,7 @@ Alert defaults to a static `div` with `role="note"`. Authors may explicitly choo
 </Alert>
 ```
 
-The expanded packed fixture checks typed link/ref contracts, static versus opt-in announcement semantics, independent-root IDs, all content refs and cleanup, and both-preset SSR hydration. The original three adapter tests are now four; packed acceptance is now five tests. The alpha version remains unchanged during this unpublished local iteration.
+The expanded packed fixture checks typed link/ref contracts, static versus opt-in announcement semantics, independent-root IDs, all content refs and cleanup, and both-preset SSR hydration. This content-only checkpoint originally had four adapter tests and five packed tests; later batches extend it below. The alpha version remains unchanged during this unpublished local iteration.
 
 ## Native form primitives
 
@@ -49,4 +49,36 @@ Separator defaults to a decorative horizontal div (`role="none"`). Use `decorati
 <Separator decorative={false} />
 ```
 
-Current acceptance is five adapter tests and six packed-consumer tests, plus the expanded Chromium matrix. Safari's historical review covers the original five families; the added native controls still need Safari/Firefox, spoken-reader and real-device verification.
+The native-control checkpoint had five adapter tests and six packed-consumer tests; the composition batch below extends those checks. Safari's historical review covers the original five families; the added native controls still need Safari/Firefox, spoken-reader and real-device verification.
+
+## Card and Field composition
+
+CardHeader, CardTitle, CardDescription, CardAction, CardContent and CardFooter are optional content containers inside the existing padded Card. They add no extra inline padding. Card remains a non-interactive div; child links/buttons own actions. CardTitle defaults to div; `as="h2"` (or another h1–h6) chooses authored heading semantics and the native ref type. Other Card parts are divs. Header positions an authored action in a second column; content/footer wrap naturally. This does not add a linked-card or navigation API.
+
+Field, FieldGroup, FieldContent, FieldLabel, FieldTitle, FieldDescription, FieldError, FieldSet, FieldLegend and FieldSeparator provide form composition. Field defaults to a div group and supports vertical, horizontal and responsive orientation. Responsive fields change within the named container supplied by FieldGroup. Hosts align native controls with their chosen label target sizes. `data-invalid`/`data-disabled` style a group; they do not validate or disable inputs.
+
+FieldSet/FieldLegend are native fieldset/legend elements. FieldSet disabled propagates natively to its controls. FieldLabel is a native label, FieldDescription is a paragraph, and FieldTitle is a static div (not a label or heading). FieldContent and FieldGroup are div containers. No polymorphic span/div mode is exposed for these parts. FieldSeparator adds decorative lines around optional authored text.
+
+FieldError renders nothing without meaningful errors or children. The optional `errors` array accepts `{message?: string}` entries and undefined; messages are trimmed, empty messages discarded and duplicates removed. Authored children override the error array. The default role is alert, matching the core; hosts may choose status/note for less urgent content. The component neither validates nor generates messages, IDs or control associations. Hosts decide when to mount/update errors and connect them with aria-describedby and aria-invalid. Spoken announcements remain unverified.
+
+```tsx
+<Card>
+  <CardHeader><CardTitle as="h2">Preferences</CardTitle></CardHeader>
+  <CardContent>
+    <FieldSet>
+      <FieldLegend>Local values</FieldLegend>
+      <FieldGroup>
+        <Field>
+          <FieldLabel htmlFor="notes">Notes</FieldLabel>
+          <FieldContent>
+            <Textarea id="notes" aria-describedby="notes-help" />
+            <FieldDescription id="notes-help">Values stay on this page.</FieldDescription>
+          </FieldContent>
+        </Field>
+      </FieldGroup>
+    </FieldSet>
+  </CardContent>
+</Card>
+```
+
+Current validation: six adapter tests and seven clean packed-consumer tests, plus the expanded Chrome matrix. Core 0.4.0 and unpublished React alpha.3 are unchanged. The new composition batch remains outside the earlier Safari/hosted CI evidence.

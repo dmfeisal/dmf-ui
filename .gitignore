@@ -11,3 +11,6 @@ dist/
 # Isolated React adapter test dependencies and build output
 packages/react/node_modules/
 packages/react/.test-dist/
+
+# Netlify local site linkage
+.netlify/

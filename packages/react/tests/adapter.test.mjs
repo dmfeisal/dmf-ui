@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createElement} from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
-import {Button,Text,Input,Switch,Card,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator} from '../.test-dist/index.mjs';
+import {Button,Text,Input,Switch,Card,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator,CardTitle,Field,FieldError,FieldSet,FieldLegend} from '../.test-dist/index.mjs';
 test('server output preserves native semantics and explicit content hierarchy',()=>{
  const html=renderToStaticMarkup(createElement(Card,{},createElement(Text,{as:'h2',size:'title'},'Settings'),createElement(Button,{},'Save')));
  assert.match(html,/<h2[^>]+data-slot="text"/);assert.match(html,/<button[^>]+type="button"/);assert.doesNotMatch(html,/role="button"/);
@@ -27,4 +27,11 @@ test('basic form primitives preserve labels, native values and separator semanti
  assert.match(html,/for="notes"/);assert.match(html,/<textarea[^>]*name="notes"[^>]*>Local notes<\/textarea>/);assert.match(html,/type="checkbox"/);assert.doesNotMatch(html,/role="switch"/);
  const decorative=renderToStaticMarkup(createElement(Separator,{}));assert.match(decorative,/role="none"/);assert.doesNotMatch(decorative,/aria-orientation|tabindex/i);
  const semantic=renderToStaticMarkup(createElement(Separator,{decorative:false,orientation:'vertical'}));assert.match(semantic,/role="separator"/);assert.match(semantic,/aria-orientation="vertical"/);
+});
+
+test('Field errors are authored, deduplicated and absent when empty',()=>{
+ assert.equal(renderToStaticMarkup(createElement(FieldError,{errors:[undefined,{message:' '}]})),'');
+ const html=renderToStaticMarkup(createElement(FieldError,{errors:[{message:' Required '},{message:'Required'},{message:'Too short'}]}));assert.equal((html.match(/<li>/g)||[]).length,2);assert.match(html,/role="alert"/);
+ assert.equal(renderToStaticMarkup(createElement(FieldError,{errors:[{message:'Ignored'}]},'Authored')).includes('Ignored'),false);
+ const grouped=renderToStaticMarkup(createElement(FieldSet,{disabled:true},createElement(FieldLegend,{},'Group'),createElement(Field,{orientation:'horizontal'},createElement(CardTitle,{as:'h3'},'Heading'))));assert.match(grouped,/<fieldset[^>]*disabled/);assert.match(grouped,/<legend/);assert.match(grouped,/<h3/);assert.match(grouped,/data-orientation="horizontal"/);
 });

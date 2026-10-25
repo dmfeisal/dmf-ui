@@ -31,6 +31,7 @@ export async function run({page,baseURL,artifacts,settle,mobile,tap,resetBrowser
   reports.push({state,...data});await writeFile(artifacts+'/report.json',JSON.stringify({browser:await page.evaluate(()=>navigator.userAgent),reports},null,2));
   assert(!data.errors.length,`${state} runtime errors: ${JSON.stringify(data.errors)}`);assert(!data.violations.length,`${state} axe violations: ${JSON.stringify(data.violations)}`);
   assert(data.boundaries.every(item=>item.ratio>=3),`${state} non-text contrast below 3:1: ${JSON.stringify(data.boundaries)}`);
+  assert(await page.evaluate(expected=>getComputedStyle(document.querySelector('[data-slot=field][data-orientation=responsive]')).flexDirection===expected,state.startsWith('mobile')?'column':'row'),'Field responsive orientation did not follow its container');
   console.log('PASS audit:',state);
  }
  async function preset(system,dark){
@@ -69,6 +70,8 @@ export async function run({page,baseURL,artifacts,settle,mobile,tap,resetBrowser
   assert(await page.evaluate(()=>document.querySelector('[name=notes]').value===''&&!document.querySelector('[name=accepted]').checked&&document.querySelector('[name=extras]').checked),'Basic controls reset failed');
   await page.click('form[data-basic-controls] button[type=submit]');
   assert(await page.evaluate(()=>!document.querySelector('form[data-basic-controls]').checkValidity()&&document.activeElement.name==='notes'),'Required Textarea failed validation');
+  await page.waitForFunction(()=>document.querySelector('[data-slot=field-error]')?.textContent==='Enter preview notes.');
+  assert(await page.evaluate(()=>{const textarea=document.querySelector('[name=notes]'),error=document.querySelector('[data-slot=field-error]');return textarea.getAttribute('aria-invalid')==='true'&&textarea.getAttribute('aria-describedby').split(' ').includes(error.id)&&error.getAttribute('role')==='alert';}),'Host-owned Field error association missing');
   for(const system of ['dmf','cb-ui'])for(const dark of [false,true]){
    await preset(system,dark);await audit(`desktop ${system} ${dark?'dark':'light'} surroundings`);
    if(system==='cb-ui'){
