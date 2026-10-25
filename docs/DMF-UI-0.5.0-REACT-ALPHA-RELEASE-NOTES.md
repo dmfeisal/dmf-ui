@@ -59,3 +59,9 @@ No package publication, release tag, root version bump or portfolio archive-pin 
 - After the stylesheet correction, Safari's twelve-state review, three adapter tests, four packed-consumer tests, Astro check, production build and all 16 source tests pass. Earlier CI runs cover their named snapshots; this later stylesheet/regression follow-up requires its own hosted run. Core/React versions remain unchanged; no publication or tag is created.
 
 See [the verification record](DMF-UI-REACT-VERIFICATION.md) for local evidence paths and limits.
+
+## Next component iteration — Badge and Alert
+
+Added Badge (static span/native anchor; six variants) and Alert with AlertTitle, AlertDescription and AlertAction. Alert defaults to a static note; authors choose status/urgent roles and supply real actions. Native refs, TypeScript link contracts and authored semantics are preserved. The package remains unpublished alpha.3; the core remains 0.4.0.
+
+Four adapter tests, five packed-consumer tests, Astro check, production build and all 16 source tests pass. The expanded Chrome scenario passes twelve axe/layout states, native Badge link keyboard navigation, static Alert checks and the four existing forced-colors cases. Earlier Safari evidence does not establish coverage of these new components. Firefox, spoken reader and real-device checks remain pending. This iteration has no hosted CI result yet.

@@ -1,5 +1,5 @@
 import {useEffect,useId,useRef,useState} from 'react';
-import {Button,Card,Input,Switch,Text} from '@dmf-ui/react';
+import {Button,Card,Input,Switch,Text,Badge,Alert,AlertTitle,AlertDescription,AlertAction} from '@dmf-ui/react';
 export function App({initialPreset='dmf'}:{initialPreset?:'dmf'|'cb-ui'}){
  const [preset,setPreset]=useState<'dmf'|'cb-ui'>(initialPreset);
  const [ready,setReady]=useState(false);
@@ -33,5 +33,22 @@ export function App({initialPreset='dmf'}:{initialPreset?:'dmf'|'cb-ui'}){
    </form>
    <Text role="status" size="sm">{result}</Text>
   </Card>
+  <section id={`${id}-content-proof`} aria-labelledby={`${id}-content-title`}>
+   <Text as="h2" id={`${id}-content-title`} size="title">Content components</Text>
+   <div className="consumer-actions">
+    <Badge>Default label</Badge><Badge variant="secondary">Secondary label</Badge>
+    <Badge variant="destructive">Destructive label</Badge><Badge variant="outline">Outline label</Badge>
+    <Badge variant="ghost">Ghost label</Badge><Badge as="a" href={`#${id}-name`} variant="link">Display name field</Badge>
+   </div>
+   <Alert aria-labelledby={`${id}-notice-title`}>
+    <AlertTitle id={`${id}-notice-title`}>Local preview only</AlertTitle>
+    <AlertDescription>Values stay on this page. Nothing is sent to a server.</AlertDescription>
+    <AlertAction><Badge as="a" variant="link" href={`#${id}-name`}>Review display name</Badge></AlertAction>
+   </Alert>
+   <Alert variant="destructive">
+    <AlertTitle>Example validation message</AlertTitle>
+    <AlertDescription>This static example shows an authored error. Complete the required consent field before previewing values.</AlertDescription>
+   </Alert>
+  </section>
  </main>;
 }

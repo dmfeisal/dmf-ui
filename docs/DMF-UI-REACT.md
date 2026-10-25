@@ -1,6 +1,6 @@
 # React web alpha
 
-24 October 2026. The separate private `@dmf-ui/react` package at `packages/react`, version `0.1.0-alpha.3`, implements Button, Text, Input, Switch and Card. The Astro archive remains 0.4.0. This is preparation for the 0.5.0 React milestone, not a stable release, native adapter or npm publication.
+24 October 2026. The separate private `@dmf-ui/react` package at `packages/react`, version `0.1.0-alpha.3`, implements Button, Text, Input, Switch, Card, Badge and Alert (with AlertTitle, AlertDescription and AlertAction). The Astro archive remains 0.4.0. This is preparation for the 0.5.0 React milestone, not a stable release, native adapter or npm publication.
 
 ## Ownership and setup
 
@@ -27,6 +27,8 @@ The production build also renders the app into its HTML using the installed adap
 Input forwards native React input props and refs. Switch uses a labeled native checkbox with `role="switch"`. Use `checked` and `onChange` for controlled state, or `defaultChecked` for uncontrolled state; do not change modes. Native required/disabled/name/value/form/reset behavior applies. Controlled values must be reset by the host; the consumer demonstrates that responsibility.
 
 Switch read-only behavior, unchecked-value submission, compact sizes and Astro controller attributes are not exposed. Card currently provides a non-interactive root, without the complete Astro slot family. The package creates no React roots; hosts own rendering, hydration and unmount.
+
+Badge defaults to a static span; `as="a"` requires `href` and preserves native anchor props/ref/keyboard behavior. Its six variants follow the shared content contract. It does not infer status meaning, announce changing text or render a button. Alert defaults to a static note; authors opt into status/alert roles, supply meaningful title/description content and real actions, and own dynamic updates. AlertTitle, AlertDescription and AlertAction forward div refs; title styling does not choose a heading level. No dismiss timer, root or global listener is created. See the adapter README for usage.
 
 ## Verification and limits
 

@@ -1,5 +1,5 @@
 import {useEffect,useState} from 'react';
-import {Button,Text,Input,Switch,Card} from '../src/index';
+import {Button,Text,Input,Switch,Card,Badge,Alert,AlertTitle,AlertDescription,AlertAction} from '../src/index';
 export function Proof({prefix='react'}:{prefix?:string}) {
  const [checked,setChecked]=useState(false);
  const [ready,setReady]=useState(false);
@@ -20,5 +20,11 @@ export function Proof({prefix='react'}:{prefix?:string}) {
    </fieldset>
   </form>
   <Text role="status" size="sm">{result}</Text>
+  <Badge variant="secondary">Local preview</Badge>
+  <Alert>
+   <AlertTitle>Preview values stay here</AlertTitle>
+   <AlertDescription>This static notice does not announce itself as an urgent alert.</AlertDescription>
+   <AlertAction><Badge as="a" href={`#${prefix}-name`} variant="link">Review display name</Badge></AlertAction>
+  </Alert>
  </Card>;
 }

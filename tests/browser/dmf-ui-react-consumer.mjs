@@ -56,6 +56,12 @@ export async function run({page,baseURL,artifacts,settle,mobile,tap,resetBrowser
    }
    await page.screenshot({path:`${artifacts}/desktop-${system}-${dark?'dark':'light'}.png`});
   }
+  await page.focus('section .consumer-actions a[data-slot=badge]');
+  await page.keyboard.press('Shift+Tab');await page.keyboard.press('Tab');
+  assert(await page.evaluate(()=>document.activeElement.tagName==='A'&&document.activeElement.matches(':focus-visible')&&parseFloat(getComputedStyle(document.activeElement).outlineWidth)>=2),'Badge link keyboard focus missing');
+  await page.keyboard.press('Enter');
+  assert(await page.evaluate(()=>decodeURIComponent(location.hash.slice(1))===document.querySelector('input[name=name]').id),'Badge link did not navigate to its authored target');
+  assert(await page.evaluate(()=>[...document.querySelectorAll('[data-slot=alert]')].every(el=>el.getAttribute('role')==='note'&&!el.hasAttribute('aria-live'))),'Static Alerts became live announcements');
   await mobile();
   for(const direction of ['ltr','rtl'])for(const system of ['dmf','cb-ui']){
    await page.evaluate(direction=>document.documentElement.dir=direction,direction);await preset(system,true);

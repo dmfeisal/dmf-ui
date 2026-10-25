@@ -4,7 +4,7 @@ import {JSDOM} from 'jsdom';
 import {act,createElement as h,createRef,StrictMode} from 'react';
 import {userEvent} from '@testing-library/user-event';
 import {App,render,identifierPrefix} from '../.test-dist/server.mjs';
-import {Button,Input,Switch,Card,Text} from '@dmf-ui/react';
+import {Button,Input,Switch,Card,Text,Badge,Alert,AlertTitle,AlertDescription,AlertAction} from '@dmf-ui/react';
 async function withDOM(run,html=''){
  const dom=new JSDOM(`<div id="root">${html}</div><div id="other"></div>`,{url:'https://consumer.test'});
  const saved=new Map();const errors=[];const originalError=console.error;
@@ -74,3 +74,13 @@ test('packed server output hydrates both presets without replacing nodes or repo
   },html);
  }
 });
+
+test('packed content components preserve native links and all refs through cleanup',()=>withDOM(async({mount,user})=>{
+ const refs=Array.from({length:6},()=>createRef());let clicks=0;
+ const root=await mount(h(Alert,{ref:refs[0],role:'status'},h(AlertTitle,{ref:refs[1]},'Local notice'),h(AlertDescription,{ref:refs[2]},'Authored content'),h(AlertAction,{ref:refs[3]},h(Badge,{ref:refs[4]},'Draft'),h(Badge,{as:'a',href:'#other',ref:refs[5],onClick:()=>clicks++},'Details'))));
+ assert.deepEqual(refs.map(ref=>ref.current.tagName),['DIV','DIV','DIV','DIV','SPAN','A']);
+ await act(async()=>user.tab());assert.equal(document.activeElement,refs[5].current);
+ await act(async()=>user.keyboard('[Enter]'));assert.equal(clicks,1);
+ assert.equal(refs[0].current.getAttribute('role'),'status');
+ await act(async()=>root.render(null));assert.ok(refs.every(ref=>ref.current===null));
+}));

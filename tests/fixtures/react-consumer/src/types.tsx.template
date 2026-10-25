@@ -1,5 +1,5 @@
 import {createRef} from 'react';
-import {Button,Input,Switch,Text,Card} from '@dmf-ui/react';
+import {Button,Input,Switch,Text,Card,Badge,Alert,AlertTitle,AlertDescription,AlertAction} from '@dmf-ui/react';
 const input=createRef<HTMLInputElement>();
 const button=createRef<HTMLButtonElement>();
 const heading=createRef<HTMLHeadingElement>();
@@ -15,3 +15,14 @@ const readonlySwitch=<Switch readOnly>Updates</Switch>;
 // @ts-expect-error The button primitive does not implement anchor navigation.
 const href=<Button href="/docs/">Docs</Button>;
 void [valid,variant,invalidRef,readonlySwitch,href];
+
+const content=<Alert ref={card} role="status"><AlertTitle ref={card}>Preview</AlertTitle><AlertDescription ref={card}>Local content</AlertDescription><AlertAction ref={card}><Badge as="a" href="#content-proof" ref={createRef<HTMLAnchorElement>()}>Details</Badge><Badge ref={createRef<HTMLSpanElement>()}>Draft</Badge></AlertAction></Alert>;
+// @ts-expect-error Anchor badges require a destination.
+const missingDestination=<Badge as="a">Details</Badge>;
+// @ts-expect-error Static badges cannot navigate.
+const staticDestination=<Badge href="/">Details</Badge>;
+// @ts-expect-error Badge anchor refs must be anchors.
+const wrongBadgeRef=<Badge as="a" href="/" ref={button}>Details</Badge>;
+// @ts-expect-error Alert has no invented variant.
+const wrongAlert=<Alert variant="warning"/>;
+void [content,missingDestination,staticDestination,wrongBadgeRef,wrongAlert];

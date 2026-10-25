@@ -63,3 +63,17 @@ PASS: the browser review found and corrected concrete contrast/theme/semantics i
 Reference: [W3C Understanding Non-text Contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast).
 
 Firefox was retried during the final follow-up using the existing isolated workspace profile. It again exits before navigation with helper-process permission errors and invalid system-service connections. This is an environment blocker, not a component test failure. Spoken screen-reader and real-device checks remain manual; no suitable live device or spoken-reader testing surface was available.
+
+## Badge and Alert expansion — 25 October 2026
+
+The unpublished adapter now includes Badge and Alert plus AlertTitle, AlertDescription and AlertAction, bringing the family count to seven. Core remains 0.4.0 and React remains 0.1.0-alpha.3. These changes follow the existing shared content contracts; no new dependency, core export or fixture lock regeneration is needed. Earlier hosted CI links verify their exact five-component snapshots, not this later expansion.
+
+Badge preserves native span/anchor semantics, a required anchor destination, six variants, correct native refs and authored text. Alert is a static note by default; status/urgent announcement roles are explicit author choices. Its parts forward native div props/refs and do not invent heading levels or actions. No automatic announcements, dismiss timer or additional runtime listeners are added.
+
+Validation: four adapter tests pass; the clean locked packed consumer passes all five acceptance tests, including external positive/negative TypeScript contracts, native link Enter activation, all five new exports (six native element refs) and cleanup, independent-root IDs and both-preset SSR hydration. Astro check covers 188 files with zero errors/warnings/hints; the 34-page production build, token check and all 16 source tests pass. The fixture's initially duplicated static section ID was corrected to an instance-owned React ID before acceptance.
+
+Owner-authorized isolated Chrome 155 passes the expanded full scenario: twelve axe states with zero violations and incomplete rules; native forms/ref/reset and touch; 390px LTR/RTL with doubled text and no measured clipping; CB font loading and existing control contrast; Badge native keyboard focus/anchor navigation; static Alert semantics; and four forced-colors Switch states. New Badge/Alert controls are present in the twelve-state audit, but explicit numeric boundary measurements still cover Input/Switch only. Full desktop DMF and enlarged mobile CB/RTL captures were visually inspected. The earlier Safari result covers the original five families; Safari has not been rerun for this expansion. Firefox, spoken readers and real-device coverage remain pending.
+
+Build comparison for the packed fixture: JavaScript increases from 227.70 kB (71.33 kB gzip) to 231.38 kB (72.15 kB gzip); CSS from 89.46 kB (14.10 kB gzip) to 89.95 kB (14.16 kB gzip). These are production asset sizes, not a CPU or memory profile. No new effect, animation or global listener is introduced.
+
+Anti Slop during-mode review: ENERGY 1 / RHYTHM 1 / MOTION 1; existing Fulldev/DMF/CB direction. Badge pills identify authored labels and links; Alert borders group authored notices. Shared semantic colors, native links, logical alignment and wrapping have functional purposes. No invented data, decorative assets or new motion is added. Chromium audits, keyboard checks and visual inspection support this scope; broader browser/reader acceptance is not claimed.
