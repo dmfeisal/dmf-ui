@@ -93,7 +93,18 @@
     "./badge": "./src/components/dmf-ui/badge/index.ts",
     "./alert": "./src/components/dmf-ui/alert/index.ts",
     "./contracts.json": "./contracts/components.json",
-    "./presets/horego.css": "./src/styles/dmf-ui-horego.css"
+    "./presets/horego.css": "./src/styles/dmf-ui-horego.css",
+    "./breadcrumb": "./src/components/dmf-ui/breadcrumb/index.ts",
+    "./pagination": "./src/components/dmf-ui/pagination/index.ts",
+    "./navigation-menu": "./src/components/dmf-ui/navigation-menu/index.ts",
+    "./avatar": "./src/components/dmf-ui/avatar/index.ts",
+    "./rating": "./src/components/dmf-ui/rating/index.ts",
+    "./chip": "./src/components/dmf-ui/chip/index.ts",
+    "./presets/portfolio.css": "./src/styles/dmf-ui-portfolio.css",
+    "./tag-list": "./src/components/dmf-ui/tag-list/index.ts",
+    "./project-action-bar": "./src/components/dmf-ui/project-action-bar/index.ts",
+    "./section-navigation": "./src/components/dmf-ui/section-navigation/index.ts",
+    "./archive-index": "./src/components/dmf-ui/archive-index/index.ts"
   },
   "files": [
     "contracts/*.json",

@@ -2,13 +2,14 @@
 
 ## Source and outputs
 
-`tokens/design.tokens.json` is the editable source for the existing shared semantic foundation. It contains `dmf.light`, `dmf.dark` `cb.light` and `horego.light` groups, using DTCG 2025.10 color, dimension, shadow and fontFamily types and whole-token aliases. The small local generator implements these authored constructs, not the complete DTCG resolver specification. No new dependency is required.
+`tokens/design.tokens.json` is the editable source for the existing shared semantic foundation. It contains `dmf.light`, `dmf.dark` `cb.light`, `horego.light` and `portfolio.light/dark/yellow` groups, using DTCG 2025.10 color, dimension, shadow and fontFamily types and whole-token aliases. The small local generator implements these authored constructs, not the complete DTCG resolver specification. No new dependency is required.
 
 Run `npm run tokens:build` after editing the source. Commit the source and its generated outputs together:
 
 - `src/styles/dmf-ui-tokens.css`: Existing `.dmf-ui` light, explicit root dark and system-dark fallback selectors.
 - `src/styles/dmf-ui-cb.css`: Existing light-only CB scope and bundled Nunito font-face.
 - `src/styles/dmf-ui-horego.css`: Light-only brand-derived Horego scope, local Inter/Rounded Mplus webfonts and heading treatment.
+- `src/styles/dmf-ui-portfolio.css`: Scoped portfolio appearances and local typography; mappings and source hashes are documented in DMF-UI-PORTFOLIO.md.
 - `tokens/resolved.json`: Platform-neutral, alias-resolved authored groups with explicit types and units. These are not complete native themes: `dmf.dark` overlays `dmf.light`; the CB group overrides the ambient DMF values, retaining the existing CSS inheritance for roles it does not define.
 
 Development, check, build and pack hooks run `tokens:check`, which fails on stale files rather than silently changing the checkout. `npm test` also checks determinism, alias errors, invalid values and baseline inventory. CI explicitly validates generated output. The generator writes complete declared outputs; it does not patch authored UI source or append CSS overrides.

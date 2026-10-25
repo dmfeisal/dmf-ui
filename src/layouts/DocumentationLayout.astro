@@ -12,7 +12,7 @@ const sidebarGroups=section==='components'?categories.map(title=>({title,items:c
 const searchEntries=[
  ...components.map(item=>({title:item.name,description:item.description,href:`/components/${item.slug}/`,group:'Components',keywords:`${item.category} ${item.slug}`})),
  ...guides.map(item=>({title:item.title,description:item.description,href:`/docs/${item.slug}/`,group:'Guides',keywords:item.sections.map(part=>part.title).join(' ')})),
- {title:'Create a preset',description:'Configure colors, typography, radius and product presets.',href:'/create/',group:'Pages',keywords:'CB UI reconstruction Horego foundation theme export CSS JSON'},
+ {title:'Create a preset',description:'Configure colors, typography, radius and product presets.',href:'/create/',group:'Pages',keywords:'CB UI reconstruction Horego Portfolio Yellow foundation theme export CSS JSON'},
 ];
 
 ---

@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {Check} from '@lucide/astro';
+import {cn} from '../utils';
+interface Props extends Omit<HTMLAttributes<'input'>,'type'|'size'> {size?:'default'|'sm';}
+const {class:className,size='default',...props}=Astro.props;
+---
+<label data-slot="chip" data-size={size} class={cn('dmf-chip',className)}><input type="checkbox" {...props}/><span class="dmf-chip-label"><Check size={14} aria-hidden="true"/><span><slot/></span></span></label>

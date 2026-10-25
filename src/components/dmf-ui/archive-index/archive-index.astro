@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+interface Props extends HTMLAttributes<'span'> {index:number;decorative?:boolean;}
+const {index,decorative=true,class:className,...props}=Astro.props;
+if(!Number.isSafeInteger(index)||index<0)throw new Error('ArchiveIndex requires a non-negative integer index.');
+---
+<span data-slot="archive-index" class={cn('dmf-archive-index',className)} aria-hidden={decorative?'true':undefined} {...props}>{String(index+1).padStart(2,'0')}</span>

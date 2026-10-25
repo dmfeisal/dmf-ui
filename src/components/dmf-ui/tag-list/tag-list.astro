@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+interface Props extends HTMLAttributes<'ul'> {items:readonly string[];label?:string;shape?:'pill'|'square';}
+const {items,label='Topics',shape='pill',class:className,...props}=Astro.props;
+---
+{items.length>0&&<ul data-slot="tag-list" data-shape={shape} aria-label={label} class={cn('dmf-topic-list',className)} {...props}>{items.map(item=><li><span>{item}</span></li>)}</ul>}

@@ -1,7 +1,7 @@
 import {readFile,writeFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 const root=new URL('../',import.meta.url);
-export const groups=['dmf.light','dmf.dark','cb.light','horego.light'];
+export const groups=['dmf.light','dmf.dark','cb.light','horego.light','portfolio.light','portfolio.dark','portfolio.yellow'];
 const dimension=value=>{
  if(!value||!Number.isFinite(value.value)||!['px','rem'].includes(value.unit))throw new Error('Invalid dimension');
  return `${value.value}${value.unit}`;
@@ -91,8 +91,18 @@ ${declarations('horego.light')}
 }
 :root .dmf-ui[data-system="horego"] :where(h1,h2,h3,h4,h5,h6) { font-family:var(--font-heading); }
 `;
- const portable={schemaVersion:1,description:'Alias-resolved authored groups, not complete platform themes. dmf.dark overrides dmf.light; cb.light and horego.light override the ambient DMF theme. No pixel-density, text-scaling or native component policy is implied.',groups:Object.fromEntries(groups.map(group=>[group,Object.fromEntries([...tokens].filter(([path])=>path.startsWith(`${group}.`)).map(([path,token])=>[path.slice(group.length+1),{type:token.$type,value:resolved.get(path)}]))]))};
- return {'src/styles/dmf-ui-tokens.css':foundation,'src/styles/dmf-ui-cb.css':cb,'src/styles/dmf-ui-horego.css':horego,'tokens/resolved.json':JSON.stringify(portable,null,2)+'\n'};
+ const portfolio=`${header}/* Portfolio palette; component-role mapping documented in docs/DMF-UI-PORTFOLIO.md. */
+@font-face { font-family:'DMF Portfolio Inter'; src:url('../assets/fonts/horego/inter-latin-variable.woff2') format('woff2'); font-weight:100 900; font-style:normal; font-display:swap; }
+@font-face { font-family:'DMF Portfolio Jakarta'; src:url('../assets/fonts/portfolio/plus-jakarta-sans-latin-variable.woff2') format('woff2'); font-weight:200 800; font-style:normal; font-display:swap; }
+:root .dmf-ui[data-system="portfolio"] {${declarations('portfolio.light')}}
+:root[data-theme="dark"] .dmf-ui[data-system="portfolio"] {${declarations('portfolio.dark')}}
+:root[data-theme="yellow"] .dmf-ui[data-system="portfolio"] {${declarations('portfolio.yellow')}}
+@media(prefers-color-scheme:dark) { :root:not([data-theme]) .dmf-ui[data-system="portfolio"] {${declarations('portfolio.dark')}} }
+${['light','dark','yellow'].map(mode=>`:root .dmf-ui[data-system="portfolio"][data-color-mode="${mode}"] {${declarations('portfolio.'+mode)}}`).join('\n')}
+:root .dmf-ui[data-system="portfolio"] :where(h1,h2,h3,h4,h5,h6) { font-family:var(--font-heading); font-feature-settings:'ss03' 1; }
+`;
+ const portable={schemaVersion:1,description:'Alias-resolved authored groups, not complete platform themes. dmf.dark overrides dmf.light; cb.light and horego.light override the ambient DMF theme; portfolio groups supply explicit scoped appearances. No pixel-density, text-scaling or native component policy is implied.',groups:Object.fromEntries(groups.map(group=>[group,Object.fromEntries([...tokens].filter(([path])=>path.startsWith(`${group}.`)).map(([path,token])=>[path.slice(group.length+1),{type:token.$type,value:resolved.get(path)}]))]))};
+ return {'src/styles/dmf-ui-tokens.css':foundation,'src/styles/dmf-ui-cb.css':cb,'src/styles/dmf-ui-horego.css':horego,'src/styles/dmf-ui-portfolio.css':portfolio,'tokens/resolved.json':JSON.stringify(portable,null,2)+'\n'};
 }
 export async function buildTokens({check=false}={}){
  const source=JSON.parse(await readFile(new URL('tokens/design.tokens.json',root),'utf8'));

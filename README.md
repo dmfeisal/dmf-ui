@@ -60,3 +60,15 @@ The private `packages/react` proof provides Button, Text, Input, Switch and Card
 ### Horego preset
 
 Use the brand-derived Horego light preset in [Create](https://ui.feisal.id/create/?system=horego). Load `dmf-ui/presets/horego.css` after `dmf-ui/styles.css`, then use `class="dmf-ui" data-system="horego" data-color-mode="light"`. See [Horego preset scope and evidence](docs/DMF-UI-HOREGO-PRESET.md). This is a new semantic mapping of the confirmed brand foundations, not a historical product-system reconstruction.
+
+### Navigation components
+
+Native Astro `Breadcrumb`, `Pagination` and `NavigationMenu` are exported from `dmf-ui/breadcrumb`, `dmf-ui/pagination` and `dmf-ui/navigation-menu`. They preserve real-link behavior without client controllers. See [navigation semantics and verification](docs/DMF-UI-NAVIGATION-COMPONENTS.md), or run the local site and open `/examples/navigation/1/` for the three-page pagination example.
+
+### Product details
+
+Astro `Avatar`, `Rating` and `Chip` are available from `dmf-ui/avatar`, `dmf-ui/rating` and `dmf-ui/chip`. Avatar supports image-error initials; Rating offers read-only scores or native radio input; Chip provides native checkbox filters. See [product detail semantics and verification](docs/DMF-UI-PRODUCT-DETAILS.md).
+
+### Portfolio preset and extracted patterns
+
+The `dmf-ui/presets/portfolio.css` export provides Light, Dark and Yellow appearances from dmf-web's palette, with local Inter/Plus Jakarta Sans. `TagList`, `ProjectActionBar`, `SectionNavigation` and `ArchiveIndex` are available as root and individual exports. See [extraction inventory, source provenance and boundaries](docs/DMF-UI-PORTFOLIO.md). The standalone example is `/examples/portfolio/`; Create accepts `?system=portfolio&mode=yellow`.

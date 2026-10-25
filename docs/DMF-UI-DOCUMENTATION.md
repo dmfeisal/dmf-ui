@@ -11,7 +11,7 @@ The portfolio's `/ui/` remains an integration lab. Its pages, Canvas, navigation
 - `/`: Home. Explain the foundation, show real component previews and lead to Components or installation.
 - `/components/`: Searchable catalog of the 21 implemented component families, grouped by purpose. Static links remain available without JavaScript; search is progressive enhancement with a result count and an empty state.
 - `/components/<slug>/`: One page per exported family, with one full-width DMF preview, a copyable Astro usage snippet with a manual clipboard fallback, focused option table and behavior notes. Product preset customization is shown on Create rather than repeated across component pages.
-- `/create/`: Local preset configurator with live components, CSS export, JSON download and shareable query links. Astro only; CB primary stays #26ade4. CB and the brand-derived Horego preset stay light.
+- `/create/`: Local preset configurator with live components, CSS export, JSON download and shareable query links. Astro only; CB primary stays #26ade4. CB and the brand-derived Horego preset stay light; Portfolio offers Light, Dark and Yellow.
 - `/docs/`: Guide index.
 - `/docs/icons/`: Lucide guidance and a searchable curated gallery with sizing, stroke options and copyable examples.
 - `/docs/contracts/`, `/docs/introduction/`, `/docs/installation/`, `/docs/theming/`, `/docs/presets/`, `/docs/accessibility/`, `/docs/credits/`: Seven guides covering component intent, setup, ownership, customization and verified limits.
@@ -90,3 +90,5 @@ Astro check: 190 files, zero errors/warnings/hints. Production build: 34 pages. 
 The documentation shell owns separate `--docs-radius-control` (0.75rem), `--docs-radius-panel` (1.25rem), and `--docs-radius-dialog` (1.5rem) values. They round website controls, catalog entries, navigation highlights, code/preview frames, the icon gallery and search dialog. Create's surrounding controls and brand summary use these host values; its actual component preview keeps the selected foundation/custom radius. Shared semantic tokens and package versions are unchanged.
 
 Verification: Astro check (194 files) and 35-page production build passed, as did all 18 source tests and production documentation/Create/content/search browser flows, including mobile and enlarged-text containment. Existing keyboard and accessibility checks passed. The styling change remains local until committed and pushed.
+
+The portfolio extraction adds `/examples/portfolio/`, a scoped Portfolio preset and four reusable patterns. See [source inventory and boundaries](DMF-UI-PORTFOLIO.md).

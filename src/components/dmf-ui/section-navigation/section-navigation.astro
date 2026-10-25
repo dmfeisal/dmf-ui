@@ -1,0 +1,22 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+interface Props extends HTMLAttributes<'nav'> {items:{id:string;label:string}[];label?:string;currentId?:string;}
+const {items,label='Page sections',currentId,class:className,...props}=Astro.props;
+if(new Set(items.map(item=>item.id)).size!==items.length||items.some(item=>!item.id))throw new Error('SectionNavigation requires non-empty unique section IDs.');
+---
+<nav data-slot="section-navigation" data-dmf-section-nav aria-label={label} class={cn('dmf-section-navigation',className)} {...props}><ol>{items.map((item,index)=><li><a href={`#${encodeURIComponent(item.id)}`} aria-current={currentId===item.id?'location':undefined}><span aria-hidden="true">{String(index+1).padStart(2,'0')}</span><span>{item.label}</span></a></li>)}</ol></nav>
+<script>
+ const owners=new Map<HTMLElement,{abort:AbortController;observer:IntersectionObserver}>();
+ function initialize(){for(const root of document.querySelectorAll<HTMLElement>('[data-dmf-section-nav]')){
+  if(owners.has(root))continue;
+  const links=[...root.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')];
+  const targets=links.map(link=>document.getElementById(decodeURIComponent(link.hash.slice(1)))).filter((element):element is HTMLElement=>!!element);
+  const setCurrent=(id:string)=>{for(const link of links){if(decodeURIComponent(link.hash.slice(1))===id)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');}};
+  const syncHash=()=>{let id:string;try{id=decodeURIComponent(location.hash.slice(1));}catch{return;}if(targets.some(target=>target.id===id))setCurrent(id);};
+  const visible=new Map<string,number>();const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting)visible.set(entry.target.id,entry.boundingClientRect.top);else visible.delete(entry.target.id);}const first=[...visible].sort((a,b)=>a[1]-b[1])[0];if(first)setCurrent(first[0]);},{rootMargin:'-15% 0px -60% 0px'});
+  for(const target of targets)observer.observe(target);
+  const abort=new AbortController();window.addEventListener('hashchange',syncHash,{signal:abort.signal});owners.set(root,{abort,observer});syncHash();
+ }}
+ initialize();document.addEventListener('astro:page-load',initialize);document.addEventListener('astro:before-swap',()=>{for(const {abort,observer} of owners.values()){abort.abort();observer.disconnect();}owners.clear();});
+</script>

@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {ArrowDown,ArrowUpRight} from '@lucide/astro';
+import {cn} from '../utils';
+interface Props extends HTMLAttributes<'nav'> {label:string;ariaLabel:string;items:{href:string;label:string;emphasis?:'primary'|'secondary';direction?:'down'|'external'}[];}
+const {label,ariaLabel,items,class:className,...props}=Astro.props;
+---
+<nav data-slot="project-action-bar" aria-label={ariaLabel} class={cn('dmf-project-actions',className)} {...props}><p>{label}</p><div>{items.map(item=><a href={item.href} data-emphasis={item.emphasis??'secondary'}><span>{item.label}</span>{item.direction==='down'?<ArrowDown size={18} aria-hidden="true"/>:<ArrowUpRight size={18} aria-hidden="true"/>}</a>)}</div></nav>

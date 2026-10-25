@@ -1,0 +1,40 @@
+{
+  "sourceRepository": "dmfeisal/dmf-web",
+  "sourceCommit": "c43d8fc421338d10e900da394b9e9e515a1d0da0",
+  "captured": "2026-10-25",
+  "files": [
+    {
+      "path": "public/css/tokens.css",
+      "sha256": "2a59e8250daa15780cade918b0958c3337c6e797152ef03455390e983e1a301e"
+    },
+    {
+      "path": "public/css/global.css",
+      "sha256": "b53ee4853b9c84d98abbc3791f06bf1475ae3d7949cad6116b808358e15a0033"
+    },
+    {
+      "path": "src/components/TagList.astro",
+      "sha256": "f92bbeaf3a2b5afb3222a91c83456280e1ccf65c6101a14ea5282b72770e94f2"
+    },
+    {
+      "path": "src/components/ProjectActionBar.astro",
+      "sha256": "4fce94cb8ccdac86006ee9c373af1093db1232148aca87c45ce564638bedc124"
+    },
+    {
+      "path": "src/components/SectionNavigation.astro",
+      "sha256": "e19f43cb9ee7b7969e7c1879f1db7da8e617f69691edb27a6c11a5a9bea3c7f7"
+    },
+    {
+      "path": "public/js/section-navigation.js",
+      "sha256": "81b6bf79146bf0fd44c1edbe72a43ee71a2fc94fa57bc3aaaa73be4586dca37f"
+    },
+    {
+      "path": "docs/DESIGN-SYSTEM.md",
+      "sha256": "bf3486d9eac92c8ec7dd51316395939390fc633e6b324a731d7f2736d64917e4"
+    },
+    {
+      "path": "src/components/ArchiveIndex.astro",
+      "sha256": "53abbf591778102fa5b50bf55cdd3d904691cf966b2e4326b4bc9016bfb0d024"
+    }
+  ],
+  "adaptation": "Shared tokens and APIs adapted for dmf-ui. No runtime import or sibling checkout is required."
+}

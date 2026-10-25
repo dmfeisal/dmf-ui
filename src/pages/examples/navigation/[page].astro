@@ -1,0 +1,15 @@
+---
+import DocumentationLayout from '../../../layouts/DocumentationLayout.astro';
+import {Breadcrumb,Pagination,NavigationMenu} from '../../../components/dmf-ui';
+import {guides} from '../../../data/documentation';
+export function getStaticPaths(){return [1,2,3].map(page=>({params:{page:String(page)},props:{page}}));}
+const {page}=Astro.props;
+const totalPages=3,perPage=Math.ceil(guides.length/totalPages),visible=guides.slice((page-1)*perPage,page*perPage);
+---
+<DocumentationLayout title={`Guide collection · Page ${page}`} description="A real static pagination example with native page links." section="docs">
+<Breadcrumb label="Example breadcrumb" items={[{label:'Home',href:'/'},{label:'Guides',href:'/docs/'},{label:`Page ${page}`}]} />
+<h1>Guide collection</h1><p class="docs-lead">Page {page} of {totalPages}. This example uses native links between three generated pages.</p>
+<NavigationMenu label="Example navigation" items={[{label:'Guides',href:'/docs/'},{label:'Pagination component',href:'/components/pagination/'},{label:'Create a preset',href:'/create/'}]}/>
+<div class="docs-grid docs-section">{visible.map(guide=><article class="docs-entry"><a href={`/docs/${guide.slug}/`}>{guide.title}</a><p>{guide.description}</p></article>)}</div>
+<div class="docs-section"><Pagination page={page} totalPages={totalPages} pageHref={number=>`/examples/navigation/${number}/`}/></div>
+</DocumentationLayout>

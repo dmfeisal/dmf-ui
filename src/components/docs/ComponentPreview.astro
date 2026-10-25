@@ -1,4 +1,14 @@
 ---
+import {ArchiveIndex} from '../dmf-ui/archive-index';
+import {TagList} from '../dmf-ui/tag-list';
+import {ProjectActionBar} from '../dmf-ui/project-action-bar';
+import {SectionNavigation} from '../dmf-ui/section-navigation';
+import {Avatar} from '../dmf-ui/avatar';
+import {Rating} from '../dmf-ui/rating';
+import {Chip} from '../dmf-ui/chip';
+import {Breadcrumb} from '../dmf-ui/breadcrumb';
+import {Pagination} from '../dmf-ui/pagination';
+import {NavigationMenu} from '../dmf-ui/navigation-menu';
 import { Button } from '../dmf-ui/button';
 import { Input } from '../dmf-ui/input';
 import { Label } from '../dmf-ui/label';
@@ -28,6 +38,16 @@ const presetName='DMF UI';
 ---
 <section class="dmf-ui docs-preview" data-system="dmf" aria-label={`${presetName} ${slug} example`} data-docs-preview={slug}>
 <p class="docs-preview-label">{presetName}</p>
+{slug==='archive-index'&&<div class="docs-preview-stack">{['Foundations','Components','Presets'].map((label,index)=><p><ArchiveIndex index={index}/>{label}</p>)}</div>}
+{slug==='tag-list'&&<TagList label="Example project topics" items={['Design systems','Product design','Accessible interfaces']}/>}
+{slug==='project-action-bar'&&<ProjectActionBar label="Explore the foundation" ariaLabel="Preview project actions" items={[{label:'Read the guide',href:'/docs/introduction/',emphasis:'primary'},{label:'Browse components',href:'/components/'}]}/>}
+{slug==='section-navigation'&&<div class="docs-preview-stack"><SectionNavigation label="Preview page sections" items={[{id:`${id}-overview`,label:'Overview'},{id:`${id}-details`,label:'Details'}]}/><section id={`${id}-overview`} style="scroll-margin-top:12rem"><h3>Overview</h3><p>Native anchors target real sections.</p></section><section id={`${id}-details`} style="scroll-margin-top:12rem"><h3>Details</h3><p>The host owns content and placement.</p></section></div>}
+{slug==='avatar'&&<div class="docs-preview-row"><Avatar name="DMF UI" size="sm"/><Avatar name="Product team"/><Avatar name="Image unavailable" src="data:image/png;base64,broken" size="lg"/><p class="docs-note">Initials remain when no image is supplied or an image fails.</p></div>}
+{slug==='rating'&&<div class="docs-preview-stack"><Rating label="Illustrative score" value={4.5}/><form data-product-form><Rating label="Your rating" name="rating" readOnly={false} required/><div class="docs-preview-row"><Button type="submit">Preview rating</Button><Button type="reset" variant="outline">Reset</Button></div><p role="status" data-product-status>No rating submitted.</p></form><Rating label="Rating unavailable" name="disabled-rating" readOnly={false} value={3} disabled/></div>}
+{slug==='chip'&&<form data-product-form><fieldset><legend>Filter categories</legend><div class="docs-preview-row"><Chip name="category" value="navigation" checked>Navigation</Chip><Chip name="category" value="forms">Forms</Chip><Chip name="category" value="content">Content</Chip><Chip name="category" value="unavailable" disabled>Unavailable filter</Chip></div></fieldset><div class="docs-preview-row"><Button type="submit">Preview filters</Button><Button type="reset" variant="outline">Reset</Button></div><p role="status" data-product-status>Navigation selected. Filters stay in this example.</p></form>}
+{slug==='breadcrumb'&&<Breadcrumb label="Preview breadcrumb" items={[{label:'Home',href:'/'},{label:'Components',href:'/components/'},{label:'Breadcrumb'}]}/>}
+{slug==='pagination'&&<div class="docs-preview-stack"><Pagination label="Guide example pages" page={1} totalPages={3} pageHref={page=>`/examples/navigation/${page}/`}/><p class="docs-note">Open a page to browse the three-page guide collection.</p></div>}
+{slug==='navigation-menu'&&<NavigationMenu label="Preview project navigation" items={[{label:'Components',href:'/components/'},{label:'Navigation Menu',href:'/components/navigation-menu/',current:true},{label:'Presets',href:'/docs/presets/'},{label:'Registry (unavailable)',href:'#',disabled:true}]}/>}
 {slug==='text'&&<div class="docs-preview-stack"><Text as="h3" size="title" weight="semibold">A clear starting point.</Text><Text>Semantic text follows the product’s font.</Text><Text tone="muted" size="sm">Choose the right heading level for your document.</Text></div>}
 {slug==='card'&&<Card as="article" aria-labelledby={`${id}-title`}><CardHeader><CardTitle as="h3" id={`${id}-title`}>Preset preview</CardTitle><CardDescription>Grouped content with native navigation.</CardDescription></CardHeader><CardContent><Text size="sm">A shared foundation leaves room for your product.</Text></CardContent><CardFooter><Badge as="a" variant="link" href="/create/">Configure a preset</Badge></CardFooter></Card>}
 {slug==='badge'&&<div class="docs-preview-row">{(['default','secondary','destructive','outline','ghost'] as const).map(variant=><Badge variant={variant}>{variant==='destructive'?'Needs review':variant==='default'?'Preview':variant==='secondary'?'Draft':variant==='outline'?'Not published':'Local only'}</Badge>)}<Badge as="a" variant="link" href="/docs/presets/">Read about presets</Badge></div>}
@@ -60,5 +80,10 @@ const presetName='DMF UI';
    preview.querySelector('[data-dmf-dropdown-menu]')?.addEventListener('dropdown-menu:select',()=>{if(feedback)feedback.textContent='Preview selection selected. Nothing was saved or sent.';},{signal:abort.signal});
   }
   for(const root of document.querySelectorAll<HTMLElement>('[data-docs-toast]')){if(bindings.has(root))continue;const target=root.querySelector<HTMLElement>('[data-slot=toast]');if(!target)continue;const toast=createToast(target,{portal:false});const abort=new AbortController();root.querySelector('[data-docs-toast-show]')?.addEventListener('click',()=>toast.show({title:'Preview complete',description:'Nothing was saved or sent.',type:'success'}),{signal:abort.signal});bindings.set(root,{toast,abort});}}
+ for(const form of document.querySelectorAll<HTMLFormElement>('[data-product-form]')){
+  const status=form.querySelector<HTMLElement>('[data-product-status]')!;
+  form.addEventListener('submit',event=>{event.preventDefault();const data=[...new FormData(form).values()].map(String);status.textContent=data.length?`Selected: ${data.join(', ')}. Nothing was saved or sent.`:'No filters selected. Nothing was saved or sent.';});
+  form.addEventListener('reset',()=>{status.textContent='Form reset to its initial selections.';});
+ }
  initialize();document.addEventListener('astro:page-load',initialize);document.addEventListener('astro:before-swap',()=>{for(const {toast,abort} of bindings.values()){abort.abort();toast.destroy();}bindings.clear();for(const abort of actions.values())abort.abort();actions.clear();});
 </script>
