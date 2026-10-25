@@ -1,8 +1,11 @@
 ---
 import type {HTMLAttributes} from 'astro/types';
 import {ChevronRight} from '@lucide/astro';
+import Link from '../navigation-link.astro';
+import Content from '../navigation-content.astro';
+import type {NavigationIcon,Presentation} from '../navigation-types';
 import {cn} from '../utils';
-interface Props extends HTMLAttributes<'nav'> {items:{label:string;href?:string}[];label?:string;}
-const {items,label='Breadcrumb',class:className,...props}=Astro.props;
+interface Props extends HTMLAttributes<'nav'> {items:{label:string;href?:string;icon?:NavigationIcon}[];label?:string;presentation?:Presentation;}
+const {items,label='Breadcrumb',presentation='label',class:className,...props}=Astro.props;
 ---
-<nav data-slot="breadcrumb" aria-label={label} class={cn('dmf-breadcrumb',className)} {...props}><ol>{items.map((item,index)=><li>{index>0&&<ChevronRight size={14} aria-hidden="true"/>}{index===items.length-1?<span aria-current="page">{item.label}</span>:item.href?<a href={item.href}>{item.label}</a>:<span>{item.label}</span>}</li>)}</ol></nav>
+<nav data-slot="breadcrumb" aria-label={label} data-presentation={presentation} class={cn('dmf-breadcrumb',className)} {...props}><ol>{items.map((item,index)=><li>{index>0&&<ChevronRight size={14} class="dmf-breadcrumb-separator" aria-hidden="true"/>}{index===items.length-1?<span aria-current="page" title={presentation==='icon'?item.label:undefined}><Content label={item.label} icon={item.icon} presentation={presentation}/></span>:item.href?<Link item={{...item,href:item.href}} presentation={presentation}/>:<span><Content label={item.label} icon={item.icon} presentation={presentation}/></span>}</li>)}</ol></nav>

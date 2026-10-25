@@ -72,3 +72,7 @@ Astro `Avatar`, `Rating` and `Chip` are available from `dmf-ui/avatar`, `dmf-ui/
 ### Portfolio preset and extracted patterns
 
 The `dmf-ui/presets/portfolio.css` export provides Light, Dark and Yellow appearances from dmf-web's palette, with local Inter/Plus Jakarta Sans. `TagList`, `ProjectActionBar`, `SectionNavigation` and `ArchiveIndex` are available as root and individual exports. See [extraction inventory, source provenance and boundaries](docs/DMF-UI-PORTFOLIO.md). The standalone example is `/examples/portfolio/`; Create accepts `?system=portfolio&mode=yellow`.
+
+### Sidebar, responsive menus and presentation options
+
+`Sidebar` and `ResponsiveNavigation` provide native disclosure navigation. Existing navigation and applicable product-detail components now offer `presentation="label"`, `"icon-label"` and `"icon"`, with named icon-only controls and shared tooltips. Numeric pagination destinations and archive markers retain their meaning. See [the presentation matrix, defaults and boundaries](docs/DMF-UI-NAVIGATION-PRESENTATIONS.md).

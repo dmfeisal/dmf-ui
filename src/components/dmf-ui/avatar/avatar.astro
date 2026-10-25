@@ -1,11 +1,12 @@
 ---
 import type {HTMLAttributes} from 'astro/types';
+import type {Presentation} from '../navigation-types';
 import {cn} from '../utils';
-interface Props extends HTMLAttributes<'span'> {name:string;src?:string;fallback?:string;size?:'sm'|'default'|'lg';decorative?:boolean;}
-const {name,src,fallback,size='default',decorative=false,class:className,...props}=Astro.props;
+interface Props extends HTMLAttributes<'span'> {name:string;src?:string;fallback?:string;size?:'sm'|'default'|'lg';decorative?:boolean;presentation?:Presentation;}
+const {name,src,fallback,size='default',decorative=false,presentation='icon',class:className,...props}=Astro.props;
 const initials=fallback??name.trim().split(/\s+/).slice(0,2).map(word=>Array.from(word)[0]??'').join('').toLocaleUpperCase();
 ---
-<span data-slot="avatar" data-size={size} role={decorative?undefined:'img'} aria-label={decorative?undefined:name} aria-hidden={decorative?'true':undefined} class={cn('dmf-avatar',className)} {...props}><span data-slot="avatar-fallback" aria-hidden="true">{initials||'?'}</span>{src&&<img data-avatar-image src={src} alt="" width="80" height="80" loading="lazy" decoding="async"/>}</span>
+<span data-slot="avatar" data-size={size} data-presentation={presentation} role={decorative||presentation==='label'?undefined:'img'} aria-label={decorative||presentation==='label'?undefined:name} aria-hidden={decorative?'true':undefined} class={cn('dmf-avatar-container',className)} {...props}>{presentation!=='label'&&<span class="dmf-avatar" data-size={size}><span data-slot="avatar-fallback" aria-hidden="true">{initials||'?'}</span>{src&&<img data-avatar-image src={src} alt="" width="80" height="80" loading="lazy" decoding="async"/>}</span>}{presentation!=='icon'&&<span aria-hidden={presentation==='icon-label'?'true':undefined}>{name}</span>}</span>
 <script>
  const bindings=new Map<HTMLImageElement,AbortController>();
  function initialize(){for(const image of document.querySelectorAll<HTMLImageElement>('[data-avatar-image]')){if(bindings.has(image))continue;const abort=new AbortController();bindings.set(image,abort);const update=()=>{image.hidden=image.complete&&image.naturalWidth===0;};image.addEventListener('error',()=>{image.hidden=true;},{signal:abort.signal});image.addEventListener('load',()=>{image.hidden=false;},{signal:abort.signal});update();}}

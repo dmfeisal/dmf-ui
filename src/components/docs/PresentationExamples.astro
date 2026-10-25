@@ -1,0 +1,31 @@
+---
+import {House,BookOpen,Palette,Layers,Info,Settings} from '@lucide/astro';
+import {NavigationMenu,Sidebar,ResponsiveNavigation,Breadcrumb,Pagination,SectionNavigation,ProjectActionBar,Avatar,Rating,Chip,TagList,Button,Tooltip,TooltipTrigger,TooltipContent} from '../dmf-ui';
+import {buttonVariants} from '../dmf-ui/button/button-variants';
+import type {Presentation} from '../dmf-ui/navigation-types';
+interface Props {slug:string;prefix:string;}
+const {slug,prefix}=Astro.props;
+const modes:Presentation[]=['label','icon-label','icon'];
+const names={label:'Label only','icon-label':'Icon + label',icon:'Icon only'};
+const supported=['navigation-menu','sidebar','responsive-navigation','breadcrumb','pagination','section-navigation','project-action-bar','avatar','rating','chip','tag-list','button'];
+const items=[{label:'Components',href:'/components/',icon:Layers},{label:'Docs',href:'/docs/',icon:BookOpen},{label:'Create',href:'/create/',icon:Palette}];
+---
+{supported.includes(slug)&&<div class="docs-presentations" data-presentation-examples>{modes.map(presentation=><div data-example-presentation={presentation}><p class="docs-presentation-label">{presentation==='label'?'Label only':presentation==='icon-label'?'Icon + label':'Icon only'}</p>
+{slug==='navigation-menu'&&<NavigationMenu label={`${presentation} example links`} items={items} presentation={presentation}/>}
+{slug==='sidebar'&&<Sidebar label={`${names[presentation]} workspace`} items={items} presentation={presentation}/>}
+{slug==='responsive-navigation'&&<ResponsiveNavigation label={`${names[presentation]} project menu`} items={items} presentation={presentation}/>}
+{slug==='breadcrumb'&&<Breadcrumb label={`${presentation} example breadcrumb`} presentation={presentation} items={[{label:'Home',href:'/',icon:House},{label:'Components',href:'/components/',icon:Layers},{label:'Current page',icon:Info}]}/>}
+{slug==='pagination'&&<Pagination label={`${presentation} guide pages`} page={2} totalPages={3} pageHref={number=>`/examples/navigation/${number}/`} presentation={presentation}/>}
+{slug==='section-navigation'&&<SectionNavigation label={`${presentation} sections`} presentation={presentation} items={[{id:`${prefix}-overview`,label:'Overview',icon:BookOpen},{id:`${prefix}-details`,label:'Details',icon:Info}]}/>}
+{slug==='project-action-bar'&&<ProjectActionBar label="Explore the foundation" ariaLabel={`${presentation} actions`} presentation={presentation} items={items.map(item=>({...item,emphasis:'secondary' as const}))}/>}
+{slug==='avatar'&&<Avatar name="DMF UI" presentation={presentation}/>}
+{slug==='rating'&&<><Rating label={`${presentation} illustrative score`} value={4.5} presentation={presentation}/><Rating label={`${presentation} rating input`} name={`${prefix}-${presentation}-rating`} value={3} readOnly={false} presentation={presentation}/></>}
+{slug==='chip'&&<fieldset><legend>{presentation} filter</legend><Chip name={`${prefix}-${presentation}-filter`} value="docs" icon={BookOpen} label="Documentation" presentation={presentation}/></fieldset>}
+{slug==='tag-list'&&<TagList label={`${presentation} topics`} presentation={presentation} items={[{label:'Design systems',icon:Layers},{label:'Documentation',icon:BookOpen}]}/>}
+{slug==='button'&&(presentation==='icon'?<Tooltip portal={false}><TooltipTrigger data-docs-action="Settings" class={buttonVariants({size:'icon'})} aria-label="Settings"><Settings size={18} aria-hidden="true"/></TooltipTrigger><TooltipContent>Settings</TooltipContent></Tooltip>:<Button data-docs-action="Settings">{presentation==='icon-label'&&<Settings size={18} aria-hidden="true"/>}Settings</Button>)}
+</div>)}</div>}
+<style>
+.docs-presentations { display:grid; gap:28px; margin-top:28px; padding-top:24px; border-top:1px solid var(--border); }
+.docs-presentations > div { min-width:0; display:grid; gap:12px; }
+.docs-presentations .docs-presentation-label { font-size:1rem; font-weight:600; }
+</style>

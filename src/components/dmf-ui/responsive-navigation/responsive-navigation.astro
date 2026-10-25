@@ -1,0 +1,12 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import type {NavigationItem,Presentation} from '../navigation-types';
+import {Menu,ChevronDown} from '@lucide/astro';
+import {NavigationMenu} from '../navigation-menu';
+import Content from '../navigation-content.astro';
+import {cn} from '../utils';
+interface Props extends HTMLAttributes<'div'> {label:string;items:NavigationItem[];presentation?:Presentation;}
+const {label,items,presentation='label',class:className,...props}=Astro.props;
+---
+<div data-slot="responsive-navigation" class={cn('dmf-responsive-navigation',className)} {...props}><div class="dmf-responsive-desktop"><NavigationMenu label={label} items={items} presentation={presentation}/></div><details class="dmf-responsive-mobile" data-dmf-nav-disclosure><summary title={presentation==='icon'?label:undefined}><Content label={label} icon={Menu} presentation={presentation}/><ChevronDown size={16} aria-hidden="true"/></summary><NavigationMenu label={`${label} mobile links`} items={items} presentation={presentation} orientation="vertical"/></details></div>
+<script>import '../navigation-disclosure';</script>

@@ -92,3 +92,5 @@ The documentation shell owns separate `--docs-radius-control` (0.75rem), `--docs
 Verification: Astro check (194 files) and 35-page production build passed, as did all 18 source tests and production documentation/Create/content/search browser flows, including mobile and enlarged-text containment. Existing keyboard and accessibility checks passed. The styling change remains local until committed and pushed.
 
 The portfolio extraction adds `/examples/portfolio/`, a scoped Portfolio preset and four reusable patterns. See [source inventory and boundaries](DMF-UI-PORTFOLIO.md).
+
+See [layout, layering, density and motion refinement](DMF-UI-WEB-REFINEMENT.md) for measured header clearance, collapsible rail groups, native anchor transitions and responsive verification.

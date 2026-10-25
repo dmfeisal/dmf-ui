@@ -104,7 +104,9 @@
     "./tag-list": "./src/components/dmf-ui/tag-list/index.ts",
     "./project-action-bar": "./src/components/dmf-ui/project-action-bar/index.ts",
     "./section-navigation": "./src/components/dmf-ui/section-navigation/index.ts",
-    "./archive-index": "./src/components/dmf-ui/archive-index/index.ts"
+    "./archive-index": "./src/components/dmf-ui/archive-index/index.ts",
+    "./sidebar": "./src/components/dmf-ui/sidebar/index.ts",
+    "./responsive-navigation": "./src/components/dmf-ui/responsive-navigation/index.ts"
   },
   "files": [
     "contracts/*.json",

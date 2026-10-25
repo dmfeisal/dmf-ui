@@ -1,11 +1,14 @@
 ---
 import type {HTMLAttributes} from 'astro/types';
 import {Star} from '@lucide/astro';
+import type {Presentation} from '../navigation-types';
+import Choice from './rating-choice.astro';
+import {Tooltip,TooltipContent} from '../tooltip';
 import {cn} from '../utils';
-interface Props extends HTMLAttributes<'div'> {value?:number;max?:number;label:string;readOnly?:boolean;name?:string;required?:boolean;disabled?:boolean;}
-const {value=0,max=5,label,readOnly=true,name,required=false,disabled=false,class:className,...props}=Astro.props;
+interface Props extends HTMLAttributes<'div'> {value?:number;max?:number;label:string;readOnly?:boolean;name?:string;required?:boolean;disabled?:boolean;presentation?:Presentation;}
+const {value=0,max=5,label,readOnly=true,name,required=false,disabled=false,presentation='icon-label',class:className,...props}=Astro.props;
 if(!Number.isInteger(max)||max<1||max>10||!Number.isFinite(value)||value<0||value>max)throw new Error('Rating requires max from 1 to 10 and value between 0 and max.');
 if(!readOnly&&(!name||!Number.isInteger(value)))throw new Error('Editable Rating requires a name and an integer initial value.');
 const values=Array.from({length:max},(_,i)=>i+1);
 ---
-{readOnly?<div data-slot="rating" class={cn('dmf-rating',className)} role="img" aria-label={`${label}: ${value} out of ${max}`} {...props}><span class="dmf-rating-stars" aria-hidden="true">{values.map(number=><span class="dmf-rating-star"><Star size={20}/><span class="dmf-rating-fill" style={`clip-path:inset(0 ${100-Math.max(0,Math.min(1,value-number+1))*100}% 0 0)`}><Star size={20}/></span></span>)}</span><span class="dmf-rating-score" dir="ltr" aria-hidden="true">{value} / {max}</span></div>:<fieldset data-slot="rating" class={cn('dmf-rating-input',className)} disabled={disabled} {...props}><legend>{label}</legend><div class="dmf-rating-options">{values.map(number=><label><input type="radio" name={name} value={number} checked={value===number} required={required}/><span class="dmf-rating-choice"><Star size={20} aria-hidden="true"/><span>{number}</span></span><span class="dmf-product-sr">{number===1?'star':'stars'}</span></label>)}</div></fieldset>}
+{readOnly?<div data-slot="rating" class={cn('dmf-rating',className)} role="img" aria-label={`${label}: ${value} out of ${max}`} {...props}>{presentation!=='label'&&<span class="dmf-rating-stars" aria-hidden="true">{values.map(number=><span class="dmf-rating-star"><Star size={20}/><span class="dmf-rating-fill" style={`clip-path:inset(0 ${100-Math.max(0,Math.min(1,value-number+1))*100}% 0 0)`}><Star size={20}/></span></span>)}</span>}{presentation!=='icon'&&<span class="dmf-rating-score" dir="ltr" aria-hidden="true">{value} / {max}</span>}</div>:<fieldset data-slot="rating" class={cn('dmf-rating-input',className)} disabled={disabled} {...props}><legend>{label}</legend><div class="dmf-rating-options">{values.map(number=>presentation==='icon'?<Tooltip portal={false} side="bottom" class="dmf-inline-tooltip"><Choice number={number} name={name!} checked={value===number} required={required} presentation={presentation} tooltipTrigger/><TooltipContent>{number} {number===1?'star':'stars'}</TooltipContent></Tooltip>:<Choice number={number} name={name!} checked={value===number} required={required} presentation={presentation}/>)}</div></fieldset>}

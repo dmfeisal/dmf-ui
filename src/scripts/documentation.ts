@@ -82,3 +82,33 @@ if(github){
  }
  void refreshStars();
 }
+
+const header=document.querySelector<HTMLElement>('.docs-header');
+const footer=document.querySelector<HTMLElement>('.docs-footer');
+if(header){
+ let measuredHeight=0,measuredFooter=0;
+ const measureHeader=()=>{const height=Math.ceil(header.getBoundingClientRect().height);if(height!==measuredHeight){measuredHeight=height;document.documentElement.style.setProperty('--docs-header-height',`${height}px`);}const footerHeight=Math.ceil(footer?.getBoundingClientRect().height??0);if(footerHeight!==measuredFooter){measuredFooter=footerHeight;document.documentElement.style.setProperty('--docs-footer-height',`${footerHeight}px`);}};
+ measureHeader();
+ if(typeof ResizeObserver!=='undefined'){const observer=new ResizeObserver(measureHeader);observer.observe(header);if(footer)observer.observe(footer);}
+ else window.addEventListener('resize',measureHeader,{passive:true});
+ void document.fonts.ready.then(measureHeader);
+}
+const contentsLinks=[...document.querySelectorAll<HTMLAnchorElement>('.docs-toc a[href^="#"]')];
+const contents=contentsLinks.map(link=>({link,target:document.getElementById(decodeURIComponent(link.hash.slice(1)))})).filter((item):item is {link:HTMLAnchorElement;target:HTMLElement}=>!!item.target);
+if(contents.length){
+ const contentsVisible=matchMedia('(min-width:1281px)');
+ let frame=0,current='';
+ const updateContents=()=>{
+  frame=0;if(!contentsVisible.matches)return;
+  const line=(header?.getBoundingClientRect().bottom??0)+32;
+  const positions=contents.map(item=>({...item,top:item.target.getBoundingClientRect().top}));
+  const atEnd=window.scrollY+window.innerHeight>=document.documentElement.scrollHeight-4;
+  let hash='';try{hash=decodeURIComponent(location.hash.slice(1));}catch{}
+  const anchored=positions.find(item=>item.target.id===hash&&item.top>=line-32&&item.top<innerHeight*.65);
+  const active=anchored??(atEnd?positions.at(-1):positions.filter(item=>item.top<=line).at(-1)??positions[0]);
+  if(!active||active.target.id===current)return;current=active.target.id;
+  for(const {link,target} of contents){if(target.id===current)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');}
+ };
+ const scheduleContents=()=>{if(contentsVisible.matches&&!frame)frame=requestAnimationFrame(updateContents);};
+ window.addEventListener('scroll',scheduleContents,{passive:true});window.addEventListener('resize',scheduleContents,{passive:true});window.addEventListener('hashchange',scheduleContents);updateContents();
+}

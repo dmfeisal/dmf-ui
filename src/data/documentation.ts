@@ -1,3 +1,4 @@
+import {navigationPatterns} from './navigation-patterns-documentation';
 import {portfolioComponents} from './portfolio-documentation';
 import {productComponents} from './product-documentation';
 import {navigationComponents} from './navigation-documentation';
@@ -9,6 +10,7 @@ export const components: ComponentDoc[] = [
  ...navigationComponents,
  ...productComponents,
  ...portfolioComponents,
+ ...navigationPatterns,
  {slug:'accordion',name:'Accordion',category:'Disclosure',description:'Expandable sections with single or multiple open panels.',usage:`import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from 'dmf-ui/accordion';\n\n<Accordion defaultValue="overview">\n  <AccordionItem value="overview">\n    <h3><AccordionTrigger aria-expanded="true">Overview</AccordionTrigger></h3>\n    <AccordionContent hidden={false}>Shared foundation, local customization.</AccordionContent>\n  </AccordionItem>\n</Accordion>`,options:[['multiple','boolean','false'],['defaultValue','string | string[]','None'],['disabled','boolean','false']],notes:['Wrap triggers in headings that fit your page hierarchy. Keep values unique within a root.','DefaultValue is enhanced in the browser. Author hidden=false and matching trigger aria-expanded for content that should be visible in server HTML.','Arrow keys, Home/End and Enter/Space operate available headings.']},
  {slug:'button',name:'Button',category:'Foundation',description:'Actions and links with shared variants, sizes and focus states.',usage:`import { Button } from 'dmf-ui/button';\n\n<Button>Continue</Button>\n<Button variant="outline">Cancel</Button>\n<Button as="a" href="/docs/">Read the docs</Button>`,options:[['variant','default | outline | secondary | ghost | destructive | link','default'],['size','default | xs | sm | lg | icon variants','default'],['disabled','boolean','false']],notes:['Use a button for an action and a link for navigation.','Give icon-only buttons an accessible name. Disabled controls need visible context when the reason matters.']},
  {slug:'checkbox',name:'Checkbox',category:'Forms',description:'A native checkbox for an independent choice.',usage:`import { Checkbox } from 'dmf-ui/checkbox';\nimport { Label } from 'dmf-ui/label';\n\n<Checkbox id="terms" name="terms" value="accepted" />\n<Label for="terms">Accept the terms</Label>`,options:[['checked','boolean','false'],['required','boolean','false'],['disabled','boolean','false']],notes:['Associate every control with a label.','Native validation, FormData and reset behavior remain available.']},

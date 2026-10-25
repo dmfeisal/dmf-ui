@@ -1,0 +1,10 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {Check} from '@lucide/astro';
+import type {NavigationIcon,Presentation} from '../navigation-types';
+import {cn} from '../utils';
+interface Props extends Omit<HTMLAttributes<'input'>,'type'|'size'> {size?:'default'|'sm';icon?:NavigationIcon;presentation?:Presentation;label?:string;tooltipTrigger?:boolean;}
+const {class:className,size='default',icon:Icon,presentation='label',label,tooltipTrigger=false,...props}=Astro.props;
+if(presentation==='icon'&&(!Icon||!label))throw new Error('Icon-only Chip requires icon and label.');
+---
+<label data-slot="chip" data-size={size} data-presentation={presentation} class={cn('dmf-chip',className)}><input data-slot={tooltipTrigger?'tooltip-trigger':undefined} type="checkbox" aria-label={presentation==='icon'?label:undefined} {...props}/><span class="dmf-chip-label">{Icon&&presentation!=='label'&&<Icon size={18} aria-hidden="true"/>}<Check class="dmf-chip-check" size={14} aria-hidden="true"/><span class:list={{'dmf-product-sr':presentation==='icon'}}>{label??<slot/>}</span></span></label>

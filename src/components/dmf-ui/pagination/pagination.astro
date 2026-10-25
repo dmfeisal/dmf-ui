@@ -1,10 +1,13 @@
 ---
 import type {HTMLAttributes} from 'astro/types';
 import {ChevronLeft,ChevronRight,Ellipsis} from '@lucide/astro';
+import type {Presentation} from '../navigation-types';
+import Content from '../navigation-content.astro';
+import Link from '../navigation-link.astro';
 import {cn} from '../utils';
-interface Props extends HTMLAttributes<'nav'> {page:number;totalPages:number;pageHref:(page:number)=>string;label?:string;}
-const {page,totalPages,pageHref,label='Pagination',class:className,...props}=Astro.props;
+interface Props extends HTMLAttributes<'nav'> {page:number;totalPages:number;pageHref:(page:number)=>string;label?:string;presentation?:Presentation;}
+const {page,totalPages,pageHref,label='Pagination',presentation='icon-label',class:className,...props}=Astro.props;
 if(!Number.isSafeInteger(totalPages)||totalPages<1||!Number.isSafeInteger(page)||page<1||page>totalPages)throw new Error('Pagination requires integer page and totalPages, with 1 <= page <= totalPages.');
 const visible=[...new Set([1,totalPages,...Array.from({length:5},(_,i)=>page+i-2).filter(n=>n>0&&n<=totalPages)])].sort((a,b)=>a-b);
 ---
-<nav data-slot="pagination" aria-label={label} class={cn('dmf-pagination',className)} {...props}><ul><li>{page>1?<a href={pageHref(page-1)} rel="prev"><ChevronLeft size={16} aria-hidden="true"/><span>Previous</span></a>:<span aria-disabled="true"><ChevronLeft size={16} aria-hidden="true"/><span>Previous</span></span>}</li>{visible.map((number,index)=><>{index>0&&number-visible[index-1]>1&&<li class="dmf-pagination-gap"><Ellipsis size={18} aria-hidden="true"/><span class="dmf-navigation-sr">More pages</span></li>}<li><a href={pageHref(number)} aria-label={`Page ${number}`} aria-current={number===page?'page':undefined}>{number}</a></li></>)}<li>{page<totalPages?<a href={pageHref(page+1)} rel="next"><span>Next</span><ChevronRight size={16} aria-hidden="true"/></a>:<span aria-disabled="true"><span>Next</span><ChevronRight size={16} aria-hidden="true"/></span>}</li></ul></nav>
+<nav data-slot="pagination" aria-label={label} data-presentation={presentation} class={cn('dmf-pagination',className)} {...props}><ul><li>{page>1?<Link item={{label:"Previous",href:pageHref(page-1),icon:ChevronLeft,rel:"prev"}} presentation={presentation}/>:<span aria-disabled="true"><Content label="Previous" icon={ChevronLeft} presentation={presentation}/></span>}</li>{visible.map((number,index)=><>{index>0&&number-visible[index-1]>1&&<li class="dmf-pagination-gap"><Ellipsis size={18} aria-hidden="true"/><span class="dmf-navigation-sr">More pages</span></li>}<li><a href={pageHref(number)} aria-label={`Page ${number}`} aria-current={number===page?'page':undefined}>{number}</a></li></>)}<li>{page<totalPages?<Link item={{label:"Next",href:pageHref(page+1),icon:ChevronRight,rel:"next"}} presentation={presentation}/>:<span aria-disabled="true"><Content label="Next" icon={ChevronRight} presentation={presentation}/></span>}</li></ul></nav>

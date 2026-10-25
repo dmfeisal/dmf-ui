@@ -1,0 +1,7 @@
+---
+import type {NavigationIcon,Presentation} from './navigation-types';
+interface Props {label:string;icon?:NavigationIcon;presentation?:Presentation;}
+const {label,icon:Icon,presentation='label'}=Astro.props;
+if(presentation==='icon'&&!Icon)throw new Error('Icon-only presentation requires an icon and a meaningful label.');
+---
+{Icon&&presentation!=='label'&&<Icon size={18} aria-hidden="true"/>}<span class:list={{'dmf-product-sr':presentation==='icon'}}>{label}</span>

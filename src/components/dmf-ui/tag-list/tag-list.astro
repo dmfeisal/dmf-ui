@@ -1,7 +1,11 @@
 ---
 import type {HTMLAttributes} from 'astro/types';
+import Content from '../navigation-content.astro';
+import {Tooltip,TooltipTrigger,TooltipContent} from '../tooltip';
+import type {NavigationIcon,Presentation} from '../navigation-types';
 import {cn} from '../utils';
-interface Props extends HTMLAttributes<'ul'> {items:readonly string[];label?:string;shape?:'pill'|'square';}
-const {items,label='Topics',shape='pill',class:className,...props}=Astro.props;
+interface Props extends HTMLAttributes<'ul'> {items:readonly (string|{label:string;icon?:NavigationIcon})[];presentation?:Presentation;label?:string;shape?:'pill'|'square';}
+const {items,label='Topics',shape='pill',presentation='label',class:className,...props}=Astro.props;
+const tags=items.map(item=>typeof item==='string'?{label:item}:item);
 ---
-{items.length>0&&<ul data-slot="tag-list" data-shape={shape} aria-label={label} class={cn('dmf-topic-list',className)} {...props}>{items.map(item=><li><span>{item}</span></li>)}</ul>}
+{items.length>0&&<ul data-slot="tag-list" data-shape={shape} data-presentation={presentation} aria-label={label} class={cn('dmf-topic-list',className)} {...props}>{tags.map(item=><li>{presentation==='icon'?<Tooltip portal={false} side="bottom"><TooltipTrigger as="span" tabindex="0" class="dmf-topic-pill"><Content label={item.label} icon={item.icon} presentation={presentation}/></TooltipTrigger><TooltipContent>{item.label}</TooltipContent></Tooltip>:<span class="dmf-topic-pill"><Content label={item.label} icon={item.icon} presentation={presentation}/></span>}</li>)}</ul>}

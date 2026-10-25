@@ -1,8 +1,10 @@
 ---
 import type {HTMLAttributes} from 'astro/types';
-import {Check} from '@lucide/astro';
-import {cn} from '../utils';
-interface Props extends Omit<HTMLAttributes<'input'>,'type'|'size'> {size?:'default'|'sm';}
-const {class:className,size='default',...props}=Astro.props;
+import Control from './chip-control.astro';
+import {Tooltip,TooltipContent} from '../tooltip';
+import type {NavigationIcon,Presentation} from '../navigation-types';
+interface Props extends Omit<HTMLAttributes<'input'>,'type'|'size'> {size?:'default'|'sm';icon?:NavigationIcon;presentation?:Presentation;label?:string;}
+const {class:className,size='default',icon:Icon,presentation='label',label,...props}=Astro.props;
+if(presentation==='icon'&&(!Icon||!label))throw new Error('Icon-only Chip requires icon and label.');
 ---
-<label data-slot="chip" data-size={size} class={cn('dmf-chip',className)}><input type="checkbox" {...props}/><span class="dmf-chip-label"><Check size={14} aria-hidden="true"/><span><slot/></span></span></label>
+{presentation==='icon'?<Tooltip portal={false} side="bottom" class="dmf-inline-tooltip"><Control {...props} label={label} icon={Icon} presentation={presentation} size={size} class={className} tooltipTrigger/><TooltipContent>{label}</TooltipContent></Tooltip>:<Control {...props} label={label} icon={Icon} presentation={presentation} size={size} class={className}><slot/></Control>}

@@ -1,6 +1,6 @@
 ---
 import '../styles/documentation.css';
-import {Search,Sun,Moon,Monitor,Star,X,Menu} from '@lucide/astro';
+import {Search,Sun,Moon,Monitor,Star,X,Menu,ChevronDown} from '@lucide/astro';
 import GitHubMark from '../components/docs/assets/github.svg';
 import {Tooltip,TooltipTrigger,TooltipContent} from '../components/dmf-ui/tooltip';
 import NavigationIcon from '../components/docs/NavigationIcon.astro';
@@ -29,7 +29,7 @@ const searchEntries=[
 <Tooltip id="docs-theme-tooltip" mountStrategy="eager" side="bottom" portal={false}><TooltipTrigger id="docs-theme" class="docs-theme" aria-label="Theme: System"><span data-theme-icon="system"><Monitor size={18} aria-hidden="true"/></span><span data-theme-icon="light" hidden><Sun size={18} aria-hidden="true"/></span><span data-theme-icon="dark" hidden><Moon size={18} aria-hidden="true"/></span></TooltipTrigger><TooltipContent><span data-theme-description>Theme: System. Switch to Light.</span></TooltipContent></Tooltip>
 </div>{crumbs.length>0&&<nav class="docs-breadcrumb" aria-label="Breadcrumb"><ol><li><a href={Astro.url.pathname.split('/').filter(Boolean).map(()=>'..').join('/')+'/'}>Home</a></li>{crumbs.map(crumb=><li>{crumb.href?<a href={crumb.href}>{crumb.name}</a>:<span aria-current="page">{crumb.name}</span>}</li>)}</ol></nav>}</header>
 <div class:list={['docs-layout',{'docs-has-sidebar':sidebar.length>0,'docs-has-toc':toc.length>0}]}>
-{sidebar.length>0&&<aside class="docs-sidebar" aria-label={section==='components'?'Component list':'Guide list'}><nav aria-label={section==='components'?'Component navigation':'Documentation navigation'}>{sidebarGroups.map(group=><div class="docs-nav-group"><p class="docs-nav-title">{group.title}</p>{group.items.map(item=><a href={item.href} aria-current={Astro.url.pathname===item.href?'page':undefined}><NavigationIcon name={item.icon}/><span>{item.title}</span></a>)}</div>)}</nav></aside>}
+{sidebar.length>0&&<aside class="docs-sidebar" aria-label={section==='components'?'Component list':'Guide list'}><nav aria-label={section==='components'?'Component navigation':'Documentation navigation'}>{sidebarGroups.map((group,index)=><details class="docs-nav-group" open={sidebarGroups.length===1||group.items.some(item=>Astro.url.pathname===item.href)||(index===0&&!sidebar.some(item=>Astro.url.pathname===item.href))}><summary><span class="docs-nav-title">{group.title}</span><ChevronDown size={14} aria-hidden="true"/></summary>{group.items.map(item=><a href={item.href} aria-current={Astro.url.pathname===item.href?'page':undefined}><NavigationIcon name={item.icon}/><span>{item.title}</span></a>)}</details>)}</nav></aside>}
 {sidebar.length>0&&<details class="docs-mobile-navigation"><summary><Menu size={16} aria-hidden="true"/> Browse {section==='components'?'components':'documentation'}</summary><nav aria-label="Section navigation">{sidebar.map(item=><a href={item.href} aria-current={Astro.url.pathname===item.href?'page':undefined}><NavigationIcon name={item.icon}/><span>{item.title}</span></a>)}</nav></details>}
 <main id="main" class="docs-page" tabindex="-1"><slot /></main>
 {toc.length>0&&<aside class="docs-toc" aria-label="Page contents"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p>{toc.map(item=><a href={`#${item.id}`}>{item.title}</a>)}</nav></aside>}

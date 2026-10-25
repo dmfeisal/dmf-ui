@@ -8,7 +8,7 @@ import {TagList,ProjectActionBar,SectionNavigation,Button,Card,CardHeader,CardTi
 {['light','dark','yellow'].map(mode=><section id={`portfolio-${mode}`} class="dmf-ui portfolio-panel docs-section" data-system="portfolio" data-color-mode={mode} aria-labelledby={`portfolio-${mode}-title`}><h2 id={`portfolio-${mode}-title`}>Portfolio · {mode[0].toUpperCase()+mode.slice(1)}</h2><p>Paper-and-ink colors, Inter body and Plus Jakarta Sans headings.</p><TagList label={`${mode} example topics`} items={['Design systems','Product design','Accessible interfaces']}/><Card><CardHeader><CardTitle as="h3">Shared components, portfolio identity</CardTitle></CardHeader><CardContent><p>This local example contains no project, customer or public-board data.</p><Button as="a" href={`/create/?system=portfolio&mode=${mode}`}>Configure this appearance</Button></CardContent></Card><ProjectActionBar label="Explore the extracted patterns" ariaLabel={`${mode} example actions`} items={[{label:'Tag List',href:'/components/tag-list/',emphasis:'primary'},{label:'Section Navigation',href:'/components/section-navigation/'}]}/></section>)}
 </DocumentationLayout>
 <style>
-.portfolio-panel { display:grid; gap:24px; padding:clamp(20px,4vw,40px); background:var(--background); color:var(--foreground); border:1px solid var(--border); scroll-margin-top:12rem; min-height:500px; }
+.portfolio-panel { display:grid; gap:24px; padding:clamp(20px,4vw,40px); background:var(--background); color:var(--foreground); border:1px solid var(--border); scroll-margin-top:1rem; min-height:500px; }
 .portfolio-panel h2 { font-size:2rem; }
 .portfolio-panel p { line-height:1.7; }
 </style>

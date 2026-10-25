@@ -6,7 +6,7 @@ export async function run({page,baseURL,navigate,settle,opened,focused,mobile,ta
  const axe=await readFile(require.resolve('axe-core/axe.min.js'),'utf8');const reports=[];
  async function audit(state){
   await settle();await page.evaluate(source=>{if(window.axe)return;const script=document.createElement('script');script.textContent=source;document.head.append(script);},axe);
-  const result=await page.evaluate(async()=>{const result=await window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa','best-practice']}});return {violations:result.violations.map(({id,impact,nodes})=>({id,impact,nodes:nodes.map(({target,failureSummary})=>({target,failureSummary}))})),incomplete:result.incomplete.map(({id})=>id)};});
+  const result=await page.evaluate(async()=>{const result=await window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa','best-practice']}});return {violations:result.violations.map(({id,impact,nodes})=>({id,impact,nodes:nodes.map(({target,failureSummary})=>({target,failureSummary}))})),incomplete:result.incomplete.map(({id})=>id),incompleteDetails:result.incomplete.map(({id,nodes})=>({id,nodes:nodes.map(({target,failureSummary})=>({target,failureSummary}))}))};});
   reports.push({state,...result});await writeFile(new URL('../../.dmf-ui-test-results/documentation-audit.json',import.meta.url),JSON.stringify(reports,null,2));
   assert(!result.violations.length&&!result.incomplete.length,`${state}: ${JSON.stringify(result)}`);
  }

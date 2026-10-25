@@ -1,0 +1,9 @@
+---
+import type {TooltipSide} from '@data-slot/tooltip';
+import type {NavigationItem,Presentation} from './navigation-types';
+import Content from './navigation-content.astro';
+import {Tooltip,TooltipTrigger,TooltipContent} from './tooltip';
+interface Props {item:NavigationItem;presentation?:Presentation;currentType?:'page'|'location';class?:string;side?:TooltipSide;}
+const {item,presentation='label',currentType='page',class:className,side='bottom'}=Astro.props;
+---
+{item.disabled?<span aria-disabled="true" class={className}><Content label={item.label} icon={item.icon} presentation={presentation}/></span>:presentation==='icon'?<Tooltip portal={false} side={side}><TooltipTrigger href={item.href} rel={item.rel} aria-current={item.current?currentType:undefined} class={className}><Content label={item.label} icon={item.icon} presentation={presentation}/></TooltipTrigger><TooltipContent>{item.label}</TooltipContent></Tooltip>:<a href={item.href} rel={item.rel} aria-current={item.current?currentType:undefined} class={className}><Content label={item.label} icon={item.icon} presentation={presentation}/></a>}

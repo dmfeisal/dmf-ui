@@ -1,0 +1,12 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import type {NavigationItem,Presentation} from '../navigation-types';
+import {PanelLeft,ChevronDown} from '@lucide/astro';
+import {NavigationMenu} from '../navigation-menu';
+import Content from '../navigation-content.astro';
+import {cn} from '../utils';
+interface Props extends HTMLAttributes<'aside'> {label:string;items:NavigationItem[];presentation?:Presentation;defaultOpen?:boolean;}
+const {label,items,presentation='label',defaultOpen=true,class:className,...props}=Astro.props;
+---
+<aside data-slot="sidebar" data-presentation={presentation} aria-label={label} class={cn('dmf-sidebar',className)} {...props}><details open={defaultOpen} data-dmf-nav-disclosure><summary title={presentation==='icon'?label:undefined}><Content label={label} icon={PanelLeft} presentation={presentation}/><ChevronDown size={16} aria-hidden="true"/></summary><NavigationMenu label={`${label} links`} items={items} presentation={presentation} orientation="vertical"/></details></aside>
+<script>import '../navigation-disclosure';</script>

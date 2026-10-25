@@ -1,0 +1,7 @@
+---
+import {Star} from '@lucide/astro';
+import type {Presentation} from '../navigation-types';
+interface Props {number:number;name:string;checked:boolean;required:boolean;presentation:Presentation;tooltipTrigger?:boolean;}
+const {number,name,checked,required,presentation,tooltipTrigger=false}=Astro.props;
+---
+<label><input data-slot={tooltipTrigger?'tooltip-trigger':undefined} type="radio" name={name} value={number} checked={checked} required={required}/><span class="dmf-rating-choice">{presentation!=='label'&&<Star size={20} aria-hidden="true"/>}<span class:list={{'dmf-product-sr':presentation==='icon'}}>{number}</span></span><span class="dmf-product-sr">{number===1?'star':'stars'}</span></label>
