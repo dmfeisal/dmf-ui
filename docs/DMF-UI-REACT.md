@@ -40,7 +40,7 @@ Safari, Firefox, spoken screen-reader, forced-colors and broader application int
 
 React Native and SwiftUI need separate implementations using shared token data and contracts. They cannot reuse this CSS or browser implementation.
 
-## Remaining 0.5.0 acceptance
+## 0.5.0 React alpha checkpoint acceptance
 
 - [x] Install packed packages into a separate, locked React web app without sibling links.
 - [x] Build compiled ESM/types and preserve shared CSS, font assets and notices.
@@ -49,6 +49,6 @@ React Native and SwiftUI need separate implementations using shared token data a
 - [x] Complete the scoped Chromium checks for mobile/RTL, themes, visible focus, font loading and contrast. Other engines and spoken screen readers remain separate manual work.
 - [x] Commit/push alpha.2 and confirm the hosted Node 22/24 matrix: [source](https://github.com/dmfeisal/dmf-ui/actions/runs/40090789479), [portfolio](https://github.com/dmfeisal/dmf-web/actions/runs/40090790578).
 - [x] Review the five-component alpha API: React 19 ESM, native refs/form ownership, opt-in text semantics, non-interactive Card and deliberate Switch exclusions. Existing API limitations above remain accepted alpha boundaries; no stable API guarantee is added.
-- [ ] Commit/push the browser-driven alpha.3 fixes and confirm its hosted matrix before closing the 0.5.0 checkpoint. Core remains 0.4.0 and React alpha.3; no root version bump, Git tag or npm publication is implied by browser acceptance.
+- [x] Confirm pushed alpha.3 snapshots and hosted Node 22/24 matrices on 25 October 2026: source `4bdc35da35b9a63529e04e54b3a5583af1348ace` ([run](https://github.com/dmfeisal/dmf-ui/actions/runs/40144790900)) and portfolio `984777fe9977f43c3f61d6354036ba3e3c8a7214` ([run](https://github.com/dmfeisal/dmf-web/actions/runs/40144807012)). The source snapshot includes browser-fix commit `3d828d3`; this is verification of the current snapshot, not a claim of a separate run for that ancestor. This closes the scoped React alpha checkpoint. Core remains 0.4.0 and React alpha.3; pending manual checks above remain open. No root version bump, Git tag or npm publication is implied.
 
 References: [React native input contracts](https://react.dev/reference/react-dom/components/input), [React refs](https://react.dev/reference/react/useRef), [React hydration](https://react.dev/reference/react-dom/client/hydrateRoot), [React server/client ID prefixes](https://react.dev/reference/react/useId), [W3C non-text contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast), [Vite production builds](https://vite.dev/guide/build).

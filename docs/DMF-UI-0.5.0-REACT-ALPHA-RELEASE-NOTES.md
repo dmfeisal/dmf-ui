@@ -1,6 +1,6 @@
-# 0.5.0 React alpha milestone — draft release notes
+# 0.5.0 React alpha milestone — release notes
 
-Prepared 24 October 2026. This is a milestone draft, pending hosted verification. Core remains private `dmf-ui@0.4.0`; the separate private adapter remains `@dmf-ui/react@0.1.0-alpha.3`. The milestone name does not change either package version or promise a stable API.
+Prepared 24 October 2026; hosted acceptance verified 25 October 2026. This records the completed scoped React alpha checkpoint. Core remains private `dmf-ui@0.4.0`; the separate private adapter remains `@dmf-ui/react@0.1.0-alpha.3`. The milestone name does not change either package version or promise a stable API.
 
 ## Added
 
@@ -23,9 +23,12 @@ Core tokens, the CB primary color `#26ade4` and Astro 0.4.0 runtime source are u
 
 Existing local evidence records three adapter tests and four separate-consumer acceptance tests passing, covering types, native ESM, assets, forms/reset, refs/cleanup, independent roots and hydration. The Chromium 154 review passed twelve axe states with zero violations or incomplete rules, plus native keyboard/touch checks, 390px LTR/RTL layouts and 200% root text. Bundled Nunito loading and asset hashes were verified. See [the verification record](DMF-UI-REACT-VERIFICATION.md) for scope and evidence limits.
 
-Hosted alpha.3 checks are **not verified**. On 24 October, pushing source commit `3d828d3` and portfolio documentation commit `984777f` failed because the execution environment could not resolve `github.com`. The GitHub CLI could not connect to `api.github.com` either. Both commits remain local, one ahead of their recorded `origin/main`. Earlier alpha.2 hosted passes do not establish alpha.3 success.
+Hosted alpha.3 checks are **verified** for the exact current commits:
 
-After network access is available, push both existing commits and verify runs for their exact full SHAs. Source requires successful `Source / Node 22` and `Source / Node 24` jobs; also verify the portfolio's validation workflow for `984777f`. Only then close the remaining hosted acceptance item in [React web alpha](DMF-UI-REACT.md) and update this draft with run links. These notes are release preparation; hosted acceptance remains open.
+- Source `4bdc35da35b9a63529e04e54b3a5583af1348ace`: [run 40144790900](https://github.com/dmfeisal/dmf-ui/actions/runs/40144790900), successful `Source / Node 22` and `Source / Node 24` jobs. Both include locked installs, the adapter suite, packed consumer, Astro check, documentation/navigation builds and source contracts. This snapshot contains browser-fix commit `3d828d3`; no separate run for that ancestor is claimed.
+- Portfolio `984777fe9977f43c3f61d6354036ba3e3c8a7214`: [run 40144807012](https://github.com/dmfeisal/dmf-web/actions/runs/40144807012), successful `Consumer / Node 22` and `Consumer / Node 24` jobs, including source/build, package/browser harness, Canvas contracts and generated mirrors.
+
+The connected GitHub API confirms both remote `main` heads match local HEAD and recorded `origin/main`. Earlier push/network failures are historical and no longer indicate unpushed commits. The hosted acceptance item in [React web alpha](DMF-UI-REACT.md) is closed; the manual checks below remain pending. This follow-up changes documentation only and is not included in those CI snapshots.
 
 ## Accepted alpha boundaries and pending checks
 
@@ -41,9 +44,9 @@ No package publication, release tag, root version bump or portfolio archive-pin 
 ## Follow-up validation — 25 October 2026
 
 - React adapter: all three tests pass, including TypeScript checking, SSR semantics and hydration/form/reset/unmount behavior.
-- Astro check: 188 files, zero errors, warnings or hints. Production build passes for all 34 pages; token outputs pass their consistency check.
-- Root suite: 12 of 16 tests pass after using a writable temporary npm cache. Four browser-server tests are blocked by `listen EPERM` on `127.0.0.1`; this rerun does not establish their acceptance.
-- The isolated packed-consumer rerun cannot complete its locked dependency installation: the temporary cache lacks a required registry archive. Its earlier successful evidence remains historical, not a new pass.
-- Pushes of both repositories fail again because `github.com` cannot resolve. Hosted checks remain unverified. GitHub CLI authentication also reports invalid credentials in this environment.
-- Safari automation exits without starting a server, and no geckodriver is installed for Firefox. Localhost restrictions prevent the existing browser fixture server from running. Safari/Firefox and spoken screen-reader checks remain pending.
-- Unrelated uncommitted portfolio Canvas documentation is preserved. No package versions, tags or publications are changed.
+- Astro check: 188 files, zero errors, warnings or hints. Production build passes for all 34 pages; navigation fixture build passes for four pages; token consistency checks pass.
+- Root suite: all 16 tests pass with a writable temporary npm cache and permission for temporary localhost servers. This resolves the earlier four localhost permission blockers.
+- Isolated packed consumer: the normal locked install, TypeScript check, production build, server prerender and all four acceptance tests pass after dependency downloads are permitted. No lock regeneration was needed. Local reruns use Node v26.11.1/npm 11.20.0; hosted Node 22/24 evidence is linked above.
+- Local Git and GitHub CLI still cannot reach GitHub; connected GitHub API reads supplied remote-head and exact-commit CI confirmation instead. No push was needed.
+- Previous Chromium evidence remains historical. Safari/Firefox, spoken screen-reader and other manual checks above remain pending; no new browser or assistive-technology pass is claimed.
+- Existing uncommitted portfolio Canvas documentation is preserved byte-for-byte. No package versions, archive pins, tags or publications are changed.
