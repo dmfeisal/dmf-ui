@@ -1,0 +1,10 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import type {NavigationIcon,Presentation} from '../navigation-types';
+import Content from '../navigation-content.astro';
+import {cn} from '../utils';
+interface Props extends Omit<HTMLAttributes<'button'>,'type'|'value'|'aria-pressed'> {label:string;value?:string;defaultPressed?:boolean;icon?:NavigationIcon;presentation?:Presentation;variant?:'default'|'outline';tooltipTrigger?:boolean;}
+const {label,value,defaultPressed=false,icon:Icon,presentation='label',variant='default',tooltipTrigger=false,disabled=false,class:className,...props}=Astro.props;
+---
+<button {...props} type="button" data-slot={tooltipTrigger?'tooltip-trigger':'toggle'} data-dmf-toggle data-value={value} data-default-pressed={String(defaultPressed)} data-toggle-disabled={String(disabled)} data-variant={variant} data-presentation={presentation} disabled aria-pressed={defaultPressed?'true':'false'} class={cn('dmf-toggle',className)}><Content label={label} icon={Icon} presentation={presentation}/></button>
+<script>import './runtime';</script>

@@ -1,0 +1,12 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import type {NavigationIcon,Presentation} from '../navigation-types';
+import {Toggle} from '../toggle';
+import {cn} from '../utils';
+interface Props extends HTMLAttributes<'div'> {label:string;items:{value:string;label:string;icon?:NavigationIcon;disabled?:boolean}[];type?:'single'|'multiple';defaultValue?:string[];disabled?:boolean;presentation?:Presentation;variant?:'default'|'outline';}
+const {label,items,type='single',defaultValue=[],disabled=false,presentation='label',variant='outline',class:className,...props}=Astro.props;
+if(new Set(items.map(item=>item.value)).size!==items.length||items.some(item=>!item.value))throw new Error('ToggleGroup requires unique nonempty item values.');
+if(type==='single'&&defaultValue.length>1)throw new Error('Single ToggleGroup accepts at most one initial selection.');
+if(defaultValue.some(value=>!items.some(item=>item.value===value)))throw new Error('ToggleGroup defaultValue must reference an item.');
+---
+<div {...props} data-slot="toggle-group" role="group" aria-label={label} data-type={type} data-presentation={presentation} class={cn('dmf-toggle-group',className)}>{items.map(item=><Toggle label={item.label} value={item.value} icon={item.icon} disabled={disabled||item.disabled} defaultPressed={defaultValue.includes(item.value)} presentation={presentation} variant={variant}/>)}</div>

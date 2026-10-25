@@ -1,0 +1,11 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {ChevronDown} from '@lucide/astro';
+import type {NavigationIcon,Presentation} from '../navigation-types';
+import Content from '../navigation-content.astro';
+import {cn} from '../utils';
+interface Props extends Omit<HTMLAttributes<'details'>,'open'> {label:string;defaultOpen?:boolean;icon?:NavigationIcon;presentation?:Presentation;}
+const {label,defaultOpen=false,icon:Icon,presentation='label',class:className,...props}=Astro.props;
+---
+<details {...props} data-slot="collapsible" data-presentation={presentation} data-dmf-nav-disclosure open={defaultOpen} class={cn('dmf-collapsible',className)}><summary title={presentation==='icon'?label:undefined}><Content label={label} icon={Icon} presentation={presentation}/><ChevronDown size={18} aria-hidden="true"/></summary><div data-slot="collapsible-content"><slot/></div></details>
+<script>import '../navigation-disclosure';</script>

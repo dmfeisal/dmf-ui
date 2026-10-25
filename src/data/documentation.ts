@@ -1,3 +1,4 @@
+import {selectionComponents} from './selection-documentation';
 import {dataDisplayComponents} from './data-display-documentation';
 import {feedbackComponents} from './feedback-documentation';
 import {navigationPatterns} from './navigation-patterns-documentation';
@@ -8,6 +9,7 @@ import {version} from '../../package.json';
 import {contentComponents,contentGuide} from './content-documentation';
 export type ComponentDoc = {slug:string;name:string;category:string;description:string;usage:string;options:[string,string,string][];notes:string[]};
 export const components: ComponentDoc[] = [
+ ...selectionComponents,
  ...dataDisplayComponents,
  ...feedbackComponents,
  ...contentComponents,

@@ -113,7 +113,11 @@
     "./loading-button": "./src/components/dmf-ui/loading-button/index.ts",
     "./table": "./src/components/dmf-ui/table/index.ts",
     "./description-list": "./src/components/dmf-ui/description-list/index.ts",
-    "./slider": "./src/components/dmf-ui/slider/index.ts"
+    "./slider": "./src/components/dmf-ui/slider/index.ts",
+    "./collapsible": "./src/components/dmf-ui/collapsible/index.ts",
+    "./toggle": "./src/components/dmf-ui/toggle/index.ts",
+    "./toggle-group": "./src/components/dmf-ui/toggle-group/index.ts",
+    "./combobox": "./src/components/dmf-ui/combobox/index.ts"
   },
   "files": [
     "contracts/*.json",

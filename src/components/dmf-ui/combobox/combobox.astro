@@ -1,0 +1,16 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {ChevronDown,Search,Check} from '@lucide/astro';
+import type {NavigationIcon} from '../navigation-types';
+import {cn} from '../utils';
+interface Props extends Omit<HTMLAttributes<'select'>,'id'|'size'|'multiple'> {id:string;label:string;items:{value:string;label:string;disabled?:boolean;icon?:NavigationIcon}[];defaultValue?:string;placeholder?:string;emptyMessage?:string;}
+const {id,label,items,defaultValue='',placeholder='Choose an option',emptyMessage='No matching options.',name,required=false,disabled=false,form,class:className,...props}=Astro.props;
+if(new Set(items.map(item=>item.value)).size!==items.length||items.some(item=>!item.value||!item.label.trim()))throw new Error('Combobox requires unique nonempty values and visible option labels.');
+if(defaultValue&&!items.some(item=>item.value===defaultValue&&!item.disabled))throw new Error('Combobox defaultValue must reference an enabled option.');
+const selectedLabel=items.find(item=>item.value===defaultValue)?.label??'';
+---
+<div data-slot="combobox" class={cn('dmf-combobox',className)}>
+ <div data-combobox-fallback><label for={`${id}-native`}>{label}</label><select {...props} id={`${id}-native`} name={name} required={required} disabled={disabled} form={form} data-combobox-select><option value="" selected={!defaultValue}>{placeholder}</option>{items.map(item=><option value={item.value} selected={item.value===defaultValue} disabled={item.disabled}>{item.label}</option>)}</select></div>
+ <div data-combobox-enhanced hidden><label for={id}>{label}</label><div class="dmf-combobox-input"><Search size={18} aria-hidden="true"/><input id={id} type="text" role="combobox" aria-autocomplete="list" aria-controls={`${id}-list`} aria-expanded="false" autocomplete="off" placeholder={placeholder} value={selectedLabel} disabled required={required} form={form} aria-describedby={props['aria-describedby']} aria-invalid={props['aria-invalid']} spellcheck="false"/><ChevronDown size={16} aria-hidden="true"/></div><div data-combobox-popup hidden><ul id={`${id}-list`} role="listbox" aria-label={`${label} options`}>{!required&&<li id={`${id}-option-clear`} role="option" data-value="" data-label="Clear selection" aria-selected={!defaultValue?'true':'false'}><span>Clear selection</span><Check size={16} class="dmf-combobox-check" aria-hidden="true"/></li>}{items.map(({value,label:optionLabel,disabled:unavailable,icon:Icon},index)=><li id={`${id}-option-${index}`} role="option" data-value={value} data-label={optionLabel} aria-selected={value===defaultValue?'true':'false'} aria-disabled={unavailable?'true':undefined}>{Icon&&<Icon size={18} aria-hidden="true"/>}<span>{optionLabel}</span><Check size={16} class="dmf-combobox-check" aria-hidden="true"/></li>)}</ul><p data-combobox-empty hidden>{emptyMessage}</p></div><p class="dmf-product-sr" role="status" data-combobox-status></p></div>
+</div>
+<script>import './runtime';</script>

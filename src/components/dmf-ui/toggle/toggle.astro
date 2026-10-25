@@ -1,0 +1,9 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import type {NavigationIcon,Presentation} from '../navigation-types';
+import {Tooltip,TooltipContent} from '../tooltip';
+import Control from './toggle-control.astro';
+interface Props extends Omit<HTMLAttributes<'button'>,'type'|'value'|'aria-pressed'> {label:string;value?:string;defaultPressed?:boolean;icon?:NavigationIcon;presentation?:Presentation;variant?:'default'|'outline';}
+const {presentation='label',label,icon:Icon,...props}=Astro.props;
+---
+{presentation==='icon'?<Tooltip side="bottom" portal={false} class="dmf-inline-tooltip"><Control {...props} label={label} icon={Icon} presentation={presentation} tooltipTrigger/><TooltipContent>{label}</TooltipContent></Tooltip>:<Control {...props} label={label} icon={Icon} presentation={presentation}/>}
