@@ -67,3 +67,20 @@ export type AlertActionProps=ComponentPropsWithRef<'div'>;
 export function AlertAction({className,...props}:AlertActionProps){
  return <div {...props} data-slot="alert-action" className={join('col-span-full mt-3 flex flex-wrap gap-2 items-center',className)}/>;
 }
+
+export type LabelProps=ComponentPropsWithRef<'label'>;
+export function Label({className,...props}:LabelProps){
+ return <label {...props} data-slot="label" className={join('flex min-w-0 items-center gap-2 text-sm leading-normal font-medium [overflow-wrap:anywhere] peer-disabled:opacity-50 peer-disabled:cursor-not-allowed',className)}/>;
+}
+export type TextareaProps=ComponentPropsWithRef<'textarea'>;
+export function Textarea({className,...props}:TextareaProps){
+ return <textarea {...props} data-slot="textarea" className={join('dmf-react-textarea border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-destructive rounded-md border bg-transparent px-2.5 py-2 text-base shadow-xs focus-visible:ring-3 placeholder:text-muted-foreground min-h-16 w-full min-w-0 outline-none disabled:cursor-not-allowed disabled:opacity-50',className)}/>;
+}
+export type CheckboxProps=Omit<ComponentPropsWithRef<'input'>,'type'|'role'|'children'|'size'|'readOnly'>;
+export function Checkbox({className,...props}:CheckboxProps){
+ return <input {...props} type="checkbox" data-slot="checkbox" className={join('dmf-react-checkbox peer size-4 shrink-0 disabled:cursor-not-allowed disabled:opacity-50',className)}/>;
+}
+export type SeparatorProps=Omit<ComponentPropsWithRef<'div'>,'role'|'aria-orientation'|'tabIndex'|'children'> & {orientation?:'horizontal'|'vertical';decorative?:boolean};
+export function Separator({orientation='horizontal',decorative=true,className,...props}:SeparatorProps){
+ return <div {...props} data-slot="separator" data-orientation={orientation} role={decorative?'none':'separator'} aria-orientation={decorative?undefined:orientation} className={join('bg-border shrink-0',orientation==='horizontal'?'h-px w-full':'w-px self-stretch',className)}/>;
+}

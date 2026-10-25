@@ -16,6 +16,12 @@ export async function run({page,baseURL,artifacts,settle,mobile,tap,resetBrowser
    const ratio=(a,b)=>{const x=lum(a),y=lum(b);return(Math.max(x,y)+.05)/(Math.min(x,y)+.05);};
    const background=getComputedStyle(document.querySelector('[data-slot=card]')).backgroundColor;
    const boundaries=[{part:'input border',ratio:ratio(getComputedStyle(document.querySelector('.dmf-react-input')).borderColor,background)}];
+   const textarea=document.querySelector('.dmf-react-textarea'),surfaces=[];
+   for(let node=textarea;node;node=node.parentElement)surfaces.unshift(getComputedStyle(node).backgroundColor);
+   canvas.clearRect(0,0,1,1);canvas.fillStyle='white';canvas.fillRect(0,0,1,1);
+   for(const color of surfaces){canvas.fillStyle=color;canvas.fillRect(0,0,1,1);}
+   const textareaBackground='rgb('+[...canvas.getImageData(0,0,1,1).data].slice(0,3).join(',')+')';
+   boundaries.push({part:'textarea border',ratio:ratio(getComputedStyle(textarea).borderColor,textareaBackground)});
    for(const input of document.querySelectorAll('.dmf-react-switch input:not(:disabled)')){
     const track=input.nextElementSibling,thumb=track.firstElementChild,style=getComputedStyle(track);
     boundaries.push({part:input.name+' track outline',ratio:ratio(style.outlineColor,background)},{part:input.name+' thumb',ratio:ratio(getComputedStyle(thumb).backgroundColor,style.backgroundColor)});
@@ -49,6 +55,20 @@ export async function run({page,baseURL,artifacts,settle,mobile,tap,resetBrowser
   await page.click("loc=role:button[name='Focus display name']");assert(await page.evaluate(()=>document.activeElement.name==='name'),'Native ref focus failed');
   await page.click("loc=role:button[name='Reset form']");assert(await page.evaluate(()=>!document.querySelector('[name=updates]').checked&&!document.querySelector('[name=consent]').checked&&document.querySelector('[name=digest]').checked&&document.querySelector('[name=name]').value==='Feisal'),'Reset failed');
   await page.click("loc=role:button[name='Preview values']");assert(await page.evaluate(()=>document.activeElement.name==='consent'&&!document.querySelector('form').checkValidity()),'Required consent did not prevent submission');
+  await page.evaluate(()=>document.querySelector('[name=notes]').setAttribute('aria-invalid','true'));
+  assert(await page.evaluate(()=>{const el=document.querySelector('[name=notes]'),c=document.createElement('canvas').getContext('2d');c.fillStyle=getComputedStyle(el).getPropertyValue('--destructive');const expected=c.fillStyle;c.fillStyle=getComputedStyle(el).borderColor;return c.fillStyle===expected;}),'Textarea authored invalid border styling missing');
+  await page.evaluate(()=>document.querySelector('[name=notes]').removeAttribute('aria-invalid'));
+  await page.fill('textarea[name=notes]','Native multiline\nnotes');
+  await page.focus('textarea[name=notes]');await page.keyboard.press('Tab');
+  assert(await page.evaluate(()=>document.activeElement.name==='accepted'&&document.activeElement.matches(':focus-visible')),'Checkbox native Tab focus missing');
+  await page.keyboard.press('Space');await page.keyboard.press('Tab');await page.keyboard.press('Tab');
+  assert(await page.evaluate(()=>document.activeElement.textContent==='Preview notes'),'Disabled Checkbox remained in tab order');
+  await page.click('form[data-basic-controls] button[type=submit]');
+  assert(await page.evaluate(()=>{const values=JSON.parse(document.querySelector('[data-basic-result]').textContent);return values.notes==='Native multiline\nnotes'&&values.accepted==='on'&&values.extras==='on'&&!('unavailable'in values);}), 'Native Textarea/Checkbox submission failed');
+  await page.click('form[data-basic-controls] button[type=reset]');
+  assert(await page.evaluate(()=>document.querySelector('[name=notes]').value===''&&!document.querySelector('[name=accepted]').checked&&document.querySelector('[name=extras]').checked),'Basic controls reset failed');
+  await page.click('form[data-basic-controls] button[type=submit]');
+  assert(await page.evaluate(()=>!document.querySelector('form[data-basic-controls]').checkValidity()&&document.activeElement.name==='notes'),'Required Textarea failed validation');
   for(const system of ['dmf','cb-ui'])for(const dark of [false,true]){
    await preset(system,dark);await audit(`desktop ${system} ${dark?'dark':'light'} surroundings`);
    if(system==='cb-ui'){
@@ -67,7 +87,7 @@ export async function run({page,baseURL,artifacts,settle,mobile,tap,resetBrowser
    await page.evaluate(direction=>document.documentElement.dir=direction,direction);await preset(system,true);
    for(const fontSize of ['87.5%','175%']){
     await page.evaluate(fontSize=>document.documentElement.style.fontSize=fontSize,fontSize);await settle();
-    const bounds=await page.evaluate(()=>({width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth,clipped:[...document.querySelectorAll('button,[data-slot=card],[data-slot=text],fieldset,.dmf-react-switch')].filter(el=>{const r=el.getBoundingClientRect();return r.left< -1||r.right>document.documentElement.clientWidth+1||el.scrollWidth>el.clientWidth+2;}).map(el=>({tag:el.tagName,text:el.textContent?.trim().slice(0,40),width:el.clientWidth,scroll:el.scrollWidth})),small:[...document.querySelectorAll('button,.dmf-react-switch,input[name=name]')].filter(el=>{const r=el.getBoundingClientRect();return r.height<44||r.width<44;}).map(el=>el.textContent||el.name)}));
+    const bounds=await page.evaluate(()=>({width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth,clipped:[...document.querySelectorAll('button,[data-slot=card],[data-slot=text],fieldset,.dmf-react-switch,.dmf-react-textarea,.consumer-check-label')].filter(el=>{const r=el.getBoundingClientRect();return r.left< -1||r.right>document.documentElement.clientWidth+1||el.scrollWidth>el.clientWidth+2;}).map(el=>({tag:el.tagName,text:el.textContent?.trim().slice(0,40),width:el.clientWidth,scroll:el.scrollWidth})),small:[...document.querySelectorAll('button,.dmf-react-switch,input[name=name]')].filter(el=>{const r=el.getBoundingClientRect();return r.height<44||r.width<44;}).map(el=>el.textContent||el.name)}));
     assert(bounds.width===390&&bounds.scroll<=390&&!bounds.clipped.length,`Mobile overflow ${system}/${direction}/${fontSize}: ${JSON.stringify(bounds)}`);assert(!bounds.small.length,`Coarse-pointer targets too small: ${JSON.stringify(bounds.small)}`);
     await audit(`mobile ${system} ${direction} ${fontSize==='175%'?'200%':'100%'} text`);
     if(direction==='rtl'&&fontSize==='175%')await page.screenshot({path:`${artifacts}/enlarged-${system}-rtl.png`});
@@ -76,7 +96,7 @@ export async function run({page,baseURL,artifacts,settle,mobile,tap,resetBrowser
   }
   await tap('label.dmf-react-switch:has(input[name=updates])');
   assert(await page.evaluate(()=>document.querySelector('[name=updates]').checked),'Mobile label touch did not toggle Switch');
-  await tap('button[type=reset]');
+  await tap('form:not([data-basic-controls]) button[type=reset]');
   assert(await page.evaluate(()=>!document.querySelector('[name=updates]').checked&&document.querySelector('[role=status]').textContent==='Form reset.'),'Mobile reset touch failed');
   await resetBrowser();
   await page.evaluate(()=>{document.documentElement.dir='ltr';document.documentElement.style.fontSize='87.5%';});
@@ -98,7 +118,11 @@ export async function run({page,baseURL,artifacts,settle,mobile,tap,resetBrowser
     assert(state.controls.find(c=>c.name==='digest').offset>state.controls.find(c=>c.name==='updates').offset+5,'Forced colors lost checked position');
     assert(state.controls.find(c=>c.name==='updates').outlineWidth>=2,'Forced colors focus outline missing');
     await page.keyboard.press('Space');assert(await page.evaluate(()=>document.querySelector('[name=updates]').checked),'Forced colors Space toggle failed');
-    await page.click('button[type=reset]');assert(await page.evaluate(()=>!document.querySelector('[name=updates]').checked),'Forced colors reset failed');
+    await page.click('form:not([data-basic-controls]) button[type=reset]');assert(await page.evaluate(()=>!document.querySelector('[name=updates]').checked),'Forced colors reset failed');
+    await page.focus('textarea[name=notes]');await page.keyboard.press('Tab');
+    assert(await page.evaluate(()=>document.activeElement.name==='accepted'&&document.activeElement.matches(':focus-visible')&&getComputedStyle(document.activeElement).appearance==='auto'&&parseFloat(getComputedStyle(document.activeElement).outlineWidth)>=2),'Forced colors native Checkbox focus missing');
+    await page.keyboard.press('Space');assert(await page.evaluate(()=>document.querySelector('[name=accepted]').checked),'Forced colors Checkbox Space toggle failed');
+    await page.click('form[data-basic-controls] button[type=reset]');
     forced.push({scheme,system,...state});await page.screenshot({path:`${artifacts}/forced-${system}-${scheme}.png`});
    }
   }

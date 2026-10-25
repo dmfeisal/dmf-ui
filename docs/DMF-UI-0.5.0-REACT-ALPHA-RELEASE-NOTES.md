@@ -65,3 +65,9 @@ See [the verification record](DMF-UI-REACT-VERIFICATION.md) for local evidence p
 Added Badge (static span/native anchor; six variants) and Alert with AlertTitle, AlertDescription and AlertAction. Alert defaults to a static note; authors choose status/urgent roles and supply real actions. Native refs, TypeScript link contracts and authored semantics are preserved. The package remains unpublished alpha.3; the core remains 0.4.0.
 
 Four adapter tests, five packed-consumer tests, Astro check, production build and all 16 source tests pass. The expanded Chrome scenario passes twelve axe/layout states, native Badge link keyboard navigation, static Alert checks and the four existing forced-colors cases. Earlier Safari evidence does not establish coverage of these new components. Firefox, spoken reader and real-device checks remain pending. This iteration has no hosted CI result yet.
+
+## Native form iteration — Label, Textarea, Checkbox and Separator
+
+Added native Label, Textarea, Checkbox and decorative/semantic Separator, bringing React to eleven families. Native form values, validation, refs, reset and authored label/error relationships remain host-owned. Checkbox uses native browser artwork and ref-owned indeterminate state; Separator is not an interactive splitter. Core stays 0.4.0 and the unpublished React adapter stays 0.1.0-alpha.3.
+
+Five adapter tests, six packed-consumer tests, Astro check/build and all 16 source tests pass. The expanded isolated-Chrome suite passes twelve axe/layout states, native new-control keyboard/form/reset checks and four forced-colors states. Textarea boundary contrast is at least 4.7417:1 in the fixture. Safari/Firefox, spoken-reader and real-device acceptance for these new components remains pending. No hosted CI result is recorded for this iteration; no push, publication or tag is implied.

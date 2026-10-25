@@ -1,5 +1,5 @@
 import {createRef} from 'react';
-import {Button,Input,Switch,Text,Card,Badge,Alert,AlertTitle,AlertDescription,AlertAction} from '@dmf-ui/react';
+import {Button,Input,Switch,Text,Card,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator} from '@dmf-ui/react';
 const input=createRef<HTMLInputElement>();
 const button=createRef<HTMLButtonElement>();
 const heading=createRef<HTMLHeadingElement>();
@@ -26,3 +26,14 @@ const wrongBadgeRef=<Badge as="a" href="/" ref={button}>Details</Badge>;
 // @ts-expect-error Alert has no invented variant.
 const wrongAlert=<Alert variant="warning"/>;
 void [content,missingDestination,staticDestination,wrongBadgeRef,wrongAlert];
+
+const basics=<><Label ref={createRef<HTMLLabelElement>()} htmlFor="notes">Notes</Label><Textarea ref={createRef<HTMLTextAreaElement>()} id="notes" defaultValue="Local"/><Checkbox ref={input} defaultChecked/><Separator ref={card} decorative={false} orientation="vertical"/></>;
+// @ts-expect-error Checkbox always uses its native checkbox type.
+const checkboxType=<Checkbox type="radio"/>;
+// @ts-expect-error Textarea refs must be textarea elements.
+const textareaRef=<Textarea ref={input}/>;
+// @ts-expect-error Separator is not an adjustable focusable widget.
+const separatorFocus=<Separator tabIndex={0}/>;
+// @ts-expect-error Checkbox readOnly does not prevent native toggling.
+const readonlyCheckbox=<Checkbox readOnly/>;
+void [basics,checkboxType,textareaRef,separatorFocus,readonlyCheckbox];

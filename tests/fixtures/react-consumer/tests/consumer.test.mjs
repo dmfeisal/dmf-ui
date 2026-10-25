@@ -4,7 +4,7 @@ import {JSDOM} from 'jsdom';
 import {act,createElement as h,createRef,StrictMode} from 'react';
 import {userEvent} from '@testing-library/user-event';
 import {App,render,identifierPrefix} from '../.test-dist/server.mjs';
-import {Button,Input,Switch,Card,Text,Badge,Alert,AlertTitle,AlertDescription,AlertAction} from '@dmf-ui/react';
+import {Button,Input,Switch,Card,Text,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator} from '@dmf-ui/react';
 async function withDOM(run,html=''){
  const dom=new JSDOM(`<div id="root">${html}</div><div id="other"></div>`,{url:'https://consumer.test'});
  const saved=new Map();const errors=[];const originalError=console.error;
@@ -83,4 +83,17 @@ test('packed content components preserve native links and all refs through clean
  await act(async()=>user.keyboard('[Enter]'));assert.equal(clicks,1);
  assert.equal(refs[0].current.getAttribute('role'),'status');
  await act(async()=>root.render(null));assert.ok(refs.every(ref=>ref.current===null));
+}));
+
+test('packed native form controls validate, submit, reset and clean up refs',()=>withDOM(async({mount,user})=>{
+ await mount(h(App));const form=document.querySelector('form[data-basic-controls]'),notes=form.elements.namedItem('notes'),accepted=form.elements.namedItem('accepted'),extras=form.elements.namedItem('extras');
+ assert.equal(form.checkValidity(),false);assert.equal(document.querySelector(`label[for="${notes.id}"]`).control,notes);
+ await act(async()=>{await user.type(notes,'Local multiline\nnotes');await user.click(accepted.closest('label'));});
+ assert.equal(form.checkValidity(),true);assert.deepEqual(Object.fromEntries(new FormData(form)),{notes:'Local multiline\nnotes',accepted:'on',extras:'on'});
+ await act(async()=>user.click(form.querySelector('button[type=submit]')));assert.match(document.querySelector('[data-basic-result]').textContent,/Local multiline/);
+ await act(async()=>user.click(form.querySelector('button[type=reset]')));assert.equal(notes.value,'');assert.equal(accepted.checked,false);assert.equal(extras.checked,true);
+ const refs=Array.from({length:4},()=>createRef());const root=await mount(h('div',{},h(Label,{ref:refs[0],htmlFor:'ref-notes'},'Ref notes'),h(Textarea,{id:'ref-notes',ref:refs[1]}),h(Label,{},h(Checkbox,{ref:refs[2]}),'Ref checkbox'),h(Separator,{ref:refs[3],decorative:false,orientation:'vertical'})),'#other');
+ assert.deepEqual(refs.map(r=>r.current.tagName),['LABEL','TEXTAREA','INPUT','DIV']);
+ refs[2].current.indeterminate=true;assert.equal(refs[2].current.indeterminate,true);await act(async()=>user.click(refs[2].current));assert.equal(refs[2].current.indeterminate,false);
+ await act(async()=>root.render(null));assert.ok(refs.every(r=>r.current===null));
 }));

@@ -21,3 +21,8 @@
  .dmf-ui .dmf-react-switch input:focus-visible + .dmf-react-switch-track { outline-color:CanvasText; }
  .dmf-ui .dmf-react-switch input:disabled + .dmf-react-switch-track { outline-color:GrayText; }
 }
+.dmf-ui .dmf-react-textarea { font:inherit; resize:vertical; }
+.dmf-ui .dmf-react-textarea:not([aria-invalid=true]) { border-color:var(--muted-foreground); }
+.dmf-ui .dmf-react-textarea:focus-visible,
+.dmf-ui .dmf-react-checkbox:focus-visible { outline:2px solid var(--foreground); outline-offset:3px; }
+.dmf-ui .dmf-react-checkbox { appearance:auto; accent-color:var(--primary); margin:0; }

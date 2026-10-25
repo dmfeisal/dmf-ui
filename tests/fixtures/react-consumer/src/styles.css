@@ -8,3 +8,5 @@ html {font-size:87.5%}body {margin:0;background:var(--background,#fff)}
 .consumer-actions {display:flex;flex-wrap:wrap;gap:12px}
 
 .consumer-shell section {display:grid;gap:16px}
+
+.consumer-check-label {min-height:44px;cursor:pointer}

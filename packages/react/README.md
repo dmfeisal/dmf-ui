@@ -4,7 +4,7 @@ Private proof `0.1.0-alpha.3`, not published. Install the root repository depend
 
 A separate Vite consumer installs packed archives and verifies production assets, TypeScript, native ESM imports, refs, simulated keyboard input and controlled forms. Run `npm run test:dmf-ui:react-consumer` from the root. The optional `test:dmf-ui:react-browser` command reviews its retained production build in Ego Browser. Chromium keyboard/touch, preset/theme, font, focus, mobile/RTL, 200% text and contrast checks pass; Safari desktop/narrow-frame checks passed for the earlier five-component scope. The expanded Badge/Alert fixture passes Chromium; Firefox and spoken screen-reader checks remain pending. Alpha.3 strengthens Input and Switch boundaries using existing semantic colors and provides explicit native-input focus. The core dependency currently brings its full Astro/Data Slot dependency graph; the React runtime does not initialize those controllers.
 
-The current seven component families are Button, Text, Input, Switch, Card, Badge and Alert. Alert also exports AlertTitle, AlertDescription and AlertAction.
+The current eleven component families are Button, Text, Input, Switch, Card, Badge, Alert, Label, Textarea, Checkbox and Separator. Alert also exports AlertTitle, AlertDescription and AlertAction.
 
 Button uses the shared Fulldev-based variant definition. Text preserves author-selected heading semantics; Card is a non-interactive content container. Input forwards native React input props and refs. Switch is a labeled native checkbox with `role="switch"`; use `checked` plus `onChange` for controlled state, or `defaultChecked` for native uncontrolled state. Do not switch between those modes. Native required/disabled/name/value/form/reset behavior applies. Switch read-only behavior, unchecked-value submission, compact sizes and Astro controller attributes are not exposed.
 
@@ -29,3 +29,24 @@ Alert defaults to a static `div` with `role="note"`. Authors may explicitly choo
 ```
 
 The expanded packed fixture checks typed link/ref contracts, static versus opt-in announcement semantics, independent-root IDs, all content refs and cleanup, and both-preset SSR hydration. The original three adapter tests are now four; packed acceptance is now five tests. The alpha version remains unchanged during this unpublished local iteration.
+
+## Native form primitives
+
+Label forwards native label props/ref. Associate it using `htmlFor` and a unique control ID, or nest the control. It does not generate names or a disabled state. A checkbox label should offer at least a 44px hit area; the consumer demonstrates that host layout.
+
+Textarea forwards native textarea props/ref, including controlled `value`/`onChange`, `defaultValue`, required/disabled, name, form, rows and authored ARIA descriptions/errors. It resizes vertically, wraps within its container and uses a visible keyboard outline. Hosts own controlled reset and error messages; no validation message is invented.
+
+Checkbox is a native checkbox with native browser artwork, accent color and focus outline. It supports refs, checked/onChange or defaultChecked, required/disabled/name/value/form and native reset. There is no Switch role or custom SVG controller. `type`, `role`, children, size and readOnly are excluded. Set `indeterminate` through the native ref; it is not an SSR attribute or a separate controlled prop. The host owns resetting that imperative state. Native artwork varies by browser and system palette.
+
+Separator defaults to a decorative horizontal div (`role="none"`). Use `decorative={false}` for `role="separator"` and an explicit horizontal/vertical orientation. A vertical separator needs a parent with available height. It has no children, tabIndex or adjustable-value contract; it is not an interactive splitter.
+
+```tsx
+<Label htmlFor="notes">Notes</Label>
+<Textarea id="notes" name="notes" defaultValue="" />
+<Label className="min-h-[44px]">
+  <Checkbox name="includeDetails" defaultChecked />Include optional details
+</Label>
+<Separator decorative={false} />
+```
+
+Current acceptance is five adapter tests and six packed-consumer tests, plus the expanded Chromium matrix. Safari's historical review covers the original five families; the added native controls still need Safari/Firefox, spoken-reader and real-device verification.
