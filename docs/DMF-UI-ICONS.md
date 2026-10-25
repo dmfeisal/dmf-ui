@@ -17,3 +17,11 @@ Verification (2026-10-25): Astro check passed across 193 files with no errors, w
 The header uses Lucide icons for primary navigation and a repository link with visible GitHub text. The theme button cycles System/Light/Dark with Monitor/Sun/Moon icons, updating its accessible name without replacing its SVG content. On compact screens its text is visually hidden while the accessible name remains available. Component and guide lists use small decorative icons next to their visible labels; the table of contents stays text-only. Copy, export, share and reset actions pair their labels with corresponding icons. Search Close retains its visible label and Escape hint.
 
 The source-owned `NavigationIcon.astro` mapping serves documentation navigation only; it is excluded from the library archive. Final Astro check: 194 files, zero errors/warnings/hints. All 18 source tests passed. Production browser verification covers the full documentation, Create, content, search and icon-gallery flows, including header repository target and theme icon/name updates.
+
+## Compact header
+
+The GitHub link now uses the locally stored Iconify Simple Icons GitHub mark with a star icon and count. The browser reads the public GitHub repository API without credentials, validates a non-negative integer count, and caches it in session storage for five minutes. A four-second timeout, failed response or blocked storage does not break navigation. An unavailable count displays an em dash and is named as unavailable to assistive technology. The count is fetched in the browser rather than becoming a build dependency.
+
+The theme toggle is icon-only at all widths. The shared Tooltip provides hover/focus help with the current and next mode; its native button retains the current-mode accessible name. Escape dismisses the tooltip without moving focus. Header checks verified count formatting/naming, cached reuse across pages, API failure fallback, tooltip updates and mobile containment.
+
+Logo source: https://api.iconify.design/simple-icons/github.svg (Simple Icons).

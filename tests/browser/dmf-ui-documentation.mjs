@@ -14,7 +14,11 @@ export async function run({page,baseURL,navigate,settle,opened,focused,mobile,ta
  await navigate(`${baseURL}/`);
  assert(await page.evaluate(()=>[...document.querySelectorAll('.docs-primary a')].map(a=>a.textContent).join(',')==='Home,Components,Docs,Create'),'Primary documentation navigation missing');
  assert(await page.evaluate(()=>document.querySelector('.docs-header .docs-github').href==='https://github.com/dmfeisal/dmf-ui'&&document.querySelector('#docs-theme [data-theme-icon]:not([hidden])').dataset.themeIcon==='system'),'Header GitHub link or initial theme icon missing');
- await audit('Home light/system');console.log(await page.screenshot({path:'/tmp/dmf-ui-documentation-home.png'}));
+ await audit('Home light/system');
+ assert(await page.evaluate(()=>!document.querySelector('#docs-theme [data-theme-label]')&&document.querySelector('.docs-github svg')&&document.querySelector('[data-github-stars]')),'Compact header markup missing');
+ await page.focus('#docs-theme');await page.waitForFunction(()=>{const tooltip=document.querySelector('#docs-theme-tooltip [data-slot=tooltip-content]');return tooltip&&!tooltip.hidden;});
+ assert(await page.evaluate(()=>document.querySelector('[data-theme-description]').textContent==='Theme: System. Switch to Light.'),'Theme tooltip missing');await audit('Header theme tooltip');await page.keyboard.press('Escape');await focused('docs-theme');
+ console.log(await page.screenshot({path:'/tmp/dmf-ui-documentation-home.png'}));
  await page.focus('#docs-theme');await page.keyboard.press('Enter');await page.keyboard.press('Enter');
  assert(await page.evaluate(()=>document.documentElement.dataset.theme==='dark'),'Documentation dark theme failed');assert(await page.evaluate(()=>document.querySelector('#docs-theme [data-theme-icon]:not([hidden])').dataset.themeIcon==='dark'&&document.querySelector('#docs-theme').getAttribute('aria-label')==='Theme: Dark'),'Theme icon/name did not update');await audit('Home dark');
  await follow('.docs-primary a[href="/components/"]','/components/');
@@ -56,5 +60,5 @@ export async function run({page,baseURL,navigate,settle,opened,focused,mobile,ta
  await page.evaluate(()=>{const code=document.querySelector('.docs-code');code.scrollIntoView({block:'center',behavior:'instant'});code.focus({preventScroll:true});});
  await page.cdp('Input.dispatchKeyEvent',{type:'keyDown',key:'ArrowRight',code:'ArrowRight',windowsVirtualKeyCode:39});await page.cdp('Input.dispatchKeyEvent',{type:'keyUp',key:'ArrowRight',code:'ArrowRight',windowsVirtualKeyCode:39});
  await page.waitForFunction(()=>document.querySelector('.docs-code').scrollLeft>0);
- console.log('PASS documentation navigation/search/empty state, all scripted previews, local action feedback, guides, themes, mobile navigation/containment and six axe page states');
+ console.log('PASS documentation navigation/search/empty state, all scripted previews, local action feedback, guides, themes, mobile navigation/containment and seven axe page states');
 }

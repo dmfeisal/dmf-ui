@@ -4,7 +4,7 @@
 .create-field { display:grid;gap:8px; }
 .create-field label { font-weight:600; }
 .create-field small { color:var(--muted-foreground);line-height:1.5; }
-.create-field select { min-height:44px;max-width:100%;width:100%;border:1px solid var(--border);border-radius:var(--radius-md);padding:8px;color:var(--foreground);background:var(--background);font:inherit; }
+.create-field select { min-height:44px;max-width:100%;width:100%;border:1px solid var(--border);border-radius:var(--docs-radius-control);padding:8px;color:var(--foreground);background:var(--background);font:inherit; }
 .create-field select:focus-visible {outline:2px solid var(--foreground);outline-offset:3px;}
 .create-field select:disabled {opacity:.65;}
 .create-result {min-width:0;}
@@ -24,7 +24,7 @@
 @media(max-width:480px){.create-controls{grid-template-columns:1fr;}.docs-header-inner{gap:12px;flex-wrap:wrap;padding-block:12px;}.docs-primary{gap:16px;order:3;width:100%;}.docs-theme{margin-inline-start:auto;}}
 
 .create-brand-foundations[hidden] { display:none; }
-.create-brand-foundations { padding:20px; margin-bottom:24px; border:1px solid var(--border); border-radius:var(--radius); }
+.create-brand-foundations { padding:20px; margin-bottom:24px; border:1px solid var(--border); border-radius:var(--docs-radius-panel); }
 .create-brand-foundations h2 { font-size:1.15rem; margin:0 0 8px; }
 .create-brand-foundations p { color:var(--muted-foreground); line-height:1.6; }
 .create-brand-foundations ul { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; list-style:none; margin:20px 0; padding:0; }

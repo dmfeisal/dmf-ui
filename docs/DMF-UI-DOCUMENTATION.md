@@ -84,3 +84,9 @@ Global search covers components, guide topics and Create. Open it from the heade
 Verification includes production and development browser flows, search empty/results states, shortcuts, focus return, exact code copying and denied-clipboard fallback, mobile containment and enlarged text. Automated checks do not replace spoken screen-reader or Safari/Firefox verification. Core remains 0.4.0 and React remains 0.1.0-alpha.3.
 
 Astro check: 190 files, zero errors/warnings/hints. Production build: 34 pages. Source tests: 17/17 passed with localhost permissions and a writable temporary npm cache. Isolated Chrome passed documentation, Create, content pages and global search flows with no runtime or failed asset requests. Search axe checks cover empty/results, dark and mobile states. At 200% mobile text, axe requested manual contrast review for a wrapped result description; screenshot review found readable, separated text using the same verified token colors. Layout containment and controls passed at that size.
+
+## Rounded website accents
+
+The documentation shell owns separate `--docs-radius-control` (0.75rem), `--docs-radius-panel` (1.25rem), and `--docs-radius-dialog` (1.5rem) values. They round website controls, catalog entries, navigation highlights, code/preview frames, the icon gallery and search dialog. Create's surrounding controls and brand summary use these host values; its actual component preview keeps the selected foundation/custom radius. Shared semantic tokens and package versions are unchanged.
+
+Verification: Astro check (194 files) and 35-page production build passed, as did all 18 source tests and production documentation/Create/content/search browser flows, including mobile and enlarged-text containment. Existing keyboard and accessibility checks passed. The styling change remains local until committed and pushed.

@@ -64,5 +64,21 @@ for(const button of document.querySelectorAll<HTMLButtonElement>('[data-copy-cod
 }
 const media=matchMedia('(prefers-color-scheme: dark)'),modes=['system','light','dark'] as const;
 let mode=0;
-function apply(){document.documentElement.dataset.theme=modes[mode]==='system'?(media.matches?'dark':'light'):modes[mode];const button=document.getElementById('docs-theme');if(button){const label=`Theme: ${modes[mode][0].toUpperCase()}${modes[mode].slice(1)}`;button.querySelector('[data-theme-label]')!.textContent=label;button.setAttribute('aria-label',label);for(const icon of button.querySelectorAll<HTMLElement>('[data-theme-icon]'))icon.toggleAttribute('hidden',icon.dataset.themeIcon!==modes[mode]);}}
+function apply(){document.documentElement.dataset.theme=modes[mode]==='system'?(media.matches?'dark':'light'):modes[mode];const button=document.getElementById('docs-theme');if(button){const label=`Theme: ${modes[mode][0].toUpperCase()}${modes[mode].slice(1)}`;const next=modes[(mode+1)%modes.length];const description=document.querySelector('[data-theme-description]');if(description)description.textContent=`${label}. Switch to ${next[0].toUpperCase()}${next.slice(1)}.`;button.setAttribute('aria-label',label);for(const icon of button.querySelectorAll<HTMLElement>('[data-theme-icon]'))icon.toggleAttribute('hidden',icon.dataset.themeIcon!==modes[mode]);}}
 document.getElementById('docs-theme')?.addEventListener('click',()=>{mode=(mode+1)%modes.length;apply();});media.addEventListener('change',apply);apply();
+
+const github=document.querySelector<HTMLAnchorElement>('.docs-github');
+if(github){
+ const cacheKey='dmf-ui-github-stars',ttl=5*60*1000;
+ const showStars=(stars:number)=>{github.querySelector('[data-github-stars]')!.textContent=new Intl.NumberFormat('en',{notation:stars>=10000?'compact':'standard',maximumFractionDigits:1}).format(stars);github.querySelector('[data-github-stars-label]')!.textContent=` ${stars===1?'star':'stars'}`;github.title=`${stars.toLocaleString('en')} ${stars===1?'star':'stars'} on GitHub`;};
+ const valid=(value:unknown):value is number=>typeof value==='number'&&Number.isSafeInteger(value)&&value>=0;
+ async function refreshStars(){
+  try{const cached=JSON.parse(sessionStorage.getItem(cacheKey)??'null');if(cached&&valid(cached.stars)&&Number.isFinite(cached.at)&&Date.now()>=cached.at&&Date.now()-cached.at<ttl){showStars(cached.stars);return;}}catch{}
+  try{
+   const response=await fetch('https://api.github.com/repos/dmfeisal/dmf-ui',{headers:{Accept:'application/vnd.github+json'},credentials:'omit',signal:AbortSignal.timeout(4000)});
+   if(!response.ok)return;const data=await response.json();if(!valid(data.stargazers_count))return;showStars(data.stargazers_count);
+   try{sessionStorage.setItem(cacheKey,JSON.stringify({stars:data.stargazers_count,at:Date.now()}));}catch{}
+  }catch{}
+ }
+ void refreshStars();
+}
