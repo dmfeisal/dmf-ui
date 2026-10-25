@@ -4,6 +4,7 @@
 @import "./upstream/shadcn.css";
 @import "./dmf-ui-tokens.css";
 @import "./dmf-ui-cb.css";
+@import "./dmf-ui-horego.css";
 @source "../components/dmf-ui";
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *):not(:where([data-color-mode="light"], [data-color-mode="light"] *)));
 @theme inline {

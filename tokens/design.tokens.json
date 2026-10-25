@@ -1,5 +1,5 @@
 {
-  "$description": "DMF UI semantic foundation and CB UI reconstruction. Existing values migrated from 0.2.0; no native component adapter is implied.",
+  "$description": "DMF UI semantic foundation, CB UI reconstruction and brand-derived Horego preset. No native adapter is implied.",
   "dmf": {
     "light": {
       "background": {
@@ -1809,6 +1809,723 @@
       "cb-brand": {
         "$type": "color",
         "$value": "{cb.light.dmf-cb-ui-color-primary}"
+      }
+    }
+  },
+  "horego": {
+    "$description": "Confirmed 2023 Horego brand colors and typography, with present-day DMF semantic mappings. Light only; not historical product-token evidence.",
+    "light": {
+      "background": {
+        "$type": "color",
+        "$value": "{horego.light.horego-white}"
+      },
+      "foreground": {
+        "$type": "color",
+        "$value": "{horego.light.horego-eerie-black}"
+      },
+      "card": {
+        "$type": "color",
+        "$value": "{horego.light.horego-white}"
+      },
+      "card-foreground": {
+        "$type": "color",
+        "$value": "{horego.light.horego-eerie-black}"
+      },
+      "popover": {
+        "$type": "color",
+        "$value": "{horego.light.horego-white}"
+      },
+      "popover-foreground": {
+        "$type": "color",
+        "$value": "{horego.light.horego-eerie-black}"
+      },
+      "primary": {
+        "$type": "color",
+        "$value": "{horego.light.horego-off-red}"
+      },
+      "primary-foreground": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "alpha": 1,
+          "hex": "#000000"
+        }
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{horego.light.horego-amber}"
+      },
+      "secondary-foreground": {
+        "$type": "color",
+        "$value": "{horego.light.horego-eerie-black}"
+      },
+      "muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9607843137254902,
+            0.9607843137254902,
+            0.9607843137254902
+          ],
+          "alpha": 1,
+          "hex": "#f5f5f5"
+        }
+      },
+      "muted-foreground": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.34901960784313724,
+            0.34901960784313724,
+            0.34901960784313724
+          ],
+          "alpha": 1,
+          "hex": "#595959"
+        }
+      },
+      "accent": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9333333333333333,
+            0.9411764705882353,
+            1.0
+          ],
+          "alpha": 1,
+          "hex": "#eef0ff"
+        }
+      },
+      "accent-foreground": {
+        "$type": "color",
+        "$value": "{horego.light.horego-egyptian-blue}"
+      },
+      "destructive": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7058823529411765,
+            0.13725490196078433,
+            0.09411764705882353
+          ],
+          "alpha": 1,
+          "hex": "#b42318"
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8313725490196079,
+            0.8313725490196079,
+            0.8313725490196079
+          ],
+          "alpha": 1,
+          "hex": "#d4d4d4"
+        }
+      },
+      "input": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.45098039215686275,
+            0.45098039215686275,
+            0.45098039215686275
+          ],
+          "alpha": 1,
+          "hex": "#737373"
+        }
+      },
+      "ring": {
+        "$type": "color",
+        "$value": "{horego.light.horego-egyptian-blue}"
+      },
+      "chart-1": {
+        "$type": "color",
+        "$value": "{horego.light.horego-off-red}"
+      },
+      "chart-2": {
+        "$type": "color",
+        "$value": "{horego.light.horego-amber}"
+      },
+      "chart-3": {
+        "$type": "color",
+        "$value": "{horego.light.horego-egyptian-blue}"
+      },
+      "chart-4": {
+        "$type": "color",
+        "$value": "{horego.light.horego-kelly-green}"
+      },
+      "chart-5": {
+        "$type": "color",
+        "$value": "{horego.light.horego-eerie-black}"
+      },
+      "sidebar": {
+        "$type": "color",
+        "$value": "{horego.light.horego-white}"
+      },
+      "sidebar-foreground": {
+        "$type": "color",
+        "$value": "{horego.light.horego-eerie-black}"
+      },
+      "sidebar-primary": {
+        "$type": "color",
+        "$value": "{horego.light.horego-off-red}"
+      },
+      "sidebar-primary-foreground": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "alpha": 1,
+          "hex": "#000000"
+        }
+      },
+      "sidebar-accent": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9333333333333333,
+            0.9411764705882353,
+            1.0
+          ],
+          "alpha": 1,
+          "hex": "#eef0ff"
+        }
+      },
+      "sidebar-accent-foreground": {
+        "$type": "color",
+        "$value": "{horego.light.horego-egyptian-blue}"
+      },
+      "sidebar-border": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8313725490196079,
+            0.8313725490196079,
+            0.8313725490196079
+          ],
+          "alpha": 1,
+          "hex": "#d4d4d4"
+        }
+      },
+      "sidebar-ring": {
+        "$type": "color",
+        "$value": "{horego.light.horego-egyptian-blue}"
+      },
+      "radius": {
+        "$type": "dimension",
+        "$value": {
+          "value": 0.5,
+          "unit": "rem"
+        },
+        "$description": "Present-day DMF preset choice; not a recovered Horego product radius."
+      },
+      "shadow-2xs": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.05
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 3.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0.0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "shadow-xs": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.05
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 3.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0.0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "shadow-sm": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 3.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0.0,
+              "unit": "px"
+            }
+          },
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 2.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": -1.0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "shadow": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 3.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0.0,
+              "unit": "px"
+            }
+          },
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 2.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": -1.0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "shadow-md": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 3.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0.0,
+              "unit": "px"
+            }
+          },
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 2.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 4.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": -1.0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "shadow-lg": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 3.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0.0,
+              "unit": "px"
+            }
+          },
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 4.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 6.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": -1.0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "shadow-xl": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 3.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0.0,
+              "unit": "px"
+            }
+          },
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 8.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 10.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": -1.0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "shadow-2xl": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.25
+            },
+            "offsetX": {
+              "value": 0.0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1.0,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 3.0,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0.0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "horego-off-red": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9254901960784314,
+            0.16470588235294117,
+            0.0
+          ],
+          "alpha": 1,
+          "hex": "#ec2a00"
+        }
+      },
+      "horego-amber": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            0.7215686274509804,
+            0.0
+          ],
+          "alpha": 1,
+          "hex": "#ffb800"
+        }
+      },
+      "horego-white": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "alpha": 1,
+          "hex": "#ffffff"
+        }
+      },
+      "horego-egyptian-blue": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.1607843137254902,
+            0.19607843137254902,
+            0.6078431372549019
+          ],
+          "alpha": 1,
+          "hex": "#29329b"
+        }
+      },
+      "horego-kelly-green": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.38823529411764707,
+            0.7568627450980392,
+            0.19607843137254902
+          ],
+          "alpha": 1,
+          "hex": "#63c132"
+        }
+      },
+      "horego-eerie-black": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.13725490196078433,
+            0.13725490196078433,
+            0.13725490196078433
+          ],
+          "alpha": 1,
+          "hex": "#232323"
+        }
+      },
+      "fd-link": {
+        "$type": "color",
+        "$value": "{horego.light.horego-egyptian-blue}"
+      },
+      "font-sans": {
+        "$type": "fontFamily",
+        "$value": [
+          "DMF Horego Inter",
+          "Inter",
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "font-heading": {
+        "$type": "fontFamily",
+        "$value": [
+          "DMF Horego Rounded Mplus",
+          "M PLUS Rounded 1c",
+          "sans-serif"
+        ]
       }
     }
   }

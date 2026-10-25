@@ -10,8 +10,8 @@ The portfolio's `/ui/` remains an integration lab. Its pages, Canvas, navigation
 
 - `/`: Home. Explain the foundation, show real component previews and lead to Components or installation.
 - `/components/`: Searchable catalog of the 21 implemented component families, grouped by purpose. Static links remain available without JavaScript; search is progressive enhancement with a result count and an empty state.
-- `/components/<slug>/`: One page per exported family, with one full-width DMF preview, a copyable Astro usage snippet with a manual clipboard fallback, focused option table and behavior notes. CB reconstruction customization is shown on Create rather than repeated across component pages.
-- `/create/`: Local preset configurator with live components, CSS export, JSON download and shareable query links. Astro only; CB primary stays #26ade4 and CB appearance stays light.
+- `/components/<slug>/`: One page per exported family, with one full-width DMF preview, a copyable Astro usage snippet with a manual clipboard fallback, focused option table and behavior notes. Product preset customization is shown on Create rather than repeated across component pages.
+- `/create/`: Local preset configurator with live components, CSS export, JSON download and shareable query links. Astro only; CB primary stays #26ade4. CB and the brand-derived Horego preset stay light.
 - `/docs/`: Guide index.
 - `/docs/contracts/`, `/docs/introduction/`, `/docs/installation/`, `/docs/theming/`, `/docs/presets/`, `/docs/accessibility/`, `/docs/credits/`: Seven guides covering component intent, setup, ownership, customization and verified limits.
 - `/examples/dmf-ui/`: Existing independent integration examples; its route and anchors remain available.

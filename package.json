@@ -92,7 +92,8 @@
     "./card": "./src/components/dmf-ui/card/index.ts",
     "./badge": "./src/components/dmf-ui/badge/index.ts",
     "./alert": "./src/components/dmf-ui/alert/index.ts",
-    "./contracts.json": "./contracts/components.json"
+    "./contracts.json": "./contracts/components.json",
+    "./presets/horego.css": "./src/styles/dmf-ui-horego.css"
   },
   "files": [
     "contracts/*.json",

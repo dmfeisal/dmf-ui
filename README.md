@@ -56,3 +56,7 @@ The source repository builds Home (`/`), the searchable Components catalog (`/co
 ## React web alpha
 
 The private `packages/react` proof provides Button, Text, Input, Switch and Card. After the root `npm ci`, run `npm ci --prefix packages/react` before source checks or documentation builds. Run `npm test --prefix packages/react` for type, server rendering and DOM hydration checks. Run `npm run test:dmf-ui:react-consumer` for a separate locked Vite app installed from packed archives, with production asset and form/ref checks. Alpha.2 exports compiled ESM and declarations. The documentation proof is `/examples/react/`. See [React alpha boundaries](docs/DMF-UI-REACT.md). Astro-only consumers do not install React or this package.
+
+### Horego preset
+
+Use the brand-derived Horego light preset in [Create](https://ui.feisal.id/create/?system=horego). Load `dmf-ui/presets/horego.css` after `dmf-ui/styles.css`, then use `class="dmf-ui" data-system="horego" data-color-mode="light"`. See [Horego preset scope and evidence](docs/DMF-UI-HOREGO-PRESET.md). This is a new semantic mapping of the confirmed brand foundations, not a historical product-system reconstruction.

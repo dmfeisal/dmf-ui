@@ -1,7 +1,7 @@
 import {readFile,writeFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 const root=new URL('../',import.meta.url);
-export const groups=['dmf.light','dmf.dark','cb.light'];
+export const groups=['dmf.light','dmf.dark','cb.light','horego.light'];
 const dimension=value=>{
  if(!value||!Number.isFinite(value.value)||!['px','rem'].includes(value.unit))throw new Error('Invalid dimension');
  return `${value.value}${value.unit}`;
@@ -82,8 +82,17 @@ export function compileTokens(source){
  const light=declarations('dmf.light'),dark=declarations('dmf.dark');
  const foundation=`${header}.dmf-ui {\n${light}\n}\n\n:root[data-theme="dark"] .dmf-ui {\n${dark}\n}\n\n@media (prefers-color-scheme: dark) {\n:root:not([data-theme]) .dmf-ui {\n${dark}\n}\n}\n`;
  const cb=`${header}/* Present-day CB UI reconstruction; light-only, not historical shipped UI. */\n@font-face {\n font-family: 'DMF CB Nunito'; src: url('../assets/fonts/nunito.ttf') format('truetype');\n font-style: normal; font-weight: 200 900; font-display: swap;\n}\n:root .dmf-ui[data-system="cb-ui"] {\n${declarations('cb.light')}\n}\n`;
- const portable={schemaVersion:1,description:'Alias-resolved authored groups, not complete platform themes. dmf.dark overrides dmf.light; cb.light overrides the ambient DMF theme. No pixel-density, text-scaling or native component policy is implied.',groups:Object.fromEntries(groups.map(group=>[group,Object.fromEntries([...tokens].filter(([path])=>path.startsWith(`${group}.`)).map(([path,token])=>[path.slice(group.length+1),{type:token.$type,value:resolved.get(path)}]))]))};
- return {'src/styles/dmf-ui-tokens.css':foundation,'src/styles/dmf-ui-cb.css':cb,'tokens/resolved.json':JSON.stringify(portable,null,2)+'\n'};
+ const horego=`${header}/* Brand-derived Horego preset; present-day UI mapping, light only. */
+@font-face { font-family:'DMF Horego Inter'; src:url('../assets/fonts/horego/inter-latin-variable.woff2') format('woff2'); font-style:normal; font-weight:100 900; font-display:swap; }
+@font-face { font-family:'DMF Horego Rounded Mplus'; src:url('../assets/fonts/horego/mplus-rounded-latin-500.woff2') format('woff2'); font-style:normal; font-weight:500; font-display:swap; }
+@font-face { font-family:'DMF Horego Rounded Mplus'; src:url('../assets/fonts/horego/mplus-rounded-latin-700.woff2') format('woff2'); font-style:normal; font-weight:700; font-display:swap; }
+:root .dmf-ui[data-system="horego"] {
+${declarations('horego.light')}
+}
+:root .dmf-ui[data-system="horego"] :where(h1,h2,h3,h4,h5,h6) { font-family:var(--font-heading); }
+`;
+ const portable={schemaVersion:1,description:'Alias-resolved authored groups, not complete platform themes. dmf.dark overrides dmf.light; cb.light and horego.light override the ambient DMF theme. No pixel-density, text-scaling or native component policy is implied.',groups:Object.fromEntries(groups.map(group=>[group,Object.fromEntries([...tokens].filter(([path])=>path.startsWith(`${group}.`)).map(([path,token])=>[path.slice(group.length+1),{type:token.$type,value:resolved.get(path)}]))]))};
+ return {'src/styles/dmf-ui-tokens.css':foundation,'src/styles/dmf-ui-cb.css':cb,'src/styles/dmf-ui-horego.css':horego,'tokens/resolved.json':JSON.stringify(portable,null,2)+'\n'};
 }
 export async function buildTokens({check=false}={}){
  const source=JSON.parse(await readFile(new URL('tokens/design.tokens.json',root),'utf8'));
