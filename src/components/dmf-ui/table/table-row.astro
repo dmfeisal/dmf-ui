@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'tr'>;
+const {class:className,...props}=Astro.props;
+---
+<tr {...props} data-slot="table-row" class={cn('dmf-table-row',className)}><slot/></tr>

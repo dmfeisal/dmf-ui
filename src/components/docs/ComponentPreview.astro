@@ -1,4 +1,6 @@
 ---
+import DataDisplayPreview from './DataDisplayPreview.astro';
+import FeedbackPreview from './FeedbackPreview.astro';
 import Presentations from './PresentationExamples.astro';
 import {Sidebar} from '../dmf-ui/sidebar';
 import {ResponsiveNavigation} from '../dmf-ui/responsive-navigation';
@@ -71,6 +73,8 @@ const presetName='DMF UI';
 {slug==='dropdown-menu'&&<div class="docs-preview-stack"><DropdownMenu id={id}><DropdownMenuTrigger class={buttonVariants({variant:'outline'})}>Actions</DropdownMenuTrigger><DropdownMenuContent aria-label={`${presetName} preview actions`}><DropdownMenuItem data-value="preview">Preview selection</DropdownMenuItem><DropdownMenuItem disabled>Export (unavailable)</DropdownMenuItem></DropdownMenuContent></DropdownMenu><p class="docs-note" data-docs-feedback role="status">No menu action selected.</p></div>}
 {slug==='dialog'&&<Dialog><DialogTrigger>Open preview</DialogTrigger><DialogContent><DialogTitle>Preview settings</DialogTitle><DialogDescription>Changes stay in this example.</DialogDescription><DialogClose>Done</DialogClose></DialogContent></Dialog>}
 {slug==='toast'&&<div data-docs-toast><Button data-docs-toast-show>Show notification</Button><Toaster id={id} portal={false} viewportLabel={`${presetName} preview notifications`}/></div>}
+<DataDisplayPreview slug={slug}/>
+<FeedbackPreview slug={slug}/>
 <Presentations slug={slug} prefix={id}/>
 </section>
 <script>

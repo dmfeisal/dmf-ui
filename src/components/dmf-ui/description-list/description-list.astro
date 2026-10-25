@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+interface Props extends HTMLAttributes<'dl'> {orientation?:'horizontal'|'vertical';density?:'default'|'compact';}
+const {orientation='horizontal',density='default',class:className,...props}=Astro.props;
+---
+<dl {...props} data-slot="description-list" data-orientation={orientation} data-density={density} class={cn('dmf-description-list',className)}><slot/></dl>

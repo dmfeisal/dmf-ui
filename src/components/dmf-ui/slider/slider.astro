@@ -1,0 +1,23 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import type {NavigationIcon} from '../navigation-types';
+import {cn} from '../utils';
+import {validateSlider} from './validation';
+interface Props extends Omit<HTMLAttributes<'input'>,'type'|'min'|'max'|'step'|'value'|'id'> {id:string;label:string;min?:number;max?:number;step?:number|'any';value?:number;unit?:string;showValue?:boolean;icon?:NavigationIcon;}
+const {id,label,min=0,max=100,step=1,value=min,unit='',showValue=true,icon:Icon,class:className,...props}=Astro.props;
+validateSlider({min,max,step,value});
+---
+<div data-slot="slider" data-unit={unit} class={cn('dmf-slider',className)}><div class="dmf-slider-heading"><label for={id}>{Icon&&<Icon size={18} aria-hidden="true"/>}<span>{label}</span></label>{showValue&&<span data-slider-value aria-hidden="true" hidden>{value}{unit}</span>}</div><input {...props} id={id} type="range" min={min} max={max} step={step} value={value}/></div>
+<script>
+ const sliders=new Map<HTMLElement,AbortController>();
+ function initialize(){for(const root of document.querySelectorAll<HTMLElement>('[data-slot=slider]')){
+  if(sliders.has(root))continue;
+  const input=root.querySelector<HTMLInputElement>('input[type=range]');if(!input)continue;
+  const abort=new AbortController();sliders.set(root,abort);
+  const sync=()=>{const text=`${input.value}${root.dataset.unit??''}`;const output=root.querySelector('[data-slider-value]');if(output){output.textContent=text;output.removeAttribute('hidden');}if(root.dataset.unit)input.setAttribute('aria-valuetext',text);};
+  sync();input.addEventListener('input',sync,{signal:abort.signal});input.addEventListener('change',sync,{signal:abort.signal});
+  input.form?.addEventListener('reset',()=>setTimeout(()=>{if(!abort.signal.aborted)sync();},0),{signal:abort.signal});
+ }}
+ initialize();document.addEventListener('astro:page-load',initialize);
+ document.addEventListener('astro:before-swap',()=>{for(const abort of sliders.values())abort.abort();sliders.clear();});
+</script>

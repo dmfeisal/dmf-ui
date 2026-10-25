@@ -1,0 +1,11 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {LoaderCircle} from '@lucide/astro';
+import type {NavigationIcon,Presentation} from '../navigation-types';
+import {buttonVariants,type ButtonVariantProps} from '../button/button-variants';
+import {cn} from '../utils';
+interface Props extends HTMLAttributes<'button'>,ButtonVariantProps {label:string;loadingLabel?:string;loading?:boolean;presentation?:Presentation;icon?:NavigationIcon;}
+const {label,loadingLabel='Working…',loading=false,presentation='icon-label',icon:Icon,disabled=false,variant='default',size='default',type='button',class:className,...props}=Astro.props;
+if(presentation==='icon'&&!Icon)throw new Error('Icon-only LoadingButton requires an idle icon and a meaningful label.');
+---
+<button {...props} type={type} data-slot="loading-button" data-loading={String(loading)} data-idle-disabled={String(disabled)} data-label={label} data-loading-label={loadingLabel} data-presentation={presentation} disabled={disabled||loading} aria-busy={loading?'true':undefined} aria-label={loading?loadingLabel:label} title={presentation==='icon'?(loading?loadingLabel:label):undefined} class={cn(buttonVariants({variant,size:presentation==='icon'?'icon':size}),'dmf-loading-button',className)}>{presentation!=='label'&&<span class="dmf-loading-icon" aria-hidden="true"><LoaderCircle size={18} class="dmf-loading-spinner"/>{Icon&&<Icon size={18} class="dmf-loading-idle-icon"/>}</span>}{presentation!=='icon'&&<span class="dmf-loading-labels"><span data-idle-label aria-hidden={loading?'true':undefined}>{label}</span><span data-pending-label aria-hidden={loading?undefined:'true'}>{loadingLabel}</span></span>}</button>

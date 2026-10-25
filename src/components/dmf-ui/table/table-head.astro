@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'th'>;
+const {scope='col',class:className,...props}=Astro.props;
+---
+<th {...props} scope={scope} data-slot="table-head" class={cn('dmf-table-head',className)}><slot/></th>

@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+interface Props extends Omit<HTMLAttributes<'div'>,'value'> {label:string;value?:number;max?:number;showValue?:boolean;size?:'sm'|'default'|'lg';}
+const {label,value,max=100,showValue=true,size='default',class:className,...props}=Astro.props;
+if(!Number.isFinite(max)||max<=0||(value!==undefined&&(!Number.isFinite(value)||value<0||value>max)))throw new Error('Progress requires a positive max and a finite value between 0 and max, or no value for indeterminate work.');
+---
+<div {...props} data-slot="progress" data-size={size} data-indeterminate={String(value===undefined)} data-show-value={String(showValue)} class={cn('dmf-progress',className)}><label><span class="dmf-progress-heading"><span>{label}</span>{showValue&&<span data-progress-value aria-hidden="true">{value===undefined?'Working…':`${Math.round(value/max*100)}%`}</span>}</span><span class="dmf-progress-track"><progress aria-label={label} value={value} max={max}/>{value===undefined&&<span class="dmf-progress-indicator" aria-hidden="true"/>}</span></label></div>

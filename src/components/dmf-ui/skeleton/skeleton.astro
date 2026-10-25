@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+interface Props extends HTMLAttributes<'div'> {shape?:'line'|'rectangle'|'circle';animate?:boolean;}
+const {shape='line',animate=true,class:className,...props}=Astro.props;
+---
+<div {...props} data-slot="skeleton" data-shape={shape} data-animate={String(animate)} class={cn('dmf-skeleton',className)} aria-hidden="true"/>

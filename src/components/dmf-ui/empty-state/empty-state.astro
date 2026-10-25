@@ -1,0 +1,9 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {Inbox} from '@lucide/astro';
+import type {NavigationIcon} from '../navigation-types';
+import {cn} from '../utils';
+interface Props extends HTMLAttributes<'section'> {title:string;description?:string;icon?:NavigationIcon;showIcon?:boolean;headingLevel?:'h2'|'h3'|'h4';}
+const {title,description,icon:Icon=Inbox,showIcon=true,headingLevel:Heading='h3',class:className,...props}=Astro.props;
+---
+<section {...props} data-slot="empty-state" aria-label={title} class={cn('dmf-empty-state',className)}>{showIcon&&<Icon size={28} aria-hidden="true"/>}<Heading>{title}</Heading>{description&&<p>{description}</p>}{Astro.slots.has('default')&&<div class="dmf-empty-actions"><slot/></div>}</section>

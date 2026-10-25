@@ -1,0 +1,24 @@
+---
+import {Table,TableHeader,TableBody,TableFooter,TableRow,TableHead,TableCell} from '../dmf-ui/table';
+import {DescriptionList,DescriptionItem,DescriptionTerm,DescriptionDetails} from '../dmf-ui/description-list';
+import {Slider} from '../dmf-ui/slider';
+import {Button} from '../dmf-ui/button';
+import {Volume2} from '@lucide/astro';
+interface Props {slug:string;}
+const {slug}=Astro.props;
+---
+{slug==='table'&&<div class="docs-preview-stack"><Table caption="Illustrative component records" striped><TableHeader><TableRow><TableHead>Component</TableHead><TableHead>Category</TableHead><TableHead data-align="end">Examples</TableHead><TableHead>Documentation</TableHead></TableRow></TableHeader><TableBody>{[{label:'Table',category:'Content',count:2,href:'/components/table/'},{label:'Slider',category:'Forms',count:3,href:'/components/slider/'},{label:'Description List',category:'Content',count:2,href:'/components/description-list/'}].map(item=><TableRow><TableHead scope="row">{item.label}</TableHead><TableCell>{item.category}</TableCell><TableCell data-align="end">{item.count}</TableCell><TableCell><a href={item.href}>Read {item.label} docs</a></TableCell></TableRow>)}</TableBody><TableFooter><TableRow><TableHead scope="row" colspan={2}>Total illustrative examples</TableHead><TableCell data-align="end">7</TableCell><TableCell>Local preview</TableCell></TableRow></TableFooter></Table><Table caption="Compact record example" density="compact"><TableHeader><TableRow><TableHead>Adapter</TableHead><TableHead>Package status</TableHead></TableRow></TableHeader><TableBody><TableRow><TableHead scope="row">Astro</TableHead><TableCell>Private source package</TableCell></TableRow></TableBody></Table></div>}
+{slug==='description-list'&&<div class="docs-preview-stack"><DescriptionList aria-label="Foundation details"><DescriptionItem><DescriptionTerm>Adapter</DescriptionTerm><DescriptionDetails>Astro</DescriptionDetails></DescriptionItem><DescriptionItem><DescriptionTerm>Ownership</DescriptionTerm><DescriptionDetails>Host-owned content, actions and persistence.</DescriptionDetails></DescriptionItem><DescriptionItem><DescriptionTerm>Documentation</DescriptionTerm><DescriptionDetails><a href="/docs/installation/">Read the installation guide</a></DescriptionDetails></DescriptionItem></DescriptionList><DescriptionList orientation="vertical" density="compact" aria-label="Compact stacked details"><DescriptionItem><DescriptionTerm>State</DescriptionTerm><DescriptionDetails>Static content with no automatic announcement.</DescriptionDetails></DescriptionItem><DescriptionItem><DescriptionTerm>Long content</DescriptionTerm><DescriptionDetails>Long terms and details wrap within the available space, including compact mobile layouts.</DescriptionDetails></DescriptionItem></DescriptionList></div>}
+{slug==='slider'&&<form data-slider-demo class="docs-preview-stack"><p>Local values only. No audio plays and nothing is saved or sent.</p><Slider id="docs-slider-volume" name="volume" label="Preview volume" icon={Volume2} min={0} max={100} step={5} value={40} unit="%"/><Slider id="docs-slider-spacing" name="spacing" label="Preview spacing" min={0} max={2} step={0.25} value={1} unit="rem"/><Slider id="docs-slider-disabled" name="unavailable" label="Unavailable slider" value={25} disabled showValue={false}/><div class="docs-preview-row"><Button type="submit">Inspect form values</Button><Button type="reset" variant="outline">Reset sliders</Button></div><p role="status" data-slider-status>No form values inspected.</p></form>}
+<script>
+ const forms=new Map<HTMLFormElement,AbortController>();
+ function initialize(){for(const form of document.querySelectorAll<HTMLFormElement>('[data-slider-demo]')){
+  if(forms.has(form))continue;
+  const abort=new AbortController();forms.set(form,abort);
+  const status=form.querySelector<HTMLElement>('[data-slider-status]')!;
+  form.addEventListener('submit',event=>{event.preventDefault();const data=new FormData(form);status.textContent=`Volume: ${data.get('volume')}%; spacing: ${data.get('spacing')}rem. Nothing was saved or sent.`;},{signal:abort.signal});
+  form.addEventListener('reset',()=>{status.textContent='Sliders reset to their initial values.';},{signal:abort.signal});
+ }}
+ initialize();document.addEventListener('astro:page-load',initialize);
+ document.addEventListener('astro:before-swap',()=>{for(const abort of forms.values())abort.abort();forms.clear();});
+</script>

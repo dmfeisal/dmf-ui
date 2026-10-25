@@ -76,3 +76,7 @@ The `dmf-ui/presets/portfolio.css` export provides Light, Dark and Yellow appear
 ### Sidebar, responsive menus and presentation options
 
 `Sidebar` and `ResponsiveNavigation` provide native disclosure navigation. Existing navigation and applicable product-detail components now offer `presentation="label"`, `"icon-label"` and `"icon"`, with named icon-only controls and shared tooltips. Numeric pagination destinations and archive markers retain their meaning. See [the presentation matrix, defaults and boundaries](docs/DMF-UI-NAVIGATION-PRESENTATIONS.md).
+
+`Skeleton`, `EmptyState`, `Progress` and `LoadingButton` cover loading, missing results and pending actions in the Astro adapter. Progress and Loading Button expose explicit host-driven state helpers; native semantics and reduced-motion behavior are preserved. See [feedback components and verification](docs/DMF-UI-FEEDBACK.md).
+
+`Table`, `DescriptionList` and `Slider` add native tabular records, semantic key/value details and a labeled range input. Table overflow stays local; Slider preserves native keyboard, form and reset behavior. See [data display and range verification](docs/DMF-UI-DATA-DISPLAY.md).

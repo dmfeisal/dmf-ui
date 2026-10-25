@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+interface Props extends HTMLAttributes<'table'> {caption:string;density?:'default'|'compact';striped?:boolean;}
+const {caption,density='default',striped=false,class:className,...props}=Astro.props;
+---
+<div class="dmf-table-scroll" role="region" aria-label={`${caption}: scrollable table`} tabindex="0"><table {...props} data-slot="table" data-density={density} data-striped={String(striped)} class={cn('dmf-table',className)}><caption>{caption}</caption><slot/></table></div>

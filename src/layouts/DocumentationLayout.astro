@@ -1,8 +1,9 @@
 ---
 import '../styles/documentation.css';
-import {Search,Sun,Moon,Monitor,Star,X,Menu,ChevronDown} from '@lucide/astro';
+import {House,Blocks,BookOpen,Palette,Search,Sun,Moon,Monitor,Star,X,Menu,ChevronDown} from '@lucide/astro';
 import GitHubMark from '../components/docs/assets/github.svg';
 import {Tooltip,TooltipTrigger,TooltipContent} from '../components/dmf-ui/tooltip';
+import {NavigationMenu} from '../components/dmf-ui/navigation-menu';
 import NavigationIcon from '../components/docs/NavigationIcon.astro';
 import {components,guides,categories} from '../data/documentation';
 interface Props { title:string;description:string;section:'home'|'components'|'docs'|'create';crumbs?:{name:string;href?:string}[];toc?:{id:string;title:string}[]; }
@@ -22,7 +23,12 @@ const searchEntries=[
 <a href="#main" class="docs-skip">Skip to content</a>
 <header class="docs-header"><div class="docs-header-inner">
 <a href="/" class="docs-logo" aria-label="DMF UI Home">DMF UI</a>
-<nav aria-label="Primary" class="docs-primary">{[['home','Home','/'],['components','Components','/components/'],['docs','Docs','/docs/'],['create','Create','/create/']].map(([key,label,href])=><a href={href} aria-current={section===key?'page':undefined}><NavigationIcon name={key}/><span>{label}</span></a>)}</nav>
+<NavigationMenu label="Primary" class="docs-primary" presentation="icon-label" items={[
+ {label:'Home',href:'/',icon:House,current:section==='home'},
+ {label:'Components',href:'/components/',icon:Blocks,current:section==='components'},
+ {label:'Docs',href:'/docs/',icon:BookOpen,current:section==='docs'},
+ {label:'Create',href:'/create/',icon:Palette,current:section==='create'},
+]}/>
 <a class="docs-search-fallback" href="/components/">Find components</a>
 <button id="docs-search-trigger" type="button" class="docs-search-trigger" aria-label="Search documentation" aria-haspopup="dialog" hidden><Search size={18} stroke-width={1.7} aria-hidden="true"/><span>Search documentation</span><kbd aria-hidden="true">Ctrl K</kbd></button>
 <a class="docs-github" href="https://github.com/dmfeisal/dmf-ui"><span class="docs-sr-only">GitHub repository, </span><GitHubMark width={20} height={20} aria-hidden="true"/><span class="docs-github-stars"><Star size={14} aria-hidden="true"/><span data-github-stars>—</span><span class="docs-sr-only" data-github-stars-label> stars unavailable</span></span></a>

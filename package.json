@@ -106,7 +106,14 @@
     "./section-navigation": "./src/components/dmf-ui/section-navigation/index.ts",
     "./archive-index": "./src/components/dmf-ui/archive-index/index.ts",
     "./sidebar": "./src/components/dmf-ui/sidebar/index.ts",
-    "./responsive-navigation": "./src/components/dmf-ui/responsive-navigation/index.ts"
+    "./responsive-navigation": "./src/components/dmf-ui/responsive-navigation/index.ts",
+    "./skeleton": "./src/components/dmf-ui/skeleton/index.ts",
+    "./empty-state": "./src/components/dmf-ui/empty-state/index.ts",
+    "./progress": "./src/components/dmf-ui/progress/index.ts",
+    "./loading-button": "./src/components/dmf-ui/loading-button/index.ts",
+    "./table": "./src/components/dmf-ui/table/index.ts",
+    "./description-list": "./src/components/dmf-ui/description-list/index.ts",
+    "./slider": "./src/components/dmf-ui/slider/index.ts"
   },
   "files": [
     "contracts/*.json",

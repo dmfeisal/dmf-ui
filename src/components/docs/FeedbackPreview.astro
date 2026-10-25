@@ -1,0 +1,43 @@
+---
+import {Skeleton} from '../dmf-ui/skeleton';
+import {EmptyState} from '../dmf-ui/empty-state';
+import {Progress} from '../dmf-ui/progress';
+import {LoadingButton} from '../dmf-ui/loading-button';
+import {Button} from '../dmf-ui/button';
+import {Save} from '@lucide/astro';
+interface Props {slug:string;}
+const {slug}=Astro.props;
+---
+{slug==='skeleton'&&<div class="docs-preview-stack"><p>Illustrative loading state. No request is running.</p><section aria-busy="true" aria-label="Example loading profile" class="docs-preview-stack"><Skeleton shape="circle"/><Skeleton style="width:60%"/><Skeleton/><Skeleton shape="rectangle"/></section><p>Static placeholder</p><Skeleton animate={false} style="width:40%"/></div>}
+{slug==='empty-state'&&<div class="docs-preview-stack"><EmptyState title="No saved components" description="Browse the library to find a starting point."><Button as="a" href="/components/">Browse components</Button></EmptyState><EmptyState title="No matching results" description="Try a shorter search term." showIcon={false}/></div>}
+{slug==='progress'&&<div class="docs-preview-stack" data-feedback-demo="progress"><Progress label="Preview completion" value={40}/><div class="docs-preview-row"><Button data-feedback-action="advance">Advance by 20</Button><Button data-feedback-action="unknown" variant="outline">Unknown duration</Button><Button data-feedback-action="reset" variant="outline">Reset progress</Button></div><p role="status" data-feedback-status>Illustrative progress at 40%. No request is running.</p><Progress label="Compact completed example" value={100} size="sm"/><Progress label="Large starting example" value={0} size="lg" showValue={false}/></div>}
+{slug==='loading-button'&&<div class="docs-preview-stack" data-feedback-demo="loading-button"><p>Start a pending state, then use Finish preview. Nothing is saved or sent.</p><div class="docs-preview-row">{(['label','icon-label','icon'] as const).map(presentation=><div data-example-presentation={presentation}><p>{presentation==='label'?'Label only':presentation==='icon-label'?'Icon + label':'Icon only'}</p><LoadingButton label="Save draft" loadingLabel="Saving draft…" presentation={presentation} icon={Save} data-feedback-start/></div>)}</div><div class="docs-preview-row"><Button data-feedback-action="finish" variant="outline">Finish preview</Button><LoadingButton label="Unavailable action" disabled presentation="label"/></div><p role="status" data-feedback-status>Preview idle.</p></div>}
+<script>
+ import {setProgressValue} from '../dmf-ui/progress';
+ import {setLoadingButtonState} from '../dmf-ui/loading-button';
+ const demos=new Map<HTMLElement,AbortController>();
+ function initialize(){for(const root of document.querySelectorAll<HTMLElement>('[data-feedback-demo]')){
+  if(demos.has(root))continue;
+  const abort=new AbortController();demos.set(root,abort);
+  root.addEventListener('click',event=>{
+   const button=event.target instanceof Element?event.target.closest<HTMLButtonElement>('button'):null;
+   if(!button||button.disabled)return;
+   const status=root.querySelector<HTMLElement>('[data-feedback-status]')!;
+   if(root.dataset.feedbackDemo==='progress'){
+    const progress=root.querySelector<HTMLElement>('[data-slot=progress]')!;
+    const native=progress.querySelector('progress')!;
+    const action=button.dataset.feedbackAction;
+    const value=action==='unknown'?undefined:action==='reset'?40:Math.min(100,(native.hasAttribute('value')?native.value:0)+20);
+    setProgressValue(progress,value);
+    status.textContent=value===undefined?'Illustrative duration unknown. No request is running.':`Illustrative progress at ${value}%. No request is running.`;
+   }else if(button.hasAttribute('data-feedback-start')){
+    setLoadingButtonState(button,true);status.textContent='Preview pending. Use Finish preview. Nothing is saved or sent.';
+   }else if(button.dataset.feedbackAction==='finish'){
+    for(const action of root.querySelectorAll<HTMLButtonElement>('[data-slot=loading-button]'))setLoadingButtonState(action,false);
+    status.textContent='Preview finished. Nothing was saved or sent.';
+   }
+  },{signal:abort.signal});
+ }}
+ initialize();document.addEventListener('astro:page-load',initialize);
+ document.addEventListener('astro:before-swap',()=>{for(const abort of demos.values())abort.abort();demos.clear();});
+</script>

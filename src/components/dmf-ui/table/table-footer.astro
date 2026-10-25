@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'tfoot'>;
+const {class:className,...props}=Astro.props;
+---
+<tfoot {...props} data-slot="table-footer" class={cn('dmf-table-footer',className)}><slot/></tfoot>
