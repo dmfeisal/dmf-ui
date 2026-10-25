@@ -36,7 +36,7 @@ The connected GitHub API confirms both remote `main` heads match local HEAD and 
 - Switch uses a labeled native checkbox with `role="switch"`; read-only behavior, unchecked-value submission, compact sizes and Astro controller attributes are excluded.
 - Card currently exposes a non-interactive root without the full Astro slot family.
 - React consumers still install the full core package, including its Astro/Data Slot dependency graph. Those runtimes do not initialize in the React app; a smaller framework-neutral foundation is future work.
-- Safari, Firefox, spoken VoiceOver/NVDA, forced-colors, native-device testing and broader application integration remain pending. Fixture evidence is not full WCAG certification.
+- Safari desktop and narrow-frame checks now pass as detailed below. Firefox, spoken VoiceOver/NVDA, Windows high-contrast device testing, native-device testing and broader application integration remain pending. Fixture evidence is not full WCAG certification.
 - React Native and SwiftUI require separate implementations; this adapter is browser-only.
 
 No package publication, release tag, root version bump or portfolio archive-pin change is part of this preparation.
@@ -48,5 +48,14 @@ No package publication, release tag, root version bump or portfolio archive-pin 
 - Root suite: all 16 tests pass with a writable temporary npm cache and permission for temporary localhost servers. This resolves the earlier four localhost permission blockers.
 - Isolated packed consumer: the normal locked install, TypeScript check, production build, server prerender and all four acceptance tests pass after dependency downloads are permitted. No lock regeneration was needed. Local reruns use Node v26.11.1/npm 11.20.0; hosted Node 22/24 evidence is linked above.
 - Local Git and GitHub CLI still cannot reach GitHub; connected GitHub API reads supplied remote-head and exact-commit CI confirmation instead. No push was needed.
-- Previous Chromium evidence remains historical. Safari/Firefox, spoken screen-reader and other manual checks above remain pending; no new browser or assistive-technology pass is claimed.
+- Previous Chromium evidence remains historical. New Safari desktop/narrow-frame evidence is recorded below; Firefox and spoken-screen-reader checks remain pending.
 - Existing uncommitted portfolio Canvas documentation is preserved byte-for-byte. No package versions, archive pins, tags or publications are changed.
+
+## Browser follow-up — 25 October 2026
+
+- Safari 27.0.1 WebDriver: native Option-Tab/Space, controlled form values, disabled skipping, required consent, ref focus and reset pass. Twelve axe states have zero violations/incomplete rules. Both presets and light/dark surroundings pass; CB Nunito loads. At 390px, LTR/RTL and doubled text reflow pass in a same-origin iframe. This is desktop Safari evidence, not an iPhone, touch or separate contrast-measurement pass. Plain Tab retained text-input focus under current Safari preferences; Option-Tab reached controls.
+- Forced-colors emulation found an invisible Switch thumb. The system-color correction now passes four preset/light-dark emulation states in owner-authorized isolated Chrome 155.0.8059.85: distinct thumb/track, checked position, visible focus, Space toggling and reset. Light/dark screenshots were reviewed. The full twelve-state Chromium scenario, including mobile touch, also passes again. Ego Lite disconnects required the explicitly authorized isolated-Chrome fallback. Windows high-contrast device support remains unverified.
+- Firefox 157.0 with official geckodriver 0.37.1 fails before navigation with a missing-profile error/process exit 1, including isolated temporary/workspace profiles. No personal profile was used. Firefox remains blocked; spoken VoiceOver/NVDA and real-device testing remain pending.
+- After the stylesheet correction, Safari's twelve-state review, three adapter tests, four packed-consumer tests, Astro check, production build and all 16 source tests pass. Earlier CI runs cover their named snapshots; this later stylesheet/regression follow-up requires its own hosted run. Core/React versions remain unchanged; no publication or tag is created.
+
+See [the verification record](DMF-UI-REACT-VERIFICATION.md) for local evidence paths and limits.

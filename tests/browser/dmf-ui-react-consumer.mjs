@@ -72,6 +72,31 @@ export async function run({page,baseURL,artifacts,settle,mobile,tap,resetBrowser
   assert(await page.evaluate(()=>document.querySelector('[name=updates]').checked),'Mobile label touch did not toggle Switch');
   await tap('button[type=reset]');
   assert(await page.evaluate(()=>!document.querySelector('[name=updates]').checked&&document.querySelector('[role=status]').textContent==='Form reset.'),'Mobile reset touch failed');
-  console.log('PASS React browser: native keyboard/forms/ref/reset; 12 axe states; bundled CB font; mobile RTL and 200% text');
+  await resetBrowser();
+  await page.evaluate(()=>{document.documentElement.dir='ltr';document.documentElement.style.fontSize='87.5%';});
+  const forced=[];
+  for(const scheme of ['light','dark']){
+   await page.cdp('Emulation.setEmulatedMedia',{features:[{name:'forced-colors',value:'active'},{name:'prefers-color-scheme',value:scheme}]});
+   for(const system of ['dmf','cb-ui']){
+    await preset(system,scheme==='dark');
+    await page.focus('input[name=name]');await page.keyboard.press('Tab');
+    const state=await page.evaluate(()=>{
+     const controls=[...document.querySelectorAll('.dmf-react-switch input')].map(input=>{
+      const track=input.nextElementSibling,thumb=track.firstElementChild,t=getComputedStyle(track),s=getComputedStyle(thumb),a=track.getBoundingClientRect(),b=thumb.getBoundingClientRect();
+      return{name:input.name,checked:input.checked,disabled:input.disabled,track:t.backgroundColor,thumb:s.backgroundColor,outline:t.outlineColor,outlineWidth:parseFloat(t.outlineWidth),offset:b.left-a.left};
+     });
+     return{active:matchMedia('(forced-colors: active)').matches,focused:document.activeElement.name,visible:document.activeElement.matches(':focus-visible'),controls};
+    });
+    assert(state.active&&state.focused==='updates'&&state.visible,'Forced colors keyboard focus failed');
+    assert(state.controls.every(control=>control.thumb!==control.track&&control.outlineWidth>=1),'Forced colors erased a Switch indicator');
+    assert(state.controls.find(c=>c.name==='digest').offset>state.controls.find(c=>c.name==='updates').offset+5,'Forced colors lost checked position');
+    assert(state.controls.find(c=>c.name==='updates').outlineWidth>=2,'Forced colors focus outline missing');
+    await page.keyboard.press('Space');assert(await page.evaluate(()=>document.querySelector('[name=updates]').checked),'Forced colors Space toggle failed');
+    await page.click('button[type=reset]');assert(await page.evaluate(()=>!document.querySelector('[name=updates]').checked),'Forced colors reset failed');
+    forced.push({scheme,system,...state});await page.screenshot({path:`${artifacts}/forced-${system}-${scheme}.png`});
+   }
+  }
+  await writeFile(artifacts+'/forced-colors-report.json',JSON.stringify({scope:'Chromium forced-colors emulation; not Windows high-contrast device evidence',forced},null,2));
+  console.log('PASS React browser: native keyboard/forms/ref/reset; 12 axe states; bundled CB font; mobile RTL and 200% text; four forced-colors states');
  }finally{await page.cdp('Page.removeScriptToEvaluateOnNewDocument',{identifier:init.identifier});await resetBrowser();}
 }

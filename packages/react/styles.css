@@ -12,3 +12,12 @@
 /* Control boundaries need stronger contrast than decorative surface dividers. */
 .dmf-ui .dmf-react-input { border-color:var(--muted-foreground); }
 .dmf-ui .dmf-react-input:focus-visible { outline:2px solid var(--foreground); outline-offset:2px; }
+/* Preserve the thumb's position cue when forced colors flatten backgrounds. */
+@media (forced-colors: active) {
+ .dmf-ui .dmf-react-switch-track { forced-color-adjust:none; background:Canvas; outline-color:CanvasText; }
+ .dmf-ui .dmf-react-switch-thumb { background:CanvasText; }
+ .dmf-ui .dmf-react-switch input:checked + .dmf-react-switch-track { background:Highlight; }
+ .dmf-ui .dmf-react-switch input:checked + .dmf-react-switch-track .dmf-react-switch-thumb { background:HighlightText; }
+ .dmf-ui .dmf-react-switch input:focus-visible + .dmf-react-switch-track { outline-color:CanvasText; }
+ .dmf-ui .dmf-react-switch input:disabled + .dmf-react-switch-track { outline-color:GrayText; }
+}
