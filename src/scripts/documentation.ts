@@ -64,5 +64,5 @@ for(const button of document.querySelectorAll<HTMLButtonElement>('[data-copy-cod
 }
 const media=matchMedia('(prefers-color-scheme: dark)'),modes=['system','light','dark'] as const;
 let mode=0;
-function apply(){document.documentElement.dataset.theme=modes[mode]==='system'?(media.matches?'dark':'light'):modes[mode];const button=document.getElementById('docs-theme');if(button)button.textContent=`Theme: ${modes[mode][0].toUpperCase()}${modes[mode].slice(1)}`;}
+function apply(){document.documentElement.dataset.theme=modes[mode]==='system'?(media.matches?'dark':'light'):modes[mode];const button=document.getElementById('docs-theme');if(button){const label=`Theme: ${modes[mode][0].toUpperCase()}${modes[mode].slice(1)}`;button.querySelector('[data-theme-label]')!.textContent=label;button.setAttribute('aria-label',label);for(const icon of button.querySelectorAll<HTMLElement>('[data-theme-icon]'))icon.toggleAttribute('hidden',icon.dataset.themeIcon!==modes[mode]);}}
 document.getElementById('docs-theme')?.addEventListener('click',()=>{mode=(mode+1)%modes.length;apply();});media.addEventListener('change',apply);apply();

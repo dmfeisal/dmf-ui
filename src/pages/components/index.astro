@@ -1,11 +1,13 @@
 ---
+import NavigationIcon from '../../components/docs/NavigationIcon.astro';
 import DocumentationLayout from '../../layouts/DocumentationLayout.astro';
 import {components,categories} from '../../data/documentation';
 ---
 <DocumentationLayout title="Components" description="Browse implemented DMF UI components and their Astro usage." section="components" crumbs={[{name:'Components'}]}>
 <h1>Components</h1><p class="docs-lead">The implemented Astro components, with live examples and usage. Each family is shared across DMF and product presets.</p>
+<p class="docs-note">Need interface symbols? <a href="/docs/icons/">Browse icons and copy usage examples</a>.</p>
 <div class="docs-search"><label for="component-search">Find a component</label><input type="search" id="component-search" placeholder="Search by name or purpose" autocomplete="off" aria-controls="component-catalog"/><output id="component-count" role="status" aria-live="polite">{components.length} components</output></div>
-<div id="component-catalog">{categories.map(category=><section class="docs-section" data-component-category><h2>{category}</h2><div class="docs-grid">{components.filter(item=>item.category===category).map(item=><article class="docs-entry" data-component-entry data-search={`${item.name} ${item.description} ${item.category}`.toLowerCase()}><a href={`/components/${item.slug}/`}>{item.name}</a><p>{item.description}</p></article>)}</div></section>)}</div><p id="component-empty" class="docs-note docs-empty" hidden>No components match. Try a different name or purpose.</p>
+<div id="component-catalog">{categories.map(category=><section class="docs-section" data-component-category><h2>{category}</h2><div class="docs-grid">{components.filter(item=>item.category===category).map(item=><article class="docs-entry" data-component-entry data-search={`${item.name} ${item.description} ${item.category}`.toLowerCase()}><a href={`/components/${item.slug}/`}><NavigationIcon name={item.slug} size={20}/><span>{item.name}</span></a><p>{item.description}</p></article>)}</div></section>)}</div><p id="component-empty" class="docs-note docs-empty" hidden>No components match. Try a different name or purpose.</p>
 </DocumentationLayout>
 <script>
  const input=document.querySelector<HTMLInputElement>('#component-search');

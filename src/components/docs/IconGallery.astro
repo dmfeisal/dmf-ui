@@ -1,0 +1,43 @@
+---
+import {icons} from '../../data/icons';
+import {Button} from '../dmf-ui/button';
+const example=`---\nimport { Search } from '@lucide/astro';\nimport { Button } from 'dmf-ui/button';\n---\n<Button variant="outline">\n  <Search size={20} stroke-width={2} aria-hidden="true" />\n  Search\n</Button>\n\n<Button size="icon" variant="outline" aria-label="Search">\n  <Search size={20} stroke-width={2} aria-hidden="true" />\n</Button>`;
+---
+<section id="icon-gallery" class="docs-section" aria-labelledby="icon-gallery-title">
+<h2 id="icon-gallery-title">Find an icon</h2><p class="docs-note">36 selected interface icons for navigation, forms and product workflows. <a href="https://lucide.dev/icons/">Browse the full Lucide library</a>.</p>
+<div class="icon-tools"><div><label for="icon-search">Search icons</label><input id="icon-search" type="search" placeholder="Name or purpose, e.g. restaurant" autocomplete="off" aria-controls="icon-grid"/></div><div><label for="icon-size">Size</label><select id="icon-size"><option>16</option><option selected>20</option><option>24</option><option>32</option></select></div><div><label for="icon-stroke">Stroke width</label><select id="icon-stroke"><option>1.5</option><option selected>2</option><option>2.5</option></select></div></div>
+<noscript><p class="docs-note">Enable JavaScript to filter icons, change sizing or select an example. The SVG gallery and initial usage code remain available below.</p></noscript>
+<p id="icon-count" role="status" class="docs-note">36 icons</p>
+<div id="icon-grid" class="icon-grid">{icons.map(({name,icon:Icon,tags})=><button type="button" class="icon-choice" data-icon-name={name} data-icon-search={`${name} ${name.replace(/([a-z])([A-Z])/g,'$1 $2')} ${tags}`.toLowerCase()} aria-pressed={name==='Search'?'true':'false'}><Icon size={20} stroke-width={2} aria-hidden="true"/><span>{name}</span></button>)}</div>
+<p id="icon-empty" class="docs-note" hidden>No icons match. Try a name or purpose, or browse the full library above.</p>
+<section class="docs-section" aria-labelledby="icon-example-title"><div class="docs-code-heading"><h3 id="icon-example-title">Use Search</h3><Button variant="outline" class="docs-copy" data-copy-code="icon-example" data-copy-status="icon-copy-status" hidden>Copy example</Button><span id="icon-copy-status" role="status" class="docs-copy-status"/></div><p class="docs-note">The first example pairs an icon with visible text. The second names the icon button. Use each example for a real action in your application.</p><pre id="icon-example" class="docs-code" tabindex="0" role="region" aria-label="Selected icon usage"><code>{example}</code></pre></section>
+</section>
+<script>
+ const input=document.querySelector<HTMLInputElement>('#icon-search')!;
+ const choices=[...document.querySelectorAll<HTMLButtonElement>('[data-icon-name]')];
+ const size=document.querySelector<HTMLSelectElement>('#icon-size')!,stroke=document.querySelector<HTMLSelectElement>('#icon-stroke')!;
+ let selected='Search';
+ function updateExample(){
+  document.querySelector('#icon-example-title')!.textContent=`Use ${selected}`;
+  document.querySelector('#icon-copy-status')!.textContent='';
+  document.querySelector('#icon-example code')!.textContent=`---\nimport { ${selected} } from '@lucide/astro';\nimport { Button } from 'dmf-ui/button';\n---\n<Button variant="outline">\n  <${selected} size={${size.value}} stroke-width={${stroke.value}} aria-hidden="true" />\n  ${selected}\n</Button>\n\n<Button size="icon" variant="outline" aria-label="${selected}">\n  <${selected} size={${size.value}} stroke-width={${stroke.value}} aria-hidden="true" />\n</Button>`;
+  for(const button of choices){button.setAttribute('aria-pressed',String(button.dataset.iconName===selected));const svg=button.querySelector('svg')!;svg.setAttribute('width',size.value);svg.setAttribute('height',size.value);svg.setAttribute('stroke-width',stroke.value);}
+ }
+ for(const button of choices)button.addEventListener('click',()=>{selected=button.dataset.iconName!;updateExample();});
+ for(const control of [size,stroke])control.addEventListener('change',updateExample);
+ input.addEventListener('input',()=>{const terms=input.value.toLowerCase().trim().split(/\s+/).filter(Boolean);let count=0;for(const button of choices){button.hidden=!terms.every(term=>button.dataset.iconSearch!.includes(term));if(!button.hidden)count++;}document.querySelector('#icon-count')!.textContent=`${count} ${count===1?'icon':'icons'}`;document.querySelector<HTMLElement>('#icon-empty')!.hidden=count!==0;});
+</script>
+<style>
+.icon-tools { display:grid; grid-template-columns:minmax(0,1fr) 100px 130px; gap:16px; margin:24px 0 12px; }
+.icon-tools > div { display:grid; gap:8px; }
+.icon-tools label { font-weight:500; }
+.icon-tools input,.icon-tools select { width:100%; min-width:0; min-height:44px; padding:8px; font:inherit; background:var(--background); color:var(--foreground); border:1px solid var(--input); border-radius:var(--radius-md); }
+.icon-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); gap:8px; margin-top:16px; }
+.icon-choice { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; min-height:104px; padding:12px 6px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--background); color:var(--foreground); }
+.icon-choice[hidden] { display:none; }
+.icon-choice span { max-width:100%; overflow-wrap:anywhere; font-size:.85rem; }
+.icon-choice[aria-pressed=true] { border-color:var(--foreground); background:var(--muted); }
+.icon-choice:hover { background:var(--muted); }
+.icon-choice svg { flex-shrink:0; }
+@media(max-width:600px) { .icon-tools { grid-template-columns:1fr 1fr; } .icon-tools > div:first-child { grid-column:1/-1; } }
+</style>

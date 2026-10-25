@@ -117,3 +117,17 @@ html { font-size: 87.5%; scroll-padding-top: 10rem; }
 .docs-search-dialog-heading button { margin-inline-start:auto; }
 .docs-search-result { background:var(--background); }
 .docs-search-result small { background:inherit; }
+.docs-nav-icon { flex-shrink:0; color:var(--muted-foreground); }
+.docs-primary a,.docs-sidebar a,.docs-mobile-navigation a,.docs-entry > a,.docs-github,.docs-theme,.docs-copy,.docs-search-dialog-heading button { display:inline-flex; align-items:center; gap:8px; }
+.docs-sidebar a,.docs-mobile-navigation a { display:flex; }
+.docs-sidebar a[aria-current] .docs-nav-icon,.docs-primary a[aria-current] .docs-nav-icon { color:currentColor; }
+.docs-github { min-height:44px; color:var(--foreground); text-decoration:none; white-space:nowrap; }
+.docs-theme { white-space:nowrap; }
+[data-theme-icon][hidden] { display:none; }
+.docs-mobile-navigation summary svg { display:inline; vertical-align:middle; margin-inline-end:4px; }
+@media(min-width:761px) { .docs-header-inner { gap:20px; } .docs-primary { gap:18px; } .docs-search-trigger { width:clamp(180px,19vw,260px); } }
+@media(max-width:1150px) { .docs-primary .docs-nav-icon { display:none; } }
+@media(max-width:1000px) { .docs-theme [data-theme-label] { display:none; } .docs-theme { width:44px; padding:0; justify-content:center; } }
+@media(max-width:760px) { .docs-github { margin-inline-start:0; font-size:.9rem; } .docs-header-inner { gap:12px; } }
+[data-theme-icon]:not([hidden]) { display:inline-flex; align-items:center; }
+@media(min-width:761px) and (max-width:1000px) { .docs-search-trigger { width:44px; } }

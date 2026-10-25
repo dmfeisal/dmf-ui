@@ -13,9 +13,10 @@ export async function run({page,baseURL,navigate,settle,opened,focused,mobile,ta
  async function follow(selector,path){await page.focus(selector);await page.keyboard.press('Enter');await page.waitForURL(`${baseURL}${path}`);await settle();}
  await navigate(`${baseURL}/`);
  assert(await page.evaluate(()=>[...document.querySelectorAll('.docs-primary a')].map(a=>a.textContent).join(',')==='Home,Components,Docs,Create'),'Primary documentation navigation missing');
+ assert(await page.evaluate(()=>document.querySelector('.docs-header .docs-github').href==='https://github.com/dmfeisal/dmf-ui'&&document.querySelector('#docs-theme [data-theme-icon]:not([hidden])').dataset.themeIcon==='system'),'Header GitHub link or initial theme icon missing');
  await audit('Home light/system');console.log(await page.screenshot({path:'/tmp/dmf-ui-documentation-home.png'}));
  await page.focus('#docs-theme');await page.keyboard.press('Enter');await page.keyboard.press('Enter');
- assert(await page.evaluate(()=>document.documentElement.dataset.theme==='dark'),'Documentation dark theme failed');await audit('Home dark');
+ assert(await page.evaluate(()=>document.documentElement.dataset.theme==='dark'),'Documentation dark theme failed');assert(await page.evaluate(()=>document.querySelector('#docs-theme [data-theme-icon]:not([hidden])').dataset.themeIcon==='dark'&&document.querySelector('#docs-theme').getAttribute('aria-label')==='Theme: Dark'),'Theme icon/name did not update');await audit('Home dark');
  await follow('.docs-primary a[href="/components/"]','/components/');
  await page.fill('#component-search','tooltip');
  assert(await page.evaluate(()=>document.querySelectorAll('[data-component-entry]:not([hidden])').length===1&&document.getElementById('component-count').textContent==='1 component'),'Component search failed');
