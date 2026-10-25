@@ -1,0 +1,27 @@
+---
+import {InputGroup,InputGroupAddon,InputGroupInput} from '../dmf-ui/input-group';
+import {NumberField} from '../dmf-ui/number-field';
+import {FileInput} from '../dmf-ui/file-input';
+import {Label} from '../dmf-ui/label';
+import {Button} from '../dmf-ui/button';
+import {Tooltip,TooltipTrigger,TooltipContent} from '../dmf-ui/tooltip';
+import {Search,RotateCcw} from '@lucide/astro';
+interface Props {slug:string;}
+const {slug}=Astro.props;
+const presentations=['label','icon-label','icon'] as const;
+---
+{slug==='input-group'&&<form data-composition-form="input-group" class="docs-preview-stack"><Label for="docs-group-address">Project address</Label><InputGroup><InputGroupAddon id="docs-group-prefix">https://</InputGroupAddon><InputGroupInput id="docs-group-address" name="slug" value="dmf-ui" aria-describedby="docs-group-prefix docs-group-suffix"/><InputGroupAddon id="docs-group-suffix">.example</InputGroupAddon></InputGroup><Label for="docs-group-search">Local search text</Label><InputGroup><InputGroupAddon aria-hidden="true"><Search size={18}/></InputGroupAddon><InputGroupInput id="docs-group-search" name="query" type="search" placeholder="Try an input action"/><InputGroupAddon><Tooltip side="bottom" portal={false}><TooltipTrigger data-clear-group disabled aria-label="Clear local search"><RotateCcw size={18} aria-hidden="true"/></TooltipTrigger><TooltipContent>Clear local search</TooltipContent></Tooltip></InputGroupAddon></InputGroup><div class="docs-preview-row"><Button type="submit" disabled data-composition-submit>Inspect values</Button><Button type="reset" variant="outline">Reset fields</Button></div><p data-composition-status role="status">Values stay in this preview.</p></form>}
+{slug==='number-field'&&<form data-composition-form="number-field" class="docs-preview-stack">{presentations.map((presentation,index)=><div data-example-presentation={presentation}><NumberField id={`docs-number-${presentation}`} label={presentation==='label'?'Quantity':presentation==='icon-label'?'Spacing':'Seats'} name={presentation} min={presentation==='icon-label'?0:1} max={presentation==='icon-label'?2:5} step={presentation==='icon-label'?0.25:1} value={presentation==='icon-label'?0.5:2} presentation={presentation} required/><p class="docs-note">{index===0?'Label-only actions':index===1?'Icons and labels; fractional steps':'Named icon-only actions'}</p></div>)}<NumberField id="docs-number-readonly" label="Fixed quantity" name="fixed" value={3} min={1} max={5} readonly/><NumberField id="docs-number-disabled" label="Unavailable quantity" name="unavailable" value={2} disabled/><div class="docs-preview-row"><Button type="submit" disabled data-composition-submit>Inspect values</Button><Button type="reset" variant="outline">Reset fields</Button></div><p data-composition-status role="status">Values stay in this preview.</p></form>}
+{slug==='file-input'&&<form data-composition-form="file-input" class="docs-preview-stack"><p>This picker selects local files only. Nothing is uploaded or read.</p><FileInput id="docs-file-attachments" label="Attachments" name="attachments" accept=".txt,.png" multiple required aria-describedby="docs-file-hint"/><p id="docs-file-hint">Text or PNG picker hint. This preview does not enforce a file policy.</p><FileInput id="docs-file-single" label="Optional single attachment" name="single" multiple={false} showSelection={false}/><FileInput id="docs-file-disabled" label="Unavailable attachment" name="unavailable" disabled/><div class="docs-preview-row"><Button type="submit" disabled data-composition-submit>Inspect selection</Button><Button type="reset" variant="outline">Clear selections</Button></div><p data-composition-status role="status">No files inspected.</p></form>}
+<script>
+ const owners=new Map<HTMLFormElement,AbortController>();
+ function initialize(){for(const form of document.querySelectorAll<HTMLFormElement>('[data-composition-form]')){
+  if(owners.has(form))continue;const abort=new AbortController();owners.set(form,abort);const signal=abort.signal;
+  const status=form.querySelector<HTMLElement>('[data-composition-status]')!;
+  form.addEventListener('submit',event=>{event.preventDefault();const data=[...new FormData(form)].map(([name,value])=>typeof value==='string'?`${name}: ${value}`:value.name?`${name}: ${value.name} (${value.size} bytes)`:null).filter(Boolean);status.textContent=`${data.join('; ')||'No values'}. Nothing was saved or uploaded.`;},{signal});
+  form.addEventListener('reset',()=>{status.textContent='Fields reset to their initial values.';},{signal});
+  form.querySelector('[data-clear-group]')?.addEventListener('click',()=>{const input=form.querySelector<HTMLInputElement>('#docs-group-search')!;input.value='';input.dispatchEvent(new Event('input',{bubbles:true}));input.focus();status.textContent='Local search cleared.';},{signal});
+  form.querySelector<HTMLButtonElement>('[data-clear-group]')?.removeAttribute('disabled');form.querySelector<HTMLButtonElement>('[data-composition-submit]')?.removeAttribute('disabled');
+ }}
+ initialize();document.addEventListener('astro:page-load',initialize);document.addEventListener('astro:before-swap',()=>{for(const abort of owners.values())abort.abort();owners.clear();});
+</script>

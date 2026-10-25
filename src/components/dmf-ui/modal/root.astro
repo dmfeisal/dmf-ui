@@ -1,0 +1,27 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+interface Props extends HTMLAttributes<'div'> {kind:'sheet'|'alert-dialog';defaultOpen?:boolean;closeOnClickOutside?:boolean;}
+const {kind,defaultOpen=false,closeOnClickOutside=true,...props}=Astro.props;
+---
+<div {...props} data-slot="dialog" data-component={kind} data-dmf-modal-root data-default-open={String(defaultOpen)} data-alert-dialog={String(kind==='alert-dialog')} data-close-on-click-outside={String(kind==='sheet'&&closeOnClickOutside)} data-close-on-escape="true" data-lock-scroll="true"><slot/></div>
+<script>
+ import {createDialog,type DialogController} from '@data-slot/dialog';
+ import {createModalIsolation} from './isolation';
+ import {prepareOverlayScope} from '../overlay-scope';
+ const owners=new Map<HTMLElement,{controller:DialogController;abort:AbortController;isolation:ReturnType<typeof createModalIsolation>;cleanup:()=>void}>();
+ function initialize(){for(const root of document.querySelectorAll<HTMLElement>('[data-dmf-modal-root]')){
+  if(owners.has(root))continue;
+  const content=root.querySelector<HTMLElement>('[data-slot=dialog-content]')!;
+  const overlay=root.querySelector<HTMLElement>('[data-slot=dialog-overlay]')!;
+  const isolation=createModalIsolation(content,overlay);
+  const scope=prepareOverlayScope(root,'dialog');
+  const trigger=root.querySelector<HTMLButtonElement>('[data-slot=dialog-trigger]');
+  const abort=new AbortController();
+  const sync=(open:boolean)=>{scope.sync();if(open)isolation.open();else isolation.close();if(!trigger)return;if(open)trigger.setAttribute('aria-controls',content.id);else trigger.removeAttribute('aria-controls');};
+  root.addEventListener('dialog:change',event=>{if(event.target===root)sync((event as CustomEvent<{open:boolean}>).detail.open);},{signal:abort.signal});
+  const controller=createDialog(root);owners.set(root,{controller,abort,isolation,cleanup:scope.cleanup});sync(controller.isOpen);
+  for(const trigger of root.querySelectorAll<HTMLButtonElement>('[data-dialog-enhancement-trigger]'))trigger.disabled=trigger.dataset.modalDisabled==='true';
+ }}
+ initialize();document.addEventListener('astro:page-load',initialize);
+ document.addEventListener('astro:before-swap',()=>{for(const {controller,abort,isolation,cleanup} of owners.values()){abort.abort();isolation.close();controller.destroy();cleanup();}owners.clear();});
+</script>

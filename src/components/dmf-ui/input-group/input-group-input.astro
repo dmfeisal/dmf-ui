@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {Input} from '../input';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'input'>;
+const {class:className,...props}=Astro.props;
+---
+<Input {...props} class={cn('dmf-input-group-input',className)}/>

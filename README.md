@@ -82,3 +82,7 @@ The `dmf-ui/presets/portfolio.css` export provides Light, Dark and Yellow appear
 `Table`, `DescriptionList` and `Slider` add native tabular records, semantic key/value details and a labeled range input. Table overflow stays local; Slider preserves native keyboard, form and reset behavior. See [data display and range verification](docs/DMF-UI-DATA-DISPLAY.md).
 
 `Collapsible`, `Toggle`, `ToggleGroup` and `Combobox` add optional disclosure, pressed commands and searchable local selection. All appropriate command presentations are available; Combobox retains a native select fallback. See [selection behavior and verification](docs/DMF-UI-SELECTION.md).
+
+`InputGroup`, `NumberField` and `FileInput` add composed native inputs, bounded step actions and local file selection metadata. Native editing, validity, form values and reset remain available. See [form composition behavior and verification](docs/DMF-UI-FORM-COMPOSITION.md).
+
+`Sheet` and `AlertDialog` add modal panels and explicit confirmation flows with three trigger presentations, safe focus return and wrapper-owned background isolation. Confirmation actions close only when the host requests it. See [modal components and verification](docs/DMF-UI-MODAL-COMPONENTS.md).

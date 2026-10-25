@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@data-slot/accordion": "1.1.2",
+    "@data-slot/core": "1.1.2",
     "@data-slot/dialog": "1.1.2",
     "@data-slot/dropdown-menu": "1.1.2",
     "@data-slot/popover": "1.1.2",
@@ -117,7 +118,12 @@
     "./collapsible": "./src/components/dmf-ui/collapsible/index.ts",
     "./toggle": "./src/components/dmf-ui/toggle/index.ts",
     "./toggle-group": "./src/components/dmf-ui/toggle-group/index.ts",
-    "./combobox": "./src/components/dmf-ui/combobox/index.ts"
+    "./combobox": "./src/components/dmf-ui/combobox/index.ts",
+    "./input-group": "./src/components/dmf-ui/input-group/index.ts",
+    "./number-field": "./src/components/dmf-ui/number-field/index.ts",
+    "./file-input": "./src/components/dmf-ui/file-input/index.ts",
+    "./sheet": "./src/components/dmf-ui/sheet/index.ts",
+    "./alert-dialog": "./src/components/dmf-ui/alert-dialog/index.ts"
   },
   "files": [
     "contracts/*.json",

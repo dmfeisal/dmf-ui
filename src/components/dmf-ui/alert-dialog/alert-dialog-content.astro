@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {DialogPortal,DialogOverlay} from '../dialog';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'div'>;
+const {class:className,style,...props}=Astro.props;
+---
+<DialogPortal><DialogOverlay/><div {...props} data-slot="dialog-content" data-component="alert-dialog-content" hidden class={cn('dmf-alert-dialog-content',className)} style={`z-index:calc(var(--dialog-content-stack-index,0) * 2 + 101);${style??''}`}><slot/></div></DialogPortal>

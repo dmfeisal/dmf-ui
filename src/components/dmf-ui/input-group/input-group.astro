@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+interface Props extends HTMLAttributes<'div'> {label?:string;}
+const {label,class:className,...props}=Astro.props;
+---
+<div {...props} data-slot="input-group" role={label?'group':undefined} aria-label={label} class={cn('dmf-input-group',className)}><slot/></div>

@@ -43,3 +43,8 @@ export * from "./collapsible/index";
 export * from "./toggle/index";
 export * from "./toggle-group/index";
 export * from "./combobox/index";
+export * from "./input-group/index";
+export * from "./number-field/index";
+export * from "./file-input/index";
+export * from "./sheet/index";
+export * from "./alert-dialog/index";

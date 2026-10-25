@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import type {ButtonVariantProps} from '../button/button-variants';
+import {Button} from '../button';
+type Props=HTMLAttributes<'button'>&ButtonVariantProps;
+---
+<Button variant="destructive" {...Astro.props} type="button" data-slot="alert-dialog-action"><slot/></Button>

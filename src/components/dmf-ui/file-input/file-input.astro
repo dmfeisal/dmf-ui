@@ -1,0 +1,24 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+interface Props extends Omit<HTMLAttributes<'input'>,'id'|'type'|'value'> {id:string;label:string;showSelection?:boolean;}
+const {id,label,showSelection=true,multiple=false,class:className,...props}=Astro.props;
+---
+<div data-slot="file-input" class={cn('dmf-file-input',className)}><label for={id}>{label}</label><input {...props} id={id} type="file" multiple={multiple?'':undefined}/>{showSelection&&<div data-file-selection hidden><p data-file-status role="status"></p><ul data-file-list aria-label={`${label}: selected files`}></ul></div>}</div>
+<script>
+ const owners=new Map<HTMLElement,AbortController>();
+ function initialize(){for(const root of document.querySelectorAll<HTMLElement>('[data-slot=file-input]')){
+  if(owners.has(root))continue;
+  const input=root.querySelector<HTMLInputElement>('input[type=file]')!;
+  const selection=root.querySelector<HTMLElement>('[data-file-selection]');if(!selection)continue;
+  const list=selection.querySelector<HTMLElement>('[data-file-list]')!;
+  const status=selection.querySelector<HTMLElement>('[data-file-status]')!;
+  const abort=new AbortController();owners.set(root,abort);const signal=abort.signal;
+  function sync(announce=true){const files=[...(input.files??[])];list.replaceChildren();for(const file of files){const item=document.createElement('li');item.textContent=`${file.name} (${file.size.toLocaleString()} bytes)`;list.append(item);}status.textContent=announce?(files.length?`${files.length} file${files.length===1?'':'s'} selected.`:'No files selected.'):'';list.hidden=!files.length;}
+  input.addEventListener('change',()=>sync(),{signal});
+  input.form?.addEventListener('reset',()=>setTimeout(()=>{if(!signal.aborted)sync();},0),{signal});
+  selection.hidden=false;sync(false);
+ }}
+ initialize();document.addEventListener('astro:page-load',initialize);
+ document.addEventListener('astro:before-swap',()=>{for(const abort of owners.values())abort.abort();owners.clear();});
+</script>

@@ -1,0 +1,9 @@
+---
+import {Minus,Plus} from '@lucide/astro';
+import type {Presentation} from '../navigation-types';
+import {Tooltip,TooltipContent} from '../tooltip';
+interface Props {direction:1|-1;label:string;presentation:Presentation;}
+const {direction,label,presentation}=Astro.props;
+const action=direction===1?'Increase':'Decrease';const Icon=direction===1?Plus:Minus;
+---
+{presentation==='icon'?<Tooltip side="bottom" portal={false} class="dmf-inline-tooltip"><button type="button" data-slot="tooltip-trigger" data-number-step={direction} class="dmf-number-step" aria-label={`${action} ${label}`} disabled><Icon size={18} aria-hidden="true"/></button><TooltipContent>{action} {label}</TooltipContent></Tooltip>:<button type="button" data-number-step={direction} class="dmf-number-step" aria-label={`${action} ${label}`} disabled>{presentation==='icon-label'&&<Icon size={18} aria-hidden="true"/>}<span>{action}</span></button>}

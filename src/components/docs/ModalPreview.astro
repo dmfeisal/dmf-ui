@@ -1,0 +1,24 @@
+---
+import {Sheet,SheetTrigger,SheetContent,SheetHeader,SheetTitle,SheetDescription,SheetClose,SheetFooter} from '../dmf-ui/sheet';
+import {AlertDialog,AlertDialogTrigger,AlertDialogContent,AlertDialogHeader,AlertDialogTitle,AlertDialogDescription,AlertDialogFooter,AlertDialogCancel,AlertDialogAction} from '../dmf-ui/alert-dialog';
+import {Input} from '../dmf-ui/input';
+import {Label} from '../dmf-ui/label';
+import {PanelRight,RotateCcw} from '@lucide/astro';
+interface Props {slug:string;}
+const {slug}=Astro.props;
+const presentations=['label','icon-label','icon'] as const;
+---
+{slug==='sheet'&&<div class="docs-preview-stack">{presentations.map((presentation,index)=><div data-example-presentation={presentation}><p>{presentation==='label'?'Label only':presentation==='icon-label'?'Icon + label':'Icon only'}</p><Sheet id={`docs-sheet-${presentation}`}><SheetTrigger label="Open preview panel" icon={PanelRight} presentation={presentation}/><SheetContent side={index===0?'inline-end':index===1?'inline-start':'bottom'}><SheetHeader><SheetTitle>Local preview panel</SheetTitle><SheetDescription>Edit this sample text. Nothing is saved or sent.</SheetDescription></SheetHeader><Label for={`docs-sheet-value-${presentation}`}>Draft label</Label><Input id={`docs-sheet-value-${presentation}`} value="Local draft" autofocus/>{presentation==='label'&&<Sheet id="docs-sheet-nested"><SheetTrigger label="Open nested panel"/><SheetContent side="bottom"><SheetHeader><SheetTitle>Nested preview panel</SheetTitle><SheetDescription>Escape returns to the parent panel.</SheetDescription></SheetHeader><SheetClose>Return to parent panel</SheetClose></SheetContent></Sheet>}<SheetFooter><SheetClose variant="outline">Done</SheetClose></SheetFooter></SheetContent></Sheet></div>)}<Sheet id="docs-sheet-top"><SheetTrigger label="Open top panel"/><SheetContent side="top"><SheetHeader><SheetTitle>Top panel</SheetTitle><SheetDescription>A fourth edge for compact supporting tasks.</SheetDescription></SheetHeader><SheetClose>Close top panel</SheetClose></SheetContent></Sheet></div>}
+{slug==='alert-dialog'&&<div data-alert-demo class="docs-preview-stack"><Label for="docs-alert-draft">Local draft text</Label><Input id="docs-alert-draft" value="Edited local sample"/>{presentations.map(presentation=><div data-example-presentation={presentation}><p>{presentation==='label'?'Label only':presentation==='icon-label'?'Icon + label':'Icon only'}</p><AlertDialog id={`docs-alert-${presentation}`}><AlertDialogTrigger label="Review local reset" icon={RotateCcw} presentation={presentation}/><AlertDialogContent><AlertDialogHeader><AlertDialogTitle>Reset this local draft?</AlertDialogTitle><AlertDialogDescription>Restores only the sample text on this page. No files or saved data are changed.</AlertDialogDescription></AlertDialogHeader><AlertDialogFooter><AlertDialogCancel>Keep draft</AlertDialogCancel><AlertDialogAction data-confirm-preview={presentation}>Reset draft preview</AlertDialogAction></AlertDialogFooter></AlertDialogContent></AlertDialog></div>)}<p data-alert-status role="status">No reset confirmed.</p></div>}
+<script>
+ import {setAlertDialogOpen} from '../dmf-ui/alert-dialog';
+ const owners=new Map<HTMLElement,AbortController>();
+ function initialize(){for(const root of document.querySelectorAll<HTMLElement>('[data-alert-demo]')){
+  if(owners.has(root))continue;const abort=new AbortController();owners.set(root,abort);const signal=abort.signal;
+  for(const modal of root.querySelectorAll<HTMLElement>('[data-component=alert-dialog]')){
+   // Portals move the action outside its root, so bind before it is opened.
+   modal.querySelector('[data-confirm-preview]')?.addEventListener('click',()=>{root.querySelector<HTMLInputElement>('#docs-alert-draft')!.value='Initial local sample';root.querySelector<HTMLElement>('[data-alert-status]')!.textContent='Local draft reset. No saved data changed.';setAlertDialogOpen(modal,false);},{signal});
+  }
+ }}
+ initialize();document.addEventListener('astro:page-load',initialize);document.addEventListener('astro:before-swap',()=>{for(const abort of owners.values())abort.abort();owners.clear();});
+</script>

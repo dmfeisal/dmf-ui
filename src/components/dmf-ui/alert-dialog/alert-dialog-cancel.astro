@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import type {ButtonVariantProps} from '../button/button-variants';
+import {Button} from '../button';
+type Props=HTMLAttributes<'button'>&ButtonVariantProps;
+---
+<Button variant="outline" {...Astro.props} type="button" data-slot="dialog-close" autofocus><slot>Cancel</slot></Button>

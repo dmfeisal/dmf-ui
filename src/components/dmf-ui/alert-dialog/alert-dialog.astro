@@ -1,0 +1,6 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import Root from '../modal/root.astro';
+interface Props extends HTMLAttributes<'div'> {defaultOpen?:boolean;}
+---
+<Root {...Astro.props} kind="alert-dialog" closeOnClickOutside={false}><slot/></Root>

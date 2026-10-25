@@ -1,0 +1,12 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import type {Presentation} from '../navigation-types';
+import StepButton from './step-button.astro';
+import {validateNumberField} from './validation';
+import {cn} from '../utils';
+interface Props extends Omit<HTMLAttributes<'input'>,'id'|'type'|'value'|'min'|'max'|'step'> {id:string;label:string;value?:number;min?:number;max?:number;step?:number;presentation?:Presentation;}
+const {id,label,value,min,max,step=1,presentation='icon',class:className,...props}=Astro.props;
+validateNumberField({min,max,step,value});
+---
+<div data-slot="number-field" data-presentation={presentation} class={cn('dmf-number-field',className)}><label for={id}>{label}</label><div class="dmf-number-control"><input {...props} id={id} type="number" value={value} min={min} max={max} step={step}/><div data-number-controls hidden><StepButton direction={-1} label={label} presentation={presentation}/><StepButton direction={1} label={label} presentation={presentation}/></div></div></div>
+<script>import './runtime';</script>

@@ -1,0 +1,13 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {X} from '@lucide/astro';
+import {DialogPortal,DialogOverlay} from '../dialog';
+import {Button} from '../button';
+import {cn} from '../utils';
+interface Props extends HTMLAttributes<'div'> {side?:'inline-start'|'inline-end'|'top'|'bottom';showCloseButton?:boolean;}
+const {side='inline-end',showCloseButton=true,class:className,style,...props}=Astro.props;
+---
+<DialogPortal><DialogOverlay/><div {...props} data-slot="dialog-content" data-component="sheet-content" data-side={side} hidden class={cn('dmf-sheet-content',className)} style={`z-index:calc(var(--dialog-content-stack-index,0) * 2 + 101);${style??''}`}>
+ {showCloseButton&&<Button type="button" data-slot="dialog-close" variant="ghost" size="icon" class="dmf-sheet-dismiss" aria-label="Close panel"><X size={18} aria-hidden="true"/></Button>}
+ <slot/>
+</div></DialogPortal>

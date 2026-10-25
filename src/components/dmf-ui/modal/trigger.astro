@@ -1,0 +1,10 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import type {Presentation,NavigationIcon} from '../navigation-types';
+import Content from '../navigation-content.astro';
+import {buttonVariants,type ButtonVariantProps} from '../button/button-variants';
+import {cn} from '../utils';
+interface Props extends Omit<HTMLAttributes<'button'>,'type'>,ButtonVariantProps {label:string;icon?:NavigationIcon;presentation?:Presentation;}
+const {label,icon:Icon,presentation='label',variant='outline',size='default',disabled=false,class:className,...props}=Astro.props;
+---
+<button {...props} type="button" data-slot="dialog-trigger" data-dialog-enhancement-trigger data-modal-disabled={String(disabled)} data-presentation={presentation} disabled aria-haspopup="dialog" aria-expanded="false" title={presentation==='icon'?label:undefined} class={cn(buttonVariants({variant,size:presentation==='icon'?'icon':size}),'dmf-modal-trigger',className)}><Content label={label} icon={Icon} presentation={presentation}/></button>
