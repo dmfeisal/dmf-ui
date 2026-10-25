@@ -67,3 +67,53 @@ html { font-size: 87.5%; scroll-padding-top: 10rem; }
 @media(prefers-reduced-motion:reduce) { html {scroll-behavior:auto;} }
 
 .docs-code:focus-visible { outline:2px solid var(--foreground); outline-offset:4px; }
+
+/* Documentation tools share the existing token palette and native focus model. */
+.docs-search-trigger,.docs-search-fallback { margin-inline-start:auto; }
+.docs-search-trigger { display:flex; align-items:center; gap:10px; width:clamp(200px,22vw,300px); min-height:40px; padding:8px 12px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--muted); color:var(--foreground); text-align:start; font-size:.9rem; }
+.docs-search-trigger kbd { margin-inline-start:auto; white-space:nowrap; }
+.docs-search-trigger[hidden],.docs-search-fallback[hidden],.docs-copy[hidden] { display:none; }
+.docs-theme { margin-inline-start:0; white-space:nowrap; }
+.docs-header-inner { gap:24px; }
+.docs-nav-group+.docs-nav-group { margin-top:22px; }
+.docs-nav-group .docs-nav-title { margin-bottom:6px; }
+.docs-sidebar a { padding:7px 10px; border-radius:var(--radius-sm); }
+.docs-sidebar a:hover { background:var(--muted); }
+.docs-sidebar a[aria-current] { background:var(--muted); text-decoration:none; }
+.docs-code-heading { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-bottom:18px; }
+.docs-code-heading h2 { font-size:1.65rem; font-weight:600; letter-spacing:-.025em; margin:0; }
+.docs-copy { margin-inline-start:auto; min-height:40px; padding:8px 12px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--background); color:var(--foreground); }
+.docs-copy-status { flex-basis:100%; color:var(--muted-foreground); font-size:.9rem; }
+.docs-copy-status:empty { display:none; }
+.docs-search-dialog { width:min(42rem,calc(100vw - 32px)); max-height:min(75svh,720px); margin:12svh auto auto; padding:0; overflow:hidden; border:1px solid var(--border); border-radius:var(--radius-lg); background:var(--background); color:var(--foreground); box-shadow:0 16px 64px #0003; }
+.docs-search-dialog::backdrop { background:#0006; }
+.docs-search-dialog:not([open]) { display:none; }
+.docs-search-dialog[open] { display:flex; flex-direction:column; }
+.docs-search-dialog-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 18px; }
+.docs-search-dialog-heading h2 { font-size:1rem; font-weight:600; margin:0; }
+.docs-search-dialog-heading button { padding:6px 8px; min-height:36px; border:0; background:transparent; color:var(--muted-foreground); white-space:nowrap; }
+.docs-search-dialog kbd { font:inherit; font-size:.8rem; border:1px solid var(--border); border-radius:3px; padding:2px 5px; }
+.docs-search-input-shell { border-block:1px solid var(--border); margin:0 18px; }
+.docs-search-input-shell:focus-within { outline:2px solid var(--foreground); outline-offset:-2px; }
+.docs-search-input-shell input { display:block; width:100%; min-width:0; min-height:48px; padding:12px; background:transparent; color:var(--foreground); border:0; font:inherit; }
+.docs-search-input-shell input:focus-visible { outline:none; }
+.docs-search-count { padding:10px 18px; margin:0; color:var(--muted-foreground); font-size:.85rem; }
+#docs-search-results { overflow:auto; overscroll-behavior:contain; padding:0 10px 12px; }
+#docs-search-results h3 { font-size:.8rem; font-weight:600; color:var(--muted-foreground); margin:12px 10px 6px; }
+.docs-search-result { display:flex; flex-direction:column; gap:3px; padding:10px; min-height:44px; border-radius:var(--radius-sm); text-decoration:none; }
+.docs-search-result span { font-weight:500; }
+.docs-search-result small { color:var(--muted-foreground); line-height:1.5; }
+.docs-search-result:hover,.docs-search-result:focus-visible { background:var(--muted); }
+.docs-search-result:focus-visible { outline:2px solid var(--foreground); outline-offset:-2px; }
+.docs-search-empty,.docs-search-more { padding:12px 10px; margin:0; color:var(--muted-foreground); line-height:1.6; }
+#docs-search-help { padding:12px 18px; margin:0; border-top:1px solid var(--border); font-size:.8rem; color:var(--muted-foreground); }
+@media(max-width:1000px) and (min-width:761px) { .docs-search-trigger { width:44px; justify-content:center; padding:0; } .docs-search-trigger span,.docs-search-trigger kbd { display:none; } }
+@media(max-width:760px) { .docs-header-inner { gap:12px; } .docs-search-trigger { width:44px; min-height:44px; justify-content:center; padding:0; } .docs-search-trigger span,.docs-search-trigger kbd { display:none; } .docs-search-dialog { margin-top:24px; max-height:calc(100svh - 48px); } .docs-search-dialog-heading { padding-inline:14px; } .docs-search-dialog-heading h2 { font-size:.95rem; } }
+
+@media(max-width:760px) { .docs-primary { flex-wrap:wrap; column-gap:16px; row-gap:0; } .docs-logo,.docs-theme,.docs-search-trigger { flex-shrink:0; } }
+.docs-search-dialog-heading,.docs-search-input-shell,.docs-search-count,#docs-search-help { flex-shrink:0; }
+#docs-search-results { min-height:0; flex:1; }
+.docs-search-dialog-heading { flex-wrap:wrap; }
+.docs-search-dialog-heading button { margin-inline-start:auto; }
+.docs-search-result { background:var(--background); }
+.docs-search-result small { background:inherit; }

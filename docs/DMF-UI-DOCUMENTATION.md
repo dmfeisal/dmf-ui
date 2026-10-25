@@ -4,23 +4,23 @@
 
 The standalone DMF UI repository owns its documentation site as well as the library source. The primary audience is designers and technical collaborators evaluating the available Astro components and product presets. The next action is to inspect a component or follow installation; framework support and verification claims must match evidence.
 
-The portfolio's `/ui/` remains an integration lab. Its pages, Canvas, navigation and stored/public data are not moved into this site. This documentation is a separate local build, not a new portfolio route or a deployed domain.
+The portfolio's `/ui/` remains an integration lab. Its pages, Canvas, navigation and stored/public data are not moved into this site. The standalone documentation is deployed at https://ui.feisal.id through Netlify.
 
 ## Information architecture
 
 - `/`: Home. Explain the foundation, show real component previews and lead to Components or installation.
 - `/components/`: Searchable catalog of the 21 implemented component families, grouped by purpose. Static links remain available without JavaScript; search is progressive enhancement with a result count and an empty state.
-- `/components/<slug>/`: One page per exported family, with one full-width DMF preview, a complete Astro usage snippet, focused option table and behavior notes. CB reconstruction customization is shown on Create rather than repeated across component pages.
+- `/components/<slug>/`: One page per exported family, with one full-width DMF preview, a copyable Astro usage snippet with a manual clipboard fallback, focused option table and behavior notes. CB reconstruction customization is shown on Create rather than repeated across component pages.
 - `/create/`: Local preset configurator with live components, CSS export, JSON download and shareable query links. Astro only; CB primary stays #26ade4 and CB appearance stays light.
 - `/docs/`: Guide index.
 - `/docs/contracts/`, `/docs/introduction/`, `/docs/installation/`, `/docs/theming/`, `/docs/presets/`, `/docs/accessibility/`, `/docs/credits/`: Seven guides covering component intent, setup, ownership, customization and verified limits.
 - `/examples/dmf-ui/`: Existing independent integration examples; its route and anchors remain available.
 
-The 34-page build includes implemented Astro families and an experimental React proof at `/examples/react/`. Stable React support, WordPress, native adapters, additional product presets and complete accessibility/cross-browser certification remain future or manual-verification work. No npm publication or live documentation domain is implied.
+The 34-page build includes implemented Astro families and an experimental React proof at `/examples/react/`. Stable React support, WordPress, native adapters, additional product presets and complete accessibility/cross-browser certification remain future or manual-verification work. Packages remain unpublished.
 
 ## Source boundaries
 
-`src/data/documentation.ts` supplies typed catalog/guide content. `src/layouts/DocumentationLayout.astro` owns Home/Components/Docs navigation, visible breadcrumbs, sidebar/mobile disclosure, a right-side desktop contents rail, local theme control and attribution links. `src/components/docs/ComponentPreview.astro` composes actual shared library components. `src/styles/documentation.css` uses existing DMF tokens and the relative 14px root/100rem container; it does not become a library stylesheet.
+`src/data/documentation.ts` supplies typed catalog/guide content. `src/layouts/DocumentationLayout.astro` owns Home/Components/Docs navigation, visible breadcrumbs, sidebar/mobile disclosure, a right-side desktop contents rail, local theme control, grouped component navigation, global search and attribution links. `src/scripts/documentation.ts` owns the progressively enhanced search and code-copy controls. `src/components/docs/ComponentPreview.astro` composes actual shared library components. `src/styles/documentation.css` uses existing DMF tokens and the relative 14px root/100rem container; it does not become a library stylesheet.
 
 The documentation uses static Astro page navigation. Its theme control is page-local and does not write preferences. Shared component roots still own their normal lifecycle. If ClientRouter is later added to the documentation shell, its shell listeners need lifecycle review; the existing separate navigation fixture tests the library components rather than promising this shell's client routing.
 
@@ -42,7 +42,7 @@ Run `npm run check`, `npm run build` and `npm test`. Contract tests check that e
 
 Run `npm run test:dmf-ui:docs` for the local Ego Browser suite. It checks navigation, search/reset/empty state, all scripted component previews and local Button/menu feedback, guide selection, light/dark themes, mobile section navigation, Tooltip containment/focus and axe page states. Reports remain in ignored `.dmf-ui-test-results/`. Browser-space recovery follows the existing managed runner rules; do not silently replace unavailable spaces.
 
-Use `npm run dev` in this repository for a local preview. Publishing the documentation, configuring a domain and changing the portfolio's navigation are separate actions. Safari/Firefox and spoken screen-reader checks remain pending as recorded in `DMF-UI-ACCESSIBILITY.md`.
+Use `npm run dev` in this repository for a local preview. The Netlify site builds this repository independently of the portfolio. Safari/Firefox and spoken screen-reader checks remain pending as recorded in `DMF-UI-ACCESSIBILITY.md`.
 
 ## Future platforms
 
@@ -75,3 +75,11 @@ The production hostname is `ui.feisal.id`. `netlify.toml` builds the static docu
 Local Netlify linkage is ignored under `.netlify/` and must not be committed. Keep custom-domain DNS separate from the portfolio's apex hostname. The external DNS provider is Cloudflare; only the `ui` subdomain needs a record pointing at this documentation project's assigned Netlify hostname. Deployment/domain verification is recorded after the project is configured.
 
 Netlify project created: `dmf-ui` (`fa4ed270-7ba4-4172-8f0d-5aa285632415`) in workspace `daengdoang`. Assigned hostname: `dmf-ui.netlify.app`. Project dashboard: https://app.netlify.com/projects/dmf-ui. At preparation time the project has no deploy; repository connection, `ui.feisal.id` assignment, Cloudflare CNAME and HTTPS verification remain pending authentication/configuration.
+
+## Documentation refinement — 2026-10-25
+
+Global search covers components, guide topics and Create. Open it from the header, Cmd/Ctrl K, or `/` outside editable controls. Native links support arrow navigation and Enter; Escape closes directly and returns focus. Results are ranked by title, match multiple words, and render query text safely. Search, copying and grouped navigation use the existing DMF tokens. Without JavaScript, catalog links and usage text remain available.
+
+Verification includes production and development browser flows, search empty/results states, shortcuts, focus return, exact code copying and denied-clipboard fallback, mobile containment and enlarged text. Automated checks do not replace spoken screen-reader or Safari/Firefox verification. Core remains 0.4.0 and React remains 0.1.0-alpha.3.
+
+Astro check: 190 files, zero errors/warnings/hints. Production build: 34 pages. Source tests: 17/17 passed with localhost permissions and a writable temporary npm cache. Isolated Chrome passed documentation, Create, content pages and global search flows with no runtime or failed asset requests. Search axe checks cover empty/results, dark and mobile states. At 200% mobile text, axe requested manual contrast review for a wrapped result description; screenshot review found readable, separated text using the same verified token colors. Layout containment and controls passed at that size.
