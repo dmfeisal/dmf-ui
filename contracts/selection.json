@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "scope": "Reviewed Astro selection contracts; browser evidence is recorded separately. React remains a native web adapter with distinct APIs.",
+  "components": {
+    "checkbox": {
+      "states": "Native checked/unchecked, required validity, disabled omission and focus-visible. Optional indeterminate initializes the DOM property after enhancement and restores it on uncancelled reset; it does not set checked or change FormData.",
+      "properties": "Input attributes except type, plus indeterminate. Use checked for the authored reset value, name/value for submission, required/disabled for native behavior and aria-invalid/aria-describedby for host-owned errors. HTML readonly has no checkbox behavior.",
+      "sizes": "One natural indicator size via --dmf-selection-size; no universal size or variant prop.",
+      "fallback": "Native checkbox works without JavaScript. Mixed initialization requires enhancement; checked still determines native submission."
+    },
+    "switch": {
+      "states": "Checked/unchecked, disabled, readOnly, required and focus-visible. Read-only remains focusable and submittable; disabled omits the generated checkbox. Required validates the checked value.",
+      "properties": "Button attributes plus defaultChecked, name, value, uncheckedValue, disabled, readOnly, required and size. switch:set changes checked state; switch:change reports detail.checked. aria-invalid and error associations belong on the visible switch.",
+      "sizes": "default and sm retain existing track/thumb geometry, including LTR track movement within RTL text. No md alias or arbitrary size is added.",
+      "fallback": "Server output exposes the initial named switch state. Toggling, generated form proxies and reset need enhancement; use a native Checkbox for a no-JavaScript form."
+    },
+    "radio-group": {
+      "states": "Single checked value, disabled group/item, readOnly group, required, focus-visible and roving focus. Arrows and Home/End skip disabled items. Read-only preserves submission and blocks user changes.",
+      "properties": "Root div attributes plus defaultValue, name, disabled, readOnly and required. Item button attributes plus required value, disabled and indicatorClass. Name the group with aria-labelledby/aria-label and every item with a visible label. radio-group:set requests a value; radio-group:change reports detail.value.",
+      "sizes": "One natural item size via --dmf-selection-size; layout is authored with classes. No size/variant or multiple-selection API.",
+      "fallback": "Generated radios, initial selected styling, keyboard behavior, validity and reset require enhancement. Use native radio inputs for a no-JavaScript form."
+    },
+    "select": {
+      "states": "Single selected value or placeholder, open/closed, highlighted item, disabled root/item, required validity and focus-visible. Arrows, Home/End and typeahead navigate; Enter selects; Escape returns focus without selecting the highlighted item.",
+      "properties": "Root div attributes and declared Data Slot placement/mount options, defaultValue/defaultOpen, placeholder, disabled, required and name. Trigger button attributes plus size and showIcon. Item value/disabled and authored labels. No readOnly or multiple-selection prop. Native generated select owns FormData/reset/validity; associate errors with the trigger.",
+      "sizes": "Trigger default uses --dmf-select-height; sm uses --dmf-select-height-sm. Existing names stay valid.",
+      "fallback": "Server output retains selected text or placeholder. Opening, selection and native form proxy creation require enhancement. Use Native Select when a no-JavaScript form is required. Portals refresh preset, color mode and direction on each opening."
+    },
+    "combobox": {
+      "states": "Committed value, query, highlighted option, empty search, open/closed, disabled field/option, required validity and focus-visible. Highlight does not commit; Escape/Tab/blur restore the committed label. Composition and text-editing keys remain available.",
+      "properties": "Required id, label and unique nonempty items; optional defaultValue, placeholder, emptyMessage and native select attributes excluding id/size/multiple. Name/form/required/disabled belong to the native select; aria-describedby/aria-invalid reach the visible input. Dispatch native change after programmatic select changes. No readOnly, remote search, free-text or multiple-selection API.",
+      "sizes": "One compact Nova input composition using --dmf-select-height as a natural minimum; no new size prop. Labels and option text can wrap.",
+      "fallback": "Native select is visible and functional without JavaScript. Enhancement keeps its submitted value, transfers required validity to the visible input and resets both together. Popup stays local; host clipping ancestors remain a limitation."
+    }
+  }
+}

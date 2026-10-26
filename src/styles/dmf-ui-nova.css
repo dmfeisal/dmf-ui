@@ -1,8 +1,21 @@
 /* Nova dimensions adapted from the pinned shadcn/ui source. Behavior stays source-owned. */
-.dmf-ui [data-slot="select-trigger"][data-size="default"],.dmf-ui [data-slot="native-select"] { block-size:2rem; padding-block:.25rem; border-radius:var(--radius-lg); }
-.dmf-ui [data-slot="select-trigger"][data-size="sm"] { block-size:1.75rem; }
-.dmf-ui [data-slot="tabs-list"] { padding:3px; border-radius:var(--radius-lg); }
-.dmf-ui [data-slot="tabs-trigger"] { padding:.125rem .375rem; gap:.375rem; }
+.dmf-ui [data-slot="select-trigger"][data-size="default"],.dmf-ui [data-slot="native-select"] { block-size:var(--dmf-select-height); padding-block:.25rem; border-radius:var(--radius); }
+.dmf-ui [data-slot="select-trigger"] { padding-inline-end:.625rem; border-radius:var(--radius); }
+.dmf-ui [data-slot="select-trigger"][data-size="sm"] { block-size:var(--dmf-select-height-sm); }
+.dmf-ui [data-slot="checkbox"],.dmf-ui [data-slot="radio-group-item"] { inline-size:var(--dmf-selection-size); block-size:var(--dmf-selection-size); }
+.dmf-ui .dmf-combobox-input { min-block-size:var(--dmf-select-height); padding-inline:.625rem; gap:.375rem; border-radius:var(--radius); }
+.dmf-ui .dmf-combobox-input input { padding-block:.25rem; font-size:.875rem; line-height:1.25rem; }
+.dmf-ui .dmf-combobox-input:has(input[aria-invalid="true"]) { border-color:var(--destructive); }
+@media (forced-colors:active) {
+  .dmf-ui input[data-slot="checkbox"] { appearance:auto; }
+  .dmf-ui input[data-slot="checkbox"]::before { display:none; }
+  .dmf-ui :is([data-slot="checkbox"],[data-slot="switch"],[data-slot="radio-group-item"],[data-slot="select-trigger"]):focus-visible { outline:2px solid Highlight; outline-offset:2px; }
+}
+.dmf-ui [data-slot="tabs-list"] { padding:3px; border-radius:var(--radius); }
+.dmf-ui [data-slot="tabs-list"][data-variant="default"] { gap:2px; }
+.dmf-ui [data-horizontal] > [data-slot="tabs-list"] { block-size:2rem; }
+.dmf-ui [data-slot="tabs-list"][data-variant="line"] { border-radius:0; }
+.dmf-ui [data-slot="tabs-trigger"] { padding:.125rem .5rem; gap:.375rem; border-radius:max(0px,calc(var(--radius) - 3px)); }
 .dmf-ui [data-slot="accordion-trigger"] { padding-block:.625rem; }
 .dmf-ui [data-slot="accordion-content"]>div { padding-block-end:.625rem; }
 .dmf-ui [data-slot="alert"] { padding:.5rem .625rem; }

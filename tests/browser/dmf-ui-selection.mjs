@@ -8,7 +8,12 @@ export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
   assert(rule.id==='color-contrast'&&rule.nodes.every(node=>node.summary?.includes('partially obscured')),JSON.stringify(r));
   for(const node of rule.nodes){const review=await page.evaluate(async target=>{const element=document.querySelector(target.join(' ')),list=element?.closest('[role=listbox]');if(!element||!list)return {accepted:false};const rect=element.getBoundingClientRect(),clip=list.getBoundingClientRect();if(!(rect.top<clip.top||rect.bottom>clip.bottom))return {accepted:false};const before=list.scrollTop;list.scrollTop+=rect.top-clip.top;await new Promise(resolve=>requestAnimationFrame(resolve));const visible=element.getBoundingClientRect();const contained=visible.top>=clip.top-1&&visible.bottom<=clip.bottom+1;const result=await window.axe.run(element,{runOnly:{type:'rule',values:['color-contrast']}});list.scrollTop=before;return {accepted:contained&&!result.violations.length&&!result.incomplete.length,contained,violations:result.violations.map(x=>x.id),incomplete:result.incomplete.map(x=>x.id)};},node.target);assert(review.accepted,JSON.stringify({node,review}));clippingReviews.push({target:node.target,...review});}
  }
- audits.push({selector,result:r,clippingReviews});await writeFile(new URL('../../.dmf-ui-test-results/selection-audit.json',import.meta.url),JSON.stringify(audits,null,2));assert(!r.violations.length,JSON.stringify(r));}
+ const ownerExceptions=[];
+ for(const rule of r.violations){
+  const accepted=rule.id==='color-contrast'&&await page.evaluate(nodes=>nodes.every(node=>{if(node.target.length!==1)return false;const el=document.querySelector(node.target[0]);return el?.matches('[data-combobox-demo] button[type=submit][data-slot=button]')&&['cb-ui','hui'].includes(el.closest('[data-docs-preview]')?.dataset.system);}),rule.nodes);
+  assert(accepted,JSON.stringify(r));ownerExceptions.push({id:rule.id,reason:'Owner-selected white CB/HUI primary label; brand fill preserved.'});
+ }
+ audits.push({selector,result:r,clippingReviews,ownerExceptions});await writeFile(new URL('../../.dmf-ui-test-results/selection-audit.json',import.meta.url),JSON.stringify(audits,null,2));}
  await resetBrowser();await navigate(`${baseURL}/components/collapsible/`);
  await page.focus('[data-example-presentation=label] summary');await page.keyboard.press('Space');
  assert(await page.evaluate(()=>document.querySelector('[data-example-presentation=label] details').open&&document.querySelector('[data-example-presentation=icon-label] details').open),'Independent disclosures failed');

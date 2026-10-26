@@ -195,13 +195,17 @@ for (const [start, end, text] of edits.sort(([a], [b]) => b - a)) {
     for (const root of document.querySelectorAll<HTMLElement>('[data-dmf-select]')) {
       if (controllers.has(root)) continue;
       const portal = root.querySelector<HTMLElement>('[data-slot=select-portal]')!;
-      const scope = root.closest<HTMLElement>('.dmf-ui')!;
+      const scope = root.closest<HTMLElement>('.dmf-ui');
       portal.classList.add('dmf-ui');
-      for (const key of ['system', 'colorMode'] as const) {
-        if (scope.dataset[key]) portal.dataset[key] = scope.dataset[key];
-      }
-      portal.dir = getComputedStyle(root).direction;
-      controllers.set(root, createSelect(root, { onOpenChange: () => { portal.dir = getComputedStyle(root).direction; } }));
+      const syncScope = () => {
+        for (const key of ['system', 'colorMode'] as const) {
+          if (scope?.dataset[key]) portal.dataset[key] = scope.dataset[key];
+          else delete portal.dataset[key];
+        }
+        portal.dir = getComputedStyle(root).direction;
+      };
+      syncScope();
+      controllers.set(root, createSelect(root, { onOpenChange: syncScope }));
       root.dataset.dmfSelectReady = 'true';
     }
     document.dispatchEvent(new Event('dmf:form-controls-ready'));

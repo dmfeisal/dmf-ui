@@ -3452,6 +3452,7 @@
           "tests/browser/dmf-ui-runtime.mjs",
           "tests/browser/dmf-ui-search.mjs",
           "tests/browser/dmf-ui-select.mjs",
+          "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-selection.mjs",
           "tests/browser/dmf-ui-tabs.mjs"
         ]
@@ -4502,15 +4503,23 @@
           "dataSlots": [
             "checkbox"
           ],
-          "properties": [],
+          "properties": [
+            {
+              "name": "indeterminate",
+              "type": "boolean",
+              "optional": true
+            }
+          ],
           "native": [
             "HTMLAttributes<\"input\">"
           ],
-          "declaration": "type Props = Omit<HTMLAttributes<\"input\">, \"type\">"
+          "declaration": "type Props = Omit<HTMLAttributes<\"input\">, \"type\"> & { indeterminate?: boolean }"
         }
       ],
       "variants": {},
-      "defaults": {},
+      "defaults": {
+        "checkbox.astro:indeterminate": "false"
+      },
       "states": {
         "default": {
           "status": "authored-default",
@@ -4684,14 +4693,15 @@
         "sources": [
           "tests/product-details.test.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
-          "tests/browser/dmf-ui-forms.mjs"
+          "tests/browser/dmf-ui-forms.mjs",
+          "tests/browser/dmf-ui-selection-contract.mjs"
         ]
       },
       "status": "partial",
       "sources": [
         {
           "path": "src/components/dmf-ui/checkbox/checkbox.astro",
-          "sha256": "6fe69caa85df4f561cc69dcd3047e9eac6bee11b26d0bb214e525346c8acd47a"
+          "sha256": "bc7a0137642f4d0b918350dc82b41fb8cd40657984f8e0dfb859c991017ebe53"
         },
         {
           "path": "src/components/dmf-ui/checkbox/index.ts",
@@ -6390,6 +6400,7 @@
         "sources": [
           "tests/selection.test.mjs",
           "tests/browser/dmf-ui-select.mjs",
+          "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-selection.mjs"
         ]
       },
@@ -12112,6 +12123,7 @@
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
           "tests/browser/dmf-ui-search.mjs",
+          "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-selection.mjs"
         ]
       },
@@ -17225,7 +17237,8 @@
         "sources": [
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-forms.mjs",
-          "tests/browser/dmf-ui-search.mjs"
+          "tests/browser/dmf-ui-search.mjs",
+          "tests/browser/dmf-ui-selection-contract.mjs"
         ]
       },
       "status": "partial",
@@ -19229,6 +19242,7 @@
           "tests/browser/dmf-ui-runtime.mjs",
           "tests/browser/dmf-ui-search.mjs",
           "tests/browser/dmf-ui-select.mjs",
+          "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-selection.mjs",
           "tests/browser/dmf-ui-switch.mjs",
           "tests/browser/dmf-ui-tabs.mjs"
@@ -19270,7 +19284,7 @@
         },
         {
           "path": "src/components/dmf-ui/select/select.astro",
-          "sha256": "ae3aba746ed19574047fa1b5e40dd37ae20197bd93f9062ed8a1d6f9b2e154a8"
+          "sha256": "3cea535aeddf01fab8f82de7cedc67f3d2abb8253e978897b56b94883a95864e"
         }
       ],
       "gaps": [
@@ -21133,6 +21147,7 @@
           "tests/browser/dmf-ui-foundations.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
           "tests/browser/dmf-ui-search.mjs",
+          "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-switch.mjs"
         ]
       },
@@ -22429,6 +22444,7 @@
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
           "tests/browser/dmf-ui-search.mjs",
+          "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-selection.mjs",
           "tests/browser/dmf-ui-tabs.mjs",
           "tests/browser/dmf-ui-tokens.mjs"

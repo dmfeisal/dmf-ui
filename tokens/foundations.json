@@ -417,6 +417,24 @@
       "layer": "component",
       "description": "Shared DMF application value; not an official brand specification."
     },
+    "selection-size": {
+      "value": "1rem",
+      "category": "components",
+      "layer": "component",
+      "description": "Checkbox and Radio Group indicator size; natural sizing without a touch minimum."
+    },
+    "select-height": {
+      "value": "2rem",
+      "category": "components",
+      "layer": "component",
+      "description": "Nova default selection field height."
+    },
+    "select-height-sm": {
+      "value": "1.75rem",
+      "category": "components",
+      "layer": "component",
+      "description": "Nova small selection field height."
+    },
     "input-height": {
       "value": "2rem",
       "category": "components",

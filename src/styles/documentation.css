@@ -277,4 +277,18 @@ html { font-size:100%; }
 .docs-header .docs-github-stars { font-size:.75rem; line-height:1; }
 .contract-controls { align-items:end; padding:12px; gap:12px; font-size:.8125rem; }
 .contract-controls select { block-size:32px; padding:4px 8px; line-height:1; }
+.docs-shell select:not([multiple]):not([size]):not([data-slot="native-select"]):not([data-form-field-generated]) {
+  appearance:none;
+  padding-inline-start:.625rem;
+  padding-inline-end:2.25rem;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23737373' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right .625rem center;
+  background-size:1rem;
+}
+.docs-shell select:not([multiple]):not([size]):not([data-slot="native-select"]):dir(rtl) { background-position:left .625rem center; }
+.docs-shell select:focus-visible { outline:2px solid var(--foreground); outline-offset:3px; }
+@media (forced-colors:active) {
+  .docs-shell select:not([multiple]):not([size]):not([data-slot="native-select"]):not([data-form-field-generated]) { appearance:auto; background-image:none; }
+}
 .contract-controls .docs-note { margin:0; font-size:.8125rem; line-height:1.5; }

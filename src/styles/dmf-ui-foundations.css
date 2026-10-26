@@ -69,6 +69,9 @@
   --dmf-button-height: 2rem;
   --dmf-button-padding-inline: .625rem;
   --dmf-button-gap: .375rem;
+  --dmf-selection-size: 1rem;
+  --dmf-select-height: 2rem;
+  --dmf-select-height-sm: 1.75rem;
   --dmf-input-height: 2rem;
   --dmf-input-padding-inline: .625rem;
   --dmf-card-padding: var(--dmf-surface-padding);

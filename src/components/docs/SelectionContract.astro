@@ -1,0 +1,83 @@
+---
+import {Checkbox} from '../dmf-ui/checkbox';
+import {Switch} from '../dmf-ui/switch';
+import {RadioGroup, RadioGroupItem} from '../dmf-ui/radio-group';
+import {Select, SelectTrigger, SelectValue, SelectContent, SelectItem} from '../dmf-ui/select';
+import {Combobox} from '../dmf-ui/combobox';
+import {Button} from '../dmf-ui/button';
+interface Props {slug:string;}
+const {slug}=Astro.props;
+const families=['checkbox','switch','radio-group','select','combobox'];
+const states=['default','required','disabled',...(['switch','radio-group'].includes(slug)?['readonly']:[]),...(slug==='checkbox'?['mixed']:[])];
+const items=[{value:'weekly',label:'Weekly'},{value:'unavailable',label:'Unavailable schedule',disabled:true},{value:'monthly',label:'Monthly'}];
+---
+{families.includes(slug)&&<section class="docs-section" data-selection-contract aria-labelledby="selection-contract-title">
+  <h2 id="selection-contract-title">Try selection states</h2>
+  <p class="docs-note">Each specimen uses the exported component. Inspect checks native validity and reports submitted values locally. Reset restores the authored selection. Mixed Checkbox state requires JavaScript and does not imply a checked value.</p>
+  <div class="dmf-ui docs-preview" data-selection-surface data-system="dmf">
+    <form class="contract-controls" data-selection-properties hidden aria-label="Selection specimen properties">
+      <label>State<select name="state">{states.map(state=><option>{state}</option>)}</select></label>
+      {['switch','select'].includes(slug)&&<label>Size<select name="size"><option>default</option><option>sm</option></select></label>}
+      <label>Preset<select name="preset"><option value="dmf">DMF</option><option value="cb-ui">CB</option><option value="hui">HUI</option><option value="qdi">QDI</option></select></label>
+      <button type="reset">Reset properties</button>
+    </form>
+    {states.map(state=>{
+      const id=`selection-${slug}-${state}`,disabled=state==='disabled',required=state==='required',readOnly=state==='readonly';
+      return <form data-selection-state={state} class="docs-preview-stack">
+        <h3>{state==='readonly'?'Read-only':state==='mixed'?'Mixed':state[0].toUpperCase()+state.slice(1)}</h3>
+        {slug==='checkbox'&&<div class="docs-preview-row"><Checkbox id={id} name="choice" value="weekly" checked={disabled} required={required} disabled={disabled} indeterminate={state==='mixed'} aria-describedby={`${id}-error`}/><label for={id}>Weekly updates</label></div>}
+        {slug==='switch'&&<div class="docs-preview-row"><Switch id={id} name="choice" value="weekly" defaultChecked={!required} disabled={disabled} required={required} readOnly={readOnly} aria-describedby={`${id}-error`}/><label for={id}>Weekly updates</label></div>}
+        {slug==='radio-group'&&<><p id={`${id}-label`}>Update schedule</p><RadioGroup name="choice" defaultValue={required?undefined:'weekly'} disabled={disabled} required={required} readOnly={readOnly} aria-labelledby={`${id}-label`} aria-describedby={`${id}-error`}>{items.map(item=><div class="docs-preview-row"><RadioGroupItem id={`${id}-${item.value}`} value={item.value} disabled={item.disabled}/><label for={`${id}-${item.value}`}>{item.label}</label></div>)}</RadioGroup></>}
+        {slug==='select'&&<><label for={id}>Update schedule</label><Select name="choice" defaultValue={required?undefined:'weekly'} placeholder="Choose a schedule" required={required} disabled={disabled}><SelectTrigger id={id} aria-describedby={`${id}-error`}><SelectValue/></SelectTrigger><SelectContent>{items.map(item=><SelectItem value={item.value} disabled={item.disabled}>{item.label}</SelectItem>)}</SelectContent></Select></>}
+        {slug==='combobox'&&<Combobox id={id} label="Update schedule" name="choice" items={items} defaultValue={required?'':'weekly'} required={required} disabled={disabled} aria-describedby={`${id}-error`}/>}
+        <p id={`${id}-error`} data-selection-error aria-live="polite"></p>
+        <div class="docs-preview-row"><Button type="submit" disabled data-selection-inspect>Inspect value</Button><Button type="reset" variant="outline">Reset selection</Button></div>
+        <p role="status" data-selection-status>No value inspected.</p>
+      </form>;
+    })}
+  </div>
+</section>}
+<script>
+  const owners=new Map<HTMLElement,AbortController>();
+  function initialize(){
+    for(const host of document.querySelectorAll<HTMLElement>('[data-selection-contract]')){
+      if(owners.has(host))continue;
+      const abort=new AbortController(),signal=abort.signal;owners.set(host,abort);
+      const properties=host.querySelector<HTMLFormElement>('[data-selection-properties]')!,surface=host.querySelector<HTMLElement>('[data-selection-surface]')!;
+      const specimens=[...host.querySelectorAll<HTMLFormElement>('[data-selection-state]')];
+      const update=()=>{
+        const data=new FormData(properties),preset=String(data.get('preset'));
+        surface.dataset.system=preset;
+        if(preset==='dmf')delete surface.dataset.colorMode;else surface.dataset.colorMode='light';
+        for(const form of specimens){
+          form.hidden=form.dataset.selectionState!==data.get('state');
+          for(const sized of form.querySelectorAll<HTMLElement>('[data-size]'))sized.dataset.size=String(data.get('size')??'default');
+        }
+        surface.dispatchEvent(new CustomEvent('dmf:preset-change',{bubbles:true}));
+      };
+      properties.hidden=false;update();
+      properties.addEventListener('change',update,{signal});
+      properties.addEventListener('submit',event=>event.preventDefault(),{signal});
+      properties.addEventListener('reset',()=>queueMicrotask(update),{signal});
+      for(const form of specimens){
+        form.noValidate=true;
+        form.querySelector<HTMLButtonElement>('[data-selection-inspect]')!.disabled=false;
+        const error=form.querySelector<HTMLElement>('[data-selection-error]')!,status=form.querySelector<HTMLElement>('[data-selection-status]')!;
+        const clear=()=>{error.textContent='';for(const field of form.querySelectorAll('[aria-invalid]'))field.removeAttribute('aria-invalid');};
+        form.addEventListener('submit',event=>{
+          event.preventDefault();clear();
+          const invalid=form.querySelector<HTMLInputElement|HTMLSelectElement>('input:invalid,select:invalid');
+          if(invalid){
+            const target=form.querySelector<HTMLElement>('[role=combobox],[role=switch],[role=radio],input[data-slot=checkbox]')??invalid;
+            target.setAttribute('aria-invalid','true');error.textContent=invalid.validationMessage;status.textContent='Choose a value before inspecting.';target.focus();
+          }else{const value=new FormData(form).get('choice');status.textContent=value===null?'Choice omitted from form values.':`Submitted choice: ${value||'(empty)'}. Nothing saved or sent.`;}
+        },{signal});
+        form.addEventListener('input',clear,{signal});form.addEventListener('change',clear,{signal});
+        for(const event of ['switch:change','radio-group:change','select:change'])form.addEventListener(event,clear,{signal});
+        form.addEventListener('reset',()=>{clear();status.textContent='Selection reset to its authored value.';},{signal});
+      }
+    }
+  }
+  initialize();document.addEventListener('astro:page-load',initialize);
+  document.addEventListener('astro:before-swap',()=>{for(const abort of owners.values())abort.abort();owners.clear();});
+</script>

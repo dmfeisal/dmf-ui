@@ -58,6 +58,8 @@ Evidence is recorded after the final implementation run below. Automated results
 
 ## Remaining acceptance and continuation
 
+Selection normalization continues in [DMF-UI-SELECTION-NORMALIZATION.md](DMF-UI-SELECTION-NORMALIZATION.md), with reviewed Checkbox, Switch, Radio Group, Select and Combobox contracts and interactive state specimens. Navigation/disclosure, overlays, feedback and full native/runtime property expansion remain separate work.
+
 - [x] Inventory every documented Astro family and separate React exports.
 - [x] Add shared foundations, source validation, generated CSS and live documentation.
 - [x] Record Contract v1 conventions, state taxonomy, all family declarations and known gaps.
