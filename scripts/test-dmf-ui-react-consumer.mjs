@@ -28,6 +28,10 @@ try{
  console.log(`Isolated React consumer: ${scratch}`);
  await run(npm,['run','build'],join(root,'packages/react'));
  await cp(template,scratch,{recursive:true});await materialize(scratch);await mkdir(join(scratch,'vendor'));
+ // Copy the same source-owned example used by documentation; resolve its UI imports through the installed package.
+ for(const name of ['discovery-model.ts','discovery.css'])await cp(join(root,'packages/react/examples',name),join(scratch,'src',name));
+ const discoverySource=await readFile(join(root,'packages/react/examples/discovery.tsx'),'utf8');
+ await writeFile(join(scratch,'src/discovery.tsx'),discoverySource.replace("from '../src/index'","from '@dmf-ui/react'"));
  const packages=[['core',root],['react',join(root,'packages/react')]];
  const packed=[];
  for(const [name,cwd] of packages){

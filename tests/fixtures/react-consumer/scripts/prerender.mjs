@@ -1,6 +1,6 @@
 import {readFile,writeFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
-import {render,renderSignIn,renderHero,renderListing,renderCard} from '../.test-dist/server.mjs';
+import {render,renderSignIn,renderHero,renderListing,renderCard,renderDiscovery} from '../.test-dist/server.mjs';
 const path=new URL('../dist/index.html',import.meta.url);
 const html=await readFile(path,'utf8');
 const host='<div id="root"></div>';
@@ -22,3 +22,6 @@ await writeFile(listingPath,listingHtml.replace(host,`<div id="root">${renderLis
 const cardPath=new URL('../dist/card.html',import.meta.url),cardHtml=await readFile(cardPath,'utf8');
 assert.equal(cardHtml.split(host).length,2);
 await writeFile(cardPath,cardHtml.replace(host,`<div id="root">${renderCard()}</div>`));
+const discoveryPath=new URL('../dist/discovery.html',import.meta.url),discoveryHtml=await readFile(discoveryPath,'utf8');
+assert.equal(discoveryHtml.split(host).length,2);
+await writeFile(discoveryPath,discoveryHtml.replace(host,`<div id="root">${renderDiscovery()}</div>`));

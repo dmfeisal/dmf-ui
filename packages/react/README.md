@@ -111,4 +111,18 @@ Title/description, email/password/help/error copy, `errorTitle`, submit/pending 
 
 Run the normal locked packed-consumer test. Its independent `/sign-in.html` page is a guarded local preview: credentials are not read, sent or stored. The fixture has a separate SSR/hydration, type/ref, reset, localization and host-state suite. `DMF_UI_TEST_REACT_SCENARIO=sign-in npm run test:dmf-ui:react-browser -- <react-consumer> <astro-consumer>` selects scoped browser verification. Create the optional Astro consumer with `npm run test:dmf-ui:blocks-consumer -- --keep`.
 
-SearchFiltersBlock remains Astro-only. No generic SignInFormBlock alias, new package, registry installer, React Native or stable API guarantee is added. See `docs/DMF-UI-SIGN-IN-COMPOSITION.md` for evidence and limits.
+No generic SignInFormBlock alias, new package, registry installer, React Native or stable API guarantee is added. See `docs/DMF-UI-SIGN-IN-COMPOSITION.md` for evidence and limits.
+
+## SearchFiltersBlock and discovery example
+
+`SearchFiltersBlock` is available from `@dmf-ui/react`. It composes native Input, Select and Checkbox with a GET form, visible labels, optional facets, host error, pending/disabled state and native form props/ref. `query`, `selectedValue` and each facet's `checked` supply uncontrolled initial/reset defaults. Native reset restores those defaults without changing the URL or submitting. `fields` and children are host extension points; use unique IDs and label custom controls. Capture FormData before disabling fields. `pendingLabel` is separately announced while the submit label stays stable.
+
+```tsx
+<SearchFiltersBlock id="filters" action="/catalog/"
+  options={[{value:'cafe',label:'Café'}]}
+  filters={[{name:'photos',label:'With photos',value:'yes'}]} />
+```
+
+The repository's `examples/discovery.tsx` composes this form with MerchantListingBlock and MerchantCard. URL parsing, history, pagination, filtering six illustrative records, clear-filter policy and recovery belong to that example host, not the Block. It is copyable source, not a public Template or package export. Static documentation explains its no-JavaScript limitation: a real host must render native GET results. The example's enhanced state controls never fabricate requests.
+
+Run `test:dmf-ui:react-consumer -- --keep` at the repository root for an installed-package proof. The runner copies the same example source, changing its UI import to the public package, with the fixture lock graph unchanged. Select `DMF_UI_TEST_REACT_SCENARIO=discovery` for browser acceptance. See `docs/DMF-UI-DISCOVERY.md` for scope and remaining manual acceptance.

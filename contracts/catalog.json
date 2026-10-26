@@ -155,7 +155,7 @@
         "Button",
         "Alert"
       ],
-      "limitations": "The host owns the destination, query parsing, results, async requests and persistence. Reset restores authored defaults; it does not erase the current URL or submit automatically. No remote search, results backend or arbitrary combobox/multiselect API is added. React has no Block adapter.",
+      "limitations": "The host owns the destination, query parsing, results, async requests and persistence. Reset restores authored defaults; it does not erase the current URL or submit automatically. No remote search, results backend or arbitrary combobox/multiselect API is added. React uses its existing native Select and provides fields/children extension props.",
       "entry": "dmf-ui/blocks",
       "framework": "Astro",
       "source": "src/components/dmf-ui/blocks/search-filters.astro",
@@ -312,6 +312,20 @@
         ],
         "status": "experimental",
         "stateOwnership": "Host supplies merchant data, photo/icon URLs, verification and native destination; no business services."
+      },
+      {
+        "name": "SearchFiltersBlock",
+        "entry": "@dmf-ui/react",
+        "source": "packages/react/src/blocks/search-filters.tsx",
+        "sha256": "538c93748f8e64f177f86ab73036d353d3b1ec0b70b8e8833d8109230968451f",
+        "types": [
+          {
+            "name": "SearchFiltersBlockProps",
+            "declaration": "export type SearchFiltersBlockProps=Omit<ComponentPropsWithRef<'form'>,'id'|'action'|'method'|'title'> & {\n id:string;action:string;title?:string;headingLevel?:'h1'|'h2'|'h3';\n query?:string;queryName?:string;queryLabel?:string;queryRequired?:boolean;\n options:readonly {value:string;label:string;disabled?:boolean}[];selectedValue?:string;choiceName?:string;choiceLabel?:string;allLabel?:string;\n filters?:readonly {name:string;label:string;value?:string;checked?:boolean;disabled?:boolean}[];\n submitLabel?:string;resetLabel?:string;pendingLabel?:string;pending?:boolean;disabled?:boolean;submitDisabled?:boolean;error?:string;\n fields?:ReactNode;\n};"
+          }
+        ],
+        "status": "experimental",
+        "stateOwnership": "Native uncontrolled GET fields and reset; host owns URL state, results, pending and errors."
       }
     ],
     "package": "@dmf-ui/react",
@@ -355,7 +369,8 @@
       "SignInBlock",
       "HeroBlock",
       "MerchantListingBlock",
-      "MerchantCard"
+      "MerchantCard",
+      "SearchFiltersBlock"
     ],
     "types": [
       {
@@ -504,7 +519,7 @@
       }
     ],
     "source": "packages/react/src/index.tsx",
-    "sha256": "e9d0f986393f40144b2a15c5f2fb53d028ae7febe3a245bf922aec236964d042",
+    "sha256": "837b4aeed21fa6358ba9e5d879f069e0fee92acd4f0f917fd0b1afe1b8e3d906",
     "status": "separate-web-alpha",
     "note": "React native props and controlled/uncontrolled patterns differ from Astro. No Astro parity claim."
   },
@@ -1133,6 +1148,7 @@
           "tests/modal-components.test.mjs",
           "tests/browser/dmf-ui-content-docs.mjs",
           "tests/browser/dmf-ui-content.mjs",
+          "tests/browser/dmf-ui-discovery-consumer.mjs",
           "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
@@ -3730,6 +3746,7 @@
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-data-display.mjs",
+          "tests/browser/dmf-ui-discovery-consumer.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
           "tests/browser/dmf-ui-form-composition.mjs",
@@ -4403,6 +4420,7 @@
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-content-docs.mjs",
           "tests/browser/dmf-ui-content.mjs",
+          "tests/browser/dmf-ui-discovery-consumer.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-merchant-card-consumer.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
@@ -9801,6 +9819,7 @@
           "tests/dmf-ui-browser.test.mjs",
           "tests/feedback.test.mjs",
           "tests/foundations.test.mjs",
+          "tests/browser/dmf-ui-discovery-consumer.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
           "tests/browser/dmf-ui-form-composition.mjs",
@@ -10519,6 +10538,7 @@
           "tests/foundations.test.mjs",
           "tests/product-details.test.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
+          "tests/browser/dmf-ui-discovery-consumer.mjs",
           "tests/browser/dmf-ui-form-composition.mjs",
           "tests/browser/dmf-ui-forms.mjs",
           "tests/browser/dmf-ui-pilot.mjs",
@@ -14001,6 +14021,7 @@
           "tests/foundations.test.mjs",
           "tests/fulldev-catalog.test.mjs",
           "tests/package.test.mjs",
+          "tests/browser/dmf-ui-discovery-consumer.mjs",
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-foundations.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
@@ -16033,6 +16054,7 @@
           "tests/blocks.test.mjs",
           "tests/navigation-components.test.mjs",
           "tests/navigation-patterns.test.mjs",
+          "tests/browser/dmf-ui-discovery-consumer.mjs",
           "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-navigation-components.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs"
@@ -19664,6 +19686,7 @@
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-disclosures.mjs",
+          "tests/browser/dmf-ui-discovery-consumer.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
           "tests/browser/dmf-ui-form-composition.mjs",
@@ -22906,6 +22929,7 @@
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-data-display.mjs",
           "tests/browser/dmf-ui-disclosures.mjs",
+          "tests/browser/dmf-ui-discovery-consumer.mjs",
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-feedback.mjs",

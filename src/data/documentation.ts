@@ -1,5 +1,6 @@
 import {codeComponents,novaGuide} from './code-documentation';
 import {architectureGuide} from './architecture-documentation';
+import {searchRecoveryGuide} from './search-recovery-documentation';
 import {foundationGuides} from './foundation-documentation';
 import {fulldevComponents,fulldevGuide} from './fulldev-documentation';
 import {modalComponents} from './modal-documentation';
@@ -49,7 +50,7 @@ components.sort((a,b)=>a.name.localeCompare(b.name));
 export const categories = [...new Set(components.map(item=>item.category))];
 export type Guide = {slug:string;title:string;description:string;sections:{id:string;title:string;body:string[];code?:string}[]};
 export const guides: Guide[] = [
- architectureGuide,
+ architectureGuide,searchRecoveryGuide,
  novaGuide,
  ...foundationGuides,
  fulldevGuide,

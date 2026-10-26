@@ -1,0 +1,3 @@
+import {DiscoveryExample} from './discovery';
+const assets={icons:{verified:'/merchant-card/verified.svg',hours:'/merchant-card/hours.svg',distance:'/merchant-card/distance.svg',star:'/merchant-card/star.svg'},photos:[1,2,3].map(n=>({src:`/merchant-card/photo-${n}.png`,alt:`Supplied reference photo ${n}`}))};
+export function DiscoveryProof(){return <main className="consumer-shell" style={{maxWidth:'76rem'}}><h1>Merchant discovery example</h1><DiscoveryExample assets={assets} action="/discovery.html"/></main>;}

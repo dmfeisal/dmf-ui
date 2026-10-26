@@ -1,4 +1,6 @@
-MerchantCard follow-up, 27 October 2026: the supplied Figma card is available through both adapters. There are now 14 React component families and four Blocks, totaling 39 named exports. See [MerchantCard](DMF-UI-MERCHANT-CARD.md) for assets, design mapping and verification.
+Discovery follow-up, 27 October 2026: SearchFiltersBlock adds the native GET form adapter and a connected host-owned discovery example. There are now 14 React component families and five Blocks, totaling 40 named exports. See [discovery composition](DMF-UI-DISCOVERY.md) for URL/reset ownership and verification.
+
+MerchantCard follow-up, 27 October 2026: the supplied Figma card is available through both adapters. This checkpoint had 14 React component families and four Blocks, totaling 39 named exports. See [MerchantCard](DMF-UI-MERCHANT-CARD.md) for assets, design mapping and verification.
 
 # React web alpha
 

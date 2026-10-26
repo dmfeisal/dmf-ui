@@ -1,0 +1,9 @@
+---
+import {CodeSnippet} from '../dmf-ui/code-block';
+import catalog from '../../../contracts/catalog.json';
+const record=catalog.react.blocks.find(b=>b.name==='SearchFiltersBlock')!;
+---
+<h3>React web alpha</h3><p>Uses the existing native React Select, Input and Checkbox. query, selectedValue and checked facet values are initial/reset defaults, not controlled values. Native onSubmit/onReset and the form ref remain available. fields and children correspond to Astro's filters and default slots. pendingLabel is localizable.</p>
+<CodeSnippet language="tsx" title="React SearchFiltersBlock" wrap code={`import {SearchFiltersBlock} from '@dmf-ui/react';\nimport '@dmf-ui/react/styles.css';\n\n<SearchFiltersBlock id="filters" action="/catalog/"\n  options={[{value:'cafe',label:'Café'}]}\n  filters={[{name:'photos',label:'With photos',value:'yes'}]} />`}/>
+<CodeSnippet language="ts" title="React Props" wrap code={record.types[0].declaration}/>
+<p><a href="/examples/discovery/">Run the connected discovery example</a>. <a href="/docs/search-and-recovery/">Read the search and recovery pattern</a>. The example host owns URL parsing, filter application, pagination and history; these are not new Block APIs.</p>

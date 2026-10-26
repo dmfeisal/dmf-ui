@@ -20,3 +20,7 @@ export {ListingProof};
 import {CardProof} from './CardProof';
 export function renderCard(){return renderToString(<StrictMode><CardProof/></StrictMode>,{identifierPrefix:'card-'});}
 export {CardProof};
+import {DiscoveryProof} from './DiscoveryProof';
+export function renderDiscovery(){return renderToString(<StrictMode><DiscoveryProof/></StrictMode>,{identifierPrefix:'discovery-'});}
+export {DiscoveryProof};
+export {discoveryResults,readDiscoverySelection,discoveryURL} from './discovery-model';

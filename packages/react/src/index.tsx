@@ -1,5 +1,7 @@
 import {createContext,useContext,useId} from 'react';
 import type { ComponentPropsWithRef, ReactNode } from 'react';
+export {SearchFiltersBlock} from './blocks/search-filters';
+export type {SearchFiltersBlockProps} from './blocks/search-filters';
 export {SignInBlock} from './blocks/sign-in';
 export type {SignInBlockProps} from './blocks/sign-in';
 export {HeroBlock} from './blocks/hero';
