@@ -1,12 +1,102 @@
 {
+  "blocks": [
+    {
+      "slug": "sign-in",
+      "title": "SignInBlock",
+      "category": "Authentication",
+      "description": "A labeled native sign-in form with host-owned submission and pending/error state.",
+      "components": [
+        "Card",
+        "Field",
+        "Input",
+        "LoadingButton",
+        "Alert"
+      ],
+      "limitations": "No authentication transport, session storage, password persistence or account-existence decision. The host must supply a secure POST endpoint, CSRF policy and error copy. Pending captures values before disabling the fieldset. React has no Block adapter.",
+      "entry": "dmf-ui/blocks",
+      "framework": "Astro",
+      "source": "src/components/dmf-ui/blocks/sign-in.astro",
+      "sha256": "7ec787d6e57f2ccf457f6270de5690b966068241f8ea33a2e0914f35c7a54733",
+      "declaration": "interface Props extends Omit<HTMLAttributes<'form'>,'id'|'method'|'action'|'title'> {\n id:string; action:string; title?:string; description?:string; headingLevel?:'h1'|'h2'|'h3';\n email?:string; emailName?:string; passwordName?:string; emailLabel?:string; passwordLabel?:string;\n passwordHelp?:string; submitLabel?:string; pendingLabel?:string; pending?:boolean; disabled?:boolean; submitDisabled?:boolean;\n error?:string; fieldErrors?:{email?:string;password?:string};\n recoveryHref?:string; recoveryLabel?:string; signupHref?:string; signupLabel?:string;\n}",
+      "defaults": {
+        "title": "'Sign in'",
+        "description": "'Enter your account details.'",
+        "headingLevel": "'h2'",
+        "email": "''",
+        "emailName": "'email'",
+        "passwordName": "'password'",
+        "emailLabel": "'Email'",
+        "passwordLabel": "'Password'",
+        "submitLabel": "'Sign in'",
+        "pendingLabel": "'Signing in…'",
+        "pending": "false",
+        "disabled": "false",
+        "submitDisabled": "false",
+        "fieldErrors": "{}",
+        "recoveryLabel": "'Forgot password?'",
+        "signupLabel": "'Create account'"
+      },
+      "slots": [
+        "fields",
+        "default",
+        "footer"
+      ],
+      "status": "partial",
+      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
+    },
+    {
+      "slug": "search-filters",
+      "title": "SearchFiltersBlock",
+      "category": "Search & Filtering",
+      "description": "A native GET search form with a choice field, optional checkbox facets and authored extension slots.",
+      "components": [
+        "Field",
+        "Input",
+        "NativeSelect",
+        "Checkbox",
+        "Button",
+        "Alert"
+      ],
+      "limitations": "The host owns the destination, query parsing, results, async requests and persistence. Reset restores authored defaults; it does not erase the current URL or submit automatically. No remote search, results backend or arbitrary combobox/multiselect API is added. React has no Block adapter.",
+      "entry": "dmf-ui/blocks",
+      "framework": "Astro",
+      "source": "src/components/dmf-ui/blocks/search-filters.astro",
+      "sha256": "7369cad4c4c84775cf4c8bb2bf2944ac6af14e168fe9953140655c703ea01592",
+      "declaration": "interface Props extends Omit<HTMLAttributes<'form'>,'id'|'action'|'method'|'title'> {\n id:string;action:string;title?:string;headingLevel?:'h1'|'h2'|'h3';\n query?:string;queryName?:string;queryLabel?:string;queryRequired?:boolean;\n options:{value:string;label:string;disabled?:boolean}[];selectedValue?:string;choiceName?:string;choiceLabel?:string;allLabel?:string;\n filters?:{name:string;label:string;value?:string;checked?:boolean;disabled?:boolean}[];\n submitLabel?:string;resetLabel?:string;pending?:boolean;disabled?:boolean;submitDisabled?:boolean;error?:string;\n}",
+      "defaults": {
+        "title": "'Search and filter'",
+        "headingLevel": "'h2'",
+        "query": "''",
+        "queryName": "'q'",
+        "queryLabel": "'Search'",
+        "queryRequired": "false",
+        "selectedValue": "''",
+        "choiceName": "'category'",
+        "choiceLabel": "'Category'",
+        "allLabel": "'All categories'",
+        "filters": "[]",
+        "submitLabel": "'Apply filters'",
+        "resetLabel": "'Reset filters'",
+        "pending": "false",
+        "disabled": "false",
+        "submitDisabled": "false"
+      },
+      "slots": [
+        "filters",
+        "default"
+      ],
+      "status": "partial",
+      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
+    }
+  ],
   "schemaVersion": 1,
   "contractVersion": "2.0.0",
   "status": "experimental",
   "reviewSource": {
     "path": "contracts/selection.json",
-    "sha256": "ef688420be34d3d988f499019e1ed0c6e4337ba9af9a51533cbdd2991dc94ce4"
+    "sha256": "1b0940fc80b3c2a7caab7700991f91536d357d131c43668fba6f8c79465b3e59"
   },
-  "scope": "All documented Astro families and separately inventoried React exports; reviewed applicability, lexical source evidence and browser acceptance are distinct.",
+  "scope": "All documented Astro families, separately inventoried source-owned Blocks and React exports; reviewed applicability, lexical source evidence and browser acceptance are distinct.",
   "conventions": {
     "variants": "Keep existing default/secondary/outline/ghost/destructive/link names. No universal variant list.",
     "sizes": "default remains the compatible medium size. Button also accepts md. XS/SM/MD/LG/XL are conceptual labels, not universal props.",
@@ -557,7 +647,12 @@
         "muted-foreground",
         "ring"
       ],
-      "reviewedContract": null,
+      "reviewedContract": {
+        "states": "Data Slot owns expanded/collapsed items, trigger focus, disabled state and single/multiple value selection. It is disclosure, not navigation.",
+        "properties": "Root native div attributes plus multiple, defaultValue string/string[], disabled, orientation=vertical, loopFocus, hiddenUntilFound and collapsible. Refer to declared parts/runtime for option defaults; trigger/content anatomy stays source-owned.",
+        "sizes": "No universal presentation/size prop. Icons and text are authored through existing parts; do not force navigation presentation modes onto Accordion.",
+        "fallback": "Enhancement supplies controller interactions; choose native Collapsible for no-JavaScript disclosure. Existing keyboard behavior and expanded/content relationships stay in the Data Slot runtime. Controllers dispose before swaps and initialize once. No React export; scoped preset/AT acceptance remains partial."
+      },
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -571,6 +666,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/blocks.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
           "tests/browser/dmf-ui-disclosures.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
@@ -3150,7 +3246,12 @@
         }
       },
       "tokens": [],
-      "reviewedContract": null,
+      "reviewedContract": {
+        "states": "Native links plus one final aria-current=page label; no open/selected controller state.",
+        "properties": "items with label/href?/icon?, label=Breadcrumb, presentation=label and native nav attributes. Final item is current text even when href is supplied; nonfinal items navigate only with a real href.",
+        "sizes": "No size/variant API. label, icon-label and icon use existing NavigationContent; icon mode requires authored icons and retains hidden text.",
+        "fallback": "Native ordered list/navigation works without JavaScript. Separators are decorative and mirror through shared logical-direction styles. Hosts own route data and heading context. No React Breadcrumb export."
+      },
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -3164,6 +3265,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/blocks.test.mjs",
           "tests/navigation-components.test.mjs",
           "tests/navigation-patterns.test.mjs",
           "tests/browser/dmf-ui-navigation-components.mjs",
@@ -3464,6 +3566,7 @@
           "tests/portfolio.test.mjs",
           "tests/selection.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
+          "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-data-display.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
@@ -4133,6 +4236,7 @@
         "status": "references-only",
         "sources": [
           "tests/content.test.mjs",
+          "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-content-docs.mjs",
           "tests/browser/dmf-ui-content.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
@@ -4735,6 +4839,7 @@
         "sources": [
           "tests/foundations.test.mjs",
           "tests/product-details.test.mjs",
+          "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-forms.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
@@ -6133,7 +6238,12 @@
         }
       },
       "tokens": [],
-      "reviewedContract": null,
+      "reviewedContract": {
+        "states": "Native details open/closed; Enter/Space activates summary. Escape enhancement closes and restores summary focus without a modal trap.",
+        "properties": "Native details attributes excluding open, required label, defaultOpen=false, icon? and presentation=label. Slot content is authored by the host; no controlled open prop or form value is added.",
+        "sizes": "Natural layout with existing label/icon-label/icon modes. Icon mode needs an icon and a meaningful stable label; no size/variant API.",
+        "fallback": "Native disclosure works without JavaScript. Shared per-details listener ownership is idempotent and aborted before Astro swaps. Separate instances remain independent. Essential instructions should remain visible; no React export."
+      },
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -6147,6 +6257,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/blocks.test.mjs",
           "tests/selection.test.mjs",
           "tests/browser/dmf-ui-selection.mjs"
         ]
@@ -10240,6 +10351,7 @@
           "tests/form-composition.test.mjs",
           "tests/foundations.test.mjs",
           "tests/product-details.test.mjs",
+          "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-form-composition.mjs",
           "tests/browser/dmf-ui-forms.mjs",
           "tests/browser/dmf-ui-pilot.mjs",
@@ -10760,10 +10872,12 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/blocks.test.mjs",
           "tests/form-composition.test.mjs",
           "tests/package.test.mjs",
           "tests/product-details.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
+          "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-disclosures.mjs",
           "tests/browser/dmf-ui-form-composition.mjs",
@@ -11948,7 +12062,8 @@
           "tests/product-details.test.mjs",
           "tests/structure.test.mjs",
           "tests/browser/dmf-ui-fulldev-catalog.mjs",
-          "tests/browser/dmf-ui-product-details.mjs"
+          "tests/browser/dmf-ui-product-details.mjs",
+          "tests/browser/native-dropdown-contrast.mjs"
         ]
       },
       "status": "partial",
@@ -12184,8 +12299,10 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/blocks.test.mjs",
           "tests/form-composition.test.mjs",
           "tests/selection.test.mjs",
+          "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-data-display.mjs",
           "tests/browser/dmf-ui-form-composition.mjs",
           "tests/browser/dmf-ui-forms.mjs",
@@ -14840,6 +14957,7 @@
       },
       "tokens": [
         "destructive",
+        "foreground",
         "input",
         "muted-foreground",
         "primary",
@@ -14879,7 +14997,7 @@
         },
         {
           "path": "src/components/dmf-ui/native-select/native-select.astro",
-          "sha256": "495d3c4a19fac25ac4cff5f42aa05d9e3f3157e152b177ffb1eb5e2cb7f91094"
+          "sha256": "4bd5876d24814be9dd60cf81a79735467b86799fcd86b7ea9fe8be96f1c10e49"
         }
       ],
       "gaps": [
@@ -15112,7 +15230,12 @@
         }
       },
       "tokens": [],
-      "reviewedContract": null,
+      "reviewedContract": {
+        "states": "Native current-page links and disabled noninteractive items. This is site navigation, not an ARIA menu or application menubar.",
+        "properties": "Required label/items; orientation=horizontal, presentation=label. Items use NavigationItem label/href/icon?/current?/disabled?/rel?. More than one enabled current item is rejected.",
+        "sizes": "horizontal/vertical layout and supported label/icon-label/icon content. Natural wrapping; no dropdown/open API or common size prop.",
+        "fallback": "Links work without JavaScript; Tab/Enter is native. Icon-only links keep names and shared tooltip enhancement. aria-current is host-authored; disabled spans are not links. Host owns route matching; no React export."
+      },
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -15126,6 +15249,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/blocks.test.mjs",
           "tests/navigation-components.test.mjs",
           "tests/navigation-patterns.test.mjs",
           "tests/browser/dmf-ui-navigation-components.mjs",
@@ -15707,7 +15831,12 @@
         }
       },
       "tokens": [],
-      "reviewedContract": null,
+      "reviewedContract": {
+        "states": "One current page, previous/next links or unavailable noninteractive spans; ellipsis is descriptive, not an action.",
+        "properties": "Required integer page/totalPages and pageHref callback; label=Pagination, presentation=icon-label. Bounds are validated. pageHref supplies real destinations; the Block/application owns fetching and routing.",
+        "sizes": "Natural link sizing; label/icon-label/icon applies to previous/next, while numbered page links retain their names. No universal variant/size.",
+        "fallback": "Native navigation works without enhancement; Tab/Enter follows links, not radio/menu keyboard rules. aria-current=page identifies the active number; disabled boundaries have no href. Shared icon tooltips are supplementary. No React export."
+      },
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -15721,6 +15850,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/blocks.test.mjs",
           "tests/navigation-components.test.mjs",
           "tests/navigation-patterns.test.mjs",
           "tests/browser/dmf-ui-navigation-components.mjs",
@@ -18237,7 +18367,12 @@
         }
       },
       "tokens": [],
-      "reviewedContract": null,
+      "reviewedContract": {
+        "states": "Desktop native navigation and a separate mobile details disclosure; open state is browser-owned and current links are host-authored.",
+        "properties": "Required label/items, presentation=label and native div attributes. No defaultOpen or controlled open prop is exposed.",
+        "sizes": "Shared CSS chooses desktop/mobile compositions. Existing presentation modes remain label/icon-label/icon; widths and link targets stay natural.",
+        "fallback": "Desktop links and mobile summary operate without JavaScript. Escape closes the mobile details and returns focus with enhancement; no modal focus trap. Shared disclosure cleanup prevents duplicate listeners. Host owns routes; no React export."
+      },
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -18251,6 +18386,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/blocks.test.mjs",
           "tests/navigation-patterns.test.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs"
         ]
@@ -18542,6 +18678,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/blocks.test.mjs",
           "tests/navigation-patterns.test.mjs",
           "tests/portfolio.test.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
@@ -18818,7 +18955,12 @@
         }
       },
       "tokens": [],
-      "reviewedContract": null,
+      "reviewedContract": {
+        "states": "Authored currentId or enhanced visible-section/hash tracking uses aria-current=location, not page. Links remain native fragment navigation.",
+        "properties": "Required unique nonempty items.id and label/icon; label=Page sections, optional currentId, presentation=label and native nav attributes. Host must render the referenced section ids.",
+        "sizes": "label/icon-label/icon only; index numerals are decorative in label mode. No open, size or variant prop.",
+        "fallback": "Native hash links work without JavaScript. IntersectionObserver/hashchange/resize enhancement updates location state; observers, frames and listeners dispose before Astro swaps. User text editing/scroll remains native. No React export."
+      },
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -18832,6 +18974,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/blocks.test.mjs",
           "tests/navigation-patterns.test.mjs",
           "tests/portfolio.test.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
@@ -19337,7 +19480,9 @@
           "tests/selection.test.mjs",
           "tests/tokens.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
+          "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-create.mjs",
+          "tests/browser/dmf-ui-disclosures.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
           "tests/browser/dmf-ui-form-composition.mjs",
@@ -19347,6 +19492,7 @@
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-icons.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
+          "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-navigation.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-overlays.mjs",
@@ -19359,7 +19505,8 @@
           "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-selection.mjs",
           "tests/browser/dmf-ui-switch.mjs",
-          "tests/browser/dmf-ui-tabs.mjs"
+          "tests/browser/dmf-ui-tabs.mjs",
+          "tests/browser/native-dropdown-contrast.mjs"
         ]
       },
       "status": "partial",
@@ -20158,7 +20305,12 @@
         }
       },
       "tokens": [],
-      "reviewedContract": null,
+      "reviewedContract": {
+        "states": "Native details open/closed and nested current-page navigation. No modal focus trap or application routing is implied.",
+        "properties": "Required label/items; presentation=label, defaultOpen=true and native aside attributes. Composes NavigationMenu and an associated summary.",
+        "sizes": "Natural responsive content; label/icon-label/icon are meaningful existing modes, not separate desktop/mobile components.",
+        "fallback": "Native disclosure and links work without JavaScript. Summary Enter/Space toggles; Escape enhancement closes and returns focus to summary. Per-details AbortControllers clean up before Astro swaps; repeated page-load is guarded. No React export."
+      },
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -20172,6 +20324,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/blocks.test.mjs",
           "tests/navigation-patterns.test.mjs",
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
@@ -20981,6 +21134,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs"
         ]
@@ -22558,6 +22712,7 @@
           "tests/structure.test.mjs",
           "tests/tokens.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
+          "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-content-docs.mjs",
           "tests/browser/dmf-ui-content.mjs",
           "tests/browser/dmf-ui-create.mjs",
@@ -22586,7 +22741,8 @@
           "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-selection.mjs",
           "tests/browser/dmf-ui-tabs.mjs",
-          "tests/browser/dmf-ui-tokens.mjs"
+          "tests/browser/dmf-ui-tokens.mjs",
+          "tests/browser/native-dropdown-contrast.mjs"
         ]
       },
       "status": "partial",
@@ -23845,6 +24001,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/blocks.test.mjs",
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-overlays.mjs"
         ]

@@ -13,7 +13,7 @@ test('foundations preserve aliases and reject invalid references, cycles and uns
 });
 test('catalog covers every exported Astro family, without claiming complete state acceptance',async()=>{
  const data=await buildContracts({check:true}),pkg=await json('package.json');
- const publicFamilies=Object.entries(pkg.exports).filter(([key,value])=>key!=='.'&&typeof value==='string'&&value.endsWith('/index.ts')).map(([key])=>key.slice(2)).sort();
+ const publicFamilies=Object.entries(pkg.exports).filter(([key,value])=>!['.','./blocks'].includes(key)&&typeof value==='string'&&value.endsWith('/index.ts')).map(([key])=>key.slice(2)).sort();
  assert.deepEqual(data.components.map(c=>c.slug).sort(),publicFamilies);
  assert.equal(new Set(data.components.map(c=>c.slug)).size,data.components.length);
  for(const component of data.components){assert(component.parts.length);assert.equal(component.status,'partial');assert(component.states.dragging.status);for(const source of component.sources)assert.match(source.sha256,/^[a-f0-9]{64}$/);}

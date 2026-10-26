@@ -865,7 +865,7 @@
         {
           "path": "src/components/dmf-ui/native-select/native-select.astro",
           "upstreamSha256": "282390e48ecfbd1c7cfde705d4bc81c0d6b927879e752009eca3f92bec1d0f0e",
-          "adoptedSha256": "495d3c4a19fac25ac4cff5f42aa05d9e3f3157e152b177ffb1eb5e2cb7f91094"
+          "adoptedSha256": "4bd5876d24814be9dd60cf81a79735467b86799fcd86b7ea9fe8be96f1c10e49"
         },
         {
           "path": "src/components/dmf-ui/native-select/native-select-option.astro",

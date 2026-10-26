@@ -1,6 +1,12 @@
 // Run via the managed browser runner; all state checks are bounded, with no sleeps.
-export async function run({hover,page,baseURL,navigate,settle,opened,focused,mobile,tap}) {
+export async function run({hover,page,baseURL,navigate,focused,mobile,tap}) {
   const assert=(value,message)=>{if(!value)throw new Error(message);};
+  // Finished promises can remain unresolved for paused animations; observe running state with a deadline.
+  const settle=()=>page.waitForFunction(()=>document.fonts.status==='loaded'&&!document.getAnimations().some(animation=>{
+    const target=animation.effect?.target,end=animation.effect?.getComputedTiming().endTime;
+    return animation.playState==='running'&&Number.isFinite(end)&&end<=3000&&(!(target instanceof Element)||target.checkVisibility());
+  }),undefined,{timeout:10000});
+  const opened=async selector=>{await page.waitForFunction(selector=>{const e=document.querySelector(selector);return !!e&&!e.hidden;},selector,{timeout:10000});await settle();};
   for(const [path,prefix] of [['/examples/dmf-ui/','standalone-form']]) {
     await navigate(`${baseURL}${path}`);
     await page.waitForSelector(`#${prefix}-cb-ui-tooltip[data-dmf-tooltip-ready]`);

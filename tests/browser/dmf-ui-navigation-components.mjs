@@ -1,9 +1,11 @@
-import {readFile} from 'node:fs/promises';
+import {readFile,writeFile} from 'node:fs/promises';
+import {reviewNativeDropdowns} from './native-dropdown-contrast.mjs';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url);
 export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
  const assert=(v,m)=>{if(!v)throw Error(m);};const axe=await readFile(require.resolve('axe-core/axe.min.js'),'utf8');
- async function audit(){await settle();await page.evaluate(source=>{if(window.axe)return;const s=document.createElement('script');s.textContent=source;document.head.append(s);},axe);const r=await page.evaluate(async()=>{const r=await window.axe.run();return {violations:r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.failureSummary)})),incomplete:r.incomplete.map(v=>v.id)};});assert(!r.violations.length&&!r.incomplete.length,JSON.stringify(r));}
+ const reports=[];
+ async function audit(){await settle();await page.evaluate(source=>{if(window.axe)return;const s=document.createElement('script');s.textContent=source;document.head.append(s);},axe);const r=await page.evaluate(async()=>{const r=await window.axe.run();return {path:location.pathname,violations:r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),incomplete:r.incomplete.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))};});const reviews=await reviewNativeDropdowns(page,r);reports.push({...r,reviews});await writeFile(new URL('../../.dmf-ui-test-results/navigation-components-audit.json',import.meta.url),JSON.stringify(reports,null,2));assert(!r.violations.length,JSON.stringify(r));}
  await resetBrowser();await navigate(`${baseURL}/examples/navigation/1/`);
  assert(await page.evaluate(()=>document.querySelector('[data-slot=pagination] [aria-disabled]').textContent.includes('Previous')&&!document.querySelector('[data-slot=pagination] [rel=prev]')),'First-page boundary wrong');
  await page.focus('[data-slot=pagination] [rel=next]');await page.keyboard.press('Enter');await page.waitForURL(`${baseURL}/examples/navigation/2/`);await settle();

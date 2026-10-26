@@ -9,6 +9,7 @@
 @import "./dmf-ui-portfolio.css";
 @import "./dmf-ui-qdi.css";
 @import "./dmf-ui-nova.css";
+@import "./dmf-ui-blocks.css";
 @source "../components/dmf-ui";
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *, [data-color-mode="dark"], [data-color-mode="dark"] *):not(:where([data-color-mode="light"], [data-color-mode="light"] *, [data-color-mode="yellow"], [data-color-mode="yellow"] *)));
 @theme inline {

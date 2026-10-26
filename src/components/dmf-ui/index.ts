@@ -1,4 +1,5 @@
 export * from "./button/index";
+export * from "./blocks/index";
 export * from "./checkbox/index";
 export * from "./dialog/index";
 export * from "./dropdown-menu/index";

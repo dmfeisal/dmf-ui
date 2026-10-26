@@ -37,6 +37,7 @@ html { font-size: 87.5%; scroll-padding-top: 10rem; }
 .docs-section>h2,.docs-prose h2 { font-size:1.65rem; letter-spacing:-.025em; font-weight:600; margin:0 0 18px; }
 .docs-prose p { max-width:75ch; margin-block:14px; line-height:1.8; }
 .docs-prose { overflow-wrap:anywhere; }
+.docs-block-title { overflow-wrap:anywhere; }
 .docs-prose ul { padding-inline-start:20px; line-height:1.8; }
 .docs-note { color:var(--muted-foreground); font-size:.95rem; line-height:1.7; max-width:75ch; margin-block:16px; }
 .docs-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }

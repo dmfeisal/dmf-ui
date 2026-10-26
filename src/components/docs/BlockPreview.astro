@@ -1,0 +1,41 @@
+---
+import {SignInBlock,SearchFiltersBlock} from 'dmf-ui/blocks';
+import {Input} from 'dmf-ui/input';
+interface Props {slug:string;}
+const {slug}=Astro.props;
+const options=[{value:'forms',label:'Forms'},{value:'navigation',label:'Navigation'},{value:'unavailable',label:'Unavailable category',disabled:true}];
+---
+<section class="dmf-ui docs-preview" data-docs-preview data-system="dmf" aria-label="Block preview">
+ <p class="docs-note">Local preview. Nothing is sent or saved.</p>
+ <noscript><p class="docs-note">Inspection requires JavaScript. The exported forms use native submission to your own endpoint.</p></noscript>
+ {slug==='sign-in'?<>
+  <SignInBlock id="block-sign-in" action="/blocks/sign-in/" submitDisabled data-block-demo>
+   <p class="docs-note">Submission is intercepted by this demonstration.</p>
+   <a slot="footer" href="/docs/installation/">Form integration guide</a>
+  </SignInBlock>
+  <SignInBlock id="block-sign-in-disabled" action="/blocks/sign-in/" title="Unavailable sign-in" disabled error="This sign-in method is currently unavailable." fieldErrors={{email:'Use the address associated with your account.'}} email=""/>
+ </>:<>
+  <SearchFiltersBlock id="block-search" action="/blocks/search-filters/" options={options} queryRequired submitDisabled filters={[{name:'available',label:'Available only',value:'yes',checked:true},{name:'archived',label:'Archived (unavailable)',disabled:true}]} data-block-demo/>
+  <SearchFiltersBlock id="block-search-secondary" action="/blocks/search-filters/" title="Independent search" query="initial" selectedValue="navigation" options={options} submitDisabled filters={[{name:'available',label:'Available only',value:'yes'}]} data-block-demo>
+   <div slot="filters" class="docs-preview-stack"><label for="block-search-secondary-scope">Host-supplied scope</label><Input id="block-search-secondary-scope" name="scope" value="docs" readonly/></div>
+  </SearchFiltersBlock>
+ </>}
+ <div class="docs-preview-row" data-block-demo-tools hidden><button type="button" data-block-finish>Finish pending preview</button><button type="button" data-block-error>Show generic error</button></div><p role="status" data-block-demo-status>Nothing inspected.</p><p role="alert" data-block-demo-error hidden>Example request could not complete. Review the fields and try again.</p>
+</section>
+<script>
+ import {setLoadingButtonState} from '../dmf-ui/loading-button';
+ const owners=new Map<HTMLElement,AbortController>();
+ function initialize(){for(const root of document.querySelectorAll<HTMLElement>('[data-docs-preview]:has([data-block-demo])')){
+  if(owners.has(root))continue;const abort=new AbortController(),signal=abort.signal;owners.set(root,abort);
+  const status=root.querySelector<HTMLElement>('[data-block-demo-status]')!,error=root.querySelector<HTMLElement>('[data-block-demo-error]')!,tools=root.querySelector<HTMLElement>('[data-block-demo-tools]')!;tools.hidden=false;
+  const pending=(form:HTMLFormElement,value:boolean)=>{form.querySelector<HTMLFieldSetElement>('fieldset')!.disabled=value;form.setAttribute('aria-busy',String(value));const button=form.querySelector<HTMLButtonElement>('[data-block-submit]')!;if(button.dataset.slot==='loading-button')setLoadingButtonState(button,value);else button.disabled=value;};
+  for(const form of root.querySelectorAll<HTMLFormElement>('[data-block-demo]')){
+   const submit=form.querySelector<HTMLButtonElement>('[data-block-submit]')!;submit.disabled=false;submit.dataset.idleDisabled='false';
+   form.addEventListener('submit',event=>{event.preventDefault();error.hidden=true;status.textContent=form.dataset.slot==='sign-in-block'?'Native validation passed. Credentials were not read, retained or sent.':`Local filters: ${JSON.stringify([...new FormData(form)])}. No results request was made.`;pending(form,true);},{signal});
+   form.addEventListener('reset',()=>{error.hidden=true;status.textContent='Selection reset to its authored defaults.';},{signal});
+  }
+  root.querySelector('[data-block-finish]')!.addEventListener('click',()=>{for(const form of root.querySelectorAll<HTMLFormElement>('[data-block-demo]'))pending(form,false);status.textContent='Pending demonstration finished. No request was sent.';},{signal});
+  root.querySelector('[data-block-error]')!.addEventListener('click',()=>{for(const form of root.querySelectorAll<HTMLFormElement>('[data-block-demo]'))pending(form,false);error.hidden=false;},{signal});
+ }}
+ initialize();document.addEventListener('astro:page-load',initialize);document.addEventListener('astro:before-swap',()=>{for(const abort of owners.values())abort.abort();owners.clear();});
+</script>

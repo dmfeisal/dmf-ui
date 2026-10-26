@@ -173,7 +173,8 @@
     "./presets/qdi.css": "./src/styles/dmf-ui-qdi.css",
     "./design-profile": "./contracts/design-profile.json",
     "./code-tabs": "./src/components/dmf-ui/code-tabs/index.ts",
-    "./command-block": "./src/components/dmf-ui/command-block/index.ts"
+    "./command-block": "./src/components/dmf-ui/command-block/index.ts",
+    "./blocks": "./src/components/dmf-ui/blocks/index.ts"
   },
   "files": [
     "contracts/*.json",

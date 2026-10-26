@@ -7,7 +7,7 @@ test('documentation catalog covers every exported component family',async()=>{
  const pkg=JSON.parse(await readFile('package.json','utf8'));
  const catalog=await readFile('dist/components/index.html','utf8');
  for(const [key,path] of Object.entries(pkg.exports)){
-  if(!/^\.\/[^/]+$/.test(key)||!path.endsWith('/index.ts'))continue;
+  if(key==='./blocks'||!/^\.\/[^/]+$/.test(key)||!path.endsWith('/index.ts'))continue;
   const slug=key.slice(2);await access(`dist/components/${slug}/index.html`);
   assert(catalog.includes(`href="/components/${slug}/"`),`Missing catalog entry: ${slug}`);
  }
@@ -29,7 +29,7 @@ test('built local documentation links and fragment targets resolve',async()=>{
 test('component detail pages show one DMF preview and leave CB reconstruction to Create',async()=>{
  const pkg=JSON.parse(await readFile('package.json','utf8'));
  for(const [key,path] of Object.entries(pkg.exports)){
-  if(!/^\.\/[^/]+$/.test(key)||!path.endsWith('/index.ts'))continue;
+  if(key==='./blocks'||!/^\.\/[^/]+$/.test(key)||!path.endsWith('/index.ts'))continue;
   const html=await readFile(`dist/components/${key.slice(2)}/index.html`,'utf8');
   assert.equal((html.match(/data-docs-preview=/g)||[]).length,1,`${key}: expected one preview`);
   assert(!/data-system="cb-ui"|class="docs-preview-label">CB UI reconstruction/i.test(html),`${key}: CB belongs on Create`);
