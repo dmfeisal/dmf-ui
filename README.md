@@ -49,7 +49,7 @@ Edit `tokens/design.tokens.json`, then run `npm run tokens:build`. The generated
 
 ## Documentation site
 
-Version 0.4.0 adds Text, Card, Badge and Alert, with both-preset previews, a Component contracts guide and the experimental `dmf-ui/contracts.json` export. The current catalog contains 77 documented Astro families. See [content contracts and authoring](docs/DMF-UI-CONTENT.md).
+Version 0.4.0 adds Text, Card, Badge and Alert, with both-preset previews, a Component contracts guide and the experimental `dmf-ui/contracts.json` export. The current catalog contains 79 documented Astro families. See [content contracts and authoring](docs/DMF-UI-CONTENT.md).
 
 The source repository builds Home (`/`), the searchable Components catalog (`/components/`), individual component pages and Docs (`/docs/`). The existing `/examples/dmf-ui/` remains the independent integration gallery. Run `npm run dev` to view it locally and `npm run test:dmf-ui:docs` for documentation browser checks. See [documentation ownership and routes](docs/DMF-UI-DOCUMENTATION.md). Documentation host files are excluded from the component archive.
 
@@ -97,7 +97,7 @@ All 65 Astro UI families in Fulldev UI 0.25.5 base-vega are represented: 37 exis
 
 Shared additive foundations live in `tokens/foundations.json`; generated CSS is included in the core stylesheet. Existing theme tokens and API names remain compatible. Button accepts `md` alongside `default`.
 
-The source-backed inventory covers all 77 documented Astro families and the separate React alpha exports. It records anatomy, declared properties, native type references, defaults, variant axes, state vocabulary, token use and test references. Source evidence is not a full acceptance claim; remaining gaps are explicit in the catalog.
+The source-backed inventory covers all 79 documented Astro families and the separate React alpha exports. It records anatomy, declared properties, native type references, defaults, variant axes, state vocabulary, token use and test references. Source evidence is not a full acceptance claim; remaining gaps are explicit in the catalog.
 
 - `/docs/foundations/`: live token specimens and foundation topics.
 - `/docs/component-contract/`: conventions and state taxonomy.
@@ -106,3 +106,9 @@ The source-backed inventory covers all 77 documented Astro families and the sepa
 - `data-system="qdi" data-color-mode="light"`: light-only QDI application preset, based on verified v3 palette/UI references. No logos, mascot or guideline PDF is distributed.
 
 Run `npm run tokens:build` after token edits and `npm run contracts:build` after component API changes. `npm run check` checks both generated records for drift. See `docs/DMF-UI-FOUNDATIONS.md` for implementation status and continuation work.
+
+### Default profile: Nova / Neutral
+
+[shadcn/ui](https://ui.shadcn.com/) and [Fulldev UI](https://ui.full.dev/) are primary references: shadcn for design specifications and documentation conventions, Fulldev for the Astro adaptation foundation. The default style is Nova, with Neutral base and theme colors. `dmf-ui/design-profile` exports the pinned reference/configuration record.
+
+The catalog now includes 79 Astro families, with Code Tabs and Command Block plus the additive CodeSnippet composition in `dmf-ui/code-block`. Component and guide pages use shared highlighted code blocks. See `docs/DMF-UI-NOVA.md` for sizing changes, copy behavior, compatibility and the owner-selected CB/HUI white-label contrast exceptions.

@@ -14,16 +14,17 @@ export async function settle(page, selector = 'body') {
     await document.fonts.ready;
     const element=document.querySelector(selector);
     if(!element) throw new Error(`Missing layout target: ${selector}`);
+    const visible=animation=>{const target=animation.effect?.target;return !(target instanceof Element)||target.getClientRects().length>0&&(typeof target.checkVisibility!=='function'||target.checkVisibility());};
     const finite=[...new Set([...element.getAnimations({subtree:true}),...document.getAnimations()])].filter(animation=>{
       const end=animation.effect?.getComputedTiming().endTime;
-      return Number.isFinite(end)&&end<=3000;
+      return visible(animation)&&Number.isFinite(end)&&end<=3000;
     });
     await Promise.allSettled(finite.map(animation=>animation.finished));
     let previousX=window.scrollX,previousY=window.scrollY,stable=0;
     const deadline=performance.now()+3000;
     while(stable<3&&performance.now()<deadline){await new Promise(resolve=>requestAnimationFrame(resolve));const x=window.scrollX,y=window.scrollY;stable=x===previousX&&y===previousY?stable+1:0;previousX=x;previousY=y;}
     if(stable<3)throw new Error('Document scrolling did not settle');
-    const late=document.getAnimations().filter(animation=>{const end=animation.effect?.getComputedTiming().endTime;return animation.playState!=='finished'&&Number.isFinite(end)&&end<=3000;});
+    const late=document.getAnimations().filter(animation=>{const end=animation.effect?.getComputedTiming().endTime;return visible(animation)&&animation.playState!=='finished'&&Number.isFinite(end)&&end<=3000;});
     await Promise.allSettled(late.map(animation=>animation.finished));
     await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
   },selector);

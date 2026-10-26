@@ -250,7 +250,7 @@
       }
     ],
     "source": "packages/react/src/index.tsx",
-    "sha256": "7f3d0a46f8642a11eb5d4e2dfd1ed3de7d8ddc28f40b27f19d0730dbee949cb6",
+    "sha256": "666fa53f81b057fed336dbd1127165a240fb81c8941fdb0131e278fcc43578d3",
     "status": "separate-web-alpha",
     "note": "React native props and controlled/uncontrolled patterns differ from Astro. No Astro parity claim."
   },
@@ -3445,6 +3445,7 @@
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
+          "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-pilot.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
@@ -3459,7 +3460,7 @@
       "sources": [
         {
           "path": "src/components/dmf-ui/button/button-variants.ts",
-          "sha256": "924d16a809a7408b6c3dc32974639675fcc8fdefad1179abc3158a1dc12108cf"
+          "sha256": "edf2ac8dadcdf2390ed73bbb72dbff1becd9e811a96d34b9ac1776ef55723ef7"
         },
         {
           "path": "src/components/dmf-ui/button/button.astro",
@@ -4134,7 +4135,7 @@
         },
         {
           "path": "src/components/dmf-ui/card/card.astro",
-          "sha256": "656c0094c1171d0056bc045111cff569d1ca8dcd97b5501c19411d32843eed59"
+          "sha256": "d8b8483e819930d3f534beb543f0c9fd28e4bde86011825fd73b7735768d1005"
         },
         {
           "path": "src/components/dmf-ui/card/index.ts",
@@ -5021,7 +5022,7 @@
       "slug": "code-block",
       "name": "Code Block",
       "category": "Content",
-      "description": "Display code with optional line numbers and copy actions.",
+      "description": "Composable code presentation with a compact header, syntax highlighting, line numbers and exact copy actions.",
       "options": [
         [
           "parts",
@@ -5032,12 +5033,28 @@
           "native attributes",
           "Element attributes; see source",
           "Native defaults"
+        ],
+        [
+          "language (Content / CodeSnippet)",
+          "astro | ts | tsx | js | jsx | css | json | bash | html | text",
+          "Plain text when omitted"
+        ],
+        [
+          "highlightedLines",
+          "positive display-line numbers[]",
+          "[]"
+        ],
+        [
+          "CodeSnippet",
+          "code, title?, id?, language?, wrap?, lineNumbers?, maxHeight?",
+          "Authored composition"
         ]
       ],
       "accessibility": [
         "Adapted from the pinned Fulldev UI 0.25.5 base-vega snapshot under MIT. Existing DMF component APIs and tokens remain in place.",
         "The copyable composition is a starting point; source props are authoritative. Use explicit labels, meaningful native links/actions and heading levels that fit the host page.",
-        "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
+        "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document.",
+        "Nova styling follows the pinned shadcn/ui specification. Highlighting uses Astro’s server-side Code component; no browser highlighter is shipped. Copy uses the authored source and manual selection is available if clipboard access fails."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
       "package": "dmf-ui",
@@ -5068,6 +5085,16 @@
           ],
           "properties": [
             {
+              "name": "language",
+              "type": "\"astro\" | \"tsx\" | \"ts\" | \"jsx\" | \"js\" | \"css\" | \"json\" | \"bash\" | \"html\" | \"text\"",
+              "optional": true
+            },
+            {
+              "name": "highlightedLines",
+              "type": "number[]",
+              "optional": true
+            },
+            {
               "name": "code",
               "type": "string",
               "optional": true
@@ -5091,7 +5118,7 @@
           "native": [
             "HTMLAttributes<\"pre\">"
           ],
-          "declaration": "type Props = HTMLAttributes<\"pre\"> & {\n  code?: string\n  wrap?: boolean\n  lineNumbers?: boolean\n  startLine?: number\n}"
+          "declaration": "type Props = HTMLAttributes<\"pre\"> & {\n  language?: \"astro\" | \"tsx\" | \"ts\" | \"jsx\" | \"js\" | \"css\" | \"json\" | \"bash\" | \"html\" | \"text\"\n  highlightedLines?: number[]\n  code?: string\n  wrap?: boolean\n  lineNumbers?: boolean\n  startLine?: number\n}"
         },
         {
           "file": "src/components/dmf-ui/code-block/code-block-copy-button.astro",
@@ -5100,6 +5127,16 @@
             "code-block-copy-button"
           ],
           "properties": [
+            {
+              "name": "targetId",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "statusId",
+              "type": "string",
+              "optional": true
+            },
             {
               "name": "value",
               "type": "string",
@@ -5124,7 +5161,7 @@
           "native": [
             "HTMLAttributes<\"button\">"
           ],
-          "declaration": "type Props = Omit<HTMLAttributes<\"button\">, \"value\" | \"type\"> &\n  ButtonVariantProps & {\n    value: string\n    copyLabel?: string\n    copiedLabel?: string\n    errorLabel?: string\n  }"
+          "declaration": "type Props = Omit<HTMLAttributes<\"button\">, \"value\" | \"type\"> &\n  ButtonVariantProps & {\n    targetId?: string\n    statusId?: string\n    value: string\n    copyLabel?: string\n    copiedLabel?: string\n    errorLabel?: string\n  }"
         },
         {
           "file": "src/components/dmf-ui/code-block/code-block-footer.astro",
@@ -5202,6 +5239,75 @@
             "HTMLAttributes<\"div\">"
           ],
           "declaration": "type Props = HTMLAttributes<\"div\"> &\n  VariantProps<typeof variants> & {\n    size?: \"default\" | \"sm\"\n  }"
+        },
+        {
+          "file": "src/components/dmf-ui/code-block/code-snippet.astro",
+          "slots": [],
+          "dataSlots": [],
+          "properties": [
+            {
+              "name": "code",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "language",
+              "type": "ComponentProps<typeof CodeBlockContent>['language']",
+              "optional": true
+            },
+            {
+              "name": "title",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "id",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "statusId",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "lineNumbers",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "startLine",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "highlightedLines",
+              "type": "number[]",
+              "optional": true
+            },
+            {
+              "name": "wrap",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "maxHeight",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "class",
+              "type": "string",
+              "optional": true
+            }
+          ],
+          "native": [],
+          "declaration": "interface Props {code:string;language?:ComponentProps<typeof CodeBlockContent>['language'];title?:string;id?:string;statusId?:string;label?:string;lineNumbers?:boolean;startLine?:number;highlightedLines?:number[];wrap?:boolean;maxHeight?:number;class?:string;}"
         }
       ],
       "variants": {
@@ -5214,6 +5320,7 @@
         ]
       },
       "defaults": {
+        "code-block-content.astro:highlightedLines": "[]",
         "code-block-content.astro:wrap": "false",
         "code-block-content.astro:lineNumbers": "false",
         "code-block-content.astro:startLine": "1",
@@ -5224,7 +5331,13 @@
         "code-block-copy-button.astro:errorLabel": "\"Could not copy\"",
         "code-block-line.astro:variant": "\"default\"",
         "code-block.astro:variant": "\"default\"",
-        "code-block.astro:size": "\"default\""
+        "code-block.astro:size": "\"default\"",
+        "code-snippet.astro:language": "'text'",
+        "code-snippet.astro:label": "title?`${title} code`:'Code example'",
+        "code-snippet.astro:lineNumbers": "false",
+        "code-snippet.astro:startLine": "1",
+        "code-snippet.astro:highlightedLines": "[]",
+        "code-snippet.astro:wrap": "false"
       },
       "states": {
         "default": {
@@ -5240,8 +5353,8 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         },
         "focus": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "focus-visible": {
           "status": "source-evidence",
@@ -5398,7 +5511,8 @@
       "tests": {
         "status": "references-only",
         "sources": [
-          "tests/browser/dmf-ui-fulldev-interactions.mjs"
+          "tests/browser/dmf-ui-fulldev-interactions.mjs",
+          "tests/browser/dmf-ui-nova-docs.mjs"
         ]
       },
       "status": "partial",
@@ -5409,11 +5523,11 @@
         },
         {
           "path": "src/components/dmf-ui/code-block/code-block-content.astro",
-          "sha256": "3330c0a2d7ef064ae8110137b96b2264fb53e77ab51fea99333d431c314b528b"
+          "sha256": "4c579985548ea509c78c2bc53db12eeafee74b6d6fcb4b9f155e9f38f1ebdb07"
         },
         {
           "path": "src/components/dmf-ui/code-block/code-block-copy-button.astro",
-          "sha256": "af685fe5be38dd5895b1340d3e83b02b1c839f3d03f9835df9e9e9723b4004a4"
+          "sha256": "3d3bdd08b49cd63515a50bddc0707ef16c43ec0d32c378a352b495648bc92dff"
         },
         {
           "path": "src/components/dmf-ui/code-block/code-block-footer.astro",
@@ -5421,7 +5535,7 @@
         },
         {
           "path": "src/components/dmf-ui/code-block/code-block-header.astro",
-          "sha256": "86427981d9596ffb42059fe3ca87e3eb15abbc89cf1a829a601ac680afeb281e"
+          "sha256": "7ad2dd133ce53ef7e5eac4e6b22cfaa4471d522ef30d4be07f230604f3217322"
         },
         {
           "path": "src/components/dmf-ui/code-block/code-block-line.astro",
@@ -5436,8 +5550,295 @@
           "sha256": "d53214811c084bd99f912f3402deea068dfe476deaf9659e6ee0126b0b49c5b0"
         },
         {
+          "path": "src/components/dmf-ui/code-block/code-snippet.astro",
+          "sha256": "75e90ef8701206d2a704dab9506e14e0ed5ee50efbe2fefd7792f071076323b1"
+        },
+        {
           "path": "src/components/dmf-ui/code-block/index.ts",
-          "sha256": "0a214fe11e8c36116e13c06805eafa7b95585ff9e2f3baed853e10aa52aea1ac"
+          "sha256": "046893f8342670b14f733526a8e786bb67b2d642bbdcf017cf76e0b0cef48096"
+        }
+      ],
+      "gaps": [
+        "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
+        "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
+        "Do not infer loading, controlled state or a size option from another family."
+      ]
+    },
+    {
+      "slug": "code-tabs",
+      "name": "Code Tabs",
+      "category": "Content",
+      "description": "Named code examples with keyboard tabs, syntax highlighting and independent copy actions.",
+      "options": [
+        [
+          "id",
+          "string",
+          "Required, page-unique"
+        ],
+        [
+          "items",
+          "{value,label,code,language?,title?}[]",
+          "Required; unique nonempty values"
+        ],
+        [
+          "defaultValue",
+          "string",
+          "First item"
+        ],
+        [
+          "label",
+          "string",
+          "Code examples"
+        ]
+      ],
+      "accessibility": [
+        "Uses the existing Tabs keyboard and focus behavior. Arrow keys and Home/End operate the tabs; only the active panel is shown after enhancement. The initial panel is available in server HTML.",
+        "Each copy action copies its authored source, without line numbers or syntax markup. It never executes the code.",
+        "Language highlighting runs on the server through Astro. No highlighter bundle or new framework runtime is sent to the browser."
+      ],
+      "documentation": "src/data/code-documentation.ts",
+      "package": "dmf-ui",
+      "entry": "./src/components/dmf-ui/code-tabs/index.ts",
+      "parts": [
+        {
+          "file": "src/components/dmf-ui/code-tabs/code-tabs.astro",
+          "slots": [],
+          "dataSlots": [
+            "code-tabs"
+          ],
+          "properties": [
+            {
+              "name": "id",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "defaultValue",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "items",
+              "type": "{value:string;label:string;code:string;language?:ComponentProps<typeof CodeSnippet>['language'];title?:string}[]",
+              "optional": false
+            },
+            {
+              "name": "value",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "code",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "language",
+              "type": "ComponentProps<typeof CodeSnippet>['language']",
+              "optional": true
+            },
+            {
+              "name": "title",
+              "type": "string",
+              "optional": true
+            }
+          ],
+          "native": [],
+          "declaration": "interface Props {id:string;label?:string;defaultValue?:string;items:{value:string;label:string;code:string;language?:ComponentProps<typeof CodeSnippet>['language'];title?:string}[];}"
+        }
+      ],
+      "variants": {},
+      "defaults": {
+        "code-tabs.astro:label": "'Code examples'",
+        "code-tabs.astro:defaultValue": "items[0]?.value"
+      },
+      "states": {
+        "default": {
+          "status": "authored-default",
+          "note": "Default authored composition."
+        },
+        "hover": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "pressed": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "focus": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "focus-visible": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "disabled": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "unselected": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "selected": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "checked": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "unchecked": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "indeterminate": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "on": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "off": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "current": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "open": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "closed": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "expanded": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "collapsed": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "valid": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "invalid": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "warning": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "required": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "idle": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "loading": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "pending": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "success": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "error": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "empty": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "skeleton": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "highlighted": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "dragging": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "drag-over": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "sorting": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "resizing": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "editing": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "read-only": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "visited": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        }
+      },
+      "tokens": [],
+      "presets": {
+        "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
+        "available": [
+          "dmf",
+          "cb-ui",
+          "hui",
+          "portfolio",
+          "qdi"
+        ]
+      },
+      "tests": {
+        "status": "references-only",
+        "sources": [
+          "tests/design-profile.test.mjs",
+          "tests/browser/dmf-ui-nova-docs.mjs"
+        ]
+      },
+      "status": "partial",
+      "sources": [
+        {
+          "path": "src/components/dmf-ui/code-tabs/code-tabs.astro",
+          "sha256": "509585a4017171e61ba876634d134e96b4215c744f74c14a543f0f56f7bcdd0d"
+        },
+        {
+          "path": "src/components/dmf-ui/code-tabs/index.ts",
+          "sha256": "5d6ee9a2dbc90f194e7b527b57e89aa4057eafef6ff5f6de7b3b87388cfb48ba"
         }
       ],
       "gaps": [
@@ -6452,7 +6853,9 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/design-profile.test.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
+          "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-selection.mjs"
         ]
       },
@@ -6497,6 +6900,263 @@
         {
           "path": "src/components/dmf-ui/command/index.ts",
           "sha256": "0517de8607f1d8a9834d75c475fa4e83de3fc2e2d363916f0c1931a3caeabeb3"
+        }
+      ],
+      "gaps": [
+        "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
+        "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
+        "Do not infer loading, controlled state or a size option from another family."
+      ]
+    },
+    {
+      "slug": "command-block",
+      "name": "Command Block",
+      "category": "Content",
+      "description": "Display package-manager commands with accessible tabs and exact copyable text.",
+      "options": [
+        [
+          "id",
+          "string",
+          "Required, page-unique"
+        ],
+        [
+          "commands",
+          "Partial<Record<npm | pnpm | yarn | bun,string>>",
+          "At least one nonempty command"
+        ],
+        [
+          "defaultManager",
+          "npm | pnpm | yarn | bun",
+          "First provided manager"
+        ],
+        [
+          "label",
+          "string",
+          "Package manager commands"
+        ]
+      ],
+      "accessibility": [
+        "Commands are authored display text. Selecting or copying one never runs it, installs dependencies or changes a project.",
+        "Only supplied package managers are shown. A default manager must match a supplied command.",
+        "Inherits Code Tabs keyboard navigation, server-rendered initial content and copy/fallback behavior."
+      ],
+      "documentation": "src/data/code-documentation.ts",
+      "package": "dmf-ui",
+      "entry": "./src/components/dmf-ui/command-block/index.ts",
+      "parts": [
+        {
+          "file": "src/components/dmf-ui/command-block/command-block.astro",
+          "slots": [],
+          "dataSlots": [
+            "command-block"
+          ],
+          "properties": [
+            {
+              "name": "id",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "commands",
+              "type": "Partial<Record<'npm'|'pnpm'|'yarn'|'bun',string>>",
+              "optional": false
+            },
+            {
+              "name": "defaultManager",
+              "type": "'npm'|'pnpm'|'yarn'|'bun'",
+              "optional": true
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "optional": true
+            }
+          ],
+          "native": [],
+          "declaration": "interface Props {id:string;commands:Partial<Record<'npm'|'pnpm'|'yarn'|'bun',string>>;defaultManager?:'npm'|'pnpm'|'yarn'|'bun';label?:string;}"
+        }
+      ],
+      "variants": {},
+      "defaults": {
+        "command-block.astro:label": "'Package manager commands'"
+      },
+      "states": {
+        "default": {
+          "status": "authored-default",
+          "note": "Default authored composition."
+        },
+        "hover": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "pressed": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "focus": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "focus-visible": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "disabled": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "unselected": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "selected": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "checked": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "unchecked": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "indeterminate": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "on": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "off": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "current": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "open": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "closed": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "expanded": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "collapsed": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "valid": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "invalid": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "warning": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "required": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "idle": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "loading": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "pending": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "success": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "error": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "empty": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "skeleton": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "highlighted": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "dragging": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "drag-over": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "sorting": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "resizing": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "editing": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "read-only": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "visited": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        }
+      },
+      "tokens": [],
+      "presets": {
+        "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
+        "available": [
+          "dmf",
+          "cb-ui",
+          "hui",
+          "portfolio",
+          "qdi"
+        ]
+      },
+      "tests": {
+        "status": "references-only",
+        "sources": [
+          "tests/design-profile.test.mjs",
+          "tests/browser/dmf-ui-nova-docs.mjs"
+        ]
+      },
+      "status": "partial",
+      "sources": [
+        {
+          "path": "src/components/dmf-ui/command-block/command-block.astro",
+          "sha256": "a64c527fa56607998da5d2e4ea5118a921a729fa8c628b9f13127f3851772088"
+        },
+        {
+          "path": "src/components/dmf-ui/command-block/index.ts",
+          "sha256": "ad523e38c9e251dac516f26b052c4bf2b7349392f0ebcc8066bd47d49fb632b0"
         }
       ],
       "gaps": [
@@ -10311,6 +10971,7 @@
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
+          "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-selection.mjs"
         ]
       },
@@ -11462,7 +12123,7 @@
         },
         {
           "path": "src/components/dmf-ui/input/input.astro",
-          "sha256": "3e970e54b7fb354e0b8719190bb154f659fb8d673d012e6413467d05267ef860"
+          "sha256": "fceb54f0248e275c5d22bb01efc7605b791f264c03ac57321d9f54701abb5d30"
         }
       ],
       "gaps": [
@@ -12610,12 +13271,14 @@
         "sources": [
           "tests/content.test.mjs",
           "tests/data-display.test.mjs",
+          "tests/design-profile.test.mjs",
           "tests/documentation.test.mjs",
           "tests/feedback.test.mjs",
           "tests/form-composition.test.mjs",
           "tests/navigation-patterns.test.mjs",
           "tests/product-details.test.mjs",
           "tests/selection.test.mjs",
+          "tests/tokens.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
           "tests/browser/dmf-ui-disclosures.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
@@ -12626,6 +13289,7 @@
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
+          "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-overlays.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
@@ -18545,6 +19209,7 @@
           "tests/feedback.test.mjs",
           "tests/form-composition.test.mjs",
           "tests/selection.test.mjs",
+          "tests/tokens.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
@@ -18556,6 +19221,7 @@
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-icons.mjs",
           "tests/browser/dmf-ui-navigation.mjs",
+          "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-overlays.mjs",
           "tests/browser/dmf-ui-pilot.mjs",
           "tests/browser/dmf-ui-portfolio.mjs",
@@ -20816,6 +21482,7 @@
           "tests/tokens.test.mjs",
           "tests/browser/dmf-ui-data-display.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
+          "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-runtime.mjs",
           "tests/browser/dmf-ui-selection.mjs"
         ]
@@ -21167,12 +21834,14 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/design-profile.test.mjs",
           "tests/package.test.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-forms.mjs",
           "tests/browser/dmf-ui-navigation.mjs",
+          "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-tabs.mjs"
         ]
       },
@@ -21726,6 +22395,7 @@
         "sources": [
           "tests/content.test.mjs",
           "tests/data-display.test.mjs",
+          "tests/design-profile.test.mjs",
           "tests/dmf-ui-browser.test.mjs",
           "tests/feedback.test.mjs",
           "tests/form-composition.test.mjs",
@@ -21733,6 +22403,7 @@
           "tests/modal-components.test.mjs",
           "tests/selection.test.mjs",
           "tests/structure.test.mjs",
+          "tests/tokens.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
           "tests/browser/dmf-ui-content-docs.mjs",
           "tests/browser/dmf-ui-content.mjs",
@@ -21751,6 +22422,7 @@
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-navigation-components.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
+          "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-overlays.mjs",
           "tests/browser/dmf-ui-pilot.mjs",
           "tests/browser/dmf-ui-portfolio.mjs",

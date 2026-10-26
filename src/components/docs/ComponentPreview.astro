@@ -1,4 +1,6 @@
 ---
+import {CodeTabs} from '../dmf-ui/code-tabs';
+import {CommandBlock} from '../dmf-ui/command-block';
 import FulldevPreview from './FulldevPreview.astro';
 import ModalPreview from './ModalPreview.astro';
 import FormCompositionPreview from './FormCompositionPreview.astro';
@@ -48,6 +50,8 @@ const presetName='DMF UI';
 ---
 <section class="dmf-ui docs-preview" data-system="dmf" aria-label={`${presetName} ${slug} example`} data-docs-preview={slug}>
 <p class="docs-preview-label">{presetName}</p>
+{slug==='code-tabs'&&<CodeTabs id="docs-code-tabs" items={[{value:'astro',label:'Astro',language:'astro',code:'<Button>Continue</Button>',title:'Button.astro'},{value:'react',label:'React',language:'tsx',code:'<Button>Continue</Button>',title:'Button.tsx'}]}/>}
+{slug==='command-block'&&<CommandBlock id="docs-command-block" commands={{npm:'npm install @lucide/astro',pnpm:'pnpm add @lucide/astro',yarn:'yarn add @lucide/astro',bun:'bun add @lucide/astro'}}/>}
 {slug==='sidebar'&&<Sidebar label="Workspace" items={[{label:'Home',href:'/',icon:House},{label:'Docs',href:'/docs/',icon:BookOpen,current:true},{label:'Create',href:'/create/',icon:Palette}]} presentation="icon-label"/>}
 {slug==='responsive-navigation'&&<ResponsiveNavigation label="Project menu" items={[{label:'Home',href:'/',icon:House},{label:'Docs',href:'/docs/',icon:BookOpen,current:true},{label:'Create',href:'/create/',icon:Palette}]} presentation="icon-label"/>}
 {slug==='archive-index'&&<div class="docs-preview-stack">{['Foundations','Components','Presets'].map((label,index)=><p><ArchiveIndex index={index}/>{label}</p>)}</div>}

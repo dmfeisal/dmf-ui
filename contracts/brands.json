@@ -17,7 +17,14 @@
       "source": "docs/DMF-UI-CB-PRESET.md",
       "gaps": [
         "No newly verified complete official CB specification."
-      ]
+      ],
+      "actionTextPolicy": {
+        "foreground": "#FFFFFF",
+        "background": "Existing primary unchanged",
+        "source": "Owner-selected UI preference",
+        "contrastRatio": 2.5671966361741516,
+        "status": "known-normal-text-contrast-exception"
+      }
     },
     "hui": {
       "status": "verified-reference-with-derived-ui-mapping",
@@ -59,7 +66,14 @@
         "Existing shipped heading font files cover weights 500/700, not the specified Black headline weight. Do not claim exact typographic parity.",
         "No official full spacing, radius, dark-mode or application state scale.",
         "Existing accessible action pairing is a DMF application mapping; it does not replace the official marketing CTA rule."
-      ]
+      ],
+      "actionTextPolicy": {
+        "foreground": "#FFFFFF",
+        "background": "Existing primary unchanged",
+        "source": "Owner-selected UI preference",
+        "contrastRatio": 4.287675111529075,
+        "status": "known-normal-text-contrast-exception"
+      }
     },
     "qdi": {
       "status": "verified-reference-with-derived-ui-mapping",

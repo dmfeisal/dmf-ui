@@ -1,0 +1,17 @@
+---
+import type {ComponentProps} from 'astro/types';
+import {FileCode} from '@lucide/astro';
+import CodeBlock from './code-block.astro';
+import CodeBlockHeader from './code-block-header.astro';
+import CodeBlockTitle from './code-block-title.astro';
+import CodeBlockActions from './code-block-actions.astro';
+import CodeBlockContent from './code-block-content.astro';
+import CodeBlockCopyButton from './code-block-copy-button.astro';
+interface Props {code:string;language?:ComponentProps<typeof CodeBlockContent>['language'];title?:string;id?:string;statusId?:string;label?:string;lineNumbers?:boolean;startLine?:number;highlightedLines?:number[];wrap?:boolean;maxHeight?:number;class?:string;}
+const {code,language='text',title,id,statusId,label=title?`${title} code`:'Code example',lineNumbers=false,startLine=1,highlightedLines=[],wrap=false,maxHeight,class:className}=Astro.props;
+if(maxHeight!==undefined&&(!Number.isFinite(maxHeight)||maxHeight<=0))throw new Error('CodeSnippet maxHeight must be a positive pixel value.');
+---
+<CodeBlock class:list={['dmf-code-snippet',className]} data-language={language}>
+<CodeBlockHeader><CodeBlockTitle><FileCode size={14} aria-hidden="true"/>{title??language}</CodeBlockTitle><CodeBlockActions><CodeBlockCopyButton value={code} targetId={id} statusId={statusId} data-copy-code={id} copyLabel="Copy code" copiedLabel="Code copied." errorLabel="Copy unavailable. Select the code and copy it manually."/></CodeBlockActions></CodeBlockHeader>
+<CodeBlockContent code={code} language={language} id={id} role="region" aria-label={label} lineNumbers={lineNumbers} startLine={startLine} highlightedLines={highlightedLines} wrap={wrap} class="docs-code" style={maxHeight?`max-block-size:${maxHeight}px`:undefined}/>
+</CodeBlock>

@@ -394,13 +394,13 @@
       "description": "Shared DMF application value; not an official brand specification."
     },
     "surface-padding": {
-      "value": "{space-6}",
+      "value": "{space-4}",
       "category": "spacing",
       "layer": "semantic",
       "description": "Shared DMF application value; not an official brand specification."
     },
     "button-height": {
-      "value": "2.25rem",
+      "value": "2rem",
       "category": "components",
       "layer": "component",
       "description": "Shared DMF application value; not an official brand specification."
@@ -418,7 +418,7 @@
       "description": "Shared DMF application value; not an official brand specification."
     },
     "input-height": {
-      "value": "2.25rem",
+      "value": "2rem",
       "category": "components",
       "layer": "component",
       "description": "Shared DMF application value; not an official brand specification."

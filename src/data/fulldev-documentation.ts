@@ -117,29 +117,45 @@ export const fulldevComponents:ComponentDoc[]=[
     ]
   },
   {
-    "slug": "code-block",
-    "name": "Code Block",
-    "category": "Content",
-    "description": "Display code with optional line numbers and copy actions.",
-    "usage": "import { CodeBlock, CodeBlockHeader, CodeBlockTitle, CodeBlockActions, CodeBlockCopyButton, CodeBlockContent } from 'dmf-ui/code-block';\n\n<CodeBlock><CodeBlockHeader><CodeBlockTitle>Local example</CodeBlockTitle><CodeBlockActions><CodeBlockCopyButton value=\"const ready = true;\"/></CodeBlockActions></CodeBlockHeader><CodeBlockContent code={\"const ready = true;\\nexport { ready };\"} lineNumbers/></CodeBlock>",
-    "options": [
-      [
-        "parts",
-        "CodeBlock, CodeBlockHeader, CodeBlockTitle, CodeBlockActions, CodeBlockCopyButton, CodeBlockContent",
-        "Authored composition"
-      ],
-      [
-        "native attributes",
-        "Element attributes; see source",
-        "Native defaults"
-      ]
+  "slug": "code-block",
+  "name": "Code Block",
+  "category": "Content",
+  "description": "Composable code presentation with a compact header, syntax highlighting, line numbers and exact copy actions.",
+  "usage": "import {CodeSnippet} from 'dmf-ui/code-block';\n\n<CodeSnippet language=\"ts\" title=\"example.ts\"\n code={'const ready = true;\\nexport { ready };'}\n lineNumbers highlightedLines={[1]} maxHeight={320}/>",
+  "options": [
+    [
+      "parts",
+      "CodeBlock, CodeBlockHeader, CodeBlockTitle, CodeBlockActions, CodeBlockCopyButton, CodeBlockContent",
+      "Authored composition"
     ],
-    "notes": [
-      "Adapted from the pinned Fulldev UI 0.25.5 base-vega snapshot under MIT. Existing DMF component APIs and tokens remain in place.",
-      "The copyable composition is a starting point; source props are authoritative. Use explicit labels, meaningful native links/actions and heading levels that fit the host page.",
-      "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
+    [
+      "native attributes",
+      "Element attributes; see source",
+      "Native defaults"
+    ],
+    [
+      "language (Content / CodeSnippet)",
+      "astro | ts | tsx | js | jsx | css | json | bash | html | text",
+      "Plain text when omitted"
+    ],
+    [
+      "highlightedLines",
+      "positive display-line numbers[]",
+      "[]"
+    ],
+    [
+      "CodeSnippet",
+      "code, title?, id?, language?, wrap?, lineNumbers?, maxHeight?",
+      "Authored composition"
     ]
-  },
+  ],
+  "notes": [
+    "Adapted from the pinned Fulldev UI 0.25.5 base-vega snapshot under MIT. Existing DMF component APIs and tokens remain in place.",
+    "The copyable composition is a starting point; source props are authoritative. Use explicit labels, meaningful native links/actions and heading levels that fit the host page.",
+    "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document.",
+    "Nova styling follows the pinned shadcn/ui specification. Highlighting uses Astro’s server-side Code component; no browser highlighter is shipped. Copy uses the authored source and manual selection is available if clipboard access fails."
+  ]
+},
   {
     "slug": "command",
     "name": "Command",

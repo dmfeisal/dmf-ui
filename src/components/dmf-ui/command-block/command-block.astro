@@ -1,0 +1,9 @@
+---
+import {CodeTabs} from '../code-tabs';
+interface Props {id:string;commands:Partial<Record<'npm'|'pnpm'|'yarn'|'bun',string>>;defaultManager?:'npm'|'pnpm'|'yarn'|'bun';label?:string;}
+const {id,commands,defaultManager,label='Package manager commands'}=Astro.props;
+const managers=['npm','pnpm','yarn','bun'] as const;
+const items=managers.filter(value=>typeof commands[value]==='string'&&commands[value]!.trim()).map(value=>({value,label:value,code:commands[value]!,language:'bash' as const,title:'Terminal'}));
+if(Object.keys(commands).some(key=>!managers.includes(key as typeof managers[number])))throw new Error('CommandBlock only supports npm, pnpm, yarn and bun.');
+---
+<div data-slot="command-block"><CodeTabs id={id} items={items} defaultValue={defaultManager} label={label}/></div>

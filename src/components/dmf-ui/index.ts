@@ -76,3 +76,5 @@ export * from "./theme-toggle/index";
 export * from "./toc/index";
 export * from "./typography/index";
 export * from "./video/index";
+export * from "./code-tabs/index";
+export * from "./command-block/index";

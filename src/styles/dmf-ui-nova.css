@@ -1,0 +1,38 @@
+/* Nova dimensions adapted from the pinned shadcn/ui source. Behavior stays source-owned. */
+.dmf-ui [data-slot="select-trigger"][data-size="default"],.dmf-ui [data-slot="native-select"] { block-size:2rem; padding-block:.25rem; border-radius:var(--radius-lg); }
+.dmf-ui [data-slot="select-trigger"][data-size="sm"] { block-size:1.75rem; }
+.dmf-ui [data-slot="tabs-list"] { padding:3px; border-radius:var(--radius-lg); }
+.dmf-ui [data-slot="tabs-trigger"] { padding:.125rem .375rem; gap:.375rem; }
+.dmf-ui [data-slot="accordion-trigger"] { padding-block:.625rem; }
+.dmf-ui [data-slot="accordion-content"]>div { padding-block-end:.625rem; }
+.dmf-ui [data-slot="alert"] { padding:.5rem .625rem; }
+.dmf-ui [data-slot="dialog-content"] { padding:1rem; gap:1rem; border-radius:var(--radius-xl); }
+.dmf-ui [data-slot="card-header"] { gap:.25rem; }
+.dmf-ui [data-slot="code-block-header"] { padding:.75rem .75rem 0; }
+.dmf-ui [data-slot="code-block-content"] { padding:.75rem; }
+.dmf-ui [data-slot="code-block-header"]+[data-slot="code-block-content"] { padding-block-start:.5rem; }
+/* Text follows the owner-selected white action labels; non-text state cues remain distinct. */
+.dmf-ui[data-system="cb-ui"] [data-slot="switch"][data-checked] [data-slot="switch-thumb"] { background:var(--foreground); }
+.dmf-code-snippet { background:color-mix(in srgb,var(--muted) 55%,var(--background)); border:1px solid var(--border); border-radius:var(--radius-lg); }
+.dmf-code-snippet [data-slot="code-block-header"] { padding:.5rem .75rem; border-block-end:1px solid var(--border); gap:.5rem; }
+.dmf-code-snippet [data-slot="code-block-title"] { font:500 .8125rem/1.5 var(--font-sans); color:var(--muted-foreground); }
+.dmf-code-snippet [data-slot="code-block-content"] { margin:0; border:0; border-radius:0; padding:.875rem 1rem; font:400 .8125rem/1.7 ui-monospace,SFMono-Regular,Menlo,monospace; white-space:pre; overflow:auto; max-inline-size:100%; tab-size:2; background:transparent!important; }
+.dmf-code-snippet [data-slot="code-block-content"][data-wrap] { white-space:pre-wrap; overflow-wrap:anywhere; }
+.dmf-highlighted-code,.dmf-highlighted-code span { color:var(--shiki-light); }
+:root[data-theme="dark"] .dmf-highlighted-code,:root[data-theme="dark"] .dmf-highlighted-code span { color:var(--shiki-dark); }
+:root .dmf-ui[data-color-mode="dark"] .dmf-highlighted-code,:root .dmf-ui[data-color-mode="dark"] .dmf-highlighted-code span { color:var(--shiki-dark); }
+:root .dmf-ui[data-color-mode="light"] .dmf-highlighted-code,:root .dmf-ui[data-color-mode="light"] .dmf-highlighted-code span,
+:root .dmf-ui[data-system="cb-ui"] .dmf-highlighted-code,:root .dmf-ui[data-system="cb-ui"] .dmf-highlighted-code span,
+:root .dmf-ui[data-system="hui"] .dmf-highlighted-code,:root .dmf-ui[data-system="hui"] .dmf-highlighted-code span,
+:root .dmf-ui[data-system="qdi"] .dmf-highlighted-code,:root .dmf-ui[data-system="qdi"] .dmf-highlighted-code span { color:var(--shiki-light); }
+.dmf-highlighted-code .line { display:block; min-block-size:1lh; }
+.dmf-highlighted-code[data-numbered] .line::before { content:attr(data-code-line); display:inline-block; inline-size:3ch; margin-inline-end:1rem; color:var(--muted-foreground); text-align:end; user-select:none; }
+.dmf-highlighted-code .line[data-highlighted] { background:color-mix(in srgb,var(--foreground) 7%,transparent); }
+.dmf-code-tabs [data-slot="tabs-list"] { inline-size:fit-content; max-inline-size:100%; overflow-x:auto; }
+.dmf-code-tabs [data-slot="tabs-content"] { margin-block-start:.5rem; min-inline-size:0; }
+.dmf-ui [data-slot="code-block-content"]:focus-visible { outline:2px solid var(--foreground); outline-offset:-3px; }
+.dmf-highlighted-code code { display:grid; min-inline-size:max-content; }
+.dmf-highlighted-code[data-wrap] code { min-inline-size:0; }
+.dmf-ui [data-slot="card"]:has([data-slot="card-footer"]) { padding-block-end:0; }
+.dmf-ui [data-slot="card-footer"] { padding:var(--card-spacing,var(--dmf-card-padding)); border-block-start:1px solid var(--border); border-end-start-radius:var(--radius-xl); border-end-end-radius:var(--radius-xl); background:color-mix(in srgb,var(--muted) 50%,transparent); }
+.dmf-ui[data-system="cb-ui"] .dmf-react-switch input:checked+.dmf-react-switch-track .dmf-react-switch-thumb { background:var(--foreground); }

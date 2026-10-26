@@ -6,3 +6,5 @@ export { default as CodeBlockCopyButton } from "./code-block-copy-button.astro"
 export { default as CodeBlockContent } from "./code-block-content.astro"
 export { default as CodeBlockLine } from "./code-block-line.astro"
 export { default as CodeBlockFooter } from "./code-block-footer.astro"
+
+export { default as CodeSnippet } from "./code-snippet.astro"

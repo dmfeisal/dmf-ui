@@ -1,5 +1,6 @@
 ---
 import '../styles/documentation.css';
+import designProfile from '../../contracts/design-profile.json';
 import {House,Blocks,BookOpen,Palette,Search,Sun,Moon,Monitor,Star,X,Menu,ChevronDown} from '@lucide/astro';
 import GitHubMark from '../components/docs/assets/github.svg';
 import {Tooltip,TooltipTrigger,TooltipContent} from '../components/dmf-ui/tooltip';
@@ -19,7 +20,7 @@ const searchEntries=[
 ---
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="description" content={description}/><title>{title==='DMF UI'?title:`${title} · DMF UI`}</title></head>
-<body class="dmf-ui docs-shell">
+<body class="dmf-ui docs-shell" data-design-style={designProfile.style} data-base-color={designProfile.baseColor} data-theme-color={designProfile.theme}>
 <a href="#main" class="docs-skip">Skip to content</a>
 <header class="docs-header"><div class="docs-header-inner">
 <a href="/" class="docs-logo" aria-label="DMF UI Home">DMF UI</a>

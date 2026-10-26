@@ -250,3 +250,31 @@ html { scroll-padding-block-start:calc(var(--docs-header-height) + var(--docs-re
 .contract-controls label { max-inline-size:100%; }
 .contract-controls select { min-inline-size:0; inline-size:100%; }
 .brand-swatches code:focus { outline:2px solid var(--foreground); outline-offset:3px; }
+/* Nova documentation profile: compact rhythm, Neutral tokens and aligned tools. */
+html { font-size:100%; }
+.docs-shell { font-size:.875rem; --docs-radius-control:.5rem; --docs-radius-panel:.75rem; --docs-radius-dialog:1rem; }
+.docs-header-inner { min-block-size:64px; gap:16px; }
+.docs-header .docs-search-trigger,.docs-header .docs-github,.docs-header .docs-theme { box-sizing:border-box; block-size:32px; min-block-size:0; padding-block:0; align-items:center; border-radius:.5rem; font-size:.8125rem; }
+.docs-header .docs-search-trigger { padding-inline:10px; }
+.docs-header .docs-theme { inline-size:32px; padding-inline:0; }
+.docs-header .docs-github { padding-inline:8px; gap:8px; }
+.docs-header .docs-github>svg { inline-size:16px; block-size:16px; }
+.docs-header .dmf-navigation-menu a { block-size:32px; padding:.25rem .5rem; font-size:.875rem; }
+.docs-page h1 { font-size:clamp(1.875rem,3vw,2.25rem); line-height:1.2; letter-spacing:-.035em; margin-block-end:12px; }
+.docs-lead { font-size:1rem; line-height:1.7; }
+.docs-section { margin-block-start:32px; }
+.docs-section>h2,.docs-prose h2 { font-size:1.25rem; margin-block-end:16px; }
+.docs-prose p { line-height:1.75; }
+.docs-entry { padding:16px; }
+.docs-sidebar a,.docs-toc a,.docs-mobile-navigation a { padding-block:6px; font-size:.875rem; }
+.docs-preview { padding:24px; }
+.docs-code { font-size:.8125rem; border-radius:var(--radius-lg); }
+.docs-page .dmf-code-snippet { margin-block:16px; }
+.docs-page .dmf-code-snippet .docs-code { padding:.875rem 1rem; border:0; border-radius:0; background:transparent; }
+.docs-hero h1 { font-size:clamp(2.75rem,6vw,5rem); }
+@media(max-width:760px) { .docs-header-inner { min-block-size:0; } .docs-header .docs-search-trigger { inline-size:32px; padding:0; justify-content:center; } .docs-preview { padding:16px; } }
+.docs-header .docs-search-trigger,.docs-header .docs-github,.docs-header .docs-theme { line-height:1; }
+.docs-header .docs-github-stars { font-size:.75rem; line-height:1; }
+.contract-controls { align-items:end; padding:12px; gap:12px; font-size:.8125rem; }
+.contract-controls select { block-size:32px; padding:4px 8px; line-height:1; }
+.contract-controls .docs-note { margin:0; font-size:.8125rem; line-height:1.5; }

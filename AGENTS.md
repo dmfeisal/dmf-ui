@@ -13,3 +13,9 @@ Never expand these abbreviations into client or company identities. Apply this r
 ## Natural sizing
 
 Do not impose a blanket 44px mobile/touch minimum width or height. Use component variants, content and padding for natural sizing, preserving keyboard behavior and visible focus.
+
+## Default design profile
+
+Use Nova style with Neutral base color and Neutral theme by default. shadcn/ui is a primary reference for visual specifications and documentation design; Fulldev UI remains a primary Astro source reference. Preserve natural sizing. Header search, GitHub and theme controls share a 32px height.
+
+CB and HUI filled primary actions use white text by explicit owner preference. Preserve the unchanged brand fills and record contrast exceptions instead of silently reverting those labels to black. Code examples use the shared source-owned Code Block compositions.

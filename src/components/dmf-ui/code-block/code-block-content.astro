@@ -1,12 +1,15 @@
 ---
 /* eslint-disable astro/jsx-a11y/no-noninteractive-tabindex -- Focusable code supports keyboard scrolling, as in shadcn/ui. */
-import type { HTMLAttributes } from "astro/types"
+import {Code as AstroCode} from "astro:components"
+import type { ComponentProps, HTMLAttributes } from "astro/types"
 
 import { cn } from "../utils"
 
 import CodeBlockLine from "./code-block-line.astro"
 
 type Props = HTMLAttributes<"pre"> & {
+  language?: "astro" | "tsx" | "ts" | "jsx" | "js" | "css" | "json" | "bash" | "html" | "text"
+  highlightedLines?: number[]
   code?: string
   wrap?: boolean
   lineNumbers?: boolean
@@ -16,6 +19,9 @@ type Props = HTMLAttributes<"pre"> & {
 const {
   class: className,
   code,
+  language,
+  lang: htmlLang,
+  highlightedLines = [],
   wrap = false,
   lineNumbers = false,
   startLine = 1,
@@ -23,13 +29,17 @@ const {
   ...props
 } = Astro.props
 
+if(!Number.isInteger(startLine)||startLine<1)throw new Error("CodeBlock startLine must be a positive integer.")
+if(highlightedLines.some(line=>!Number.isInteger(line)||line<1))throw new Error("Highlighted line numbers must be positive integers.")
+const transformers:ComponentProps<typeof AstroCode>["transformers"]=[{pre(node){if(htmlLang)node.properties.lang=htmlLang;},line(node,line){node.properties["data-code-line"]=line+startLine-1;if(highlightedLines.includes(line+startLine-1))node.properties["data-highlighted"]="";}}]
 const contentStyle =
   typeof style === "string"
     ? `counter-reset: line ${startLine - 1}; ${style}`
     : { counterReset: `line ${startLine - 1}`, ...style }
 ---
 
-<pre
+{language&&code!==undefined?<AstroCode code={code} lang={language} themes={{light:"github-light-high-contrast",dark:"github-dark-high-contrast"}} defaultColor={false} transformers={transformers} wrap={wrap} data-slot="code-block-content" data-wrap={wrap||undefined} data-numbered={lineNumbers||undefined} dir="ltr" tabindex="0" style={contentStyle} class={cn("dmf-highlighted-code",className)} {...props}/>:<pre
+  lang={htmlLang}
   data-slot="code-block-content"
   data-wrap={wrap || undefined}
   data-numbered={lineNumbers || undefined}
@@ -41,4 +51,4 @@ const contentStyle =
     className
   )}
   {...props}
-><code data-slot="code-block-code" class="grid min-h-lh min-w-max content-start in-data-numbered:grid-cols-[auto_1fr] in-data-wrap:min-w-0">{code !== undefined ? lineNumbers ? code.replace(/\n$/, "").split("\n").map((line) => <CodeBlockLine>{line}</CodeBlockLine>) : code : <slot />}</code></pre>
+><code data-slot="code-block-code" class="grid min-h-lh min-w-max content-start in-data-numbered:grid-cols-[auto_1fr] in-data-wrap:min-w-0">{code !== undefined ? lineNumbers ? code.replace(/\n$/, "").split("\n").map((line) => <CodeBlockLine>{line}</CodeBlockLine>) : code : <slot />}</code></pre>}

@@ -35,3 +35,7 @@ Select, Popover and Dropdown Menu propagate the CB preset and light color mode o
 Keep product-specific patterns and governance separate from the shared implementation. The next step after this source-owned proof is a separately built consumer and a deliberate production component migration, not an automatic rewrite of historical product documentation.
 
 The 0.1.1 accessibility follow-up raises shared inactive Tabs text opacity without changing the CB primary color. See `DMF-UI-ACCESSIBILITY.md` for measured failures, regression coverage and manual verification gaps.
+
+## Current Nova profile
+
+The current default profile is Nova/Neutral. CB and HUI filled primary actions now use white labels by owner preference, superseding the earlier foreground mapping described above. Palette values remain unchanged. The known normal-text contrast exceptions and current verification are recorded in DMF-UI-NOVA.md.

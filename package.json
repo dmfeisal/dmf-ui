@@ -170,7 +170,10 @@
     "./foundations": "./tokens/foundations.json",
     "./contracts/catalog": "./contracts/catalog.json",
     "./contracts/brands": "./contracts/brands.json",
-    "./presets/qdi.css": "./src/styles/dmf-ui-qdi.css"
+    "./presets/qdi.css": "./src/styles/dmf-ui-qdi.css",
+    "./design-profile": "./contracts/design-profile.json",
+    "./code-tabs": "./src/components/dmf-ui/code-tabs/index.ts",
+    "./command-block": "./src/components/dmf-ui/command-block/index.ts"
   },
   "files": [
     "contracts/*.json",

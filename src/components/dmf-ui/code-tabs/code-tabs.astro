@@ -1,0 +1,9 @@
+---
+import type {ComponentProps} from 'astro/types';
+import {Tabs,TabsList,TabsTrigger,TabsContent} from '../tabs';
+import {CodeSnippet} from '../code-block';
+interface Props {id:string;label?:string;defaultValue?:string;items:{value:string;label:string;code:string;language?:ComponentProps<typeof CodeSnippet>['language'];title?:string}[];}
+const {id,label='Code examples',items,defaultValue=items[0]?.value}=Astro.props;
+if(!id?.trim()||!items.length||new Set(items.map(item=>item.value)).size!==items.length||items.some(item=>!item.value.trim()||!item.label.trim())||!items.some(item=>item.value===defaultValue))throw new Error('CodeTabs requires an id, unique labeled items and a matching default value.');
+---
+<div data-slot="code-tabs"><Tabs id={id} defaultValue={defaultValue} class="dmf-code-tabs"><TabsList aria-label={label}>{items.map(item=><TabsTrigger value={item.value}>{item.label}</TabsTrigger>)}</TabsList>{items.map(item=><TabsContent value={item.value}><CodeSnippet code={item.code} language={item.language??'text'} title={item.title??item.label} id={`${id}-${item.value}-code`}/></TabsContent>)}</Tabs></div>

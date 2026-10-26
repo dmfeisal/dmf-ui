@@ -8,6 +8,8 @@ import { Button, type ButtonVariantProps } from "../button"
 
 type Props = Omit<HTMLAttributes<"button">, "value" | "type"> &
   ButtonVariantProps & {
+    targetId?: string
+    statusId?: string
     value: string
     copyLabel?: string
     copiedLabel?: string
@@ -17,6 +19,8 @@ type Props = Omit<HTMLAttributes<"button">, "value" | "type"> &
 const {
   class: className,
   value,
+  targetId,
+  statusId,
   variant = "ghost",
   size = "icon-xs",
   copyLabel = "Copy",
@@ -28,10 +32,14 @@ const {
 
 <Button
   data-slot="code-block-copy-button"
+  hidden
+  data-code-copy
+  data-copy-target={targetId}
   data-copy-value={value}
   data-copy-label={copyLabel}
   data-copied-label={copiedLabel}
   data-error-label={errorLabel}
+  title={copyLabel}
   aria-label={copyLabel}
   variant={variant}
   size={size}
@@ -44,9 +52,12 @@ const {
     class="hidden group-data-copied/code-copy:block"
   />
 </Button>
-<span data-copy-status aria-live="polite" class="sr-only"></span>
+<span id={statusId} role="status" data-copy-status aria-live="polite" class="sr-only"></span>
 
 <script>
+  function initialize(){for(const button of document.querySelectorAll<HTMLButtonElement>('[data-code-copy]'))button.hidden=false;}
+  initialize();document.addEventListener('astro:page-load',initialize);
+  const requests=new WeakMap<HTMLButtonElement,number>();
   const timers = new Map<HTMLButtonElement, ReturnType<typeof setTimeout>>()
   document.addEventListener("click", async (event) => {
     if (!(event.target instanceof Element)) return
@@ -54,13 +65,14 @@ const {
       "[data-slot=code-block-copy-button]"
     )
     if (!button || button.disabled || event.defaultPrevented) return
+    const request=(requests.get(button)??0)+1;requests.set(button,request);
     const status = button.nextElementSibling
     try {
       await navigator.clipboard.writeText(button.dataset.copyValue ?? "")
-      if (!button.isConnected) return
+      if (!button.isConnected||requests.get(button)!==request) return
       clearTimeout(timers.get(button))
       button.dataset.copied = ""
-      button.setAttribute("aria-label", button.dataset.copiedLabel ?? "Copied")
+      button.setAttribute("aria-label", button.dataset.copyLabel ?? "Copy")
       if (status) status.textContent = button.dataset.copiedLabel ?? "Copied"
       timers.set(
         button,
@@ -72,13 +84,15 @@ const {
         }, 2000)
       )
     } catch {
-      if (!button.isConnected) return
+      if (!button.isConnected||requests.get(button)!==request) return
       clearTimeout(timers.get(button))
       timers.delete(button)
       delete button.dataset.copied
       button.setAttribute("aria-label", button.dataset.copyLabel ?? "Copy")
-      if (status)
-        status.textContent = button.dataset.errorLabel ?? "Could not copy"
+      const target=button.dataset.copyTarget?document.getElementById(button.dataset.copyTarget):button.closest('[data-slot=code-block]')?.querySelector<HTMLElement>('[data-slot=code-block-content]');
+      target?.focus();
+      if(target){const selection=getSelection(),range=document.createRange();range.selectNodeContents(target.querySelector('code')??target);selection?.removeAllRanges();selection?.addRange(range);}
+      if (status) status.textContent = button.dataset.errorLabel ?? "Could not copy"
     }
   })
   document.addEventListener("astro:before-swap", () => {

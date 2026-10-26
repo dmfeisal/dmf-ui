@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "style": "nova",
+  "baseColor": "neutral",
+  "theme": "neutral",
+  "adapter": "source-owned Astro; separate React web alpha",
+  "references": [
+    {
+      "name": "shadcn/ui",
+      "role": "primary design/specification/documentation reference",
+      "repository": "https://github.com/shadcn-ui/ui",
+      "revision": "481d523374745e77d0cf9c53a4115ab5dd7c8481",
+      "license": "MIT",
+      "files": [
+        {
+          "path": "vendor/shadcn/style-nova.css",
+          "source": "apps/v4/registry/styles/style-nova.css",
+          "sha256": "fd9803ec398290c306b377a46a769cad0c7ff024bf6a626993c113cacc20f16e"
+        },
+        {
+          "path": "vendor/shadcn/radix-nova--button.tsx.txt",
+          "source": "packages/registry/test/fixtures/transform-corpus/radix-nova--button.tsx",
+          "sha256": "08e5f87833c5db8436e89337ebde0f776bcdbf649d3de69fb89be6441ca2e366"
+        },
+        {
+          "path": "vendor/shadcn/theming.mdx",
+          "source": "apps/v4/content/docs/(root)/theming.mdx",
+          "sha256": "403a71fea629dd9d5eebdf3656baab6b8550972adfb4fc5ed0847d13b3dc73f0"
+        },
+        {
+          "path": "vendor/shadcn/mdx-components.tsx.txt",
+          "source": "apps/v4/mdx-components.tsx",
+          "sha256": "5291af65804acc33004de4f809087ee1898dcc1bacba1e6145777feea84448a1"
+        },
+        {
+          "path": "vendor/shadcn/LICENSE.md",
+          "source": "LICENSE.md",
+          "sha256": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f"
+        }
+      ]
+    },
+    {
+      "name": "Fulldev UI",
+      "role": "primary Astro source/adaptation reference",
+      "record": "docs/DMF-UI-FULLDEV-CATALOG.json"
+    }
+  ],
+  "boundaries": [
+    "Nova style is adapted onto the existing Astro/native/Data Slot behavior. This is not the React shadcn CLI runtime.",
+    "CB/HUI white primary labels are an explicit owner choice with measured contrast exceptions on unchanged brand fills.",
+    "Natural component sizing remains; no blanket mobile minimum."
+  ],
+  "referenceStyle": "base-nova"
+}

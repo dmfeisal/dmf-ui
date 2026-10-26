@@ -35,12 +35,14 @@ test('migration retains the exact token inventory of the 0.2.0 foundation and CB
   assert.deepEqual(names(outputs[output]),names(await readFile(new URL(`./fixtures/tokens/${fixture}`,import.meta.url),'utf8')));
  }
 });
-test('HUI preserves brand values with readable action pairs and local exported fonts',async()=>{
+test('HUI preserves palette/fonts and records owner-selected white primary labels',async()=>{
  const outputs=compileTokens(source),g=JSON.parse(outputs['tokens/resolved.json']).groups['hui.light'];
  for(const [name,hex] of Object.entries({'off-red':'#ec2a00',amber:'#ffb800',white:'#ffffff','egyptian-blue':'#29329b','kelly-green':'#63c132','eerie-black':'#232323'}))assert.equal(g[`hui-${name}`].value.hex,hex);
  const luminance=value=>value.components.map(n=>n<=.04045?n/12.92:((n+.055)/1.055)**2.4).reduce((sum,n,i)=>sum+n*[.2126,.7152,.0722][i],0);
  const ratio=(a,b)=>{const x=luminance(g[a].value),y=luminance(g[b].value);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);};
- for(const [fg,bg] of [['primary-foreground','primary'],['secondary-foreground','secondary'],['muted-foreground','muted'],['fd-link','background']])assert(ratio(fg,bg)>=4.5,`${fg}/${bg}`);
+ for(const [fg,bg] of [['secondary-foreground','secondary'],['muted-foreground','muted'],['fd-link','background']])assert(ratio(fg,bg)>=4.5,`${fg}/${bg}`);
+ assert.equal(g['primary-foreground'].value.hex,'#ffffff');
+ assert(ratio('primary-foreground','primary')<4.5,'Owner-selected white text contrast exception must remain explicit.');
  assert.match(outputs['src/styles/dmf-ui-hui.css'],/:root \.dmf-ui\[data-system="hui"\]/);
  assert(g['font-heading'].value.includes('DMF HUI Rounded Mplus'));
  const pkg=JSON.parse(await readFile('package.json','utf8'));assert.equal(pkg.exports['./presets/hui.css'],'./src/styles/dmf-ui-hui.css');

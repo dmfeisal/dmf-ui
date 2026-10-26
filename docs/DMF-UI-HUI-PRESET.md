@@ -38,3 +38,7 @@ Astro check passed across 190 files with zero errors, warnings or hints. The pro
 Isolated Chrome passed Create and global-search flows on both the production build and localhost development server, with no page errors or failed document/script/style requests. Create's seven axe states had zero violations and zero incomplete checks: default, customized DMF dark, CB RTL, HUI RTL, HUI inside a dark page, HUI mobile RTL and default mobile RTL. Actual local Inter and Rounded Mplus face loading was verified. Share restoration, JSON contents, export instructions, primary action feedback, reset and mobile containment passed.
 
 These are Chromium checks. Safari/Firefox, spoken screen readers and other-script typography remain pending.
+
+## Current Nova profile
+
+The current default profile is Nova/Neutral. CB and HUI filled primary actions now use white labels by owner preference, superseding the earlier foreground mapping described above. Palette values remain unchanged. The known normal-text contrast exceptions and current verification are recorded in DMF-UI-NOVA.md.

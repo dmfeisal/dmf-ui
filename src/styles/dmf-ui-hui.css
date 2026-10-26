@@ -22,7 +22,7 @@
   --popover: var(--hui-white);
   --popover-foreground: var(--hui-eerie-black);
   --primary: var(--hui-off-red);
-  --primary-foreground: #000000;
+  --primary-foreground: #ffffff;
   --secondary: var(--hui-amber);
   --secondary-foreground: var(--hui-eerie-black);
   --muted: #f5f5f5;
@@ -41,7 +41,7 @@
   --sidebar: var(--hui-white);
   --sidebar-foreground: var(--hui-eerie-black);
   --sidebar-primary: var(--hui-off-red);
-  --sidebar-primary-foreground: #000000;
+  --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #eef0ff;
   --sidebar-accent-foreground: var(--hui-egyptian-blue);
   --sidebar-border: #d4d4d4;

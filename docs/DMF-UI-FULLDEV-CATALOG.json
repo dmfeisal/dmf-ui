@@ -258,12 +258,12 @@
         {
           "path": "src/components/dmf-ui/code-block/code-block-content.astro",
           "upstreamSha256": "d41fe3ce04e28bbca184649f51c85aa3ec982407752ddba05280cc442d3d8b93",
-          "adoptedSha256": "3330c0a2d7ef064ae8110137b96b2264fb53e77ab51fea99333d431c314b528b"
+          "adoptedSha256": "4c579985548ea509c78c2bc53db12eeafee74b6d6fcb4b9f155e9f38f1ebdb07"
         },
         {
           "path": "src/components/dmf-ui/code-block/code-block-copy-button.astro",
           "upstreamSha256": "19158df4d47d081af443d5e2f19334a179a6dc34f7a533331b09ec2601d8db25",
-          "adoptedSha256": "af685fe5be38dd5895b1340d3e83b02b1c839f3d03f9835df9e9e9723b4004a4"
+          "adoptedSha256": "3d3bdd08b49cd63515a50bddc0707ef16c43ec0d32c378a352b495648bc92dff"
         },
         {
           "path": "src/components/dmf-ui/code-block/code-block-footer.astro",
@@ -273,7 +273,7 @@
         {
           "path": "src/components/dmf-ui/code-block/code-block-header.astro",
           "upstreamSha256": "68348a1572ab5b06b5043323b85f38e06de464d8905549894185702c4d26a56f",
-          "adoptedSha256": "86427981d9596ffb42059fe3ca87e3eb15abbc89cf1a829a601ac680afeb281e"
+          "adoptedSha256": "7ad2dd133ce53ef7e5eac4e6b22cfaa4471d522ef30d4be07f230604f3217322"
         },
         {
           "path": "src/components/dmf-ui/code-block/code-block-line.astro",
@@ -293,7 +293,7 @@
         {
           "path": "src/components/dmf-ui/code-block/index.ts",
           "upstreamSha256": "0a214fe11e8c36116e13c06805eafa7b95585ff9e2f3baed853e10aa52aea1ac",
-          "adoptedSha256": "0a214fe11e8c36116e13c06805eafa7b95585ff9e2f3baed853e10aa52aea1ac"
+          "adoptedSha256": "046893f8342670b14f733526a8e786bb67b2d642bbdcf017cf76e0b0cef48096"
         }
       ],
       "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/code-block.json"
