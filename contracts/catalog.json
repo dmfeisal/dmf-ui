@@ -1,6 +1,35 @@
 {
   "blocks": [
     {
+      "slug": "merchant-card",
+      "title": "MerchantCard",
+      "category": "Food Discovery",
+      "description": "A linked merchant summary adapted from the owner-selected HUI design, with a photo strip and compact review badge.",
+      "components": [
+        "Card",
+        "Text"
+      ],
+      "limitations": "Merchant facts, verification, imagery and destinations belong to the host. No live opening-hours, distance, pricing, ratings service or photo provider is included. Icon URLs are host-supplied local assets for portable SSR.",
+      "entry": "dmf-ui/blocks",
+      "framework": "Astro",
+      "source": "src/components/dmf-ui/blocks/merchant-card.astro",
+      "sha256": "b61d43d09cd3e1c589a6f5a91fe27e135ce0d8bb9ce2fbd91f1f7b9c183a932e",
+      "declaration": "interface Props extends Omit<HTMLAttributes<'article'>,'id'|'children'> {\n id:string;name:string;href:string;headingLevel?:'h2'|'h3'|'h4';\n photos:readonly {src:string;alt:string}[];icons:{verified:string;hours:string;distance:string;star:string};\n verified?:boolean;verifiedLabel?:string;statusText?:string;statusTone?:'neutral'|'open'|'closed';distanceText?:string;\n priceLevel?:1|2|3|4|5;priceLabel?:string;cuisines?:string;address?:string;\n rating?:number;reviewCount?:number;ratingLabel?:string;reviewsLabel?:string;locale?:string;photoFallback?:string;\n}",
+      "defaults": {
+        "headingLevel": "'h3'",
+        "verified": "false",
+        "verifiedLabel": "'Verified merchant'",
+        "statusTone": "'neutral'",
+        "ratingLabel": "'Rating'",
+        "reviewsLabel": "'reviews'",
+        "locale": "'en'",
+        "photoFallback": "'No photos supplied'"
+      },
+      "slots": [],
+      "status": "partial",
+      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
+    },
+    {
       "slug": "merchant-listing",
       "title": "MerchantListingBlock",
       "category": "Food Discovery",
@@ -269,6 +298,20 @@
         ],
         "status": "experimental",
         "stateOwnership": "Host owns items, stable keys, item rendering, status, pagination and data services."
+      },
+      {
+        "name": "MerchantCard",
+        "entry": "@dmf-ui/react",
+        "source": "packages/react/src/blocks/merchant-card.tsx",
+        "sha256": "03b49d21161753b173749b0e0e6887ca06aa93a873092d340a43c57bc7ea49ff",
+        "types": [
+          {
+            "name": "MerchantCardProps",
+            "declaration": "export type MerchantCardProps=Omit<ComponentPropsWithRef<'article'>,'id'|'children'> & {\n id:string;name:string;href:string;headingLevel?:'h2'|'h3'|'h4';\n photos:readonly {src:string;alt:string}[];icons:{verified:string;hours:string;distance:string;star:string};\n verified?:boolean;verifiedLabel?:string;statusText?:string;statusTone?:'neutral'|'open'|'closed';distanceText?:string;\n priceLevel?:1|2|3|4|5;priceLabel?:string;cuisines?:string;address?:string;\n rating?:number;reviewCount?:number;ratingLabel?:string;reviewsLabel?:string;locale?:string;photoFallback?:string;\n};"
+          }
+        ],
+        "status": "experimental",
+        "stateOwnership": "Host supplies merchant data, photo/icon URLs, verification and native destination; no business services."
       }
     ],
     "package": "@dmf-ui/react",
@@ -311,7 +354,8 @@
       "SelectGroup",
       "SignInBlock",
       "HeroBlock",
-      "MerchantListingBlock"
+      "MerchantListingBlock",
+      "MerchantCard"
     ],
     "types": [
       {
@@ -460,7 +504,7 @@
       }
     ],
     "source": "packages/react/src/index.tsx",
-    "sha256": "cd1760296ccd047770b103e03290981ad9568b9fd2583b003f8e60d18181dc76",
+    "sha256": "e9d0f986393f40144b2a15c5f2fb53d028ae7febe3a245bf922aec236964d042",
     "status": "separate-web-alpha",
     "note": "React native props and controlled/uncontrolled patterns differ from Astro. No Astro parity claim."
   },
@@ -4354,11 +4398,13 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/blocks.test.mjs",
           "tests/content.test.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-content-docs.mjs",
           "tests/browser/dmf-ui-content.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
+          "tests/browser/dmf-ui-merchant-card-consumer.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
           "tests/browser/dmf-ui-selection.mjs"
         ]
@@ -11949,6 +11995,7 @@
           "tests/browser/dmf-ui-foundations.mjs",
           "tests/browser/dmf-ui-icons.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
+          "tests/browser/dmf-ui-merchant-card-consumer.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-selection.mjs"
@@ -12185,6 +12232,7 @@
           "tests/structure.test.mjs",
           "tests/browser/dmf-ui-fulldev-catalog.mjs",
           "tests/browser/dmf-ui-hero-docs.mjs",
+          "tests/browser/dmf-ui-merchant-card-consumer.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/native-dropdown-contrast.mjs"
         ]
@@ -22869,6 +22917,7 @@
           "tests/browser/dmf-ui-hero-consumer.mjs",
           "tests/browser/dmf-ui-icons.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
+          "tests/browser/dmf-ui-merchant-card-consumer.mjs",
           "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-navigation-components.mjs",

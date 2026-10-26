@@ -16,3 +16,7 @@ export {App,identifierPrefix};
 import {ListingProof} from './ListingProof';
 export function renderListing(){return renderToString(<StrictMode><ListingProof/></StrictMode>,{identifierPrefix:'listing-'});}
 export {ListingProof};
+
+import {CardProof} from './CardProof';
+export function renderCard(){return renderToString(<StrictMode><CardProof/></StrictMode>,{identifierPrefix:'card-'});}
+export {CardProof};

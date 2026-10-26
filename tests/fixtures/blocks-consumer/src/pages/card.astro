@@ -1,0 +1,14 @@
+---
+import {MerchantCard} from 'dmf-ui/blocks';
+import verified from 'dmf-ui/assets/merchant-card/verified.svg?url';
+import hours from 'dmf-ui/assets/merchant-card/hours.svg?url';
+import distance from 'dmf-ui/assets/merchant-card/distance.svg?url';
+import star from 'dmf-ui/assets/merchant-card/star.svg?url';
+import first from 'dmf-ui/assets/examples/merchant-card/photo-1.png?url';
+import second from 'dmf-ui/assets/examples/merchant-card/photo-2.png?url';
+import third from 'dmf-ui/assets/examples/merchant-card/photo-3.png?url';
+import 'dmf-ui/styles.css';
+const icons={verified,hours,distance,star};
+---
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Packed Astro card proof</title></head><body class="dmf-ui" data-system="hui" data-color-mode="light"><main><h1>Merchant card proof</h1><p>Authored reference content, not live merchant information.</p><div style="width:328px;max-width:100%"><MerchantCard headingLevel="h2" id="reference-card" name="Rush Hour Kelapa Gading" href="#details" icons={icons} photos={[first,second,third].map((src,n)=>({src,alt:`Supplied reference photo ${n+1}`}))} verified statusText="Opens till 22:00" statusTone="open" distanceText="0.5 Km" priceLevel={2} cuisines="Steak, Argentinian" address="Jl. Boulevard Kelapa Gading no. 34, Kelapa Gading Bagus" rating={4.8} reviewCount={1235} locale="id-ID"/></div><section id="details"><h2>Reference destination</h2></section></main></body></html>
+<style is:global>html{font-size:100%}body{margin:0}main{padding:20px}</style>

@@ -65,6 +65,9 @@ try{
  }
  await mkdir(join(scratch,'public'),{recursive:true});
  await cp(join(scratch,'node_modules/dmf-ui/src/assets/examples/component-demo.svg'),join(scratch,'public/component-demo.svg'));
+ await mkdir(join(scratch,'public/merchant-card'),{recursive:true});
+ for(const name of ['verified','hours','distance','star'])await cp(join(scratch,`node_modules/dmf-ui/src/assets/merchant-card/${name}.svg`),join(scratch,`public/merchant-card/${name}.svg`));
+ for(const n of [1,2,3])await cp(join(scratch,`node_modules/dmf-ui/src/assets/examples/merchant-card/photo-${n}.png`),join(scratch,`public/merchant-card/photo-${n}.png`));
  await run(npm,['run','build'],scratch);
  await run(npm,['test'],scratch);
  console.log(`PASS packed React consumer: ${scratch}`);

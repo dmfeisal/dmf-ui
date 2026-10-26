@@ -6,6 +6,8 @@ export {HeroBlock} from './blocks/hero';
 export type {HeroBlockProps} from './blocks/hero';
 export {MerchantListingBlock} from './blocks/merchant-listing';
 export type {MerchantListingBlockProps} from './blocks/merchant-listing';
+export {MerchantCard} from './blocks/merchant-card';
+export type {MerchantCardProps} from './blocks/merchant-card';
 import { buttonVariants } from 'dmf-ui/button/variants';
 const join = (...parts:(string|undefined|null|false)[]) => parts.filter(Boolean).join(' ');
 export type ButtonProps = ComponentPropsWithRef<'button'> & Parameters<typeof buttonVariants>[0];

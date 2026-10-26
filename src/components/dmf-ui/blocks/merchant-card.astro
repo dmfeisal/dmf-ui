@@ -1,0 +1,29 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {Card} from '../card';
+import {Text} from '../text';
+import {cn} from '../utils';
+interface Props extends Omit<HTMLAttributes<'article'>,'id'|'children'> {
+ id:string;name:string;href:string;headingLevel?:'h2'|'h3'|'h4';
+ photos:readonly {src:string;alt:string}[];icons:{verified:string;hours:string;distance:string;star:string};
+ verified?:boolean;verifiedLabel?:string;statusText?:string;statusTone?:'neutral'|'open'|'closed';distanceText?:string;
+ priceLevel?:1|2|3|4|5;priceLabel?:string;cuisines?:string;address?:string;
+ rating?:number;reviewCount?:number;ratingLabel?:string;reviewsLabel?:string;locale?:string;photoFallback?:string;
+}
+const {id,name,href,headingLevel='h3',photos,icons,verified=false,verifiedLabel='Verified merchant',statusText,statusTone='neutral',distanceText,priceLevel,priceLabel,cuisines,address,rating,reviewCount,ratingLabel='Rating',reviewsLabel='reviews',locale='en',photoFallback='No photos supplied',class:className,...props}=Astro.props;
+if(!id?.trim()||!name?.trim()||!href?.trim())throw Error('MerchantCard needs a unique id, name and destination.');
+if(photos.length>3||photos.some(p=>!p.src.trim())||[icons?.verified,icons?.hours,icons?.distance,icons?.star].some(src=>!src?.trim()))throw Error('MerchantCard supports up to three authored photos and nonempty icon sources.');
+if(!['h2','h3','h4'].includes(headingLevel)||!['neutral','open','closed'].includes(statusTone)||(priceLevel!==undefined&&(!Number.isInteger(priceLevel)||priceLevel<1||priceLevel>5))||(rating!==undefined&&(!Number.isFinite(rating)||rating<0||rating>5))||(reviewCount!==undefined&&(!Number.isInteger(reviewCount)||reviewCount<0||rating===undefined)))throw Error('MerchantCard received invalid heading, status, price or rating data.');
+const score=rating===undefined?'':new Intl.NumberFormat('en',{maximumFractionDigits:1}).format(rating),reviews=reviewCount===undefined?'':new Intl.NumberFormat(locale).format(reviewCount);
+---
+<article {...props} id={id} data-slot="merchant-card" class={cn('dmf-merchant-card',className)} aria-labelledby={`${id}-name`}>
+ <Card><div class="dmf-merchant-photos" data-photo-count={photos.length}>{photos.length?photos.map(photo=><div class="dmf-merchant-photo"><img src={photo.src} alt={photo.alt} loading="lazy" decoding="async"/></div>):<p class="dmf-merchant-photo-fallback">{photoFallback}</p>}</div>
+  <div class="dmf-merchant-footer"><div class="dmf-merchant-title-row"><Text as={headingLevel} id={`${id}-name`} weight="semibold" class="dmf-merchant-name"><a href={href}>{name}</a></Text>{verified&&<img class="dmf-merchant-icon" src={icons.verified} alt={verifiedLabel}/>}</div>
+   <div class="dmf-merchant-details"><div class="dmf-merchant-meta">
+    {(statusText||distanceText)&&<div class="dmf-merchant-facts">{statusText&&<span data-status-tone={statusTone}><img src={icons.hours} alt=""/>{statusText}</span>}{distanceText&&<span class="dmf-merchant-distance"><img src={icons.distance} alt=""/>{distanceText}</span>}</div>}
+    {(priceLevel!==undefined||cuisines)&&<div class="dmf-merchant-category">{priceLevel!==undefined&&<span class="dmf-merchant-price" role="img" aria-label={priceLabel??`Price level ${priceLevel} of 5`}><span aria-hidden="true">{[1,2,3,4,5].map(n=><span data-active={n<=priceLevel?'true':undefined}>$</span>)}</span></span>}{cuisines&&<span>{cuisines}</span>}</div>}
+    {address&&<p class="dmf-merchant-address" title={address}>{address}</p>}
+   </div>{rating!==undefined&&<div class="dmf-merchant-rating" role="img" aria-label={`${ratingLabel}: ${score} / 5${reviewCount===undefined?'':`; ${reviews} ${reviewsLabel}`}`}><div class="dmf-merchant-score" aria-hidden="true"><img src={icons.star} alt=""/><span>{score}</span></div>{reviewCount!==undefined&&<div class="dmf-merchant-reviews" aria-hidden="true">{reviews}</div>}</div>}</div>
+  </div>
+ </Card>
+</article>

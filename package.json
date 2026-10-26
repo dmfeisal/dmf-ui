@@ -74,6 +74,8 @@
     "node": ">=22.12.0"
   },
   "exports": {
+    "./assets/merchant-card/*": "./src/assets/merchant-card/*",
+    "./assets/examples/merchant-card/*": "./src/assets/examples/merchant-card/*",
     ".": "./src/components/dmf-ui/index.ts",
     "./button": "./src/components/dmf-ui/button/index.ts",
     "./checkbox": "./src/components/dmf-ui/checkbox/index.ts",

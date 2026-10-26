@@ -1,3 +1,5 @@
+MerchantCard follow-up, 27 October 2026: the supplied Figma card is available through both adapters. There are now 14 React component families and four Blocks, totaling 39 named exports. See [MerchantCard](DMF-UI-MERCHANT-CARD.md) for assets, design mapping and verification.
+
 # React web alpha
 
 Merchant listing follow-up, 26 October 2026: MerchantListingBlock adds generic item/key/render callbacks and host-owned ready/loading/error presentation. There are 14 component families and three Blocks, totaling 38 named component/Block exports. No merchant service, schema, Card export, dependency or version change is introduced. See [listing composition](DMF-UI-MERCHANT-LISTING.md).
