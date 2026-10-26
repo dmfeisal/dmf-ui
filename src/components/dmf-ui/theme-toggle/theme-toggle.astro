@@ -1,0 +1,16 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {Sun,Moon} from '@lucide/astro';
+import {Button} from '../button';
+import type {ButtonVariantProps} from '../button/button-variants';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'button'>&ButtonVariantProps;
+const {class:className,variant='ghost',size='icon',disabled=false,...props}=Astro.props;
+---
+<Button {...props} type="button" data-dmf-theme-toggle data-theme-disabled={String(disabled)} disabled aria-label={props['aria-label']??'Dark theme'} aria-pressed="false" title="Switch theme" variant={variant} size={size} class={cn('dmf-theme-toggle',className)}><span data-theme-light><Sun size={18} aria-hidden="true"/></span><span data-theme-dark hidden><Moon size={18} aria-hidden="true"/></span></Button>
+<script>
+ const bindings=new Map<HTMLButtonElement,AbortController>();
+ function sync(){const dark=document.documentElement.dataset.theme==='dark';for(const button of bindings.keys()){button.setAttribute('aria-pressed',String(dark));button.title=dark?'Switch to light theme':'Switch to dark theme';button.querySelector('[data-theme-light]')?.toggleAttribute('hidden',dark);button.querySelector('[data-theme-dark]')?.toggleAttribute('hidden',!dark);}}
+ function initialize(){for(const button of document.querySelectorAll<HTMLButtonElement>('[data-dmf-theme-toggle]')){if(bindings.has(button))continue;const abort=new AbortController();bindings.set(button,abort);button.addEventListener('click',()=>{const theme=document.documentElement.dataset.theme==='dark'?'light':'dark';const request=new CustomEvent('dmf:theme-request',{detail:{theme},cancelable:true});if(document.dispatchEvent(request))document.documentElement.dataset.theme=theme;},{signal:abort.signal});button.disabled=button.dataset.themeDisabled==='true';}sync();}
+ const observer=new MutationObserver(sync);observer.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});initialize();document.addEventListener('astro:page-load',initialize);document.addEventListener('astro:before-swap',()=>{for(const abort of bindings.values())abort.abort();bindings.clear();});
+</script>

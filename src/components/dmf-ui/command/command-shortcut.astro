@@ -1,0 +1,17 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"span">
+
+const { class: className, ...props } = Astro.props
+---
+
+<span
+  data-slot="command-shortcut"
+  class={cn("text-muted-foreground group-data-selected/command-item:text-foreground ml-auto text-xs tracking-widest", className)}
+  {...props}
+>
+  <slot />
+</span>

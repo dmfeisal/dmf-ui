@@ -1,0 +1,89 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "../utils"
+
+import {
+  formatPriceDiscount,
+  formatPriceValue,
+  parseSinglePriceValue,
+  type DiscountFormat,
+  type PriceValue,
+} from "./format-price-value"
+
+type Props = VariantProps<typeof variants> &
+  HTMLAttributes<"span"> & {
+    price?: PriceValue
+    compareAt?: PriceValue
+    currency?: string
+    locale?: string
+    variant?: "default" | "sale"
+    discountFormat?: DiscountFormat
+    showDiscount?: boolean
+    discountLabel?: string
+  }
+
+const variants = cva("leading-tight", {
+  variants: {
+    variant: {
+      default: "text-foreground",
+      sale: "text-muted-foreground line-through",
+    },
+  },
+})
+
+const {
+  class: className,
+  price,
+  compareAt,
+  currency = "USD",
+  locale = "en-US",
+  variant = "default",
+  discountFormat = "percentage",
+  showDiscount = true,
+  discountLabel = "Save",
+  "data-slot": dataSlot = "price-value",
+  ...props
+} = Astro.props
+
+const formattedPrice = formatPriceValue(price, { currency, locale })
+const currentValue = parseSinglePriceValue(price)
+const compareAtValue = parseSinglePriceValue(compareAt)
+// A compare-at price only shows when it is higher than the price.
+const formattedCompareAt =
+  currentValue !== null &&
+  compareAtValue !== null &&
+  compareAtValue <= currentValue
+    ? null
+    : formatPriceValue(compareAt, { currency, locale })
+const formattedDiscount =
+  showDiscount && formattedCompareAt !== null
+    ? formatPriceDiscount(price, compareAt, {
+        currency,
+        locale,
+        format: discountFormat,
+      })
+    : null
+---
+
+{formattedPrice !== null && (
+  <span
+    class={cn("inline-flex flex-wrap items-center gap-x-2 gap-y-1", className)}
+    data-slot={dataSlot}
+    data-variant={variant}
+    {...props}
+  >
+    <span class={cn(variants({ variant }))}>{formattedPrice}</span>
+    {formattedCompareAt !== null && (
+      <del class="text-muted-foreground text-sm leading-tight line-through">
+        {formattedCompareAt}
+      </del>
+    )}
+    {formattedDiscount !== null && (
+      <span class="rounded-full bg-muted px-2 py-0.5 text-xs font-medium text-foreground">
+        {discountLabel} {formattedDiscount}
+      </span>
+    )}
+  </span>
+)}

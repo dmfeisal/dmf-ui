@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"div"> & {
+  ratio: number
+}
+
+const { class: className, ratio, style, ...props } = Astro.props
+
+if(!Number.isFinite(ratio)||ratio<=0)throw new Error('AspectRatio requires a finite positive ratio')
+
+const resolvedStyle =
+  typeof style === "string"
+    ? `--ratio: ${ratio}; ${style}`
+    : { "--ratio": ratio, ...(style ?? {}) }
+---
+
+<div
+  data-slot="aspect-ratio"
+  style={resolvedStyle}
+  class={cn("relative aspect-(--ratio)", className)}
+  {...props}
+>
+  <slot />
+</div>

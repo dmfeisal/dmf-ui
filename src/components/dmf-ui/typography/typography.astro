@@ -1,0 +1,33 @@
+---
+import type { HTMLTag, Polymorphic } from "astro/types"
+
+import "./typeset.css"
+
+import { cn } from "../utils"
+
+type Size = "sm" | "default" | "lg"
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag; size?: Size }>
+
+const {
+  as: Tag = "div",
+  class: className,
+  size = "default",
+  ...props
+} = Astro.props
+
+const sizeClass =
+  size === "sm"
+    ? "[--typeset-flow:1.125em] [--typeset-leading:1.7] [--typeset-size:0.875rem]"
+    : size === "lg"
+      ? "[--typeset-flow:1.5em] [--typeset-leading:1.8] [--typeset-size:1.125rem]"
+      : "[--typeset-flow:1.25em] [--typeset-leading:1.75] [--typeset-size:1rem]"
+---
+
+<Tag
+  data-slot="typography"
+  data-size={size}
+  class={cn("typeset", sizeClass, className)}
+  {...props}
+>
+  <slot />
+</Tag>

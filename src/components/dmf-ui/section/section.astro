@@ -1,0 +1,37 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"section"> & VariantProps<typeof variants>
+
+const variants = cva("gap-16 py-[var(--section-padding,--spacing(16))] relative flex scroll-mt-12 flex-col", {
+  variants: {
+    variant: {
+      default: "w-full bg-background",
+      floating:
+        "my-16 rounded-xl border bg-background shadow-md mx-auto w-[calc(100%-2*var(--gutter,--spacing(4)))] max-w-[calc(var(--container,var(--container-7xl))-2*var(--gutter,--spacing(4)))] overflow-hidden",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+})
+
+const {
+  class: className,
+  variant = "default",
+  "data-slot": dataSlot = "section",
+  ...props
+} = Astro.props
+---
+
+<section
+  class={cn(variants({ variant }), className)}
+  data-slot={dataSlot}
+  data-variant={variant}
+  {...props}
+>
+  <slot />
+</section>

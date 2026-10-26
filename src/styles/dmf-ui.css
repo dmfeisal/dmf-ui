@@ -52,6 +52,7 @@
  *, ::before, ::after { box-sizing: border-box; border: 0 solid; }
  button, input, textarea { font: inherit; color: inherit; background-color: transparent; border-radius: 0; }
  button { appearance: button; }
+ a { color:inherit; }
  button:enabled { cursor: pointer; }
  h1, h2, h3, h4, p { margin: 0; font-size: inherit; font-weight: inherit; }
  fieldset { min-inline-size: 0; margin: 0; padding: 0; }
@@ -399,3 +400,15 @@
 @keyframes dmf-sheet-enter { from { opacity:0; transform:translate(var(--sheet-enter-x),var(--sheet-enter-y)); } to { opacity:1; transform:translate(0,0); } }
 @keyframes dmf-modal-enter { from { opacity:0; } to { opacity:1; } }
 .dmf-alert-dialog-content [data-slot=dialog-footer],.dmf-sheet-content [data-slot=dialog-footer] { flex-direction:row; justify-content:flex-end; }
+
+/* Source-owned adaptations for the pinned Fulldev catalog. */
+.dmf-ui [data-slot=banner] { min-height:60px; }
+.dmf-ui [data-slot=banner-close],.dmf-ui [data-slot=code-block-copy-button],.dmf-ui [data-carousel-previous],.dmf-ui [data-carousel-next],.dmf-ui [data-marquee-toggle],.dmf-theme-toggle { min-width:44px; min-height:44px; }
+.dmf-ui [data-slot=button-group] button,.dmf-ui [data-slot=attachment-action],.dmf-ui [data-slot=native-select],.dmf-ui [data-slot=drawer-trigger],.dmf-ui [data-slot=drawer-close],.dmf-ui [data-slot=command-input],.dmf-ui [data-slot=command-item] { min-height:44px; }
+.dmf-ui [data-slot=command-input-wrapper] > div { min-height:44px; }
+.dmf-ui [data-slot=hover-card-trigger],.dmf-ui [data-slot=header] a { display:inline-flex; align-items:center; min-height:44px; }
+.dmf-ui [data-slot=resizable-handle]::after { width:24px; }
+.dmf-ui [data-slot=resizable-handle][aria-orientation=horizontal]::after { height:24px; width:100%; }
+.dmf-ui [data-carousel-options][data-orientation=horizontal]:dir(rtl) [data-carousel-next] svg,.dmf-ui [data-carousel-options][data-orientation=horizontal]:dir(rtl) [data-carousel-previous] svg { transform:rotate(180deg); }
+.dmf-ui [data-slot=code-block-content]:focus-visible { outline:2px solid var(--foreground); outline-offset:-3px; }
+.dmf-ui [data-dmf-theme-toggle] [hidden] { display:none!important; }

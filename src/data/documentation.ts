@@ -1,3 +1,4 @@
+import {fulldevComponents,fulldevGuide} from './fulldev-documentation';
 import {modalComponents} from './modal-documentation';
 import {formCompositionComponents} from './form-composition-documentation';
 import {selectionComponents} from './selection-documentation';
@@ -11,6 +12,7 @@ import {version} from '../../package.json';
 import {contentComponents,contentGuide} from './content-documentation';
 export type ComponentDoc = {slug:string;name:string;category:string;description:string;usage:string;options:[string,string,string][];notes:string[]};
 export const components: ComponentDoc[] = [
+ ...fulldevComponents,
  ...modalComponents,
  ...formCompositionComponents,
  ...selectionComponents,
@@ -43,6 +45,7 @@ components.sort((a,b)=>a.name.localeCompare(b.name));
 export const categories = [...new Set(components.map(item=>item.category))];
 export type Guide = {slug:string;title:string;description:string;sections:{id:string;title:string;body:string[];code?:string}[]};
 export const guides: Guide[] = [
+ fulldevGuide,
  contentGuide,
  {slug:'icons',title:'Icons',description:'Use Lucide icons with shared DMF components, readable labels and consistent sizing.',sections:[{id:'library',title:'Lucide for interface icons',body:['DMF UI uses @lucide/astro, already installed in this repository. Import the icons you use by name; Astro renders inline SVG without an icon runtime or remote request. Icons inherit currentColor from the surrounding component.','Use one interface icon style across DMF, CB and Horego. Keep official product and company logos as their approved assets; Lucide is not a brand-logo library.'],code:"npm install @lucide/astro"},{id:'usage',title:'Sizing and accessible labels',body:['Start at 20px with a 2px stroke. Use 16px for compact supporting icons and 24px or 32px when the surrounding layout needs it. The gallery updates copyable Astro examples for each choice.','Keep decorative SVGs hidden from assistive technology when a visible label already explains the action. For icon-only buttons, put aria-label on the button and keep the SVG decorative. Name a standalone meaningful icon and expose it with role=img and aria-hidden=false.','The selectable gallery changes the example only. Its icons are not product actions. The Copy example button copies the current code; when copying is unavailable, select the code manually.']},{id:'react',title:'React usage',body:['For a React consumer, install lucide-react and import named icons directly. Lucide stays an optional application dependency; the DMF React alpha does not add or wrap this package. React uses strokeWidth, while the Astro API uses stroke-width.'],code:'import { Search } from "lucide-react";\nimport { Button } from "@dmf-ui/react";\n\n<Button aria-label="Search">\n  <Search size={20} strokeWidth={2} aria-hidden="true" />\n</Button>'}]},
  {slug:'introduction',title:'Introduction',description:'Understand the foundation, its ownership and current scope.',sections:[{id:'foundation',title:'A shared foundation',body:['DMF UI adapts Fulldev base-vega into an experimental, source-owned Astro library. Tailwind CSS v4 provides styling; Data Slot supplies behavior for interactive components.','Components, semantic tokens, presets, fonts and notices belong to dmfeisal/dmf-ui. The portfolio consumes an integrity-pinned archive.']},{id:'support',title:'Current support',body:['Astro is the primary adapter. A separate React web alpha proves five components; stable React support, WordPress and native adapters remain planned. The package is private and is not published to npm.','DMF, the light-only CB UI reconstruction and the brand-derived Horego preset are available. CB UI is a present-day reconstruction, not a historical shipped-system claim.']}]},

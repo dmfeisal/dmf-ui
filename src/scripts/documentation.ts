@@ -31,7 +31,7 @@ if(trigger&&dialog&&input&&results&&count&&source){
   }
   if(matches.length>shown.length){const hint=document.createElement('p');hint.className='docs-search-more';hint.textContent='Showing the first 12 results. Type more to narrow your search.';results!.append(hint);}
  }
- function open(){if(dialog!.open)return;returnFocus=document.activeElement instanceof HTMLElement?document.activeElement:trigger;input!.value='';render();dialog!.showModal();input!.focus();}
+ function open(){if(dialog!.open||trigger?.closest('[inert]'))return;returnFocus=document.activeElement instanceof HTMLElement?document.activeElement:trigger;input!.value='';render();dialog!.showModal();input!.focus();}
  trigger.hidden=false;document.querySelector<HTMLElement>('.docs-search-fallback')!.hidden=true;
  const shortcut=trigger.querySelector('kbd');if(shortcut){shortcut.textContent=/Mac|iPhone|iPad/.test(navigator.platform)?'⌘ K':'Ctrl K';trigger.setAttribute('aria-label',`Search documentation ${shortcut.textContent}`);}
  trigger.addEventListener('click',open);
@@ -65,6 +65,7 @@ for(const button of document.querySelectorAll<HTMLButtonElement>('[data-copy-cod
 const media=matchMedia('(prefers-color-scheme: dark)'),modes=['system','light','dark'] as const;
 let mode=0;
 function apply(){document.documentElement.dataset.theme=modes[mode]==='system'?(media.matches?'dark':'light'):modes[mode];const button=document.getElementById('docs-theme');if(button){const label=`Theme: ${modes[mode][0].toUpperCase()}${modes[mode].slice(1)}`;const next=modes[(mode+1)%modes.length];const description=document.querySelector('[data-theme-description]');if(description)description.textContent=`${label}. Switch to ${next[0].toUpperCase()}${next.slice(1)}.`;button.setAttribute('aria-label',label);for(const icon of button.querySelectorAll<HTMLElement>('[data-theme-icon]'))icon.toggleAttribute('hidden',icon.dataset.themeIcon!==modes[mode]);}}
+document.addEventListener('dmf:theme-request',event=>{const theme=(event as CustomEvent<{theme:string}>).detail.theme;const index=modes.findIndex(value=>value===theme);if(index<0)return;event.preventDefault();mode=index;apply();});
 document.getElementById('docs-theme')?.addEventListener('click',()=>{mode=(mode+1)%modes.length;apply();});media.addEventListener('change',apply);apply();
 
 const github=document.querySelector<HTMLAnchorElement>('.docs-github');

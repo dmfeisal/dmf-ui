@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Size = "sm" | "default" | "lg"
+type Props = HTMLAttributes<"tr"> & {
+  size?: Size
+}
+
+const { class: className, size = "default", ...props } = Astro.props
+
+const sizeClass =
+  size === "sm" ? "text-sm" : size === "lg" ? "text-lg" : "text-base"
+---
+
+<tr
+  data-slot="typography-table-row"
+  data-size={size}
+  class={cn("even:bg-muted m-0 border-t p-0", sizeClass, className)}
+  {...props}
+>
+  <slot />
+</tr>

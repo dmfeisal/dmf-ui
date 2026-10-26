@@ -1,0 +1,64 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = Omit<HTMLAttributes<"iframe">, "src"> & {
+  src?: string
+}
+
+const {
+  class: className,
+  src,
+  title = "Embedded video",
+  allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+  allowfullscreen = true,
+  "data-slot": dataSlot = "video",
+  ...props
+} = Astro.props
+
+const getEmbedSrc = (value?: string) => {
+  if (!value) return undefined
+
+  try {
+    const url = new URL(value)
+    const host = url.hostname.replace(/^www\./, "")
+
+    if (host === "youtube.com" && url.pathname === "/watch") {
+      const id = url.searchParams.get("v")
+      return id ? `https://www.youtube-nocookie.com/embed/${id}` : undefined
+    }
+
+    if (host === "youtube.com" && url.pathname.startsWith("/shorts/")) {
+      const id = url.pathname.split("/")[2]
+      return id ? `https://www.youtube-nocookie.com/embed/${id}` : undefined
+    }
+
+    if (host === "youtu.be") {
+      const id = url.pathname.slice(1)
+      return id ? `https://www.youtube-nocookie.com/embed/${id}` : undefined
+    }
+  } catch {
+    return undefined
+  }
+}
+
+const embedSrc = getEmbedSrc(src)
+const isShort = src?.includes("/shorts/")
+---
+
+{embedSrc && (
+  <iframe
+    src={embedSrc}
+    title={title}
+    allow={allow}
+    allowfullscreen={allowfullscreen}
+    class={cn(
+      "rounded-lg border bg-muted w-full",
+      isShort ? "aspect-9/16 max-w-xs" : "aspect-video",
+      className
+    )}
+    data-slot={dataSlot}
+    {...props}
+  />
+)}

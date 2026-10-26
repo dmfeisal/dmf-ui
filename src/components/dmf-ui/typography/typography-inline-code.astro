@@ -1,0 +1,28 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Size = "sm" | "default" | "lg"
+type Props = HTMLAttributes<"code"> & {
+  size?: Size
+}
+
+const { class: className, size = "default", ...props } = Astro.props
+
+const sizeClass =
+  size === "sm" ? "text-xs" : size === "lg" ? "text-base" : "text-sm"
+---
+
+<code
+  data-slot="typography-inline-code"
+  data-size={size}
+  class={cn(
+    "rounded bg-muted font-mono font-semibold relative px-[0.3rem] py-[0.2rem]",
+    sizeClass,
+    className
+  )}
+  {...props}
+>
+  <slot />
+</code>

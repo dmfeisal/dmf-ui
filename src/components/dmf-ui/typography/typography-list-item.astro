@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Size = "sm" | "default" | "lg"
+type Props = HTMLAttributes<"li"> & {
+  size?: Size
+}
+
+const { class: className, size = "default", ...props } = Astro.props
+
+const sizeClass =
+  size === "sm" ? "text-sm" : size === "lg" ? "text-lg" : "text-base"
+---
+
+<li
+  data-slot="typography-list-item"
+  data-size={size}
+  class={cn("mt-2", sizeClass, className)}
+  {...props}
+>
+  <slot />
+</li>

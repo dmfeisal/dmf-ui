@@ -1,0 +1,11 @@
+<span data-dmf-theme-provider hidden></span>
+<script>
+ const key='dmf-ui-theme';const media=matchMedia('(prefers-color-scheme: dark)');
+ let preference='system';
+ const apply=()=>{document.documentElement.dataset.theme=preference==='system'?(media.matches?'dark':'light'):preference;};
+ function initialize(){if(!document.querySelector('[data-dmf-theme-provider]'))return;try{const saved=localStorage.getItem(key);preference=saved==='dark'||saved==='light'?saved:'system';}catch{}apply();}
+ document.addEventListener('dmf:theme-request',event=>{if(!document.querySelector('[data-dmf-theme-provider]')||event.defaultPrevented)return;const request=event as CustomEvent<{theme:string}>;if(!['system','dark','light'].includes(request.detail.theme))return;event.preventDefault();preference=request.detail.theme;try{localStorage.setItem(key,preference);}catch{}apply();});
+ media.addEventListener('change',()=>{if(document.querySelector('[data-dmf-theme-provider]')&&preference==='system')apply();});
+ window.addEventListener('storage',event=>{if(event.key===key||event.key===null)initialize();});
+ initialize();document.addEventListener('astro:page-load',initialize);
+</script>

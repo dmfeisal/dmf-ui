@@ -1,0 +1,40 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import ChevronLeftIcon from "@lucide/astro/icons/chevron-left"
+
+import { cn } from "../utils"
+import { buttonVariants, type ButtonVariantProps } from "../button"
+
+type Props = Omit<HTMLAttributes<"button">, "type"> & ButtonVariantProps
+
+const {
+  class: className,
+  variant = "outline",
+  size = "icon-sm",
+  disabled,
+  "data-slot": dataSlot = "carousel-previous",
+  ...props
+} = Astro.props
+---
+
+<button
+  type="button"
+  data-slot={dataSlot}
+  data-carousel-previous
+  data-variant={variant}
+  data-size={size}
+  data-manual-disabled={disabled ? "true" : undefined}
+  disabled={disabled}
+  class={cn(
+    buttonVariants({ variant, size }),
+    "rounded-full absolute touch-manipulation group-data-[orientation=horizontal]/carousel:inset-y-0 group-data-[orientation=horizontal]/carousel:-left-12 group-data-[orientation=horizontal]/carousel:my-auto",
+    "group-data-[orientation=vertical]/carousel:-top-12 group-data-[orientation=vertical]/carousel:left-1/2 group-data-[orientation=vertical]/carousel:-translate-x-1/2 group-data-[orientation=vertical]/carousel:translate-y-0 group-data-[orientation=vertical]/carousel:rotate-90",
+    className
+  )}
+  {...props}
+>
+  <slot>
+    <ChevronLeftIcon aria-hidden="true" />
+    <span class="sr-only">Previous slide</span>
+  </slot>
+</button>

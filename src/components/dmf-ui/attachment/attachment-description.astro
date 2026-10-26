@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"span">
+
+const { class: className, ...props } = Astro.props
+// shadcn/ui uses text-destructive/80 for the error description. Like its
+// FieldError, this uses the full destructive color, so the small text keeps a
+// 4.5:1 contrast.
+---
+
+<span
+  data-slot="attachment-description"
+  class={cn(
+    "mt-0.5 text-xs text-muted-foreground group-data-[state=error]/attachment:text-destructive block max-w-full min-w-0 truncate",
+    className
+  )}
+  {...props}
+>
+  <slot />
+</span>

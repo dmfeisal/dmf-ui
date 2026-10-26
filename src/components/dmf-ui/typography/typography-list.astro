@@ -1,0 +1,33 @@
+---
+import type { Polymorphic } from "astro/types"
+
+import { cn } from "../utils"
+
+type Size = "sm" | "default" | "lg"
+type Props<Tag extends "ul" | "ol"> = Polymorphic<{ as: Tag; size?: Size }>
+
+const {
+  as: Tag = "ul",
+  class: className,
+  size = "default",
+  ...props
+} = Astro.props
+
+const sizeClass =
+  size === "sm" ? "text-sm" : size === "lg" ? "text-lg" : "text-base"
+---
+
+<Tag
+  data-slot="typography-list"
+  data-size={size}
+  data-ordered={Tag === "ol" ? "" : undefined}
+  class={cn(
+    "my-6 ms-6",
+    Tag === "ol" ? "list-decimal" : "list-disc",
+    sizeClass,
+    className
+  )}
+  {...props}
+>
+  <slot />
+</Tag>

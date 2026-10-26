@@ -1,0 +1,74 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"aside"> &
+  VariantProps<typeof variants> & {
+    storageKey?: string
+  }
+
+const variants = cva("py-2 relative flex items-center", {
+  variants: {
+    variant: {
+      default: "bg-foreground text-background w-full",
+      floating:
+        "my-2 rounded-lg border bg-background shadow-sm mx-auto w-[calc(100%-2*var(--gutter,--spacing(4)))] max-w-[calc(var(--container,var(--container-7xl))-2*var(--gutter,--spacing(4)))] overflow-hidden",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+})
+
+const {
+  class: className,
+  variant = "default",
+  storageKey,
+  ...props
+} = Astro.props
+---
+
+<aside
+  class={cn(variants({ variant }), className)}
+  data-slot="banner"
+  data-banner-storage-key={storageKey}
+  data-variant={variant}
+  {...props}
+>
+  <slot />
+</aside>
+
+<script>
+  const getStorageToken = (key: string) => `banner:${key}`
+
+  const readHidden=(key:string)=>{try{return sessionStorage.getItem(getStorageToken(key))==="hidden"}catch{return false}}
+
+  const syncBanners = () => {
+    document.querySelectorAll("[data-slot='banner']").forEach((banner) => {
+      if (!(banner instanceof HTMLElement)) return
+      const storageKey = banner.dataset.bannerStorageKey
+      if (
+        storageKey &&
+        readHidden(storageKey)
+      ) {
+        banner.hidden = true
+      }
+    })
+  }
+
+  syncBanners()
+  document.addEventListener("astro:page-load", syncBanners)
+
+  document.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element)) return
+    const closeButton = event.target.closest("[data-slot='banner-close']")
+    const banner = closeButton?.closest("[data-slot='banner']")
+    if (!(banner instanceof HTMLElement)) return
+    banner.hidden = true
+    const storageKey = banner.dataset.bannerStorageKey
+    if (storageKey)
+      try{sessionStorage.setItem(getStorageToken(storageKey), "hidden")}catch{}
+  })
+</script>

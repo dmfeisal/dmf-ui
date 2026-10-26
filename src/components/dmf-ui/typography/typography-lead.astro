@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Size = "sm" | "default" | "lg"
+type Props = HTMLAttributes<"p"> & {
+  size?: Size
+}
+
+const { class: className, size = "default", ...props } = Astro.props
+
+const sizeClass =
+  size === "sm" ? "text-base" : size === "lg" ? "text-xl" : "text-lg"
+---
+
+<p
+  data-slot="typography-lead"
+  data-size={size}
+  class={cn("text-muted-foreground", sizeClass, className)}
+  {...props}
+>
+  <slot />
+</p>

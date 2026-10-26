@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"body">
+
+const { class: className, ...props } = Astro.props
+---
+
+<body
+  class={cn(
+    "dmf-ui bg-background text-foreground overscroll-none antialiased",
+    className
+  )}
+  data-slot="layout-body"
+  {...props}
+>
+  <slot />
+</body>
+

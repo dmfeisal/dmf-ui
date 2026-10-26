@@ -1,0 +1,22 @@
+---
+// Adapted from Fulldev's pinned content-icon resolver; package imports replace host-root globs.
+import type {HTMLAttributes} from 'astro/types';
+import * as lucide from '@lucide/astro';
+import * as simple from 'simple-icons';
+type Props=Omit<HTMLAttributes<'svg'>,'name'|'href'>&{href?:HTMLAttributes<'a'>['href'];name?:string|number};
+const {name,href,'data-slot':dataSlot='icon',class:className,...props}=Astro.props;
+const brands:Record<string,string>={'x.com':'x',github:'github',youtube:'youtube',instagram:'instagram',facebook:'facebook',spotify:'spotify',figma:'figma',dribbble:'dribbble',behance:'behance',discord:'discord',tiktok:'tiktok',vimeo:'vimeo','wa.me':'whatsapp',telegram:'telegram',reddit:'reddit',pinterest:'pinterest',twitch:'twitch',soundcloud:'soundcloud'};
+const normalize=(value:string)=>value.replace(/[^a-z0-9]/gi,'').toLowerCase();
+const icons=new Map(Object.entries(lucide).filter(([key,value])=>/^[A-Z]/.test(key)&&typeof value==='function').map(([key,value])=>[normalize(key),value]));
+const logos=new Map(Object.values(simple).filter(value=>value&&typeof value==='object'&&'slug' in value).map(value=>[(value as {slug:string}).slug,value as {path:string;title:string}]));
+const explicit=name!==undefined&&name!==null&&name!=='';
+const inferred=href?Object.keys(brands).find(key=>String(href).includes(key)):undefined;
+let key=explicit?String(name):inferred?`simple:${brands[inferred]}`:href?String(href).startsWith('mailto:')?'mail':String(href).startsWith('tel:')?'phone':'link':'';
+if(key==='x.com')key='simple:x';
+const [prefix,icon]=key.includes(':')?key.split(':'):[undefined,key];
+const Comp=(prefix==='simple'?undefined:icons.get(normalize(icon))) as typeof lucide.Search|undefined;
+const brand=Comp||prefix==='lucide'?undefined:logos.get(icon);
+const svgProps=Object.fromEntries(Object.entries(props).filter(([,value])=>value!==null));
+const labelled='aria-label' in props||'aria-labelledby' in props||'role' in props;
+---
+{Comp?<Comp width={24} height={24} class={className??"size-[1em] text-base"} aria-hidden={labelled?undefined:'true'} data-slot={dataSlot} {...svgProps}/>:brand?<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class={className??"size-[1em] text-base"} aria-hidden={labelled?undefined:'true'} data-slot={dataSlot} {...svgProps}><path d={brand.path}/></svg>:null}

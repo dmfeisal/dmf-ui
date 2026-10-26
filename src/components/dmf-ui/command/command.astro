@@ -1,0 +1,114 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"div"> & {
+  label?: string
+  defaultValue?: string
+  defaultSearch?: string
+  shouldFilter?: boolean
+  loop?: boolean
+  disablePointerSelection?: boolean
+  vimBindings?: boolean
+}
+
+const {
+  class: className,
+  label,
+  defaultValue,
+  defaultSearch,
+  shouldFilter,
+  loop,
+  disablePointerSelection,
+  vimBindings,
+  ...props
+} = Astro.props
+---
+
+<div
+  data-slot="command"
+  data-label={label}
+  data-default-value={defaultValue}
+  data-default-search={defaultSearch}
+  data-should-filter={shouldFilter}
+  data-loop={loop}
+  data-disable-pointer-selection={disablePointerSelection}
+  data-vim-bindings={vimBindings}
+  class={cn("bg-popover text-popover-foreground rounded-xl! p-1 flex size-full flex-col overflow-hidden", className)}
+  {...props}
+>
+  <slot />
+</div>
+
+<script>
+  import { create } from "@data-slot/command"
+  import { getParts } from "@data-slot/core"
+
+  const controllers: ReturnType<typeof create> = []
+  const initialize = () => controllers.push(...create())
+  initialize()
+  document.addEventListener("astro:page-load", initialize)
+  document.addEventListener("astro:before-swap", () => {
+    for (const controller of controllers) controller.destroy()
+    controllers.length = 0
+  })
+
+  const isCommandInput = (
+    target: EventTarget | null
+  ): target is HTMLInputElement =>
+    target instanceof HTMLInputElement &&
+    target.dataset.slot === "command-input"
+
+  // Do not act on the Enter that confirms an IME composition. Safari fires
+  // that keydown right after compositionend with isComposing set to false, so
+  // treat the first keydown after compositionend as the confirming key when it
+  // arrives within 50 ms. Any later keydown is a new key press.
+  let composing = false
+  let compositionEndedAt = -Infinity
+  document.addEventListener(
+    "compositionstart",
+    (event) => {
+      if (isCommandInput(event.target)) composing = true
+    },
+    true
+  )
+  document.addEventListener(
+    "compositionend",
+    (event) => {
+      if (!isCommandInput(event.target)) return
+      composing = false
+      compositionEndedAt = event.timeStamp
+    },
+    true
+  )
+  const confirmsComposition = (event: KeyboardEvent) => {
+    if (event.isComposing || composing) return true
+    const confirming = event.timeStamp - compositionEndedAt < 50
+    compositionEndedAt = -Infinity
+    return confirming
+  }
+
+  // Data Slot selection does not activate links. Preserve native navigation.
+  document.addEventListener(
+    "keydown",
+    (event) => {
+      const input = event.target
+      if (!isCommandInput(input)) return
+      const confirming = confirmsComposition(event)
+      if (event.key !== "Enter" || event.defaultPrevented || confirming) return
+      const root = input.closest('[data-slot="command"]')
+      if (!root) return
+      const item = getParts<HTMLAnchorElement>(root, "command-item").find(
+        (item) =>
+          item.hasAttribute("data-selected") &&
+          item.hasAttribute("href") &&
+          item.getAttribute("aria-disabled") !== "true"
+      )
+      if (!item) return
+      event.preventDefault()
+      item.click()
+    },
+    true
+  )
+</script>

@@ -1,0 +1,6 @@
+---
+import {Layout,LayoutHead,LayoutBody,LayoutMain} from '../../../components/dmf-ui/layout';
+import {ThemeToggle,ThemeProvider} from '../../../components/dmf-ui/theme-toggle';
+import {Logo,LogoText} from '../../../components/dmf-ui/logo';
+---
+<Layout lang="en"><LayoutHead title="DMF UI layout example" description="A standalone source-owned document shell." noindex/><LayoutBody><ThemeProvider/><header style="padding:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem"><Logo href="/"><LogoText>DMF UI</LogoText></Logo><nav aria-label="Example page links"><a href="/components/layout/">Return to Layout documentation</a></nav><ThemeToggle/></header><LayoutMain style="padding:1.5rem;max-width:60rem;margin-inline:auto"><h1 style="font-size:2rem;font-weight:700;margin-block:1rem">Standalone layout example</h1><p>A complete document using the adapted Fulldev shell, DMF styles and optional theme provider.</p></LayoutMain></LayoutBody></Layout>

@@ -1,0 +1,1337 @@
+{
+  "repository": "https://github.com/fulldotdev/ui",
+  "revision": "10427beee3c8faf9d077c1dec66fce41b0bae2d0",
+  "version": "0.25.5",
+  "retrieved": "2026-10-26",
+  "style": "base-vega",
+  "license": "MIT; vendor/fulldev/LICENCE; public/dmf-ui-notices.txt",
+  "components": [
+    {
+      "name": "accordion",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/accordion.json",
+      "sha256": "e419f7a7b9ac028c5c086e5dfbf8fb2af17191854d2499b83540240031604c80",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/accordion.json"
+    },
+    {
+      "name": "alert",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/alert.json",
+      "sha256": "79177f945c5cb987f4f79259e0b8934c23bd255560287535371224c78ffd6b5f",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/alert.json"
+    },
+    {
+      "name": "alert-dialog",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/alert-dialog.json",
+      "sha256": "5866c7b092e5d67ff1a42b07906aafb291e96e2f631b69bed1a7a527ee23bb41",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/alert-dialog.json"
+    },
+    {
+      "name": "aspect-ratio",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/aspect-ratio.json",
+      "sha256": "0fc782de595907d148247286bf7265ea13eabb2c6e977ae3500c5301310da8d0",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/aspect-ratio/aspect-ratio.astro",
+          "upstreamSha256": "b7afcb9016c4a2c2797c899613150b11ae318e8b2ff92546228e21107d5892a8",
+          "adoptedSha256": "c67cc702b547798d657ec393403d6980a0c16d139145ba2dc21a8f0ce9830885"
+        },
+        {
+          "path": "src/components/dmf-ui/aspect-ratio/index.ts",
+          "upstreamSha256": "06f089e7daff6b599bbfcf5dd1fccc32b24aa9383865b0c0a3829ffffff3d79e",
+          "adoptedSha256": "06f089e7daff6b599bbfcf5dd1fccc32b24aa9383865b0c0a3829ffffff3d79e"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/aspect-ratio.json"
+    },
+    {
+      "name": "attachment",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/attachment.json",
+      "sha256": "7062f27df85a5795e2eec0fc318ce3d2e390e516b4530d52bfb668af082dc4d1",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/attachment/attachment-action.astro",
+          "upstreamSha256": "ac660a55f4b806de31b400dc3e32825f06957610fa9702ab48519a9e72007a6c",
+          "adoptedSha256": "feebf63ff5de42b3e8c668cb31af70c73af72862d1aeb5e6d3ab07ec508b87dc"
+        },
+        {
+          "path": "src/components/dmf-ui/attachment/attachment-actions.astro",
+          "upstreamSha256": "8636d12b52cb05b4bcdd7e9eba3bdb01ade4fc6fb1415a23250e263b91ca8990",
+          "adoptedSha256": "f9966a98513abe97f1fca2da3fe624384c3d3a1e2f6357b8735b5a8f2d3e4d49"
+        },
+        {
+          "path": "src/components/dmf-ui/attachment/attachment-content.astro",
+          "upstreamSha256": "316b1ba034652aa94e0bcb3b14f77ea4aeaaded5f4410c465ad0d156ed6f75c8",
+          "adoptedSha256": "7d7879ac0eef0c603e49e20de5c6f0e9eb231022fefe9d0ec0f2a9c07a8321be"
+        },
+        {
+          "path": "src/components/dmf-ui/attachment/attachment-description.astro",
+          "upstreamSha256": "0e33254adc3cdcd883f46f492c135d71394766973721ec294edcd37c5db96257",
+          "adoptedSha256": "2db72f52a89b07b760394901869c947cee24afcdfed9d95b05666e62bc056ac2"
+        },
+        {
+          "path": "src/components/dmf-ui/attachment/attachment-group.astro",
+          "upstreamSha256": "24678d43619aa870e5b5cb00882a63860147ea9b60cf69c7681394edd9dcc9b9",
+          "adoptedSha256": "47b1eacddec834e0b939206aecb99172b0ee3a27026ad38de8193e1a4f514cc5"
+        },
+        {
+          "path": "src/components/dmf-ui/attachment/attachment-media.astro",
+          "upstreamSha256": "8eab18b238783611c3ed1d677d69e368b69fc0b06d50e70f087f397852140f80",
+          "adoptedSha256": "880f212b3e608e155b1321ce8acff4126fbafca220ca0203578115fc2b40c643"
+        },
+        {
+          "path": "src/components/dmf-ui/attachment/attachment-title.astro",
+          "upstreamSha256": "faddc79ae66631fc605234c8ab281d504befe2d58bdd976b3a65df3704c2813e",
+          "adoptedSha256": "67bda626b3cd5688e7e6658dc79a1f02b763d35f8ed5c9840bda34e806bf2fd9"
+        },
+        {
+          "path": "src/components/dmf-ui/attachment/attachment-trigger.astro",
+          "upstreamSha256": "e38afa9b35271dad424e339cd71adb8344ba713d1d06fa9f013c97a5bd02e70a",
+          "adoptedSha256": "e8eb3e7106188aa5a216c534bb7e206322dc2fc6d8e4b126e24a55f088ab0439"
+        },
+        {
+          "path": "src/components/dmf-ui/attachment/attachment.astro",
+          "upstreamSha256": "f77e7933d960cb0a58e56fa9e6d009b946eab761a1093151de567005b6131d58",
+          "adoptedSha256": "197ab6b94aadf5f7c3b8d684b2db072382f3648c1a46abecfc15efc43df7e528"
+        },
+        {
+          "path": "src/components/dmf-ui/attachment/index.ts",
+          "upstreamSha256": "f468ad1fb1f7d9190ee7b972212bb87e31a7b8390e995f7012800ea3fefecc96",
+          "adoptedSha256": "f468ad1fb1f7d9190ee7b972212bb87e31a7b8390e995f7012800ea3fefecc96"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/attachment.json"
+    },
+    {
+      "name": "avatar",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/avatar.json",
+      "sha256": "9eb5c1d802daec4d9897780c18c0bb466e3901c209b1ff0e2a1457bf80cbcf16",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/avatar.json"
+    },
+    {
+      "name": "badge",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/badge.json",
+      "sha256": "f333fd3000f45dad97cd0a2001efb22311dab525b10df809a34a3215d671dade",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/badge.json"
+    },
+    {
+      "name": "banner",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/banner.json",
+      "sha256": "59a842b5d1e693f7e1f4a17a50dc53a2b01e7bd38f347b2e07d38d0b72444017",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/banner/banner.astro",
+          "upstreamSha256": "138bfc77934e51cd251305374a314106f73c591ccb7874cfe3942574918cdeff",
+          "adoptedSha256": "555b9c3e55c24b12f96c1db5d2e0b3a9961f41f41345f660a4f9a1bf41fd7e11"
+        },
+        {
+          "path": "src/components/dmf-ui/banner/banner-container.astro",
+          "upstreamSha256": "ff269268215e3a49b26935aab49a938b6d9f4f693b620bb2c923a12f6c001fe3",
+          "adoptedSha256": "bd958bb77170470637935f25deab4ee52d14b4a6734f23cb2ba9b9da0fc9f721"
+        },
+        {
+          "path": "src/components/dmf-ui/banner/index.ts",
+          "upstreamSha256": "b5645d633e28e68adbe546c49ea10b217fd741ecfe362b14d9babff6d378acd5",
+          "adoptedSha256": "b5645d633e28e68adbe546c49ea10b217fd741ecfe362b14d9babff6d378acd5"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/banner.json"
+    },
+    {
+      "name": "breadcrumb",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/breadcrumb.json",
+      "sha256": "7ce33eff1b01cf8d5fde10fee0ba8faeafd5f103424a6647ac266eb6b794708a",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/breadcrumb.json"
+    },
+    {
+      "name": "button",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/button.json",
+      "sha256": "021fb85358babe4b57e41c067a3c25eb15c34837afc36da30e611e1979329d6f",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/button.json"
+    },
+    {
+      "name": "button-group",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/button-group.json",
+      "sha256": "2cc346aaa992bfbfe7dc74604521b4539f850c533cec2a0efe1c8582f87bb13e",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/button-group/button-group-separator.astro",
+          "upstreamSha256": "d7b25ec4e0c632af303e84972c3f3aedb1d5899c05a0b8171142c255c366de0d",
+          "adoptedSha256": "6e737c02fea3019355f25080a8964a72511ea3a1b42a5a03489611e25fbef960"
+        },
+        {
+          "path": "src/components/dmf-ui/button-group/button-group-text.astro",
+          "upstreamSha256": "76cf584621b0c9b3522fd8fcb4a87eb11e3ac4939dc4e5febad9c7858c3e785c",
+          "adoptedSha256": "8f8fa90e648709564300eee4a3e23965eec105383862b0eeb7b3b494706055d1"
+        },
+        {
+          "path": "src/components/dmf-ui/button-group/button-group-variants.ts",
+          "upstreamSha256": "ef3e11acbc13e57e6b6795433d67f0d4337ed2d5c00219247c85bfb12a423c55",
+          "adoptedSha256": "ef3e11acbc13e57e6b6795433d67f0d4337ed2d5c00219247c85bfb12a423c55"
+        },
+        {
+          "path": "src/components/dmf-ui/button-group/button-group.astro",
+          "upstreamSha256": "8c48fcdd2d198882dc67b77837b4d11d56815b0b8c390fe7d63c6f3b4df0aaef",
+          "adoptedSha256": "9f0a73c1acc93cdb26f7de3f2532e053369c816498b90ec29fb8cd20e191c3bb"
+        },
+        {
+          "path": "src/components/dmf-ui/button-group/index.ts",
+          "upstreamSha256": "0ef0bc4a914986b620e582c46cbe18d3b5fa0e10338887900e61aba94ccd7b73",
+          "adoptedSha256": "0ef0bc4a914986b620e582c46cbe18d3b5fa0e10338887900e61aba94ccd7b73"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/button-group.json"
+    },
+    {
+      "name": "card",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/card.json",
+      "sha256": "4363f09bf9db9f13b1a10073e17f3edd10d85723a20f9c2403f4c82dc698e9fb",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/card.json"
+    },
+    {
+      "name": "carousel",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/carousel.json",
+      "sha256": "c64636b054d18a4bfb31429cf1f99d9912b26627212825061fdc78ed3f01a82c",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/carousel/carousel.astro",
+          "upstreamSha256": "8e07e0d325af3a5fa7f8b28fbddda8323abbc465c52ec51ea3a76484e53c7cbf",
+          "adoptedSha256": "06917b13ca43fe97f741bf336a92a373309917e4abafe3664e284b1654ac5e47"
+        },
+        {
+          "path": "src/components/dmf-ui/carousel/carousel-content.astro",
+          "upstreamSha256": "153b212d3a188ac2da4820c21d963034fd5f362fa2d972f75fa58ba30f3f1757",
+          "adoptedSha256": "36c6f1ab268bf2fd03de14c7bc2e01afed9a89769ee21ef015e84f2ac74f3e29"
+        },
+        {
+          "path": "src/components/dmf-ui/carousel/carousel-item.astro",
+          "upstreamSha256": "e66621eddd88707cabeb61b9eeb0c61e6148b92f631b6f29002dda731e5bb70d",
+          "adoptedSha256": "77fec056f189c97d4e57a4796745400bf8e1653f8e408a4c7153e2b2e3134d7c"
+        },
+        {
+          "path": "src/components/dmf-ui/carousel/carousel-next.astro",
+          "upstreamSha256": "acf30999403412d657f37e59a635f9f2745af96f63a5a500013dd90031d50d53",
+          "adoptedSha256": "e610fb2cf51e85df4901fbfd815c190b9f2040b76bb4254c09746a1d91d20d37"
+        },
+        {
+          "path": "src/components/dmf-ui/carousel/carousel-previous.astro",
+          "upstreamSha256": "a76d4cc36920cc4a9447dd10e0e1973d756dc74cd05ebe9f4f63a1cb7730ee31",
+          "adoptedSha256": "581c0292b2aed61315ba967f5c43656833a6ee06bc97a5d1a9f1896de6c50493"
+        },
+        {
+          "path": "src/components/dmf-ui/carousel/index.ts",
+          "upstreamSha256": "85de5ee147588e94c4cd94a007d5c14d3e82ef5a0cc76259efdff926d8bf7506",
+          "adoptedSha256": "85de5ee147588e94c4cd94a007d5c14d3e82ef5a0cc76259efdff926d8bf7506"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/carousel.json"
+    },
+    {
+      "name": "checkbox",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/checkbox.json",
+      "sha256": "97086f67d3ac7f1b8fb3e209bfa797e0fd088b6d7461d1656909b0313110cc74",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/checkbox.json"
+    },
+    {
+      "name": "code-block",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/code-block.json",
+      "sha256": "b77fa18a5bfd24806d785fd59c89a4f96e0fb2eb8e911c5fcfa3863cdefad55e",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/code-block/code-block-actions.astro",
+          "upstreamSha256": "2b77bec4cfa233e347a2d89169ff3a37d24978276520440a34d37b0beb115166",
+          "adoptedSha256": "2a2a3a9a85c241de27822188740db4431c957ecd2b76cce1ff5c420478ff023c"
+        },
+        {
+          "path": "src/components/dmf-ui/code-block/code-block-content.astro",
+          "upstreamSha256": "d41fe3ce04e28bbca184649f51c85aa3ec982407752ddba05280cc442d3d8b93",
+          "adoptedSha256": "3330c0a2d7ef064ae8110137b96b2264fb53e77ab51fea99333d431c314b528b"
+        },
+        {
+          "path": "src/components/dmf-ui/code-block/code-block-copy-button.astro",
+          "upstreamSha256": "19158df4d47d081af443d5e2f19334a179a6dc34f7a533331b09ec2601d8db25",
+          "adoptedSha256": "af685fe5be38dd5895b1340d3e83b02b1c839f3d03f9835df9e9e9723b4004a4"
+        },
+        {
+          "path": "src/components/dmf-ui/code-block/code-block-footer.astro",
+          "upstreamSha256": "0d81e5c71fe004a23f74faf6a53354983b98913c940c658a80f685c808ff7c8c",
+          "adoptedSha256": "6f628dafd0c7f1390812733a63ef2f790e0e36342038099f4decdc3cd17ff9b2"
+        },
+        {
+          "path": "src/components/dmf-ui/code-block/code-block-header.astro",
+          "upstreamSha256": "68348a1572ab5b06b5043323b85f38e06de464d8905549894185702c4d26a56f",
+          "adoptedSha256": "86427981d9596ffb42059fe3ca87e3eb15abbc89cf1a829a601ac680afeb281e"
+        },
+        {
+          "path": "src/components/dmf-ui/code-block/code-block-line.astro",
+          "upstreamSha256": "805699c825ba20510527763a34a39a9035d0bd5d4b9931987780aef56d075141",
+          "adoptedSha256": "0124cf908c742bcae13d75fe5d9ba74bf2840761092ff3eb0ab6bccb16524350"
+        },
+        {
+          "path": "src/components/dmf-ui/code-block/code-block-title.astro",
+          "upstreamSha256": "94746027b7a1f9a8a9b85631fecce26fe9e5c64f5be9bd45ec70e5fa11e1920a",
+          "adoptedSha256": "3e3601e1b4bf14edde23538ccdcc26a4d7e27c0a4eba5b67ba2185981414fc04"
+        },
+        {
+          "path": "src/components/dmf-ui/code-block/code-block.astro",
+          "upstreamSha256": "3d49bf9e875940f06adcbb0b4d1c30209e326d975a2289f02b684d6cab52950d",
+          "adoptedSha256": "d53214811c084bd99f912f3402deea068dfe476deaf9659e6ee0126b0b49c5b0"
+        },
+        {
+          "path": "src/components/dmf-ui/code-block/index.ts",
+          "upstreamSha256": "0a214fe11e8c36116e13c06805eafa7b95585ff9e2f3baed853e10aa52aea1ac",
+          "adoptedSha256": "0a214fe11e8c36116e13c06805eafa7b95585ff9e2f3baed853e10aa52aea1ac"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/code-block.json"
+    },
+    {
+      "name": "collapsible",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/collapsible.json",
+      "sha256": "10444f79da39095c844cacf1430319b61c45f6be0540b5cfa1ae1727bd6ead4a",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/collapsible.json"
+    },
+    {
+      "name": "combobox",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/combobox.json",
+      "sha256": "5a625dc06f169c8f663a81b9807ec2887358b3ba3ed1df15c2ec979198fdd268",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/combobox.json"
+    },
+    {
+      "name": "command",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/command.json",
+      "sha256": "257722f721b7dc0a7d8da43476004afbb44ebba28e3dcb95e5702e9cf3bc3fe7",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/command/command.astro",
+          "upstreamSha256": "f74ad975f0cda39f6d8497a49b523a11a8027a138c2cf3ed9d9578903fa6da69",
+          "adoptedSha256": "2fb8629e8ba4d5c943752ed358b86984b6b53740867fa85983cac4fa3ee8d82b"
+        },
+        {
+          "path": "src/components/dmf-ui/command/command-dialog.astro",
+          "upstreamSha256": "3fe880b8b0c9f6479718183bccf119190350d9753027e9aa451fb5d66e6a5fbc",
+          "adoptedSha256": "d58a1fb6f77528f5d0cd13985f457422e46f65e8b0dbf87a217b6245b7f37dca"
+        },
+        {
+          "path": "src/components/dmf-ui/command/command-input.astro",
+          "upstreamSha256": "588097b21e290517f31d4f4dfa87fe68672b4c663f051368f556cf122452c4c3",
+          "adoptedSha256": "fcf8386b66ee331c8ac7e751faf241cba3a2a0af483b1452ae75b6794974dfd8"
+        },
+        {
+          "path": "src/components/dmf-ui/command/command-list.astro",
+          "upstreamSha256": "1306c834dd4120e9322796ec1c2c9b40b85f90a334a4f77554c40f0b6b3d0aa1",
+          "adoptedSha256": "c77251822db773cf2d5008ac337aaab749f6746b0ec4b4c183e5ef471dbd4ddd"
+        },
+        {
+          "path": "src/components/dmf-ui/command/command-empty.astro",
+          "upstreamSha256": "001510ed03b253e6ae2b1d9256d4fd0cb96b6faed4180c0f8fcd30fc58ea7980",
+          "adoptedSha256": "35c0a95d3a930ea2256cd96045390ce86bcdd76043dd3305266a9f293fd6b04f"
+        },
+        {
+          "path": "src/components/dmf-ui/command/command-group.astro",
+          "upstreamSha256": "58e426a4d29c88bf425af67ca7bd00a0e26cf5c01eb3be1515eabcdbd8e59ae0",
+          "adoptedSha256": "d77720e0939f4e2caa4370aacb9486fad6d079cecf6518ea732e02ebea355677"
+        },
+        {
+          "path": "src/components/dmf-ui/command/command-item.astro",
+          "upstreamSha256": "dc53b2adc8fec1559810065cc9b88eec1a08043bd4d9ef3ba2ee90f5d49b8a07",
+          "adoptedSha256": "b46f4957c439f93ce824aac8676c9ea663da037585345cac359c028875da0c9b"
+        },
+        {
+          "path": "src/components/dmf-ui/command/command-separator.astro",
+          "upstreamSha256": "6ae802b7d35505ddf9a5184010756d534fc5103281048716b4c6a9b8c5224433",
+          "adoptedSha256": "5af87ac6d622f7f6cbcc400c978ddd15436bffa9387a9af3209eacbbc7a14811"
+        },
+        {
+          "path": "src/components/dmf-ui/command/command-shortcut.astro",
+          "upstreamSha256": "80f2edfadc3360d2baf0dba7fc2040c6108ef8ebe610a2fd874e936a92e3252a",
+          "adoptedSha256": "4f9ad3d1d5f57e434355cb635e5ea5ca2f55cef0a9ba4db4e43bcce07adbf504"
+        },
+        {
+          "path": "src/components/dmf-ui/command/index.ts",
+          "upstreamSha256": "d06d5b15bca66ebe2d5befe86e8c617de26321ffd2fd75622284e90889f17497",
+          "adoptedSha256": "0517de8607f1d8a9834d75c475fa4e83de3fc2e2d363916f0c1931a3caeabeb3"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/command.json"
+    },
+    {
+      "name": "dialog",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/dialog.json",
+      "sha256": "c439533ab169eaf04d75b0eb2ff5b3b009772de654860b78de2aa6e89b161a37",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/dialog.json"
+    },
+    {
+      "name": "drawer",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/drawer.json",
+      "sha256": "6976b2bf1f83bba22dbb97788cfa808d03d57707bdbf2adc41b080419eec3ad3",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/drawer/drawer-close.astro",
+          "upstreamSha256": "edfe8d56850d0ce6f0d4b37f76b35b1fb50176ee37604b5f16c9f1143797b588",
+          "adoptedSha256": "b12f565473327f7e902a60f2e610d24369cf6c25de842b46eadd038552c5de1b"
+        },
+        {
+          "path": "src/components/dmf-ui/drawer/drawer-content.astro",
+          "upstreamSha256": "3a543759462ac90f23b9782e3aebc6ca936236f4d0bc7142038fd112d9b39740",
+          "adoptedSha256": "3a543759462ac90f23b9782e3aebc6ca936236f4d0bc7142038fd112d9b39740"
+        },
+        {
+          "path": "src/components/dmf-ui/drawer/drawer-description.astro",
+          "upstreamSha256": "2a7c51d1664a6a8074255ea511b8c1e907e89815705faf29b56bd697045b09fc",
+          "adoptedSha256": "b275c959512b99945b7bcc392e9e92067c106e60ce41c009be413f81d8bf142d"
+        },
+        {
+          "path": "src/components/dmf-ui/drawer/drawer-footer.astro",
+          "upstreamSha256": "4000740384712220beaca5d713db1e20a212c64be1b490caee9bdfe01643859b",
+          "adoptedSha256": "d2832e7db0201a6ccb63123c401620017c4764d46ac852fa4399041d91221527"
+        },
+        {
+          "path": "src/components/dmf-ui/drawer/drawer-header.astro",
+          "upstreamSha256": "65d43c118565e56779b2bffded6566e636ee7e7aa0c57d3a7ebe82a06a437ee8",
+          "adoptedSha256": "29fae0a81f69ad54eccab8c376229795c9af97e86e2a95679effbf545bc9e487"
+        },
+        {
+          "path": "src/components/dmf-ui/drawer/drawer-indent-background.astro",
+          "upstreamSha256": "ff3bf699fa3c9183981ddffdc8851b6d835bbbeb91f4ec7aa95efe6d6246cb5e",
+          "adoptedSha256": "ff3bf699fa3c9183981ddffdc8851b6d835bbbeb91f4ec7aa95efe6d6246cb5e"
+        },
+        {
+          "path": "src/components/dmf-ui/drawer/drawer-indent.astro",
+          "upstreamSha256": "ee4041f85f5b1e9e22dd14933af63cb7c203f6e3f542d3f5d542efd8b7d10037",
+          "adoptedSha256": "ee4041f85f5b1e9e22dd14933af63cb7c203f6e3f542d3f5d542efd8b7d10037"
+        },
+        {
+          "path": "src/components/dmf-ui/drawer/drawer-overlay.astro",
+          "upstreamSha256": "c54bb69f7d5478ca8e841374ed12546cfd4585fda71f8dd75c72d9c0a0b749d0",
+          "adoptedSha256": "9712fae56295900d807da0d963738e8d8f9e631ebdaf6ed6de5d294c1d205fe1"
+        },
+        {
+          "path": "src/components/dmf-ui/drawer/drawer-popup.astro",
+          "upstreamSha256": "0d50d233172d333081dd3c97111cb6595d5604f6956710f17aca3afa6b2e911b",
+          "adoptedSha256": "70d7c9144d963ac9e725ccfb8df7b86c9ffad26a1fdfb207e8ed5fa8e0ee7002"
+        },
+        {
+          "path": "src/components/dmf-ui/drawer/drawer-portal.astro",
+          "upstreamSha256": "7e0a0ed693563667ea33d9a58e88b408c81eba6616b27b23889471a2e6487aa8",
+          "adoptedSha256": "7e0a0ed693563667ea33d9a58e88b408c81eba6616b27b23889471a2e6487aa8"
+        },
+        {
+          "path": "src/components/dmf-ui/drawer/drawer-provider.astro",
+          "upstreamSha256": "94c54cf9ea958953e75962690568c1f2c6216bdd0a6948dddfb1572278a40e46",
+          "adoptedSha256": "94c54cf9ea958953e75962690568c1f2c6216bdd0a6948dddfb1572278a40e46"
+        },
+        {
+          "path": "src/components/dmf-ui/drawer/drawer-swipe-handle.astro",
+          "upstreamSha256": "d2a75cf2afc7f3fff1d0cb0bcdb15acb78d75bc233509d0a1c79f000485528cd",
+          "adoptedSha256": "6b6bc41c401aa6365bb03a5d626df4113c62d40cb0d357ba95b25be120e6302f"
+        },
+        {
+          "path": "src/components/dmf-ui/drawer/drawer-title.astro",
+          "upstreamSha256": "69fda5f6572e93912024b4ef2f8c42e06d883fbd0a39cdffd7f791b0bfc7179f",
+          "adoptedSha256": "7ab429455e29232c5f8b2849b56fb8b6f6d88b51889f5f49c6429ee1ae96e4c7"
+        },
+        {
+          "path": "src/components/dmf-ui/drawer/drawer-trigger.astro",
+          "upstreamSha256": "c4ce3847922f438c532c8f65a544c51350a6f7272c37c34048d66515e462566d",
+          "adoptedSha256": "8c8aa6ac37301e9c0532dac110dbe87454f0e4124518634303cb8112a473459a"
+        },
+        {
+          "path": "src/components/dmf-ui/drawer/drawer-viewport.astro",
+          "upstreamSha256": "f85e0f3f8a72f20ee9e7a159de9e3deeabf822776dbdfdd6d5f7afa918f6286c",
+          "adoptedSha256": "9e2763801f70908386f791d599e0dc5361185ea77c1bcfca7d24b8353d5375e2"
+        },
+        {
+          "path": "src/components/dmf-ui/drawer/drawer-virtual-keyboard-provider.astro",
+          "upstreamSha256": "cc1d92f5bf3672e77f6ad98ae20366ef4b00be5750a44dd9820964020fef8c1b",
+          "adoptedSha256": "cc1d92f5bf3672e77f6ad98ae20366ef4b00be5750a44dd9820964020fef8c1b"
+        },
+        {
+          "path": "src/components/dmf-ui/drawer/drawer.astro",
+          "upstreamSha256": "0968f8c2cf5aa9ecd17d95e0a3fab475a24692e25f2d802d6d73557080652f43",
+          "adoptedSha256": "cdc94d0cff2ba469564042fc77e068ce735614a87ed977028102151e834606e7"
+        },
+        {
+          "path": "src/components/dmf-ui/drawer/index.ts",
+          "upstreamSha256": "8016278518a3cc93b674bc6f80b59920a425c80417d3d92bc693db202c0ee2c9",
+          "adoptedSha256": "8016278518a3cc93b674bc6f80b59920a425c80417d3d92bc693db202c0ee2c9"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/drawer.json"
+    },
+    {
+      "name": "dropdown-menu",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/dropdown-menu.json",
+      "sha256": "336fa174099beb9371ef923f96b35260f29ef70dfb1fd761d177e4b62733469b",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/dropdown-menu.json"
+    },
+    {
+      "name": "empty",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/empty.json",
+      "sha256": "a374bf16ba34477caaac1c52ccf07889fa3a5ebd06d0a5d03d84dfc1d33c450a",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/empty/empty.astro",
+          "upstreamSha256": "67f4dbad2eb4a3c8a0dab8da2443b3d79a8c0c82e9db05cfce73bfa89b5fd03f",
+          "adoptedSha256": "6efb61a061af2ed9c4755f5ac600f65d8f0553c607c106738dc9e4ba04595ae5"
+        },
+        {
+          "path": "src/components/dmf-ui/empty/empty-content.astro",
+          "upstreamSha256": "8cef20188814af2deea90c7588629b3c21a7082a69dd76242010d1c88024855c",
+          "adoptedSha256": "e845692172ade4c6f0569e4193ce8542f6fa141e424e562befb3676f36d509d1"
+        },
+        {
+          "path": "src/components/dmf-ui/empty/empty-description.astro",
+          "upstreamSha256": "f2ee77c4051e30a8bf091630a10d18223888ed1784cd0b575e947e6e9b1ed244",
+          "adoptedSha256": "d3bdafbe60389e15b33c7e9115639333d0cdaddf150763ce678feae76d187053"
+        },
+        {
+          "path": "src/components/dmf-ui/empty/empty-header.astro",
+          "upstreamSha256": "5dac0a4d8fb6d745fdcacc0001d8ae2a07245c74ee23c19e47679c5e337f1778",
+          "adoptedSha256": "f4daf7515235ef8aae1574ffb763fc74ce8c2ac352bfcfa778b74b944bed4dd1"
+        },
+        {
+          "path": "src/components/dmf-ui/empty/empty-media.astro",
+          "upstreamSha256": "3a1cc8245852856d0aef433ed0c8c7439dcd20b2b155de20f622d2dfff9a9b18",
+          "adoptedSha256": "84e7d3924e0629d0e75e065803c69f3151f76296e319c84c1191b0e306148102"
+        },
+        {
+          "path": "src/components/dmf-ui/empty/empty-title.astro",
+          "upstreamSha256": "7ff317112e46b56c41f7e9a4667a691be2a87829895318141249eda063836849",
+          "adoptedSha256": "e7aa49b41b3297f35af9c8eae8436b8811cf738eabf3e8ce295b952dfd2cca17"
+        },
+        {
+          "path": "src/components/dmf-ui/empty/index.ts",
+          "upstreamSha256": "711b08d8fc905220f50628086f40a66c8d867e964700d5facd24418dcb5c1ed6",
+          "adoptedSha256": "711b08d8fc905220f50628086f40a66c8d867e964700d5facd24418dcb5c1ed6"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/empty.json"
+    },
+    {
+      "name": "field",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/field.json",
+      "sha256": "785651244fa55cce1756e4c74d7aa5de25127902289af5c45b84f90cf3ad1c9b",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/field.json"
+    },
+    {
+      "name": "form",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/form.json",
+      "sha256": "28931203def2b8e40e5f0bbd22b92ec713ef51c9833dd3585e9aed6a0333e5d0",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/form/form.astro",
+          "upstreamSha256": "48d0548859b1ce65d3a2816f6b9aac29cc529488c1dc9906f6d2e4d140b0c554",
+          "adoptedSha256": "1d183659e45096a8efc6ccca40a0cd237c487718a6dce55ce7d85189550e94ce"
+        },
+        {
+          "path": "src/components/dmf-ui/form/index.ts",
+          "upstreamSha256": "665d1767185d55009b4ca50cca49e94f65020aedca1e2baf9f3f498ba87de1d2",
+          "adoptedSha256": "665d1767185d55009b4ca50cca49e94f65020aedca1e2baf9f3f498ba87de1d2"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/form.json"
+    },
+    {
+      "name": "header",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/header.json",
+      "sha256": "3c950377101a1df6d3b6b77962cd18faac29f9c48f997dd1dc6f5cac12c10833",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/header/header.astro",
+          "upstreamSha256": "b1c5051469c10e7558c3db4fb24b767e6be4720e4366d86ba0834f00f1d2394e",
+          "adoptedSha256": "869a393ff5777a35535eacc2c4fb213df677c783f1d7f5a0b6ace93835ceb34d"
+        },
+        {
+          "path": "src/components/dmf-ui/header/header-container.astro",
+          "upstreamSha256": "b1ae335d763e0eeb40d41eedea2bf41e6e6a39e53c24a7a953b09cb8e8dc9447",
+          "adoptedSha256": "5cc88edd026ffe7bfd5ab5e956064c6da8fddcf9339c719d88a3602d369b8565"
+        },
+        {
+          "path": "src/components/dmf-ui/header/header-group.astro",
+          "upstreamSha256": "7c48ae903b3c72e1df099a457b9fea520e17d3fdaed4b957c667e4f1277e9e16",
+          "adoptedSha256": "1cea4e37bdadd03db17666b205314f17af47543d2d0f58146e37abc625427a13"
+        },
+        {
+          "path": "src/components/dmf-ui/header/index.ts",
+          "upstreamSha256": "82201dda82456b9daa72a3ab8b35ae788d75eab038a04502f0bc834d92e1d9a0",
+          "adoptedSha256": "82201dda82456b9daa72a3ab8b35ae788d75eab038a04502f0bc834d92e1d9a0"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/header.json"
+    },
+    {
+      "name": "hover-card",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/hover-card.json",
+      "sha256": "3b8564b1ba2f0f9c15a61ba7afd9727e225ca243a09827d32e35722fcf7e5c2b",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/hover-card/hover-card.astro",
+          "upstreamSha256": "12277297be119283c61632e0a115dae42631df1fa44060d630b7bc97f1903b6d",
+          "adoptedSha256": "dc906b0227a52616c9b8d470d9fa2f9d4205670773e8e9bfb46fa861988c6b28"
+        },
+        {
+          "path": "src/components/dmf-ui/hover-card/hover-card-content.astro",
+          "upstreamSha256": "5b2d40a912259d902f2681e01d02fb1e025af92ec80cc90950768999981d3db2",
+          "adoptedSha256": "dfe46582336d5d292bb5edbcfc364eafad7c988d247125e7bf784f7c41a0dcc3"
+        },
+        {
+          "path": "src/components/dmf-ui/hover-card/hover-card-trigger.astro",
+          "upstreamSha256": "f330d0b15b2ae175eff7fe0f524a1bfc734a0a89cb9a222e596b55839bc01f67",
+          "adoptedSha256": "45d5063cde4bd90ab3ec4d86ddee0d9b71e1d72fe832fa510ff11dc46e9e7452"
+        },
+        {
+          "path": "src/components/dmf-ui/hover-card/index.ts",
+          "upstreamSha256": "4032379eebf9f7e28368dfeb611fab5a442ed088074df94063a1b1b62ce42414",
+          "adoptedSha256": "4032379eebf9f7e28368dfeb611fab5a442ed088074df94063a1b1b62ce42414"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/hover-card.json"
+    },
+    {
+      "name": "icon",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/icon.json",
+      "sha256": "4ee020c1976d7853ec6f5c11949d06b4feda94973a62991cd27ed19e18ec7ef4",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/icon/icon.astro",
+          "upstreamSha256": "db4c9d77091f5e4a8297b487997bc871ff9acfe7698009fc23a908c3b027788e",
+          "adoptedSha256": "e9b61b4b25da7e55af263888cfc18b02f8d03d67b3dc6a3603259a16985b152c"
+        },
+        {
+          "path": "src/components/dmf-ui/icon/index.ts",
+          "upstreamSha256": "7b09f5ef4a2b32d5c469391ed97544c4c57ecca8c0e8e4cbaaa9f69e04fe88a1",
+          "adoptedSha256": "7b09f5ef4a2b32d5c469391ed97544c4c57ecca8c0e8e4cbaaa9f69e04fe88a1"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/icon.json"
+    },
+    {
+      "name": "image",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/image.json",
+      "sha256": "cfebcefbf6e934dda0a540b16ef24e1e6cc84392ad770b7168db81bab7aff1b4",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/image/image.astro",
+          "upstreamSha256": "1f74698e4428d01586d3b98d23d367e2b2bf5f89aa8cdace020781c4fd7e0193",
+          "adoptedSha256": "3ab36132374a314006007fb6bfa34115d70fc76fe3acd323dda4b76a00a30045"
+        },
+        {
+          "path": "src/components/dmf-ui/image/index.ts",
+          "upstreamSha256": "deb88ba42adfc9d81599858cfc008132d3b8f48e6eaf9223ab8044002d580dac",
+          "adoptedSha256": "deb88ba42adfc9d81599858cfc008132d3b8f48e6eaf9223ab8044002d580dac"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/image.json"
+    },
+    {
+      "name": "input",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/input.json",
+      "sha256": "f242b51d6c43664a70efa422225955de5b43dc5309567a9ddab83a960f7316ba",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/input.json"
+    },
+    {
+      "name": "input-group",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/input-group.json",
+      "sha256": "46f738b8441b1e81bc11cef6ba4be7931c94621c961d1a75f281a30d66c86b3c",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/input-group.json"
+    },
+    {
+      "name": "item",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/item.json",
+      "sha256": "e6cc830b8b0444c43e8a2a6f06da556994bbebf240d77ecc4d763dd9ee1ca009",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/item/item.astro",
+          "upstreamSha256": "0b6a15692d3e2246982be9583849f36ac008ff3c59ecf0eb9563f3cc217c3697",
+          "adoptedSha256": "93cbd3b8d021cc9047366908d517cf8d781daf27444a3a7d30e8a0bf632e7f2b"
+        },
+        {
+          "path": "src/components/dmf-ui/item/item-actions.astro",
+          "upstreamSha256": "7184b1bc9e84119f38c91c676cec7122e183db2d38ddc718ad57f769aa2aaa2d",
+          "adoptedSha256": "ad5155e1719218790f27369c8297fa4681a2a144787aa8619eb5635784ba2977"
+        },
+        {
+          "path": "src/components/dmf-ui/item/item-content.astro",
+          "upstreamSha256": "1b100f21593abaae9990f7740c3fc388043c19da51282c2cdf88907a19c4a41f",
+          "adoptedSha256": "c4b9a80ac52715b02b80af4bee8c63a3a128c8da1672e7f95a0048771e173a12"
+        },
+        {
+          "path": "src/components/dmf-ui/item/item-description.astro",
+          "upstreamSha256": "4d02a42ab47a7793fcb4b115a5c6b0561b0ccbb715de3f59b437fda571e0385b",
+          "adoptedSha256": "2dad30eae8745af8d4742d3d973b9d01a260d3ffb9a07fffb198320d488c92f5"
+        },
+        {
+          "path": "src/components/dmf-ui/item/item-footer.astro",
+          "upstreamSha256": "f51cdf7c2ff31ad26aec8d46227d4fd11c67880f5fb13f7e81db46929be071ec",
+          "adoptedSha256": "626ede3b30bad69c7b36bc3176c0bae86b21fffee9fb865cb8ebce6ab2782943"
+        },
+        {
+          "path": "src/components/dmf-ui/item/item-group.astro",
+          "upstreamSha256": "007c5d91fae7a813bf3945f6116c65a3269449ff9f6e7f552340e080fead99bd",
+          "adoptedSha256": "ec5cb71d7a2b20f76c6acb364ae13fa765f7b58dbb13f6d46464a452e503436f"
+        },
+        {
+          "path": "src/components/dmf-ui/item/item-header.astro",
+          "upstreamSha256": "4f97884a733493245520d19e5a62b1f4d557aec970795b1bece952c8c7ba99a0",
+          "adoptedSha256": "02b767938f530997606577692951a80d9c4cf5950894857fee6a58e400828793"
+        },
+        {
+          "path": "src/components/dmf-ui/item/item-media.astro",
+          "upstreamSha256": "6a98237c66548dbef800d4fe92fc0407fd4115b317d653d9dbbf38080d668800",
+          "adoptedSha256": "be9257f6138bbb3a4b581c527b58b845fc3c550fdab1d3a0c4218ffd087f2113"
+        },
+        {
+          "path": "src/components/dmf-ui/item/item-separator.astro",
+          "upstreamSha256": "8c13c936a0cc23b2fac210838c1904ac2d6bf5d327457da8d85029e0126ca08f",
+          "adoptedSha256": "71f739bc4bad00a5c5ca4e2661794afcf5a771719ec44bd5ff632c5af1207720"
+        },
+        {
+          "path": "src/components/dmf-ui/item/item-title.astro",
+          "upstreamSha256": "905f16cdbe77ef26525d3e8d75b0ee03d9d6598b3fe3442ec1d8737f9bac0851",
+          "adoptedSha256": "68818456771cb68d17b69257f2c748ca7158ea971bab4174d3e68b68ce3e7d55"
+        },
+        {
+          "path": "src/components/dmf-ui/item/index.ts",
+          "upstreamSha256": "a4546f0584442f342e96404398b6c0fec817d5945817ef580bbfbca2e9ff1747",
+          "adoptedSha256": "a4546f0584442f342e96404398b6c0fec817d5945817ef580bbfbca2e9ff1747"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/item.json"
+    },
+    {
+      "name": "kbd",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/kbd.json",
+      "sha256": "b9188928f21b32ace2c6aa1e3f0a989e981df2edcd1462be8d0cf009e184bfa3",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/kbd/kbd.astro",
+          "upstreamSha256": "5b988f8bd9204b533437f707bf1bafdb19104046b23022faa8f1c36bfc70e412",
+          "adoptedSha256": "b04f689f5764ea2689a5aca9dfdf2725b58fbc6c6e38e353172a81ec35f17797"
+        },
+        {
+          "path": "src/components/dmf-ui/kbd/kbd-group.astro",
+          "upstreamSha256": "200888c6ae5c17adeba423300c7237d3e5b134df919645d6af75f9e80d66157b",
+          "adoptedSha256": "ab84b6581f57be0ad7026b1dc504411bd32b6c75424e4436be7cb40167a182bb"
+        },
+        {
+          "path": "src/components/dmf-ui/kbd/index.ts",
+          "upstreamSha256": "6ed08e66fb5a3af1386f0e9ed12bf83fa5af5265f1cd38824fb8bf9da0726092",
+          "adoptedSha256": "6ed08e66fb5a3af1386f0e9ed12bf83fa5af5265f1cd38824fb8bf9da0726092"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/kbd.json"
+    },
+    {
+      "name": "label",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/label.json",
+      "sha256": "41432bd909fb89bc808a8f0890e1cb20273b855678d0584591e389afca367075",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/label.json"
+    },
+    {
+      "name": "layout",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/layout.json",
+      "sha256": "ac2c8f615e6ba13ca8128e7d659a148ac593ae9918a07a47bd789a40ebb2e4ee",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/layout/layout.astro",
+          "upstreamSha256": "903856d08c26080604b85227fac7c9772c8a3e6d1dcd1b0f9998410f6ea21bc8",
+          "adoptedSha256": "c2f948710f6c3ed700998c8bdfc6a3452705f966e203a60bb69ee48dc17b13a1"
+        },
+        {
+          "path": "src/components/dmf-ui/layout/layout-head.astro",
+          "upstreamSha256": "387f6fcda7906d1c01838cd544b7addeefee5e56b3cc28c628b474ff89109e2d",
+          "adoptedSha256": "387f6fcda7906d1c01838cd544b7addeefee5e56b3cc28c628b474ff89109e2d"
+        },
+        {
+          "path": "src/components/dmf-ui/layout/layout-body.astro",
+          "upstreamSha256": "9a3f5e17bd527880be347a418f25d8581d9a50038c59f47c0dfee5da22a7ed0e",
+          "adoptedSha256": "64c3590c208ec40e8c2cb11a9ef1506c6af22d583eb7935a6ccbda3c5dfa3a56"
+        },
+        {
+          "path": "src/components/dmf-ui/layout/layout-main.astro",
+          "upstreamSha256": "42fea08fec547d7e8187a3c8bb0e8202bd915f32a8b7c7dc15b50bd0c976fd7d",
+          "adoptedSha256": "e4b04361434216ddb01b7877dcad69792255dcc2028bf4ba954e139c735cb0d5"
+        },
+        {
+          "path": "src/components/dmf-ui/layout/index.ts",
+          "upstreamSha256": "0d8fc7e3aa106dc307432e6e62d79aaf1cdc88bc6e1623d8f758e9cf2f05ad17",
+          "adoptedSha256": "0d8fc7e3aa106dc307432e6e62d79aaf1cdc88bc6e1623d8f758e9cf2f05ad17"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/layout.json"
+    },
+    {
+      "name": "logo",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/logo.json",
+      "sha256": "086f96e102a8b931fc5832960188ff14f79eac1e8cd0e592b86ea5dfdb070bb0",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/logo/logo.astro",
+          "upstreamSha256": "8cb2fade86070be4c7559b2224b77fc2b26c3cd75834da494f36014f50a23371",
+          "adoptedSha256": "e2dde02d90c5989a3b7ab5c2e5518dedb620def6be5a9e69a755136fa0f66b97"
+        },
+        {
+          "path": "src/components/dmf-ui/logo/logo-image.astro",
+          "upstreamSha256": "b264abb2cfddeff8296b2a8d68a60ec188c2125433ad3cb2d5e61912b3a700d0",
+          "adoptedSha256": "3aabe2952a4bb04053c3225ae42f1434a93d4c703d8e90337b1fc7482e7a7497"
+        },
+        {
+          "path": "src/components/dmf-ui/logo/logo-text.astro",
+          "upstreamSha256": "4bd2ed9ea507a12c8a941d3122d217a4d53ee69d85e42adfbd42277e791f9820",
+          "adoptedSha256": "eac453aa1c2ffbec02d6cfa06bc2fedac605ae7787dc53242c78ff2929b156af"
+        },
+        {
+          "path": "src/components/dmf-ui/logo/index.ts",
+          "upstreamSha256": "bc281f3d84faf755d5d25755ceccc472696472e77d06bcd3f8d15d3b45b2b969",
+          "adoptedSha256": "bc281f3d84faf755d5d25755ceccc472696472e77d06bcd3f8d15d3b45b2b969"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/logo.json"
+    },
+    {
+      "name": "marquee",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/marquee.json",
+      "sha256": "485e58cbdab597d5f3eae5330913442745d11f4c1ef7f8b12d0163dbe34d190f",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/marquee/marquee.astro",
+          "upstreamSha256": "9532ac270df2e18323685abc675491512df4a68ed6b1909f55ce572dbd067029",
+          "adoptedSha256": "800b0c9eae433ccebabb53ab09b3dfa50a2ef673fde039221f52ca4ce64f3774"
+        },
+        {
+          "path": "src/components/dmf-ui/marquee/marquee-content.astro",
+          "upstreamSha256": "c8ce6e4f34a0e8d5ba8e3795bac1061ac04023465184273c4af905f92635c999",
+          "adoptedSha256": "8dbf3fc4c42f75b7f677edc30c27eff6f057ff2a60e12d3a73d52723f71ab8e1"
+        },
+        {
+          "path": "src/components/dmf-ui/marquee/marquee-item.astro",
+          "upstreamSha256": "50be2ca0b860829a46cbfb01b9d59cf0abc9caa139c72fc48150c15439d3e5a0",
+          "adoptedSha256": "17effec8f249b855f3e95ef306f8cb8a61a096ef549ee983909da662bde95bac"
+        },
+        {
+          "path": "src/components/dmf-ui/marquee/marquee-toggle.astro",
+          "upstreamSha256": "93ef15e8bf4185b28c69359030c834dc44cebe3bb217cfffef7da8b67b461126",
+          "adoptedSha256": "ba38ae5ca5fe558217e306b0d4b0da6f597d07675a919b9461be6961546a66e9"
+        },
+        {
+          "path": "src/components/dmf-ui/marquee/index.ts",
+          "upstreamSha256": "0bb327ab4a003a38f5d972fb38a1c7c6d46a861272e88d0ae3c9503db02c0d4a",
+          "adoptedSha256": "0bb327ab4a003a38f5d972fb38a1c7c6d46a861272e88d0ae3c9503db02c0d4a"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/marquee.json"
+    },
+    {
+      "name": "native-select",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/native-select.json",
+      "sha256": "d944bd62c49ac796da673ab7ab55eda209fd3d64bf509c7650b080faf664f6cc",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/native-select/native-select.astro",
+          "upstreamSha256": "282390e48ecfbd1c7cfde705d4bc81c0d6b927879e752009eca3f92bec1d0f0e",
+          "adoptedSha256": "495d3c4a19fac25ac4cff5f42aa05d9e3f3157e152b177ffb1eb5e2cb7f91094"
+        },
+        {
+          "path": "src/components/dmf-ui/native-select/native-select-option.astro",
+          "upstreamSha256": "60bedb95828f92034c8f845709f2c2a893578a534fbefad88eb3a0127c0ebab4",
+          "adoptedSha256": "208cb1b4019839e910701bb052225f716d1c490090b047a5a0f32221fd57357b"
+        },
+        {
+          "path": "src/components/dmf-ui/native-select/native-select-optgroup.astro",
+          "upstreamSha256": "635f54fa4a29187400dddf52c3539f247d8f7c0c9b29c02eab7d855521ae20fa",
+          "adoptedSha256": "4b67d997fcd76805ac91121e319c968657f124dd3a7429f8667eb1e215a67452"
+        },
+        {
+          "path": "src/components/dmf-ui/native-select/index.ts",
+          "upstreamSha256": "0a4989767e5d28a66203fac5e0a554cbf22e80bbf7ef58a7bc4f956cb47391bb",
+          "adoptedSha256": "0a4989767e5d28a66203fac5e0a554cbf22e80bbf7ef58a7bc4f956cb47391bb"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/native-select.json"
+    },
+    {
+      "name": "navigation-menu",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/navigation-menu.json",
+      "sha256": "a6fcf4311325ae33c25c9fd35236ce24f4a022a3b0f7d24b8fc8e82cacc4b750",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/navigation-menu.json"
+    },
+    {
+      "name": "pagination",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/pagination.json",
+      "sha256": "f99cf0b620db8a8a2794a7964d20aafce769e9130a2e2a81fcdfcea3a0ee0118",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/pagination.json"
+    },
+    {
+      "name": "popover",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/popover.json",
+      "sha256": "2247278875676c37be5dc399d36c551746f3e2746451c0e4a85394323b794519",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/popover.json"
+    },
+    {
+      "name": "price",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/price.json",
+      "sha256": "7ae46997cf508e3d48c2790b2ce22c87855d0ff5efc0f14b836034c7b3312497",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/price/price.astro",
+          "upstreamSha256": "c9a64434b58b21e55afd394b9fe84c6b86fa3f67f1070901642e52c7670d471e",
+          "adoptedSha256": "62ed6291a71779f1552a0d578a75788e1f1d1bb389e722d5801ed0125ce86e6b"
+        },
+        {
+          "path": "src/components/dmf-ui/price/price-unit.astro",
+          "upstreamSha256": "75513091fb6ea7b44b3cf660b2922bd272e5fb48079a3be3a0fcfc2348466a39",
+          "adoptedSha256": "7a9b93ffd74042fcf0891eeab4a261898b6339b26466ebe812c66862350afb23"
+        },
+        {
+          "path": "src/components/dmf-ui/price/price-value.astro",
+          "upstreamSha256": "8c652fb03ea2d2484733e238aafcd3922165b1bfcfca29e65257d4a1a2ecf52b",
+          "adoptedSha256": "161f81604210b95a0f62ca38e639fc4a499e744f7e91ab4ce2760231d41e8a05"
+        },
+        {
+          "path": "src/components/dmf-ui/price/format-price-value.ts",
+          "upstreamSha256": "46cb274e98c64d8d8b704b44b42aa2d0cbc8eb8fe44b5525af429faed961c060",
+          "adoptedSha256": "46cb274e98c64d8d8b704b44b42aa2d0cbc8eb8fe44b5525af429faed961c060"
+        },
+        {
+          "path": "src/components/dmf-ui/price/index.ts",
+          "upstreamSha256": "d134ebe973271dae2d788f5338316ad9db6d4f81680ab01c78f6db17a6045ecf",
+          "adoptedSha256": "d134ebe973271dae2d788f5338316ad9db6d4f81680ab01c78f6db17a6045ecf"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/price.json"
+    },
+    {
+      "name": "progress",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/progress.json",
+      "sha256": "b3a994683d0416e6fc6fa31a1676fdb931971c3fba13d7210b23f645b6bcc212",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/progress.json"
+    },
+    {
+      "name": "radio-group",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/radio-group.json",
+      "sha256": "a09b96ebe40fd15adc796dd0b5aa808021da7acb9c562b9f2a1d0d73922ee1ec",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/radio-group.json"
+    },
+    {
+      "name": "rating",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/rating.json",
+      "sha256": "2a6dd8d9c45b0e342ad66102511793dac1317b3ea2306c71515706b465b0e5dc",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/rating.json"
+    },
+    {
+      "name": "resizable",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/resizable.json",
+      "sha256": "07be17c4c017ea8537e83200e9eb04446064b000781b14429975f168c0a2ac99",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/resizable/index.ts",
+          "upstreamSha256": "9790fc6031612f7d5f84ddd46241cc70528f3f85d27fde4e2e70a542d4b1d286",
+          "adoptedSha256": "9790fc6031612f7d5f84ddd46241cc70528f3f85d27fde4e2e70a542d4b1d286"
+        },
+        {
+          "path": "src/components/dmf-ui/resizable/resizable-handle.astro",
+          "upstreamSha256": "216dac2849f9b0e4e47ec7f6fd3ec65ba58d588e5dfdc0e52b69e17e995a3371",
+          "adoptedSha256": "2cc88e54c60f2c1410d639df7e7b0da8ddb43c83c2865c88997ab2bde8cfcd26"
+        },
+        {
+          "path": "src/components/dmf-ui/resizable/resizable-panel.astro",
+          "upstreamSha256": "b428863bd631dff6b86bdc4abd2efe4aa67f1ad5a1acbb863ce4d0621bfa1a63",
+          "adoptedSha256": "5d58cd11281ba8f65a91a5899a4aee96533e2434eb53607b647be266e1553e50"
+        },
+        {
+          "path": "src/components/dmf-ui/resizable/resizable.astro",
+          "upstreamSha256": "a22ffd4eac96d178a23a6c8baba58361696bf9f448d7ce027b0a4fa1d66a3ac3",
+          "adoptedSha256": "6de30741ac5398c975c2aaace4f71827c3bf592feb42daaa587aab296e823ba2"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/resizable.json"
+    },
+    {
+      "name": "section",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/section.json",
+      "sha256": "d3f5851adb222763fbcf9d85d56f99686cfea010617e76044c3da080de3d8ac2",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/section/section.astro",
+          "upstreamSha256": "54806cc6406e6d18bfb6c8a8d036098d10116b739bf6fad89385893bd3e2e5dd",
+          "adoptedSha256": "5a9f18cf6eff21e30ba7486bf808bfd03d617c505591f45eaf6d32d7c94af1e6"
+        },
+        {
+          "path": "src/components/dmf-ui/section/section-container.astro",
+          "upstreamSha256": "64bb3543ad3d9ce62383737b77fc724eb68ea545feefc246e30eb8796385f64b",
+          "adoptedSha256": "6d1e6d47a8b3006a7f44fe5ccd5f68ac9494962e246a88f9b12dcaed8ecd258f"
+        },
+        {
+          "path": "src/components/dmf-ui/section/index.ts",
+          "upstreamSha256": "f46209400361e2f08a163950200baf8464656a95ce1190c1ec877a51237853eb",
+          "adoptedSha256": "f46209400361e2f08a163950200baf8464656a95ce1190c1ec877a51237853eb"
+        },
+        {
+          "path": "src/components/dmf-ui/section/section-title.astro",
+          "upstreamSha256": "bb7d7f215f7fcf297d394e94aab9438feaca2a7c795e1a87803d813864ed49b7",
+          "adoptedSha256": "c1dea401c02ed742b33c9399129e00c5a894a922c801e9e887760d9bddd6288f"
+        },
+        {
+          "path": "src/components/dmf-ui/section/section-description.astro",
+          "upstreamSha256": "27badac7065d92e48b1efd7ccd1d67db96115bd02e85d8dfe40394815e32b44d",
+          "adoptedSha256": "8d0cc9b136acfea1a3120a33d87fa0f928baaffeeb32e4b4b57d4df09302a62e"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/section.json"
+    },
+    {
+      "name": "select",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/select.json",
+      "sha256": "4ef2ad3ac42771fc262d50f81a707b66df26e1ca664204261381244ca723c463",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/select.json"
+    },
+    {
+      "name": "separator",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/separator.json",
+      "sha256": "717373d95a860b9ff91fd5b5ed8395e09cdba1ff0adaf8ceae29f5fa273691c4",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/separator.json"
+    },
+    {
+      "name": "sheet",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/sheet.json",
+      "sha256": "1053ced805aea4a40bf5d2d6d0c947cb3f545887ae58cef968b28ebfa091fb91",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/sheet.json"
+    },
+    {
+      "name": "sidebar",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/sidebar.json",
+      "sha256": "62472c4f19a9ff8fc6e327254c27d306fb2c9288717eeb47dabde3f2901a4221",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/sidebar.json"
+    },
+    {
+      "name": "skeleton",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/skeleton.json",
+      "sha256": "4c8958b67d4e8d67f9865e8580686079038c5e4d580687b38151c8e40dcb7204",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/skeleton.json"
+    },
+    {
+      "name": "slider",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/slider.json",
+      "sha256": "7397e726e317c62c718ef51adeb6caf6a596b2e7b64f943313aaede7fa6c8465",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/slider.json"
+    },
+    {
+      "name": "spinner",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/spinner.json",
+      "sha256": "4fb5669651f83b48a26a23a36c6a0ee9ab81a44b095db8cb2aca513795577b71",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/spinner/spinner.astro",
+          "upstreamSha256": "9cd2fd2664244c84302094213a8aa112aafa8dd9bf607bdd18403750e9637d1a",
+          "adoptedSha256": "7ca20cededb54fcbe92a83865d87f290f9ced8dda8ff30c3ac406c61b2c5023c"
+        },
+        {
+          "path": "src/components/dmf-ui/spinner/index.ts",
+          "upstreamSha256": "d83ba3991f4448897d89b33d4106a7c93f33151435a0f4cef81d5a717dca83e8",
+          "adoptedSha256": "d83ba3991f4448897d89b33d4106a7c93f33151435a0f4cef81d5a717dca83e8"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/spinner.json"
+    },
+    {
+      "name": "switch",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/switch.json",
+      "sha256": "5229c15a6cbccc8f24f1ec712fe5f8d626a6963359efa8d8f05487d693d97bb2",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/switch.json"
+    },
+    {
+      "name": "table",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/table.json",
+      "sha256": "a034dc448ded9ddf4f96d2edbaceb5e0052d9c6e6bf80ae62512a267c8d00aad",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/table.json"
+    },
+    {
+      "name": "tabs",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/tabs.json",
+      "sha256": "a03a2105743d67fc2f17b6729b88638c15b584f55f94c87de15ee14eac5e8f43",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/tabs.json"
+    },
+    {
+      "name": "textarea",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/textarea.json",
+      "sha256": "7d5214ae925263a0ac1a5424affcfd6355d9f74067f38f8daf07f9706ef7886b",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/textarea.json"
+    },
+    {
+      "name": "theme-toggle",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/theme-toggle.json",
+      "sha256": "6013e597b19e3e5a86dec9448f3f0c0e5a7cb8c6ea2ff102168f535123927544",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/theme-toggle/theme-toggle.astro",
+          "upstreamSha256": "66b7df8b07d82e85b05d431b8afcdc1da21a82539d9fbd610d96fb8409b3931d",
+          "adoptedSha256": "b6018ac2039515006a9a3e8f11906e4d0f4dd1bb5938ddd5dccee3409034524b"
+        },
+        {
+          "path": "src/components/dmf-ui/theme-toggle/theme-provider.astro",
+          "upstreamSha256": "5803664360ff307e08f913abffc9867d21b7fc26f27461676c4d7e3950ed0189",
+          "adoptedSha256": "e8472bc2338aabb8a5344554bbaf9186668e528edaccc4a3c7079ba61fb4ced2"
+        },
+        {
+          "path": "src/components/dmf-ui/theme-toggle/index.ts",
+          "upstreamSha256": "4854c04e3d7d9a5b99422a8b438ecb61ddd736516a53d4586651c0576039f42c",
+          "adoptedSha256": "4854c04e3d7d9a5b99422a8b438ecb61ddd736516a53d4586651c0576039f42c"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/theme-toggle.json"
+    },
+    {
+      "name": "toast",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/toast.json",
+      "sha256": "83ab87c897bf63ca1cb5724e3d8b5ccce60bc2abedd91df1c1c682b74138b0bd",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/toast.json"
+    },
+    {
+      "name": "toc",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/toc.json",
+      "sha256": "6b34a3864f779f823e91f8c7472b3a14a9d9361d0a7c94b2137f92ab04c8fb7e",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/toc/toc.astro",
+          "upstreamSha256": "7a2c9fd20710aa8c52ec521080635be3b9b95ddd448265d40f1920109a526478",
+          "adoptedSha256": "7afc5b2b42844551142dd34cba71eb93f31ea329d04d7fa52abb7ce7c53a9211"
+        },
+        {
+          "path": "src/components/dmf-ui/toc/toc-title.astro",
+          "upstreamSha256": "0982190009a57cecd5d9049d44ef5ed3025c996a37469a5d95199b72790d6f08",
+          "adoptedSha256": "0d04d1323b9966c20ae96d1840632f40ad7f0e2a2549517949fd8661659f44cb"
+        },
+        {
+          "path": "src/components/dmf-ui/toc/toc-menu.astro",
+          "upstreamSha256": "edd7b2e3e20ad703d9ac081249c9618a61c8c47141c70626094783dbfa51e518",
+          "adoptedSha256": "bebe919377f7046d57a0051c98d0fd1457c58c91557fb731e51181da623b12eb"
+        },
+        {
+          "path": "src/components/dmf-ui/toc/toc-menu-item.astro",
+          "upstreamSha256": "52a88b137a0a69d771f35467cff31eef3c64b0ae99072d21e675597cf5e90197",
+          "adoptedSha256": "dc4573f3e0cb5e996768834c828eee65ce09ff579f2fa8fc05b6717f54a67c6b"
+        },
+        {
+          "path": "src/components/dmf-ui/toc/toc-menu-link.astro",
+          "upstreamSha256": "8c6f443d4be8ae7332345cc40482b3bb3a4994acbece8f82f7cddaea30f1e286",
+          "adoptedSha256": "0ed4bb3dd2fd760473964752ee72bd7b71de668212520496d3fcb47dfaac9764"
+        },
+        {
+          "path": "src/components/dmf-ui/toc/index.ts",
+          "upstreamSha256": "e33d2cec8de207f94a6096e9ac478109a762bb55651fead44549e8426f1c41db",
+          "adoptedSha256": "e33d2cec8de207f94a6096e9ac478109a762bb55651fead44549e8426f1c41db"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/toc.json"
+    },
+    {
+      "name": "toggle",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/toggle.json",
+      "sha256": "d7a436bcb8549a2b0bf5e6b50db936c693dd43aaec4c5b26d67a0ef053b4420f",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/toggle.json"
+    },
+    {
+      "name": "toggle-group",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/toggle-group.json",
+      "sha256": "0f22f04526690ffe1ffe39fba3d46d3612c850b8598bfa2f24bbe6480cf7cf7a",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/toggle-group.json"
+    },
+    {
+      "name": "tooltip",
+      "status": "retained-dmf",
+      "payload": "vendor/fulldev/base-vega/tooltip.json",
+      "sha256": "d377a152a92be29c432bfbe1501d4ac96fbea1481a05e4130602f07f838cb820",
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/tooltip.json"
+    },
+    {
+      "name": "typography",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/typography.json",
+      "sha256": "c7ac0d00ef07e6d3167ce75665a56efb711d59059ff7e39eb1f10f8c46ecde99",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/typography/typography.astro",
+          "upstreamSha256": "79a209bba3d7c68136c9a004d9d6b554755dd3c6529007170a1aace70125a972",
+          "adoptedSha256": "6f7fc782313ed081cc3a2dcbfefef4155323cf064077395e61726b0eb2e3f717"
+        },
+        {
+          "path": "src/components/dmf-ui/typography/typography-a.astro",
+          "upstreamSha256": "1d73c3784d350b823d86f0b884d97d4eb77e69e8b34131b66c2012fb3adb153d",
+          "adoptedSha256": "010f9589f4c6167dfa02d89491b80b6b94a2e4a7d95bee81bd244734b7c3d379"
+        },
+        {
+          "path": "src/components/dmf-ui/typography/typography-blockquote.astro",
+          "upstreamSha256": "4b9d3d927db1e9ca2db0eab8173483909b73d99776fdf3fe4c2f0908dc2b43c0",
+          "adoptedSha256": "c25375468a14fedbbb19312093ca7ac0519544ac417aab85ae0bd87a68011533"
+        },
+        {
+          "path": "src/components/dmf-ui/typography/typography-h1.astro",
+          "upstreamSha256": "ed2641b943e4643a43a3e5454e05cf4c1f689d35e760249dc2a051a3a3bf65e5",
+          "adoptedSha256": "b79c201c6f4a54031835c67106530fee8f094ee8fe081b4b08f40fe312bb2e1e"
+        },
+        {
+          "path": "src/components/dmf-ui/typography/typography-h2.astro",
+          "upstreamSha256": "e2859381f20557812b552c71f170958755e7c1a9e22ff7a83dfa372277a811f6",
+          "adoptedSha256": "e0ef6500213e3d2630f9b0cf962311a6343ed836eaf4452078f8826b1370a75d"
+        },
+        {
+          "path": "src/components/dmf-ui/typography/typography-h3.astro",
+          "upstreamSha256": "1fb3bf10bff2549e031eed5d0fee7fcb7c7773edf2b578ad287aae97eed4dbbc",
+          "adoptedSha256": "d745439e3b8187ad599e043bc93bcaf0b861d91d1def0ae8cd15f636a134c2b7"
+        },
+        {
+          "path": "src/components/dmf-ui/typography/typography-h4.astro",
+          "upstreamSha256": "e5d12f2da6c27f670909513e65d9f640b217d157c895104be728ef624abc7610",
+          "adoptedSha256": "aa26e0c4d2c759c0772a7bbb78e45b0180f59365f103b8890d901ad7d0a05864"
+        },
+        {
+          "path": "src/components/dmf-ui/typography/typography-inline-code.astro",
+          "upstreamSha256": "24aaed018fd25a44436a359940b0610c890ed736a0efeabfed95db733326e295",
+          "adoptedSha256": "9e8357f0cab3682a62a98959707ba359ad790ecaec8e8ea21c187049ff35d1db"
+        },
+        {
+          "path": "src/components/dmf-ui/typography/typography-lead.astro",
+          "upstreamSha256": "5289559d69d2e62d8dc6f130b110f41f42d0305e178264c7a899307dcd6430be",
+          "adoptedSha256": "4cacdfd8d2ac22951acc14db1f7751a4786e0b6fb3a64fddcc1ab37018ba68b4"
+        },
+        {
+          "path": "src/components/dmf-ui/typography/typography-list.astro",
+          "upstreamSha256": "a8f8abf0041db3e0ad6a4509dd6f26c363d803e1270ea799ef4092683b76ca54",
+          "adoptedSha256": "647f72154f5abf0cc49ab68f72dbc6e18973e1b31bef6d69e410d228b7284803"
+        },
+        {
+          "path": "src/components/dmf-ui/typography/typography-list-item.astro",
+          "upstreamSha256": "a4772d287300ff1318233e5fbf5fbbc84213d79614b0ad78d2541169c0b1a9a1",
+          "adoptedSha256": "1761d468aa0e9039d3acb7b840d52beda7ceb614fe640ea450951911a657f4ac"
+        },
+        {
+          "path": "src/components/dmf-ui/typography/typography-p.astro",
+          "upstreamSha256": "29419db0dbb8cb2f5cd50ba1ad7bbb45aed0f8f5f735494272a0dc8a235c3547",
+          "adoptedSha256": "6d38949e7d41196db540015e2df6d05d704a60ed681529f86b5dc167292d8289"
+        },
+        {
+          "path": "src/components/dmf-ui/typography/typography-table.astro",
+          "upstreamSha256": "a3fd159fb68b3f058b558cf7ca4fbe54b49590392671fa3ef0998784a93334ec",
+          "adoptedSha256": "6b22051b925c4693140b194513d378fab457be7d140361fefe72ec2c3002e9c5"
+        },
+        {
+          "path": "src/components/dmf-ui/typography/typography-table-row.astro",
+          "upstreamSha256": "eed46c84c964efaba5c462d6c82dfe242c1705af167adfb552a8d35176944b57",
+          "adoptedSha256": "73f730765b00e8bfe98d04f5da246f07212110a13437415be07c5f51efa376da"
+        },
+        {
+          "path": "src/components/dmf-ui/typography/typography-table-head.astro",
+          "upstreamSha256": "d80fa02e4308f365e4226e01e6457a2e85d70a70d2c5b38b4bce48e5bc9ac82a",
+          "adoptedSha256": "8864804b34c5be83b297c96af743618ae211fd00cb4994078fa7ab37715e93ab"
+        },
+        {
+          "path": "src/components/dmf-ui/typography/typography-table-cell.astro",
+          "upstreamSha256": "7031b24a9d7b4739a9e069d7536bb5ff850d887c7036dcc569304988ac7dfdaa",
+          "adoptedSha256": "448b4ab1498faf65643464b81e8f0eecce96fe6be19e58807c9c92b810c52976"
+        },
+        {
+          "path": "src/components/dmf-ui/typography/index.ts",
+          "upstreamSha256": "dbd89eae63f5de5816079e9b3da715ea77bddc3e423b9c933200c46fab47aac1",
+          "adoptedSha256": "dbd89eae63f5de5816079e9b3da715ea77bddc3e423b9c933200c46fab47aac1"
+        },
+        {
+          "path": "src/components/dmf-ui/typography/typeset.css",
+          "upstreamSha256": "864400948df5eac974ec57931c1748635bd2e53d8c75ef34eae089d6e8230250",
+          "adoptedSha256": "864400948df5eac974ec57931c1748635bd2e53d8c75ef34eae089d6e8230250"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/typography.json"
+    },
+    {
+      "name": "video",
+      "status": "imported",
+      "payload": "vendor/fulldev/base-vega/video.json",
+      "sha256": "45f678a82a91a2d09aef48a0a25f28179ee0c81953dd9cb525439cd29a8dea57",
+      "files": [
+        {
+          "path": "src/components/dmf-ui/video/video.astro",
+          "upstreamSha256": "76c05753142419e4620556dbdb5dedaa7eb7f0f3e39420d5ef8a1ab017acaf5e",
+          "adoptedSha256": "42ef09bda80d0901b4374a83efff9a8c8d31641793246910ddf1e4c637a71cd3"
+        },
+        {
+          "path": "src/components/dmf-ui/video/index.ts",
+          "upstreamSha256": "5c91a030e1f72aec8796638d6adb4f20236ac9b07b86a431cbfb41f92d11f343",
+          "adoptedSha256": "5c91a030e1f72aec8796638d6adb4f20236ac9b07b86a431cbfb41f92d11f343"
+        }
+      ],
+      "registryUrl": "https://raw.githubusercontent.com/fulldotdev/ui/10427beee3c8faf9d077c1dec66fce41b0bae2d0/public/r/styles/base-vega/video.json"
+    }
+  ],
+  "adaptations": [
+    "Existing DMF implementations retained; no destructive upstream overwrite",
+    "Registry imports resolve to package-owned DMF modules",
+    "Layout imports scoped core styles and leaves transitions to the host",
+    "Content icons use local Lucide/Simple Icons imports instead of host-root globs",
+    "Theme controls use data-theme and coordinate with the documentation header",
+    "Drawer/Hover Card portalling retains originating preset and direction",
+    "Command Dialog uses the isolated modal foundation",
+    "Logical spacing and readable keyboard-label contrast",
+    "Local demo asset is exported; optional remote video stays inert until requested"
+  ]
+}

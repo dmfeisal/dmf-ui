@@ -1,0 +1,91 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"div"> & {
+  mountStrategy?: "lazy" | "eager"
+  defaultOpen?: boolean
+  open?: boolean
+  delay?: number
+  skipDelayDuration?: number
+  closeDelay?: number
+  side?: "top" | "right" | "bottom" | "left"
+  align?: "start" | "center" | "end"
+  sideOffset?: number
+  alignOffset?: number
+  avoidCollisions?: boolean
+  collisionPadding?: number
+  portal?: boolean
+  closeOnClickOutside?: boolean
+  closeOnEscape?: boolean
+}
+
+const {
+  mountStrategy,
+  class: className,
+  defaultOpen,
+  open,
+  delay = 700,
+  skipDelayDuration = 300,
+  closeDelay = 300,
+  side = "bottom",
+  align = "center",
+  sideOffset = 4,
+  alignOffset = 0,
+  avoidCollisions = true,
+  collisionPadding = 8,
+  portal = true,
+  closeOnClickOutside = true,
+  closeOnEscape = true,
+  ...props
+} = Astro.props
+---
+
+<div
+  data-slot="hover-card"
+  data-mount-strategy={mountStrategy}
+  data-default-open={defaultOpen}
+  data-controlled-open={open}
+  data-delay={delay}
+  data-skip-delay-duration={skipDelayDuration}
+  data-close-delay={closeDelay}
+  data-side={side}
+  data-align={align}
+  data-side-offset={sideOffset}
+  data-align-offset={alignOffset}
+  data-avoid-collisions={avoidCollisions}
+  data-collision-padding={collisionPadding}
+  data-portal={portal}
+  data-close-on-click-outside={closeOnClickOutside}
+  data-close-on-escape={closeOnEscape}
+  class={cn(className)}
+  {...props}
+>
+  <slot />
+</div>
+
+<script>
+  import { getDataBool, getRoots, hasRootBinding } from "@data-slot/core"
+  import { createHoverCard } from "@data-slot/hover-card"
+  import {prepareOverlayScope} from "../overlay-scope"
+
+  const controllers: ReturnType<typeof createHoverCard>[] = []
+  const scopes: ReturnType<typeof prepareOverlayScope>[] = []
+  const initialize = () => {
+    for (const root of getRoots(document, "hover-card")) {
+      if (hasRootBinding(root, "@data-slot/hover-card")) continue
+      const scope=prepareOverlayScope(root as HTMLElement, "hover-card");scopes.push(scope);
+      controllers.push(
+        createHoverCard(root, { open: getDataBool(root, "controlledOpen"), onOpenChange:scope.sync })
+      )
+    }
+  }
+  initialize()
+  document.addEventListener("astro:page-load", initialize)
+  document.addEventListener("astro:before-swap", () => {
+    for (const controller of controllers) controller.destroy()
+    controllers.length = 0
+    for(const scope of scopes)scope.cleanup();scopes.length=0
+  })
+</script>

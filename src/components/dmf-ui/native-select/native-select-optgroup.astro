@@ -1,0 +1,17 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"optgroup">
+
+const { class: className, ...props } = Astro.props
+---
+
+<optgroup
+  data-slot="native-select-optgroup"
+  class={cn("bg-[Canvas] text-[CanvasText]", className)}
+  {...props}
+>
+  <slot />
+</optgroup>

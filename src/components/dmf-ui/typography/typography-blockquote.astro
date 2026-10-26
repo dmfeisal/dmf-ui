@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Size = "sm" | "default" | "lg"
+type Props = HTMLAttributes<"blockquote"> & {
+  size?: Size
+}
+
+const { class: className, size = "default", ...props } = Astro.props
+
+const sizeClass =
+  size === "sm" ? "text-sm" : size === "lg" ? "text-lg" : "text-base"
+---
+
+<blockquote
+  data-slot="typography-blockquote"
+  data-size={size}
+  class={cn("mt-6 border-s-2 ps-6 italic", sizeClass, className)}
+  {...props}
+>
+  <slot />
+</blockquote>

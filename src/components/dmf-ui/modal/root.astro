@@ -1,9 +1,9 @@
 ---
 import type {HTMLAttributes} from 'astro/types';
-interface Props extends HTMLAttributes<'div'> {kind:'sheet'|'alert-dialog';defaultOpen?:boolean;closeOnClickOutside?:boolean;}
+interface Props extends HTMLAttributes<'div'> {kind:'sheet'|'alert-dialog'|'command';defaultOpen?:boolean;closeOnClickOutside?:boolean;}
 const {kind,defaultOpen=false,closeOnClickOutside=true,...props}=Astro.props;
 ---
-<div {...props} data-slot="dialog" data-component={kind} data-dmf-modal-root data-default-open={String(defaultOpen)} data-alert-dialog={String(kind==='alert-dialog')} data-close-on-click-outside={String(kind==='sheet'&&closeOnClickOutside)} data-close-on-escape="true" data-lock-scroll="true"><slot/></div>
+<div {...props} data-slot="dialog" data-component={kind} data-dmf-modal-root data-default-open={String(defaultOpen)} data-alert-dialog={String(kind==='alert-dialog')} data-close-on-click-outside={String(kind!=='alert-dialog'&&closeOnClickOutside)} data-close-on-escape="true" data-lock-scroll="true"><slot/></div>
 <script>
  import {createDialog,type DialogController} from '@data-slot/dialog';
  import {createModalIsolation} from './isolation';

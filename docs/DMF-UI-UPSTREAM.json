@@ -248,5 +248,16 @@
       "license": "SIL OFL 1.1; full notice in public/dmf-ui-notices.txt",
       "fontFile": "src/assets/fonts/nunito.ttf"
     }
-  ]
+  ],
+  "catalogAdoption": {
+    "date": "2026-10-26",
+    "revision": "10427beee3c8faf9d077c1dec66fce41b0bae2d0",
+    "style": "base-vega",
+    "families": 65,
+    "retainedDmfFamilies": 37,
+    "importedFamilies": 28,
+    "record": "docs/DMF-UI-FULLDEV-CATALOG.json",
+    "license": "vendor/fulldev/LICENCE",
+    "note": "Existing component payload hashes and customization history remain unchanged. New families use pinned registry payloads with source-owned adaptations."
+  }
 }

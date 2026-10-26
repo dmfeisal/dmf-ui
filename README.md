@@ -49,7 +49,7 @@ Edit `tokens/design.tokens.json`, then run `npm run tokens:build`. The generated
 
 ## Documentation site
 
-Version 0.4.0 adds Text, Card, Badge and Alert, with both-preset previews, a Component contracts guide and the experimental `dmf-ui/contracts.json` export. The catalog contains 21 families. See [content contracts and authoring](docs/DMF-UI-CONTENT.md).
+Version 0.4.0 adds Text, Card, Badge and Alert, with both-preset previews, a Component contracts guide and the experimental `dmf-ui/contracts.json` export. The current catalog contains 77 documented Astro families. See [content contracts and authoring](docs/DMF-UI-CONTENT.md).
 
 The source repository builds Home (`/`), the searchable Components catalog (`/components/`), individual component pages and Docs (`/docs/`). The existing `/examples/dmf-ui/` remains the independent integration gallery. Run `npm run dev` to view it locally and `npm run test:dmf-ui:docs` for documentation browser checks. See [documentation ownership and routes](docs/DMF-UI-DOCUMENTATION.md). Documentation host files are excluded from the component archive.
 
@@ -86,3 +86,9 @@ The `dmf-ui/presets/portfolio.css` export provides Light, Dark and Yellow appear
 `InputGroup`, `NumberField` and `FileInput` add composed native inputs, bounded step actions and local file selection metadata. Native editing, validity, form values and reset remain available. See [form composition behavior and verification](docs/DMF-UI-FORM-COMPOSITION.md).
 
 `Sheet` and `AlertDialog` add modal panels and explicit confirmation flows with three trigger presentations, safe focus return and wrapper-owned background isolation. Confirmation actions close only when the host requests it. See [modal components and verification](docs/DMF-UI-MODAL-COMPONENTS.md).
+
+## Pinned Fulldev catalog
+
+All 65 Astro UI families in Fulldev UI 0.25.5 base-vega are represented: 37 existing DMF implementations are retained and 28 missing families are adapted from pinned registry source. Existing DMF APIs and presets remain in place. See [adoption scope and verification](docs/DMF-UI-FULLDEV-ADOPTION.md) and the [source/hash record](docs/DMF-UI-FULLDEV-CATALOG.json). The public package export `dmf-ui/fulldev-provenance` ships that record.
+
+`npm run upstream:check` verifies the vendored registry payloads and adapted-source hashes. The import script never overwrites existing component files. `--record` deliberately refreshes hashes after a reviewed source adaptation. Fulldev, shadcn/ui, Data Slot, Embla, Simple Icons and SEO notices are preserved.

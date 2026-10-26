@@ -1,0 +1,28 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"div"> & HTMLAttributes<"a">
+
+const {
+  class: className,
+  href,
+  "data-slot": dataSlot = "logo",
+  ...props
+} = Astro.props
+
+const Comp = href != null ? "a" : "div"
+---
+
+<Comp
+  class={cn(
+    "text-base font-semibold flex h-10 items-center justify-start gap-2 whitespace-nowrap",
+    className
+  )}
+  data-slot={dataSlot}
+  href={href}
+  {...props}
+>
+  <slot />
+</Comp>

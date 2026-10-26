@@ -1,0 +1,74 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import type { DrawerSnapPoint, DrawerSwipeDirection } from "@data-slot/drawer"
+
+type Props = HTMLAttributes<"div"> & {
+  defaultOpen?: boolean
+  modal?: boolean | "trap-focus"
+  disablePointerDismissal?: boolean
+  closeOnEscape?: boolean
+  swipeDirection?: DrawerSwipeDirection
+  snapPoint?: DrawerSnapPoint | null
+  defaultSnapPoint?: DrawerSnapPoint | null
+  triggerId?: string | null
+  defaultTriggerId?: string | null
+}
+
+const {
+  class: className,
+  defaultOpen,
+  modal,
+  disablePointerDismissal,
+  closeOnEscape,
+  swipeDirection,
+  snapPoint,
+  defaultSnapPoint,
+  triggerId,
+  defaultTriggerId,
+  ...props
+} = Astro.props
+---
+
+<div
+  data-slot="drawer"
+  data-default-open={defaultOpen}
+  data-modal={modal}
+  data-disable-pointer-dismissal={disablePointerDismissal}
+  data-close-on-escape={closeOnEscape}
+  data-swipe-direction={swipeDirection}
+  data-snap-point={snapPoint}
+  data-default-snap-point={defaultSnapPoint}
+  data-trigger-id={triggerId}
+  data-default-trigger-id={defaultTriggerId}
+  class={className}
+  {...props}
+>
+  <slot />
+</div>
+
+<script>
+  import { create } from "@data-slot/drawer"
+  import {prepareOverlayScope} from "../overlay-scope"
+
+  const controllers: ReturnType<typeof create> = []
+  const scopes=new Map<HTMLElement,{scope:ReturnType<typeof prepareOverlayScope>;abort:AbortController;sync:()=>void}>()
+  const initialize = () => {
+    for(const root of document.querySelectorAll<HTMLElement>('[data-slot=drawer]')){
+      if(scopes.has(root)||!root.querySelector('[data-slot=drawer-portal]'))continue;
+      const scope=prepareOverlayScope(root,'drawer'),abort=new AbortController();
+      const popup=root.querySelector<HTMLElement>('[data-slot=drawer-popup]');
+      const sync=()=>{scope.sync();for(const trigger of root.querySelectorAll<HTMLElement>('[data-slot=drawer-trigger]')){if(trigger.closest('[data-slot=drawer]')!==root)continue;if(popup?.id&&trigger.getAttribute('aria-expanded')==='true')trigger.setAttribute('aria-controls',popup.id);else trigger.removeAttribute('aria-controls');}};
+      root.addEventListener('drawer:change',event=>{if(event.target===root)sync();},{signal:abort.signal});
+      scopes.set(root,{scope,abort,sync});
+    }
+    controllers.push(...create());
+    for(const {sync} of scopes.values())sync();
+  }
+  initialize()
+  document.addEventListener("astro:page-load", initialize)
+  document.addEventListener("astro:before-swap", () => {
+    for (const controller of controllers) controller.destroy()
+    controllers.length = 0
+    for(const {scope,abort} of scopes.values()){abort.abort();scope.cleanup();}scopes.clear();
+  })
+</script>

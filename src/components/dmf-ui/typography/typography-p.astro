@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Size = "sm" | "default" | "lg"
+type Props = HTMLAttributes<"p"> & {
+  size?: Size
+}
+
+const { class: className, size = "default", ...props } = Astro.props
+
+const sizeClass =
+  size === "sm" ? "text-sm" : size === "lg" ? "text-lg" : "text-base"
+---
+
+<p
+  data-slot="typography-p"
+  data-size={size}
+  class={cn("leading-7 [&:not(:first-child)]:mt-6", sizeClass, className)}
+  {...props}
+>
+  <slot />
+</p>

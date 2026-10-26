@@ -1,0 +1,35 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import "../../../styles/dmf-ui.css"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"html">
+
+const { class: className, lang, ...props } = Astro.props
+---
+
+<html
+  class={cn(
+    "dmf-ui bg-background text-foreground has-data-[variant=inset]:bg-sidebar overscroll-none scroll-smooth",
+    className
+  )}
+  data-slot="layout"
+  lang={lang || Astro.currentLocale || "en"}
+  {...props}
+>
+  <slot />
+</html>
+
+<style>
+  :root {
+    color-scheme: light;
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+  }
+
+
+</style>

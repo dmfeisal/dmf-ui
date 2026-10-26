@@ -1,0 +1,32 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import SearchIcon from "@lucide/astro/icons/search"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"input"> & {
+  wrapperClass?: string
+}
+
+const { class: className, wrapperClass, ...props } = Astro.props
+---
+
+<div
+  data-slot="command-input-wrapper"
+  class={cn("p-1 pb-0", wrapperClass)}
+>
+  <div class="bg-input/30 border-input/30 h-8! rounded-lg! shadow-none! *:data-[slot=input-group-addon]:pl-2! flex items-center border">
+    <div class="flex items-center pl-2">
+      <SearchIcon class="size-4 shrink-0 opacity-50" />
+    </div>
+    <input
+      type="text"
+      data-slot="command-input"
+      class={cn(
+        "text-sm placeholder:text-muted-foreground h-full min-w-0 flex-1 bg-transparent px-2.5 outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
+        className
+      )}
+      {...props}
+    />
+  </div>
+</div>

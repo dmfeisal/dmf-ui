@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Size = "sm" | "default" | "lg"
+type Props = HTMLAttributes<"h3"> & {
+  size?: Size
+}
+
+const { class: className, size = "default", ...props } = Astro.props
+
+const sizeClass =
+  size === "sm" ? "text-xl" : size === "lg" ? "text-3xl" : "text-2xl"
+---
+
+<h3
+  data-slot="typography-h3"
+  data-size={size}
+  class={cn("font-semibold tracking-tight font-heading scroll-m-20", sizeClass, className)}
+  {...props}
+>
+  <slot />
+</h3>
