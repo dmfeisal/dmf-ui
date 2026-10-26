@@ -63,6 +63,8 @@ try{
   const installed=JSON.parse(await readFile(join(path,'package.json'),'utf8'));
   assert.equal(installed.version,packed.find(info=>info.name===name).version,`${name} installed stale archive metadata`);
  }
+ await mkdir(join(scratch,'public'),{recursive:true});
+ await cp(join(scratch,'node_modules/dmf-ui/src/assets/examples/component-demo.svg'),join(scratch,'public/component-demo.svg'));
  await run(npm,['run','build'],scratch);
  await run(npm,['test'],scratch);
  console.log(`PASS packed React consumer: ${scratch}`);

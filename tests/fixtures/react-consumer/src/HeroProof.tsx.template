@@ -1,0 +1,30 @@
+import {useEffect,useState} from 'react';
+import {HeroBlock} from '@dmf-ui/react';
+import {buttonVariants} from 'dmf-ui/button/variants';
+const illustration='/component-demo.svg';
+
+export function HeroProof(){
+ const [ready,setReady]=useState(false),[preset,setPreset]=useState('dmf'),[layout,setLayout]=useState<'centered'|'split'>('split'),[position,setPosition]=useState<'start'|'end'>('end'),[locale,setLocale]=useState('en'),[media,setMedia]=useState('illustration');
+ useEffect(()=>setReady(true),[]);
+ const indonesian=locale==='id';
+ return <main className="consumer-shell hero-consumer dmf-ui" data-system={preset} data-color-mode={preset==='hui'?'light':undefined}>
+  <h1>Hero composition proof</h1><p>A static section with host-authored content and real anchor destinations.</p>
+  <div className="consumer-actions">
+   <label>Preset <select data-hero-preset value={preset} disabled={!ready} onChange={e=>setPreset(e.target.value)}><option value="dmf">DMF</option><option value="hui">HUI</option></select></label>
+   <label>Layout <select data-hero-layout value={layout} disabled={!ready} onChange={e=>setLayout(e.target.value as 'centered'|'split')}><option value="centered">Centered</option><option value="split">Split</option></select></label>
+   <label>Media position <select data-hero-position value={position} disabled={!ready} onChange={e=>setPosition(e.target.value as 'start'|'end')}><option value="start">Start</option><option value="end">End</option></select></label>
+   <label>Language <select data-hero-language value={locale} disabled={!ready} onChange={e=>setLocale(e.target.value)}><option value="en">English</option><option value="id">Indonesia</option></select></label>
+   <label>Media <select data-hero-media value={media} disabled={!ready} onChange={e=>setMedia(e.target.value)}><option value="illustration">Illustration</option><option value="fallback">Host fallback</option><option value="none">None</option></select></label>
+  </div>
+  <div data-hero-container>
+   <HeroBlock id="consumer-hero" headingLevel="h2" lang={locale} layout={layout} mediaPosition={position} eyebrow="DMF UI compositions"
+    title={indonesian?'Bangun antarmuka dengan fondasi bersama':'Build with a shared foundation'}
+    description={indonesian?'Susun komponen yang tersedia dengan konten, media, dan tujuan navigasi milik aplikasi Anda.':'Compose existing components with your own content, media and destinations.'}
+    actions={<><a data-hero-primary className={buttonVariants()} href="#details">{indonesian?'Baca panduan komposisi':'Read composition guide'}</a><a className={buttonVariants({variant:'outline'})} href="#examples">{indonesian?'Lihat contoh komponen':'View component examples'}</a></>}
+    media={media==='illustration'?<figure><img src={illustration} width="640" height="360" alt={indonesian?'Ilustrasi komponen dari sumber proyek':'Source-owned component illustration'}/><figcaption>Source-owned illustration, not a product screen.</figcaption></figure>:media==='fallback'?<p data-media-fallback>Host-supplied media fallback. The section content remains available.</p>:undefined}
+   ><p>{indonesian?'Konten tambahan ditulis oleh aplikasi.':'Additional content is authored by the application.'}</p></HeroBlock>
+  </div>
+  <HeroBlock id="consumer-centered" headingLevel="h2" title="An independent text-only introduction" description="No media or action dependency is required."/>
+  <section id="details" tabIndex={-1}><h2>Composition guide destination</h2><p>Applications own content, media and navigation.</p></section><section id="examples"><h2>Component examples destination</h2><p>Replace this host content without editing HeroBlock.</p></section>
+ </main>;
+}

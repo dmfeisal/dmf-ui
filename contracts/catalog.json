@@ -1,6 +1,37 @@
 {
   "blocks": [
     {
+      "slug": "hero",
+      "title": "HeroBlock",
+      "category": "Marketing",
+      "description": "A static introductory section with authored actions and media, available in Astro and React.",
+      "components": [
+        "Section",
+        "Text",
+        "Button",
+        "Image"
+      ],
+      "limitations": "The host supplies real destinations, heading context, media alternatives and image loading/error behavior. No routing, analytics, image provider, autoplay, loading controller or marketing claims are generated.",
+      "entry": "dmf-ui/blocks",
+      "framework": "Astro",
+      "source": "src/components/dmf-ui/blocks/hero.astro",
+      "sha256": "f51f94dca3f3b0109fa6794bea4bb26cd5665d9a3a75c74382cd28b3f9cc7f0b",
+      "declaration": "interface Props extends Omit<HTMLAttributes<'section'>,'id'|'title'> {\n id:string;title:string;headingLevel?:'h1'|'h2';eyebrow?:string;description?:string;\n layout?:'centered'|'split';mediaPosition?:'start'|'end';\n}",
+      "defaults": {
+        "headingLevel": "'h1'",
+        "layout": "'centered'",
+        "mediaPosition": "'end'"
+      },
+      "slots": [
+        "media",
+        "actions",
+        "default",
+        "media"
+      ],
+      "status": "partial",
+      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
+    },
+    {
       "slug": "sign-in",
       "title": "SignInBlock",
       "category": "Authentication",
@@ -173,6 +204,20 @@
         ],
         "status": "experimental",
         "stateOwnership": "Native uncontrolled fields; host owns submission, pending, errors and reset policy."
+      },
+      {
+        "name": "HeroBlock",
+        "entry": "@dmf-ui/react",
+        "source": "packages/react/src/blocks/hero.tsx",
+        "sha256": "2b2ef17aefb21b01741d28ffdc55fc82bcb53cf79f970a62977cead2bfb4afd5",
+        "types": [
+          {
+            "name": "HeroBlockProps",
+            "declaration": "export type HeroBlockProps=Omit<ComponentPropsWithRef<'section'>,'id'|'title'> & {\n id:string;title:string;headingLevel?:'h1'|'h2';eyebrow?:string;description?:string;\n layout?:'centered'|'split';mediaPosition?:'start'|'end';actions?:ReactNode;media?:ReactNode;\n};"
+          }
+        ],
+        "status": "experimental",
+        "stateOwnership": "Static composition; host owns actions, media, destinations and loading/error behavior."
       }
     ],
     "package": "@dmf-ui/react",
@@ -213,7 +258,8 @@
       "Select",
       "SelectOption",
       "SelectGroup",
-      "SignInBlock"
+      "SignInBlock",
+      "HeroBlock"
     ],
     "types": [
       {
@@ -362,7 +408,7 @@
       }
     ],
     "source": "packages/react/src/index.tsx",
-    "sha256": "8d2ecda1a89d0c702f3bda58cddda503694108fa04b04a8be8d692a38bf1ceaa",
+    "sha256": "372d508715860a8d515d84d9efe53d16909957ad3e652723e01105033697172f",
     "status": "separate-web-alpha",
     "note": "React native props and controlled/uncontrolled patterns differ from Astro. No Astro parity claim."
   },
@@ -9658,6 +9704,7 @@
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
           "tests/browser/dmf-ui-form-composition.mjs",
+          "tests/browser/dmf-ui-hero-consumer.mjs",
           "tests/browser/dmf-ui-icons.mjs",
           "tests/browser/dmf-ui-navigation.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
@@ -12082,6 +12129,7 @@
           "tests/product-details.test.mjs",
           "tests/structure.test.mjs",
           "tests/browser/dmf-ui-fulldev-catalog.mjs",
+          "tests/browser/dmf-ui-hero-docs.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/native-dropdown-contrast.mjs"
         ]
@@ -12328,6 +12376,7 @@
           "tests/browser/dmf-ui-forms.mjs",
           "tests/browser/dmf-ui-foundations.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
+          "tests/browser/dmf-ui-hero-docs.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-overlays.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
@@ -13495,6 +13544,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/blocks.test.mjs",
           "tests/content.test.mjs",
           "tests/data-display.test.mjs",
           "tests/design-profile.test.mjs",
@@ -13513,6 +13563,7 @@
           "tests/browser/dmf-ui-forms.mjs",
           "tests/browser/dmf-ui-foundations.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
+          "tests/browser/dmf-ui-hero-consumer.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
@@ -13846,6 +13897,7 @@
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-foundations.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
+          "tests/browser/dmf-ui-hero-consumer.mjs",
           "tests/browser/dmf-ui-runtime.mjs",
           "tests/browser/dmf-ui-sign-in-consumer.mjs"
         ]
@@ -19511,6 +19563,8 @@
           "tests/browser/dmf-ui-foundations.mjs",
           "tests/browser/dmf-ui-fulldev-catalog.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
+          "tests/browser/dmf-ui-hero-consumer.mjs",
+          "tests/browser/dmf-ui-hero-docs.mjs",
           "tests/browser/dmf-ui-icons.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
@@ -22748,6 +22802,7 @@
           "tests/browser/dmf-ui-foundations.mjs",
           "tests/browser/dmf-ui-fulldev-catalog.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
+          "tests/browser/dmf-ui-hero-consumer.mjs",
           "tests/browser/dmf-ui-icons.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",

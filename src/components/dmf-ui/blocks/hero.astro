@@ -1,0 +1,27 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {Section} from '../section';
+import {Text} from '../text';
+import {cn} from '../utils';
+interface Props extends Omit<HTMLAttributes<'section'>,'id'|'title'> {
+ id:string;title:string;headingLevel?:'h1'|'h2';eyebrow?:string;description?:string;
+ layout?:'centered'|'split';mediaPosition?:'start'|'end';
+}
+const {id,title,headingLevel='h1',eyebrow,description,layout='centered',mediaPosition='end',class:className,...props}=Astro.props;
+if(!id?.trim()||!title?.trim())throw Error('HeroBlock needs a unique id and nonempty title.');
+if(!['centered','split'].includes(layout)||!['start','end'].includes(mediaPosition)||!['h1','h2'].includes(headingLevel))throw Error('HeroBlock received an unsupported layout, media position or heading level.');
+const hasMedia=Astro.slots.has('media');
+---
+<Section {...props} id={id} aria-labelledby={`${id}-title`} aria-describedby={description?`${id}-description`:undefined} data-slot="hero-block" data-layout={layout} data-has-media={hasMedia?'true':undefined} class={cn('dmf-hero-block',className)}>
+ <div class="dmf-hero-inner">
+  {hasMedia&&mediaPosition==='start'&&<div class="dmf-hero-media"><slot name="media"/></div>}
+  <div class="dmf-hero-copy">
+   {eyebrow&&<Text size="sm" weight="medium">{eyebrow}</Text>}
+   <Text as={headingLevel} id={`${id}-title`} size="title" weight="semibold" class="dmf-hero-title">{title}</Text>
+   {description&&<Text id={`${id}-description`} tone="muted" class="dmf-hero-description">{description}</Text>}
+   {Astro.slots.has('actions')&&<div class="dmf-hero-actions"><slot name="actions"/></div>}
+   <slot/>
+  </div>
+  {hasMedia&&mediaPosition==='end'&&<div class="dmf-hero-media"><slot name="media"/></div>}
+ </div>
+</Section>

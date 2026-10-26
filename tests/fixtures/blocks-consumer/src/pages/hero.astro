@@ -1,0 +1,16 @@
+---
+import {HeroBlock} from 'dmf-ui/blocks';
+import {Button} from 'dmf-ui/button';
+import {Image} from 'dmf-ui/image';
+import illustration from 'dmf-ui/assets/component-demo.svg?url';
+import 'dmf-ui/styles.css';
+---
+<!doctype html><html lang="id"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Packed Astro Hero proof</title></head><body class="dmf-ui"><main><h1>Packed Astro Hero proof</h1>
+<HeroBlock id="external-hero" headingLevel="h2" layout="split" mediaPosition="start" title="Bangun antarmuka dengan fondasi bersama" description="Susun komponen dengan konten dan tujuan navigasi milik aplikasi Anda.">
+ <Button as="a" slot="actions" href="#details">Baca panduan komposisi</Button><Button as="a" slot="actions" variant="outline" href="#examples">Lihat contoh komponen</Button>
+ <figure slot="media"><Image src={illustration} width={640} height={360} inferSize={false} alt="Ilustrasi komponen dari sumber proyek"/><figcaption>Source-owned illustration, not a product screen.</figcaption></figure><p>Konten tambahan ditulis oleh aplikasi.</p>
+</HeroBlock>
+<HeroBlock id="external-centered" headingLevel="h2" title="A centered introduction without media"/>
+<section id="details"><h2>Composition guide destination</h2></section><section id="examples"><h2>Component examples destination</h2></section>
+</main></body></html>
+<style is:global>html{font-size:100%}body{margin:0}main{max-width:72rem;margin-inline:auto;padding:1.25rem;overflow-wrap:anywhere}figure{margin:0}figcaption{font-size:.875rem;margin-block-start:.75rem}</style>

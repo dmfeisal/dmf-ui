@@ -1,5 +1,14 @@
 import {createRef} from 'react';
 import {SignInBlock} from '@dmf-ui/react';
+import {HeroBlock} from '@dmf-ui/react';
+const hero=<HeroBlock id="intro" title="Page title" ref={createRef<HTMLElement>()} media={<img src="/media.svg" alt="Authored alternative"/>}/>;
+// @ts-expect-error A Hero needs a title.
+const missingHeroTitle=<HeroBlock id="intro"/>;
+// @ts-expect-error Hero supports only centered and split layouts.
+const unsupportedHeroLayout=<HeroBlock id="intro" title="Title" layout="carousel"/>;
+// @ts-expect-error Native section refs cannot point to an SVG.
+const wrongHeroRef=<HeroBlock id="intro" title="Title" ref={createRef<SVGSVGElement>()}/>;
+void [hero,missingHeroTitle,unsupportedHeroLayout,wrongHeroRef];
 const signIn=<SignInBlock id="account" action="/account" ref={createRef<HTMLFormElement>()} onSubmit={e=>e.preventDefault()} fields={<input name="scope"/>}/>;
 // @ts-expect-error Native form method is fixed to POST.
 const signInMethod=<SignInBlock id="account" action="/account" method="get"/>;

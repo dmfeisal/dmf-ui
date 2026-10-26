@@ -1,0 +1,13 @@
+---
+import {HeroBlock} from 'dmf-ui/blocks';
+import {Button} from '../dmf-ui/button';
+import {Image} from '../dmf-ui/image';
+import demo from '../../assets/examples/component-demo.svg?url';
+---
+<section class="dmf-ui docs-preview" data-docs-preview data-system="dmf" aria-label="Hero Block preview">
+ <HeroBlock id="hero-preview" headingLevel="h2" layout="split" eyebrow="DMF UI compositions" title="Build with a shared foundation" description="Compose existing components with your own content, media and destinations.">
+  <Button as="a" slot="actions" href="/docs/architecture/">Read composition guide</Button><Button as="a" slot="actions" href="/components/" variant="outline">Browse components</Button>
+  <figure slot="media"><Image src={demo} width={640} height={360} alt="Source-owned component illustration" inferSize={false}/><figcaption class="docs-note">Source-owned component illustration, not a product screen.</figcaption></figure>
+ </HeroBlock>
+ <HeroBlock id="hero-centered" headingLevel="h2" title="Content without a media dependency" description="A centered composition also works with no image and no actions."/>
+</section>

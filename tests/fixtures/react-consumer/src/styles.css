@@ -14,3 +14,7 @@ html {font-size:87.5%}body {margin:0;background:var(--background,#fff)}
 .consumer-shell [data-sign-in-proof] [data-slot=card-content] > p { margin-block-start:1rem; }
 .consumer-shell [data-slot=sign-in-block] fieldset { padding:0; margin:0; }
 .consumer-shell select { max-width:100%; padding:.25rem .5rem; border:1px solid var(--border); border-radius:var(--radius); background:var(--background); color:var(--foreground); }
+.hero-consumer { max-width:72rem; }
+.hero-consumer figure { margin:0; }
+.hero-consumer figcaption { font-size:.875rem; line-height:1.5; margin-block-start:.75rem; }
+.hero-consumer [data-slot=hero-block] { display:block; }

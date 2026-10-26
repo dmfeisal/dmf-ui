@@ -22,6 +22,7 @@ try{
  await run(['run','build'],scratch);
  const html=await readFile(join(scratch,'dist/index.html'),'utf8');
  assert.match(html,/id="external-sign-in"[^>]*action="\/account\/sign-in"[^>]*method="post"/);assert.match(html,/Tidak dapat masuk/);assert.match(html,/aria-describedby="external-sign-in-email-error"/);assert.match(html,/name="organization"/);assert.match(html,/href="#notes"/);assert.match(html,/id="external-search"[^>]*method="get"/);assert.match(html,/autocomplete="current-password"/);assert(!/<input[^>]*type="password"[^>]*value=/.test(html));assert(!html.includes('/Users/'));assert(!html.includes('data-block-demo'));
+ const hero=await readFile(join(scratch,'dist/hero/index.html'),'utf8');assert.match(hero,/data-slot="hero-block"/);assert.match(hero,/aria-labelledby="external-hero-title"/);assert.match(hero,/data-layout="split"/);assert.match(hero,/href="#details"/);assert.match(hero,/width="640"/);assert.match(hero,/alt="Ilustrasi komponen dari sumber proyek"/);assert(!hero.includes('<script'));
  console.log('PASS separate packed Astro consumer: public imports, native POST/GET, localization, slots, errors and password boundary.');
  if(keep)console.log(`Retained consumer: ${scratch}`);
 }finally{if(!keep)await rm(scratch,{recursive:true,force:true});}
