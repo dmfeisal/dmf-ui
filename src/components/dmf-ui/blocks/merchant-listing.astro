@@ -1,0 +1,31 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {Text} from '../text';
+import {EmptyState} from '../empty-state';
+import {Skeleton} from '../skeleton';
+import {cn} from '../utils';
+interface Props extends Omit<HTMLAttributes<'section'>,'id'|'title'> {
+ id:string;title:string;description?:string;headingLevel?:'h1'|'h2'|'h3';
+ items:readonly unknown[];getItemKey:(item:unknown)=>string;
+ status?:'ready'|'loading'|'error';statusMessage?:string;loadingLabel?:string;
+ emptyTitle?:string;emptyDescription?:string;errorTitle?:string;errorDescription?:string;
+}
+const {id,title,description,headingLevel='h2',items,getItemKey,status='ready',statusMessage,loadingLabel='Loading merchants…',emptyTitle='No merchants to display',emptyDescription='Try different search or filter choices.',errorTitle='Unable to display merchants',errorDescription='Please try again later.',class:className,...props}=Astro.props;
+if(!id?.trim()||!title?.trim())throw Error('MerchantListingBlock needs a unique id and nonempty title.');
+if(!['ready','loading','error'].includes(status)||!['h1','h2','h3'].includes(headingLevel))throw Error('MerchantListingBlock received an unsupported status or heading level.');
+const keys=status==='ready'?items.map(item=>getItemKey(item)):[];
+if(keys.some(key=>typeof key!=='string'||!key.trim())||new Set(keys).size!==keys.length)throw Error('MerchantListingBlock needs unique nonempty string item keys.');
+if(status==='ready'&&items.length&&!Astro.slots.has('item'))throw Error('MerchantListingBlock needs an item rendering slot for populated results.');
+const rendered=status==='ready'?await Promise.all(items.map(item=>Astro.slots.render('item',[item]))):[];
+const messageHeading=headingLevel==='h1'?'h2':headingLevel==='h2'?'h3':'h4';
+---
+<section {...props} id={id} aria-labelledby={`${id}-title`} aria-describedby={description?`${id}-description`:undefined} data-slot="merchant-listing-block" data-status={status} class={cn('dmf-merchant-listing',className)}>
+ <header class="dmf-listing-header"><div><Text as={headingLevel} size="title" weight="semibold" id={`${id}-title`}>{title}</Text>{description&&<Text id={`${id}-description`} tone="muted">{description}</Text>}</div>{Astro.slots.has('actions')&&<div class="dmf-listing-actions"><slot name="actions"/></div>}</header>
+ <p role="status" aria-atomic="true" class="sr-only">{statusMessage??(status==='loading'?loadingLabel:'')}</p>
+ <div class="dmf-listing-content" aria-busy={status==='loading'?'true':undefined}>
+  {status==='ready'&&(items.length?<ul role="list" class="dmf-listing-grid">{rendered.map(html=><li><Fragment set:html={html}/></li>)}</ul>:<div class="dmf-listing-message"><slot name="empty"><EmptyState title={emptyTitle} description={emptyDescription} headingLevel={messageHeading} showIcon={false}/></slot></div>)}
+  {status==='loading'&&<slot name="loading"><div aria-hidden="true" class="dmf-listing-grid">{[0,1,2].map(()=><Skeleton shape="rectangle" animate={false} class="dmf-listing-skeleton"/>)}</div></slot>}
+  {status==='error'&&<div role="alert" class="dmf-listing-message"><slot name="error"><Text as={messageHeading} weight="semibold">{errorTitle}</Text><Text>{errorDescription}</Text></slot></div>}
+ </div>
+ {status==='ready'&&items.length>0&&Astro.slots.has('pagination')&&<div class="dmf-listing-pagination"><slot name="pagination"/></div>}<slot/>
+</section>

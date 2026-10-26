@@ -12,3 +12,7 @@ export function render(initialPreset:'dmf'|'cb-ui'='dmf'){
  return renderToString(<StrictMode><App initialPreset={initialPreset}/></StrictMode>,{identifierPrefix});
 }
 export {App,identifierPrefix};
+
+import {ListingProof} from './ListingProof';
+export function renderListing(){return renderToString(<StrictMode><ListingProof/></StrictMode>,{identifierPrefix:'listing-'});}
+export {ListingProof};

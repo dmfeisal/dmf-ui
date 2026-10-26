@@ -1,5 +1,7 @@
 # React web alpha
 
+Merchant listing follow-up, 26 October 2026: MerchantListingBlock adds generic item/key/render callbacks and host-owned ready/loading/error presentation. There are 14 component families and three Blocks, totaling 38 named component/Block exports. No merchant service, schema, Card export, dependency or version change is introduced. See [listing composition](DMF-UI-MERCHANT-LISTING.md).
+
 Hero composition follow-up, 26 October 2026: HeroBlock adds a static section/Text composition with host-authored media and actions. The adapter has 14 component families and two Blocks, totaling 37 named component/Block exports. Versions remain unchanged. See [HeroBlock](DMF-UI-HERO-BLOCK.md) for scope, independent packed consumers and verification. This does not add Astro Section/Image APIs to React or broaden older browser evidence.
 
 Current composition follow-up, 26 October 2026: the adapter adds experimental SignInBlock using the existing 14 component families. There are now 36 named component/Block exports, with separate Block metadata in the catalog. Core remains 0.4.0 and React remains 0.1.0-alpha.3. See [sign-in composition](DMF-UI-SIGN-IN-COMPOSITION.md) for API, packed-consumer proof and scoped acceptance. Earlier verification sections below retain their original scope; they do not establish new Block acceptance.

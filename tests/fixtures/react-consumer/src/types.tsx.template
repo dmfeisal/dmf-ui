@@ -1,6 +1,15 @@
 import {createRef} from 'react';
 import {SignInBlock} from '@dmf-ui/react';
 import {HeroBlock} from '@dmf-ui/react';
+import {MerchantListingBlock} from '@dmf-ui/react';
+const listing=<MerchantListingBlock id="results" title="Results" items={[{slug:'a'}]} getItemKey={item=>item.slug} renderItem={item=><p>{item.slug}</p>} ref={createRef<HTMLElement>()}/>;
+// @ts-expect-error Item key must be a stable string.
+const numericListingKey=<MerchantListingBlock id="results" title="Results" items={[{id:1}]} getItemKey={item=>item.id} renderItem={item=><p>{item.id}</p>}/>;
+// @ts-expect-error Item rendering is required.
+const missingListingRenderer=<MerchantListingBlock id="results" title="Results" items={[]} getItemKey={()=>'a'}/>;
+// @ts-expect-error Empty is derived from ready items, not a status value.
+const emptyListingStatus=<MerchantListingBlock id="results" title="Results" items={[]} getItemKey={()=>'a'} renderItem={()=>null} status="empty"/>;
+void [listing,numericListingKey,missingListingRenderer,emptyListingStatus];
 const hero=<HeroBlock id="intro" title="Page title" ref={createRef<HTMLElement>()} media={<img src="/media.svg" alt="Authored alternative"/>}/>;
 // @ts-expect-error A Hero needs a title.
 const missingHeroTitle=<HeroBlock id="intro"/>;

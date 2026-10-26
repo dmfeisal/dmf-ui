@@ -1,6 +1,44 @@
 {
   "blocks": [
     {
+      "slug": "merchant-listing",
+      "title": "MerchantListingBlock",
+      "category": "Food Discovery",
+      "description": "A container-aware listing with host-owned data, item rendering and explicit result states.",
+      "components": [
+        "Text",
+        "EmptyState",
+        "Skeleton",
+        "Card"
+      ],
+      "limitations": "No merchant data service, favorites, location, ordering or payment logic. Hosts supply stable keys, semantic cards, real destinations, pagination and status transitions. React uses generic renderItem; Astro uses an item function slot and an unknown-data key callback.",
+      "entry": "dmf-ui/blocks",
+      "framework": "Astro",
+      "source": "src/components/dmf-ui/blocks/merchant-listing.astro",
+      "sha256": "7c1a0990a1a23e73d8aa337f2785ffd2ec8b5fd195bfde81055caa02934c603a",
+      "declaration": "interface Props extends Omit<HTMLAttributes<'section'>,'id'|'title'> {\n id:string;title:string;description?:string;headingLevel?:'h1'|'h2'|'h3';\n items:readonly unknown[];getItemKey:(item:unknown)=>string;\n status?:'ready'|'loading'|'error';statusMessage?:string;loadingLabel?:string;\n emptyTitle?:string;emptyDescription?:string;errorTitle?:string;errorDescription?:string;\n}",
+      "defaults": {
+        "headingLevel": "'h2'",
+        "status": "'ready'",
+        "loadingLabel": "'Loading merchants…'",
+        "emptyTitle": "'No merchants to display'",
+        "emptyDescription": "'Try different search or filter choices.'",
+        "errorTitle": "'Unable to display merchants'",
+        "errorDescription": "'Please try again later.'"
+      },
+      "slots": [
+        "actions",
+        "empty",
+        "loading",
+        "error",
+        "pagination",
+        "default",
+        "item"
+      ],
+      "status": "partial",
+      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
+    },
+    {
       "slug": "hero",
       "title": "HeroBlock",
       "category": "Marketing",
@@ -25,8 +63,7 @@
       "slots": [
         "media",
         "actions",
-        "default",
-        "media"
+        "default"
       ],
       "status": "partial",
       "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
@@ -218,6 +255,20 @@
         ],
         "status": "experimental",
         "stateOwnership": "Static composition; host owns actions, media, destinations and loading/error behavior."
+      },
+      {
+        "name": "MerchantListingBlock",
+        "entry": "@dmf-ui/react",
+        "source": "packages/react/src/blocks/merchant-listing.tsx",
+        "sha256": "c7b7308fcfbbfd7f2ed808a38a63b90f5feac573c922b6f06ac486931856039e",
+        "types": [
+          {
+            "name": "MerchantListingBlockProps",
+            "declaration": "export type MerchantListingBlockProps<Item> = Omit<ComponentPropsWithRef<'section'>,'id'|'title'> & {\n id:string;title:string;description?:string;headingLevel?:'h1'|'h2'|'h3';\n items:readonly Item[];getItemKey:(item:Item)=>string;renderItem:(item:Item)=>ReactNode;\n status?:'ready'|'loading'|'error';statusMessage?:string;loadingLabel?:string;\n emptyTitle?:string;emptyDescription?:string;errorTitle?:string;errorDescription?:string;\n actions?:ReactNode;pagination?:ReactNode;emptyContent?:ReactNode;errorContent?:ReactNode;loadingContent?:ReactNode;\n};"
+          }
+        ],
+        "status": "experimental",
+        "stateOwnership": "Host owns items, stable keys, item rendering, status, pagination and data services."
       }
     ],
     "package": "@dmf-ui/react",
@@ -259,7 +310,8 @@
       "SelectOption",
       "SelectGroup",
       "SignInBlock",
-      "HeroBlock"
+      "HeroBlock",
+      "MerchantListingBlock"
     ],
     "types": [
       {
@@ -408,7 +460,7 @@
       }
     ],
     "source": "packages/react/src/index.tsx",
-    "sha256": "372d508715860a8d515d84d9efe53d16909957ad3e652723e01105033697172f",
+    "sha256": "cd1760296ccd047770b103e03290981ad9568b9fd2583b003f8e60d18181dc76",
     "status": "separate-web-alpha",
     "note": "React native props and controlled/uncontrolled patterns differ from Astro. No Astro parity claim."
   },
@@ -1037,6 +1089,7 @@
           "tests/modal-components.test.mjs",
           "tests/browser/dmf-ui-content-docs.mjs",
           "tests/browser/dmf-ui-content.mjs",
+          "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
           "tests/browser/dmf-ui-search.mjs"
@@ -3640,6 +3693,7 @@
           "tests/browser/dmf-ui-foundations.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
+          "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
@@ -9706,6 +9760,7 @@
           "tests/browser/dmf-ui-form-composition.mjs",
           "tests/browser/dmf-ui-hero-consumer.mjs",
           "tests/browser/dmf-ui-icons.mjs",
+          "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-navigation.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/dmf-ui-search.mjs",
@@ -12377,6 +12432,8 @@
           "tests/browser/dmf-ui-foundations.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-hero-docs.mjs",
+          "tests/browser/dmf-ui-listing-docs.mjs",
+          "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-overlays.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
@@ -13027,6 +13084,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/blocks.test.mjs",
           "tests/fulldev-catalog.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
           "tests/browser/dmf-ui-content.mjs",
@@ -13034,6 +13092,7 @@
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-fulldev-catalog.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
+          "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-navigation.mjs",
           "tests/browser/dmf-ui-overlays.mjs",
@@ -15926,6 +15985,7 @@
           "tests/blocks.test.mjs",
           "tests/navigation-components.test.mjs",
           "tests/navigation-patterns.test.mjs",
+          "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-navigation-components.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs"
         ]
@@ -19566,7 +19626,9 @@
           "tests/browser/dmf-ui-hero-consumer.mjs",
           "tests/browser/dmf-ui-hero-docs.mjs",
           "tests/browser/dmf-ui-icons.mjs",
+          "tests/browser/dmf-ui-listing-docs.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
+          "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-navigation.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
@@ -20643,7 +20705,8 @@
         "status": "references-only",
         "sources": [
           "tests/feedback.test.mjs",
-          "tests/browser/dmf-ui-feedback.mjs"
+          "tests/browser/dmf-ui-feedback.mjs",
+          "tests/browser/dmf-ui-merchant-listing-consumer.mjs"
         ]
       },
       "status": "partial",
@@ -21861,6 +21924,7 @@
           "tests/browser/dmf-ui-data-display.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
+          "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-runtime.mjs",
           "tests/browser/dmf-ui-selection.mjs"
@@ -22805,6 +22869,7 @@
           "tests/browser/dmf-ui-hero-consumer.mjs",
           "tests/browser/dmf-ui-icons.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
+          "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-navigation-components.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",

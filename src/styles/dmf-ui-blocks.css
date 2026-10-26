@@ -31,3 +31,19 @@
 .dmf-hero-block[data-layout=centered] .dmf-hero-actions { justify-content:center; }
 .dmf-hero-block[data-layout=centered] .dmf-hero-media { inline-size:100%; max-inline-size:56rem; margin-inline:auto; }
 @container(min-width:44rem) { .dmf-hero-block[data-layout=split][data-has-media=true] > .dmf-hero-inner { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+.dmf-merchant-listing { container-type:inline-size; display:grid; grid-template-columns:minmax(0,1fr); min-inline-size:0; max-inline-size:100%; gap:var(--dmf-space-6); color:var(--foreground); }
+.dmf-listing-header { display:flex; flex-wrap:wrap; align-items:start; justify-content:space-between; gap:var(--dmf-space-4); }
+.dmf-listing-header > div { min-inline-size:0; max-inline-size:100%; }
+.dmf-listing-actions,.dmf-listing-pagination { display:flex; flex-wrap:wrap; gap:var(--dmf-space-3); min-inline-size:0; max-inline-size:100%; overflow-wrap:anywhere; }
+.dmf-listing-grid { display:grid; grid-template-columns:minmax(0,1fr); gap:var(--dmf-space-4); margin:0; padding:0; list-style:none; }
+.dmf-listing-grid > li { min-inline-size:0; overflow-wrap:anywhere; }
+.dmf-listing-grid > li > [data-slot=card] { block-size:100%; }
+.dmf-listing-message { display:grid; grid-template-columns:minmax(0,1fr); gap:var(--dmf-space-3); padding:var(--dmf-space-6); border:1px solid var(--border); border-radius:var(--radius); overflow-wrap:anywhere; }
+.dmf-listing-message > * { min-inline-size:0; max-inline-size:100%; }
+.dmf-listing-message button { max-inline-size:100%; white-space:normal; block-size:auto; overflow-wrap:anywhere; }
+.dmf-listing-skeleton { min-block-size:12rem; }
+.dmf-merchant-listing :focus-visible { outline:2px solid var(--foreground); outline-offset:3px; }
+.dmf-merchant-listing :is(img,svg,video) { max-inline-size:100%; block-size:auto; }
+@media(forced-colors:active) { .dmf-merchant-listing :focus-visible { outline-color:CanvasText; } }
+@container(min-width:36rem) { .dmf-listing-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@container(min-width:60rem) { .dmf-listing-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }

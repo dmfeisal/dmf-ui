@@ -18,3 +18,8 @@ html {font-size:87.5%}body {margin:0;background:var(--background,#fff)}
 .hero-consumer figure { margin:0; }
 .hero-consumer figcaption { font-size:.875rem; line-height:1.5; margin-block-start:.75rem; }
 .hero-consumer [data-slot=hero-block] { display:block; }
+
+.listing-consumer {max-width:72rem}
+.listing-consumer [data-slot=merchant-listing-block] {display:grid}
+.listing-consumer [data-slot=card] {gap:1rem}
+.listing-consumer [data-slot=card] input {max-width:100%;border:1px solid var(--muted-foreground);padding:.25rem;border-radius:var(--radius);background:var(--background);color:var(--foreground)}

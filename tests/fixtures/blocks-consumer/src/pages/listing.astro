@@ -1,0 +1,19 @@
+---
+import {MerchantListingBlock} from 'dmf-ui/blocks';
+import {Card,CardContent} from 'dmf-ui/card';
+import {Text} from 'dmf-ui/text';
+type Sample={id:string;name:string};
+const items:Sample[]=[{id:'sample-cafe',name:'Contoh kafe A'},{id:'sample-bakery',name:'Contoh toko roti B'}],key=(item:unknown)=>(item as Sample).id;
+import 'dmf-ui/styles.css';
+---
+<!doctype html><html lang="id"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Packed Astro listing proof</title></head><body class="dmf-ui"><main><h1>Packed Astro listing proof</h1><p>Illustrative sample data only. No real merchant data or requests.</p>
+<MerchantListingBlock id="external-listing" title="Daftar contoh merchant" items={items} getItemKey={key} description="Data contoh dari aplikasi.">
+ <div slot="item">{(item:Sample)=><Card><CardContent><Text as="h3" size="lg" weight="semibold"><a href={`#${item.id}`}>{item.name}</a></Text><p>Illustrative card, not a real merchant.</p></CardContent></Card>}</div>
+ <a slot="pagination" href="#details">About sample pagination</a><p>Host-authored extension content.</p>
+</MerchantListingBlock>
+<MerchantListingBlock id="external-empty" title="Empty example" items={[]} getItemKey={key} emptyTitle="Tidak ada contoh hasil"/>
+<MerchantListingBlock id="external-loading" title="Loading example" items={items} getItemKey={key} status="loading" loadingLabel="Contoh pemuatan. Tidak ada permintaan."/>
+<MerchantListingBlock id="external-error" title="Error example" items={items} getItemKey={key} status="error"><p slot="error">Illustrative error. The host owns recovery.</p></MerchantListingBlock>
+<section id="details"><h2>Sample data destination</h2></section>{items.map(item=><section id={item.id}><h2>{item.name} destination</h2></section>)}
+</main></body></html>
+<style is:global>html{font-size:100%}body{margin:0}main{max-width:72rem;margin-inline:auto;padding:1.25rem;display:grid;gap:1.5rem;overflow-wrap:anywhere}</style>

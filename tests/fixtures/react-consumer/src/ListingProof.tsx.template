@@ -1,0 +1,29 @@
+import {useEffect,useState} from 'react';
+import {MerchantListingBlock,Card,Text,Badge,Button} from '@dmf-ui/react';
+type Sample={id:string;name:string;nameId:string};
+const samples:Sample[]=[{id:'sample-cafe',name:'Sample café A',nameId:'Contoh kafe A'},{id:'sample-bakery',name:'Sample bakery B',nameId:'Contoh toko roti B'},{id:'sample-kitchen',name:'Sample kitchen C',nameId:'Contoh dapur C'}];
+export function ListingProof(){
+ const [ready,setReady]=useState(false),[status,setStatus]=useState<'ready'|'loading'|'error'>('ready'),[count,setCount]=useState('many'),[preset,setPreset]=useState('dmf'),[locale,setLocale]=useState('en'),[reverse,setReverse]=useState(false);
+ useEffect(()=>setReady(true),[]);const indonesian=locale==='id',items=count==='empty'?[]:count==='one'?samples.slice(0,1):reverse?[...samples].reverse():samples;
+ return <main className="consumer-shell listing-consumer dmf-ui" data-system={preset} data-color-mode={preset==='hui'?'light':undefined}>
+  <h1>Merchant listing composition proof</h1><p>Illustrative sample data only. No real merchants, recommendations, ratings or requests.</p>
+  <div className="consumer-actions">
+   <label>Preset <select data-listing-preset disabled={!ready} value={preset} onChange={e=>setPreset(e.target.value)}><option value="dmf">DMF</option><option value="hui">HUI</option></select></label>
+   <label>State <select data-listing-state disabled={!ready} value={status} onChange={e=>setStatus(e.target.value as typeof status)}><option value="ready">Ready</option><option value="loading">Loading</option><option value="error">Error</option></select></label>
+   <label>Items <select data-listing-count disabled={!ready} value={count} onChange={e=>setCount(e.target.value)}><option value="many">Many</option><option value="one">One</option><option value="empty">Empty</option></select></label>
+   <label>Language <select data-listing-language disabled={!ready} value={locale} onChange={e=>setLocale(e.target.value)}><option value="en">English</option><option value="id">Indonesia</option></select></label>
+   <Button variant="outline" disabled={!ready} onClick={()=>setReverse(!reverse)}>Reverse sample order</Button>
+  </div>
+  <div data-listing-container>
+   <MerchantListingBlock id="consumer-listing" title={indonesian?'Daftar contoh merchant':'Sample merchant listings'} description={indonesian?'Konten contoh dari aplikasi. Tidak ada data merchant nyata.':'Host-authored sample cards with native destinations.'} lang={locale} items={items} getItemKey={item=>item.id} status={status}
+    loadingLabel={indonesian?'Contoh status pemuatan. Tidak ada permintaan.':'Illustrative loading state. No request was made.'} emptyTitle={indonesian?'Tidak ada contoh hasil':'No sample results'} emptyDescription={indonesian?'Coba pilihan contoh lainnya.':'Try another sample choice.'}
+    errorContent={<><Text as="h3" weight="semibold">{indonesian?'Contoh kesalahan':'Illustrative error'}</Text><p>{indonesian?'Aplikasi mengatur pemulihan.':'The host owns recovery. No request was made.'}</p><Button disabled={!ready} onClick={()=>{setStatus('ready');document.querySelector<HTMLSelectElement>('[data-listing-state]')?.focus();}}>{indonesian?'Kembali ke data contoh':'Return to sample data'}</Button></>}
+    actions={<a href="#details">{indonesian?'Tentang data contoh':'About the sample data'}</a>}
+    pagination={<nav aria-label="Sample pagination"><Button disabled={!ready} variant="outline" onClick={()=>{setReverse(!reverse);}}>Show next sample order</Button></nav>}
+    renderItem={item=><Card data-sample-key={item.id}><img src="/component-demo.svg" width="640" height="360" alt=""/><Badge variant="secondary">Sample data</Badge><Text as="h3" size="lg" weight="semibold"><a href={`#${item.id}`}>{indonesian?item.nameId:item.name}</a></Text><Text>Illustrative card composition using existing components.</Text><label>Host note <input data-item-note name={`note-${item.id}`}/></label></Card>}
+   ><p>{indonesian?'Konten tambahan ditulis oleh aplikasi.':'Additional content is authored by the application.'}</p></MerchantListingBlock>
+  </div>
+  <MerchantListingBlock id="consumer-independent" title="Independent empty listing" items={[]} getItemKey={(item:Sample)=>item.id} renderItem={item=><p>{item.name}</p>}/>
+  <section id="details"><h2>Sample data destination</h2><p>This fixture contains illustrative records only.</p></section>{samples.map(item=><section id={item.id} key={item.id}><h2>{item.name} destination</h2><p>Local example content, not a merchant profile.</p></section>)}
+ </main>;
+}

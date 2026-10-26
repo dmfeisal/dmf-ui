@@ -1,0 +1,24 @@
+---
+import {MerchantListingBlock} from 'dmf-ui/blocks';
+import {Card,CardContent} from '../dmf-ui/card';
+import {Text} from '../dmf-ui/text';
+import {Badge} from '../dmf-ui/badge';
+import {Button} from '../dmf-ui/button';
+import {Image} from '../dmf-ui/image';
+import illustration from '../../assets/examples/component-demo.svg?url';
+type Sample={id:string;name:string};
+const items:Sample[]=[{id:'sample-cafe',name:'Sample café A'},{id:'sample-bakery',name:'Sample bakery B'}];
+const key=(item:unknown)=>(item as Sample).id;
+---
+<section class="dmf-ui docs-preview" data-docs-preview data-system="dmf" aria-label="Merchant listing preview">
+ <p class="docs-note">Illustrative sample data only. No real merchants, recommendations, ratings or requests.</p>
+ <MerchantListingBlock id="listing-preview" title="Sample merchant listings" description="Host-authored cards with native destinations." items={items} getItemKey={key}>
+  <Button as="a" slot="actions" href="/docs/architecture/">Read composition guide</Button>
+  <div slot="item">{(item:Sample)=><Card><Image src={illustration} width={640} height={360} inferSize={false} alt=""/><CardContent><Badge variant="secondary">Sample data</Badge><Text as="h3" size="lg" weight="semibold"><a href={`#${item.id}`}>{item.name}</a></Text><p>Illustrative card composition using existing components.</p></CardContent></Card>}</div>
+  <p slot="pagination">Pagination belongs to the host application.</p>
+ </MerchantListingBlock>
+ <MerchantListingBlock id="listing-empty" title="Empty example" items={[]} getItemKey={key} emptyTitle="No sample results" emptyDescription="This example has an empty dataset."/>
+ <MerchantListingBlock id="listing-loading" title="Loading example" items={items} getItemKey={key} status="loading" loadingLabel="Illustrative loading state. No request was made."/>
+ <MerchantListingBlock id="listing-error" title="Error example" items={items} getItemKey={key} status="error"><div slot="error"><h3>Illustrative error state</h3><p>No request was made. The host owns recovery.</p><a href="/docs/architecture/">Read composition guidance</a></div></MerchantListingBlock>
+ <div id="sample-cafe"><h3>Sample café A destination</h3><p>Local example content, not a merchant profile.</p></div><div id="sample-bakery"><h3>Sample bakery B destination</h3><p>Local example content, not a merchant profile.</p></div>
+</section>
