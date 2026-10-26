@@ -34,7 +34,7 @@ The semantic and focus choices follow [WAI-ARIA modal-dialog guidance](https://w
 
 ## Verification
 
-Astro check: zero errors, warnings or hints. Production build: 67 pages. Source/package suite: 33 tests passed, including state-event requests, safe trigger markup, cancellation and nonclosing confirm-action contracts.
+Astro check: zero errors, warnings or hints. Production build: 67 pages. Source/package suite: 33 tests passed, including state-event requests, safe trigger markup, cancellation and nonclosing confirm-action contracts. The isolated packed-consumer lock was regenerated for the explicit core dependency; its locked installation, production build and eight consumer tests pass. No dependency versions changed.
 
 Isolated Chrome checks cover all four sheet edges, three trigger presentations, initial focus, forward/backward focus containment, close/Escape/backdrop behavior, nested parent restoration and inert background. Alert Dialog checks cover role/labels, Cancel autofocus, blocked backdrop dismissal, cancellation without changes, an action without host completion, explicit local completion and trigger focus return.
 
