@@ -1,12 +1,17 @@
 ---
 import DocumentationLayout from '../../layouts/DocumentationLayout.astro';
+import BrandReference from '../../components/docs/BrandReference.astro';
+import FoundationExamples from '../../components/docs/FoundationExamples.astro';
 import IconGallery from '../../components/docs/IconGallery.astro';
 import {guides} from '../../data/documentation';
 export function getStaticPaths(){return guides.map(guide=>({params:{slug:guide.slug},props:{guide}}));}
 const {guide}=Astro.props;
 ---
 <DocumentationLayout title={guide.title} description={guide.description} section="docs" crumbs={[{name:'Docs',href:'../'},{name:guide.title}]} toc={guide.sections.map(section=>({id:section.id,title:section.title}))}>
-<h1>{guide.title}</h1><p class="docs-lead">{guide.description}</p>{guide.sections.map(section=><section id={section.id} class="docs-section docs-prose"><h2>{section.title}</h2>{section.body.map(paragraph=><p>{paragraph}</p>)}{section.code&&<pre class="docs-code" tabindex="0" role="region" aria-label={`${section.title} code example`}><code>{section.code}</code></pre>}</section>)}
+<h1>{guide.title}</h1><p class="docs-lead">{guide.description}</p>{guide.sections.map(section=><section id={section.id} class="docs-section docs-prose"><h2>{section.title}</h2>{section.body.map(paragraph=><p>{paragraph}</p>)}{section.id==='tokens'&&guide.slug.startsWith('foundation-')&&<FoundationExamples slug={guide.slug}/>}
+{section.code&&<pre class="docs-code" tabindex="0" role="region" aria-label={`${section.title} code example`}><code>{section.code}</code></pre>}</section>)}
+{guide.slug==='foundations'&&<FoundationExamples slug={guide.slug}/>}
+{guide.slug==='brand-mappings'&&<BrandReference/>}
 {guide.slug==='icons'&&<><IconGallery/><p class="docs-note"><a href="https://lucide.dev/packages">Official Lucide packages</a> · <a href="https://lucide.dev/icons/">Complete icon library</a></p></>}
 {guide.slug==='credits'&&<p class="docs-note docs-section"><a href="../../dmf-ui-notices.txt">Open full license notices</a> · <a href="https://ui.full.dev/">Fulldev UI</a> · <a href="https://github.com/dmfeisal/dmf-ui">DMF UI source</a></p>}
 </DocumentationLayout>

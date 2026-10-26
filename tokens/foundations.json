@@ -1,0 +1,493 @@
+{
+  "schemaVersion": 1,
+  "status": "experimental",
+  "description": "Additive shared DMF foundations. Existing theme/preset tokens remain stable; references resolve inside this file or to existing semantic CSS roles.",
+  "tokens": {
+    "space-0": {
+      "value": "0rem",
+      "category": "spacing",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "space-1": {
+      "value": "0.25rem",
+      "category": "spacing",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "space-2": {
+      "value": "0.5rem",
+      "category": "spacing",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "space-3": {
+      "value": "0.75rem",
+      "category": "spacing",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "space-4": {
+      "value": "1rem",
+      "category": "spacing",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "space-6": {
+      "value": "1.5rem",
+      "category": "spacing",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "space-8": {
+      "value": "2rem",
+      "category": "spacing",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "space-10": {
+      "value": "2.5rem",
+      "category": "spacing",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "space-12": {
+      "value": "3rem",
+      "category": "spacing",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "space-16": {
+      "value": "4rem",
+      "category": "spacing",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "space-20": {
+      "value": "5rem",
+      "category": "spacing",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "space-24": {
+      "value": "6rem",
+      "category": "spacing",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "type-xs": {
+      "value": ".75rem",
+      "category": "typography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "type-sm": {
+      "value": ".875rem",
+      "category": "typography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "type-md": {
+      "value": "1rem",
+      "category": "typography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "type-lg": {
+      "value": "1.125rem",
+      "category": "typography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "type-xl": {
+      "value": "1.25rem",
+      "category": "typography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "type-2xl": {
+      "value": "1.5rem",
+      "category": "typography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "type-display": {
+      "value": "clamp(2rem,4vw,3rem)",
+      "category": "typography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "leading-tight": {
+      "value": "1.2",
+      "category": "typography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "leading-body": {
+      "value": "1.5",
+      "category": "typography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "leading-relaxed": {
+      "value": "1.7",
+      "category": "typography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "weight-normal": {
+      "value": "400",
+      "category": "typography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "weight-medium": {
+      "value": "500",
+      "category": "typography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "weight-semibold": {
+      "value": "600",
+      "category": "typography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "weight-bold": {
+      "value": "700",
+      "category": "typography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "container-compact": {
+      "value": "40rem",
+      "category": "layout",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "container-wide": {
+      "value": "80rem",
+      "category": "layout",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "breakpoint-sm": {
+      "value": "40rem",
+      "category": "layout",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "breakpoint-md": {
+      "value": "48rem",
+      "category": "layout",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "breakpoint-lg": {
+      "value": "64rem",
+      "category": "layout",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "breakpoint-xl": {
+      "value": "80rem",
+      "category": "layout",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "radius-none": {
+      "value": "0px",
+      "category": "radius",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "radius-sm": {
+      "value": ".25rem",
+      "category": "radius",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "radius-md": {
+      "value": ".5rem",
+      "category": "radius",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "radius-lg": {
+      "value": ".75rem",
+      "category": "radius",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "radius-xl": {
+      "value": "1rem",
+      "category": "radius",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "radius-pill": {
+      "value": "9999px",
+      "category": "radius",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "border-width": {
+      "value": "1px",
+      "category": "borders",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "focus-width": {
+      "value": "2px",
+      "category": "accessibility",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "focus-offset": {
+      "value": "3px",
+      "category": "accessibility",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "target-min": {
+      "value": "0px",
+      "category": "accessibility",
+      "layer": "primitive",
+      "description": "Owner preference: no global enforced target minimum. Components use natural content, padding and explicit variant sizes."
+    },
+    "opacity-disabled": {
+      "value": ".5",
+      "category": "accessibility",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "duration-instant": {
+      "value": "0ms",
+      "category": "motion",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "duration-fast": {
+      "value": "120ms",
+      "category": "motion",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "duration-normal": {
+      "value": "180ms",
+      "category": "motion",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "duration-slow": {
+      "value": "240ms",
+      "category": "motion",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "ease-standard": {
+      "value": "cubic-bezier(.2,0,0,1)",
+      "category": "motion",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "ease-exit": {
+      "value": "cubic-bezier(.4,0,1,1)",
+      "category": "motion",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "layer-base": {
+      "value": "0",
+      "category": "elevation",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "layer-sticky": {
+      "value": "40",
+      "category": "elevation",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "layer-overlay": {
+      "value": "50",
+      "category": "elevation",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "layer-modal": {
+      "value": "60",
+      "category": "elevation",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "layer-toast": {
+      "value": "10000",
+      "category": "elevation",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "icon-12": {
+      "value": "12px",
+      "category": "iconography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "icon-16": {
+      "value": "16px",
+      "category": "iconography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "icon-20": {
+      "value": "20px",
+      "category": "iconography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "icon-24": {
+      "value": "24px",
+      "category": "iconography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "icon-32": {
+      "value": "32px",
+      "category": "iconography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "icon-stroke": {
+      "value": "1.8",
+      "category": "iconography",
+      "layer": "primitive",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "layout-gap": {
+      "value": "{space-6}",
+      "category": "spacing",
+      "layer": "semantic",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "section-gap": {
+      "value": "{space-12}",
+      "category": "spacing",
+      "layer": "semantic",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "control-gap": {
+      "value": "{space-2}",
+      "category": "spacing",
+      "layer": "semantic",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "control-height": {
+      "value": "{space-10}",
+      "category": "spacing",
+      "layer": "semantic",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "control-padding-inline": {
+      "value": "{space-3}",
+      "category": "spacing",
+      "layer": "semantic",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "surface-padding": {
+      "value": "{space-6}",
+      "category": "spacing",
+      "layer": "semantic",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "button-height": {
+      "value": "2.25rem",
+      "category": "components",
+      "layer": "component",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "button-padding-inline": {
+      "value": ".625rem",
+      "category": "components",
+      "layer": "component",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "button-gap": {
+      "value": ".375rem",
+      "category": "components",
+      "layer": "component",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "input-height": {
+      "value": "2.25rem",
+      "category": "components",
+      "layer": "component",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "input-padding-inline": {
+      "value": ".625rem",
+      "category": "components",
+      "layer": "component",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "card-padding": {
+      "value": "{surface-padding}",
+      "category": "components",
+      "layer": "component",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "text-color": {
+      "value": "var(--foreground)",
+      "category": "colors",
+      "layer": "semantic",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "surface-color": {
+      "value": "var(--background)",
+      "category": "colors",
+      "layer": "semantic",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "focus-color": {
+      "value": "var(--foreground)",
+      "category": "colors",
+      "layer": "semantic",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "button-background": {
+      "value": "var(--primary)",
+      "category": "components",
+      "layer": "component",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "button-foreground": {
+      "value": "var(--primary-foreground)",
+      "category": "components",
+      "layer": "component",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "input-border": {
+      "value": "var(--input)",
+      "category": "components",
+      "layer": "component",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "card-background": {
+      "value": "var(--card)",
+      "category": "components",
+      "layer": "component",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "card-radius": {
+      "value": "var(--radius-xl)",
+      "category": "components",
+      "layer": "component",
+      "description": "Shared DMF application value; not an official brand specification."
+    },
+    "shadow-raised": {
+      "value": "var(--shadow-sm)",
+      "category": "colors",
+      "layer": "semantic",
+      "description": "Shared DMF application value; not an official brand specification."
+    }
+  }
+}

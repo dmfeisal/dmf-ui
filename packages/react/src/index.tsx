@@ -48,7 +48,7 @@ const badgeStyles:Record<BadgeVariant,string>={
  link:'text-foreground underline underline-offset-4 hover:decoration-2',
 };
 export function Badge({variant='default',className,...props}:BadgeProps){
- const classes=join('min-h-5 min-w-0 max-w-full gap-1 rounded-4xl border border-transparent px-2 py-0.5 text-xs font-medium transition-colors inline-flex w-fit items-center justify-center whitespace-normal [overflow-wrap:anywhere] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground [&>svg]:pointer-events-none [&>svg]:shrink-0 [&>svg]:size-3',badgeStyles[variant],props.as==='a'&&'min-h-[44px] min-w-[44px]',className);
+ const classes=join('min-h-5 min-w-0 max-w-full gap-1 rounded-4xl border border-transparent px-2 py-0.5 text-xs font-medium transition-colors inline-flex w-fit items-center justify-center whitespace-normal [overflow-wrap:anywhere] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground [&>svg]:pointer-events-none [&>svg]:shrink-0 [&>svg]:size-3',badgeStyles[variant],className);
  if(props.as==='a'){const {as,...native}=props;return <a {...native} data-slot="badge" data-variant={variant} className={classes}/>;}
  const {as,...native}=props;return <span {...native} data-slot="badge" data-variant={variant} className={classes}/>;
 }

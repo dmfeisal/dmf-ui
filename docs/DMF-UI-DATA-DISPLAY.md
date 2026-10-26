@@ -27,7 +27,7 @@ All three families have root and subpath exports, catalog/search entries, copyab
 - Astro check: zero errors, warnings or hints. Production build: 58 pages.
 - Source and package suite: 27 tests passed, including invalid slider configurations and decimal step grids.
 - Isolated Chrome: native range keys, Home/End, RTL, fractional steps, FormData, disabled exclusion, reset and host input updates; table keyboard scrolling, caption containment and native links; description stacking.
-- Preview-region axe audits: DMF, CB, Horego and Portfolio; DMF dark; 390px mobile RTL at 200% of the site's default text size. No violations or incomplete findings in those audit states.
+- Preview-region axe audits: DMF, CB, HUI and Portfolio; DMF dark; 390px mobile RTL at 200% of the site's default text size. No violations or incomplete findings in those audit states.
 - Forced-colors/reduced-motion emulation preserves native range interaction. JavaScript-disabled checks cover native range/FormData/reset, hidden enhanced captions, table links and semantic description content.
 
 The deliberately forced wide-table keyboard-scroll state produces axe contrast incompletes for partially clipped cell text. That state is verified for keyboard scrolling and caption containment separately; it is not reported as an all-clear contrast audit. Screenshots confirm the caption remains visible while columns scroll. Browser checks use Chrome only; Safari, Firefox and spoken screen-reader checks for this batch remain pending.

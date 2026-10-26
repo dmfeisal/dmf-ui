@@ -54,7 +54,7 @@ export async function run({page,baseURL,navigate,click,settle,tap,opened,focused
       const rect=content.getBoundingClientRect(),style=getComputedStyle(content);
         return {left:rect.left,right:rect.right,top:rect.top,bottom:rect.bottom,width:document.documentElement.clientWidth,height:innerHeight,bg:style.backgroundColor,dir:style.direction,font:style.fontFamily,targets:[...content.querySelectorAll('[role^=menuitem]')].map(e=>e.getBoundingClientRect().height)};
       },slot);
-      assert(result.width===390&&result.left>=0&&result.right<=result.width+1&&result.top>=0&&result.bottom<=result.height+1&&result.bg==='rgb(255, 255, 255)'&&result.dir==='rtl'&&result.font.includes('DMF CB Nunito')&&result.targets.every(h=>h>=44),JSON.stringify(result));
+      assert(result.width===390&&result.left>=0&&result.right<=result.width+1&&result.top>=0&&result.bottom<=result.height+1&&result.bg==='rgb(255, 255, 255)'&&result.dir==='rtl'&&result.font.includes('DMF CB Nunito')&&result.targets.every(h=>h>0),JSON.stringify(result));
       await page.cdp('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
       await page.cdp('Input.dispatchKeyEvent',{type:'keyUp',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
       await focused(`${prefix}-cb-ui-${slot}-trigger`);

@@ -21,7 +21,7 @@ export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
  await page.click('[data-product-form] button[type=reset]');assert(await page.evaluate(()=>document.querySelector('input[value=navigation]').checked&&!document.querySelector('input[value=forms]').checked),'Chip reset failed');
  for(const slug of ['avatar','rating','chip']){
   await navigate(`${baseURL}/components/${slug}/`);
-  for(const system of ['dmf','cb-ui','horego']){await page.evaluate(system=>{const root=document.querySelector('[data-docs-preview]');root.dataset.system=system;if(system!=='dmf')root.dataset.colorMode='light';else delete root.dataset.colorMode;},system);await audit();}
+  for(const system of ['dmf','cb-ui','hui']){await page.evaluate(system=>{const root=document.querySelector('[data-docs-preview]');root.dataset.system=system;if(system!=='dmf')root.dataset.colorMode='light';else delete root.dataset.colorMode;},system);await audit();}
   await page.evaluate(()=>document.documentElement.dataset.theme='dark');await audit();
   await mobile();await page.evaluate(()=>document.querySelector('[data-docs-preview]').dir='rtl');await audit();if(slug==='rating')assert(await page.evaluate(()=>getComputedStyle(document.querySelector('.dmf-rating-score')).direction==='ltr'),'RTL rating reversed its numeric score');
   for(const size of ['87.5%','175%']){await page.evaluate(size=>document.documentElement.style.fontSize=size,size);await settle();assert(await page.evaluate(()=>document.documentElement.scrollWidth<=390),'Product component mobile overflow');}

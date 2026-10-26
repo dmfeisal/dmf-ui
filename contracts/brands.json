@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "scope": "Reference values and DMF application mappings are deliberately distinct. PDFs and proprietary assets are not redistributed.",
+  "brands": {
+    "dmf": {
+      "status": "shared-application-default",
+      "modes": [
+        "light",
+        "dark"
+      ]
+    },
+    "cb-ui": {
+      "status": "existing-reconstruction-preserved",
+      "modes": [
+        "light"
+      ],
+      "source": "docs/DMF-UI-CB-PRESET.md",
+      "gaps": [
+        "No newly verified complete official CB specification."
+      ]
+    },
+    "hui": {
+      "status": "verified-reference-with-derived-ui-mapping",
+      "modes": [
+        "light"
+      ],
+      "source": {
+        "document": "HUI Brand Book v1.3 (2023)",
+        "sha256": "fb9752ba97a51158e8dd4da5e5c10f7a6cb03443bfbf73038139f10aafd0be4d",
+        "pages": {
+          "palette": 20,
+          "typography": 23,
+          "cta": 25,
+          "icons": 45,
+          "stickers": 46
+        }
+      },
+      "palette": {
+        "offRed": "#EC2A00",
+        "deepRed": "#D1230E",
+        "darkRed": "#B71C1C",
+        "amber": "#FFB800",
+        "amberShade1": "#F0AB10",
+        "amberShade2": "#E09603",
+        "white": "#FFFFFF",
+        "gray1": "#CCCCCC",
+        "gray2": "#9B9B9B",
+        "blue": "#29329B",
+        "green": "#63C132",
+        "black": "#232323"
+      },
+      "typography": {
+        "headline": "Rounded Mplus Black; kerning -25 in source",
+        "subheadline": "Rounded Mplus Medium; kerning -25 in source",
+        "body": "Inter Medium; kerning 0",
+        "cta": "Inter Bold"
+      },
+      "gaps": [
+        "Existing shipped heading font files cover weights 500/700, not the specified Black headline weight. Do not claim exact typographic parity.",
+        "No official full spacing, radius, dark-mode or application state scale.",
+        "Existing accessible action pairing is a DMF application mapping; it does not replace the official marketing CTA rule."
+      ]
+    },
+    "qdi": {
+      "status": "verified-reference-with-derived-ui-mapping",
+      "modes": [
+        "light"
+      ],
+      "source": {
+        "document": "QDI Brand Guidelines v3.0",
+        "sha256": "5ad62f4be88594e0a63a68d8aed02b83b5c0bf66045537ce9e4ac8c4a507f170",
+        "pages": {
+          "palette": 67,
+          "typography": 68,
+          "layout": 69,
+          "spacing": 70,
+          "radius": 71,
+          "elevation": 72,
+          "iconography": [
+            75,
+            76,
+            77,
+            78
+          ]
+        }
+      },
+      "palette": {
+        "yellow": [
+          "#FFCE15",
+          "#FFED35",
+          "#FFFCDB"
+        ],
+        "rose": [
+          "#C80058",
+          "#DD0866",
+          "#FFEBF4"
+        ],
+        "danger": [
+          "#E31F1F",
+          "#F53F3F",
+          "#EB6F70",
+          "#F98C8C",
+          "#FBB2B2",
+          "#FDDCDC",
+          "#FEECEC",
+          "#FEF5F5"
+        ],
+        "warning": [
+          "#FE9B0E",
+          "#FFB800",
+          "#FFC62B",
+          "#FFDD82",
+          "#FFEAB3",
+          "#FFF7E1",
+          "#FFF9EE",
+          "#FFFDFA"
+        ],
+        "success": [
+          "#0F9130",
+          "#12AB39",
+          "#41BC61",
+          "#71CD88",
+          "#A0DDB0",
+          "#D4F0DB",
+          "#E7F7EB",
+          "#F3FBF5"
+        ],
+        "info": [
+          "#255CD2",
+          "#2C6CF7",
+          "#5689F9",
+          "#80A7FA",
+          "#ABC4FC",
+          "#D9E5FE",
+          "#EAF0FE",
+          "#F4F8FF"
+        ]
+      },
+      "spacing": [
+        4,
+        8,
+        12,
+        16,
+        24,
+        32,
+        40
+      ],
+      "radii": [
+        2,
+        4,
+        8,
+        12,
+        16,
+        20,
+        24
+      ],
+      "cardRadius": 12,
+      "typeScale": [
+        [
+          "H1",
+          28,
+          40
+        ],
+        [
+          "H2",
+          24,
+          34
+        ],
+        [
+          "H3",
+          20,
+          26
+        ],
+        [
+          "Subtitle",
+          18,
+          24
+        ],
+        [
+          "Body L",
+          16,
+          22
+        ],
+        [
+          "Body",
+          14,
+          20
+        ],
+        [
+          "Body S",
+          12,
+          18
+        ],
+        [
+          "Description",
+          12,
+          16
+        ],
+        [
+          "Caption",
+          10,
+          14
+        ],
+        [
+          "Tag",
+          10,
+          14
+        ]
+      ],
+      "typeUnits": "Source sizes are sp; web specimens use rem equivalents as an explicit adaptation, not a native scaling claim.",
+      "fontPolicy": "Roboto in design specifications; system-default fonts in product development.",
+      "mapping": {
+        "primary": "yellow-2 with black text",
+        "secondary": "yellow-3 with black text",
+        "accent": "rose-3 with rose-1 text",
+        "destructive": "danger-1",
+        "input": "black for visible control boundaries",
+        "cardRadius": "12px",
+        "dark": "undefined",
+        "switch": "Black checked thumb and visible track outline are DMF non-text contrast adaptations."
+      },
+      "gaps": [
+        "Semantic role assignments and hover/focus state behavior are DMF mappings, not official brand rules.",
+        "No official dark mode; QDI remains light-only.",
+        "Tiny 10px source caption/tag sizes are recorded, not imposed on essential application text."
+      ],
+      "iconSizes": [
+        12,
+        16,
+        20,
+        26,
+        30
+      ],
+      "iconConstruction": {
+        "grid": 512,
+        "stroke": 40,
+        "ends": "rounded"
+      },
+      "layout": {
+        "referenceResolution": [
+          360,
+          800
+        ],
+        "columns": 12,
+        "layoutRhythm": 8,
+        "spacingIncrement": 4
+      }
+    },
+    "portfolio": {
+      "status": "existing-portfolio-derived",
+      "modes": [
+        "light",
+        "dark",
+        "yellow"
+      ]
+    }
+  }
+}

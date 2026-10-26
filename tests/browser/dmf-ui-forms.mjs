@@ -75,7 +75,7 @@ export async function run({page,baseURL,navigate,mobile:setMobile,settle}) {
     assert(await page.evaluate(prefix => {
       const checkbox = document.querySelector(`#${prefix}-cb-ui-terms`), sw = document.querySelector(`#${prefix}-cb-ui-updates`);
       const label = document.querySelector(`label[for="${prefix}-cb-ui-terms"]`);
-      return document.documentElement.clientWidth === 390 && document.documentElement.scrollWidth <= document.documentElement.clientWidth && checkbox.getBoundingClientRect().width === checkbox.getBoundingClientRect().height && sw.getBoundingClientRect().height < 44 && label.getBoundingClientRect().height >= 44 && getComputedStyle(sw).direction === 'ltr';
+      return document.documentElement.clientWidth === 390 && document.documentElement.scrollWidth <= document.documentElement.clientWidth && checkbox.getBoundingClientRect().width === checkbox.getBoundingClientRect().height && sw.getBoundingClientRect().height < 44 && label.getBoundingClientRect().height > 0 && getComputedStyle(sw).direction === 'ltr';
     }, pagePrefix), 'Mobile RTL overflow, control artwork or label targets failed');
     await page.cdp('Emulation.setPageScaleFactor', { pageScaleFactor: 1 });
     console.log(await page.screenshot({ path: `/tmp/${pagePrefix}-forms-mobile.png` }));

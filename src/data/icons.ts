@@ -24,7 +24,7 @@ export const icons=[
  {name:'Bookmark',icon:Bookmark,tags:'save collection'},
  {name:'ShoppingCart',icon:ShoppingCart,tags:'order checkout basket commerce'},
  {name:'Store',icon:Store,tags:'merchant shop biz commerce'},
- {name:'Utensils',icon:Utensils,tags:'food dining restaurant horego'},
+ {name:'Utensils',icon:Utensils,tags:'food dining restaurant hui'},
  {name:'Receipt',icon:Receipt,tags:'bill invoice pos commerce'},
  {name:'CreditCard',icon:CreditCard,tags:'payment checkout commerce'},
  {name:'Package',icon:Package,tags:'delivery inventory order'},

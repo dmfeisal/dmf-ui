@@ -1,0 +1,68 @@
+/* Generated from tokens/design.tokens.json. Run npm run tokens:build.
+   Fulldev / CB reconstruction provenance: docs/DMF-UI-UPSTREAM.json. */
+/* Brand-derived HUI preset; present-day UI mapping, light only. */
+@font-face { font-family:'DMF HUI Inter'; src:url('../assets/fonts/hui/inter-latin-variable.woff2') format('woff2'); font-style:normal; font-weight:100 900; font-display:swap; }
+@font-face { font-family:'DMF HUI Rounded Mplus'; src:url('../assets/fonts/hui/mplus-rounded-latin-500.woff2') format('woff2'); font-style:normal; font-weight:500; font-display:swap; }
+@font-face { font-family:'DMF HUI Rounded Mplus'; src:url('../assets/fonts/hui/mplus-rounded-latin-700.woff2') format('woff2'); font-style:normal; font-weight:700; font-display:swap; }
+:root .dmf-ui[data-system="hui"] {
+  --hui-deep-red: #d1230e;
+  --hui-dark-red: #b71c1c;
+  --hui-amber-shade-1: #f0ab10;
+  --hui-amber-shade-2: #e09603;
+  --hui-gray-1: #cccccc;
+  --hui-gray-2: #9b9b9b;
+  --hui-sticker-yellow: #ffe888;
+  --hui-sticker-blue: #e1efff;
+  --hui-sticker-green: #e4ffcc;
+  --hui-sticker-pink: #ffd2db;
+  --background: var(--hui-white);
+  --foreground: var(--hui-eerie-black);
+  --card: var(--hui-white);
+  --card-foreground: var(--hui-eerie-black);
+  --popover: var(--hui-white);
+  --popover-foreground: var(--hui-eerie-black);
+  --primary: var(--hui-off-red);
+  --primary-foreground: #000000;
+  --secondary: var(--hui-amber);
+  --secondary-foreground: var(--hui-eerie-black);
+  --muted: #f5f5f5;
+  --muted-foreground: #595959;
+  --accent: #eef0ff;
+  --accent-foreground: var(--hui-egyptian-blue);
+  --destructive: #b42318;
+  --border: #d4d4d4;
+  --input: #737373;
+  --ring: var(--hui-egyptian-blue);
+  --chart-1: var(--hui-off-red);
+  --chart-2: var(--hui-amber);
+  --chart-3: var(--hui-egyptian-blue);
+  --chart-4: var(--hui-kelly-green);
+  --chart-5: var(--hui-eerie-black);
+  --sidebar: var(--hui-white);
+  --sidebar-foreground: var(--hui-eerie-black);
+  --sidebar-primary: var(--hui-off-red);
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #eef0ff;
+  --sidebar-accent-foreground: var(--hui-egyptian-blue);
+  --sidebar-border: #d4d4d4;
+  --sidebar-ring: var(--hui-egyptian-blue);
+  --radius: 0.5rem;
+  --shadow-2xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0px 1px 3px 0px hsl(0 0% 0% / 0.1), 0px 1px 2px -1px hsl(0 0% 0% / 0.1);
+  --shadow: 0px 1px 3px 0px hsl(0 0% 0% / 0.1), 0px 1px 2px -1px hsl(0 0% 0% / 0.1);
+  --shadow-md: 0px 1px 3px 0px hsl(0 0% 0% / 0.1), 0px 2px 4px -1px hsl(0 0% 0% / 0.1);
+  --shadow-lg: 0px 1px 3px 0px hsl(0 0% 0% / 0.1), 0px 4px 6px -1px hsl(0 0% 0% / 0.1);
+  --shadow-xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.1), 0px 8px 10px -1px hsl(0 0% 0% / 0.1);
+  --shadow-2xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.25);
+  --hui-off-red: #ec2a00;
+  --hui-amber: #ffb800;
+  --hui-white: #ffffff;
+  --hui-egyptian-blue: #29329b;
+  --hui-kelly-green: #63c132;
+  --hui-eerie-black: #232323;
+  --fd-link: var(--hui-egyptian-blue);
+  --font-sans: 'DMF HUI Inter', 'Inter', system-ui, sans-serif;
+  --font-heading: 'DMF HUI Rounded Mplus', 'M PLUS Rounded 1c', sans-serif;
+}
+:root .dmf-ui[data-system="hui"] :where(h1,h2,h3,h4,h5,h6) { font-family:var(--font-heading); }

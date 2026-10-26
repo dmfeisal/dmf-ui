@@ -33,7 +33,7 @@ export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
  await page.click('[data-composition-form] button[type=reset]');await page.waitForFunction(()=>{const i=document.querySelector('#docs-file-attachments');return i.files.length===0&&i.closest('[data-slot=file-input]').querySelector('[data-file-list]').children.length===0;});
  for(const slug of ['input-group','number-field','file-input']){
   await resetBrowser();await navigate(`${baseURL}/components/${slug}/`);if(slug==='file-input')await selectFiles(files);await audit();await page.evaluate(()=>document.querySelector('[data-docs-preview]').scrollIntoView({block:'start',behavior:'instant'}));await settle();await page.screenshot({path:`/tmp/dmf-ui-${slug}-desktop.png`});
-  for(const preset of ['cb-ui','horego','portfolio']){await page.evaluate(preset=>document.querySelector('[data-docs-preview]').dataset.system=preset,preset);await audit();}
+  for(const preset of ['cb-ui','hui','portfolio']){await page.evaluate(preset=>document.querySelector('[data-docs-preview]').dataset.system=preset,preset);await audit();}
   await page.evaluate(()=>{document.querySelector('[data-docs-preview]').dataset.system='dmf';document.documentElement.dataset.theme='dark';});await audit();
   await mobile();await page.evaluate(()=>{document.querySelector('[data-docs-preview]').dir='rtl';document.documentElement.style.fontSize='175%';});await settle();assert(await page.evaluate(()=>document.documentElement.scrollWidth<=390),`${slug}: enlarged mobile RTL overflow`);await page.evaluate(()=>document.querySelector('[data-docs-preview]').scrollIntoView({block:'start',behavior:'instant'}));await audit();await page.screenshot({path:`/tmp/dmf-ui-${slug}-mobile.png`});
  }

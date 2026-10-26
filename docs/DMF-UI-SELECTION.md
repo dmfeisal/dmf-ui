@@ -25,7 +25,7 @@ Popup placement considers available space above/below and the host document's sc
 
 - Astro check: no errors, warnings or hints. Production build: 62 pages. Source/package suite: 29 tests passed, including toggle exclusivity, final event state, idempotent updates and native fallback markup.
 - Isolated Chrome: independent disclosure state and Escape focus; all Toggle presentations; single/multiple groups; required combobox validity, filtering, empty results, keyboard/pointer commit, disabled-option skipping, Escape/Tab cancellation, optional clearing, reset and FormData.
-- Component-preview axe states cover DMF, CB, Horego and Portfolio, DMF dark, mobile RTL and text enlarged to 200% of the site's default. Open combobox audits target the active control region because its popup intentionally covers later form controls. They do not claim a whole-page contrast audit while those controls are covered.
+- Component-preview axe states cover DMF, CB, HUI and Portfolio, DMF dark, mobile RTL and text enlarged to 200% of the site's default. Open combobox audits target the active control region because its popup intentionally covers later form controls. They do not claim a whole-page contrast audit while those controls are covered.
 - Enlarged mobile testing checks both input and popup against the usable viewport. Screenshots are inspected alongside containment assertions.
 - Shared icon-only Tooltip focus/Escape checks and forced-colors/reduced-motion emulation preserve command and selection behavior. Existing documentation, Create and search regressions pass without runtime or failed document/script/style requests.
 - JavaScript-disabled checks cover native disclosure, safely disabled commands, native select required validity, FormData and reset.

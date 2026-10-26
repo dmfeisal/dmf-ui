@@ -1,0 +1,12 @@
+---
+import tokenSource from '../../styles/dmf-ui-tokens.css?raw';
+const light=tokenSource.match(/\.dmf-ui \{([^}]+)\}/)?.[1];
+const dark=tokenSource.match(/:root\[data-theme="dark"\] \.dmf-ui \{([^}]+)\}/)?.[1];
+const css=`.docs-preview[data-system="dmf"][data-color-mode="light"] {${light}} .docs-preview[data-system="dmf"][data-color-mode="dark"] {${dark}}`;
+---
+<fieldset class="contract-controls" data-contract-preview-controls hidden><legend>Preview appearance</legend><label>Preset<select data-contract-preset><option value="dmf">DMF</option><option value="cb-ui">CB reconstruction</option><option value="hui">HUI</option><option value="qdi">QDI</option><option value="portfolio">Portfolio</option></select></label><label>Appearance<select data-contract-mode><option value="inherit">Follow page theme</option><option value="light">Light</option><option value="dark">Dark</option></select></label><p class="docs-note" data-contract-preview-note>Changes apply to this preview. Component properties remain unchanged.</p></fieldset>
+<style is:global set:html={css}/>
+<script>
+ const controls=document.querySelector<HTMLFieldSetElement>('[data-contract-preview-controls]'),preview=document.querySelector<HTMLElement>('[data-docs-preview]');
+ if(controls&&preview){controls.hidden=false;const preset=controls.querySelector<HTMLSelectElement>('[data-contract-preset]')!,mode=controls.querySelector<HTMLSelectElement>('[data-contract-mode]')!,note=controls.querySelector<HTMLElement>('[data-contract-preview-note]')!;const update=()=>{const lightOnly=['cb-ui','hui','qdi'].includes(preset.value);mode.disabled=lightOnly;if(lightOnly)mode.value='light';preview.dataset.system=preset.value;if(mode.value==='inherit')delete preview.dataset.colorMode;else preview.dataset.colorMode=mode.value;note.textContent=lightOnly?'This preset is light-only. Role assignments are DMF application mappings.':'Changes apply to this preview. Component properties remain unchanged.';preview.dispatchEvent(new CustomEvent('dmf:preset-change',{bubbles:true}));};controls.addEventListener('change',update);}
+</script>

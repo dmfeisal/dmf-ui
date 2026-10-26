@@ -23,7 +23,7 @@ export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
  await page.evaluate(()=>document.querySelector('[data-docs-preview]').dir='rtl');await page.focus(volume);await page.keyboard.press('ArrowLeft');assert(await page.evaluate(()=>document.querySelector('#docs-slider-volume').value==='70'),'Native RTL arrow direction changed');await audit();
  for(const slug of ['table','description-list','slider']){
   await resetBrowser();await navigate(`${baseURL}/components/${slug}/`);await audit();
-  for(const preset of ['cb-ui','horego','portfolio']){await page.evaluate(preset=>document.querySelector('[data-docs-preview]').dataset.system=preset,preset);await audit();}
+  for(const preset of ['cb-ui','hui','portfolio']){await page.evaluate(preset=>document.querySelector('[data-docs-preview]').dataset.system=preset,preset);await audit();}
   await page.evaluate(()=>{document.querySelector('[data-docs-preview]').dataset.system='dmf';document.documentElement.dataset.theme='dark';});await audit();
   await mobile();await page.evaluate(()=>{document.querySelector('[data-docs-preview]').dir='rtl';document.documentElement.style.fontSize='175%';});await settle();await audit();
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=390),`${slug}: page overflow at mobile enlarged RTL`);

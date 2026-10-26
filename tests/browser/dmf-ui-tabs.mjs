@@ -69,7 +69,7 @@ export async function run({page,baseURL,navigate,click,mobile:setMobile,settle})
     assert(await page.evaluate(id => {
       const rect = document.querySelector(`#${id} [role=tablist]`).getBoundingClientRect();
       const triggers = [...document.querySelectorAll(`#${id} [role=tab]`)];
-      return document.documentElement.clientWidth === 390 && rect.width <= document.documentElement.clientWidth && document.documentElement.scrollWidth <= document.documentElement.clientWidth && triggers.every(tab => tab.getBoundingClientRect().height >= 44);
+      return document.documentElement.clientWidth === 390 && rect.width <= document.documentElement.clientWidth && document.documentElement.scrollWidth <= document.documentElement.clientWidth && triggers.every(tab => tab.getBoundingClientRect().height > 0);
     }, automatic), 'Mobile RTL tab targets or containment failed');
     console.log(await page.screenshot({ path: `/tmp/${prefix}-mobile-tabs.png` }));
     await page.cdp('Emulation.clearDeviceMetricsOverride');

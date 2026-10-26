@@ -9,11 +9,11 @@ import {components,guides,categories} from '../data/documentation';
 interface Props { title:string;description:string;section:'home'|'components'|'docs'|'create';crumbs?:{name:string;href?:string}[];toc?:{id:string;title:string}[]; }
 const {title,description,section,crumbs=[],toc=[]}=Astro.props;
 const sidebar=section==='components'?components.map(item=>({title:item.name,icon:item.slug,href:`/components/${item.slug}/`})) : section==='docs'?guides.map(item=>({title:item.title,icon:item.slug,href:`/docs/${item.slug}/`})) : [];
-const sidebarGroups=section==='components'?categories.map(title=>({title,items:components.filter(item=>item.category===title).map(item=>({title:item.name,icon:item.slug,href:`/components/${item.slug}/`}))})):[{title:'Guides',items:sidebar}];
+const sidebarGroups=section==='components'?categories.map(title=>({title,items:components.filter(item=>item.category===title).map(item=>({title:item.name,icon:item.slug,href:`/components/${item.slug}/`}))})):section==='docs'?['Getting started','Foundations','Contracts','Presets'].map(title=>({title,items:sidebar.filter(item=>{const key=item.icon;const group=key==='foundations'||key.startsWith('foundation-')?'Foundations':key==='component-contract'||key==='contracts'?'Contracts':key==='presets'||key==='brand-mappings'?'Presets':'Getting started';return group===title;})})).filter(group=>group.items.length):[];
 const searchEntries=[
  ...components.map(item=>({title:item.name,description:item.description,href:`/components/${item.slug}/`,group:'Components',keywords:`${item.category} ${item.slug}`})),
  ...guides.map(item=>({title:item.title,description:item.description,href:`/docs/${item.slug}/`,group:'Guides',keywords:item.sections.map(part=>part.title).join(' ')})),
- {title:'Create a preset',description:'Configure colors, typography, radius and product presets.',href:'/create/',group:'Pages',keywords:'CB UI reconstruction Horego Portfolio Yellow foundation theme export CSS JSON'},
+ {title:'Create a preset',description:'Configure colors, typography, radius and product presets.',href:'/create/',group:'Pages',keywords:'CB UI reconstruction HUI Portfolio Yellow foundation theme export CSS JSON'},
 ];
 
 ---

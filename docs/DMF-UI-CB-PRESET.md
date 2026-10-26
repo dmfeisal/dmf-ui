@@ -8,13 +8,13 @@ Raw palette, Nunito typography and shape values come from `public/css/cb-ui-toke
 
 | Role | Source value | Current use |
 | --- | --- | --- |
-| Primary / brand | Cashbac 50, `#26ade4` | `--dmf-cb-ui-color-primary` feeds `--primary` and `--cb-brand`; action backgrounds and selected controls use this brand blue, with dark `#23282c` foreground for readable labels |
-| Focus / accent ink | Cashbac 80, `#166788` | Focus ring and text on pale accent surfaces |
+| Primary / brand | CB 50, `#26ade4` | `--dmf-cb-ui-color-primary` feeds `--primary` and `--cb-brand`; action backgrounds and selected controls use this brand blue, with dark `#23282c` foreground for readable labels |
+| Focus / accent ink | CB 80, `#166788` | Focus ring and text on pale accent surfaces |
 | Secondary | Tosca 10 `#ebfffc` / Tosca 80 `#0d4a41` | Secondary surface and foreground |
 | Foreground | Semantic text, `#23282c` | Text on white, contrast 14.88:1 |
 | Muted foreground / input boundary | Black 40, `#4b5764` | Muted text and essential form boundaries; contrast against white 7.38:1 |
 | Muted | Black 10, `#e9eaec` | Muted surface |
-| Accent | Cashbac 10, `#e9f6fc` | Accent surface |
+| Accent | CB 10, `#e9f6fc` | Accent surface |
 | Border | Semantic border, `#c8ced3` | Nonessential surface dividers; inputs use the stronger boundary above |
 | Error ink | 60% original Red 50 `#f86c6b` mixed with Black 80 `#0c1218` | Derived semantic error shade for readable validation; not an original palette value |
 | Radius | Default radius, `.25rem` | Base input to Fulldev's relative corner scale |

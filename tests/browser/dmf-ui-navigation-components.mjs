@@ -14,7 +14,7 @@ export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
  await audit();
  for(const slug of ['breadcrumb','pagination','navigation-menu']){
   await navigate(`${baseURL}/components/${slug}/`);
-  for(const system of ['dmf','cb-ui','horego']){
+  for(const system of ['dmf','cb-ui','hui']){
    await page.evaluate(system=>{const root=document.querySelector('[data-docs-preview]');root.dataset.system=system;if(system!=='dmf')root.dataset.colorMode='light';else delete root.dataset.colorMode;},system);await audit();
   }
   await page.evaluate(()=>document.documentElement.dataset.theme='dark');await audit();

@@ -4,12 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "tokens:build": "node scripts/design-tokens.mjs",
-    "tokens:check": "node scripts/design-tokens.mjs --check",
+    "tokens:build": "node scripts/design-tokens.mjs && npm run foundations:build",
+    "tokens:check": "node scripts/design-tokens.mjs --check && npm run foundations:check",
     "test:dmf-ui:tokens": "npm run build && node scripts/test-dmf-ui-tokens.mjs",
     "test:dmf-ui:content": "npm run build && node scripts/test-dmf-ui-content.mjs",
     "predev": "npm run tokens:check",
-    "precheck": "npm run tokens:check && npm run upstream:check",
+    "precheck": "npm run tokens:check && npm run upstream:check && npm run contracts:check",
     "prebuild": "npm run tokens:check",
     "prepack": "npm run tokens:check",
     "dev": "astro dev",
@@ -25,7 +25,11 @@
     "test:dmf-ui:docs": "npm run build && node scripts/test-dmf-ui-documentation.mjs",
     "test:dmf-ui:react-consumer": "node scripts/test-dmf-ui-react-consumer.mjs",
     "test:dmf-ui:react-browser": "node scripts/test-dmf-ui-react-browser.mjs",
-    "upstream:check": "node scripts/import-fulldev-components.mjs"
+    "upstream:check": "node scripts/import-fulldev-components.mjs",
+    "foundations:build": "node scripts/foundations.mjs",
+    "foundations:check": "node scripts/foundations.mjs --check",
+    "contracts:build": "node scripts/component-contracts.mjs",
+    "contracts:check": "node scripts/component-contracts.mjs --check"
   },
   "dependencies": {
     "@data-slot/accordion": "1.1.2",
@@ -103,7 +107,7 @@
     "./badge": "./src/components/dmf-ui/badge/index.ts",
     "./alert": "./src/components/dmf-ui/alert/index.ts",
     "./contracts.json": "./contracts/components.json",
-    "./presets/horego.css": "./src/styles/dmf-ui-horego.css",
+    "./presets/hui.css": "./src/styles/dmf-ui-hui.css",
     "./breadcrumb": "./src/components/dmf-ui/breadcrumb/index.ts",
     "./pagination": "./src/components/dmf-ui/pagination/index.ts",
     "./navigation-menu": "./src/components/dmf-ui/navigation-menu/index.ts",
@@ -162,7 +166,11 @@
     "./typography": "./src/components/dmf-ui/typography/index.ts",
     "./video": "./src/components/dmf-ui/video/index.ts",
     "./assets/component-demo.svg": "./src/assets/examples/component-demo.svg",
-    "./fulldev-provenance": "./docs/DMF-UI-FULLDEV-CATALOG.json"
+    "./fulldev-provenance": "./docs/DMF-UI-FULLDEV-CATALOG.json",
+    "./foundations": "./tokens/foundations.json",
+    "./contracts/catalog": "./contracts/catalog.json",
+    "./contracts/brands": "./contracts/brands.json",
+    "./presets/qdi.css": "./src/styles/dmf-ui-qdi.css"
   },
   "files": [
     "contracts/*.json",

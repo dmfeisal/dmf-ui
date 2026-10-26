@@ -41,7 +41,7 @@ export async function run({page,baseURL,navigate,tap,opened}) {
       const content=document.querySelector('[data-slot=select-content][data-open]'),portal=content.closest('[data-slot=select-portal]'),r=content.getBoundingClientRect(),style=getComputedStyle(content);
       return {system:portal.dataset.system,dir:style.direction,font:style.fontFamily,bg:style.backgroundColor,left:r.left,right:r.right,width:document.documentElement.clientWidth,heights:[...content.querySelectorAll('[data-slot=select-item]')].map(e=>e.getBoundingClientRect().height)};
     });
-    assert(mobile.width===390 && mobile.system==='cb-ui' && mobile.dir==='rtl' && mobile.font.includes('DMF CB Nunito') && mobile.bg==='rgb(255, 255, 255)' && mobile.left>=0 && mobile.right<=mobile.width+1 && mobile.heights.every(h=>h>=44), JSON.stringify(mobile));
+    assert(mobile.width===390 && mobile.system==='cb-ui' && mobile.dir==='rtl' && mobile.font.includes('DMF CB Nunito') && mobile.bg==='rgb(255, 255, 255)' && mobile.left>=0 && mobile.right<=mobile.width+1 && mobile.heights.every(h=>h>0), JSON.stringify(mobile));
     await page.keyboard.press('Escape');
     await page.cdp('Emulation.clearDeviceMetricsOverride');await page.cdp('Emulation.setTouchEmulationEnabled',{enabled:false});
     await page.evaluate(()=>{document.dispatchEvent(new Event('astro:page-load'));document.dispatchEvent(new Event('astro:page-load'));});

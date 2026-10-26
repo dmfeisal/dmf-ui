@@ -31,7 +31,7 @@ The component does not read contents, create object URLs, validate an upload pol
 - Astro check: no errors, warnings or hints. Production build: 65 pages. Source/package suite: 31 tests passed, including finite numeric configuration, native step base and correct file-input booleans.
 - Isolated Chrome: grouped input editing, clear/focus, FormData and reset; native and fractional number stepping, bounds, invalid typed values, required emptiness, readonly/disabled actions and native values; file names/byte sizes, text escaping, multiple selection, required validity, FormData and reset/cancelled reset.
 - File scenarios supply synthetic local fixtures through Chrome's file-input test API. They do not read real user documents or automate an upload. Actual OS picker interaction remains a manual check.
-- Preview-region axe audits cover DMF, CB, Horego and Portfolio; DMF dark; 390px mobile RTL with 200% of the site's default text size. No violations or incomplete results in these scoped states.
+- Preview-region axe audits cover DMF, CB, HUI and Portfolio; DMF dark; 390px mobile RTL with 200% of the site's default text size. No violations or incomplete results in these scoped states.
 - Shared step Tooltip focus/Escape and forced-colors/reduced-motion emulation retain numeric interaction. Native no-JavaScript checks cover grouped input values, number keys/reset and file selection/FormData/reset.
 - Existing selection, documentation, Create and search flows are regression checked. Browser artifacts are local test outputs, not shipped package assets.
 

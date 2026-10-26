@@ -1,5 +1,5 @@
 {
-  "$description": "DMF UI foundation, CB reconstruction, Horego brand-derived and Portfolio appearance presets. No native adapter is implied.",
+  "$description": "DMF UI foundation, CB reconstruction, HUI brand-derived and Portfolio appearance presets. No native adapter is implied.",
   "dmf": {
     "light": {
       "background": {
@@ -1812,36 +1812,167 @@
       }
     }
   },
-  "horego": {
-    "$description": "Confirmed 2023 Horego brand colors and typography, with present-day DMF semantic mappings. Light only; not historical product-token evidence.",
+  "hui": {
+    "$description": "Confirmed 2023 HUI brand colors and typography, with present-day DMF semantic mappings. Light only; not historical product-token evidence.",
     "light": {
+      "hui-deep-red": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8196078431372549,
+            0.13725490196078433,
+            0.054901960784313725
+          ],
+          "alpha": 1,
+          "hex": "#d1230e"
+        }
+      },
+      "hui-dark-red": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7176470588235294,
+            0.10980392156862745,
+            0.10980392156862745
+          ],
+          "alpha": 1,
+          "hex": "#b71c1c"
+        }
+      },
+      "hui-amber-shade-1": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9411764705882353,
+            0.6705882352941176,
+            0.06274509803921569
+          ],
+          "alpha": 1,
+          "hex": "#f0ab10"
+        }
+      },
+      "hui-amber-shade-2": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8784313725490196,
+            0.5882352941176471,
+            0.011764705882352941
+          ],
+          "alpha": 1,
+          "hex": "#e09603"
+        }
+      },
+      "hui-gray-1": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8,
+            0.8,
+            0.8
+          ],
+          "alpha": 1,
+          "hex": "#cccccc"
+        }
+      },
+      "hui-gray-2": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6078431372549019,
+            0.6078431372549019,
+            0.6078431372549019
+          ],
+          "alpha": 1,
+          "hex": "#9b9b9b"
+        }
+      },
+      "hui-sticker-yellow": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.9098039215686274,
+            0.5333333333333333
+          ],
+          "alpha": 1,
+          "hex": "#ffe888"
+        }
+      },
+      "hui-sticker-blue": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8823529411764706,
+            0.9372549019607843,
+            1
+          ],
+          "alpha": 1,
+          "hex": "#e1efff"
+        }
+      },
+      "hui-sticker-green": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8941176470588236,
+            1,
+            0.8
+          ],
+          "alpha": 1,
+          "hex": "#e4ffcc"
+        }
+      },
+      "hui-sticker-pink": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.8235294117647058,
+            0.8588235294117647
+          ],
+          "alpha": 1,
+          "hex": "#ffd2db"
+        }
+      },
+
       "background": {
         "$type": "color",
-        "$value": "{horego.light.horego-white}"
+        "$value": "{hui.light.hui-white}"
       },
       "foreground": {
         "$type": "color",
-        "$value": "{horego.light.horego-eerie-black}"
+        "$value": "{hui.light.hui-eerie-black}"
       },
       "card": {
         "$type": "color",
-        "$value": "{horego.light.horego-white}"
+        "$value": "{hui.light.hui-white}"
       },
       "card-foreground": {
         "$type": "color",
-        "$value": "{horego.light.horego-eerie-black}"
+        "$value": "{hui.light.hui-eerie-black}"
       },
       "popover": {
         "$type": "color",
-        "$value": "{horego.light.horego-white}"
+        "$value": "{hui.light.hui-white}"
       },
       "popover-foreground": {
         "$type": "color",
-        "$value": "{horego.light.horego-eerie-black}"
+        "$value": "{hui.light.hui-eerie-black}"
       },
       "primary": {
         "$type": "color",
-        "$value": "{horego.light.horego-off-red}"
+        "$value": "{hui.light.hui-off-red}"
       },
       "primary-foreground": {
         "$type": "color",
@@ -1858,11 +1989,11 @@
       },
       "secondary": {
         "$type": "color",
-        "$value": "{horego.light.horego-amber}"
+        "$value": "{hui.light.hui-amber}"
       },
       "secondary-foreground": {
         "$type": "color",
-        "$value": "{horego.light.horego-eerie-black}"
+        "$value": "{hui.light.hui-eerie-black}"
       },
       "muted": {
         "$type": "color",
@@ -1905,7 +2036,7 @@
       },
       "accent-foreground": {
         "$type": "color",
-        "$value": "{horego.light.horego-egyptian-blue}"
+        "$value": "{hui.light.hui-egyptian-blue}"
       },
       "destructive": {
         "$type": "color",
@@ -1948,39 +2079,39 @@
       },
       "ring": {
         "$type": "color",
-        "$value": "{horego.light.horego-egyptian-blue}"
+        "$value": "{hui.light.hui-egyptian-blue}"
       },
       "chart-1": {
         "$type": "color",
-        "$value": "{horego.light.horego-off-red}"
+        "$value": "{hui.light.hui-off-red}"
       },
       "chart-2": {
         "$type": "color",
-        "$value": "{horego.light.horego-amber}"
+        "$value": "{hui.light.hui-amber}"
       },
       "chart-3": {
         "$type": "color",
-        "$value": "{horego.light.horego-egyptian-blue}"
+        "$value": "{hui.light.hui-egyptian-blue}"
       },
       "chart-4": {
         "$type": "color",
-        "$value": "{horego.light.horego-kelly-green}"
+        "$value": "{hui.light.hui-kelly-green}"
       },
       "chart-5": {
         "$type": "color",
-        "$value": "{horego.light.horego-eerie-black}"
+        "$value": "{hui.light.hui-eerie-black}"
       },
       "sidebar": {
         "$type": "color",
-        "$value": "{horego.light.horego-white}"
+        "$value": "{hui.light.hui-white}"
       },
       "sidebar-foreground": {
         "$type": "color",
-        "$value": "{horego.light.horego-eerie-black}"
+        "$value": "{hui.light.hui-eerie-black}"
       },
       "sidebar-primary": {
         "$type": "color",
-        "$value": "{horego.light.horego-off-red}"
+        "$value": "{hui.light.hui-off-red}"
       },
       "sidebar-primary-foreground": {
         "$type": "color",
@@ -2010,7 +2141,7 @@
       },
       "sidebar-accent-foreground": {
         "$type": "color",
-        "$value": "{horego.light.horego-egyptian-blue}"
+        "$value": "{hui.light.hui-egyptian-blue}"
       },
       "sidebar-border": {
         "$type": "color",
@@ -2027,7 +2158,7 @@
       },
       "sidebar-ring": {
         "$type": "color",
-        "$value": "{horego.light.horego-egyptian-blue}"
+        "$value": "{hui.light.hui-egyptian-blue}"
       },
       "radius": {
         "$type": "dimension",
@@ -2035,7 +2166,7 @@
           "value": 0.5,
           "unit": "rem"
         },
-        "$description": "Present-day DMF preset choice; not a recovered Horego product radius."
+        "$description": "Present-day DMF preset choice; not a recovered HUI product radius."
       },
       "shadow-2xs": {
         "$type": "shadow",
@@ -2428,7 +2559,7 @@
           }
         ]
       },
-      "horego-off-red": {
+      "hui-off-red": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
@@ -2441,7 +2572,7 @@
           "hex": "#ec2a00"
         }
       },
-      "horego-amber": {
+      "hui-amber": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
@@ -2454,7 +2585,7 @@
           "hex": "#ffb800"
         }
       },
-      "horego-white": {
+      "hui-white": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
@@ -2467,7 +2598,7 @@
           "hex": "#ffffff"
         }
       },
-      "horego-egyptian-blue": {
+      "hui-egyptian-blue": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
@@ -2480,7 +2611,7 @@
           "hex": "#29329b"
         }
       },
-      "horego-kelly-green": {
+      "hui-kelly-green": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
@@ -2493,7 +2624,7 @@
           "hex": "#63c132"
         }
       },
-      "horego-eerie-black": {
+      "hui-eerie-black": {
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",
@@ -2508,12 +2639,12 @@
       },
       "fd-link": {
         "$type": "color",
-        "$value": "{horego.light.horego-egyptian-blue}"
+        "$value": "{hui.light.hui-egyptian-blue}"
       },
       "font-sans": {
         "$type": "fontFamily",
         "$value": [
-          "DMF Horego Inter",
+          "DMF HUI Inter",
           "Inter",
           "system-ui",
           "sans-serif"
@@ -2522,7 +2653,7 @@
       "font-heading": {
         "$type": "fontFamily",
         "$value": [
-          "DMF Horego Rounded Mplus",
+          "DMF HUI Rounded Mplus",
           "M PLUS Rounded 1c",
           "sans-serif"
         ]
@@ -5034,6 +5165,1728 @@
           "value": 0,
           "unit": "px"
         }
+      }
+    }
+  }
+,
+  "qdi": {
+    "light": {
+  "qdi-space-4": {
+    "$type": "dimension",
+    "$value": {
+      "value": 4,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-space-8": {
+    "$type": "dimension",
+    "$value": {
+      "value": 8,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-space-12": {
+    "$type": "dimension",
+    "$value": {
+      "value": 12,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-space-16": {
+    "$type": "dimension",
+    "$value": {
+      "value": 16,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-space-24": {
+    "$type": "dimension",
+    "$value": {
+      "value": 24,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-space-32": {
+    "$type": "dimension",
+    "$value": {
+      "value": 32,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-space-40": {
+    "$type": "dimension",
+    "$value": {
+      "value": 40,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-radius-2": {
+    "$type": "dimension",
+    "$value": {
+      "value": 2,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-radius-4": {
+    "$type": "dimension",
+    "$value": {
+      "value": 4,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-radius-8": {
+    "$type": "dimension",
+    "$value": {
+      "value": 8,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-radius-12": {
+    "$type": "dimension",
+    "$value": {
+      "value": 12,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-radius-16": {
+    "$type": "dimension",
+    "$value": {
+      "value": 16,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-radius-20": {
+    "$type": "dimension",
+    "$value": {
+      "value": 20,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-radius-24": {
+    "$type": "dimension",
+    "$value": {
+      "value": 24,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-icon-12": {
+    "$type": "dimension",
+    "$value": {
+      "value": 12,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-icon-16": {
+    "$type": "dimension",
+    "$value": {
+      "value": 16,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-icon-20": {
+    "$type": "dimension",
+    "$value": {
+      "value": 20,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-icon-26": {
+    "$type": "dimension",
+    "$value": {
+      "value": 26,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-icon-30": {
+    "$type": "dimension",
+    "$value": {
+      "value": 30,
+      "unit": "px"
+    },
+    "$description": "Verified QDI v3 source dimension; see contracts/brands.json for the page reference."
+  },
+  "qdi-web-h1-size": {
+    "$type": "dimension",
+    "$value": {
+      "value": 1.75,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-h1-line": {
+    "$type": "dimension",
+    "$value": {
+      "value": 2.5,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-h2-size": {
+    "$type": "dimension",
+    "$value": {
+      "value": 1.5,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-h2-line": {
+    "$type": "dimension",
+    "$value": {
+      "value": 2.125,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-h3-size": {
+    "$type": "dimension",
+    "$value": {
+      "value": 1.25,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-h3-line": {
+    "$type": "dimension",
+    "$value": {
+      "value": 1.625,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-subtitle-size": {
+    "$type": "dimension",
+    "$value": {
+      "value": 1.125,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-subtitle-line": {
+    "$type": "dimension",
+    "$value": {
+      "value": 1.5,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-body-l-size": {
+    "$type": "dimension",
+    "$value": {
+      "value": 1.0,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-body-l-line": {
+    "$type": "dimension",
+    "$value": {
+      "value": 1.375,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-body-size": {
+    "$type": "dimension",
+    "$value": {
+      "value": 0.875,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-body-line": {
+    "$type": "dimension",
+    "$value": {
+      "value": 1.25,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-body-s-size": {
+    "$type": "dimension",
+    "$value": {
+      "value": 0.75,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-body-s-line": {
+    "$type": "dimension",
+    "$value": {
+      "value": 1.125,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-description-size": {
+    "$type": "dimension",
+    "$value": {
+      "value": 0.75,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-description-line": {
+    "$type": "dimension",
+    "$value": {
+      "value": 1.0,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-caption-size": {
+    "$type": "dimension",
+    "$value": {
+      "value": 0.625,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-caption-line": {
+    "$type": "dimension",
+    "$value": {
+      "value": 0.875,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-tag-size": {
+    "$type": "dimension",
+    "$value": {
+      "value": 0.625,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+  "qdi-web-tag-line": {
+    "$type": "dimension",
+    "$value": {
+      "value": 0.875,
+      "unit": "rem"
+    },
+    "$description": "DMF web adaptation from QDI source sp/line specifications at a 16px reference root; actual browser root and zoom remain user/host controlled."
+  },
+
+      "background": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-white}"
+      },
+      "foreground": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-black}"
+      },
+      "card": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-white}"
+      },
+      "card-foreground": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-black}"
+      },
+      "popover": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-white}"
+      },
+      "popover-foreground": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-black}"
+      },
+      "primary": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-yellow-2}"
+      },
+      "primary-foreground": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-black}"
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-yellow-3}"
+      },
+      "secondary-foreground": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-black}"
+      },
+      "muted": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-solid}"
+      },
+      "muted-foreground": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-black}"
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-rose-3}"
+      },
+      "accent-foreground": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-rose-1}"
+      },
+      "destructive": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-danger-1}"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-solid}"
+      },
+      "input": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-black}"
+      },
+      "ring": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-black}"
+      },
+      "chart-1": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.81,
+            0.1,
+            252
+          ],
+          "alpha": 1
+        }
+      },
+      "chart-2": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.62,
+            0.19,
+            260
+          ],
+          "alpha": 1
+        }
+      },
+      "chart-3": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.55,
+            0.22,
+            263
+          ],
+          "alpha": 1
+        }
+      },
+      "chart-4": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.49,
+            0.22,
+            264
+          ],
+          "alpha": 1
+        }
+      },
+      "chart-5": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.42,
+            0.18,
+            266
+          ],
+          "alpha": 1
+        }
+      },
+      "sidebar": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.985,
+            0,
+            0
+          ],
+          "alpha": 1
+        }
+      },
+      "sidebar-foreground": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.145,
+            0,
+            0
+          ],
+          "alpha": 1
+        }
+      },
+      "sidebar-primary": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.5488,
+            0.2498,
+            261.783
+          ],
+          "alpha": 1
+        }
+      },
+      "sidebar-primary-foreground": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            1,
+            0,
+            0
+          ],
+          "alpha": 1
+        }
+      },
+      "sidebar-accent": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.97,
+            0,
+            0
+          ],
+          "alpha": 1
+        }
+      },
+      "sidebar-accent-foreground": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.205,
+            0,
+            0
+          ],
+          "alpha": 1
+        }
+      },
+      "sidebar-border": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.922,
+            0,
+            0
+          ],
+          "alpha": 1
+        }
+      },
+      "sidebar-ring": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [
+            0.708,
+            0,
+            0
+          ],
+          "alpha": 1
+        }
+      },
+      "radius": {
+        "$type": "dimension",
+        "$value": {
+          "value": 0.75,
+          "unit": "rem"
+        },
+        "$description": "DMF radius base mapping. Exact official card radius is separately 12px."
+      },
+      "shadow-2xs": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.05
+            },
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 3,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "shadow-xs": {
+        "$type": "shadow",
+        "$value": "{qdi.light.qdi-elevation-1}"
+      },
+      "shadow-sm": {
+        "$type": "shadow",
+        "$value": "{qdi.light.qdi-elevation-2}"
+      },
+      "shadow": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 3,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 2,
+              "unit": "px"
+            },
+            "spread": {
+              "value": -1,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "shadow-md": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 3,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 2,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 4,
+              "unit": "px"
+            },
+            "spread": {
+              "value": -1,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "shadow-lg": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 3,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 4,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 6,
+              "unit": "px"
+            },
+            "spread": {
+              "value": -1,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "shadow-xl": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 3,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0,
+              "unit": "px"
+            }
+          },
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            },
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 8,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 10,
+              "unit": "px"
+            },
+            "spread": {
+              "value": -1,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "shadow-2xl": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.25
+            },
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 1,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 3,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0,
+              "unit": "px"
+            }
+          }
+        ]
+      },
+      "qdi-yellow-1": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.807843137254902,
+            0.08235294117647059
+          ],
+          "alpha": 1,
+          "hex": "#ffce15"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-yellow-2": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.9294117647058824,
+            0.20784313725490197
+          ],
+          "alpha": 1,
+          "hex": "#ffed35"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-yellow-3": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.9882352941176471,
+            0.8588235294117647
+          ],
+          "alpha": 1,
+          "hex": "#fffcdb"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-rose-1": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7843137254901961,
+            0,
+            0.34509803921568627
+          ],
+          "alpha": 1,
+          "hex": "#c80058"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-rose-2": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8666666666666667,
+            0.03137254901960784,
+            0.4
+          ],
+          "alpha": 1,
+          "hex": "#dd0866"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-rose-3": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.9215686274509803,
+            0.9568627450980393
+          ],
+          "alpha": 1,
+          "hex": "#ffebf4"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-danger-1": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8901960784313725,
+            0.12156862745098039,
+            0.12156862745098039
+          ],
+          "alpha": 1,
+          "hex": "#e31f1f"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-danger-2": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9607843137254902,
+            0.24705882352941178,
+            0.24705882352941178
+          ],
+          "alpha": 1,
+          "hex": "#f53f3f"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-danger-3": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9215686274509803,
+            0.43529411764705883,
+            0.4392156862745098
+          ],
+          "alpha": 1,
+          "hex": "#eb6f70"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-danger-4": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9764705882352941,
+            0.5490196078431373,
+            0.5490196078431373
+          ],
+          "alpha": 1,
+          "hex": "#f98c8c"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-danger-5": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.984313725490196,
+            0.6980392156862745,
+            0.6980392156862745
+          ],
+          "alpha": 1,
+          "hex": "#fbb2b2"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-danger-6": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9921568627450981,
+            0.8627450980392157,
+            0.8627450980392157
+          ],
+          "alpha": 1,
+          "hex": "#fddcdc"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-danger-7": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.996078431372549,
+            0.9254901960784314,
+            0.9254901960784314
+          ],
+          "alpha": 1,
+          "hex": "#feecec"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-danger-8": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.996078431372549,
+            0.9607843137254902,
+            0.9607843137254902
+          ],
+          "alpha": 1,
+          "hex": "#fef5f5"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-warning-1": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.996078431372549,
+            0.6078431372549019,
+            0.054901960784313725
+          ],
+          "alpha": 1,
+          "hex": "#fe9b0e"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-warning-2": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.7215686274509804,
+            0
+          ],
+          "alpha": 1,
+          "hex": "#ffb800"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-warning-3": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.7764705882352941,
+            0.16862745098039217
+          ],
+          "alpha": 1,
+          "hex": "#ffc62b"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-warning-4": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.8666666666666667,
+            0.5098039215686274
+          ],
+          "alpha": 1,
+          "hex": "#ffdd82"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-warning-5": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.9176470588235294,
+            0.7019607843137254
+          ],
+          "alpha": 1,
+          "hex": "#ffeab3"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-warning-6": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.9686274509803922,
+            0.8823529411764706
+          ],
+          "alpha": 1,
+          "hex": "#fff7e1"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-warning-7": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.9764705882352941,
+            0.9333333333333333
+          ],
+          "alpha": 1,
+          "hex": "#fff9ee"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-warning-8": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.9921568627450981,
+            0.9803921568627451
+          ],
+          "alpha": 1,
+          "hex": "#fffdfa"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-success-1": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.058823529411764705,
+            0.5686274509803921,
+            0.18823529411764706
+          ],
+          "alpha": 1,
+          "hex": "#0f9130"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-success-2": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.07058823529411765,
+            0.6705882352941176,
+            0.2235294117647059
+          ],
+          "alpha": 1,
+          "hex": "#12ab39"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-success-3": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.2549019607843137,
+            0.7372549019607844,
+            0.3803921568627451
+          ],
+          "alpha": 1,
+          "hex": "#41bc61"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-success-4": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.44313725490196076,
+            0.803921568627451,
+            0.5333333333333333
+          ],
+          "alpha": 1,
+          "hex": "#71cd88"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-success-5": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6274509803921569,
+            0.8666666666666667,
+            0.6901960784313725
+          ],
+          "alpha": 1,
+          "hex": "#a0ddb0"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-success-6": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8313725490196079,
+            0.9411764705882353,
+            0.8588235294117647
+          ],
+          "alpha": 1,
+          "hex": "#d4f0db"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-success-7": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9058823529411765,
+            0.9686274509803922,
+            0.9215686274509803
+          ],
+          "alpha": 1,
+          "hex": "#e7f7eb"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-success-8": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9529411764705882,
+            0.984313725490196,
+            0.9607843137254902
+          ],
+          "alpha": 1,
+          "hex": "#f3fbf5"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-info-1": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.1450980392156863,
+            0.3607843137254902,
+            0.8235294117647058
+          ],
+          "alpha": 1,
+          "hex": "#255cd2"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-info-2": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.17254901960784313,
+            0.4235294117647059,
+            0.9686274509803922
+          ],
+          "alpha": 1,
+          "hex": "#2c6cf7"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-info-3": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.33725490196078434,
+            0.5372549019607843,
+            0.9764705882352941
+          ],
+          "alpha": 1,
+          "hex": "#5689f9"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-info-4": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5019607843137255,
+            0.6549019607843137,
+            0.9803921568627451
+          ],
+          "alpha": 1,
+          "hex": "#80a7fa"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-info-5": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6705882352941176,
+            0.7686274509803922,
+            0.9882352941176471
+          ],
+          "alpha": 1,
+          "hex": "#abc4fc"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-info-6": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8509803921568627,
+            0.8980392156862745,
+            0.996078431372549
+          ],
+          "alpha": 1,
+          "hex": "#d9e5fe"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-info-7": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9176470588235294,
+            0.9411764705882353,
+            0.996078431372549
+          ],
+          "alpha": 1,
+          "hex": "#eaf0fe"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-info-8": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9568627450980393,
+            0.9725490196078431,
+            1
+          ],
+          "alpha": 1,
+          "hex": "#f4f8ff"
+        },
+        "$description": "Verified QDI v3 page 67 palette value; numeric suffix records source order, not an invented official shade name."
+      },
+      "qdi-brand-orange": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.8196078431372549,
+            0
+          ],
+          "alpha": 1,
+          "hex": "#ffd100"
+        }
+      },
+      "qdi-brand-purple": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6078431372549019,
+            0.41568627450980394,
+            0.9411764705882353
+          ],
+          "alpha": 1,
+          "hex": "#9b6af0"
+        }
+      },
+      "qdi-black": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "alpha": 1,
+          "hex": "#000000"
+        }
+      },
+      "qdi-white": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "alpha": 1,
+          "hex": "#ffffff"
+        }
+      },
+      "qdi-solid": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9019607843137255,
+            0.9019607843137255,
+            0.9019607843137255
+          ],
+          "alpha": 1,
+          "hex": "#e6e6e6"
+        }
+      },
+      "qdi-black-88": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "alpha": 0.88
+        }
+      },
+      "qdi-black-54": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "alpha": 0.54
+        }
+      },
+      "qdi-black-40": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "alpha": 0.4
+        }
+      },
+      "qdi-black-30": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "alpha": 0.3
+        }
+      },
+      "qdi-black-12": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "alpha": 0.12
+        }
+      },
+      "qdi-black-8": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "alpha": 0.08
+        }
+      },
+      "qdi-white-88": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "alpha": 0.88
+        }
+      },
+      "qdi-white-54": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "alpha": 0.54
+        }
+      },
+      "qdi-white-40": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "alpha": 0.4
+        }
+      },
+      "qdi-white-30": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "alpha": 0.3
+        }
+      },
+      "fd-link": {
+        "$type": "color",
+        "$value": "{qdi.light.qdi-rose-1}"
+      },
+      "font-sans": {
+        "$type": "fontFamily",
+        "$value": [
+          "system-ui",
+          "sans-serif"
+        ]
+      },
+      "font-heading": {
+        "$type": "fontFamily",
+        "$value": "{qdi.light.font-sans}"
+      },
+      "qdi-elevation-1": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 2,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 4,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0,
+              "unit": "px"
+            },
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.1
+            }
+          }
+        ]
+      },
+      "qdi-elevation-2": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 2,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 10,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0,
+              "unit": "px"
+            },
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.06
+            }
+          }
+        ]
+      },
+      "qdi-elevation-3": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 4,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 24,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0,
+              "unit": "px"
+            },
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.12
+            }
+          }
+        ]
+      },
+      "qdi-elevation-4": {
+        "$type": "shadow",
+        "$value": [
+          {
+            "offsetX": {
+              "value": 0,
+              "unit": "px"
+            },
+            "offsetY": {
+              "value": 20,
+              "unit": "px"
+            },
+            "blur": {
+              "value": 50,
+              "unit": "px"
+            },
+            "spread": {
+              "value": 0,
+              "unit": "px"
+            },
+            "color": {
+              "colorSpace": "srgb",
+              "components": [
+                0,
+                0,
+                0
+              ],
+              "alpha": 0.2
+            }
+          }
+        ]
       }
     }
   }

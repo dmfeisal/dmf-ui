@@ -12,6 +12,6 @@ The catalog and individual component pages show usage, props and interactive nat
 
 ## Verification — 2026-10-25
 
-Astro check: 202 files, zero errors/warnings/hints. Production build: 41 pages. Source tests: 19/19 pass, including package exports, all built links and static page boundaries. Isolated Chrome passed real 1 → 2 → 3 → 2 page navigation, native menu links and disabled/current semantics. Sixteen axe states passed with zero violations or incomplete items across DMF/CB/Horego, dark surroundings, mobile RTL and 200% text containment. Global documentation search passed after catalog expansion.
+Astro check: 202 files, zero errors/warnings/hints. Production build: 41 pages. Source tests: 19/19 pass, including package exports, all built links and static page boundaries. Isolated Chrome passed real 1 → 2 → 3 → 2 page navigation, native menu links and disabled/current semantics. Sixteen axe states passed with zero violations or incomplete items across DMF/CB/HUI, dark surroundings, mobile RTL and 200% text containment. Global documentation search passed after catalog expansion.
 
 Additional browser verification covers JavaScript-disabled pagination. Safari/Firefox, spoken VoiceOver/NVDA, touch on real devices and native-platform adapters remain pending. Automated checks do not establish complete accessibility certification.

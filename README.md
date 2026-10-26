@@ -57,9 +57,9 @@ The source repository builds Home (`/`), the searchable Components catalog (`/co
 
 The private `packages/react` proof provides Button, Text, Input, Switch and Card. After the root `npm ci`, run `npm ci --prefix packages/react` before source checks or documentation builds. Run `npm test --prefix packages/react` for type, server rendering and DOM hydration checks. Run `npm run test:dmf-ui:react-consumer` for a separate locked Vite app installed from packed archives, with production asset and form/ref checks. Alpha.2 exports compiled ESM and declarations. The documentation proof is `/examples/react/`. See [React alpha boundaries](docs/DMF-UI-REACT.md). Astro-only consumers do not install React or this package.
 
-### Horego preset
+### HUI preset
 
-Use the brand-derived Horego light preset in [Create](https://ui.feisal.id/create/?system=horego). Load `dmf-ui/presets/horego.css` after `dmf-ui/styles.css`, then use `class="dmf-ui" data-system="horego" data-color-mode="light"`. See [Horego preset scope and evidence](docs/DMF-UI-HOREGO-PRESET.md). This is a new semantic mapping of the confirmed brand foundations, not a historical product-system reconstruction.
+Use the brand-derived HUI light preset in [Create](https://ui.feisal.id/create/?system=hui). Load `dmf-ui/presets/hui.css` after `dmf-ui/styles.css`, then use `class="dmf-ui" data-system="hui" data-color-mode="light"`. See [HUI preset scope and evidence](docs/DMF-UI-HUI-PRESET.md). This is a new semantic mapping of the confirmed brand foundations, not a historical product-system reconstruction.
 
 ### Navigation components
 
@@ -92,3 +92,17 @@ The `dmf-ui/presets/portfolio.css` export provides Light, Dark and Yellow appear
 All 65 Astro UI families in Fulldev UI 0.25.5 base-vega are represented: 37 existing DMF implementations are retained and 28 missing families are adapted from pinned registry source. Existing DMF APIs and presets remain in place. See [adoption scope and verification](docs/DMF-UI-FULLDEV-ADOPTION.md) and the [source/hash record](docs/DMF-UI-FULLDEV-CATALOG.json). The public package export `dmf-ui/fulldev-provenance` ships that record.
 
 `npm run upstream:check` verifies the vendored registry payloads and adapted-source hashes. The import script never overwrites existing component files. `--record` deliberately refreshes hashes after a reviewed source adaptation. Fulldev, shadcn/ui, Data Slot, Embla, Simple Icons and SEO notices are preserved.
+
+### Foundations and Component Contract v1
+
+Shared additive foundations live in `tokens/foundations.json`; generated CSS is included in the core stylesheet. Existing theme tokens and API names remain compatible. Button accepts `md` alongside `default`.
+
+The source-backed inventory covers all 77 documented Astro families and the separate React alpha exports. It records anatomy, declared properties, native type references, defaults, variant axes, state vocabulary, token use and test references. Source evidence is not a full acceptance claim; remaining gaps are explicit in the catalog.
+
+- `/docs/foundations/`: live token specimens and foundation topics.
+- `/docs/component-contract/`: conventions and state taxonomy.
+- `/docs/brand-mappings/`: verified PDF references, application mappings and gaps.
+- `dmf-ui/contracts/catalog`, `dmf-ui/contracts/brands`, `dmf-ui/foundations`: machine-readable records.
+- `data-system="qdi" data-color-mode="light"`: light-only QDI application preset, based on verified v3 palette/UI references. No logos, mascot or guideline PDF is distributed.
+
+Run `npm run tokens:build` after token edits and `npm run contracts:build` after component API changes. `npm run check` checks both generated records for drift. See `docs/DMF-UI-FOUNDATIONS.md` for implementation status and continuation work.

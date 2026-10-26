@@ -1,7 +1,7 @@
 /* Generated from tokens/design.tokens.json. Run npm run tokens:build.
    Fulldev / CB reconstruction provenance: docs/DMF-UI-UPSTREAM.json. */
 /* Portfolio palette; component-role mapping documented in docs/DMF-UI-PORTFOLIO.md. */
-@font-face { font-family:'DMF Portfolio Inter'; src:url('../assets/fonts/horego/inter-latin-variable.woff2') format('woff2'); font-weight:100 900; font-style:normal; font-display:swap; }
+@font-face { font-family:'DMF Portfolio Inter'; src:url('../assets/fonts/hui/inter-latin-variable.woff2') format('woff2'); font-weight:100 900; font-style:normal; font-display:swap; }
 @font-face { font-family:'DMF Portfolio Jakarta'; src:url('../assets/fonts/portfolio/plus-jakarta-sans-latin-variable.woff2') format('woff2'); font-weight:200 800; font-style:normal; font-display:swap; }
 :root .dmf-ui[data-system="portfolio"] {  --background: #f4f3ef;
   --foreground: #111111;

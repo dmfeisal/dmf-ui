@@ -491,7 +491,7 @@ FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
 
 
-## Horego preset typefaces
+## HUI preset typefaces
 
 M PLUS Rounded 1c — Copyright 2016 The Rounded M+ Project Authors.
 Inter — Copyright 2016 The Inter Project Authors (https://github.com/rsms/inter).

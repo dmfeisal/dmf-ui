@@ -1,7 +1,7 @@
 import {readFile,writeFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 const root=new URL('../',import.meta.url);
-export const groups=['dmf.light','dmf.dark','cb.light','horego.light','portfolio.light','portfolio.dark','portfolio.yellow'];
+export const groups=['dmf.light','dmf.dark','cb.light','hui.light','portfolio.light','portfolio.dark','portfolio.yellow','qdi.light'];
 const dimension=value=>{
  if(!value||!Number.isFinite(value.value)||!['px','rem'].includes(value.unit))throw new Error('Invalid dimension');
  return `${value.value}${value.unit}`;
@@ -82,17 +82,17 @@ export function compileTokens(source){
  const light=declarations('dmf.light'),dark=declarations('dmf.dark');
  const foundation=`${header}.dmf-ui {\n${light}\n}\n\n:root[data-theme="dark"] .dmf-ui {\n${dark}\n}\n\n@media (prefers-color-scheme: dark) {\n:root:not([data-theme]) .dmf-ui {\n${dark}\n}\n}\n`;
  const cb=`${header}/* Present-day CB UI reconstruction; light-only, not historical shipped UI. */\n@font-face {\n font-family: 'DMF CB Nunito'; src: url('../assets/fonts/nunito.ttf') format('truetype');\n font-style: normal; font-weight: 200 900; font-display: swap;\n}\n:root .dmf-ui[data-system="cb-ui"] {\n${declarations('cb.light')}\n}\n`;
- const horego=`${header}/* Brand-derived Horego preset; present-day UI mapping, light only. */
-@font-face { font-family:'DMF Horego Inter'; src:url('../assets/fonts/horego/inter-latin-variable.woff2') format('woff2'); font-style:normal; font-weight:100 900; font-display:swap; }
-@font-face { font-family:'DMF Horego Rounded Mplus'; src:url('../assets/fonts/horego/mplus-rounded-latin-500.woff2') format('woff2'); font-style:normal; font-weight:500; font-display:swap; }
-@font-face { font-family:'DMF Horego Rounded Mplus'; src:url('../assets/fonts/horego/mplus-rounded-latin-700.woff2') format('woff2'); font-style:normal; font-weight:700; font-display:swap; }
-:root .dmf-ui[data-system="horego"] {
-${declarations('horego.light')}
+ const hui=`${header}/* Brand-derived HUI preset; present-day UI mapping, light only. */
+@font-face { font-family:'DMF HUI Inter'; src:url('../assets/fonts/hui/inter-latin-variable.woff2') format('woff2'); font-style:normal; font-weight:100 900; font-display:swap; }
+@font-face { font-family:'DMF HUI Rounded Mplus'; src:url('../assets/fonts/hui/mplus-rounded-latin-500.woff2') format('woff2'); font-style:normal; font-weight:500; font-display:swap; }
+@font-face { font-family:'DMF HUI Rounded Mplus'; src:url('../assets/fonts/hui/mplus-rounded-latin-700.woff2') format('woff2'); font-style:normal; font-weight:700; font-display:swap; }
+:root .dmf-ui[data-system="hui"] {
+${declarations('hui.light')}
 }
-:root .dmf-ui[data-system="horego"] :where(h1,h2,h3,h4,h5,h6) { font-family:var(--font-heading); }
+:root .dmf-ui[data-system="hui"] :where(h1,h2,h3,h4,h5,h6) { font-family:var(--font-heading); }
 `;
  const portfolio=`${header}/* Portfolio palette; component-role mapping documented in docs/DMF-UI-PORTFOLIO.md. */
-@font-face { font-family:'DMF Portfolio Inter'; src:url('../assets/fonts/horego/inter-latin-variable.woff2') format('woff2'); font-weight:100 900; font-style:normal; font-display:swap; }
+@font-face { font-family:'DMF Portfolio Inter'; src:url('../assets/fonts/hui/inter-latin-variable.woff2') format('woff2'); font-weight:100 900; font-style:normal; font-display:swap; }
 @font-face { font-family:'DMF Portfolio Jakarta'; src:url('../assets/fonts/portfolio/plus-jakarta-sans-latin-variable.woff2') format('woff2'); font-weight:200 800; font-style:normal; font-display:swap; }
 :root .dmf-ui[data-system="portfolio"] {${declarations('portfolio.light')}}
 :root[data-theme="dark"] .dmf-ui[data-system="portfolio"] {${declarations('portfolio.dark')}}
@@ -101,8 +101,19 @@ ${declarations('horego.light')}
 ${['light','dark','yellow'].map(mode=>`:root .dmf-ui[data-system="portfolio"][data-color-mode="${mode}"] {${declarations('portfolio.'+mode)}}`).join('\n')}
 :root .dmf-ui[data-system="portfolio"] :where(h1,h2,h3,h4,h5,h6) { font-family:var(--font-heading); font-feature-settings:'ss03' 1; }
 `;
- const portable={schemaVersion:1,description:'Alias-resolved authored groups, not complete platform themes. dmf.dark overrides dmf.light; cb.light and horego.light override the ambient DMF theme; portfolio groups supply explicit scoped appearances. No pixel-density, text-scaling or native component policy is implied.',groups:Object.fromEntries(groups.map(group=>[group,Object.fromEntries([...tokens].filter(([path])=>path.startsWith(`${group}.`)).map(([path,token])=>[path.slice(group.length+1),{type:token.$type,value:resolved.get(path)}]))]))};
- return {'src/styles/dmf-ui-tokens.css':foundation,'src/styles/dmf-ui-cb.css':cb,'src/styles/dmf-ui-horego.css':horego,'src/styles/dmf-ui-portfolio.css':portfolio,'tokens/resolved.json':JSON.stringify(portable,null,2)+'\n'};
+ const qdi=`${header}/* QDI v3 verified palette; DMF semantic mapping, light only. */
+:root .dmf-ui[data-system="qdi"] {
+${declarations('qdi.light')}
+--dmf-card-radius:var(--qdi-radius-12);
+${[[1,4],[2,8],[3,12],[4,16],[6,24],[8,32],[10,40]].map(([step,value])=>`--dmf-space-${step}:var(--qdi-space-${value});`).join('\n')}
+}
+:root .dmf-ui[data-system="qdi"] [data-slot="card"] { border-radius:var(--dmf-card-radius); }
+:root .dmf-ui[data-system="qdi"] [data-slot="switch"] { outline:1px solid var(--foreground); }
+:root .dmf-ui[data-system="qdi"] [data-slot="switch"]:focus-visible { outline:2px solid var(--foreground); outline-offset:3px; }
+:root .dmf-ui[data-system="qdi"] [data-slot="switch"][data-checked] [data-slot="switch-thumb"] { background:var(--primary-foreground); }
+`;
+ const portable={schemaVersion:1,description:'Alias-resolved authored groups, not complete platform themes. dmf.dark overrides dmf.light; cb.light, hui.light and qdi.light override the ambient DMF theme; portfolio groups supply explicit scoped appearances. No pixel-density, text-scaling or native component policy is implied.',groups:Object.fromEntries(groups.map(group=>[group,Object.fromEntries([...tokens].filter(([path])=>path.startsWith(`${group}.`)).map(([path,token])=>[path.slice(group.length+1),{type:token.$type,value:resolved.get(path)}]))]))};
+ return {'src/styles/dmf-ui-qdi.css':qdi,'src/styles/dmf-ui-tokens.css':foundation,'src/styles/dmf-ui-cb.css':cb,'src/styles/dmf-ui-hui.css':hui,'src/styles/dmf-ui-portfolio.css':portfolio,'tokens/resolved.json':JSON.stringify(portable,null,2)+'\n'};
 }
 export async function buildTokens({check=false}={}){
  const source=JSON.parse(await readFile(new URL('tokens/design.tokens.json',root),'utf8'));

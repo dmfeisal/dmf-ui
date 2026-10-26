@@ -4,7 +4,7 @@
 .create-field { display:grid;gap:8px; }
 .create-field label { font-weight:600; }
 .create-field small { color:var(--muted-foreground);line-height:1.5; }
-.create-field select { min-height:44px;max-width:100%;width:100%;border:1px solid var(--border);border-radius:var(--docs-radius-control);padding:8px;color:var(--foreground);background:var(--background);font:inherit; }
+.create-field select { max-width:100%;width:100%;border:1px solid var(--border);border-radius:var(--docs-radius-control);padding:8px;color:var(--foreground);background:var(--background);font:inherit; }
 .create-field select:focus-visible {outline:2px solid var(--foreground);outline-offset:3px;}
 .create-field select:disabled {opacity:.65;}
 .create-result {min-width:0;}

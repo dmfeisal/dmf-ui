@@ -57,3 +57,8 @@ const wrongSelectRef=<Select ref={input}/>;
 // @ts-expect-error Optgroups require authored labels.
 const unnamedOptions=<SelectGroup/>;
 void [choices,lockedRadio,itemChecked,wrongSelectRef,unnamedOptions];
+
+const mediumButton=<Button size="md">Medium alias</Button>;
+// @ts-expect-error XL is not a supported Button size.
+const unsupportedButtonSize=<Button size="xl"/>;
+void [mediumButton,unsupportedButtonSize];

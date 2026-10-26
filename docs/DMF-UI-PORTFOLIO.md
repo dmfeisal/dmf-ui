@@ -30,7 +30,7 @@ Basic actions, forms, floating panels, content cards, badges, tags-as-filters an
 | HomeHeroPrimary / HomeHeroProcess / HomeHeroSystem | Remain authored homepage compositions with Canvas and content ownership. |
 | CanvasExport / CanvasNoteColors / CanvasLifecycleDemo and Canvas runtime | Retain their separate owner, history, storage and public-data boundaries. The source AGENTS.md explicitly says the isolation work is an internal spike without a public package API. This extraction does not promote it to a public API. |
 | Global header/footer, work/writing filters and media layouts | Remain page compositions. Shared primitives may be composed to reproduce these after a host migration; whole global stylesheets are not imported. |
-| QDS, Muhammadiyah, Vimonia product themes | Not inferred from portfolio styling. Their independent authoritative design evidence is still required. Existing CB and Horego presets stay distinct. |
+| QDS, Muhammadiyah, Vimonia product themes | Not inferred from portfolio styling. Their independent authoritative design evidence is still required. Existing CB and HUI presets stay distinct. |
 
 ## Portfolio preset
 
@@ -40,7 +40,7 @@ Confirmed source backgrounds are Light `#f4f3ef`, Dark `#111111`, Yellow `#f2d43
 
 Inter body and Plus Jakarta Sans headings are bundled locally as Latin WOFF2 with supplied OFL notices. Inter reuses the existing font bytes rather than duplicating them. Heading feature `ss03` follows the source. The preset does not force the document's root font size, page padding, container, media grain, animation or all portfolio spacing variables. Non-Latin font coverage is not claimed.
 
-No remote font import, sibling checkout, portfolio runtime script or data service is needed. The original DMF/CB/Horego groups remain separate. Core stays 0.4.0 and React stays 0.1.0-alpha.3; no React/native adapter, package publication, release tag or consumer migration is implied.
+No remote font import, sibling checkout, portfolio runtime script or data service is needed. The original DMF/CB/HUI groups remain separate. Core stays 0.4.0 and React stays 0.1.0-alpha.3; no React/native adapter, package publication, release tag or consumer migration is implied.
 
 ## Examples
 

@@ -24,9 +24,9 @@ export function Proof({prefix='react'}:{prefix?:string}) {
   <Separator/>
   <FieldGroup>
    <Field><FieldLabel htmlFor={`${prefix}-notes`}>Local notes</FieldLabel><FieldContent><Textarea id={`${prefix}-notes`} defaultValue="" aria-describedby={`${prefix}-notes-help`}/><FieldDescription id={`${prefix}-notes-help`}>Notes remain in this local demonstration.</FieldDescription></FieldContent></Field>
-   <Field orientation="horizontal"><Checkbox id={`${prefix}-optional`}/><FieldLabel className="min-h-[44px]" htmlFor={`${prefix}-optional`}>Optional local preference</FieldLabel></Field>
+   <Field orientation="horizontal"><Checkbox id={`${prefix}-optional`}/><FieldLabel htmlFor={`${prefix}-optional`}>Optional local preference</FieldLabel></Field>
   </FieldGroup>
-  <RadioGroup defaultValue="weekly" name={`${prefix}-frequency`}><FieldLegend>Frequency</FieldLegend><Label className="min-h-[44px]"><RadioGroupItem value="weekly"/>Weekly</Label><Label className="min-h-[44px]"><RadioGroupItem value="monthly"/>Monthly</Label></RadioGroup>
+  <RadioGroup defaultValue="weekly" name={`${prefix}-frequency`}><FieldLegend>Frequency</FieldLegend><Label><RadioGroupItem value="weekly"/>Weekly</Label><Label><RadioGroupItem value="monthly"/>Monthly</Label></RadioGroup>
   <Label htmlFor={`${prefix}-channel`}>Channel</Label><Select id={`${prefix}-channel`} defaultValue="email"><SelectOption value="email">Email</SelectOption><SelectOption value="digest">Digest</SelectOption></Select>
   <Badge variant="secondary">Local preview</Badge>
   <Alert>

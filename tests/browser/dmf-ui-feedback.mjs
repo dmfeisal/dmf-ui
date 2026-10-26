@@ -30,7 +30,7 @@ export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
  for(const slug of ['skeleton','empty-state','progress','loading-button']){
   await navigate(`${baseURL}/components/${slug}/`);await audit();
   if(slug==='skeleton')assert(await page.evaluate(()=>[...document.querySelectorAll('[data-slot=skeleton]')].every(n=>n.getAttribute('aria-hidden')==='true')),'Skeleton exposed to AT');
-  for(const preset of ['cb-ui','horego','portfolio']){await page.evaluate(preset=>{document.querySelector('[data-docs-preview]').dataset.system=preset;},preset);await audit();}
+  for(const preset of ['cb-ui','hui','portfolio']){await page.evaluate(preset=>{document.querySelector('[data-docs-preview]').dataset.system=preset;},preset);await audit();}
   await page.evaluate(()=>document.documentElement.dataset.theme='dark');await audit();
   await mobile();await page.evaluate(()=>{document.querySelector('[data-docs-preview]').dir='rtl';document.documentElement.style.fontSize='175%';});await settle();
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=390),`${slug}: mobile RTL enlarged-text overflow`);await audit();

@@ -2,13 +2,13 @@
 
 ## Source and outputs
 
-`tokens/design.tokens.json` is the editable source for the existing shared semantic foundation. It contains `dmf.light`, `dmf.dark` `cb.light`, `horego.light` and `portfolio.light/dark/yellow` groups, using DTCG 2025.10 color, dimension, shadow and fontFamily types and whole-token aliases. The small local generator implements these authored constructs, not the complete DTCG resolver specification. No new dependency is required.
+`tokens/design.tokens.json` is the editable source for the existing shared semantic foundation. It contains `dmf.light`, `dmf.dark` `cb.light`, `hui.light` `portfolio.light/dark/yellow` and `qdi.light` groups, using DTCG 2025.10 color, dimension, shadow and fontFamily types and whole-token aliases. The small local generator implements these authored constructs, not the complete DTCG resolver specification. No new dependency is required.
 
 Run `npm run tokens:build` after editing the source. Commit the source and its generated outputs together:
 
 - `src/styles/dmf-ui-tokens.css`: Existing `.dmf-ui` light, explicit root dark and system-dark fallback selectors.
 - `src/styles/dmf-ui-cb.css`: Existing light-only CB scope and bundled Nunito font-face.
-- `src/styles/dmf-ui-horego.css`: Light-only brand-derived Horego scope, local Inter/Rounded Mplus webfonts and heading treatment.
+- `src/styles/dmf-ui-hui.css`: Light-only brand-derived HUI scope, local Inter/Rounded Mplus webfonts and heading treatment.
 - `src/styles/dmf-ui-portfolio.css`: Scoped portfolio appearances and local typography; mappings and source hashes are documented in DMF-UI-PORTFOLIO.md.
 - `tokens/resolved.json`: Platform-neutral, alias-resolved authored groups with explicit types and units. These are not complete native themes: `dmf.dark` overlays `dmf.light`; the CB group overrides the ambient DMF values, retaining the existing CSS inheritance for roles it does not define.
 
@@ -37,3 +37,11 @@ Run source checks, build, contract tests, computed-token parity, documentation/C
 Direction: preserve Fulldev-based DMF UI and the owner's CB preset. This is a data/build migration with no new screen, navigation, assets, typography choices, motion or decorative treatment. Existing semantic names preserve color hierarchy; dimensions and font roles retain their authored units and families. ENERGY 1, RHYTHM 1, MOTION 1 apply to this maintenance scope, not a redesign claim about every existing example. Verification must demonstrate parity rather than invent visual novelty.
 
 [Design Tokens Format Module 2025.10](https://www.designtokens.org/tr/2025.10/format/) provides the interchange types. The generator deliberately rejects unsupported constructs rather than claiming full tool conformance.
+
+## Additive foundations and verified brand references — 26 October 2026
+
+`tokens/foundations.json` is the shared application scale for spacing, typography, layout, borders, layers, motion, icons, focus and component assignments. Its small schema is explicit and is not presented as additional DTCG conformance. `scripts/foundations.mjs` generates the included `dmf-ui-foundations.css` and resolved JSON. Existing theme names and fixture inventories are preserved.
+
+The `qdi.light` group records the verified v3 UI palette and four elevation values, plus separately documented DMF semantic assignments. No QDI dark mode is defined. Additional verified HUI palette values are additive; existing semantic pairings stay unchanged. See `DMF-UI-FOUNDATIONS.md` and `contracts/brands.json` for sources and remaining gaps.
+
+Component adoption is staged: Button and Input use additive dimensions matching existing defaults; default Astro Card spacing consumes the surface assignment. Opt-in `data-density="compact"` adjusts shared layout/surface spacing, while control hit-area policy stays separate. It is a CSS scope convention, not a new universal component prop. React inherits the core foundation variables; its Card padding remains its own existing adapter contract.
