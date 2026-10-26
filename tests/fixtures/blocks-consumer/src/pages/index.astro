@@ -1,0 +1,13 @@
+---
+import {SignInBlock,SearchFiltersBlock} from 'dmf-ui/blocks';
+import {Input} from 'dmf-ui/input';
+import 'dmf-ui/styles.css';
+---
+<!doctype html><html lang="id"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Packed Astro Blocks proof</title></head><body class="dmf-ui"><main><h1>Packed Astro Blocks proof</h1><p>Static native forms. This fixture does not provide authentication or search services.</p>
+<SignInBlock id="external-sign-in" action="/account/sign-in" title="Masuk ke akun Anda" description="Gunakan alamat email dan kata sandi Anda." emailLabel="Alamat email" passwordLabel="Kata sandi" submitLabel="Masuk" pendingLabel="Sedang masuk…" errorTitle="Tidak dapat masuk" error="Contoh kesalahan dari host." fieldErrors={{email:'Periksa alamat email.'}} email="reader@example.test">
+ <div slot="fields"><label for="external-organization">Organisasi</label><Input id="external-organization" name="organization"/></div><a slot="footer" href="#notes">Tentang contoh</a><p id="notes">Host owns submission.</p>
+</SignInBlock>
+<SignInBlock id="external-disabled" action="/account/sign-in" title="Unavailable form" disabled/>
+<SearchFiltersBlock id="external-search" action="/catalog" options={[{value:'forms',label:'Forms'}]} query="initial" selectedValue="forms"/>
+</main></body></html>
+<style is:global>html{font-size:100%}body{margin:0}main{max-width:60rem;margin-inline:auto;padding:1.25rem;display:grid;gap:1.5rem}</style>

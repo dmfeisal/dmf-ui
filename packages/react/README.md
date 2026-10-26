@@ -32,7 +32,7 @@ The expanded packed fixture checks typed link/ref contracts, static versus opt-i
 
 ## Native form primitives
 
-Label forwards native label props/ref. Associate it using `htmlFor` and a unique control ID, or nest the control. It does not generate names or a disabled state. A checkbox label should offer at least a 44px hit area; the consumer demonstrates that host layout.
+Label forwards native label props/ref. Associate it using `htmlFor` and a unique control ID, or nest the control. It does not generate names or a disabled state. Use natural label content and padding appropriate to the host; no blanket 44px minimum is imposed.
 
 Textarea forwards native textarea props/ref, including controlled `value`/`onChange`, `defaultValue`, required/disabled, name, form, rows and authored ARIA descriptions/errors. It resizes vertically, wraps within its container and uses a visible keyboard outline. Hosts own controlled reset and error messages; no validation message is invented.
 
@@ -90,3 +90,21 @@ RadioGroup renders a fieldset with radiogroup semantics; give it a FieldLegend o
 Select, SelectOption and SelectGroup render select, option and optgroup. They forward native props/refs, controlled onChange, defaultValue, multiple arrays, required/disabled, name and form. SelectGroup requires an authored label. Use a separate Label and unique ID. Native picker appearance and keyboard details vary by browser/OS; this API does not include custom Trigger/Content/listbox parts or portals.
 
 The selection batch passes seven adapter tests and eight packed-consumer tests, including five new refs, type contracts, independent radio names, controlled/native resets, multiple selections and both-preset SSR hydration. Chrome checks native radio arrows/disabled skipping, Select typeahead and disabled optgroup semantics, validation, submission/reset and forced-colors focus. Safari/Firefox, spoken readers and physical-device pickers remain pending. Versions remain core 0.4.0 and unpublished React alpha.3.
+## SignInBlock composition
+
+The experimental `SignInBlock` is exported from `@dmf-ui/react`. Import `@dmf-ui/react/styles.css` once and render inside `.dmf-ui`. It uses existing Card, Field, Input, Button and Alert parts, with no auth service, transport, storage, effect or global listener.
+
+```tsx
+import {SignInBlock} from '@dmf-ui/react';
+import '@dmf-ui/react/styles.css';
+
+<SignInBlock id="account" action="/account/sign-in" />
+```
+
+`id` and a real host `action` are required; method is POST. Native form props/ref and `onSubmit` are forwarded. Email and password are required, with username/current-password autocomplete. `email` is the initial/reset default of an uncontrolled native input, not its controlled current value. There is no initial password prop. Read values before setting `pending`, since pending/disabled disable the fieldset. `submitDisabled` guards submission without preventing editing.
+
+Title/description, email/password/help/error copy, `errorTitle`, submit/pending labels and optional recovery/signup links are configurable. `headingLevel` is h1/h2/h3, default h2. `fields`, `footer` and children correspond to the Astro fields/footer/default slots. Label added controls and avoid nested forms. Use a different id for every instance. The host owns validation decisions, reset policy, session/CSRF handling, account-existence policy, announcements and navigation. A stable submit label and separate pending status avoid changing the action name while busy.
+
+Run the normal locked packed-consumer test. Its independent `/sign-in.html` page is a guarded local preview: credentials are not read, sent or stored. The fixture has a separate SSR/hydration, type/ref, reset, localization and host-state suite. `DMF_UI_TEST_REACT_SCENARIO=sign-in npm run test:dmf-ui:react-browser -- <react-consumer> <astro-consumer>` selects scoped browser verification. Create the optional Astro consumer with `npm run test:dmf-ui:blocks-consumer -- --keep`.
+
+SearchFiltersBlock remains Astro-only. No generic SignInFormBlock alias, new package, registry installer, React Native or stable API guarantee is added. See `docs/DMF-UI-SIGN-IN-COMPOSITION.md` for evidence and limits.

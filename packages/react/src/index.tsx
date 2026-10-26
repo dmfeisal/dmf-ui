@@ -1,5 +1,7 @@
 import {createContext,useContext,useId} from 'react';
 import type { ComponentPropsWithRef, ReactNode } from 'react';
+export {SignInBlock} from './blocks/sign-in';
+export type {SignInBlockProps} from './blocks/sign-in';
 import { buttonVariants } from 'dmf-ui/button/variants';
 const join = (...parts:(string|undefined|null|false)[]) => parts.filter(Boolean).join(' ');
 export type ButtonProps = ComponentPropsWithRef<'button'> & Parameters<typeof buttonVariants>[0];

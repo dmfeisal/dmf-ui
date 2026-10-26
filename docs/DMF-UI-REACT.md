@@ -1,5 +1,7 @@
 # React web alpha
 
+Current composition follow-up, 26 October 2026: the adapter adds experimental SignInBlock using the existing 14 component families. There are now 36 named component/Block exports, with separate Block metadata in the catalog. Core remains 0.4.0 and React remains 0.1.0-alpha.3. See [sign-in composition](DMF-UI-SIGN-IN-COMPOSITION.md) for API, packed-consumer proof and scoped acceptance. Earlier verification sections below retain their original scope; they do not establish new Block acceptance.
+
 24 October 2026. The separate private `@dmf-ui/react` package at `packages/react`, version `0.1.0-alpha.3`, implements Button, Text, Input, Switch, Card, Badge, Alert (with AlertTitle, AlertDescription and AlertAction), Label, Textarea, Checkbox, Separator, Field, Radio Group and Select. The Astro archive remains 0.4.0. This is preparation for the 0.5.0 React milestone, not a stable release, native adapter or npm publication.
 
 ## Ownership and setup

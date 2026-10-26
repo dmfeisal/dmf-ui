@@ -7,6 +7,11 @@
 .dmf-block-filter-options label span { overflow-wrap:anywhere; }
 .dmf-block [data-slot=native-select-wrapper] { inline-size:100%; }
 .dmf-block [data-slot=card-footer] a { text-decoration:underline; text-underline-offset:3px; }
+.dmf-sign-in-block [data-slot=card-footer] { display:flex; flex-wrap:wrap; gap:.75rem; }
+.dmf-sign-in-submit { position:relative; }
+.dmf-sign-in-pending { position:absolute; inset-inline-start:.75rem; inline-size:.75rem; block-size:.75rem; border:2px solid currentColor; border-inline-end-color:transparent; border-radius:50%; animation:dmf-sign-in-spin .8s linear infinite; }
+@keyframes dmf-sign-in-spin { to { transform:rotate(360deg); } }
+@media(prefers-reduced-motion:reduce) { .dmf-sign-in-pending { animation:none; } }
 .dmf-search-filters-block { display:grid; gap:1rem; }
 .dmf-block-filter-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
 @media(max-width:40rem) { .dmf-block-filter-grid { grid-template-columns:minmax(0,1fr); } }

@@ -1,4 +1,15 @@
 import {createRef} from 'react';
+import {SignInBlock} from '@dmf-ui/react';
+const signIn=<SignInBlock id="account" action="/account" ref={createRef<HTMLFormElement>()} onSubmit={e=>e.preventDefault()} fields={<input name="scope"/>}/>;
+// @ts-expect-error Native form method is fixed to POST.
+const signInMethod=<SignInBlock id="account" action="/account" method="get"/>;
+// @ts-expect-error Sign-in ref is a form, not an input.
+const signInRef=<SignInBlock id="account" action="/account" ref={createRef<HTMLInputElement>()}/>;
+// @ts-expect-error No authored initial password is accepted.
+const signInPassword=<SignInBlock id="account" action="/account" password="secret"/>;
+// @ts-expect-error Host action is required.
+const signInAction=<SignInBlock id="account"/>;
+void [signIn,signInMethod,signInRef,signInPassword,signInAction];
 import {Button,Input,Switch,Text,Card,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator,CardTitle,Field,FieldSet,FieldLegend,FieldDescription,FieldLabel,RadioGroup,RadioGroupItem,Select,SelectOption,SelectGroup} from '@dmf-ui/react';
 const input=createRef<HTMLInputElement>();
 const button=createRef<HTMLButtonElement>();

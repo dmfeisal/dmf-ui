@@ -1,0 +1,25 @@
+import {useEffect,useId,useRef,useState} from 'react';
+import {SignInBlock,Button,Input,Field,FieldLabel} from '@dmf-ui/react';
+
+export function SignInProof(){
+ const id=useId(),form=useRef<HTMLFormElement>(null);
+ const [ready,setReady]=useState(false),[pending,setPending]=useState(false),[error,setError]=useState(''),[status,setStatus]=useState('No request made.');
+ const [preset,setPreset]=useState('dmf'),[dark,setDark]=useState(false),[locale,setLocale]=useState('en');
+ useEffect(()=>setReady(true),[]);
+ const indonesian=locale==='id';
+ return <main className="consumer-shell dmf-ui" data-system={preset} data-color-mode={preset==='hui'?'light':undefined} lang={locale}>
+  <h1>Sign-in composition proof</h1><p>Local preview. Credentials are never read, sent or stored.</p>
+  <div className="consumer-actions"><label>Preset <select data-sign-in-preset value={preset} onChange={e=>setPreset(e.target.value)} disabled={!ready}><option value="dmf">DMF</option><option value="hui">HUI</option></select></label><Button variant="outline" disabled={!ready} onClick={()=>{setDark(!dark);document.documentElement.dataset.theme=dark?'light':'dark';}}>Toggle surroundings</Button><label>Language <select data-sign-in-language disabled={!ready} value={locale} onChange={e=>setLocale(e.target.value)}><option value="en">English</option><option value="id">Indonesia</option></select></label></div>
+  <SignInBlock id={`${id}-signin`} action="/local-sign-in-preview" ref={form} data-sign-in-proof pending={pending} submitDisabled={!ready} error={error}
+   title={indonesian?'Masuk ke akun Anda':'Sign in to your account'} description={indonesian?'Gunakan alamat email dan kata sandi Anda.':'Use your email address and password.'} emailLabel={indonesian?'Alamat email':'Email'} passwordLabel={indonesian?'Kata sandi':'Password'} submitLabel={indonesian?'Masuk ke akun':'Sign in'} pendingLabel={indonesian?'Sedang masuk…':'Signing in…'} errorTitle={indonesian?'Tidak dapat masuk':'Unable to sign in'}
+   onSubmit={event=>{event.preventDefault();setPending(true);setError('');setStatus('Native validation passed. Credentials were not read, retained or sent.');}}
+   onReset={()=>{setPending(false);setError('');setStatus('Form reset.');}}
+   fields={<Field><FieldLabel htmlFor={`${id}-organization`}>{indonesian?'Organisasi (opsional)':'Organization (optional)'}</FieldLabel><Input id={`${id}-organization`} name="organization" autoComplete="organization"/></Field>}
+   footer={<a href="#proof-notes">{indonesian?'Tentang contoh lokal':'About this local example'}</a>}>
+   <p id="proof-notes">This composition uses native fields. Your application supplies authentication.</p>
+  </SignInBlock>
+  <div className="consumer-actions"><Button variant="outline" disabled={!ready} onClick={()=>{setPending(false);setError(indonesian?'Contoh kesalahan lokal. Coba lagi.':'Local example error. Try again.');}}>Show local error</Button><Button variant="outline" disabled={!ready} onClick={()=>setPending(false)}>Finish pending</Button><Button variant="outline" disabled={!ready} onClick={()=>form.current?.reset()}>Reset sign-in</Button></div>
+  <p role="status" data-sign-in-result>{status}</p>
+  <SignInBlock id={`${id}-unavailable`} action="/local-sign-in-preview" title="Unavailable account form" disabled/>
+ </main>;
+}

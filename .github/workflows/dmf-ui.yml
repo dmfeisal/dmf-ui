@@ -32,6 +32,8 @@ jobs:
         run: npm test --prefix packages/react
       - name: Verify packed React consumer, assets and simulated input
         run: npm run test:dmf-ui:react-consumer
+      - name: Verify packed Astro Blocks consumer
+        run: npm run test:dmf-ui:blocks-consumer
       - name: Check source
         run: npm run check
       - name: Build documentation

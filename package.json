@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test:dmf-ui:blocks-consumer": "node scripts/test-dmf-ui-blocks-consumer.mjs",
     "tokens:build": "node scripts/design-tokens.mjs && npm run foundations:build",
     "tokens:check": "node scripts/design-tokens.mjs --check && npm run foundations:check",
     "test:dmf-ui:tokens": "npm run build && node scripts/test-dmf-ui-tokens.mjs",

@@ -12,12 +12,12 @@
         "LoadingButton",
         "Alert"
       ],
-      "limitations": "No authentication transport, session storage, password persistence or account-existence decision. The host must supply a secure POST endpoint, CSRF policy and error copy. Pending captures values before disabling the fieldset. React has no Block adapter.",
+      "limitations": "No authentication transport, session storage, password persistence or account-existence decision. The host must supply a secure POST endpoint, CSRF policy and error copy. Capture values before disabling the fieldset for pending work. React SignInBlock is an experimental separate implementation with native uncontrolled fields.",
       "entry": "dmf-ui/blocks",
       "framework": "Astro",
       "source": "src/components/dmf-ui/blocks/sign-in.astro",
-      "sha256": "7ec787d6e57f2ccf457f6270de5690b966068241f8ea33a2e0914f35c7a54733",
-      "declaration": "interface Props extends Omit<HTMLAttributes<'form'>,'id'|'method'|'action'|'title'> {\n id:string; action:string; title?:string; description?:string; headingLevel?:'h1'|'h2'|'h3';\n email?:string; emailName?:string; passwordName?:string; emailLabel?:string; passwordLabel?:string;\n passwordHelp?:string; submitLabel?:string; pendingLabel?:string; pending?:boolean; disabled?:boolean; submitDisabled?:boolean;\n error?:string; fieldErrors?:{email?:string;password?:string};\n recoveryHref?:string; recoveryLabel?:string; signupHref?:string; signupLabel?:string;\n}",
+      "sha256": "ff3534f18c018b6372ec81a034809a96637ff89515f3620c2527779f2f71d615",
+      "declaration": "interface Props extends Omit<HTMLAttributes<'form'>,'id'|'method'|'action'|'title'> {\n id:string; action:string; title?:string; description?:string; headingLevel?:'h1'|'h2'|'h3';\n email?:string; emailName?:string; passwordName?:string; emailLabel?:string; passwordLabel?:string;\n passwordHelp?:string; submitLabel?:string; pendingLabel?:string; pending?:boolean; disabled?:boolean; submitDisabled?:boolean;\n error?:string; errorTitle?:string; fieldErrors?:{email?:string;password?:string};\n recoveryHref?:string; recoveryLabel?:string; signupHref?:string; signupLabel?:string;\n}",
       "defaults": {
         "title": "'Sign in'",
         "description": "'Enter your account details.'",
@@ -32,6 +32,7 @@
         "pending": "false",
         "disabled": "false",
         "submitDisabled": "false",
+        "errorTitle": "'Unable to sign in'",
         "fieldErrors": "{}",
         "recoveryLabel": "'Forgot password?'",
         "signupLabel": "'Create account'"
@@ -158,6 +159,22 @@
     ]
   },
   "react": {
+    "blocks": [
+      {
+        "name": "SignInBlock",
+        "entry": "@dmf-ui/react",
+        "source": "packages/react/src/blocks/sign-in.tsx",
+        "sha256": "33dabf5bfc4f1874f7f47184f0ce1925514f5891f3990ed7862c059cea08c25c",
+        "types": [
+          {
+            "name": "SignInBlockProps",
+            "declaration": "export type SignInBlockProps = Omit<ComponentPropsWithRef<'form'>, 'id' | 'action' | 'method' | 'title'> & {\n id:string; action:string; title?:string; description?:string; headingLevel?:'h1'|'h2'|'h3';\n email?:string; emailName?:string; passwordName?:string; emailLabel?:string; passwordLabel?:string;\n passwordHelp?:string; submitLabel?:string; pendingLabel?:string; pending?:boolean; disabled?:boolean; submitDisabled?:boolean;\n error?:string; errorTitle?:string; fieldErrors?:{email?:string;password?:string};\n recoveryHref?:string; recoveryLabel?:string; signupHref?:string; signupLabel?:string;\n fields?:ReactNode; footer?:ReactNode;\n};"
+          }
+        ],
+        "status": "experimental",
+        "stateOwnership": "Native uncontrolled fields; host owns submission, pending, errors and reset policy."
+      }
+    ],
     "package": "@dmf-ui/react",
     "version": "0.1.0-alpha.3",
     "exports": [
@@ -195,7 +212,8 @@
       "RadioGroupItem",
       "Select",
       "SelectOption",
-      "SelectGroup"
+      "SelectGroup",
+      "SignInBlock"
     ],
     "types": [
       {
@@ -344,7 +362,7 @@
       }
     ],
     "source": "packages/react/src/index.tsx",
-    "sha256": "666fa53f81b057fed336dbd1127165a240fb81c8941fdb0131e278fcc43578d3",
+    "sha256": "8d2ecda1a89d0c702f3bda58cddda503694108fa04b04a8be8d692a38bf1ceaa",
     "status": "separate-web-alpha",
     "note": "React native props and controlled/uncontrolled patterns differ from Astro. No Astro parity claim."
   },
@@ -3587,6 +3605,7 @@
           "tests/browser/dmf-ui-select.mjs",
           "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-selection.mjs",
+          "tests/browser/dmf-ui-sign-in-consumer.mjs",
           "tests/browser/dmf-ui-tabs.mjs"
         ]
       },
@@ -10357,7 +10376,8 @@
           "tests/browser/dmf-ui-pilot.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
           "tests/browser/dmf-ui-search.mjs",
-          "tests/browser/dmf-ui-select.mjs"
+          "tests/browser/dmf-ui-select.mjs",
+          "tests/browser/dmf-ui-sign-in-consumer.mjs"
         ]
       },
       "status": "partial",
@@ -13826,7 +13846,8 @@
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-foundations.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
-          "tests/browser/dmf-ui-runtime.mjs"
+          "tests/browser/dmf-ui-runtime.mjs",
+          "tests/browser/dmf-ui-sign-in-consumer.mjs"
         ]
       },
       "status": "partial",
@@ -19504,6 +19525,7 @@
           "tests/browser/dmf-ui-select.mjs",
           "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-selection.mjs",
+          "tests/browser/dmf-ui-sign-in-consumer.mjs",
           "tests/browser/dmf-ui-switch.mjs",
           "tests/browser/dmf-ui-tabs.mjs",
           "tests/browser/native-dropdown-contrast.mjs"
@@ -22740,6 +22762,7 @@
           "tests/browser/dmf-ui-search.mjs",
           "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-selection.mjs",
+          "tests/browser/dmf-ui-sign-in-consumer.mjs",
           "tests/browser/dmf-ui-tabs.mjs",
           "tests/browser/dmf-ui-tokens.mjs",
           "tests/browser/native-dropdown-contrast.mjs"

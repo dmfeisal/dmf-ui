@@ -10,15 +10,15 @@ interface Props extends Omit<HTMLAttributes<'form'>,'id'|'method'|'action'|'titl
  id:string; action:string; title?:string; description?:string; headingLevel?:'h1'|'h2'|'h3';
  email?:string; emailName?:string; passwordName?:string; emailLabel?:string; passwordLabel?:string;
  passwordHelp?:string; submitLabel?:string; pendingLabel?:string; pending?:boolean; disabled?:boolean; submitDisabled?:boolean;
- error?:string; fieldErrors?:{email?:string;password?:string};
+ error?:string; errorTitle?:string; fieldErrors?:{email?:string;password?:string};
  recoveryHref?:string; recoveryLabel?:string; signupHref?:string; signupLabel?:string;
 }
-const {id,action,title='Sign in',description='Enter your account details.',headingLevel:Heading='h2',email='',emailName='email',passwordName='password',emailLabel='Email',passwordLabel='Password',passwordHelp,submitLabel='Sign in',pendingLabel='Signing in…',pending=false,disabled=false,submitDisabled=false,error,fieldErrors={},recoveryHref,recoveryLabel='Forgot password?',signupHref,signupLabel='Create account',class:className,...props}=Astro.props;
+const {id,action,title='Sign in',description='Enter your account details.',headingLevel:Heading='h2',email='',emailName='email',passwordName='password',emailLabel='Email',passwordLabel='Password',passwordHelp,submitLabel='Sign in',pendingLabel='Signing in…',pending=false,disabled=false,submitDisabled=false,error,errorTitle='Unable to sign in',fieldErrors={},recoveryHref,recoveryLabel='Forgot password?',signupHref,signupLabel='Create account',class:className,...props}=Astro.props;
 if(!id?.trim()||!action?.trim()||!emailName.trim()||!passwordName.trim()||emailName===passwordName)throw Error('SignInBlock needs an id, host action and distinct field names.');
 ---
 <form {...props} id={id} action={action} method="post" aria-labelledby={`${id}-title`} aria-describedby={`${id}-description`} aria-busy={pending?'true':undefined} data-slot="sign-in-block" class={cn('dmf-block dmf-sign-in-block',className)}>
  <Card><CardHeader><Heading id={`${id}-title`}>{title}</Heading><p id={`${id}-description`}>{description}</p></CardHeader><CardContent>
-  {error&&<Alert variant="destructive" role="alert"><AlertTitle>Unable to sign in</AlertTitle><AlertDescription>{error}</AlertDescription></Alert>}
+  {error&&<Alert variant="destructive" role="alert"><AlertTitle>{errorTitle}</AlertTitle><AlertDescription>{error}</AlertDescription></Alert>}
   <fieldset disabled={disabled||pending} class="dmf-block-fields"><legend class="sr-only">{title}</legend>
    <Field data-invalid={fieldErrors.email?'true':undefined}><FieldLabel for={`${id}-email`}>{emailLabel}</FieldLabel><Input id={`${id}-email`} name={emailName} type="email" autocomplete="username" value={email} required aria-invalid={fieldErrors.email?'true':undefined} aria-describedby={fieldErrors.email?`${id}-email-error`:undefined}/><FieldError id={`${id}-email-error`} errors={[{message:fieldErrors.email}]}/></Field>
    <Field data-invalid={fieldErrors.password?'true':undefined}><FieldLabel for={`${id}-password`}>{passwordLabel}</FieldLabel><Input id={`${id}-password`} name={passwordName} type="password" autocomplete="current-password" required aria-invalid={fieldErrors.password?'true':undefined} aria-describedby={[passwordHelp?`${id}-password-help`:'',fieldErrors.password?`${id}-password-error`:''].filter(Boolean).join(' ')||undefined}/>{passwordHelp&&<FieldDescription id={`${id}-password-help`}>{passwordHelp}</FieldDescription>}<FieldError id={`${id}-password-error`} errors={[{message:fieldErrors.password}]}/></Field>

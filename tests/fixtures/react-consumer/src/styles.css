@@ -1,7 +1,7 @@
 @import "@dmf-ui/react/styles.css";
 @source "./";
 html {font-size:87.5%}body {margin:0;background:var(--background,#fff)}
-.consumer-shell {max-width:56rem;min-height:100svh;margin-inline:auto;padding:32px 20px;display:grid;align-content:start;gap:24px}
+.consumer-shell {max-width:56rem;min-inline-size:0;min-height:100svh;margin-inline:auto;padding:32px 20px;display:grid;align-content:start;gap:24px;overflow-wrap:anywhere}
 .consumer-shell h1 {font-size:2rem;line-height:1.2}
 .consumer-shell form {display:grid;gap:16px}
 .consumer-shell fieldset {display:grid;gap:16px}
@@ -9,4 +9,8 @@ html {font-size:87.5%}body {margin:0;background:var(--background,#fff)}
 
 .consumer-shell section {display:grid;gap:16px}
 
-.consumer-check-label {min-height:44px;cursor:pointer}
+.consumer-check-label {padding-block:.5rem;cursor:pointer}
+.consumer-shell [data-slot=sign-in-block] { gap:0; }
+.consumer-shell [data-sign-in-proof] [data-slot=card-content] > p { margin-block-start:1rem; }
+.consumer-shell [data-slot=sign-in-block] fieldset { padding:0; margin:0; }
+.consumer-shell select { max-width:100%; padding:.25rem .5rem; border:1px solid var(--border); border-radius:var(--radius); background:var(--background); color:var(--foreground); }

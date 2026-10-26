@@ -2,6 +2,9 @@ import {StrictMode} from 'react';
 import {renderToString} from 'react-dom/server';
 import {App} from './App';
 import {identifierPrefix} from './config';
+import {SignInProof} from './SignInProof';
+export function renderSignIn(){return renderToString(<StrictMode><SignInProof/></StrictMode>,{identifierPrefix:'signin-'});}
+export {SignInProof};
 export function render(initialPreset:'dmf'|'cb-ui'='dmf'){
  return renderToString(<StrictMode><App initialPreset={initialPreset}/></StrictMode>,{identifierPrefix});
 }
