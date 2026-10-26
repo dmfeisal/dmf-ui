@@ -1,24 +1,43 @@
 {
   "schemaVersion": 1,
-  "scope": "Reviewed Astro selection contracts; browser evidence is recorded separately. React remains a native web adapter with distinct APIs.",
+  "contractVersion": "2.0.0",
+  "scope": "Existing reviewed contract input, retained at its compatible path. Catalog generator merges these reviews; browser evidence stays distinct from API applicability. Button and M1.1 have adapter-specific review; other selection families retain the preceding partial review.",
   "components": {
+    "button": {
+      "states": "CSS/native default, hover, active, focus-visible and disabled. Loading belongs to existing Astro LoadingButton: stable visible action label/name, separate loadingLabel status announcement and host-owned completion/failure. No loading state prop is invented on Button.",
+      "properties": "Astro polymorphic attributes and as, variant, size, class and authored slot. Defaults: inferred button/type=button, default variant and default size; href infers an anchor. React native button attributes, ref, className and children plus shared variant/size; no href/as API.",
+      "sizes": "xs=24, sm=28, default/md=32, lg=36px at 16px root; icon-xs/icon-sm/icon/icon-lg are square equivalents. Shared control-height primitives feed Button height aliases. Width is independent via class/className w-full. No automatic mobile enlargement or XL.",
+      "fallback": "Native button/form/link behavior works without enhancement. Astro client events and React onClick remain host-owned. Never substitute disabled for an anchor's navigation semantics.",
+      "anatomy": "Native action element, optional leading icon, label, optional trailing icon. Icon-only content requires a meaningful aria-label.",
+      "adapters": "Astro has authored server markup and client events; React supports controlled host state, native event props and refs. Both share buttonVariants. React has no LoadingButton export; host code composes disabled/aria-busy/status without a second runtime.",
+      "validation": "Native submit/reset participation requires the explicit type and form association. Button itself owns no validity or error message. Focus-visible stays visible; native disabled blocks activation."
+    },
     "checkbox": {
       "states": "Native checked/unchecked, required validity, disabled omission and focus-visible. Optional indeterminate initializes the DOM property after enhancement and restores it on uncancelled reset; it does not set checked or change FormData.",
       "properties": "Input attributes except type, plus indeterminate. Use checked for the authored reset value, name/value for submission, required/disabled for native behavior and aria-invalid/aria-describedby for host-owned errors. HTML readonly has no checkbox behavior.",
       "sizes": "One natural indicator size via --dmf-selection-size; no universal size or variant prop.",
-      "fallback": "Native checkbox works without JavaScript. Mixed initialization requires enhancement; checked still determines native submission."
+      "fallback": "Native checkbox works without JavaScript. Mixed initialization requires enhancement; checked still determines native submission.",
+      "anatomy": "One native input[type=checkbox], CSS checked/mixed mark and an authored associated Label. Defaults: unchecked, optional, enabled, indeterminate=false; native value defaults to on.",
+      "adapters": "Astro checked authors the initial/reset value; use the DOM checked/indeterminate properties for host updates and dispatch appropriate events. React Checkbox forwards a native input ref and supports checked/onChange or defaultChecked. React mixed state uses ref.current.indeterminate, not an invented indeterminate prop; the host restores it after reset.",
+      "validation": "Native required, disabled, FormData and reset apply. Put aria-invalid and aria-describedby on the input and associate an external error. Space and associated label activate the control; readOnly is not supported checkbox behavior."
     },
     "switch": {
       "states": "Checked/unchecked, disabled, readOnly, required and focus-visible. Read-only remains focusable and submittable; disabled omits the generated checkbox. Required validates the checked value.",
       "properties": "Button attributes plus defaultChecked, name, value, uncheckedValue, disabled, readOnly, required and size. switch:set changes checked state; switch:change reports detail.checked. aria-invalid and error associations belong on the visible switch.",
       "sizes": "default and sm retain existing track/thumb geometry, including LTR track movement within RTL text. No md alias or arbitrary size is added.",
-      "fallback": "Server output exposes the initial named switch state. Toggling, generated form proxies and reset need enhancement; use a native Checkbox for a no-JavaScript form."
+      "fallback": "Server output exposes the initial named switch state. Toggling, generated form proxies and reset need enhancement; use a native Checkbox for a no-JavaScript form.",
+      "anatomy": "Astro button[role=switch], switch-thumb and generated native checkbox. Defaults: unchecked, enabled, optional, readOnly=false, size=default; value defaults to native on. Label associates with the visible button.",
+      "adapters": "Astro defaultChecked is initial state; switch:set with detail.checked requests host updates and switch:change reports checked. React renders a label with native checkbox[role=switch], track/thumb and required children. React supports checked/onChange, defaultChecked and input refs; it deliberately omits readOnly and size. No false Astro parity.",
+      "validation": "Astro generated checkbox owns required/reset/FormData; visible switch owns naming, focus and error associations. React native checkbox owns these behaviors directly. Disabled omits values; Astro readOnly preserves them. Space and label toggle; track remains LTR within RTL text."
     },
     "radio-group": {
       "states": "Single checked value, disabled group/item, readOnly group, required, focus-visible and roving focus. Arrows and Home/End skip disabled items. Read-only preserves submission and blocks user changes.",
       "properties": "Root div attributes plus defaultValue, name, disabled, readOnly and required. Item button attributes plus required value, disabled and indicatorClass. Name the group with aria-labelledby/aria-label and every item with a visible label. radio-group:set requests a value; radio-group:change reports detail.value.",
       "sizes": "One natural item size via --dmf-selection-size; layout is authored with classes. No size/variant or multiple-selection API.",
-      "fallback": "Generated radios, initial selected styling, keyboard behavior, validity and reset require enhancement. Use native radio inputs for a no-JavaScript form."
+      "fallback": "Generated radios, initial selected styling, keyboard behavior, validity and reset require enhancement. Use native radio inputs for a no-JavaScript form.",
+      "anatomy": "Astro root role=radiogroup after enhancement; RadioGroupItem button[role=radio], indicator and generated native radio per item. Defaults: no value, enabled, optional, readOnly=false. Item requires a unique meaningful value and label.",
+      "adapters": "Astro defaultValue initializes; radio-group:set requests changes when enabled/writable, and radio-group:change reports detail.value. React RadioGroup is a native fieldset using a union of value/onValueChange or defaultValue. React items are native inputs with refs; disabled inherits the fieldset. React does not expose readOnly or size. Root fieldset ref differs from Astro div.",
+      "validation": "Name the group and each option. Associate errors with the group and its focusable items; required native radio proxies own validity, FormData and reset. Astro arrows/Home/End skip disabled items with roving focus. React relies on native browser radio keys; orientation only controls layout. Controlled React reset is host-owned."
     },
     "select": {
       "states": "Single selected value or placeholder, open/closed, highlighted item, disabled root/item, required validity and focus-visible. Arrows, Home/End and typeahead navigate; Enter selects; Escape returns focus without selecting the highlighted item.",

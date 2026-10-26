@@ -19,6 +19,13 @@ test('catalog covers every exported Astro family, without claiming complete stat
  for(const component of data.components){assert(component.parts.length);assert.equal(component.status,'partial');assert(component.states.dragging.status);for(const source of component.sources)assert.match(source.sha256,/^[a-f0-9]{64}$/);}
  assert(data.react.exports.includes('Button'));assert(data.react.types.some(t=>t.name==='SwitchProps'&&t.declaration.includes('readOnly')));
  const button=data.components.find(c=>c.slug==='button');assert(button.variants.size.includes('md'));assert(button.variants.size.includes('default'));
+ assert.equal(data.contractVersion,'2.0.0');
+ assert.equal(data.reviewSource.path,'contracts/selection.json');
+ for(const slug of ['button','checkbox','switch','radio-group']){
+  const review=data.components.find(c=>c.slug===slug).reviewedContract;
+  for(const field of ['anatomy','states','properties','sizes','fallback','adapters','validation']){assert.equal(typeof review[field],'string',`${slug} invalid ${field}`);assert(review[field].trim(),`${slug} empty ${field}`);}
+ }
+ assert.equal(data.components.find(c=>c.slug==='tabs').reviewedContract,null);
 });
 test('QDI palette stays exact while semantic pairings meet text contrast',async()=>{
  const {groups}=await json('tokens/resolved.json'),q=groups['qdi.light'],brands=await json('contracts/brands.json');

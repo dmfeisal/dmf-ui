@@ -20,7 +20,7 @@ export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
   const selector=`[data-example-presentation=${presentation}] button`;
   const width=await page.evaluate(s=>document.querySelector(s).getBoundingClientRect().width,selector);
   await page.focus(selector);await page.keyboard.press('Enter');
-  assert(await page.evaluate(s=>{const b=document.querySelector(s);return b.disabled&&b.getAttribute('aria-busy')==='true'&&b.getAttribute('aria-label')==='Saving draft…';},selector),`${presentation}: pending semantics`);
+  assert(await page.evaluate(s=>{const b=document.querySelector(s);return b.disabled&&b.getAttribute('aria-busy')==='true'&&b.getAttribute('aria-label')==='Save draft';},selector),`${presentation}: pending semantics`);
   assert(await page.evaluate(s=>document.querySelector(s).getBoundingClientRect().width,selector)===width,`${presentation}: width changed`);
   if(presentation!=='label')assert(await page.evaluate(s=>{const b=document.querySelector(s);return getComputedStyle(b.querySelector('.dmf-loading-spinner')).visibility==='visible'&&getComputedStyle(b.querySelector('.dmf-loading-idle-icon')).visibility==='hidden';},selector),`${presentation}: pending icon visibility`);
   await audit();await page.click('[data-feedback-action=finish]');

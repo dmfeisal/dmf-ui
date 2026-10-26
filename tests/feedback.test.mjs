@@ -21,10 +21,12 @@ test('progress rejects invalid values atomically and synchronizes known/unknown 
 });
 test('loading state retains authored disabled controls and restores idle accessible names',()=>{
  for(const disabled of [true,false]){
-  const attributes=new Map();const captions=new Map();
-  const button={dataset:{slot:'loading-button',idleDisabled:String(disabled),label:'Save',loadingLabel:'Saving…',presentation:'icon'},setAttribute:(k,v)=>attributes.set(k,v),removeAttribute:k=>attributes.delete(k),querySelector:s=>({setAttribute:(_name,v)=>captions.set(s,v)})};
-  setLoadingButtonState(button,true);assert.equal(button.disabled,true);assert.equal(attributes.get('aria-busy'),'true');assert.equal(button.title,'Saving…');
+  const attributes=new Map();const captions=new Map(),status={textContent:'',hasAttribute:key=>key==='data-loading-status'};
+  const button={nextElementSibling:status,dataset:{slot:'loading-button',idleDisabled:String(disabled),label:'Save',loadingLabel:'Saving…',presentation:'icon'},setAttribute:(k,v)=>attributes.set(k,v),removeAttribute:k=>attributes.delete(k),querySelector:s=>({setAttribute:(_name,v)=>captions.set(s,v)})};
+  setLoadingButtonState(button,true);assert.equal(button.disabled,true);assert.equal(attributes.get('aria-busy'),'true');assert.equal(button.title,'Save');assert.equal(attributes.get('aria-label'),'Save');
+  assert.equal(status.textContent,'Saving…');assert.equal(captions.get('[data-idle-label]'),'false');assert.equal(captions.get('[data-pending-label]'),'true');
   setLoadingButtonState(button,false);assert.equal(button.disabled,disabled);assert.equal(attributes.has('aria-busy'),false);assert.equal(attributes.get('aria-label'),'Save');assert.equal(captions.get('[data-idle-label]'),'false');
+  assert.equal(status.textContent,'');
  }
 });
 test('feedback package paths and built pages preserve native semantics',async()=>{

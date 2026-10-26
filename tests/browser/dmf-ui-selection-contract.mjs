@@ -24,7 +24,7 @@ export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
     assert(await page.evaluate(()=>document.querySelector('[data-selection-state=disabled] [data-selection-status]').textContent.includes('omitted')),'Disabled value submitted: '+slug);
     await page.selectOption(`${properties} [name=state]`,'required');
     await activate(`${current} [data-selection-inspect]`);
-    assert(await page.evaluate(()=>document.querySelector('[data-selection-state=required] [aria-invalid=true]')===document.activeElement),'Invalid focus: '+slug);
+    assert(await page.evaluate(()=>{const target=document.querySelector('[data-selection-state=required] [aria-invalid=true]'),error=document.querySelector('[data-selection-state=required] [data-selection-error]');return target===document.activeElement&&target.getAttribute('aria-describedby')?.split(/\s+/).includes(error.id);}), 'Invalid focus/error relationship: '+slug);
     await audit(`${slug} required error`);
     if(slug==='checkbox'||slug==='switch')await page.keyboard.press('Space');
     if(slug==='radio-group')await page.keyboard.press('End');
@@ -61,6 +61,8 @@ export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
       await page.selectOption(`${properties} [name=size]`,'sm');
       assert(await page.evaluate(slug=>{const el=document.querySelector(`[data-selection-state=default] [data-slot=${slug==='switch'?'switch':'select-trigger'}]`);return el.dataset.size==='sm'&&el.getBoundingClientRect().height<32;},slug),'Small variant geometry');
     }
+    await page.focus(`${properties} button[type=reset]`);await page.keyboard.press('Enter');
+    await page.waitForFunction(()=>document.querySelector('[data-selection-state=default]').hidden===false&&document.querySelector('[data-selection-surface]').dataset.system==='dmf'&&[...document.querySelectorAll('[data-selection-state=default] [data-size]')].every(e=>e.dataset.size==='default'));
     await mobile();await page.evaluate(()=>{document.documentElement.dir='rtl';document.documentElement.dataset.theme='dark';document.documentElement.style.fontSize='175%';});
     await audit(`${slug} dark enlarged RTL`);
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth+1),'Overflow: '+slug);

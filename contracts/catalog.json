@@ -1,8 +1,12 @@
 {
   "schemaVersion": 1,
-  "contractVersion": "1.0.0",
+  "contractVersion": "2.0.0",
   "status": "experimental",
-  "scope": "All documented Astro families and separately inventoried React exports; source evidence and acceptance are distinct.",
+  "reviewSource": {
+    "path": "contracts/selection.json",
+    "sha256": "ef688420be34d3d988f499019e1ed0c6e4337ba9af9a51533cbdd2991dc94ce4"
+  },
+  "scope": "All documented Astro families and separately inventoried React exports; reviewed applicability, lexical source evidence and browser acceptance are distinct.",
   "conventions": {
     "variants": "Keep existing default/secondary/outline/ghost/destructive/link names. No universal variant list.",
     "sizes": "default remains the compatible medium size. Button also accepts md. XS/SM/MD/LG/XL are conceptual labels, not universal props.",
@@ -553,6 +557,7 @@
         "muted-foreground",
         "ring"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -854,6 +859,7 @@
         "foreground",
         "muted-foreground"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -1155,6 +1161,7 @@
       "tokens": [
         "dialog-content-stack-index"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -1403,6 +1410,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -1632,6 +1640,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -2019,6 +2028,7 @@
         "muted-foreground",
         "ring"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -2331,6 +2341,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -2590,6 +2601,7 @@
         "secondary",
         "secondary-foreground"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -2872,6 +2884,7 @@
         "gutter",
         "ring"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -3137,6 +3150,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -3404,16 +3418,31 @@
         "background",
         "border",
         "destructive",
+        "dmf-button-gap",
+        "dmf-button-height",
+        "dmf-button-height-lg",
+        "dmf-button-height-sm",
+        "dmf-button-height-xs",
+        "dmf-button-padding-inline",
         "foreground",
         "input",
         "muted",
         "primary",
         "primary-foreground",
-        "radius-md",
+        "radius",
         "ring",
         "secondary",
         "secondary-foreground"
       ],
+      "reviewedContract": {
+        "states": "CSS/native default, hover, active, focus-visible and disabled. Loading belongs to existing Astro LoadingButton: stable visible action label/name, separate loadingLabel status announcement and host-owned completion/failure. No loading state prop is invented on Button.",
+        "properties": "Astro polymorphic attributes and as, variant, size, class and authored slot. Defaults: inferred button/type=button, default variant and default size; href infers an anchor. React native button attributes, ref, className and children plus shared variant/size; no href/as API.",
+        "sizes": "xs=24, sm=28, default/md=32, lg=36px at 16px root; icon-xs/icon-sm/icon/icon-lg are square equivalents. Shared control-height primitives feed Button height aliases. Width is independent via class/className w-full. No automatic mobile enlargement or XL.",
+        "fallback": "Native button/form/link behavior works without enhancement. Astro client events and React onClick remain host-owned. Never substitute disabled for an anchor's navigation semantics.",
+        "anatomy": "Native action element, optional leading icon, label, optional trailing icon. Icon-only content requires a meaningful aria-label.",
+        "adapters": "Astro has authored server markup and client events; React supports controlled host state, native event props and refs. Both share buttonVariants. React has no LoadingButton export; host code composes disabled/aria-busy/status without a second runtime.",
+        "validation": "Native submit/reset participation requires the explicit type and form association. Button itself owns no validity or error message. Focus-visible stays visible; native disabled blocks activation."
+      },
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -3443,6 +3472,7 @@
           "tests/browser/dmf-ui-forms.mjs",
           "tests/browser/dmf-ui-foundations.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
+          "tests/browser/dmf-ui-m1-architecture.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
@@ -3461,7 +3491,7 @@
       "sources": [
         {
           "path": "src/components/dmf-ui/button/button-variants.ts",
-          "sha256": "edf2ac8dadcdf2390ed73bbb72dbff1becd9e811a96d34b9ac1776ef55723ef7"
+          "sha256": "48f8dd5701fc5bbe2991141ca88d46c22e4cb40ae5a28529bad2d8c158e6f331"
         },
         {
           "path": "src/components/dmf-ui/button/button.astro",
@@ -3735,6 +3765,7 @@
         "input",
         "muted"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -4087,6 +4118,7 @@
         "foreground",
         "muted-foreground"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -4418,6 +4450,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -4678,6 +4711,15 @@
         "primary-foreground",
         "ring"
       ],
+      "reviewedContract": {
+        "states": "Native checked/unchecked, required validity, disabled omission and focus-visible. Optional indeterminate initializes the DOM property after enhancement and restores it on uncancelled reset; it does not set checked or change FormData.",
+        "properties": "Input attributes except type, plus indeterminate. Use checked for the authored reset value, name/value for submission, required/disabled for native behavior and aria-invalid/aria-describedby for host-owned errors. HTML readonly has no checkbox behavior.",
+        "sizes": "One natural indicator size via --dmf-selection-size; no universal size or variant prop.",
+        "fallback": "Native checkbox works without JavaScript. Mixed initialization requires enhancement; checked still determines native submission.",
+        "anatomy": "One native input[type=checkbox], CSS checked/mixed mark and an authored associated Label. Defaults: unchecked, optional, enabled, indeterminate=false; native value defaults to on.",
+        "adapters": "Astro checked authors the initial/reset value; use the DOM checked/indeterminate properties for host updates and dispatch appropriate events. React Checkbox forwards a native input ref and supports checked/onChange or defaultChecked. React mixed state uses ref.current.indeterminate, not an invented indeterminate prop; the host restores it after reset.",
+        "validation": "Native required, disabled, FormData and reset apply. Put aria-invalid and aria-describedby on the input and associate an external error. Space and associated label activate the control; readOnly is not supported checkbox behavior."
+      },
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -4691,9 +4733,11 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/foundations.test.mjs",
           "tests/product-details.test.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-forms.mjs",
+          "tests/browser/dmf-ui-m1-architecture.mjs",
           "tests/browser/dmf-ui-selection-contract.mjs"
         ]
       },
@@ -4988,6 +5032,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -5508,6 +5553,7 @@
         "muted-foreground",
         "ring"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -5823,6 +5869,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -6086,6 +6133,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -6385,6 +6433,12 @@
         }
       },
       "tokens": [],
+      "reviewedContract": {
+        "states": "Committed value, query, highlighted option, empty search, open/closed, disabled field/option, required validity and focus-visible. Highlight does not commit; Escape/Tab/blur restore the committed label. Composition and text-editing keys remain available.",
+        "properties": "Required id, label and unique nonempty items; optional defaultValue, placeholder, emptyMessage and native select attributes excluding id/size/multiple. Name/form/required/disabled belong to the native select; aria-describedby/aria-invalid reach the visible input. Dispatch native change after programmatic select changes. No readOnly, remote search, free-text or multiple-selection API.",
+        "sizes": "One compact Nova input composition using --dmf-select-height as a natural minimum; no new size prop. Labels and option text can wrap.",
+        "fallback": "Native select is visible and functional without JavaScript. Enhancement keeps its submitted value, transfers required validity to the visible input and resets both together. Popup stays local; host clipping ancestors remain a limitation."
+      },
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -6851,6 +6905,7 @@
         "popover",
         "popover-foreground"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -7142,6 +7197,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -7429,6 +7485,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -7844,6 +7901,7 @@
         "popover",
         "popover-foreground"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -8460,6 +8518,7 @@
         "popover",
         "popover-foreground"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -9096,6 +9155,7 @@
         "popover",
         "popover-foreground"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -9448,6 +9508,7 @@
         "muted-foreground",
         "primary"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -9463,6 +9524,7 @@
         "sources": [
           "tests/dmf-ui-browser.test.mjs",
           "tests/feedback.test.mjs",
+          "tests/foundations.test.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
           "tests/browser/dmf-ui-form-composition.mjs",
@@ -9746,6 +9808,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -10160,6 +10223,7 @@
         "primary",
         "ring"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -10174,6 +10238,7 @@
         "status": "references-only",
         "sources": [
           "tests/form-composition.test.mjs",
+          "tests/foundations.test.mjs",
           "tests/product-details.test.mjs",
           "tests/browser/dmf-ui-form-composition.mjs",
           "tests/browser/dmf-ui-forms.mjs",
@@ -10452,6 +10517,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -10680,6 +10746,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -10964,6 +11031,7 @@
         "container-7xl",
         "gutter"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -11375,6 +11443,7 @@
         "popover",
         "popover-foreground"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -11621,6 +11690,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -11642,6 +11712,7 @@
           "tests/browser/dmf-ui-form-composition.mjs",
           "tests/browser/dmf-ui-foundations.mjs",
           "tests/browser/dmf-ui-icons.mjs",
+          "tests/browser/dmf-ui-m1-architecture.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-selection.mjs"
@@ -11860,6 +11931,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -12098,6 +12170,7 @@
         "muted-foreground",
         "ring"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -12371,6 +12444,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -12753,6 +12827,7 @@
         "primary",
         "ring"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -13046,6 +13121,7 @@
         "foreground",
         "muted"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -13268,6 +13344,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -13299,6 +13376,7 @@
           "tests/browser/dmf-ui-forms.mjs",
           "tests/browser/dmf-ui-foundations.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
+          "tests/browser/dmf-ui-m1-architecture.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
@@ -13611,6 +13689,7 @@
         "background",
         "foreground"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -13911,6 +13990,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -13925,7 +14005,8 @@
         "status": "references-only",
         "sources": [
           "tests/feedback.test.mjs",
-          "tests/browser/dmf-ui-feedback.mjs"
+          "tests/browser/dmf-ui-feedback.mjs",
+          "tests/browser/dmf-ui-m1-architecture.mjs"
         ]
       },
       "status": "partial",
@@ -13936,11 +14017,11 @@
         },
         {
           "path": "src/components/dmf-ui/loading-button/loading-button.astro",
-          "sha256": "1753f5e6e476e6b0cd94f59410be22a92ff6593c6a5fb44a48c70f33b2790678"
+          "sha256": "43680293a58e4f2effc782a02b4641efb06620fe14ddbc21e21494b0625bbaa7"
         },
         {
           "path": "src/components/dmf-ui/loading-button/state.ts",
-          "sha256": "5ddcb9c7ca690830e3522331ce65867b119feb20046f2ede11e9e7a7ee30bce1"
+          "sha256": "4d9e05054b40f71f62593904e571fc10a26ef8eaaf8a6171600806e05e189cbb"
         }
       ],
       "gaps": [
@@ -14185,6 +14266,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -14479,6 +14561,7 @@
         "marquee-gap",
         "ring"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -14763,6 +14846,7 @@
         "primary-foreground",
         "ring"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -15028,6 +15112,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -15341,6 +15426,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -15621,6 +15707,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -16027,6 +16114,7 @@
         "popover",
         "popover-foreground"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -16357,6 +16445,7 @@
         "muted",
         "muted-foreground"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -16637,6 +16726,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -16927,6 +17017,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -17222,6 +17313,15 @@
         "primary-foreground",
         "ring"
       ],
+      "reviewedContract": {
+        "states": "Single checked value, disabled group/item, readOnly group, required, focus-visible and roving focus. Arrows and Home/End skip disabled items. Read-only preserves submission and blocks user changes.",
+        "properties": "Root div attributes plus defaultValue, name, disabled, readOnly and required. Item button attributes plus required value, disabled and indicatorClass. Name the group with aria-labelledby/aria-label and every item with a visible label. radio-group:set requests a value; radio-group:change reports detail.value.",
+        "sizes": "One natural item size via --dmf-selection-size; layout is authored with classes. No size/variant or multiple-selection API.",
+        "fallback": "Generated radios, initial selected styling, keyboard behavior, validity and reset require enhancement. Use native radio inputs for a no-JavaScript form.",
+        "anatomy": "Astro root role=radiogroup after enhancement; RadioGroupItem button[role=radio], indicator and generated native radio per item. Defaults: no value, enabled, optional, readOnly=false. Item requires a unique meaningful value and label.",
+        "adapters": "Astro defaultValue initializes; radio-group:set requests changes when enabled/writable, and radio-group:change reports detail.value. React RadioGroup is a native fieldset using a union of value/onValueChange or defaultValue. React items are native inputs with refs; disabled inherits the fieldset. React does not expose readOnly or size. Root fieldset ref differs from Astro div.",
+        "validation": "Name the group and each option. Associate errors with the group and its focusable items; required native radio proxies own validity, FormData and reset. Astro arrows/Home/End skip disabled items with roving focus. React relies on native browser radio keys; orientation only controls layout. Controlled React reset is host-owned."
+      },
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -17235,6 +17335,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/foundations.test.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-forms.mjs",
           "tests/browser/dmf-ui-search.mjs",
@@ -17565,6 +17666,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -17880,6 +17982,7 @@
         "border",
         "ring"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -18134,6 +18237,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -18424,6 +18528,7 @@
         "muted-foreground",
         "section-padding"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -18713,6 +18818,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -19205,6 +19311,12 @@
         "popover-foreground",
         "ring"
       ],
+      "reviewedContract": {
+        "states": "Single selected value or placeholder, open/closed, highlighted item, disabled root/item, required validity and focus-visible. Arrows, Home/End and typeahead navigate; Enter selects; Escape returns focus without selecting the highlighted item.",
+        "properties": "Root div attributes and declared Data Slot placement/mount options, defaultValue/defaultOpen, placeholder, disabled, required and name. Trigger button attributes plus size and showIcon. Item value/disabled and authored labels. No readOnly or multiple-selection prop. Native generated select owns FormData/reset/validity; associate errors with the trigger.",
+        "sizes": "Trigger default uses --dmf-select-height; sm uses --dmf-select-height-sm. Existing names stay valid.",
+        "fallback": "Server output retains selected text or placeholder. Opening, selection and native form proxy creation require enhancement. Use Native Select when a no-JavaScript form is required. Portals refresh preset, color mode and direction on each opening."
+      },
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -19221,6 +19333,7 @@
           "tests/dmf-ui-browser.test.mjs",
           "tests/feedback.test.mjs",
           "tests/form-composition.test.mjs",
+          "tests/foundations.test.mjs",
           "tests/selection.test.mjs",
           "tests/tokens.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
@@ -19233,6 +19346,7 @@
           "tests/browser/dmf-ui-fulldev-catalog.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-icons.mjs",
+          "tests/browser/dmf-ui-m1-architecture.mjs",
           "tests/browser/dmf-ui-navigation.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-overlays.mjs",
@@ -19498,6 +19612,7 @@
       "tokens": [
         "border"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -19779,6 +19894,7 @@
       "tokens": [
         "dialog-content-stack-index"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -20042,6 +20158,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -20282,6 +20399,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -20591,6 +20709,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -20848,6 +20967,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -20861,7 +20981,8 @@
       "tests": {
         "status": "references-only",
         "sources": [
-          "tests/browser/dmf-ui-feedback.mjs"
+          "tests/browser/dmf-ui-feedback.mjs",
+          "tests/browser/dmf-ui-m1-architecture.mjs"
         ]
       },
       "status": "partial",
@@ -21129,6 +21250,15 @@
         "primary-foreground",
         "ring"
       ],
+      "reviewedContract": {
+        "states": "Checked/unchecked, disabled, readOnly, required and focus-visible. Read-only remains focusable and submittable; disabled omits the generated checkbox. Required validates the checked value.",
+        "properties": "Button attributes plus defaultChecked, name, value, uncheckedValue, disabled, readOnly, required and size. switch:set changes checked state; switch:change reports detail.checked. aria-invalid and error associations belong on the visible switch.",
+        "sizes": "default and sm retain existing track/thumb geometry, including LTR track movement within RTL text. No md alias or arbitrary size is added.",
+        "fallback": "Server output exposes the initial named switch state. Toggling, generated form proxies and reset need enhancement; use a native Checkbox for a no-JavaScript form.",
+        "anatomy": "Astro button[role=switch], switch-thumb and generated native checkbox. Defaults: unchecked, enabled, optional, readOnly=false, size=default; value defaults to native on. Label associates with the visible button.",
+        "adapters": "Astro defaultChecked is initial state; switch:set with detail.checked requests host updates and switch:change reports checked. React renders a label with native checkbox[role=switch], track/thumb and required children. React supports checked/onChange, defaultChecked and input refs; it deliberately omits readOnly and size. No false Astro parity.",
+        "validation": "Astro generated checkbox owns required/reset/FormData; visible switch owns naming, focus and error associations. React native checkbox owns these behaviors directly. Disabled omits values; Astro readOnly preserves them. Space and label toggle; track remains LTR within RTL text."
+      },
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -21142,9 +21272,11 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/foundations.test.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-forms.mjs",
           "tests/browser/dmf-ui-foundations.mjs",
+          "tests/browser/dmf-ui-m1-architecture.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
           "tests/browser/dmf-ui-search.mjs",
           "tests/browser/dmf-ui-selection-contract.mjs",
@@ -21479,6 +21611,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -21497,6 +21630,7 @@
           "tests/tokens.test.mjs",
           "tests/browser/dmf-ui-data-display.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
+          "tests/browser/dmf-ui-m1-architecture.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-runtime.mjs",
           "tests/browser/dmf-ui-selection.mjs"
@@ -21836,6 +21970,7 @@
         "muted-foreground",
         "ring"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -21850,6 +21985,7 @@
         "status": "references-only",
         "sources": [
           "tests/design-profile.test.mjs",
+          "tests/foundations.test.mjs",
           "tests/package.test.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-documentation-layout.mjs",
@@ -22127,6 +22263,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -22395,6 +22532,7 @@
         "foreground",
         "muted-foreground"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -22434,6 +22572,7 @@
           "tests/browser/dmf-ui-fulldev-catalog.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-icons.mjs",
+          "tests/browser/dmf-ui-m1-architecture.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-navigation-components.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
@@ -22668,6 +22807,7 @@
         "muted-foreground",
         "ring"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -22905,6 +23045,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -23332,6 +23473,7 @@
         "toast-swipe-end-x",
         "toast-swipe-end-y"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -23689,6 +23831,7 @@
         "foreground",
         "muted-foreground"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -24033,6 +24176,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -24048,6 +24192,7 @@
         "sources": [
           "tests/selection.test.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
+          "tests/browser/dmf-ui-m1-architecture.mjs",
           "tests/browser/dmf-ui-overlays.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
           "tests/browser/dmf-ui-selection.mjs",
@@ -24355,6 +24500,7 @@
         }
       },
       "tokens": [],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -24728,6 +24874,7 @@
         "background",
         "foreground"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -25315,6 +25462,7 @@
         "muted-foreground",
         "primary"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [
@@ -25612,6 +25760,7 @@
       "tokens": [
         "muted"
       ],
+      "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
         "available": [

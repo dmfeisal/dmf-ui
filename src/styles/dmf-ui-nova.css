@@ -9,6 +9,13 @@
 @media (forced-colors:active) {
   .dmf-ui input[data-slot="checkbox"] { appearance:auto; }
   .dmf-ui input[data-slot="checkbox"]::before { display:none; }
+  .dmf-ui [data-slot="switch"] { forced-color-adjust:none; border-color:ButtonText; background:Canvas; }
+  .dmf-ui [data-slot="switch"] [data-slot="switch-thumb"] { forced-color-adjust:none; background:ButtonText; }
+  .dmf-ui [data-slot="switch"][data-checked] { background:Highlight; }
+  .dmf-ui [data-slot="switch"][data-checked] [data-slot="switch-thumb"] { background:HighlightText; }
+  .dmf-ui [data-slot="radio-group-item"] { forced-color-adjust:none; border-color:ButtonText; background:Canvas; }
+  .dmf-ui [data-slot="radio-group-item"][data-checked] { background:Highlight; }
+  .dmf-ui [data-slot="radio-group-item"] [data-slot="radio-group-indicator"]>span { background:HighlightText; }
   .dmf-ui :is([data-slot="checkbox"],[data-slot="switch"],[data-slot="radio-group-item"],[data-slot="select-trigger"]):focus-visible { outline:2px solid Highlight; outline-offset:2px; }
 }
 .dmf-ui [data-slot="tabs-list"] { padding:3px; border-radius:var(--radius); }
@@ -26,6 +33,10 @@
 .dmf-ui [data-slot="code-block-header"]+[data-slot="code-block-content"] { padding-block-start:.5rem; }
 /* Text follows the owner-selected white action labels; non-text state cues remain distinct. */
 .dmf-ui[data-system="cb-ui"] [data-slot="switch"][data-checked] [data-slot="switch-thumb"] { background:var(--foreground); }
+@media (forced-colors:active) {
+  :root .dmf-ui[data-system] [data-slot="switch"][data-checked] [data-slot="switch-thumb"] { background:HighlightText; }
+  :root .dmf-ui[data-system] [data-slot="switch"]:focus-visible { outline:2px solid Highlight; outline-offset:2px; }
+}
 .dmf-code-snippet { background:color-mix(in srgb,var(--muted) 55%,var(--background)); border:1px solid var(--border); border-radius:var(--radius-lg); }
 .dmf-code-snippet [data-slot="code-block-header"] { padding:.5rem .75rem; border-block-end:1px solid var(--border); gap:.5rem; }
 .dmf-code-snippet [data-slot="code-block-title"] { font:500 .8125rem/1.5 var(--font-sans); color:var(--muted-foreground); }

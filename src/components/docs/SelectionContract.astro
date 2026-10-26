@@ -58,7 +58,7 @@ const items=[{value:'weekly',label:'Weekly'},{value:'unavailable',label:'Unavail
       properties.hidden=false;update();
       properties.addEventListener('change',update,{signal});
       properties.addEventListener('submit',event=>event.preventDefault(),{signal});
-      properties.addEventListener('reset',()=>queueMicrotask(update),{signal});
+      properties.addEventListener('reset',()=>requestAnimationFrame(()=>{if(!signal.aborted)update();}),{signal});
       for(const form of specimens){
         form.noValidate=true;
         form.querySelector<HTMLButtonElement>('[data-selection-inspect]')!.disabled=false;
@@ -69,7 +69,9 @@ const items=[{value:'weekly',label:'Weekly'},{value:'unavailable',label:'Unavail
           const invalid=form.querySelector<HTMLInputElement|HTMLSelectElement>('input:invalid,select:invalid');
           if(invalid){
             const target=form.querySelector<HTMLElement>('[role=combobox],[role=switch],[role=radio],input[data-slot=checkbox]')??invalid;
-            target.setAttribute('aria-invalid','true');error.textContent=invalid.validationMessage;status.textContent='Choose a value before inspecting.';target.focus();
+            target.setAttribute('aria-invalid','true');
+            const descriptions=new Set((target.getAttribute('aria-describedby')??'').split(/\s+/).filter(Boolean));descriptions.add(error.id);target.setAttribute('aria-describedby',[...descriptions].join(' '));
+            error.textContent=invalid.validationMessage;status.textContent='Choose a value before inspecting.';target.focus();
           }else{const value=new FormData(form).get('choice');status.textContent=value===null?'Choice omitted from form values.':`Submitted choice: ${value||'(empty)'}. Nothing saved or sent.`;}
         },{signal});
         form.addEventListener('input',clear,{signal});form.addEventListener('change',clear,{signal});

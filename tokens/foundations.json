@@ -399,8 +399,50 @@
       "layer": "semantic",
       "description": "Shared DMF application value; not an official brand specification."
     },
-    "button-height": {
+    "control-height-xs": {
+      "value": "1.5rem",
+      "category": "components",
+      "layer": "primitive",
+      "description": "Opt-in compact control height; never a mobile target minimum."
+    },
+    "control-height-sm": {
+      "value": "1.75rem",
+      "category": "components",
+      "layer": "primitive",
+      "description": "Nova small control height."
+    },
+    "control-height-md": {
       "value": "2rem",
+      "category": "components",
+      "layer": "primitive",
+      "description": "Nova default control height."
+    },
+    "control-height-lg": {
+      "value": "2.25rem",
+      "category": "components",
+      "layer": "primitive",
+      "description": "Nova large control height."
+    },
+    "button-height-xs": {
+      "value": "{control-height-xs}",
+      "category": "components",
+      "layer": "component",
+      "description": "Shared Button and icon-xs dimension."
+    },
+    "button-height-sm": {
+      "value": "{control-height-sm}",
+      "category": "components",
+      "layer": "component",
+      "description": "Shared Button and icon-sm dimension."
+    },
+    "button-height-lg": {
+      "value": "{control-height-lg}",
+      "category": "components",
+      "layer": "component",
+      "description": "Shared Button and icon-lg dimension."
+    },
+    "button-height": {
+      "value": "{control-height-md}",
       "category": "components",
       "layer": "component",
       "description": "Shared DMF application value; not an official brand specification."
@@ -436,7 +478,7 @@
       "description": "Nova small selection field height."
     },
     "input-height": {
-      "value": "2rem",
+      "value": "{control-height-md}",
       "category": "components",
       "layer": "component",
       "description": "Shared DMF application value; not an official brand specification."

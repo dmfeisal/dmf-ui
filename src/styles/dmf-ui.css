@@ -266,8 +266,8 @@
 .dmf-loading-icon { width:18px; height:18px; }
 .dmf-loading-icon > svg,.dmf-loading-labels > span { grid-area:1/1; }
 .dmf-loading-spinner,.dmf-loading-labels [data-pending-label] { visibility:hidden; }
-.dmf-loading-button[data-loading=true] .dmf-loading-spinner,.dmf-loading-button[data-loading=true] [data-pending-label] { visibility:visible; }
-.dmf-loading-button[data-loading=true] .dmf-loading-idle-icon,.dmf-loading-button[data-loading=true] [data-idle-label] { visibility:hidden; }
+.dmf-loading-button[data-loading=true] .dmf-loading-spinner { visibility:visible; }
+.dmf-loading-button[data-loading=true] .dmf-loading-idle-icon { visibility:hidden; }
 .dmf-loading-button[data-loading=true] .dmf-loading-spinner { animation:dmf-loading-spin 900ms linear infinite; }
 @keyframes dmf-loading-spin { to { transform:rotate(360deg); } }
 @media(prefers-reduced-motion:reduce) { .dmf-skeleton,.dmf-progress-indicator,.dmf-loading-spinner { animation:none!important; } .dmf-progress-indicator { inset-inline-start:35%; } }

@@ -1,19 +1,18 @@
 ---
 import {CodeSnippet} from '../dmf-ui/code-block';
 import catalog from '../../../contracts/catalog.json';
-import selection from '../../../contracts/selection.json';
 interface Props {slug:string;}
 const {slug}=Astro.props;
-const reviewed=selection.components[slug as keyof typeof selection.components];
 const contract=catalog.components.find(c=>c.slug===slug);
 if(!contract)throw Error(`Missing contract: ${slug}`);
+const reviewed=contract.reviewedContract;
 const axes=Object.entries(contract.variants) as [string,string[]][];
 const established=Object.entries(contract.states).filter(([,value])=>value.status!=='not-established').map(([state])=>state);
 const unestablished=Object.entries(contract.states).filter(([,value])=>value.status==='not-established').map(([state])=>state);
 ---
 <section id="contract" class="docs-section docs-prose" data-component-contract={slug}>
-<h2>Component contract</h2><p>Contract v1 · experimental · acceptance status: <strong>partial</strong>. This inventory records the source; it does not certify every combination.</p>
-{reviewed&&<><h3>Reviewed selection contract</h3><p>{reviewed.states}</p><p>{reviewed.properties}</p><p>{reviewed.sizes}</p><p>{reviewed.fallback}</p><p>CB and HUI keep owner-selected white primary labels. Their known text contrast exceptions remain documented; preset testing does not imply a contrast all-clear. React uses native controls and its own declared properties; no cross-adapter API parity is implied.</p></>}
+<h2>Component contract</h2><p>Contract {catalog.contractVersion} · experimental · acceptance status: <strong>partial</strong>. Reviewed applicability is separate from browser acceptance; this inventory does not certify every combination.</p>
+{reviewed&&<><h3>Reviewed family contract</h3>{'anatomy' in reviewed&&<p>{reviewed.anatomy}</p>}<p>{reviewed.states}</p><p>{reviewed.properties}</p><p>{reviewed.sizes}</p>{'adapters' in reviewed&&<p>{reviewed.adapters}</p>}{'validation' in reviewed&&<p>{reviewed.validation}</p>}<p>{reviewed.fallback}</p><p>CB and HUI keep owner-selected white primary labels. Their known text contrast exceptions remain documented; preset testing does not imply a contrast all-clear. React uses native controls and its own declared properties; no cross-adapter API parity is implied.</p></>}
 <h3>Anatomy and properties</h3><p>Each part below includes its authored slots, explicit property types and inherited native types. Imported runtime options remain defined by their source declarations.</p>
 {contract.parts.map(part=><details class="contract-part"><summary><code>{part.file.split('/').at(-1)}</code></summary><p>Slots: {part.slots.join(', ')||'None authored'}.</p>{part.native.length>0&&<p>Inherited native types: <code>{part.native.join(' · ')}</code></p>}{part.properties.length>0&&<div class="docs-table-scroll"><table class="docs-options"><thead><tr><th scope="col">Property</th><th scope="col">Type</th><th scope="col">Required</th></tr></thead><tbody>{part.properties.map(property=><tr><th scope="row"><code>{property.name}</code></th><td><code>{property.type}</code></td><td>{property.optional?'No':'Yes in declared type'}</td></tr>)}</tbody></table></div>}<CodeSnippet code={part.declaration} language="ts" title={part.file.split('/').at(-1)} label={`${part.file.split('/').at(-1)} property declaration`} maxHeight={320}/></details>)}
 <h3>Variants, sizes and defaults</h3>{axes.length>0?<ul>{axes.map(([axis,values])=><li><strong>{axis}:</strong> <code>{values.join(' | ')}</code></li>)}</ul>:<p>No local CVA variant axes are declared in this family. See the part types and core options for imported or family-specific choices.</p>}
