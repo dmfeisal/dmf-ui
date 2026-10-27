@@ -298,3 +298,32 @@ html { font-size:100%; }
   .docs-shell select:not([multiple]):not([size]):not([data-slot="native-select"]):not([data-form-field-generated]) { appearance:auto; background-image:none; }
 }
 .contract-controls .docs-note { margin:0; font-size:.8125rem; line-height:1.5; }
+.docs-support { border:1px solid var(--border); border-radius:var(--docs-radius-control); padding:1rem; margin-block:1.25rem 1.5rem; min-inline-size:0; }
+.docs-support h2 { font-size:.875rem; font-weight:600; margin:0 0 .75rem; }
+.docs-support-summary { display:flex; flex-wrap:wrap; gap:.75rem 1.5rem; margin:0 0 .75rem; }
+.docs-support-summary div { display:grid; gap:.25rem; }
+.docs-support dt { color:var(--muted-foreground); font-size:.75rem; }
+.docs-support dd { margin:0; font-size:.875rem; overflow-wrap:anywhere; }
+.docs-support details { margin-block-start:.75rem; font-size:.875rem; }
+.docs-support summary { cursor:pointer; }
+.docs-support-details { display:grid; grid-template-columns:minmax(0,1fr); gap:.375rem; margin-block:.75rem; }
+.docs-support-details dt:not(:first-child) { margin-block-start:.5rem; }
+.docs-support nav,.docs-example-links { display:flex; flex-wrap:wrap; gap:.5rem 1rem; margin-block-start:.75rem; font-size:.8125rem; }
+.docs-mobile-navigation > nav { max-block-size:65svh; overflow-y:auto; overscroll-behavior:contain; scroll-padding-block:.5rem; }
+.docs-mobile-navigation .docs-nav-group { margin-block:.5rem; }
+.docs-mobile-navigation .docs-nav-group summary { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding-block:.5rem; }
+.docs-mobile-navigation .docs-nav-group a { padding-inline:.5rem; }
+.m5-home { display:grid; gap:2.5rem; }
+.m5-home .docs-section { margin-block-start:0; }
+.m5-home .dmf-hero-block { padding-block:1rem 2rem; }
+.m5-home .dmf-hero-inner { max-inline-size:none; }
+.m5-home .dmf-hero-title { font-size:clamp(2.25rem,4vw,4.25rem); line-height:1.08; }
+.m5-home .dmf-hero-description { max-inline-size:42rem; font-size:1rem; }
+.m5-home .dmf-hero-media { max-inline-size:328px; inline-size:100%; justify-self:center; }
+.m5-home .dmf-hero-media figcaption { margin-block-start:.75rem; font-size:.8125rem; color:var(--muted-foreground); }
+.m5-home .docs-actions { flex-wrap:wrap; }
+.m5-home .docs-entry h3 { font-size:1rem; margin-block-end:.5rem; }
+.m5-home .home-example { display:grid; gap:1rem; border-block:1px solid var(--border); padding-block:1.5rem; }
+.m5-home .home-example h2 { margin:0; }
+.m5-home .home-example p { max-inline-size:52rem; }
+.m5-home .docs-entry > a { display:block; overflow-wrap:anywhere; }

@@ -36,7 +36,20 @@
         "item"
       ],
       "status": "partial",
-      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
+      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate.",
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/blocks"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "MerchantListingBlock"
+        },
+        "platform": "web",
+        "verification": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
+      }
     },
     {
       "slug": "hero",
@@ -66,7 +79,20 @@
         "default"
       ],
       "status": "partial",
-      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
+      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate.",
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/blocks"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "HeroBlock"
+        },
+        "platform": "web",
+        "verification": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
+      }
     },
     {
       "slug": "sign-in",
@@ -111,7 +137,20 @@
         "footer"
       ],
       "status": "partial",
-      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
+      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate.",
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/blocks"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "SignInBlock"
+        },
+        "platform": "web",
+        "verification": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
+      }
     },
     {
       "slug": "search-filters",
@@ -155,7 +194,20 @@
         "default"
       ],
       "status": "partial",
-      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
+      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate.",
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/blocks"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "SearchFiltersBlock"
+        },
+        "platform": "web",
+        "verification": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
+      }
     }
   ],
   "schemaVersion": 1,
@@ -853,6 +905,30 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/accordion"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./accordion-content.astro",
+        "./accordion-item.astro",
+        "./accordion-trigger.astro",
+        "./accordion.astro",
+        "@data-slot/accordion",
+        "@lucide/astro/icons/chevron-down",
+        "@lucide/astro/icons/chevron-up",
+        "astro/types"
       ]
     },
     {
@@ -1166,6 +1242,28 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/alert"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "Alert"
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./alert-action.astro",
+        "./alert-description.astro",
+        "./alert-title.astro",
+        "./alert.astro",
+        "astro/types",
+        "class-variance-authority"
       ]
     },
     {
@@ -1468,6 +1566,37 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/alert-dialog"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../button",
+        "../button/button-variants",
+        "../dialog",
+        "../dialog/dialog-description.astro",
+        "../dialog/dialog-footer.astro",
+        "../dialog/dialog-header.astro",
+        "../dialog/dialog-title.astro",
+        "../modal/root.astro",
+        "../modal/state",
+        "../modal/trigger.astro",
+        "../utils",
+        "./alert-dialog-action.astro",
+        "./alert-dialog-cancel.astro",
+        "./alert-dialog-content.astro",
+        "./alert-dialog.astro",
+        "astro/types"
       ]
     },
     {
@@ -1710,6 +1839,24 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/archive-index"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./archive-index.astro",
+        "astro/types"
       ]
     },
     {
@@ -1942,6 +2089,24 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/aspect-ratio"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./aspect-ratio.astro",
+        "astro/types"
       ]
     },
     {
@@ -2368,6 +2533,34 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/attachment"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../button",
+        "../utils",
+        "./attachment-action.astro",
+        "./attachment-actions.astro",
+        "./attachment-content.astro",
+        "./attachment-description.astro",
+        "./attachment-group.astro",
+        "./attachment-media.astro",
+        "./attachment-title.astro",
+        "./attachment-trigger.astro",
+        "./attachment.astro",
+        "astro/types",
+        "class-variance-authority"
       ]
     },
     {
@@ -2656,6 +2849,25 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/avatar"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-types",
+        "../utils",
+        "./avatar.astro",
+        "astro/types"
       ]
     },
     {
@@ -2927,6 +3139,26 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/badge"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "Badge"
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./badge-variants",
+        "./badge.astro",
+        "astro/types",
+        "class-variance-authority"
       ]
     },
     {
@@ -3212,6 +3444,27 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/banner"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./banner-container.astro",
+        "./banner.astro",
+        "@lucide/astro/icons/x",
+        "astro/types",
+        "class-variance-authority"
       ]
     },
     {
@@ -3488,6 +3741,28 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/breadcrumb"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-content.astro",
+        "../navigation-link.astro",
+        "../navigation-types",
+        "../utils",
+        "./breadcrumb.astro",
+        "@lucide/astro",
+        "astro/types"
       ]
     },
     {
@@ -3769,6 +4044,7 @@
           "tests/content.test.mjs",
           "tests/feedback.test.mjs",
           "tests/foundations.test.mjs",
+          "tests/m5-documentation.test.mjs",
           "tests/modal-components.test.mjs",
           "tests/navigation-components.test.mjs",
           "tests/portfolio.test.mjs",
@@ -3785,6 +4061,7 @@
           "tests/browser/dmf-ui-foundations.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
+          "tests/browser/dmf-ui-m5.mjs",
           "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
@@ -3820,6 +4097,26 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/button"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "Button"
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./button-variants",
+        "./button.astro",
+        "astro/types",
+        "class-variance-authority"
       ]
     },
     {
@@ -4127,6 +4424,29 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/button-group"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../separator",
+        "../utils",
+        "./button-group-separator.astro",
+        "./button-group-text.astro",
+        "./button-group-variants",
+        "./button-group.astro",
+        "astro/types",
+        "class-variance-authority"
       ]
     },
     {
@@ -4461,12 +4781,14 @@
         "sources": [
           "tests/blocks.test.mjs",
           "tests/content.test.mjs",
+          "tests/m5-documentation.test.mjs",
           "tests/taxonomy.test.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-content-docs.mjs",
           "tests/browser/dmf-ui-content.mjs",
           "tests/browser/dmf-ui-discovery-consumer.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
+          "tests/browser/dmf-ui-m5.mjs",
           "tests/browser/dmf-ui-merchant-card-consumer.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
           "tests/browser/dmf-ui-selection.mjs",
@@ -4512,6 +4834,30 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/card"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "Card"
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./card-action.astro",
+        "./card-content.astro",
+        "./card-description.astro",
+        "./card-footer.astro",
+        "./card-header.astro",
+        "./card-title.astro",
+        "./card.astro",
+        "astro/types"
       ]
     },
     {
@@ -4836,6 +5182,32 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/carousel"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../button",
+        "../utils",
+        "./carousel-content.astro",
+        "./carousel-item.astro",
+        "./carousel-next.astro",
+        "./carousel-previous.astro",
+        "./carousel.astro",
+        "@lucide/astro/icons/chevron-left",
+        "@lucide/astro/icons/chevron-right",
+        "astro/types",
+        "embla-carousel"
       ]
     },
     {
@@ -5101,6 +5473,24 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/checkbox"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "Checkbox"
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./checkbox.astro",
+        "astro/types"
       ]
     },
     {
@@ -5421,6 +5811,28 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/chip"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-types",
+        "../tooltip",
+        "../utils",
+        "./chip-control.astro",
+        "./chip.astro",
+        "@lucide/astro",
+        "astro/types"
       ]
     },
     {
@@ -5923,6 +6335,7 @@
         "status": "references-only",
         "sources": [
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
+          "tests/browser/dmf-ui-m5.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs"
         ]
       },
@@ -5973,6 +6386,38 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/code-block"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../button",
+        "../utils",
+        "./code-block-actions.astro",
+        "./code-block-content.astro",
+        "./code-block-copy-button.astro",
+        "./code-block-footer.astro",
+        "./code-block-header.astro",
+        "./code-block-line.astro",
+        "./code-block-title.astro",
+        "./code-block.astro",
+        "./code-snippet.astro",
+        "@lucide/astro",
+        "@lucide/astro/icons/check",
+        "@lucide/astro/icons/copy",
+        "astro/types",
+        "astro:components",
+        "class-variance-authority"
       ]
     },
     {
@@ -6262,6 +6707,25 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/code-tabs"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../code-block",
+        "../tabs",
+        "./code-tabs.astro",
+        "astro/types"
       ]
     },
     {
@@ -6537,6 +7001,27 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/collapsible"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-content.astro",
+        "../navigation-types",
+        "../utils",
+        "./collapsible.astro",
+        "@lucide/astro",
+        "astro/types"
       ]
     },
     {
@@ -6854,6 +7339,26 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/combobox"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-types",
+        "../utils",
+        "./combobox.astro",
+        "@lucide/astro",
+        "astro/types"
       ]
     },
     {
@@ -7355,6 +7860,39 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/command"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../dialog",
+        "../modal/root.astro",
+        "../modal/trigger.astro",
+        "../utils",
+        "./command-dialog.astro",
+        "./command-empty.astro",
+        "./command-group.astro",
+        "./command-input.astro",
+        "./command-item.astro",
+        "./command-list.astro",
+        "./command-separator.astro",
+        "./command-shortcut.astro",
+        "./command.astro",
+        "@data-slot/command",
+        "@data-slot/core",
+        "@lucide/astro/icons/check",
+        "@lucide/astro/icons/search",
+        "astro/types"
       ]
     },
     {
@@ -7618,6 +8156,23 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/command-block"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../code-tabs",
+        "./command-block.astro"
       ]
     },
     {
@@ -7923,6 +8478,27 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/description-list"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./description-details.astro",
+        "./description-item.astro",
+        "./description-list.astro",
+        "./description-term.astro",
+        "astro/types"
       ]
     },
     {
@@ -8376,6 +8952,36 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/dialog"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../button",
+        "../utils",
+        "./dialog-close.astro",
+        "./dialog-content.astro",
+        "./dialog-description.astro",
+        "./dialog-footer.astro",
+        "./dialog-header.astro",
+        "./dialog-overlay.astro",
+        "./dialog-portal.astro",
+        "./dialog-title.astro",
+        "./dialog-trigger.astro",
+        "./dialog.astro",
+        "@data-slot/dialog",
+        "@lucide/astro/icons/x",
+        "astro/types"
       ]
     },
     {
@@ -9018,6 +9624,43 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/drawer"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../button",
+        "../overlay-scope",
+        "../utils",
+        "./drawer-close.astro",
+        "./drawer-content.astro",
+        "./drawer-description.astro",
+        "./drawer-footer.astro",
+        "./drawer-header.astro",
+        "./drawer-indent-background.astro",
+        "./drawer-indent.astro",
+        "./drawer-overlay.astro",
+        "./drawer-popup.astro",
+        "./drawer-portal.astro",
+        "./drawer-provider.astro",
+        "./drawer-swipe-handle.astro",
+        "./drawer-title.astro",
+        "./drawer-trigger.astro",
+        "./drawer-viewport.astro",
+        "./drawer-virtual-keyboard-provider.astro",
+        "./drawer.astro",
+        "@data-slot/drawer",
+        "astro/types"
       ]
     },
     {
@@ -9639,6 +10282,37 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/dropdown-menu"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../overlay-scope",
+        "../utils",
+        "./dropdown-menu-checkbox-item.astro",
+        "./dropdown-menu-content.astro",
+        "./dropdown-menu-group.astro",
+        "./dropdown-menu-item.astro",
+        "./dropdown-menu-label.astro",
+        "./dropdown-menu-portal.astro",
+        "./dropdown-menu-radio-item.astro",
+        "./dropdown-menu-separator.astro",
+        "./dropdown-menu-shortcut.astro",
+        "./dropdown-menu-trigger.astro",
+        "./dropdown-menu.astro",
+        "@data-slot/dropdown-menu",
+        "@lucide/astro/icons/check",
+        "astro/types"
       ]
     },
     {
@@ -9986,6 +10660,30 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/empty"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./empty-content.astro",
+        "./empty-description.astro",
+        "./empty-header.astro",
+        "./empty-media.astro",
+        "./empty-title.astro",
+        "./empty.astro",
+        "astro/types",
+        "class-variance-authority"
       ]
     },
     {
@@ -10263,6 +10961,26 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/empty-state"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-types",
+        "../utils",
+        "./empty-state.astro",
+        "@lucide/astro",
+        "astro/types"
       ]
     },
     {
@@ -10729,6 +11447,36 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/field"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "Field"
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../label",
+        "../separator",
+        "../utils",
+        "./field-content.astro",
+        "./field-description.astro",
+        "./field-error.astro",
+        "./field-group.astro",
+        "./field-label.astro",
+        "./field-legend.astro",
+        "./field-separator.astro",
+        "./field-set.astro",
+        "./field-title.astro",
+        "./field.astro",
+        "astro/types",
+        "class-variance-authority"
       ]
     },
     {
@@ -10985,6 +11733,24 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/file-input"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./file-input.astro",
+        "astro/types"
       ]
     },
     {
@@ -11203,6 +11969,7 @@
         "sources": [
           "tests/blocks.test.mjs",
           "tests/form-composition.test.mjs",
+          "tests/m5-documentation.test.mjs",
           "tests/package.test.mjs",
           "tests/process-guard.test.mjs",
           "tests/product-details.test.mjs",
@@ -11240,6 +12007,24 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/form"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./form.astro",
+        "astro/types"
       ]
     },
     {
@@ -11495,9 +12280,11 @@
         "status": "references-only",
         "sources": [
           "tests/dmf-ui-browser.test.mjs",
+          "tests/m5-documentation.test.mjs",
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
+          "tests/browser/dmf-ui-m5.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-selection.mjs"
@@ -11526,6 +12313,27 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/header"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./header-container.astro",
+        "./header-group.astro",
+        "./header.astro",
+        "astro/types",
+        "class-variance-authority"
       ]
     },
     {
@@ -11937,6 +12745,29 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/hover-card"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../overlay-scope",
+        "../utils",
+        "./hover-card-content.astro",
+        "./hover-card-trigger.astro",
+        "./hover-card.astro",
+        "@data-slot/core",
+        "@data-slot/hover-card",
+        "astro/types"
       ]
     },
     {
@@ -12195,6 +13026,25 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/icon"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "./icon.astro",
+        "@lucide/astro",
+        "astro/types",
+        "simple-icons"
       ]
     },
     {
@@ -12414,8 +13264,10 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/m5-documentation.test.mjs",
           "tests/product-details.test.mjs",
           "tests/structure.test.mjs",
+          "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-fulldev-catalog.mjs",
           "tests/browser/dmf-ui-hero-docs.mjs",
           "tests/browser/dmf-ui-merchant-card-consumer.mjs",
@@ -12438,6 +13290,25 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/image"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./image.astro",
+        "astro/types",
+        "astro:assets"
       ]
     },
     {
@@ -12675,6 +13546,7 @@
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-hero-docs.mjs",
           "tests/browser/dmf-ui-listing-docs.mjs",
+          "tests/browser/dmf-ui-m5.mjs",
           "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-overlays.mjs",
@@ -12701,6 +13573,24 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/input"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "Input"
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./input.astro",
+        "astro/types"
       ]
     },
     {
@@ -12976,6 +13866,27 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/input-group"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../input",
+        "../utils",
+        "./input-group-addon.astro",
+        "./input-group-input.astro",
+        "./input-group.astro",
+        "astro/types"
       ]
     },
     {
@@ -13405,6 +14316,35 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/item"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../separator",
+        "../utils",
+        "./item-actions.astro",
+        "./item-content.astro",
+        "./item-description.astro",
+        "./item-footer.astro",
+        "./item-group.astro",
+        "./item-header.astro",
+        "./item-media.astro",
+        "./item-separator.astro",
+        "./item-title.astro",
+        "./item.astro",
+        "astro/types",
+        "class-variance-authority"
       ]
     },
     {
@@ -13658,6 +14598,25 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/kbd"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./kbd-group.astro",
+        "./kbd.astro",
+        "astro/types"
       ]
     },
     {
@@ -13913,6 +14872,24 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/label"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "Label"
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./label.astro",
+        "astro/types"
       ]
     },
     {
@@ -14258,6 +15235,31 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/layout"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./layout-body.astro",
+        "./layout-head.astro",
+        "./layout-main.astro",
+        "./layout.astro",
+        "@lexingtonthemes/seo",
+        "astro",
+        "astro/types",
+        "astro:assets",
+        "astro:config/server"
       ]
     },
     {
@@ -14553,6 +15555,28 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/loading-button"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../button/button-variants",
+        "../navigation-types",
+        "../utils",
+        "./loading-button.astro",
+        "./state",
+        "@lucide/astro",
+        "astro/types"
       ]
     },
     {
@@ -14834,6 +15858,27 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/logo"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./logo-image.astro",
+        "./logo-text.astro",
+        "./logo.astro",
+        "astro/types",
+        "astro:assets"
       ]
     },
     {
@@ -15140,6 +16185,32 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/marquee"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../button",
+        "../utils",
+        "./marquee-content.astro",
+        "./marquee-item.astro",
+        "./marquee-toggle.astro",
+        "./marquee.astro",
+        "@lucide/astro/icons/pause",
+        "@lucide/astro/icons/play",
+        "astro/types",
+        "embla-carousel",
+        "embla-carousel-auto-scroll"
       ]
     },
     {
@@ -15488,7 +16559,9 @@
         "status": "references-only",
         "sources": [
           "tests/blocks.test.mjs",
+          "tests/m5-documentation.test.mjs",
           "tests/taxonomy.test.mjs",
+          "tests/browser/dmf-ui-m5.mjs",
           "tests/browser/dmf-ui-taxonomy.mjs"
         ]
       },
@@ -15507,6 +16580,26 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/merchant-card"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "MerchantCard"
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../card",
+        "../text",
+        "../utils",
+        "./merchant-card.astro",
+        "astro/types"
       ]
     },
     {
@@ -15795,6 +16888,27 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/native-select"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./native-select-optgroup.astro",
+        "./native-select-option.astro",
+        "./native-select.astro",
+        "@lucide/astro/icons/chevron-down",
+        "astro/types"
       ]
     },
     {
@@ -16067,6 +17181,26 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/navigation-menu"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-link.astro",
+        "../navigation-types",
+        "../utils",
+        "./navigation-menu.astro",
+        "astro/types"
       ]
     },
     {
@@ -16397,6 +17531,29 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/number-field"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-types",
+        "../tooltip",
+        "../utils",
+        "./number-field.astro",
+        "./step-button.astro",
+        "./validation",
+        "@lucide/astro",
+        "astro/types"
       ]
     },
     {
@@ -16682,6 +17839,28 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/pagination"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-content.astro",
+        "../navigation-link.astro",
+        "../navigation-types",
+        "../utils",
+        "./pagination.astro",
+        "@lucide/astro",
+        "astro/types"
       ]
     },
     {
@@ -17114,6 +18293,31 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/popover"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../overlay-scope",
+        "../utils",
+        "./popover-content.astro",
+        "./popover-description.astro",
+        "./popover-header.astro",
+        "./popover-title.astro",
+        "./popover-trigger.astro",
+        "./popover.astro",
+        "@data-slot/popover",
+        "astro/types"
       ]
     },
     {
@@ -17437,6 +18641,28 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/price"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./format-price-value",
+        "./price-unit.astro",
+        "./price-value.astro",
+        "./price.astro",
+        "astro/types",
+        "class-variance-authority"
       ]
     },
     {
@@ -17697,7 +18923,8 @@
         "status": "references-only",
         "sources": [
           "tests/feedback.test.mjs",
-          "tests/browser/dmf-ui-feedback.mjs"
+          "tests/browser/dmf-ui-feedback.mjs",
+          "tests/browser/dmf-ui-m5.mjs"
         ]
       },
       "status": "partial",
@@ -17719,6 +18946,25 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/progress"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./progress.astro",
+        "./state",
+        "astro/types"
       ]
     },
     {
@@ -18013,6 +19259,27 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/project-action-bar"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-link.astro",
+        "../navigation-types",
+        "../utils",
+        "./project-action-bar.astro",
+        "@lucide/astro",
+        "astro/types"
       ]
     },
     {
@@ -18327,6 +19594,26 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/radio-group"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "RadioGroup"
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./radio-group-item.astro",
+        "./radio-group.astro",
+        "@data-slot/radio-group",
+        "astro/types"
       ]
     },
     {
@@ -18676,6 +19963,28 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/rating"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-types",
+        "../tooltip",
+        "../utils",
+        "./rating-choice.astro",
+        "./rating.astro",
+        "@lucide/astro",
+        "astro/types"
       ]
     },
     {
@@ -18998,6 +20307,27 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/resizable"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./resizable-handle.astro",
+        "./resizable-panel.astro",
+        "./resizable.astro",
+        "@data-slot/resizable",
+        "astro/types"
       ]
     },
     {
@@ -19257,6 +20587,28 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/responsive-navigation"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-content.astro",
+        "../navigation-menu",
+        "../navigation-types",
+        "../utils",
+        "./responsive-navigation.astro",
+        "@lucide/astro",
+        "astro/types"
       ]
     },
     {
@@ -19570,6 +20922,28 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/section"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./section-container.astro",
+        "./section-description.astro",
+        "./section-title.astro",
+        "./section.astro",
+        "astro/types",
+        "class-variance-authority"
       ]
     },
     {
@@ -19857,6 +21231,26 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/section-navigation"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-link.astro",
+        "../navigation-types",
+        "../utils",
+        "./section-navigation.astro",
+        "astro/types"
       ]
     },
     {
@@ -20363,6 +21757,7 @@
           "tests/browser/dmf-ui-icons.mjs",
           "tests/browser/dmf-ui-listing-docs.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
+          "tests/browser/dmf-ui-m5.mjs",
           "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-navigation.mjs",
@@ -20426,6 +21821,34 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/select"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "Select"
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./select-content.astro",
+        "./select-group.astro",
+        "./select-item.astro",
+        "./select-label.astro",
+        "./select-separator.astro",
+        "./select-trigger.astro",
+        "./select-value.astro",
+        "./select.astro",
+        "@data-slot/select",
+        "@lucide/astro/icons/check",
+        "@lucide/astro/icons/chevron-down",
+        "astro/types"
       ]
     },
     {
@@ -20668,6 +22091,24 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/separator"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "Separator"
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./separator.astro",
+        "astro/types"
       ]
     },
     {
@@ -20963,6 +22404,36 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/sheet"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../button",
+        "../dialog",
+        "../dialog/dialog-close.astro",
+        "../dialog/dialog-description.astro",
+        "../dialog/dialog-footer.astro",
+        "../dialog/dialog-header.astro",
+        "../dialog/dialog-title.astro",
+        "../modal/root.astro",
+        "../modal/state",
+        "../modal/trigger.astro",
+        "../utils",
+        "./sheet-content.astro",
+        "./sheet.astro",
+        "@lucide/astro",
+        "astro/types"
       ]
     },
     {
@@ -21237,6 +22708,28 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/sidebar"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-content.astro",
+        "../navigation-menu",
+        "../navigation-types",
+        "../utils",
+        "./sidebar.astro",
+        "@lucide/astro",
+        "astro/types"
       ]
     },
     {
@@ -21482,6 +22975,24 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/skeleton"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./skeleton.astro",
+        "astro/types"
       ]
     },
     {
@@ -21802,6 +23313,26 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/slider"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-types",
+        "../utils",
+        "./slider.astro",
+        "./validation",
+        "astro/types"
       ]
     },
     {
@@ -22061,6 +23592,25 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/spinner"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./spinner.astro",
+        "@lucide/astro/icons/loader-circle",
+        "astro/types"
       ]
     },
     {
@@ -22364,6 +23914,25 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/switch"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "Switch"
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./switch.astro",
+        "@data-slot/switch",
+        "astro/types"
       ]
     },
     {
@@ -22698,11 +24267,13 @@
         "status": "references-only",
         "sources": [
           "tests/data-display.test.mjs",
+          "tests/m5-documentation.test.mjs",
           "tests/selection.test.mjs",
           "tests/tokens.test.mjs",
           "tests/browser/dmf-ui-data-display.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
+          "tests/browser/dmf-ui-m5.mjs",
           "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-runtime.mjs",
@@ -22748,6 +24319,30 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/table"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./table-body.astro",
+        "./table-cell.astro",
+        "./table-footer.astro",
+        "./table-head.astro",
+        "./table-header.astro",
+        "./table-row.astro",
+        "./table.astro",
+        "astro/types"
       ]
     },
     {
@@ -23105,6 +24700,30 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/tabs"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./tabs-content.astro",
+        "./tabs-list-variants",
+        "./tabs-list.astro",
+        "./tabs-trigger.astro",
+        "./tabs.astro",
+        "@data-slot/tabs",
+        "astro/types",
+        "class-variance-authority"
       ]
     },
     {
@@ -23381,6 +25000,27 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/tag-list"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-content.astro",
+        "../navigation-types",
+        "../tooltip",
+        "../utils",
+        "./tag-list.astro",
+        "astro/types"
       ]
     },
     {
@@ -23664,6 +25304,7 @@
           "tests/browser/dmf-ui-hero-consumer.mjs",
           "tests/browser/dmf-ui-icons.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
+          "tests/browser/dmf-ui-m5.mjs",
           "tests/browser/dmf-ui-merchant-card-consumer.mjs",
           "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
@@ -23700,6 +25341,24 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/text"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "Text"
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./text.astro",
+        "astro/types"
       ]
     },
     {
@@ -23941,6 +25600,24 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/textarea"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "Textarea"
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./textarea.astro",
+        "astro/types"
       ]
     },
     {
@@ -24187,6 +25864,28 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/theme-toggle"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../button",
+        "../button/button-variants",
+        "../utils",
+        "./theme-provider.astro",
+        "./theme-toggle.astro",
+        "@lucide/astro",
+        "astro/types"
       ]
     },
     {
@@ -24659,6 +26358,42 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/toast"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../button",
+        "../utils",
+        "./toast-action.astro",
+        "./toast-close.astro",
+        "./toast-content.astro",
+        "./toast-description.astro",
+        "./toast-icon.astro",
+        "./toast-item.astro",
+        "./toast-template.astro",
+        "./toast-title.astro",
+        "./toast-viewport.astro",
+        "./toast.astro",
+        "./toaster.astro",
+        "@data-slot/toast",
+        "@lucide/astro/icons/circle-check",
+        "@lucide/astro/icons/info",
+        "@lucide/astro/icons/loader-circle",
+        "@lucide/astro/icons/octagon-x",
+        "@lucide/astro/icons/triangle-alert",
+        "@lucide/astro/icons/x",
+        "astro/types"
       ]
     },
     {
@@ -24997,6 +26732,28 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/toc"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./toc-menu-item.astro",
+        "./toc-menu-link.astro",
+        "./toc-menu.astro",
+        "./toc-title.astro",
+        "./toc.astro",
+        "astro/types"
       ]
     },
     {
@@ -25349,6 +27106,29 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/toggle"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-content.astro",
+        "../navigation-types",
+        "../tooltip",
+        "../utils",
+        "./state",
+        "./toggle-control.astro",
+        "./toggle.astro",
+        "astro/types"
       ]
     },
     {
@@ -25662,6 +27442,26 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/toggle-group"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../navigation-types",
+        "../toggle",
+        "../utils",
+        "./toggle-group.astro",
+        "astro/types"
       ]
     },
     {
@@ -26054,6 +27854,28 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/tooltip"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../overlay-scope",
+        "../utils",
+        "./tooltip-content.astro",
+        "./tooltip-trigger.astro",
+        "./tooltip.astro",
+        "@data-slot/tooltip",
+        "astro/types"
       ]
     },
     {
@@ -26695,6 +28517,39 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/typography"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./typography-a.astro",
+        "./typography-blockquote.astro",
+        "./typography-h1.astro",
+        "./typography-h2.astro",
+        "./typography-h3.astro",
+        "./typography-h4.astro",
+        "./typography-inline-code.astro",
+        "./typography-lead.astro",
+        "./typography-list-item.astro",
+        "./typography-list.astro",
+        "./typography-p.astro",
+        "./typography-table-cell.astro",
+        "./typography-table-head.astro",
+        "./typography-table-row.astro",
+        "./typography-table.astro",
+        "./typography.astro",
+        "astro/types"
       ]
     },
     {
@@ -26938,6 +28793,24 @@
         "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
         "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
         "Do not infer loading, controlled state or a size option from another family."
+      ],
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/video"
+        },
+        "react": {
+          "status": "not-implemented",
+          "entry": null,
+          "exportName": null
+        },
+        "platform": "web",
+        "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
+      },
+      "dependencies": [
+        "../utils",
+        "./video.astro",
+        "astro/types"
       ]
     }
   ]

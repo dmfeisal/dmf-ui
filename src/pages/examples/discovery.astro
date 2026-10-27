@@ -6,9 +6,9 @@ import {renderDiscovery} from '../../../packages/react/examples/discovery-server
 import {merchantCardIcons,merchantCardReference} from '../../data/merchant-card-reference';
 const assets={icons:merchantCardIcons,photos:merchantCardReference.photos};
 ---
-<DocumentationLayout title="Merchant discovery example" description="Connect native search filters, URL state and merchant cards with host-owned sample data." section="blocks" crumbs={[{name:'Blocks',href:'/blocks/'},{name:'Discovery example'}]}>
+<DocumentationLayout title="Merchant discovery example" description="Connect native search filters, URL state and merchant cards with host-owned sample data." section="examples" crumbs={[{name:'Examples',href:'/examples/'},{name:'Discovery example'}]}>
  <h1>Merchant discovery example</h1><p class="docs-lead">SearchFiltersBlock, MerchantListingBlock and MerchantCard connected by a React example host. No backend or merchant service is included.</p>
  <div data-discovery-root data-discovery-assets={JSON.stringify(assets)} set:html={renderDiscovery(assets)}/>
- <p class="docs-note">Read the <a href="/docs/search-and-recovery/">search and recovery pattern</a> and <a href="/blocks/search-filters/">SearchFiltersBlock API</a>. This is a copyable example, not a public page Template.</p>
+ <p class="docs-note">Read the <a href="/docs/search-and-recovery/">search and recovery pattern</a> and <a href="/blocks/search-filters/">SearchFiltersBlock API</a>, <a href="/blocks/merchant-listing/">MerchantListingBlock API</a>, and <a href="/components/merchant-card/">MerchantCard API</a>. This is a copyable example, not a public page Template.</p>
  <script>import {mountDiscovery} from '../../../packages/react/examples/discovery-client';mountDiscovery();</script>
 </DocumentationLayout>

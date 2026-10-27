@@ -1,4 +1,5 @@
 ---
+import ImplementationSupport from '../../components/docs/ImplementationSupport.astro';
 import {CodeSnippet} from '../../components/dmf-ui/code-block';
 import DocumentationLayout from '../../layouts/DocumentationLayout.astro';
 import ContractPlayground from '../../components/docs/ContractPlayground.astro';
@@ -15,7 +16,7 @@ const importEnd=component.usage.indexOf('\n\n');
 const usage=importEnd>0?`---\n${component.usage.slice(0,importEnd)}\n---\n${component.usage.slice(importEnd+2)}`:component.usage;
 ---
 {component.slug==='merchant-card'?<MerchantCardDocumentation/>:<DocumentationLayout title={component.name} description={component.description} section="components" crumbs={[{name:'Components',href:'../'},{name:component.name}]} toc={[{id:'preview',title:'Preview'},{id:'usage',title:'Usage'},{id:'options',title:'Core options'},{id:'behavior',title:'Behavior'},...(component.slug==='button'?[{id:'button-architecture',title:'Architecture & Figma'}]:[]),{id:'contract',title:'Contract'}]}>
-<h1>{component.name}</h1><p class="docs-lead">{component.description}</p>
+<h1>{component.name}</h1><p class="docs-lead">{component.description}</p><ImplementationSupport slug={component.slug} kind="component"/>
 <section id="preview" class="docs-section"><h2>Preview</h2><PreviewControls/><ComponentPreview slug={component.slug}/><p class="docs-note">Examples are local. They do not save or send data.</p></section>
 <section id="usage" class="docs-section"><h2>Usage</h2><p class="docs-note">Import the shared stylesheet in your layout and place components inside <code>.dmf-ui</code>. See <a href="../../docs/installation/">installation</a> for setup.</p><CodeSnippet code={usage} language="astro" title={`${component.name}.astro`} id={`usage-${component.slug}`} statusId={`copy-${component.slug}`} label={`${component.name} usage example`} maxHeight={480}/></section>
 <section id="options" class="docs-section"><h2>Core options</h2><div class="docs-table-scroll"><table class="docs-options"><thead><tr><th scope="col">Option</th><th scope="col">Type</th><th scope="col">Default</th></tr></thead><tbody>{component.options.map(([name,type,value])=><tr><th scope="row"><code>{name}</code></th><td>{type}</td><td>{value}</td></tr>)}</tbody></table></div><p class="docs-note">This is a focused overview. The exported component source defines the complete inherited HTML attributes and adapter options.</p></section>

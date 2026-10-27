@@ -4,6 +4,7 @@ import DocumentationLayout from '../../layouts/DocumentationLayout.astro';
 import BrandReference from '../../components/docs/BrandReference.astro';
 import FoundationExamples from '../../components/docs/FoundationExamples.astro';
 import IconGallery from '../../components/docs/IconGallery.astro';
+import ContrastAlternatives from '../../components/docs/ContrastAlternatives.astro';
 import NavigationIcon from '../../components/docs/NavigationIcon.astro';
 import {guides} from '../../data/documentation';
 export function getStaticPaths(){return guides.map(guide=>({params:{slug:guide.slug},props:{guide}}));}
@@ -14,6 +15,7 @@ const {guide}=Astro.props;
 {section.code&&<CodeSnippet code={section.code} language={section.code.startsWith('npm')||section.code.startsWith('git')?'bash':section.code.includes('<')?'astro':'ts'} title={section.title} id={`guide-${guide.slug}-${section.id}`} label={`${section.title} code example`} maxHeight={480}/>}</section>)}
 {guide.slug==='foundations'&&<FoundationExamples slug={guide.slug}/>}
 {guide.slug==='brand-mappings'&&<BrandReference/>}
+{guide.slug==='accessibility'&&<ContrastAlternatives/>}
 {guide.slug==='icons'&&<><IconGallery/><p class="docs-note"><a href="https://lucide.dev/packages">Official Lucide packages</a> · <a href="https://lucide.dev/icons/">Complete icon library</a></p></>}
 {guide.slug==='credits'&&<p class="docs-note docs-section"><a href="../../dmf-ui-notices.txt">Open full license notices</a> · <a href="https://ui.shadcn.com/">shadcn/ui</a> · <a href="https://ui.full.dev/">Fulldev UI</a> · <a href="https://github.com/dmfeisal/dmf-ui">DMF UI source</a></p>}
 </DocumentationLayout>

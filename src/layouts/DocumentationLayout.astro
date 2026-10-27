@@ -1,19 +1,22 @@
 ---
 import '../styles/documentation.css';
 import designProfile from '../../contracts/design-profile.json';
-import {House,Blocks,BookOpen,Palette,Search,Sun,Moon,Monitor,Star,X,Menu,ChevronDown} from '@lucide/astro';
+import {House,Blocks,BookOpen,Palette,Search,Sun,Moon,Monitor,Star,X,Menu,ChevronDown,PanelsTopLeft} from '@lucide/astro';
 import GitHubMark from '../components/docs/assets/github.svg';
 import {Tooltip,TooltipTrigger,TooltipContent} from '../components/dmf-ui/tooltip';
 import {NavigationMenu} from '../components/dmf-ui/navigation-menu';
 import NavigationIcon from '../components/docs/NavigationIcon.astro';
 import {components,guides,categories} from '../data/documentation';
 import {blocks} from '../data/blocks';
-interface Props { title:string;description:string;section:'home'|'components'|'docs'|'create'|'blocks';crumbs?:{name:string;href?:string}[];toc?:{id:string;title:string}[]; }
+import {examples} from '../data/examples';
+interface Props { title:string;description:string;section:'home'|'components'|'docs'|'create'|'blocks'|'examples';crumbs?:{name:string;href?:string}[];toc?:{id:string;title:string}[]; }
 const {title,description,section,crumbs=[],toc=[]}=Astro.props;
 const sidebar=section==='components'?components.map(item=>({title:item.name,icon:item.slug,href:`/components/${item.slug}/`})) : section==='docs'?guides.map(item=>({title:item.title,icon:item.slug,href:`/docs/${item.slug}/`})) : [];
 const sidebarGroups=section==='components'?categories.map(title=>({title,items:components.filter(item=>item.category===title).map(item=>({title:item.name,icon:item.slug,href:`/components/${item.slug}/`}))})):section==='docs'?['Getting started','Foundations','Contracts','Presets'].map(title=>({title,items:sidebar.filter(item=>{const key=item.icon;const group=key==='foundations'||key.startsWith('foundation-')?'Foundations':key==='component-taxonomy'||key==='component-contract'||key==='contracts'?'Contracts':key==='presets'||key==='brand-mappings'?'Presets':'Getting started';return group===title;})})).filter(group=>group.items.length):[];
+const canonical=new URL(Astro.url.pathname,Astro.site??'https://ui.feisal.id').href;
 const searchEntries=[
- {title:'Merchant discovery example',description:'Native filters, URL state, merchant cards and recovery.',href:'/examples/discovery/',group:'Examples',keywords:'search filter pagination history merchant React'},
+ ...examples.map(example=>({title:example.title,description:example.description,href:example.href,group:'Examples',keywords:`${example.runtime} ${example.components.join(' ')} ${example.blocks.join(' ')}`})),
+ {title:'Working examples',description:'Implemented compositions and adapter proofs.',href:'/examples/',group:'Examples',keywords:'discovery native forms navigation React'},
  ...blocks.map(block=>({title:block.title,description:block.description,href:`/blocks/${block.slug}/`,group:'Blocks',keywords:`${block.category} ${block.components.join(' ')}`})),
  {title:'Blocks',description:'Reusable source-owned Astro compositions.',href:'/blocks/',group:'Blocks',keywords:'authentication search filtering compositions'},
  ...components.map(item=>({title:item.name,description:item.description,href:`/components/${item.slug}/`,group:'Components',keywords:`${item.category} ${item.domains.join(' ')} ${item.slug}`})),
@@ -23,7 +26,7 @@ const searchEntries=[
 
 ---
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="description" content={description}/><title>{title==='DMF UI'?title:`${title} · DMF UI`}</title></head>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="description" content={description}/><title>{title==='DMF UI'?title:`${title} · DMF UI`}</title><link rel="canonical" href={canonical}/><meta property="og:type" content="website"/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/></head>
 <body class="dmf-ui docs-shell" data-design-style={designProfile.style} data-base-color={designProfile.baseColor} data-theme-color={designProfile.theme}>
 <a href="#main" class="docs-skip">Skip to content</a>
 <header class="docs-header"><div class="docs-header-inner">
@@ -32,6 +35,7 @@ const searchEntries=[
  {label:'Home',href:'/',icon:House,current:section==='home'},
  {label:'Components',href:'/components/',icon:Blocks,current:section==='components'},
  {label:'Blocks',href:'/blocks/',icon:Blocks,current:section==='blocks'},
+ {label:'Examples',href:'/examples/',icon:PanelsTopLeft,current:section==='examples'},
  {label:'Docs',href:'/docs/',icon:BookOpen,current:section==='docs'},
  {label:'Create',href:'/create/',icon:Palette,current:section==='create'},
 ]}/>
@@ -42,14 +46,14 @@ const searchEntries=[
 </div>{crumbs.length>0&&<nav class="docs-breadcrumb" aria-label="Breadcrumb"><ol><li><a href={Astro.url.pathname.split('/').filter(Boolean).map(()=>'..').join('/')+'/'}>Home</a></li>{crumbs.map(crumb=><li>{crumb.href?<a href={crumb.href}>{crumb.name}</a>:<span aria-current="page">{crumb.name}</span>}</li>)}</ol></nav>}</header>
 <div class:list={['docs-layout',{'docs-has-sidebar':sidebar.length>0,'docs-has-toc':toc.length>0}]}>
 {sidebar.length>0&&<aside class="docs-sidebar" aria-label={section==='components'?'Component list':'Guide list'}><nav aria-label={section==='components'?'Component navigation':'Documentation navigation'}>{sidebarGroups.map((group,index)=><details class="docs-nav-group" open={sidebarGroups.length===1||group.items.some(item=>Astro.url.pathname===item.href)||(index===0&&!sidebar.some(item=>Astro.url.pathname===item.href))}><summary><span class="docs-nav-title">{group.title}</span><ChevronDown size={14} aria-hidden="true"/></summary>{group.items.map(item=><a href={item.href} aria-current={Astro.url.pathname===item.href?'page':undefined}><NavigationIcon name={item.icon}/><span>{item.title}</span></a>)}</details>)}</nav></aside>}
-{sidebar.length>0&&<details class="docs-mobile-navigation"><summary><Menu size={16} aria-hidden="true"/> Browse {section==='components'?'components':'documentation'}</summary><nav aria-label="Section navigation">{sidebar.map(item=><a href={item.href} aria-current={Astro.url.pathname===item.href?'page':undefined}><NavigationIcon name={item.icon}/><span>{item.title}</span></a>)}</nav></details>}
+{sidebar.length>0&&<details class="docs-mobile-navigation"><summary><Menu size={16} aria-hidden="true"/> Browse {section==='components'?'components':'documentation'}</summary><nav aria-label="Mobile section navigation">{sidebarGroups.map(group=><details class="docs-nav-group" open={group.items.some(item=>Astro.url.pathname===item.href)}><summary><span class="docs-nav-title">{group.title}</span><ChevronDown size={14} aria-hidden="true"/></summary>{group.items.map(item=><a href={item.href} aria-current={Astro.url.pathname===item.href?'page':undefined}><NavigationIcon name={item.icon}/><span>{item.title}</span></a>)}</details>)}</nav></details>}
 <main id="main" class="docs-page" tabindex="-1"><slot /></main>
 {toc.length>0&&<aside class="docs-toc" aria-label="Page contents"><nav aria-label="On this page"><p class="docs-nav-title">On this page</p>{toc.map(item=><a href={`#${item.id}`}>{item.title}</a>)}</nav></aside>}
 </div>
-<footer class="docs-footer"><span>DMF UI · Experimental Astro foundation</span><nav aria-label="Project links"><a href="/docs/credits/">Credits</a><a href="/dmf-ui-notices.txt">License notices</a><a href="https://github.com/dmfeisal/dmf-ui">GitHub</a></nav></footer>
+<footer class="docs-footer"><span>DMF UI · Experimental web UI</span><nav aria-label="Project links"><a href="/docs/implementation-paths/">Astro and React</a><a href="/examples/">Examples</a><a href="/docs/credits/">Credits</a><a href="/dmf-ui-notices.txt">License notices</a><a href="https://github.com/dmfeisal/dmf-ui">GitHub</a></nav></footer>
 <dialog id="docs-search-dialog" class="docs-search-dialog" aria-labelledby="docs-search-title" aria-describedby="docs-search-help">
 <div class="docs-search-dialog-heading"><h2 id="docs-search-title">Search documentation</h2><button type="button" data-search-close><X size={16} aria-hidden="true"/>Close <kbd>Esc</kbd></button></div>
-<div class="docs-search-input-shell"><input id="docs-search-input" type="search" aria-label="Search components and guides" placeholder="Component, guide, or purpose…" autocomplete="off" aria-controls="docs-search-results"/></div>
+<div class="docs-search-input-shell"><input id="docs-search-input" type="search" aria-label="Search documentation" placeholder="Component, Block, example or guide…" autocomplete="off" aria-controls="docs-search-results"/></div>
 <p id="docs-search-count" class="docs-search-count" role="status" aria-live="polite"></p>
 <nav id="docs-search-results" aria-label="Search results"></nav>
 <p id="docs-search-help">Use ↑ ↓ to move, Enter to open, and Esc to close.</p>

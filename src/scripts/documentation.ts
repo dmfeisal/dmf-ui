@@ -16,7 +16,7 @@ if(trigger&&dialog&&input&&results&&count&&source){
    return score(b)-score(a)||a.index-b.index;
   });
   results!.replaceChildren();
-  count!.textContent=terms.length?`${matches.length} ${matches.length===1?'result':'results'}`:'Browse components and guides';
+  count!.textContent=terms.length?`${matches.length} ${matches.length===1?'result':'results'}`:'Browse components, Blocks, examples and guides';
   if(!matches.length){
    const empty=document.createElement('p');empty.className='docs-search-empty';empty.textContent='No results. Try a component name, a purpose, or a guide topic.';results!.append(empty);return;
   }

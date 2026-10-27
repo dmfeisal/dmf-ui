@@ -7,16 +7,16 @@ export async function run({page,baseURL,navigate,settle,opened,focused,mobile,ta
  async function audit(state){
   await settle();await page.evaluate(source=>{if(window.axe)return;const script=document.createElement('script');script.textContent=source;document.head.append(script);},axe);
   const result=await page.evaluate(async()=>{const result=await window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa','best-practice']}});return {violations:result.violations.map(({id,impact,nodes})=>({id,impact,nodes:nodes.map(({target,failureSummary})=>({target,failureSummary}))})),incomplete:result.incomplete.map(({id})=>id),incompleteDetails:result.incomplete.map(({id,nodes})=>({id,nodes:nodes.map(({target,failureSummary})=>({target,failureSummary}))}))};});
-  reports.push({state,...result});await writeFile(new URL('../../.dmf-ui-test-results/documentation-audit.json',import.meta.url),JSON.stringify(reports,null,2));
-  assert(!result.violations.length&&!result.incomplete.length,`${state}: ${JSON.stringify(result)}`);
+  const decorativeReviews=[];for(const rule of result.incompleteDetails){assert(rule.id==='color-contrast',JSON.stringify(rule));for(const node of rule.nodes){assert(node.failureSummary.includes('due to a background image'),JSON.stringify(node));const review=await page.evaluate(async target=>{const element=document.querySelector(target.join(' '));if(!element?.matches('select[data-contract-preset],select[data-contract-mode]'))return {verified:false};const style=getComputedStyle(element),image=style.backgroundImage,padding=parseFloat(style.paddingInlineEnd),icon=parseFloat(style.backgroundSize);if(!image.startsWith('url("data:image/svg+xml,')||!Number.isFinite(icon)||padding<icon*2)return {verified:false};const previous=element.style.backgroundImage;try{element.style.backgroundImage='none';const check=await window.axe.run(element,{runOnly:['color-contrast']});return {verified:!check.violations.length&&!check.incomplete.length,padding,icon,violations:check.violations.length,incomplete:check.incomplete.length};}finally{element.style.backgroundImage=previous;}},node.target);assert(review.verified,JSON.stringify({node,review}));decorativeReviews.push({target:node.target,...review});}}reports.push({state,...result,decorativeReviews});await writeFile(new URL('../../.dmf-ui-test-results/documentation-audit.json',import.meta.url),JSON.stringify(reports,null,2));
+  assert(!result.violations.length,`${state}: ${JSON.stringify(result)}`);
  }
  async function follow(selector,path){await page.focus(selector);await page.keyboard.press('Enter');await page.waitForURL(`${baseURL}${path}`);await settle();}
  await navigate(`${baseURL}/`);
- assert(await page.evaluate(()=>[...document.querySelectorAll('.docs-primary a')].map(a=>a.textContent).join(',')==='Home,Components,Docs,Create'),'Primary documentation navigation missing');
+ assert(await page.evaluate(()=>[...document.querySelectorAll('.docs-primary a')].map(a=>a.textContent).join(',')==='Home,Components,Blocks,Examples,Docs,Create'),'Primary documentation navigation missing');
  assert(await page.evaluate(()=>document.querySelector('.docs-header .docs-github').href==='https://github.com/dmfeisal/dmf-ui'&&document.querySelector('#docs-theme [data-theme-icon]:not([hidden])').dataset.themeIcon==='system'),'Header GitHub link or initial theme icon missing');
  await audit('Home light/system');
  assert(await page.evaluate(()=>!document.querySelector('#docs-theme [data-theme-label]')&&document.querySelector('.docs-github svg')&&document.querySelector('[data-github-stars]')),'Compact header markup missing');
- await page.focus('#docs-theme');await page.waitForFunction(()=>{const tooltip=document.querySelector('#docs-theme-tooltip [data-slot=tooltip-content]');return tooltip&&!tooltip.hidden;});
+ await page.focus('.docs-github');await page.keyboard.press('Tab');await page.waitForFunction(()=>{const tooltip=document.querySelector('#docs-theme-tooltip [data-slot=tooltip-content]');return tooltip&&!tooltip.hidden;});
  assert(await page.evaluate(()=>document.querySelector('[data-theme-description]').textContent==='Theme: System. Switch to Light.'),'Theme tooltip missing');await audit('Header theme tooltip');await page.keyboard.press('Escape');await focused('docs-theme');
  console.log(await page.screenshot({path:'/tmp/dmf-ui-documentation-home.png'}));
  await page.focus('#docs-theme');await page.keyboard.press('Enter');await page.keyboard.press('Enter');
@@ -44,15 +44,15 @@ export async function run({page,baseURL,navigate,settle,opened,focused,mobile,ta
  await navigate(`${baseURL}/components/popover/`);await page.click('[data-slot=popover-trigger]');await opened('[data-slot=popover-content]');await page.click('[data-slot=popover-close]');await settle();assert(await page.evaluate(()=>document.querySelector('[data-dmf-popover]').dataset.state==='closed'),'Popover Done failed');
  await navigate(`${baseURL}/components/dropdown-menu/`);await page.click('[data-slot=dropdown-menu-trigger]');await opened('[data-slot=dropdown-menu-content]');await page.click('[data-slot=dropdown-menu-item][data-value=preview]');assert(await page.evaluate(()=>document.querySelector('[data-docs-feedback]').textContent.startsWith('Preview selection selected.')),'Menu action has no local result');
  await navigate(`${baseURL}/components/toast/`);await page.click('[data-docs-toast-show]');await page.waitForFunction(()=>document.querySelector('[data-slot=toast-item]')?.textContent.includes('Preview complete'));
- await navigate(`${baseURL}/components/tooltip/`);await page.focus('#docs-tooltip-dmf-trigger');await opened('#docs-tooltip-dmf-content');await page.keyboard.press('Escape');
+ await navigate(`${baseURL}/components/tooltip/`);await page.focus('#docs-tooltip-dmf-trigger');await page.keyboard.press('Tab');await page.keyboard.press('Shift+Tab');await opened('#docs-tooltip-dmf-content');await page.keyboard.press('Escape');
  assert(await page.evaluate(()=>document.querySelectorAll('[data-docs-preview]').length===1&&!document.querySelector('[data-system=cb-ui]')),'Component details still include CB reconstruction');
  await follow('.docs-primary a[href="/docs/"]','/docs/');await follow('.docs-entry a[href="/docs/installation/"]','/docs/installation/');
  assert(await page.evaluate(()=>document.querySelector('.docs-sidebar a[aria-current=page]')?.textContent==='Installation'&&document.querySelector('main pre')?.textContent.includes('git clone')),'Guide navigation or installation content missing');await audit('Installation guide');
- await navigate(`${baseURL}/components/tooltip/`);await mobile();await tap('.docs-mobile-navigation summary');
+ await navigate(`${baseURL}/components/tooltip/`);await mobile();await tap('.docs-mobile-navigation > summary');
  assert(await page.evaluate(()=>document.querySelector('.docs-mobile-navigation').open&&document.documentElement.clientWidth===390&&document.documentElement.scrollWidth<=390),'Mobile section navigation or width failed');
- await tap('.docs-mobile-navigation summary');
+ await tap('.docs-mobile-navigation > summary');
  await page.evaluate(()=>{document.getElementById('docs-tooltip-dmf-trigger').scrollIntoView({block:'center',behavior:'instant'});document.getElementById('docs-tooltip-dmf-trigger').focus({preventScroll:true});});
- await opened('#docs-tooltip-dmf-content');
+ await page.keyboard.press('Tab');await page.keyboard.press('Shift+Tab');await opened('#docs-tooltip-dmf-content');
  const bounds=await page.evaluate(()=>{const r=document.getElementById('docs-tooltip-dmf-content').getBoundingClientRect();return {left:r.left,right:r.right,width:document.documentElement.clientWidth};});
  assert(bounds.width===390&&bounds.left>=0&&bounds.right<=391,JSON.stringify(bounds));
  await audit('Mobile Tooltip detail');console.log(await page.screenshot({path:'/tmp/dmf-ui-documentation-mobile.png'}));

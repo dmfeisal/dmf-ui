@@ -1,0 +1,9 @@
+---
+import DocumentationLayout from '../../layouts/DocumentationLayout.astro';
+import {examples} from '../../data/examples';
+---
+<DocumentationLayout title="Examples" description="Working source-owned compositions with explicit host boundaries." section="examples" crumbs={[{name:'Examples'}]}>
+<h1>Working examples</h1><p class="docs-lead">Evaluate existing web compositions. These are local demonstrations and adapter proofs, with sample data and host-owned behavior.</p>
+<div class="docs-grid docs-section">{examples.map(example=><article class="docs-entry"><a href={example.href}>{example.title}</a><p>{example.description}</p><p class="docs-note">{example.runtime} · Experimental</p><p>{example.ownership}</p><nav class="docs-example-links" aria-label={`${example.title} source references`}>{example.components.map(slug=><a href={`/components/${slug}/`}>{slug}</a>)}{example.blocks.map(slug=><a href={`/blocks/${slug}/`}>{slug}</a>)}</nav></article>)}</div>
+<p class="docs-note docs-section">No complete authentication, dashboard, payment or POS backend is included. New product Templates and native adapters remain future work. <a href="/docs/search-and-recovery/">Read the implemented search and recovery pattern</a>.</p>
+</DocumentationLayout>

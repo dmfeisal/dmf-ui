@@ -1,0 +1,12 @@
+---
+import {implementationSupport} from '../../data/support';
+import {examples} from '../../data/examples';
+interface Props {slug:string;kind?:'component'|'block';}
+const {slug,kind='component'}=Astro.props,record=implementationSupport(slug,kind);
+const related=examples.filter(example=>(kind==='component'?example.components:example.blocks).includes(slug));
+---
+<section class="docs-support" aria-label={`${record.name} implementation support`} data-implementation-support data-support-kind={kind}>
+ <h2>Implementation support</h2><dl class="docs-support-summary"><div><dt>Astro</dt><dd data-runtime="astro">Experimental</dd></div><div><dt>React</dt><dd data-runtime="react">{record.react.status==='experimental'?'Experimental':'Not implemented'}</dd></div><div><dt>Platform</dt><dd>Web</dd></div><div><dt>Category</dt><dd>{record.category}</dd></div></dl>
+ <p class="docs-note">{record.domains.join(' · ')}{record.domains.length>0?' · ':''}Acceptance is scoped, not a stable API or WCAG conformance claim. <a href="/docs/implementation-paths/">Choose an implementation</a>.</p>
+ <details><summary>Imports, dependencies and verification</summary><dl class="docs-support-details"><dt>Astro import</dt><dd><code>{record.astro.entry}</code></dd><dt>React import</dt><dd>{record.react.entry?<><code>{record.react.exportName}</code> from <code>{record.react.entry}</code></>:'No supported React implementation for this family.'}</dd><dt>{kind==='component'?'Source imports (including type/utility dependencies)':'Composed components'}</dt><dd>{record.dependencies.length>0?record.dependencies.map((dependency,index)=><>{index>0?', ':''}<code>{dependency}</code></>):'No additional source imports recorded.'}</dd><dt>Verification</dt><dd>{record.verification}</dd><dt>Limitations</dt><dd>{record.limitations}</dd></dl><p><a href="/docs/accessibility/">Accessibility boundaries and owner-selected contrast exceptions</a>. Responsive web does not imply native iOS, Android or desktop adapters.</p>{related.length>0&&<nav aria-label={`${record.name} usage examples`}>{related.map(example=><a href={example.href}>{example.title}</a>)}</nav>}</details>
+</section>
