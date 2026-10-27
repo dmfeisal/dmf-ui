@@ -1,6 +1,70 @@
 {
   "blocks": [
     {
+      "slug": "reset-password",
+      "title": "ResetPasswordBlock",
+      "category": "Authentication",
+      "description": "New-password entry gated by host-validated recovery state, with optional confirmation and native POST semantics.",
+      "components": [
+        "Card",
+        "Field",
+        "Input",
+        "LoadingButton",
+        "Alert"
+      ],
+      "limitations": "The host validates recovery credentials before marking the UI ready and revalidates them on every POST. No tokens, credential validation, expiry enforcement, password policy, persistence or sessions are implemented. The ready flag is presentation state, not a security boundary.",
+      "entry": "dmf-ui/blocks",
+      "framework": "Astro",
+      "source": "src/components/dmf-ui/blocks/reset-password.astro",
+      "sha256": "5390b56b5df5aeb826149f15227380dd686095a67da3daaad6e91d2bc482f155",
+      "declaration": "interface Props extends Omit<HTMLAttributes<'form'>,'id'|'method'|'action'|'title'> {\n id:string; action:string; title?:string; description?:string; headingLevel?:'h1'|'h2'|'h3';\n passwordName?:string; passwordLabel?:string; credentialState?:'unverified'|'ready'|'invalid'|'expired';\n complete?:boolean; completionMessage?:string; unverifiedMessage?:string; invalidMessage?:string; expiredMessage?:string;\n passwordHelp?:string; submitLabel?:string; pendingLabel?:string; pending?:boolean; disabled?:boolean; submitDisabled?:boolean;\n error?:string; errorTitle?:string; fieldErrors?:{password?:string;confirmPassword?:string};\n confirmPassword?:boolean; confirmPasswordName?:string; confirmPasswordLabel?:string; signinHref?:string; signinLabel?:string; recoveryHref?:string; recoveryLabel?:string;\n}",
+      "defaults": {
+        "title": "'Choose a new password'",
+        "description": "'Use this form after your account service validates your recovery link.'",
+        "headingLevel": "'h2'",
+        "passwordName": "'password'",
+        "passwordLabel": "'New password'",
+        "credentialState": "'unverified'",
+        "complete": "false",
+        "completionMessage": "'Follow your account service’s sign-in instructions.'",
+        "unverifiedMessage": "'Your account service must validate your recovery link before you enter a new password.'",
+        "invalidMessage": "'This recovery link cannot be used. Request new recovery instructions.'",
+        "expiredMessage": "'This recovery link has expired. Request new recovery instructions.'",
+        "submitLabel": "'Update password'",
+        "pendingLabel": "'Updating password…'",
+        "pending": "false",
+        "disabled": "false",
+        "submitDisabled": "false",
+        "errorTitle": "'Unable to update password'",
+        "fieldErrors": "{}",
+        "confirmPassword": "false",
+        "confirmPasswordName": "'confirmPassword'",
+        "confirmPasswordLabel": "'Confirm password'",
+        "signinLabel": "'Sign in'",
+        "recoveryLabel": "'Request new recovery instructions'"
+      },
+      "slots": [
+        "fields",
+        "default",
+        "footer"
+      ],
+      "status": "partial",
+      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate.",
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/blocks"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "ResetPasswordBlock"
+        },
+        "platform": "web",
+        "verification": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
+      }
+    },
+    {
       "slug": "sign-up",
       "title": "SignUpBlock",
       "category": "Authentication",
@@ -441,6 +505,20 @@
         "stateOwnership": "Native uncontrolled fields; host owns submission, pending, errors and reset policy."
       },
       {
+        "name": "ResetPasswordBlock",
+        "entry": "@dmf-ui/react",
+        "source": "packages/react/src/blocks/reset-password.tsx",
+        "sha256": "43f4d0572e8798c31899c8fc5cae9f53ba01a3a23b04d6471beb7e524b6515ce",
+        "types": [
+          {
+            "name": "ResetPasswordBlockProps",
+            "declaration": "export type ResetPasswordBlockProps = Omit<ComponentPropsWithRef<'form'>, 'id' | 'action' | 'method' | 'title'> & {\n id:string; action:string; title?:string; description?:string; headingLevel?:'h1'|'h2'|'h3';\n passwordName?:string; passwordLabel?:string; credentialState?:'unverified'|'ready'|'invalid'|'expired';\n complete?:boolean; completionMessage?:string; unverifiedMessage?:string; invalidMessage?:string; expiredMessage?:string;\n passwordHelp?:string; submitLabel?:string; pendingLabel?:string; pending?:boolean; disabled?:boolean; submitDisabled?:boolean;\n error?:string; errorTitle?:string; fieldErrors?:{password?:string;confirmPassword?:string};\n confirmPassword?:boolean; confirmPasswordName?:string; confirmPasswordLabel?:string; signinHref?:string; signinLabel?:string; recoveryHref?:string; recoveryLabel?:string;\n fields?:ReactNode; footer?:ReactNode;\n};"
+          }
+        ],
+        "status": "experimental",
+        "stateOwnership": "Native uncontrolled fields; host owns submission, pending, errors and reset policy."
+      },
+      {
         "name": "HeroBlock",
         "entry": "@dmf-ui/react",
         "source": "packages/react/src/blocks/hero.tsx",
@@ -540,6 +618,7 @@
       "SignInBlock",
       "SignUpBlock",
       "PasswordRecoveryBlock",
+      "ResetPasswordBlock",
       "HeroBlock",
       "MerchantListingBlock",
       "MerchantCard",
@@ -692,7 +771,7 @@
       }
     ],
     "source": "packages/react/src/index.tsx",
-    "sha256": "5428f47444c58540787ac138df7824c8e4a8243fcbffe3a6c789806433887a10",
+    "sha256": "ea1127a8d0af3620919c00aaccadb027fed7e93eb5bc4b71a54579d539950df5",
     "status": "separate-web-alpha",
     "note": "React native props and controlled/uncontrolled patterns differ from Astro. No Astro parity claim."
   },
@@ -4219,6 +4298,7 @@
           "tests/browser/dmf-ui-pilot.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
+          "tests/browser/dmf-ui-reset-password-consumer.mjs",
           "tests/browser/dmf-ui-runtime.mjs",
           "tests/browser/dmf-ui-search.mjs",
           "tests/browser/dmf-ui-select.mjs",
@@ -11543,6 +11623,8 @@
           "tests/browser/dmf-ui-forms.mjs",
           "tests/browser/dmf-ui-pilot.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
+          "tests/browser/dmf-ui-reset-password-consumer.mjs",
+          "tests/browser/dmf-ui-reset-password.mjs",
           "tests/browser/dmf-ui-search.mjs",
           "tests/browser/dmf-ui-select.mjs",
           "tests/browser/dmf-ui-sign-in-consumer.mjs"
@@ -12140,6 +12222,7 @@
           "tests/browser/dmf-ui-pilot.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
+          "tests/browser/dmf-ui-reset-password-consumer.mjs",
           "tests/browser/dmf-ui-runtime.mjs",
           "tests/browser/dmf-ui-select.mjs",
           "tests/browser/dmf-ui-switch.mjs"
@@ -13691,6 +13774,7 @@
           "tests/blocks.test.mjs",
           "tests/form-composition.test.mjs",
           "tests/process-guard.test.mjs",
+          "tests/reset-password.test.mjs",
           "tests/selection.test.mjs",
           "tests/browser/dmf-ui-authentication-consumer.mjs",
           "tests/browser/dmf-ui-authentication.mjs",
@@ -13708,6 +13792,8 @@
           "tests/browser/dmf-ui-overlays.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
+          "tests/browser/dmf-ui-reset-password-consumer.mjs",
+          "tests/browser/dmf-ui-reset-password.mjs",
           "tests/browser/dmf-ui-search.mjs",
           "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-selection.mjs",
@@ -21926,6 +22012,8 @@
           "tests/browser/dmf-ui-pilot.mjs",
           "tests/browser/dmf-ui-portfolio.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
+          "tests/browser/dmf-ui-reset-password-consumer.mjs",
+          "tests/browser/dmf-ui-reset-password.mjs",
           "tests/browser/dmf-ui-runtime.mjs",
           "tests/browser/dmf-ui-search.mjs",
           "tests/browser/dmf-ui-select.mjs",
@@ -23736,7 +23824,8 @@
           "tests/browser/dmf-ui-authentication.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
-          "tests/browser/dmf-ui-m1-architecture.mjs"
+          "tests/browser/dmf-ui-m1-architecture.mjs",
+          "tests/browser/dmf-ui-reset-password-consumer.mjs"
         ]
       },
       "status": "partial",
@@ -25445,6 +25534,7 @@
           "tests/form-composition.test.mjs",
           "tests/foundations.test.mjs",
           "tests/modal-components.test.mjs",
+          "tests/reset-password.test.mjs",
           "tests/selection.test.mjs",
           "tests/structure.test.mjs",
           "tests/tokens.test.mjs",
@@ -25482,6 +25572,8 @@
           "tests/browser/dmf-ui-portfolio.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
+          "tests/browser/dmf-ui-reset-password-consumer.mjs",
+          "tests/browser/dmf-ui-reset-password.mjs",
           "tests/browser/dmf-ui-search.mjs",
           "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-selection.mjs",
@@ -26864,6 +26956,7 @@
         "sources": [
           "tests/authentication-blocks.test.mjs",
           "tests/blocks.test.mjs",
+          "tests/reset-password.test.mjs",
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-overlays.mjs"
         ]

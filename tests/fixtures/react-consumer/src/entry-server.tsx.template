@@ -28,3 +28,7 @@ export {discoveryResults,readDiscoverySelection,discoveryURL} from './discovery-
 import {AuthenticationProof} from './AuthenticationProof';
 export {AuthenticationProof};
 export function renderAuthentication(){return renderToString(<StrictMode><AuthenticationProof/></StrictMode>,{identifierPrefix:'authentication-'});}
+
+import {ResetProof} from './ResetProof';
+export {ResetProof};
+export function renderReset(){return renderToString(<StrictMode><ResetProof/></StrictMode>,{identifierPrefix:'reset-'});}

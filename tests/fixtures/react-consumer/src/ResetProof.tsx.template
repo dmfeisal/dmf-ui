@@ -1,0 +1,13 @@
+import {useEffect,useRef,useState} from 'react';
+import {ResetPasswordBlock,Button} from '@dmf-ui/react';
+export function ResetProof(){
+ const form=useRef<HTMLFormElement>(null),[ready,setReady]=useState(false),[credentialState,setCredentialState]=useState<'unverified'|'ready'|'invalid'|'expired'>('unverified'),[pending,setPending]=useState(false),[complete,setComplete]=useState(false),[error,setError]=useState('');
+ useEffect(()=>{setReady(true);},[]);
+ useEffect(()=>{if(complete||credentialState==='invalid'||credentialState==='expired')form.current?.querySelector<HTMLElement>('[data-reset-status]')?.focus();},[complete,credentialState]);
+ function preview(state:typeof credentialState){setPending(false);setComplete(false);setError('');setCredentialState(state);}
+ return <main className="consumer-shell"><h1>Reset-password UI states</h1><p>Local presentation only. No credential is validated and no password is changed, read or stored. The real server must authorize every POST.</p>
+ <ResetPasswordBlock id="packed-reset" ref={form} action="/account/reset-password" credentialState={credentialState} confirmPassword pending={pending} complete={complete} submitDisabled={!ready} error={error} fieldErrors={error?{password:'Illustrative host policy feedback',confirmPassword:'The host must compare confirmation'}:undefined} submitLabel="Update the password for your account" passwordHelp="Your account service defines the password policy." recoveryHref="/sign-in.html" signinHref="/sign-in.html" fields={<><label htmlFor="reset-scope">Optional scope</label><input id="reset-scope" name="scope" defaultValue="preview"/></>} onSubmit={e=>{e.preventDefault();setPending(true);setError('');}}/>
+ <div className="consumer-actions reset-proof-actions"><Button variant="outline" disabled={!ready} onClick={()=>preview('ready')}>Show ready UI</Button><Button variant="outline" disabled={!ready} onClick={()=>preview('invalid')}>Show invalid UI</Button><Button variant="outline" disabled={!ready} onClick={()=>preview('expired')}>Show expired UI</Button><Button variant="outline" disabled={!ready} onClick={()=>preview('unverified')}>Show unverified UI</Button><Button variant="outline" disabled={!ready} onClick={()=>{setPending(false);setError('Local example error. Try again.');}}>Show host error</Button><Button variant="outline" disabled={!ready} onClick={()=>{setPending(false);setComplete(true);}}>Finish local preview</Button><Button variant="outline" disabled={!ready} onClick={()=>{form.current?.reset();setPending(false);setError('');}}>Reset fields</Button></div>
+ <ResetPasswordBlock id="packed-reset-disabled" title="Unavailable reset example" action="/account/reset-password" credentialState="ready" disabled/>
+ </main>;
+}

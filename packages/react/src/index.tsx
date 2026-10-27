@@ -1,3 +1,5 @@
+export {ResetPasswordBlock} from './blocks/reset-password';
+export type {ResetPasswordBlockProps} from './blocks/reset-password';
 export {SignUpBlock} from './blocks/sign-up';
 export type {SignUpBlockProps} from './blocks/sign-up';
 export {PasswordRecoveryBlock} from './blocks/password-recovery';

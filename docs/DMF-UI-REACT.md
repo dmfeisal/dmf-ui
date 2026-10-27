@@ -1,3 +1,5 @@
+Reset-password follow-up, 27 October 2026: ResetPasswordBlock adds host-state-gated native password entry. Coverage is now 15 component families, seven Blocks and 43 runtime exports. See [ResetPasswordBlock acceptance](DMF-UI-M6-2-RESET.md). Versions remain unchanged; earlier checkpoints retain their scope.
+
 Authentication follow-up, 27 October 2026: SignUpBlock and PasswordRecoveryBlock add two experimental web Blocks using native uncontrolled fields. Coverage is now 15 component families and six Blocks, with 42 named exports. Versions remain unchanged. See [M6 authentication](DMF-UI-M6.md) for scope, packed-consumer/browser evidence and pending manual acceptance. Historical checkpoints below retain their original scope.
 
 Taxonomy follow-up, 27 October 2026: MerchantCard is a Data Display component, so the same 40 named exports now represent 15 component families and four Blocks. React imports and behavior stay unchanged. The experimental catalog records MerchantCard in react.domainComponents. See [taxonomy mapping](DMF-UI-TAXONOMY.md).

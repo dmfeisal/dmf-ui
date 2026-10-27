@@ -28,3 +28,5 @@ await writeFile(discoveryPath,discoveryHtml.replace(host,`<div id="root">${rende
 
 const {renderAuthentication}=await import('../.test-dist/server.mjs');
 const authPath=new URL('../dist/authentication.html',import.meta.url),authHtml=await readFile(authPath,'utf8');assert.equal(authHtml.split(host).length,2);await writeFile(authPath,authHtml.replace(host,`<div id="root">${renderAuthentication()}</div>`));
+
+const {renderReset}=await import('../.test-dist/server.mjs');const resetPath=new URL('../dist/reset.html',import.meta.url),resetHtml=await readFile(resetPath,'utf8');assert.equal(resetHtml.split(host).length,2);await writeFile(resetPath,resetHtml.replace(host,`<div id="root">${renderReset()}</div>`));

@@ -93,3 +93,5 @@
 .dmf-auth-block [data-block-submit],.dmf-sign-up-block [data-block-submit] { white-space:normal; block-size:auto; overflow-wrap:anywhere; }
 .dmf-auth-block [data-block-submit] > span,.dmf-sign-up-block [data-block-submit] > span { min-inline-size:0; }
 .dmf-auth-block .dmf-sign-in-pending,.dmf-sign-up-block .dmf-sign-in-pending { position:static; flex:none; order:-1; }
+
+.dmf-auth-block [data-reset-status]:empty { margin:0; }

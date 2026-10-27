@@ -1,0 +1,12 @@
+---
+import {ResetPasswordBlock} from 'dmf-ui/blocks';
+import {Input} from 'dmf-ui/input';
+import 'dmf-ui/styles.css';
+---
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Native reset form specimen</title></head><body class="dmf-ui"><main><h1>Reset form specimen</h1><p>Illustrative ready markup; no credential validation or account service.</p>
+<ResetPasswordBlock id="external-reset" action="/account/reset-password" credentialState="ready" confirmPassword passwordName="newSecret" confirmPasswordName="repeatSecret" passwordHelp="Host-authored policy help." fieldErrors={{password:'Host policy feedback'}} signinHref="#notes"><div slot="fields"><label for="reset-purpose">Purpose</label><Input id="reset-purpose" name="purpose" value="preview"/></div><p slot="footer" id="notes">Host validates every POST.</p></ResetPasswordBlock>
+<ResetPasswordBlock id="external-reset-unverified" title="Unverified reset example" action="/account/reset-password"/>
+<ResetPasswordBlock id="external-reset-expired" title="Expired reset example" action="/account/reset-password" credentialState="expired"/>
+<ResetPasswordBlock id="external-reset-pending" title="Pending reset example" action="/account/reset-password" credentialState="ready" pending/>
+</main></body></html>
+<style is:global>html{font-size:100%}body{margin:0}main{max-width:56rem;margin-inline:auto;padding:20px;display:grid;gap:24px}</style>

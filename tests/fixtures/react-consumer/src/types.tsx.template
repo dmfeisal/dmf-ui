@@ -98,3 +98,11 @@ const recovery=<PasswordRecoveryBlock id="typed-recovery" action="/account/recov
 // @ts-expect-error Password initialization is deliberately not a supported prop.
 const invalidSignup=<SignUpBlock id="invalid" action="/account/create" password="not-supported"/>;
 void signup;void recovery;void invalidSignup;
+
+import {ResetPasswordBlock} from '@dmf-ui/react';
+const reset=<ResetPasswordBlock id="typed-reset" action="/account/reset" credentialState="ready" confirmPassword/>;
+// @ts-expect-error Recovery credentials belong to the host, not the Block.
+const tokenReset=<ResetPasswordBlock id="bad-reset" action="/account/reset" token="not-supported"/>;
+// @ts-expect-error Initial password values are not supported.
+const valueReset=<ResetPasswordBlock id="bad-password" action="/account/reset" password="not-supported"/>;
+void reset;void tokenReset;void valueReset;

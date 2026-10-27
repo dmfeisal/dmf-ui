@@ -4,7 +4,7 @@ import {readFile} from 'node:fs/promises';
 test('Blocks remain a separate exported composition inventory with native form fallbacks',async()=>{
  const pkg=JSON.parse(await readFile('package.json','utf8')),catalog=JSON.parse(await readFile('contracts/catalog.json','utf8'));
  assert.equal(pkg.exports['./blocks'],'./src/components/dmf-ui/blocks/index.ts');
- assert.deepEqual(catalog.blocks.map(b=>b.slug),['sign-up','password-recovery','merchant-listing','hero','sign-in','search-filters']);
+ assert.deepEqual(catalog.blocks.map(b=>b.slug),['reset-password','sign-up','password-recovery','merchant-listing','hero','sign-in','search-filters']);
  assert(!catalog.components.some(c=>c.slug==='blocks'));
  for(const block of catalog.blocks){assert.match(block.sha256,/^[a-f0-9]{64}$/);assert(block.declaration.includes('HTMLAttributes'));if(block.slug!=='merchant-card')assert(block.slots.includes('default'));assert.equal(block.framework,'Astro');const html=await readFile(`dist/blocks/${block.slug}/index.html`,'utf8');assert(html.includes('data-docs-preview'));if(block.slug==='merchant-card'){assert(html.includes('data-slot="merchant-card"'));assert(html.includes('Rush Hour Kelapa Gading'));}else if(block.slug==='merchant-listing'){assert(block.slots.includes('item'));assert(html.includes('data-slot="merchant-listing-block"'));assert(html.includes('Sample café A'));}else if(block.slug==='hero'){assert(html.includes('data-slot="hero-block"'));assert(html.includes('aria-labelledby="hero-preview-title"'));}else assert(html.includes('data-block-submit'));assert(html.includes('data-copy-value'));}
  const auth=await readFile('dist/blocks/sign-in/index.html','utf8');

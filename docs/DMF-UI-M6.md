@@ -1,5 +1,7 @@
 # M6.1: Authentication Blocks expansion
 
+Follow-up: [M6.2 ResetPasswordBlock](DMF-UI-M6-2-RESET.md) records the next local stage and production verification of the committed M6 checkpoint. The report below retains its original implementation scope.
+
 27 October 2026. Local implementation based on `main` at `10e813c3f059b65caed02ad4d5669972e2f2b70c`. The initial checkout was clean and aligned with the intended M5 checkpoint. This milestone remains uncommitted and unpushed; no tags, publication, deployment or portfolio edits are included. Core remains `0.4.0`; React remains `0.1.0-alpha.3`. Dependencies are unchanged.
 
 ## M5 production closure
