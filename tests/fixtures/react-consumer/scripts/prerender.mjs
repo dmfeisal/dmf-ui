@@ -25,3 +25,6 @@ await writeFile(cardPath,cardHtml.replace(host,`<div id="root">${renderCard()}</
 const discoveryPath=new URL('../dist/discovery.html',import.meta.url),discoveryHtml=await readFile(discoveryPath,'utf8');
 assert.equal(discoveryHtml.split(host).length,2);
 await writeFile(discoveryPath,discoveryHtml.replace(host,`<div id="root">${renderDiscovery()}</div>`));
+
+const {renderAuthentication}=await import('../.test-dist/server.mjs');
+const authPath=new URL('../dist/authentication.html',import.meta.url),authHtml=await readFile(authPath,'utf8');assert.equal(authHtml.split(host).length,2);await writeFile(authPath,authHtml.replace(host,`<div id="root">${renderAuthentication()}</div>`));

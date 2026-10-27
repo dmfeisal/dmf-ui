@@ -1,5 +1,5 @@
 ---
-import {SignInBlock,SearchFiltersBlock} from 'dmf-ui/blocks';
+import {SignInBlock,SignUpBlock,PasswordRecoveryBlock,SearchFiltersBlock} from 'dmf-ui/blocks';
 import {Input} from 'dmf-ui/input';
 import 'dmf-ui/styles.css';
 ---
@@ -9,5 +9,9 @@ import 'dmf-ui/styles.css';
 </SignInBlock>
 <SignInBlock id="external-disabled" action="/account/sign-in" title="Unavailable form" disabled/>
 <SearchFiltersBlock id="external-search" action="/catalog" options={[{value:'forms',label:'Forms'}]} query="initial" selectedValue="forms"/>
+<SignUpBlock id="external-signup" action="/account/create" confirmPassword error="Illustrative error" fieldErrors={{confirmPassword:'Host confirmation error'}}><div slot="fields"><label for="signup-region">Optional region</label><Input id="signup-region" name="region"/></div><a slot="footer" href="#notes">Notes</a></SignUpBlock>
+<SignUpBlock id="external-signup-pending" title="Pending registration specimen" action="/account/create" pending/>
+<PasswordRecoveryBlock id="external-recovery" action="/account/recovery" fieldErrors={{email:'Review email'}} signinHref="#external-sign-in"/>
+<PasswordRecoveryBlock id="external-recovery-complete" title="Recovery instruction specimen" action="/account/recovery" complete/>
 </main></body></html>
 <style is:global>html{font-size:100%}body{margin:0}main{max-width:60rem;margin-inline:auto;padding:1.25rem;display:grid;gap:1.5rem}</style>

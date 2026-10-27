@@ -1,3 +1,4 @@
+import {authenticationGuide} from './authentication-documentation';
 import {codeComponents,novaGuide} from './code-documentation';
 import {architectureGuide} from './architecture-documentation';
 import {searchRecoveryGuide} from './search-recovery-documentation';
@@ -60,7 +61,7 @@ export const categories=taxonomy.categories;
 export const collections=taxonomy.collections;
 export type Guide = {slug:string;title:string;description:string;sections:{id:string;title:string;body:string[];code?:string}[]};
 export const guides: Guide[] = [
- architectureGuide,searchRecoveryGuide,taxonomyGuide,implementationGuide,
+ architectureGuide,searchRecoveryGuide,authenticationGuide,taxonomyGuide,implementationGuide,
  novaGuide,
  ...foundationGuides,
  fulldevGuide,

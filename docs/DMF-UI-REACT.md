@@ -1,3 +1,5 @@
+Authentication follow-up, 27 October 2026: SignUpBlock and PasswordRecoveryBlock add two experimental web Blocks using native uncontrolled fields. Coverage is now 15 component families and six Blocks, with 42 named exports. Versions remain unchanged. See [M6 authentication](DMF-UI-M6.md) for scope, packed-consumer/browser evidence and pending manual acceptance. Historical checkpoints below retain their original scope.
+
 Taxonomy follow-up, 27 October 2026: MerchantCard is a Data Display component, so the same 40 named exports now represent 15 component families and four Blocks. React imports and behavior stay unchanged. The experimental catalog records MerchantCard in react.domainComponents. See [taxonomy mapping](DMF-UI-TAXONOMY.md).
 
 Discovery follow-up, 27 October 2026: SearchFiltersBlock adds the native GET form adapter and a connected host-owned discovery example. There are now 14 React component families and five Blocks, totaling 40 named exports. See [discovery composition](DMF-UI-DISCOVERY.md) for URL/reset ownership and verification.

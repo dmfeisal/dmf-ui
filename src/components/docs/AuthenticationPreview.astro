@@ -1,0 +1,33 @@
+---
+import {SignInBlock,SignUpBlock,PasswordRecoveryBlock} from '../dmf-ui/blocks';
+import {Button} from '../dmf-ui/button';
+import {Input} from '../dmf-ui/input';
+interface Props {kind:'sign-up'|'password-recovery'|'journey';}
+const {kind}=Astro.props;
+---
+<div class="dmf-ui docs-preview" data-auth-preview data-docs-preview data-system="dmf">
+ <p class="docs-note">Local demonstration. Nothing is sent or saved; no account is created and no email is delivered.</p>
+ <noscript><p>Interactive inspection needs JavaScript. The exported Blocks work without JavaScript against your own POST endpoint.</p></noscript>
+ {kind==='journey'&&<section id="signin"><SignInBlock id="auth-signin" action="/examples/authentication/" submitDisabled data-auth-demo signupHref="#signup" recoveryHref="#recovery"/></section>}
+ {(kind==='sign-up'||kind==='journey')&&<section id="signup"><SignUpBlock id="auth-signup" action="/examples/authentication/" confirmPassword passwordHelp="Your account service defines and validates its password policy." submitDisabled data-auth-demo signinHref={kind==='journey'?'#signin':'/blocks/sign-in/'} termsHref="/docs/authentication/">
+  <div slot="fields"><label for="auth-signup-display">Display name (optional)</label><Input id="auth-signup-display" name="displayName" autocomplete="nickname"/></div>
+ </SignUpBlock></section>}
+ {(kind==='password-recovery'||kind==='journey')&&<section id="recovery"><PasswordRecoveryBlock id="auth-recovery" action="/examples/authentication/" submitDisabled data-auth-demo signinHref={kind==='journey'?'#signin':'/blocks/sign-in/'}/></section>}
+ <div class="docs-actions auth-demo-actions" data-auth-tools hidden><Button variant="outline" data-auth-finish>Finish local demonstration</Button><Button variant="outline" data-auth-error>Show generic error</Button><Button variant="outline" data-auth-reset>Reset demonstration</Button></div>
+ <p role="status" aria-atomic="true" data-auth-status>Ready for local inspection.</p><p role="alert" data-auth-error-message hidden>The demonstration could not complete. Try again.</p>
+</div>
+<script>
+ import {setLoadingButtonState} from '../dmf-ui/loading-button';
+ const bindings=new Map<HTMLElement,AbortController>();
+ function initialize(){for(const root of document.querySelectorAll<HTMLElement>('[data-auth-preview]')){
+  if(bindings.has(root))continue;const controller=new AbortController();bindings.set(root,controller);const {signal}=controller;
+  const forms=[...root.querySelectorAll<HTMLFormElement>('[data-auth-demo]')],status=root.querySelector<HTMLElement>('[data-auth-status]')!,error=root.querySelector<HTMLElement>('[data-auth-error-message]')!;
+  const pending=(form:HTMLFormElement,value:boolean)=>{form.querySelector<HTMLFieldSetElement>('fieldset')!.disabled=value;form.setAttribute('aria-busy',String(value));setLoadingButtonState(form.querySelector<HTMLButtonElement>('[data-block-submit]')!,value);};
+  for(const form of forms){const button=form.querySelector<HTMLButtonElement>('[data-block-submit]')!;button.disabled=false;button.dataset.idleDisabled='false';form.addEventListener('submit',event=>{event.preventDefault();error.hidden=true;pending(form,true);status.textContent='Local pending demonstration. Credentials were not read, sent or retained. Confirmation matching and password policies belong to the host.';},{signal});}
+  root.querySelector<HTMLElement>('[data-auth-tools]')!.hidden=false;
+  root.querySelector('[data-auth-finish]')!.addEventListener('click',()=>{for(const form of forms){if(form.getAttribute('aria-busy')!=='true')continue;pending(form,false);form.reset();const completion=form.querySelector<HTMLElement>('[data-recovery-completion]');if(completion){form.querySelector<HTMLFieldSetElement>('fieldset')!.hidden=true;completion.textContent='Demonstration only: no email was sent. A real host should give the same generic instructions for any address.';completion.tabIndex=-1;completion.focus();}}status.textContent='Local demonstration finished. No account or recovery request was created.';},{signal});
+  root.querySelector('[data-auth-error]')!.addEventListener('click',()=>{for(const form of forms)pending(form,false);error.hidden=false;status.textContent='A host-authored generic error is shown.';},{signal});
+  root.querySelector('[data-auth-reset]')!.addEventListener('click',()=>{for(const form of forms){pending(form,false);form.reset();form.querySelector<HTMLFieldSetElement>('fieldset')!.hidden=false;const completion=form.querySelector<HTMLElement>('[data-recovery-completion]');if(completion){completion.textContent='';completion.removeAttribute('tabindex');}}error.hidden=true;status.textContent='Demonstration reset; entered values cleared.';forms[0].querySelector<HTMLInputElement>('input')?.focus();},{signal});
+ }}
+ initialize();document.addEventListener('astro:page-load',initialize);document.addEventListener('astro:before-swap',()=>{for(const c of bindings.values())c.abort();bindings.clear();});
+</script>

@@ -1,3 +1,7 @@
+export {SignUpBlock} from './blocks/sign-up';
+export type {SignUpBlockProps} from './blocks/sign-up';
+export {PasswordRecoveryBlock} from './blocks/password-recovery';
+export type {PasswordRecoveryBlockProps} from './blocks/password-recovery';
 import {createContext,useContext,useId} from 'react';
 import type { ComponentPropsWithRef, ReactNode } from 'react';
 export {SearchFiltersBlock} from './blocks/search-filters';

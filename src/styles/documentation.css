@@ -327,3 +327,5 @@ html { font-size:100%; }
 .m5-home .home-example h2 { margin:0; }
 .m5-home .home-example p { max-inline-size:52rem; }
 .m5-home .docs-entry > a { display:block; overflow-wrap:anywhere; }
+
+.auth-demo-actions > button { max-inline-size:100%; white-space:normal; block-size:auto; overflow-wrap:anywhere; }

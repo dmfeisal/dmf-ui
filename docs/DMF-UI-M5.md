@@ -1,5 +1,7 @@
 # M5: Documentation experience and production quality
 
+Production follow-up: [M5 production acceptance](DMF-UI-M5-PRODUCTION-ACCEPTANCE.md) records the verified 27 October routing, cache and metadata results. The original local implementation report below is retained.
+
 Local implementation checkpoint: 27 October 2026. No commit, push, publication, tag or deployment was performed.
 
 ## Repository and production checkpoint

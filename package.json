@@ -15,7 +15,7 @@
     "prepack": "npm run tokens:check",
     "dev": "astro dev",
     "check": "node --max-old-space-size=640 ./node_modules/astro/bin/astro.mjs check",
-    "build": "node --max-old-space-size=512 ./node_modules/astro/bin/astro.mjs build",
+    "build": "node --max-old-space-size=384 --max-semi-space-size=8 ./node_modules/astro/bin/astro.mjs build",
     "preview": "astro preview",
     "test": "node --max-old-space-size=256 --test --test-concurrency=1 --test-timeout=30000 tests/*.test.mjs",
     "test:dmf-ui": "npm run build && node scripts/test-dmf-ui.mjs",

@@ -91,3 +91,10 @@ const mediumButton=<Button size="md">Medium alias</Button>;
 // @ts-expect-error XL is not a supported Button size.
 const unsupportedButtonSize=<Button size="xl"/>;
 void [mediumButton,unsupportedButtonSize];
+
+import {SignUpBlock,PasswordRecoveryBlock} from '@dmf-ui/react';
+const signup=<SignUpBlock id="typed-signup" action="/account/create" confirmPassword fields={<input name="extension"/>}/>;
+const recovery=<PasswordRecoveryBlock id="typed-recovery" action="/account/recovery" complete/>;
+// @ts-expect-error Password initialization is deliberately not a supported prop.
+const invalidSignup=<SignUpBlock id="invalid" action="/account/create" password="not-supported"/>;
+void signup;void recovery;void invalidSignup;

@@ -24,3 +24,7 @@ import {DiscoveryProof} from './DiscoveryProof';
 export function renderDiscovery(){return renderToString(<StrictMode><DiscoveryProof/></StrictMode>,{identifierPrefix:'discovery-'});}
 export {DiscoveryProof};
 export {discoveryResults,readDiscoverySelection,discoveryURL} from './discovery-model';
+
+import {AuthenticationProof} from './AuthenticationProof';
+export {AuthenticationProof};
+export function renderAuthentication(){return renderToString(<StrictMode><AuthenticationProof/></StrictMode>,{identifierPrefix:'authentication-'});}

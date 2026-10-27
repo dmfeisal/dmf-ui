@@ -1,6 +1,124 @@
 {
   "blocks": [
     {
+      "slug": "sign-up",
+      "title": "SignUpBlock",
+      "category": "Authentication",
+      "description": "A native account-registration form with optional confirmation and host-owned validation.",
+      "components": [
+        "Card",
+        "Field",
+        "Input",
+        "LoadingButton",
+        "Alert"
+      ],
+      "limitations": "No authentication service, account lookup, recovery emails, tokens or sessions. Hosts own secure POST endpoints, CSRF, rate limits, validation, focus after transitions and security policy. No initial password values are accepted.",
+      "entry": "dmf-ui/blocks",
+      "framework": "Astro",
+      "source": "src/components/dmf-ui/blocks/sign-up.astro",
+      "sha256": "b0e143175972581ce8fea32a9df60755f7dea7f95a5590270d61e9fa127d23fa",
+      "declaration": "interface Props extends Omit<HTMLAttributes<'form'>,'id'|'method'|'action'|'title'> {\n id:string; action:string; title?:string; description?:string; headingLevel?:'h1'|'h2'|'h3';\n email?:string; emailName?:string; passwordName?:string; emailLabel?:string; passwordLabel?:string;\n passwordHelp?:string; submitLabel?:string; pendingLabel?:string; pending?:boolean; disabled?:boolean; submitDisabled?:boolean;\n error?:string; errorTitle?:string; fieldErrors?:{email?:string;password?:string;confirmPassword?:string};\n confirmPassword?:boolean; confirmPasswordName?:string; confirmPasswordLabel?:string; signinHref?:string; signinLabel?:string; termsHref?:string; termsLabel?:string;\n}",
+      "defaults": {
+        "title": "'Create account'",
+        "description": "'Enter your account details.'",
+        "headingLevel": "'h2'",
+        "email": "''",
+        "emailName": "'email'",
+        "passwordName": "'password'",
+        "emailLabel": "'Email'",
+        "passwordLabel": "'Password'",
+        "submitLabel": "'Create account'",
+        "pendingLabel": "'Creating account…'",
+        "pending": "false",
+        "disabled": "false",
+        "submitDisabled": "false",
+        "errorTitle": "'Unable to create account'",
+        "fieldErrors": "{}",
+        "confirmPassword": "false",
+        "confirmPasswordName": "'confirmPassword'",
+        "confirmPasswordLabel": "'Confirm password'",
+        "signinLabel": "'Sign in'",
+        "termsLabel": "'Terms'"
+      },
+      "slots": [
+        "fields",
+        "default",
+        "footer"
+      ],
+      "status": "partial",
+      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate.",
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/blocks"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "SignUpBlock"
+        },
+        "platform": "web",
+        "verification": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
+      }
+    },
+    {
+      "slug": "password-recovery",
+      "title": "PasswordRecoveryBlock",
+      "category": "Authentication",
+      "description": "A native recovery-request form with generic host-owned completion feedback.",
+      "components": [
+        "Card",
+        "Field",
+        "Input",
+        "LoadingButton",
+        "Alert"
+      ],
+      "limitations": "No authentication service, account lookup, recovery emails, tokens or sessions. Hosts own secure POST endpoints, CSRF, rate limits, validation, focus after transitions and security policy. No initial password values are accepted.",
+      "entry": "dmf-ui/blocks",
+      "framework": "Astro",
+      "source": "src/components/dmf-ui/blocks/password-recovery.astro",
+      "sha256": "668ff6e9dc7a17ac47605b8a13c06755d5f96a3dc6f8671bc77e13bb3e6cd731",
+      "declaration": "interface Props extends Omit<HTMLAttributes<'form'>,'id'|'method'|'action'|'title'> {\n id:string;action:string;title?:string;description?:string;headingLevel?:'h1'|'h2'|'h3';\n email?:string;emailName?:string;emailLabel?:string;submitLabel?:string;pendingLabel?:string;\n pending?:boolean;disabled?:boolean;submitDisabled?:boolean;complete?:boolean;completionMessage?:string;\n error?:string;errorTitle?:string;fieldErrors?:{email?:string};signinHref?:string;signinLabel?:string;\n}",
+      "defaults": {
+        "title": "'Request password recovery'",
+        "description": "'Enter your email to request recovery instructions.'",
+        "headingLevel": "'h2'",
+        "email": "''",
+        "emailName": "'email'",
+        "emailLabel": "'Email'",
+        "submitLabel": "'Request recovery'",
+        "pendingLabel": "'Requesting recovery…'",
+        "pending": "false",
+        "disabled": "false",
+        "submitDisabled": "false",
+        "complete": "false",
+        "completionMessage": "'If recovery is available for this address, follow the instructions provided by your account service.'",
+        "errorTitle": "'Unable to complete the request'",
+        "fieldErrors": "{}",
+        "signinLabel": "'Return to sign in'"
+      },
+      "slots": [
+        "fields",
+        "default",
+        "footer"
+      ],
+      "status": "partial",
+      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate.",
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/blocks"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "PasswordRecoveryBlock"
+        },
+        "platform": "web",
+        "verification": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
+      }
+    },
+    {
       "slug": "merchant-listing",
       "title": "MerchantListingBlock",
       "category": "Food Discovery",
@@ -295,6 +413,34 @@
         "stateOwnership": "Native uncontrolled fields; host owns submission, pending, errors and reset policy."
       },
       {
+        "name": "SignUpBlock",
+        "entry": "@dmf-ui/react",
+        "source": "packages/react/src/blocks/sign-up.tsx",
+        "sha256": "9eaff15cb04eaffa50360e77ef4903300f35f58c6f4eb7b25aabe339d7ff4e12",
+        "types": [
+          {
+            "name": "SignUpBlockProps",
+            "declaration": "export type SignUpBlockProps = Omit<ComponentPropsWithRef<'form'>, 'id' | 'action' | 'method' | 'title'> & {\n id:string; action:string; title?:string; description?:string; headingLevel?:'h1'|'h2'|'h3';\n email?:string; emailName?:string; passwordName?:string; emailLabel?:string; passwordLabel?:string;\n passwordHelp?:string; submitLabel?:string; pendingLabel?:string; pending?:boolean; disabled?:boolean; submitDisabled?:boolean;\n error?:string; errorTitle?:string; fieldErrors?:{email?:string;password?:string;confirmPassword?:string};\n confirmPassword?:boolean; confirmPasswordName?:string; confirmPasswordLabel?:string; signinHref?:string; signinLabel?:string; termsHref?:string; termsLabel?:string;\n fields?:ReactNode; footer?:ReactNode;\n};"
+          }
+        ],
+        "status": "experimental",
+        "stateOwnership": "Native uncontrolled fields; host owns submission, pending, errors and reset policy."
+      },
+      {
+        "name": "PasswordRecoveryBlock",
+        "entry": "@dmf-ui/react",
+        "source": "packages/react/src/blocks/password-recovery.tsx",
+        "sha256": "f8a0b9419e81da05fcbcc17aa7565ed51dcd59522e9a7b4080471f2743ed499d",
+        "types": [
+          {
+            "name": "PasswordRecoveryBlockProps",
+            "declaration": "export type PasswordRecoveryBlockProps=Omit<ComponentPropsWithRef<'form'>,'id'|'action'|'method'|'title'> & {\n id:string;action:string;title?:string;description?:string;headingLevel?:'h1'|'h2'|'h3';\n email?:string;emailName?:string;emailLabel?:string;submitLabel?:string;pendingLabel?:string;\n pending?:boolean;disabled?:boolean;submitDisabled?:boolean;complete?:boolean;completionMessage?:string;\n error?:string;errorTitle?:string;fieldErrors?:{email?:string};signinHref?:string;signinLabel?:string;\n fields?:ReactNode;footer?:ReactNode;\n};"
+          }
+        ],
+        "status": "experimental",
+        "stateOwnership": "Native uncontrolled fields; host owns submission, pending, errors and reset policy."
+      },
+      {
         "name": "HeroBlock",
         "entry": "@dmf-ui/react",
         "source": "packages/react/src/blocks/hero.tsx",
@@ -392,6 +538,8 @@
       "SelectOption",
       "SelectGroup",
       "SignInBlock",
+      "SignUpBlock",
+      "PasswordRecoveryBlock",
       "HeroBlock",
       "MerchantListingBlock",
       "MerchantCard",
@@ -544,7 +692,7 @@
       }
     ],
     "source": "packages/react/src/index.tsx",
-    "sha256": "837b4aeed21fa6358ba9e5d879f069e0fee92acd4f0f917fd0b1afe1b8e3d906",
+    "sha256": "5428f47444c58540787ac138df7824c8e4a8243fcbffe3a6c789806433887a10",
     "status": "separate-web-alpha",
     "note": "React native props and controlled/uncontrolled patterns differ from Astro. No Astro parity claim."
   },
@@ -4049,7 +4197,9 @@
           "tests/navigation-components.test.mjs",
           "tests/portfolio.test.mjs",
           "tests/selection.test.mjs",
+          "tests/browser/authentication-audit.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
+          "tests/browser/dmf-ui-authentication-consumer.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-data-display.mjs",
@@ -11385,6 +11535,8 @@
           "tests/form-composition.test.mjs",
           "tests/foundations.test.mjs",
           "tests/product-details.test.mjs",
+          "tests/browser/dmf-ui-authentication-consumer.mjs",
+          "tests/browser/dmf-ui-authentication.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-discovery-consumer.mjs",
           "tests/browser/dmf-ui-form-composition.mjs",
@@ -11974,6 +12126,7 @@
           "tests/process-guard.test.mjs",
           "tests/product-details.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
+          "tests/browser/dmf-ui-authentication-consumer.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-disclosures.mjs",
@@ -13534,10 +13687,13 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/authentication-blocks.test.mjs",
           "tests/blocks.test.mjs",
           "tests/form-composition.test.mjs",
           "tests/process-guard.test.mjs",
           "tests/selection.test.mjs",
+          "tests/browser/dmf-ui-authentication-consumer.mjs",
+          "tests/browser/dmf-ui-authentication.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-data-display.mjs",
           "tests/browser/dmf-ui-form-composition.mjs",
@@ -14837,6 +14993,8 @@
           "tests/selection.test.mjs",
           "tests/tokens.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
+          "tests/browser/dmf-ui-authentication-consumer.mjs",
+          "tests/browser/dmf-ui-authentication.mjs",
           "tests/browser/dmf-ui-disclosures.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
@@ -21741,6 +21899,8 @@
           "tests/selection.test.mjs",
           "tests/tokens.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
+          "tests/browser/dmf-ui-authentication-consumer.mjs",
+          "tests/browser/dmf-ui-authentication.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-disclosures.mjs",
@@ -23572,6 +23732,8 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/browser/dmf-ui-authentication-consumer.mjs",
+          "tests/browser/dmf-ui-authentication.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs"
@@ -24270,6 +24432,7 @@
           "tests/m5-documentation.test.mjs",
           "tests/selection.test.mjs",
           "tests/tokens.test.mjs",
+          "tests/browser/dmf-ui-authentication.mjs",
           "tests/browser/dmf-ui-data-display.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
@@ -25285,7 +25448,10 @@
           "tests/selection.test.mjs",
           "tests/structure.test.mjs",
           "tests/tokens.test.mjs",
+          "tests/browser/authentication-audit.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
+          "tests/browser/dmf-ui-authentication-consumer.mjs",
+          "tests/browser/dmf-ui-authentication.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-content-docs.mjs",
           "tests/browser/dmf-ui-content.mjs",
@@ -26696,6 +26862,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/authentication-blocks.test.mjs",
           "tests/blocks.test.mjs",
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-overlays.mjs"

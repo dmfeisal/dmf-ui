@@ -1,0 +1,14 @@
+import {useEffect,useRef,useState} from 'react';
+import {SignUpBlock,PasswordRecoveryBlock,Button} from '@dmf-ui/react';
+export function AuthenticationProof(){
+ const signup=useRef<HTMLFormElement>(null),recovery=useRef<HTMLFormElement>(null);
+ const [pending,setPending]=useState<'signup'|'recovery'|null>(null),[complete,setComplete]=useState(false),[error,setError]=useState(''),[ready,setReady]=useState(false),[longLabels,setLongLabels]=useState(false);
+ useEffect(()=>{setLongLabels(new URLSearchParams(window.location.search).has('long-labels'));setReady(true);},[]);
+ useEffect(()=>{if(complete)recovery.current?.querySelector<HTMLElement>('[data-recovery-completion]')?.focus();},[complete]);
+ return <main className="consumer-shell"><h1>Authentication Blocks local proof</h1><p>No accounts, recovery email or authentication services. Entered credentials are not read or saved by this host.</p>
+ <SignUpBlock id="packed-signup" ref={signup} action="/account/create" confirmPassword submitLabel={longLabels?'Create an account with these details':'Create account'} submitDisabled={!ready} pending={pending==='signup'} error={error} fieldErrors={error?{confirmPassword:'Illustrative host confirmation feedback'}:undefined} signinHref="/sign-in.html" fields={<><label htmlFor="auth-region">Optional region</label><input id="auth-region" name="region"/></>} onSubmit={e=>{e.preventDefault();setPending('signup');setError('');}}/>
+ <PasswordRecoveryBlock id="packed-recovery" ref={recovery} action="/account/recovery" submitLabel={longLabels?'Request a recovery link with your email address':'Request recovery'} submitDisabled={!ready} pending={pending==='recovery'} complete={complete} error={error} signinHref="/sign-in.html" onSubmit={e=>{e.preventDefault();setPending('recovery');setError('');}}/>
+ <div className="consumer-actions"><Button variant="outline" disabled={!ready} onClick={()=>{if(pending==='recovery')setComplete(true);setPending(null);}}>Finish demonstration</Button><Button variant="outline" disabled={!ready} onClick={()=>{setPending(null);setError('Local request could not complete.');}}>Show host error</Button><Button variant="outline" disabled={!ready} onClick={()=>{setPending(null);setError('');setComplete(false);signup.current?.reset();recovery.current?.reset();}}>Reset forms</Button></div>
+ <p role="status">{pending?'Local pending demonstration. No request sent.':'Local demonstration only.'}</p>
+ </main>;
+}

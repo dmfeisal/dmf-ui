@@ -1,0 +1,31 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {Card,CardHeader,CardContent,CardFooter} from '../card';
+import {Field,FieldLabel,FieldDescription,FieldError} from '../field';
+import {Input} from '../input';
+import {LoadingButton} from '../loading-button';
+import {Alert,AlertTitle,AlertDescription} from '../alert';
+import {cn} from '../utils';
+interface Props extends Omit<HTMLAttributes<'form'>,'id'|'method'|'action'|'title'> {
+ id:string; action:string; title?:string; description?:string; headingLevel?:'h1'|'h2'|'h3';
+ email?:string; emailName?:string; passwordName?:string; emailLabel?:string; passwordLabel?:string;
+ passwordHelp?:string; submitLabel?:string; pendingLabel?:string; pending?:boolean; disabled?:boolean; submitDisabled?:boolean;
+ error?:string; errorTitle?:string; fieldErrors?:{email?:string;password?:string;confirmPassword?:string};
+ confirmPassword?:boolean; confirmPasswordName?:string; confirmPasswordLabel?:string; signinHref?:string; signinLabel?:string; termsHref?:string; termsLabel?:string;
+}
+const {id,action,title='Create account',description='Enter your account details.',headingLevel:Heading='h2',email='',emailName='email',passwordName='password',emailLabel='Email',passwordLabel='Password',passwordHelp,submitLabel='Create account',pendingLabel='Creating account…',pending=false,disabled=false,submitDisabled=false,error,errorTitle='Unable to create account',fieldErrors={},confirmPassword=false,confirmPasswordName='confirmPassword',confirmPasswordLabel='Confirm password',signinHref,signinLabel='Sign in',termsHref,termsLabel='Terms',class:className,...props}=Astro.props;
+if(!id?.trim()||!action?.trim()||!emailName.trim()||!passwordName.trim()||emailName===passwordName||(confirmPassword&&(!confirmPasswordName.trim()||[emailName,passwordName].includes(confirmPasswordName))))throw Error('SignUpBlock needs an id, host action and distinct field names.');
+---
+<form {...props} id={id} action={action} method="post" aria-labelledby={`${id}-title`} aria-describedby={`${id}-description`} aria-busy={pending?'true':undefined} data-slot="sign-up-block" class={cn('dmf-block dmf-sign-up-block',className)}>
+ <Card><CardHeader><Heading id={`${id}-title`}>{title}</Heading><p id={`${id}-description`}>{description}</p></CardHeader><CardContent>
+  {error&&<Alert variant="destructive" role="alert"><AlertTitle>{errorTitle}</AlertTitle><AlertDescription>{error}</AlertDescription></Alert>}
+  <fieldset disabled={disabled||pending} class="dmf-block-fields"><legend class="sr-only">{title}</legend>
+   <Field data-invalid={fieldErrors.email?'true':undefined}><FieldLabel for={`${id}-email`}>{emailLabel}</FieldLabel><Input id={`${id}-email`} name={emailName} type="email" autocomplete="email" value={email} required aria-invalid={fieldErrors.email?'true':undefined} aria-describedby={fieldErrors.email?`${id}-email-error`:undefined}/><FieldError id={`${id}-email-error`} errors={[{message:fieldErrors.email}]}/></Field>
+   <Field data-invalid={fieldErrors.password?'true':undefined}><FieldLabel for={`${id}-password`}>{passwordLabel}</FieldLabel><Input id={`${id}-password`} name={passwordName} type="password" autocomplete="new-password" required aria-invalid={fieldErrors.password?'true':undefined} aria-describedby={[passwordHelp?`${id}-password-help`:'',fieldErrors.password?`${id}-password-error`:''].filter(Boolean).join(' ')||undefined}/>{passwordHelp&&<FieldDescription id={`${id}-password-help`}>{passwordHelp}</FieldDescription>}<FieldError id={`${id}-password-error`} errors={[{message:fieldErrors.password}]}/></Field>
+   {confirmPassword&&<>   <Field data-invalid={fieldErrors.confirmPassword?'true':undefined}><FieldLabel for={`${id}-confirm-password`}>{confirmPasswordLabel}</FieldLabel><Input id={`${id}-confirm-password`} name={confirmPasswordName} type="password" autocomplete="new-password" required aria-invalid={fieldErrors.confirmPassword?'true':undefined} aria-describedby={fieldErrors.confirmPassword?`${id}-confirm-password-error`:undefined}/><FieldError id={`${id}-confirm-password-error`} errors={[{message:fieldErrors.confirmPassword}]}/></Field></>}
+   <slot name="fields"/>
+   <LoadingButton type="submit" label={submitLabel} loadingLabel={pendingLabel} loading={pending} disabled={disabled||submitDisabled} presentation="icon-label" class="w-full" data-block-submit/>
+  </fieldset>
+  <slot/>
+ </CardContent>{(signinHref||termsHref||Astro.slots.has('footer'))&&<CardFooter>{signinHref&&<a href={signinHref}>{signinLabel}</a>}{termsHref&&<a href={termsHref}>{termsLabel}</a>}<slot name="footer"/></CardFooter>}</Card>
+</form>

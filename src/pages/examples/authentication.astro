@@ -1,0 +1,7 @@
+---
+import DocumentationLayout from '../../layouts/DocumentationLayout.astro';
+import AuthenticationPreview from '../../components/docs/AuthenticationPreview.astro';
+---
+<DocumentationLayout title="Authentication journey" description="Local Sign In, Sign Up and recovery-request compositions with host-owned security boundaries." section="examples" crumbs={[{name:'Examples',href:'/examples/'},{name:'Authentication journey'}]}>
+<h1 class="docs-block-title">Authentication journey</h1><p class="docs-lead">Follow Sign In links to Create Account or Request Recovery. This example is a private centered-shell experiment, not a public Template API.</p><AuthenticationPreview kind="journey"/><section class="docs-section docs-prose"><h2>What the host owns</h2><p>All responses are local demonstrations. The host supplies endpoints, validation, password confirmation and policy, CSRF protection, rate limits, registration, email delivery and sessions. No credentials are read or stored by this preview.</p><p>The centered form width comes from existing Blocks. Logo, supporting content and footer remain ordinary page composition; multiple examples have not yet validated a public AuthCenteredTemplate contract.</p><nav aria-label="Authentication implementations"><a href="/blocks/sign-in/">SignInBlock</a> · <a href="/blocks/sign-up/">SignUpBlock</a> · <a href="/blocks/password-recovery/">PasswordRecoveryBlock</a> · <a href="/docs/authentication/">Workflow and recovery pattern</a></nav></section>
+</DocumentationLayout>
