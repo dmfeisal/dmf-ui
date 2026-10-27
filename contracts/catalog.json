@@ -1,35 +1,6 @@
 {
   "blocks": [
     {
-      "slug": "merchant-card",
-      "title": "MerchantCard",
-      "category": "Food Discovery",
-      "description": "A linked merchant summary adapted from the owner-selected HUI design, with a photo strip and compact review badge.",
-      "components": [
-        "Card",
-        "Text"
-      ],
-      "limitations": "Merchant facts, verification, imagery and destinations belong to the host. No live opening-hours, distance, pricing, ratings service or photo provider is included. Icon URLs are host-supplied local assets for portable SSR.",
-      "entry": "dmf-ui/blocks",
-      "framework": "Astro",
-      "source": "src/components/dmf-ui/blocks/merchant-card.astro",
-      "sha256": "b61d43d09cd3e1c589a6f5a91fe27e135ce0d8bb9ce2fbd91f1f7b9c183a932e",
-      "declaration": "interface Props extends Omit<HTMLAttributes<'article'>,'id'|'children'> {\n id:string;name:string;href:string;headingLevel?:'h2'|'h3'|'h4';\n photos:readonly {src:string;alt:string}[];icons:{verified:string;hours:string;distance:string;star:string};\n verified?:boolean;verifiedLabel?:string;statusText?:string;statusTone?:'neutral'|'open'|'closed';distanceText?:string;\n priceLevel?:1|2|3|4|5;priceLabel?:string;cuisines?:string;address?:string;\n rating?:number;reviewCount?:number;ratingLabel?:string;reviewsLabel?:string;locale?:string;photoFallback?:string;\n}",
-      "defaults": {
-        "headingLevel": "'h3'",
-        "verified": "false",
-        "verifiedLabel": "'Verified merchant'",
-        "statusTone": "'neutral'",
-        "ratingLabel": "'Rating'",
-        "reviewsLabel": "'reviews'",
-        "locale": "'en'",
-        "photoFallback": "'No photos supplied'"
-      },
-      "slots": [],
-      "status": "partial",
-      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
-    },
-    {
       "slug": "merchant-listing",
       "title": "MerchantListingBlock",
       "category": "Food Discovery",
@@ -300,20 +271,6 @@
         "stateOwnership": "Host owns items, stable keys, item rendering, status, pagination and data services."
       },
       {
-        "name": "MerchantCard",
-        "entry": "@dmf-ui/react",
-        "source": "packages/react/src/blocks/merchant-card.tsx",
-        "sha256": "03b49d21161753b173749b0e0e6887ca06aa93a873092d340a43c57bc7ea49ff",
-        "types": [
-          {
-            "name": "MerchantCardProps",
-            "declaration": "export type MerchantCardProps=Omit<ComponentPropsWithRef<'article'>,'id'|'children'> & {\n id:string;name:string;href:string;headingLevel?:'h2'|'h3'|'h4';\n photos:readonly {src:string;alt:string}[];icons:{verified:string;hours:string;distance:string;star:string};\n verified?:boolean;verifiedLabel?:string;statusText?:string;statusTone?:'neutral'|'open'|'closed';distanceText?:string;\n priceLevel?:1|2|3|4|5;priceLabel?:string;cuisines?:string;address?:string;\n rating?:number;reviewCount?:number;ratingLabel?:string;reviewsLabel?:string;locale?:string;photoFallback?:string;\n};"
-          }
-        ],
-        "status": "experimental",
-        "stateOwnership": "Host supplies merchant data, photo/icon URLs, verification and native destination; no business services."
-      },
-      {
         "name": "SearchFiltersBlock",
         "entry": "@dmf-ui/react",
         "source": "packages/react/src/blocks/search-filters.tsx",
@@ -326,6 +283,22 @@
         ],
         "status": "experimental",
         "stateOwnership": "Native uncontrolled GET fields and reset; host owns URL state, results, pending and errors."
+      }
+    ],
+    "domainComponents": [
+      {
+        "name": "MerchantCard",
+        "entry": "@dmf-ui/react",
+        "source": "packages/react/src/blocks/merchant-card.tsx",
+        "sha256": "03b49d21161753b173749b0e0e6887ca06aa93a873092d340a43c57bc7ea49ff",
+        "types": [
+          {
+            "name": "MerchantCardProps",
+            "declaration": "export type MerchantCardProps=Omit<ComponentPropsWithRef<'article'>,'id'|'children'> & {\n id:string;name:string;href:string;headingLevel?:'h2'|'h3'|'h4';\n photos:readonly {src:string;alt:string}[];icons:{verified:string;hours:string;distance:string;star:string};\n verified?:boolean;verifiedLabel?:string;statusText?:string;statusTone?:'neutral'|'open'|'closed';distanceText?:string;\n priceLevel?:1|2|3|4|5;priceLabel?:string;cuisines?:string;address?:string;\n rating?:number;reviewCount?:number;ratingLabel?:string;reviewsLabel?:string;locale?:string;photoFallback?:string;\n};"
+          }
+        ],
+        "status": "experimental",
+        "stateOwnership": "Host supplies merchant data, photo/icon URLs, verification and native destination; no business services."
       }
     ],
     "package": "@dmf-ui/react",
@@ -527,7 +500,7 @@
     {
       "slug": "accordion",
       "name": "Accordion",
-      "category": "Disclosure",
+      "category": "Overlays & Disclosure",
       "description": "Expandable sections with single or multiple open panels.",
       "options": [
         [
@@ -552,6 +525,11 @@
         "Arrow keys, Home/End and Enter/Space operate available headings."
       ],
       "documentation": "src/data/documentation.ts",
+      "previousCategory": "Disclosure",
+      "domains": [
+        "Point of Sale"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/accordion/index.ts",
       "parts": [
@@ -880,7 +858,7 @@
     {
       "slug": "alert",
       "name": "Alert",
-      "category": "Feedback",
+      "category": "Feedback & Status",
       "description": "Persistent supporting information or error feedback.",
       "options": [
         [
@@ -905,6 +883,12 @@
         "Alerts do not dismiss themselves or move focus. Long content and action rows reflow in either reading direction."
       ],
       "documentation": "src/data/content-documentation.ts",
+      "previousCategory": "Feedback",
+      "domains": [
+        "Authentication",
+        "Point of Sale"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/alert/index.ts",
       "parts": [
@@ -1187,7 +1171,7 @@
     {
       "slug": "alert-dialog",
       "name": "Alert Dialog",
-      "category": "Disclosure",
+      "category": "Overlays & Disclosure",
       "description": "An interrupting confirmation with safe initial focus and explicit host-owned completion.",
       "options": [
         [
@@ -1217,6 +1201,11 @@
         "Triggers offer label-only, icon-with-label and named icon-only versions with native titles. Cancel and Action accept native button content, so icons can supplement meaningful labels. Use these dialogs sparingly for decisions that need interruption; ordinary feedback belongs in Alert or Toast. No JavaScript means the trigger stays disabled; host fallbacks remain outside the hidden modal."
       ],
       "documentation": "src/data/modal-documentation.ts",
+      "previousCategory": "Disclosure",
+      "domains": [
+        "Commerce & Campaigns"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/alert-dialog/index.ts",
       "parts": [
@@ -1484,7 +1473,7 @@
     {
       "slug": "archive-index",
       "name": "Archive Index",
-      "category": "Portfolio",
+      "category": "Navigation",
       "description": "A compact numbered marker for archive rows.",
       "options": [
         [
@@ -1503,6 +1492,11 @@
         "The marker starts at 01 and is decorative by default. Set decorative=false only when the number conveys information that should be announced. It has no click or focus behavior."
       ],
       "documentation": "src/data/portfolio-documentation.ts",
+      "previousCategory": "Portfolio",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/archive-index/index.ts",
       "parts": [
@@ -1721,7 +1715,7 @@
     {
       "slug": "aspect-ratio",
       "name": "Aspect Ratio",
-      "category": "Content",
+      "category": "Layout & Structure",
       "description": "Keep authored media within a fixed ratio.",
       "options": [
         [
@@ -1736,6 +1730,9 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/aspect-ratio/index.ts",
       "parts": [
@@ -1950,7 +1947,7 @@
     {
       "slug": "attachment",
       "name": "Attachment",
-      "category": "Content",
+      "category": "Media & Content",
       "description": "Compose file metadata, media and explicit actions.",
       "options": [
         [
@@ -1970,6 +1967,11 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/attachment/index.ts",
       "parts": [
@@ -2371,7 +2373,7 @@
     {
       "slug": "avatar",
       "name": "Avatar",
-      "category": "Product details",
+      "category": "Data Display",
       "description": "A named image with initials when an image is absent or fails.",
       "options": [
         [
@@ -2411,6 +2413,11 @@
         "Provide an actual local or approved image URL. The examples use initials and an intentionally failed image to demonstrate fallback, not invented customer photos."
       ],
       "documentation": "src/data/product-documentation.ts",
+      "previousCategory": "Product details",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/avatar/index.ts",
       "parts": [
@@ -2654,7 +2661,7 @@
     {
       "slug": "badge",
       "name": "Badge",
-      "category": "Feedback",
+      "category": "Data Display",
       "description": "A compact textual label with an optional native link.",
       "options": [
         [
@@ -2674,6 +2681,13 @@
         "The link variant is a visual treatment; it does not turn a span into a link. Meaningful async announcements remain host-owned."
       ],
       "documentation": "src/data/content-documentation.ts",
+      "previousCategory": "Feedback",
+      "domains": [
+        "Commerce & Campaigns",
+        "Business Dashboard",
+        "Point of Sale"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/badge/index.ts",
       "parts": [
@@ -2918,7 +2932,7 @@
     {
       "slug": "banner",
       "name": "Banner",
-      "category": "Feedback",
+      "category": "Feedback & Status",
       "description": "Present a named announcement with optional dismissal.",
       "options": [
         [
@@ -2938,6 +2952,11 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Feedback",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/banner/index.ts",
       "parts": [
@@ -3222,6 +3241,11 @@
         "Use a meaningful navigation label when several breadcrumbs appear on one page. Items wrap; separators mirror in RTL. No JavaScript is required."
       ],
       "documentation": "src/data/navigation-documentation.ts",
+      "previousCategory": "Navigation",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/breadcrumb/index.ts",
       "parts": [
@@ -3469,7 +3493,7 @@
     {
       "slug": "button",
       "name": "Button",
-      "category": "Foundation",
+      "category": "Actions & Controls",
       "description": "Actions and links with shared variants, sizes and focus states.",
       "options": [
         [
@@ -3493,6 +3517,13 @@
         "Give icon-only buttons an accessible name. Disabled controls need visible context when the reason matters."
       ],
       "documentation": "src/data/documentation.ts",
+      "previousCategory": "Foundation",
+      "domains": [
+        "Authentication",
+        "Commerce & Campaigns",
+        "Point of Sale"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/button/index.ts",
       "parts": [
@@ -3794,7 +3825,7 @@
     {
       "slug": "button-group",
       "name": "Button Group",
-      "category": "Forms",
+      "category": "Actions & Controls",
       "description": "Group related native controls with connected edges.",
       "options": [
         [
@@ -3814,6 +3845,12 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Commerce & Campaigns",
+        "Point of Sale"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/button-group/index.ts",
       "parts": [
@@ -4095,7 +4132,7 @@
     {
       "slug": "card",
       "name": "Card",
-      "category": "Content",
+      "category": "Data Display",
       "description": "A composable surface for related content and native actions.",
       "options": [
         [
@@ -4120,6 +4157,13 @@
         "Authors supply empty, loading and error content when a card represents fetched data. No data fetching, timers or announcements are built in."
       ],
       "documentation": "src/data/content-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [
+        "Marketing & Editorial",
+        "Food Discovery",
+        "Commerce & Campaigns"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/card/index.ts",
       "parts": [
@@ -4417,6 +4461,7 @@
         "sources": [
           "tests/blocks.test.mjs",
           "tests/content.test.mjs",
+          "tests/taxonomy.test.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-content-docs.mjs",
           "tests/browser/dmf-ui-content.mjs",
@@ -4424,7 +4469,8 @@
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-merchant-card-consumer.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
-          "tests/browser/dmf-ui-selection.mjs"
+          "tests/browser/dmf-ui-selection.mjs",
+          "tests/browser/dmf-ui-taxonomy.mjs"
         ]
       },
       "status": "partial",
@@ -4471,7 +4517,7 @@
     {
       "slug": "carousel",
       "name": "Carousel",
-      "category": "Content",
+      "category": "Media & Content",
       "description": "Browse responsive slides using Embla and native controls.",
       "options": [
         [
@@ -4492,6 +4538,11 @@
         "JavaScript enhances this component. Keep essential content and a host fallback available; animation and native input behavior require cross-browser acceptance checks."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/carousel/index.ts",
       "parts": [
@@ -4790,7 +4841,7 @@
     {
       "slug": "checkbox",
       "name": "Checkbox",
-      "category": "Forms",
+      "category": "Forms & Inputs",
       "description": "A native checkbox for an independent choice.",
       "options": [
         [
@@ -4814,6 +4865,12 @@
         "Native validation, FormData and reset behavior remain available."
       ],
       "documentation": "src/data/documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Authentication",
+        "Food Discovery"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/checkbox/index.ts",
       "parts": [
@@ -5049,7 +5106,7 @@
     {
       "slug": "chip",
       "name": "Chip",
-      "category": "Product details",
+      "category": "Data Display",
       "description": "A selectable filter tag built on a native checkbox.",
       "options": [
         [
@@ -5084,6 +5141,11 @@
         "The host applies selected filters to its data. The example only reports selections and form values. Disabled entries remain named, unfocusable and excluded from form data."
       ],
       "documentation": "src/data/product-documentation.ts",
+      "previousCategory": "Product details",
+      "domains": [
+        "Food Discovery"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/chip/index.ts",
       "parts": [
@@ -5364,7 +5426,7 @@
     {
       "slug": "code-block",
       "name": "Code Block",
-      "category": "Content",
+      "category": "Media & Content",
       "description": "Composable code presentation with a compact header, syntax highlighting, line numbers and exact copy actions.",
       "options": [
         [
@@ -5400,6 +5462,11 @@
         "Nova styling follows the pinned shadcn/ui specification. Highlighting uses Astro’s server-side Code component; no browser highlighter is shipped. Copy uses the authored source and manual selection is available if clipboard access fails."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/code-block/index.ts",
       "parts": [
@@ -5911,7 +5978,7 @@
     {
       "slug": "code-tabs",
       "name": "Code Tabs",
-      "category": "Content",
+      "category": "Media & Content",
       "description": "Named code examples with keyboard tabs, syntax highlighting and independent copy actions.",
       "options": [
         [
@@ -5941,6 +6008,11 @@
         "Language highlighting runs on the server through Astro. No highlighter bundle or new framework runtime is sent to the browser."
       ],
       "documentation": "src/data/code-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/code-tabs/index.ts",
       "parts": [
@@ -6195,7 +6267,7 @@
     {
       "slug": "collapsible",
       "name": "Collapsible",
-      "category": "Disclosure",
+      "category": "Overlays & Disclosure",
       "description": "One native disclosure for optional supporting content.",
       "options": [
         [
@@ -6225,6 +6297,11 @@
         "For multiple related sections with coordinated keyboard behavior, use Accordion. Arbitrary links and controls may appear in the content; avoid nesting controls inside the summary."
       ],
       "documentation": "src/data/selection-documentation.ts",
+      "previousCategory": "Disclosure",
+      "domains": [
+        "Point of Sale"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/collapsible/index.ts",
       "parts": [
@@ -6465,7 +6542,7 @@
     {
       "slug": "combobox",
       "name": "Combobox",
-      "category": "Forms",
+      "category": "Forms & Inputs",
       "description": "Search a local list and explicitly choose one allowed value.",
       "options": [
         [
@@ -6501,6 +6578,12 @@
         "Popup stays local, inherits preset/direction and chooses above/below based on available viewport space; it does not portal out of clipping ancestors. The host must allow overlay overflow. Arrow highlighting does not commit or navigate; meaningful effects and submission are host-owned."
       ],
       "documentation": "src/data/selection-documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Food Discovery",
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/combobox/index.ts",
       "parts": [
@@ -6797,6 +6880,11 @@
         "JavaScript enhances this component. Keep essential content and a host fallback available; animation and native input behavior require cross-browser acceptance checks."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Navigation",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/command/index.ts",
       "parts": [
@@ -7272,7 +7360,7 @@
     {
       "slug": "command-block",
       "name": "Command Block",
-      "category": "Content",
+      "category": "Media & Content",
       "description": "Display package-manager commands with accessible tabs and exact copyable text.",
       "options": [
         [
@@ -7302,6 +7390,11 @@
         "Inherits Code Tabs keyboard navigation, server-rendered initial content and copy/fallback behavior."
       ],
       "documentation": "src/data/code-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/command-block/index.ts",
       "parts": [
@@ -7530,7 +7623,7 @@
     {
       "slug": "description-list",
       "name": "Description List",
-      "category": "Content",
+      "category": "Data Display",
       "description": "Semantic terms and details for product, account or project information.",
       "options": [
         [
@@ -7555,6 +7648,11 @@
         "This is static information, not a form, table or disclosure. It introduces no focus stops, live region or synthetic loading state. Essential terms and values stay visible; decorative icons can accompany the text."
       ],
       "documentation": "src/data/data-display-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/description-list/index.ts",
       "parts": [
@@ -7830,7 +7928,7 @@
     {
       "slug": "dialog",
       "name": "Dialog",
-      "category": "Disclosure",
+      "category": "Overlays & Disclosure",
       "description": "A named modal surface for a focused task.",
       "options": [
         [
@@ -7854,6 +7952,12 @@
         "This page previews the DMF modal. Explore product presets on the Create page."
       ],
       "documentation": "src/data/documentation.ts",
+      "previousCategory": "Disclosure",
+      "domains": [
+        "Authentication",
+        "Point of Sale"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/dialog/index.ts",
       "parts": [
@@ -8277,7 +8381,7 @@
     {
       "slug": "drawer",
       "name": "Drawer",
-      "category": "Disclosure",
+      "category": "Overlays & Disclosure",
       "description": "Use a swipe-capable drawer with explicit modal controls.",
       "options": [
         [
@@ -8298,6 +8402,11 @@
         "JavaScript enhances this component. Keep essential content and a host fallback available; animation and native input behavior require cross-browser acceptance checks."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Disclosure",
+      "domains": [
+        "Point of Sale"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/drawer/index.ts",
       "parts": [
@@ -8914,7 +9023,7 @@
     {
       "slug": "dropdown-menu",
       "name": "Dropdown Menu",
-      "category": "Disclosure",
+      "category": "Overlays & Disclosure",
       "description": "A keyboard-accessible list of actions and settings.",
       "options": [
         [
@@ -8938,6 +9047,11 @@
         "Checkbox and radio item exports support local settings; action handlers remain host-owned."
       ],
       "documentation": "src/data/documentation.ts",
+      "previousCategory": "Disclosure",
+      "domains": [
+        "Point of Sale"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/dropdown-menu/index.ts",
       "parts": [
@@ -9530,7 +9644,7 @@
     {
       "slug": "empty",
       "name": "Empty",
-      "category": "Feedback",
+      "category": "Feedback & Status",
       "description": "Compose a missing-result message with authored recovery links.",
       "options": [
         [
@@ -9550,6 +9664,9 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Feedback",
+      "domains": [],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/empty/index.ts",
       "parts": [
@@ -9830,7 +9947,8 @@
           "tests/browser/dmf-ui-navigation.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/dmf-ui-search.mjs",
-          "tests/browser/dmf-ui-selection.mjs"
+          "tests/browser/dmf-ui-selection.mjs",
+          "tests/browser/dmf-ui-taxonomy.mjs"
         ]
       },
       "status": "partial",
@@ -9873,7 +9991,7 @@
     {
       "slug": "empty-state",
       "name": "Empty State",
-      "category": "Feedback",
+      "category": "Feedback & Status",
       "description": "Explain a missing result and offer a useful next step.",
       "options": [
         [
@@ -9907,6 +10025,12 @@
         "Use the slot for real links or actions owned by the host. Empty State does not announce itself as an alert or invent a recovery action."
       ],
       "documentation": "src/data/feedback-documentation.ts",
+      "previousCategory": "Feedback",
+      "domains": [
+        "Food Discovery",
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/empty-state/index.ts",
       "parts": [
@@ -10144,7 +10268,7 @@
     {
       "slug": "field",
       "name": "Field",
-      "category": "Forms",
+      "category": "Forms & Inputs",
       "description": "Compose labels, descriptions, errors and controls.",
       "options": [
         [
@@ -10158,6 +10282,11 @@
         "Field is layout and semantics; native validity and host validation decide when an error appears."
       ],
       "documentation": "src/data/documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Authentication"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/field/index.ts",
       "parts": [
@@ -10605,7 +10734,7 @@
     {
       "slug": "file-input",
       "name": "File Input",
-      "category": "Forms",
+      "category": "Forms & Inputs",
       "description": "A labeled native file picker with optional selection metadata.",
       "options": [
         [
@@ -10630,6 +10759,11 @@
         "Without JavaScript, native file selection and form values remain available while enhanced metadata stays hidden. Native reset clears selection; cancelled reset retains it. Empty selections and disabled controls retain standard browser FormData behavior."
       ],
       "documentation": "src/data/form-composition-documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/file-input/index.ts",
       "parts": [
@@ -10856,7 +10990,7 @@
     {
       "slug": "form",
       "name": "Form",
-      "category": "Forms",
+      "category": "Forms & Inputs",
       "description": "Compose native form submission and field layout.",
       "options": [
         [
@@ -10876,6 +11010,12 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Authentication",
+        "Commerce & Campaigns"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/form/index.ts",
       "parts": [
@@ -11105,7 +11245,7 @@
     {
       "slug": "header",
       "name": "Header",
-      "category": "Navigation",
+      "category": "Layout & Structure",
       "description": "Compose a responsive header with grouped content.",
       "options": [
         [
@@ -11125,6 +11265,11 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Navigation",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/header/index.ts",
       "parts": [
@@ -11386,7 +11531,7 @@
     {
       "slug": "hover-card",
       "name": "Hover Card",
-      "category": "Disclosure",
+      "category": "Overlays & Disclosure",
       "description": "Show supplemental link information on hover or focus.",
       "options": [
         [
@@ -11407,6 +11552,11 @@
         "JavaScript enhances this component. Keep essential content and a host fallback available; animation and native input behavior require cross-browser acceptance checks."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Disclosure",
+      "domains": [
+        "Point of Sale"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/hover-card/index.ts",
       "parts": [
@@ -11792,7 +11942,7 @@
     {
       "slug": "icon",
       "name": "Icon",
-      "category": "Foundation",
+      "category": "Media & Content",
       "description": "Resolve content icons and brand marks without a remote request.",
       "options": [
         [
@@ -11813,6 +11963,11 @@
         "Dynamic icons resolve from local package imports on the server; no host-root node_modules glob or remote icon request is required. Prefer named Lucide imports for icons fixed in code. Simple Icons notices are retained."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Foundation",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/icon/index.ts",
       "parts": [
@@ -12011,6 +12166,7 @@
           "tests/feedback.test.mjs",
           "tests/fulldev-catalog.test.mjs",
           "tests/navigation-patterns.test.mjs",
+          "tests/taxonomy.test.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
           "tests/browser/dmf-ui-form-composition.mjs",
@@ -12020,7 +12176,8 @@
           "tests/browser/dmf-ui-merchant-card-consumer.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
-          "tests/browser/dmf-ui-selection.mjs"
+          "tests/browser/dmf-ui-selection.mjs",
+          "tests/browser/dmf-ui-taxonomy.mjs"
         ]
       },
       "status": "partial",
@@ -12043,7 +12200,7 @@
     {
       "slug": "image",
       "name": "Image",
-      "category": "Content",
+      "category": "Media & Content",
       "description": "Use Astro image optimization with explicit alt text and dimensions.",
       "options": [
         [
@@ -12063,6 +12220,13 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [
+        "Marketing & Editorial",
+        "Food Discovery",
+        "Commerce & Campaigns"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/image/index.ts",
       "parts": [
@@ -12279,7 +12443,7 @@
     {
       "slug": "input",
       "name": "Input",
-      "category": "Forms",
+      "category": "Forms & Inputs",
       "description": "A styled native input with standard form attributes.",
       "options": [
         [
@@ -12303,6 +12467,13 @@
         "Use aria-invalid and aria-describedby for errors; do not rely on color alone."
       ],
       "documentation": "src/data/documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Authentication",
+        "Food Discovery",
+        "Commerce & Campaigns"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/input/index.ts",
       "parts": [
@@ -12511,7 +12682,8 @@
           "tests/browser/dmf-ui-react-consumer.mjs",
           "tests/browser/dmf-ui-search.mjs",
           "tests/browser/dmf-ui-selection-contract.mjs",
-          "tests/browser/dmf-ui-selection.mjs"
+          "tests/browser/dmf-ui-selection.mjs",
+          "tests/browser/dmf-ui-taxonomy.mjs"
         ]
       },
       "status": "partial",
@@ -12534,7 +12706,7 @@
     {
       "slug": "input-group",
       "name": "Input Group",
-      "category": "Forms",
+      "category": "Forms & Inputs",
       "description": "Compose a native input with prefixes, suffixes and real actions.",
       "options": [
         [
@@ -12559,6 +12731,11 @@
         "The wrapper reflows at narrow widths and retains visible focus. It does not intercept events, create validity, invent an action or submit a form. Use standard input types and native disabled/readonly/form attributes."
       ],
       "documentation": "src/data/form-composition-documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/input-group/index.ts",
       "parts": [
@@ -12804,7 +12981,7 @@
     {
       "slug": "item",
       "name": "Item",
-      "category": "Content",
+      "category": "Data Display",
       "description": "Compose a named content row with media, details and actions.",
       "options": [
         [
@@ -12824,6 +13001,11 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/item/index.ts",
       "parts": [
@@ -13228,7 +13410,7 @@
     {
       "slug": "kbd",
       "name": "Kbd",
-      "category": "Content",
+      "category": "Data Display",
       "description": "Display keyboard instructions as static text.",
       "options": [
         [
@@ -13248,6 +13430,11 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/kbd/index.ts",
       "parts": [
@@ -13476,7 +13663,7 @@
     {
       "slug": "label",
       "name": "Label",
-      "category": "Forms",
+      "category": "Forms & Inputs",
       "description": "A visible name linked to a form control.",
       "options": [
         [
@@ -13489,6 +13676,11 @@
         "Keep labels visible and specific. Placeholder text does not replace a label."
       ],
       "documentation": "src/data/documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Authentication"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/label/index.ts",
       "parts": [
@@ -13726,7 +13918,7 @@
     {
       "slug": "layout",
       "name": "Layout",
-      "category": "Foundation",
+      "category": "Layout & Structure",
       "description": "Build a complete document shell with metadata and native page structure.",
       "options": [
         [
@@ -13747,6 +13939,11 @@
         "Layout is a complete document shell and must not be nested inside another document. Global view transitions are left to the host; none are enabled automatically."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Foundation",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/layout/index.ts",
       "parts": [
@@ -14024,6 +14221,7 @@
           "tests/foundations.test.mjs",
           "tests/fulldev-catalog.test.mjs",
           "tests/package.test.mjs",
+          "tests/taxonomy.test.mjs",
           "tests/browser/dmf-ui-discovery-consumer.mjs",
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-foundations.mjs",
@@ -14065,7 +14263,7 @@
     {
       "slug": "loading-button",
       "name": "Loading Button",
-      "category": "Feedback",
+      "category": "Actions & Controls",
       "description": "A native action button with explicit pending and disabled states.",
       "options": [
         [
@@ -14110,6 +14308,12 @@
         "Defaults to type=button. Explicit type=submit keeps native form submission while idle; the host must handle pending state after validation. No transport, retry, timeout or automatic success is invented."
       ],
       "documentation": "src/data/feedback-documentation.ts",
+      "previousCategory": "Feedback",
+      "domains": [
+        "Authentication",
+        "Point of Sale"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/loading-button/index.ts",
       "parts": [
@@ -14354,7 +14558,7 @@
     {
       "slug": "logo",
       "name": "Logo",
-      "category": "Content",
+      "category": "Media & Content",
       "description": "Compose a native brand link with text or image.",
       "options": [
         [
@@ -14374,6 +14578,11 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/logo/index.ts",
       "parts": [
@@ -14630,7 +14839,7 @@
     {
       "slug": "marquee",
       "name": "Marquee",
-      "category": "Content",
+      "category": "Media & Content",
       "description": "Present a scrolling row with pause and reduced-motion behavior.",
       "options": [
         [
@@ -14651,6 +14860,11 @@
         "JavaScript enhances this component. Keep essential content and a host fallback available; animation and native input behavior require cross-browser acceptance checks."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/marquee/index.ts",
       "parts": [
@@ -14929,9 +15143,376 @@
       ]
     },
     {
+      "slug": "merchant-card",
+      "name": "MerchantCard",
+      "category": "Data Display",
+      "description": "A linked merchant summary with supplied photos and an optional compact review badge.",
+      "options": [],
+      "accessibility": [
+        "The host supplies real merchant data, local image/icon URLs and destinations.",
+        "One native link covers the summary. Rating and verification are read-only host assertions.",
+        "The legacy dmf-ui/blocks export remains available; canonical ownership is Components / Data Display."
+      ],
+      "documentation": "src/data/merchant-card-documentation.ts",
+      "previousCategory": "Data Display",
+      "domains": [
+        "Food Discovery"
+      ],
+      "kind": "component",
+      "package": "dmf-ui",
+      "entry": "./src/components/dmf-ui/merchant-card/index.ts",
+      "parts": [
+        {
+          "file": "src/components/dmf-ui/merchant-card/merchant-card.astro",
+          "slots": [],
+          "dataSlots": [
+            "merchant-card"
+          ],
+          "properties": [
+            {
+              "name": "id",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "href",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "headingLevel",
+              "type": "'h2'|'h3'|'h4'",
+              "optional": true
+            },
+            {
+              "name": "photos",
+              "type": "readonly {src:string;alt:string}[]",
+              "optional": false
+            },
+            {
+              "name": "src",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "alt",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "icons",
+              "type": "{verified:string;hours:string;distance:string;star:string}",
+              "optional": false
+            },
+            {
+              "name": "verified",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "hours",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "distance",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "star",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "verified",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "verifiedLabel",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "statusText",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "statusTone",
+              "type": "'neutral'|'open'|'closed'",
+              "optional": true
+            },
+            {
+              "name": "distanceText",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "priceLevel",
+              "type": "1|2|3|4|5",
+              "optional": true
+            },
+            {
+              "name": "priceLabel",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "cuisines",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "address",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "rating",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "reviewCount",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "ratingLabel",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "reviewsLabel",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "locale",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "photoFallback",
+              "type": "string",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'article'>"
+          ],
+          "declaration": "interface Props extends Omit<HTMLAttributes<'article'>,'id'|'children'> {\n id:string;name:string;href:string;headingLevel?:'h2'|'h3'|'h4';\n photos:readonly {src:string;alt:string}[];icons:{verified:string;hours:string;distance:string;star:string};\n verified?:boolean;verifiedLabel?:string;statusText?:string;statusTone?:'neutral'|'open'|'closed';distanceText?:string;\n priceLevel?:1|2|3|4|5;priceLabel?:string;cuisines?:string;address?:string;\n rating?:number;reviewCount?:number;ratingLabel?:string;reviewsLabel?:string;locale?:string;photoFallback?:string;\n}"
+        }
+      ],
+      "variants": {},
+      "defaults": {
+        "merchant-card.astro:headingLevel": "'h3'",
+        "merchant-card.astro:verified": "false",
+        "merchant-card.astro:verifiedLabel": "'Verified merchant'",
+        "merchant-card.astro:statusTone": "'neutral'",
+        "merchant-card.astro:ratingLabel": "'Rating'",
+        "merchant-card.astro:reviewsLabel": "'reviews'",
+        "merchant-card.astro:locale": "'en'",
+        "merchant-card.astro:photoFallback": "'No photos supplied'"
+      },
+      "states": {
+        "default": {
+          "status": "authored-default",
+          "note": "Default authored composition."
+        },
+        "hover": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "pressed": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "focus": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "focus-visible": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "disabled": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "unselected": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "selected": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "checked": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "unchecked": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "indeterminate": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "on": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "off": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "current": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "open": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "closed": {
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
+        },
+        "expanded": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "collapsed": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "valid": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "invalid": {
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
+        },
+        "warning": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "required": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "idle": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "loading": {
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
+        },
+        "pending": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "success": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "error": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "empty": {
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
+        },
+        "skeleton": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "highlighted": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "dragging": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "drag-over": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "sorting": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "resizing": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "editing": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        },
+        "read-only": {
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
+        },
+        "visited": {
+          "status": "not-established",
+          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+        }
+      },
+      "tokens": [],
+      "reviewedContract": null,
+      "presets": {
+        "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
+        "available": [
+          "dmf",
+          "cb-ui",
+          "hui",
+          "portfolio",
+          "qdi"
+        ]
+      },
+      "tests": {
+        "status": "references-only",
+        "sources": [
+          "tests/blocks.test.mjs",
+          "tests/taxonomy.test.mjs",
+          "tests/browser/dmf-ui-taxonomy.mjs"
+        ]
+      },
+      "status": "partial",
+      "sources": [
+        {
+          "path": "src/components/dmf-ui/merchant-card/index.ts",
+          "sha256": "cca632d11377ad513154cccb45ebf6c722709416cbc96d9f84af5d40baa0a5e0"
+        },
+        {
+          "path": "src/components/dmf-ui/merchant-card/merchant-card.astro",
+          "sha256": "b61d43d09cd3e1c589a6f5a91fe27e135ce0d8bb9ce2fbd91f1f7b9c183a932e"
+        }
+      ],
+      "gaps": [
+        "Source extraction does not resolve imported runtime option types or expand every inherited native attribute.",
+        "State evidence is lexical; manual applicability, behavior and preset acceptance must be reviewed per part.",
+        "Do not infer loading, controlled state or a size option from another family."
+      ]
+    },
+    {
       "slug": "native-select",
       "name": "Native Select",
-      "category": "Forms",
+      "category": "Forms & Inputs",
       "description": "Style a native select while preserving browser form behavior.",
       "options": [
         [
@@ -14951,6 +15532,12 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Food Discovery",
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/native-select/index.ts",
       "parts": [
@@ -15243,6 +15830,11 @@
         "Horizontal lists wrap; vertical lists stretch. Labels can reflow and both layouts support RTL without custom keyboard handlers."
       ],
       "documentation": "src/data/navigation-documentation.ts",
+      "previousCategory": "Navigation",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/navigation-menu/index.ts",
       "parts": [
@@ -15480,7 +16072,7 @@
     {
       "slug": "number-field",
       "name": "Number Field",
-      "category": "Forms",
+      "category": "Forms & Inputs",
       "description": "A labeled native number input with optional enhanced step buttons.",
       "options": [
         [
@@ -15520,6 +16112,12 @@
         "Without JavaScript the extra buttons stay hidden and the native number input remains usable. Reset updates step availability after the native reset action. Host code assigning value, bounds or disabled state should dispatch input or change to synchronize buttons. There is no persistence or auto-submission."
       ],
       "documentation": "src/data/form-composition-documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Commerce & Campaigns",
+        "Point of Sale"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/number-field/index.ts",
       "parts": [
@@ -15839,6 +16437,12 @@
         "Current-page links use aria-current=page. Links support normal Enter, open-in-new-tab, browser Back/Forward and no-JavaScript navigation."
       ],
       "documentation": "src/data/navigation-documentation.ts",
+      "previousCategory": "Navigation",
+      "domains": [
+        "Food Discovery",
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/pagination/index.ts",
       "parts": [
@@ -16083,7 +16687,7 @@
     {
       "slug": "popover",
       "name": "Popover",
-      "category": "Disclosure",
+      "category": "Overlays & Disclosure",
       "description": "A nonmodal floating panel for small edits or supporting content.",
       "options": [
         [
@@ -16107,6 +16711,11 @@
         "The portal inherits its originating preset and reading direction."
       ],
       "documentation": "src/data/documentation.ts",
+      "previousCategory": "Disclosure",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/popover/index.ts",
       "parts": [
@@ -16510,7 +17119,7 @@
     {
       "slug": "price",
       "name": "Price",
-      "category": "Content",
+      "category": "Data Display",
       "description": "Format authored prices and comparison values with locale-aware text.",
       "options": [
         [
@@ -16530,6 +17139,11 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [
+        "Commerce & Campaigns"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/price/index.ts",
       "parts": [
@@ -16828,7 +17442,7 @@
     {
       "slug": "progress",
       "name": "Progress",
-      "category": "Feedback",
+      "category": "Feedback & Status",
       "description": "Named native progress for known or unknown completion.",
       "options": [
         [
@@ -16863,6 +17477,12 @@
         "The visible label remains in every size. showValue=false hides only the numeric caption. Reduced motion keeps the unknown-progress marker static."
       ],
       "documentation": "src/data/feedback-documentation.ts",
+      "previousCategory": "Feedback",
+      "domains": [
+        "Commerce & Campaigns",
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/progress/index.ts",
       "parts": [
@@ -17104,7 +17724,7 @@
     {
       "slug": "project-action-bar",
       "name": "Project Action Bar",
-      "category": "Portfolio",
+      "category": "Actions & Controls",
       "description": "A contextual heading and a group of real project links.",
       "options": [
         [
@@ -17138,6 +17758,11 @@
         "The Portfolio preset retains square editorial action boundaries. Other presets use their own radius. The layout stacks on narrow screens and labels can reflow."
       ],
       "documentation": "src/data/portfolio-documentation.ts",
+      "previousCategory": "Portfolio",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/project-action-bar/index.ts",
       "parts": [
@@ -17393,7 +18018,7 @@
     {
       "slug": "radio-group",
       "name": "Radio Group",
-      "category": "Forms",
+      "category": "Forms & Inputs",
       "description": "One choice from a named group of options.",
       "options": [
         [
@@ -17417,6 +18042,11 @@
         "Native form proxies preserve values, validity and reset."
       ],
       "documentation": "src/data/documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/radio-group/index.ts",
       "parts": [
@@ -17702,7 +18332,7 @@
     {
       "slug": "rating",
       "name": "Rating",
-      "category": "Product details",
+      "category": "Data Display",
       "description": "A readable score or an editable native radio rating.",
       "options": [
         [
@@ -17747,6 +18377,11 @@
         "The editable widget selects one numbered score; it does not implement hover previews or cumulative star animation. Selected shape, border and native checked state supplement color."
       ],
       "documentation": "src/data/product-documentation.ts",
+      "previousCategory": "Product details",
+      "domains": [
+        "Food Discovery"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/rating/index.ts",
       "parts": [
@@ -18046,7 +18681,7 @@
     {
       "slug": "resizable",
       "name": "Resizable",
-      "category": "Content",
+      "category": "Layout & Structure",
       "description": "Resize adjacent panels using keyboard or pointer controls.",
       "options": [
         [
@@ -18067,6 +18702,11 @@
         "JavaScript enhances this component. Keep essential content and a host fallback available; animation and native input behavior require cross-browser acceptance checks."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/resizable/index.ts",
       "parts": [
@@ -18388,6 +19028,11 @@
         "Presentation changes link and trigger content, not meaning. Current/unavailable states are explicit. Icon-only links use shared keyboard-accessible tooltips; icon-only triggers still have native accessible names."
       ],
       "documentation": "src/data/navigation-patterns-documentation.ts",
+      "previousCategory": "Navigation",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/responsive-navigation/index.ts",
       "parts": [
@@ -18617,7 +19262,7 @@
     {
       "slug": "section",
       "name": "Section",
-      "category": "Foundation",
+      "category": "Layout & Structure",
       "description": "Group a page section with authored heading and description.",
       "options": [
         [
@@ -18637,6 +19282,11 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Foundation",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/section/index.ts",
       "parts": [
@@ -18955,6 +19605,11 @@
         "Unlike the portfolio page integration, this component does not measure its header, hide navigation, animate scrolling or create a floating mobile popover. The host owns sticky positioning, scroll margins and responsive placement."
       ],
       "documentation": "src/data/portfolio-documentation.ts",
+      "previousCategory": "Navigation",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/section-navigation/index.ts",
       "parts": [
@@ -19207,7 +19862,7 @@
     {
       "slug": "select",
       "name": "Select",
-      "category": "Forms",
+      "category": "Forms & Inputs",
       "description": "A compact single-selection control with native form integration.",
       "options": [
         [
@@ -19231,6 +19886,12 @@
         "Native generated select controls own FormData, validity and reset."
       ],
       "documentation": "src/data/documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Food Discovery",
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/select/index.ts",
       "parts": [
@@ -19718,6 +20379,7 @@
           "tests/browser/dmf-ui-sign-in-consumer.mjs",
           "tests/browser/dmf-ui-switch.mjs",
           "tests/browser/dmf-ui-tabs.mjs",
+          "tests/browser/dmf-ui-taxonomy.mjs",
           "tests/browser/native-dropdown-contrast.mjs"
         ]
       },
@@ -19769,7 +20431,7 @@
     {
       "slug": "separator",
       "name": "Separator",
-      "category": "Foundation",
+      "category": "Layout & Structure",
       "description": "A visual or semantic boundary between related content.",
       "options": [
         [
@@ -19787,6 +20449,11 @@
         "Use a separator when it communicates grouping. Decorative dividers should not add noise to the accessibility tree."
       ],
       "documentation": "src/data/documentation.ts",
+      "previousCategory": "Foundation",
+      "domains": [
+        "Authentication"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/separator/index.ts",
       "parts": [
@@ -20006,7 +20673,7 @@
     {
       "slug": "sheet",
       "name": "Sheet",
-      "category": "Disclosure",
+      "category": "Overlays & Disclosure",
       "description": "A modal side panel for a short, focused task.",
       "options": [
         [
@@ -20046,6 +20713,11 @@
         "Triggers support all three presentations and named icon-only native titles. They stay disabled until enhancement; without JavaScript, hidden panel content is unavailable, so the host must provide any necessary fallback outside it. setSheetOpen(root, boolean) requests state through the existing dialog event API. No navigation or persistence is built in."
       ],
       "documentation": "src/data/modal-documentation.ts",
+      "previousCategory": "Disclosure",
+      "domains": [
+        "Point of Sale"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/sheet/index.ts",
       "parts": [
@@ -20326,6 +20998,11 @@
         "The host owns layout width, sticky positioning and page routing. Multiple sidebars keep independent disclosure state; native disclosure still works without JavaScript."
       ],
       "documentation": "src/data/navigation-patterns-documentation.ts",
+      "previousCategory": "Navigation",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/sidebar/index.ts",
       "parts": [
@@ -20541,7 +21218,8 @@
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
-          "tests/browser/dmf-ui-search.mjs"
+          "tests/browser/dmf-ui-search.mjs",
+          "tests/browser/dmf-ui-taxonomy.mjs"
         ]
       },
       "status": "partial",
@@ -20564,7 +21242,7 @@
     {
       "slug": "skeleton",
       "name": "Skeleton",
-      "category": "Feedback",
+      "category": "Feedback & Status",
       "description": "Decorative placeholders while real content is loading.",
       "options": [
         [
@@ -20583,6 +21261,12 @@
         "Use CSS or native style attributes to match the expected content dimensions. Reduced motion removes the pulse. Do not leave an animated placeholder after an error or empty result."
       ],
       "documentation": "src/data/feedback-documentation.ts",
+      "previousCategory": "Feedback",
+      "domains": [
+        "Food Discovery",
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/skeleton/index.ts",
       "parts": [
@@ -20803,7 +21487,7 @@
     {
       "slug": "slider",
       "name": "Slider",
-      "category": "Forms",
+      "category": "Forms & Inputs",
       "description": "A labeled native range input with browser-owned keyboard and form behavior.",
       "options": [
         [
@@ -20853,6 +21537,11 @@
         "Input/change events synchronize the caption and unit-aware aria-valuetext. Programmatic value changes should dispatch a bubbling input event. Form reset restores the initial value and caption after native reset. Without JavaScript, the labeled native slider and form value still work. The host owns effects and persistence."
       ],
       "documentation": "src/data/data-display-documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/slider/index.ts",
       "parts": [
@@ -21118,7 +21807,7 @@
     {
       "slug": "spinner",
       "name": "Spinner",
-      "category": "Feedback",
+      "category": "Feedback & Status",
       "description": "Expose an intentional loading indicator or decorative progress icon.",
       "options": [
         [
@@ -21138,6 +21827,11 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Feedback",
+      "domains": [
+        "Point of Sale"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/spinner/index.ts",
       "parts": [
@@ -21372,7 +22066,7 @@
     {
       "slug": "switch",
       "name": "Switch",
-      "category": "Forms",
+      "category": "Forms & Inputs",
       "description": "An on/off setting with a labeled, stable track.",
       "options": [
         [
@@ -21396,6 +22090,11 @@
         "The track keeps its LTR geometry inside RTL layouts; the surrounding label follows reading direction."
       ],
       "documentation": "src/data/documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/switch/index.ts",
       "parts": [
@@ -21670,7 +22369,7 @@
     {
       "slug": "table",
       "name": "Table",
-      "category": "Content",
+      "category": "Data Display",
       "description": "Native tabular records with scoped headers and local horizontal scrolling.",
       "options": [
         [
@@ -21705,6 +22404,12 @@
         "Sorting, selection, filtering, pagination and data fetching are host responsibilities. A sorting button needs host-managed order and aria-sort on its header; this component does not claim spreadsheet or ARIA grid behavior. Icon-only cell actions use named buttons or links; record text stays readable."
       ],
       "documentation": "src/data/data-display-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [
+        "Business Dashboard",
+        "Point of Sale"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/table/index.ts",
       "parts": [
@@ -22072,6 +22777,11 @@
         "Horizontal arrows mirror in RTL; disabled items are skipped."
       ],
       "documentation": "src/data/documentation.ts",
+      "previousCategory": "Navigation",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/tabs/index.ts",
       "parts": [
@@ -22400,7 +23110,7 @@
     {
       "slug": "tag-list",
       "name": "Tag List",
-      "category": "Portfolio",
+      "category": "Data Display",
       "description": "Informational outlined topic pills adapted from the portfolio.",
       "options": [
         [
@@ -22429,6 +23139,11 @@
         "These are informational labels without links, hover inversion or pointer affordances. Use Chip for checkbox filters or Badge for one state label. Empty lists render nothing; long text wraps."
       ],
       "documentation": "src/data/portfolio-documentation.ts",
+      "previousCategory": "Portfolio",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/tag-list/index.ts",
       "parts": [
@@ -22671,7 +23386,7 @@
     {
       "slug": "text",
       "name": "Text",
-      "category": "Foundation",
+      "category": "Media & Content",
       "description": "Semantic text with explicit size, weight and tone.",
       "options": [
         [
@@ -22700,6 +23415,11 @@
         "Text inherits the product font, scales with the host root and wraps long content. It has no truncation or live-region behavior."
       ],
       "documentation": "src/data/content-documentation.ts",
+      "previousCategory": "Foundation",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/text/index.ts",
       "parts": [
@@ -22960,6 +23680,7 @@
           "tests/browser/dmf-ui-selection.mjs",
           "tests/browser/dmf-ui-sign-in-consumer.mjs",
           "tests/browser/dmf-ui-tabs.mjs",
+          "tests/browser/dmf-ui-taxonomy.mjs",
           "tests/browser/dmf-ui-tokens.mjs",
           "tests/browser/native-dropdown-contrast.mjs"
         ]
@@ -22984,7 +23705,7 @@
     {
       "slug": "textarea",
       "name": "Textarea",
-      "category": "Forms",
+      "category": "Forms & Inputs",
       "description": "A native multiline text field.",
       "options": [
         [
@@ -23008,6 +23729,11 @@
         "Native text editing, resizing and form behavior remain available."
       ],
       "documentation": "src/data/documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Authentication"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/textarea/index.ts",
       "parts": [
@@ -23220,7 +23946,7 @@
     {
       "slug": "theme-toggle",
       "name": "Theme Toggle",
-      "category": "Forms",
+      "category": "Actions & Controls",
       "description": "Toggle the DMF light/dark theme with a stable named button.",
       "options": [
         [
@@ -23241,6 +23967,11 @@
         "Uses data-theme and the optional DMF ThemeProvider. The documentation header handles shared theme requests. Storage is used only when a host explicitly renders ThemeProvider."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/theme-toggle/index.ts",
       "parts": [
@@ -23461,7 +24192,7 @@
     {
       "slug": "toast",
       "name": "Toast",
-      "category": "Feedback",
+      "category": "Feedback & Status",
       "description": "Polite, transient feedback for a completed local action.",
       "options": [
         [
@@ -23485,6 +24216,11 @@
         "The host owns creation and disposal. Give multiple notification regions distinct names. This page previews DMF only."
       ],
       "documentation": "src/data/documentation.ts",
+      "previousCategory": "Feedback",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/toast/index.ts",
       "parts": [
@@ -23948,6 +24684,11 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Navigation",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/toc/index.ts",
       "parts": [
@@ -24261,7 +25002,7 @@
     {
       "slug": "toggle",
       "name": "Toggle",
-      "category": "Forms",
+      "category": "Actions & Controls",
       "description": "A stable-label command button with an explicit pressed state.",
       "options": [
         [
@@ -24301,6 +25042,12 @@
         "Toggles are commands, not successful form controls: no automatic name/value submission or form reset is invented. Buttons remain disabled until enhancement, including without JavaScript. Use Checkbox or Chip for submitted boolean choices."
       ],
       "documentation": "src/data/selection-documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Business Dashboard",
+        "Point of Sale"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/toggle/index.ts",
       "parts": [
@@ -24607,7 +25354,7 @@
     {
       "slug": "toggle-group",
       "name": "Toggle Group",
-      "category": "Forms",
+      "category": "Actions & Controls",
       "description": "A named set of toggle commands with single or multiple pressed states.",
       "options": [
         [
@@ -24647,6 +25394,12 @@
         "Bubbling toggle-group:change exposes detail.values. The host applies effects and persistence. These commands do not submit form values or automatically reset with a form; use Radio Group or Checkbox for form choices."
       ],
       "documentation": "src/data/selection-documentation.ts",
+      "previousCategory": "Forms",
+      "domains": [
+        "Business Dashboard",
+        "Point of Sale"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/toggle-group/index.ts",
       "parts": [
@@ -24914,7 +25667,7 @@
     {
       "slug": "tooltip",
       "name": "Tooltip",
-      "category": "Disclosure",
+      "category": "Overlays & Disclosure",
       "description": "Short supplemental help on pointer hover or keyboard focus.",
       "options": [
         [
@@ -24938,6 +25691,11 @@
         "Hovering the content keeps it open. Escape dismisses without moving focus. Touch taps cancel transient hover help. Use Popover for interactive content."
       ],
       "documentation": "src/data/documentation.ts",
+      "previousCategory": "Disclosure",
+      "domains": [
+        "Business Dashboard"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/tooltip/index.ts",
       "parts": [
@@ -25301,7 +26059,7 @@
     {
       "slug": "typography",
       "name": "Typography",
-      "category": "Content",
+      "category": "Media & Content",
       "description": "Style prose and semantic text primitives independently of page layout.",
       "options": [
         [
@@ -25321,6 +26079,11 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/typography/index.ts",
       "parts": [
@@ -25852,6 +26615,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/taxonomy.test.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-foundations.mjs"
         ]
@@ -25936,7 +26700,7 @@
     {
       "slug": "video",
       "name": "Video",
-      "category": "Content",
+      "category": "Media & Content",
       "description": "Embed a supported YouTube URL with an explicit title.",
       "options": [
         [
@@ -25956,6 +26720,11 @@
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
+      "previousCategory": "Content",
+      "domains": [
+        "Marketing & Editorial"
+      ],
+      "kind": "component",
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/video/index.ts",
       "parts": [

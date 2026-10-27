@@ -8,12 +8,13 @@ import ComponentContract from '../../components/docs/ComponentContract.astro';
 import PreviewControls from '../../components/docs/PreviewControls.astro';
 import ComponentPreview from '../../components/docs/ComponentPreview.astro';
 import {components} from '../../data/documentation';
+import MerchantCardDocumentation from '../../components/docs/MerchantCardDocumentation.astro';
 export function getStaticPaths(){return components.map(component=>({params:{slug:component.slug},props:{component}}));}
 const {component}=Astro.props;
 const importEnd=component.usage.indexOf('\n\n');
 const usage=importEnd>0?`---\n${component.usage.slice(0,importEnd)}\n---\n${component.usage.slice(importEnd+2)}`:component.usage;
 ---
-<DocumentationLayout title={component.name} description={component.description} section="components" crumbs={[{name:'Components',href:'../'},{name:component.name}]} toc={[{id:'preview',title:'Preview'},{id:'usage',title:'Usage'},{id:'options',title:'Core options'},{id:'behavior',title:'Behavior'},...(component.slug==='button'?[{id:'button-architecture',title:'Architecture & Figma'}]:[]),{id:'contract',title:'Contract'}]}>
+{component.slug==='merchant-card'?<MerchantCardDocumentation/>:<DocumentationLayout title={component.name} description={component.description} section="components" crumbs={[{name:'Components',href:'../'},{name:component.name}]} toc={[{id:'preview',title:'Preview'},{id:'usage',title:'Usage'},{id:'options',title:'Core options'},{id:'behavior',title:'Behavior'},...(component.slug==='button'?[{id:'button-architecture',title:'Architecture & Figma'}]:[]),{id:'contract',title:'Contract'}]}>
 <h1>{component.name}</h1><p class="docs-lead">{component.description}</p>
 <section id="preview" class="docs-section"><h2>Preview</h2><PreviewControls/><ComponentPreview slug={component.slug}/><p class="docs-note">Examples are local. They do not save or send data.</p></section>
 <section id="usage" class="docs-section"><h2>Usage</h2><p class="docs-note">Import the shared stylesheet in your layout and place components inside <code>.dmf-ui</code>. See <a href="../../docs/installation/">installation</a> for setup.</p><CodeSnippet code={usage} language="astro" title={`${component.name}.astro`} id={`usage-${component.slug}`} statusId={`copy-${component.slug}`} label={`${component.name} usage example`} maxHeight={480}/></section>
@@ -23,4 +24,4 @@ const usage=importEnd>0?`---\n${component.usage.slice(0,importEnd)}\n---\n${comp
 {component.slug==='button'&&<ButtonArchitecture/>}
 <SelectionContract slug={component.slug}/>
 <ComponentContract slug={component.slug}/>
-</DocumentationLayout>
+</DocumentationLayout>}

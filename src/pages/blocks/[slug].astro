@@ -7,14 +7,13 @@ import {blocks} from '../../data/blocks';
 import catalog from '../../../contracts/catalog.json';
 import HeroBlockDocumentation from '../../components/docs/HeroBlockDocumentation.astro';
 import MerchantListingDocumentation from '../../components/docs/MerchantListingDocumentation.astro';
-import MerchantCardDocumentation from '../../components/docs/MerchantCardDocumentation.astro';
 import SearchFiltersReactDocumentation from '../../components/docs/SearchFiltersReactDocumentation.astro';
 export function getStaticPaths(){return blocks.map(block=>({params:{slug:block.slug},props:{block}}));}
 const {block}=Astro.props;
 const record=catalog.blocks.find(b=>b.slug===block.slug)!;
 const reactSignIn=block.slug==='sign-in'?catalog.react.blocks.find(b=>b.name==='SignInBlock'):undefined;
 ---
-{block.slug==='merchant-card'?<MerchantCardDocumentation/>:block.slug==='merchant-listing'?<MerchantListingDocumentation/>:block.slug==='hero'?<HeroBlockDocumentation/>:<DocumentationLayout title={block.title} description={block.description} section="blocks" crumbs={[{name:'Blocks',href:'/blocks/'},{name:block.title}]} toc={[{id:'preview',title:'Live preview'},{id:'usage',title:'Usage'},{id:'anatomy',title:'Anatomy & API'},{id:'behavior',title:'Behavior'},{id:'compatibility',title:'Compatibility'}]}>
+{block.slug==='merchant-listing'?<MerchantListingDocumentation/>:block.slug==='hero'?<HeroBlockDocumentation/>:<DocumentationLayout title={block.title} description={block.description} section="blocks" crumbs={[{name:'Blocks',href:'/blocks/'},{name:block.title}]} toc={[{id:'preview',title:'Live preview'},{id:'usage',title:'Usage'},{id:'anatomy',title:'Anatomy & API'},{id:'behavior',title:'Behavior'},{id:'compatibility',title:'Compatibility'}]}>
 <h1 class="docs-block-title">{block.title}</h1><p class="docs-lead">{block.description}</p>
 <section id="preview" class="docs-section"><h2>Live preview</h2><PreviewControls/><BlockPreview slug={block.slug}/></section>
 <section id="usage" class="docs-section"><h2>Usage</h2><p>Import dmf-ui/styles.css in your layout and render inside a .dmf-ui scope. Supply your own real endpoint; the example destinations are host placeholders, not shipped backend routes.</p><CodeSnippet code={block.usage} language="astro" title={`${block.title}.astro`} wrap/>{reactSignIn&&<><h3>React web alpha</h3><p>Import @dmf-ui/react/styles.css once and render in a .dmf-ui scope. Native form props, onSubmit and the form ref remain host-owned. fields/footer props and children correspond to Astro extension slots. email supplies the initial/reset value; the fields remain uncontrolled. errorTitle, labels and feedback are localizable. The submit name stays stable while pendingLabel is announced separately.</p><CodeSnippet code={`import {SignInBlock} from '@dmf-ui/react';\nimport '@dmf-ui/react/styles.css';\n\n<SignInBlock id="account-sign-in" action="/account/sign-in" />`} language="tsx" title="React SignInBlock" wrap/><CodeSnippet code={reactSignIn.types[0].declaration} language="ts" title="React Props" wrap/></>}</section>

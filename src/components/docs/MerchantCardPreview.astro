@@ -1,8 +1,9 @@
 ---
-import {MerchantCard,MerchantListingBlock} from 'dmf-ui/blocks';
+import {MerchantCard} from 'dmf-ui/merchant-card';
+import {MerchantListingBlock} from 'dmf-ui/blocks';
 import {merchantCardIcons as icons,merchantCardReference as reference} from '../../data/merchant-card-reference';
 ---
-<section class="dmf-ui docs-preview" data-docs-preview data-system="dmf" aria-label="Merchant card preview">
+<section class="dmf-ui docs-preview" data-docs-preview="" data-system="dmf" aria-label="Merchant card preview">
  <p class="docs-note">Reference content from the supplied design, not live merchant information. Select HUI for the reference appearance.</p>
  <div style="inline-size:328px;max-inline-size:100%;margin-inline:auto"><MerchantCard id="merchant-card-preview" {...reference} icons={icons}/></div>
  <MerchantListingBlock id="merchant-card-listing" title="Host-rendered card composition" items={[reference]} getItemKey={()=>'reference'}>

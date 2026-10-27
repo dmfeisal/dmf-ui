@@ -209,6 +209,8 @@ html { scroll-padding-block-start:calc(var(--docs-header-height) + var(--docs-re
 
 .foundation-index { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr)); border-top:1px solid var(--border); }
 .foundation-index a { display:flex; justify-content:space-between; align-items:center; gap:1rem; padding:1.25rem 1rem; border-bottom:1px solid var(--border);  }
+.foundation-index a span { flex:1; min-inline-size:0; }
+.foundation-index a svg { flex-shrink:0; }
 .foundation-examples { display:grid; gap:var(--dmf-layout-gap); margin-block:var(--dmf-section-gap); min-width:0; }
 .foundation-pairs { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr)); gap:var(--dmf-layout-gap); }
 .foundation-pair { display:flex; flex-wrap:wrap; gap:1rem; padding:1.5rem; border:1px solid var(--border); border-radius:var(--radius); }
@@ -261,7 +263,9 @@ html { font-size:100%; }
 .docs-header .docs-theme { inline-size:32px; padding-inline:0; }
 .docs-header .docs-github { padding-inline:8px; gap:8px; }
 .docs-header .docs-github>svg { inline-size:16px; block-size:16px; }
-.docs-header .dmf-navigation-menu a { block-size:32px; padding:.25rem .5rem; font-size:.875rem; }
+.docs-header .dmf-navigation-menu a { min-block-size:32px; padding:.25rem .5rem; font-size:.875rem; }
+.docs-header .dmf-navigation-menu a > span { line-height:1.1; }
+.docs-header .docs-search-trigger > span { min-inline-size:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:1; }
 .docs-page h1 { font-size:clamp(1.875rem,3vw,2.25rem); line-height:1.2; letter-spacing:-.035em; margin-block-end:12px; }
 .docs-lead { font-size:1rem; line-height:1.7; }
 .docs-section { margin-block-start:32px; }

@@ -1,0 +1,526 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    "Actions & Controls",
+    "Forms & Inputs",
+    "Navigation",
+    "Data Display",
+    "Feedback & Status",
+    "Overlays & Disclosure",
+    "Layout & Structure",
+    "Media & Content"
+  ],
+  "collections": [
+    "Authentication",
+    "Marketing & Editorial",
+    "Food Discovery",
+    "Commerce & Campaigns",
+    "Business Dashboard",
+    "Point of Sale"
+  ],
+  "components": {
+    "button": {
+      "category": "Actions & Controls",
+      "domains": [
+        "Authentication",
+        "Commerce & Campaigns",
+        "Point of Sale"
+      ]
+    },
+    "button-group": {
+      "category": "Actions & Controls",
+      "domains": [
+        "Commerce & Campaigns",
+        "Point of Sale"
+      ]
+    },
+    "toggle": {
+      "category": "Actions & Controls",
+      "domains": [
+        "Business Dashboard",
+        "Point of Sale"
+      ]
+    },
+    "toggle-group": {
+      "category": "Actions & Controls",
+      "domains": [
+        "Business Dashboard",
+        "Point of Sale"
+      ]
+    },
+    "theme-toggle": {
+      "category": "Actions & Controls",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "loading-button": {
+      "category": "Actions & Controls",
+      "domains": [
+        "Authentication",
+        "Point of Sale"
+      ]
+    },
+    "project-action-bar": {
+      "category": "Actions & Controls",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "input": {
+      "category": "Forms & Inputs",
+      "domains": [
+        "Authentication",
+        "Food Discovery",
+        "Commerce & Campaigns"
+      ]
+    },
+    "textarea": {
+      "category": "Forms & Inputs",
+      "domains": [
+        "Authentication"
+      ]
+    },
+    "checkbox": {
+      "category": "Forms & Inputs",
+      "domains": [
+        "Authentication",
+        "Food Discovery"
+      ]
+    },
+    "radio-group": {
+      "category": "Forms & Inputs",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "switch": {
+      "category": "Forms & Inputs",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "select": {
+      "category": "Forms & Inputs",
+      "domains": [
+        "Food Discovery",
+        "Business Dashboard"
+      ]
+    },
+    "native-select": {
+      "category": "Forms & Inputs",
+      "domains": [
+        "Food Discovery",
+        "Business Dashboard"
+      ]
+    },
+    "combobox": {
+      "category": "Forms & Inputs",
+      "domains": [
+        "Food Discovery",
+        "Business Dashboard"
+      ]
+    },
+    "field": {
+      "category": "Forms & Inputs",
+      "domains": [
+        "Authentication"
+      ]
+    },
+    "label": {
+      "category": "Forms & Inputs",
+      "domains": [
+        "Authentication"
+      ]
+    },
+    "input-group": {
+      "category": "Forms & Inputs",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "number-field": {
+      "category": "Forms & Inputs",
+      "domains": [
+        "Commerce & Campaigns",
+        "Point of Sale"
+      ]
+    },
+    "file-input": {
+      "category": "Forms & Inputs",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "slider": {
+      "category": "Forms & Inputs",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "form": {
+      "category": "Forms & Inputs",
+      "domains": [
+        "Authentication",
+        "Commerce & Campaigns"
+      ]
+    },
+    "tabs": {
+      "category": "Navigation",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "breadcrumb": {
+      "category": "Navigation",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "pagination": {
+      "category": "Navigation",
+      "domains": [
+        "Food Discovery",
+        "Business Dashboard"
+      ]
+    },
+    "navigation-menu": {
+      "category": "Navigation",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "sidebar": {
+      "category": "Navigation",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "responsive-navigation": {
+      "category": "Navigation",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "section-navigation": {
+      "category": "Navigation",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "archive-index": {
+      "category": "Navigation",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "toc": {
+      "category": "Navigation",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "command": {
+      "category": "Navigation",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "avatar": {
+      "category": "Data Display",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "badge": {
+      "category": "Data Display",
+      "domains": [
+        "Commerce & Campaigns",
+        "Business Dashboard",
+        "Point of Sale"
+      ]
+    },
+    "card": {
+      "category": "Data Display",
+      "domains": [
+        "Marketing & Editorial",
+        "Food Discovery",
+        "Commerce & Campaigns"
+      ]
+    },
+    "table": {
+      "category": "Data Display",
+      "domains": [
+        "Business Dashboard",
+        "Point of Sale"
+      ]
+    },
+    "description-list": {
+      "category": "Data Display",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "rating": {
+      "category": "Data Display",
+      "domains": [
+        "Food Discovery"
+      ]
+    },
+    "chip": {
+      "category": "Data Display",
+      "domains": [
+        "Food Discovery"
+      ]
+    },
+    "tag-list": {
+      "category": "Data Display",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "price": {
+      "category": "Data Display",
+      "domains": [
+        "Commerce & Campaigns"
+      ]
+    },
+    "item": {
+      "category": "Data Display",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "kbd": {
+      "category": "Data Display",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "merchant-card": {
+      "category": "Data Display",
+      "domains": [
+        "Food Discovery"
+      ]
+    },
+    "alert": {
+      "category": "Feedback & Status",
+      "domains": [
+        "Authentication",
+        "Point of Sale"
+      ]
+    },
+    "toast": {
+      "category": "Feedback & Status",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "progress": {
+      "category": "Feedback & Status",
+      "domains": [
+        "Commerce & Campaigns",
+        "Business Dashboard"
+      ]
+    },
+    "spinner": {
+      "category": "Feedback & Status",
+      "domains": [
+        "Point of Sale"
+      ]
+    },
+    "skeleton": {
+      "category": "Feedback & Status",
+      "domains": [
+        "Food Discovery",
+        "Business Dashboard"
+      ]
+    },
+    "empty-state": {
+      "category": "Feedback & Status",
+      "domains": [
+        "Food Discovery",
+        "Business Dashboard"
+      ]
+    },
+    "empty": {
+      "category": "Feedback & Status",
+      "domains": []
+    },
+    "banner": {
+      "category": "Feedback & Status",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "dialog": {
+      "category": "Overlays & Disclosure",
+      "domains": [
+        "Authentication",
+        "Point of Sale"
+      ]
+    },
+    "alert-dialog": {
+      "category": "Overlays & Disclosure",
+      "domains": [
+        "Commerce & Campaigns"
+      ]
+    },
+    "drawer": {
+      "category": "Overlays & Disclosure",
+      "domains": [
+        "Point of Sale"
+      ]
+    },
+    "sheet": {
+      "category": "Overlays & Disclosure",
+      "domains": [
+        "Point of Sale"
+      ]
+    },
+    "popover": {
+      "category": "Overlays & Disclosure",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "tooltip": {
+      "category": "Overlays & Disclosure",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "dropdown-menu": {
+      "category": "Overlays & Disclosure",
+      "domains": [
+        "Point of Sale"
+      ]
+    },
+    "hover-card": {
+      "category": "Overlays & Disclosure",
+      "domains": [
+        "Point of Sale"
+      ]
+    },
+    "accordion": {
+      "category": "Overlays & Disclosure",
+      "domains": [
+        "Point of Sale"
+      ]
+    },
+    "collapsible": {
+      "category": "Overlays & Disclosure",
+      "domains": [
+        "Point of Sale"
+      ]
+    },
+    "layout": {
+      "category": "Layout & Structure",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "section": {
+      "category": "Layout & Structure",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "separator": {
+      "category": "Layout & Structure",
+      "domains": [
+        "Authentication"
+      ]
+    },
+    "aspect-ratio": {
+      "category": "Layout & Structure",
+      "domains": []
+    },
+    "resizable": {
+      "category": "Layout & Structure",
+      "domains": [
+        "Business Dashboard"
+      ]
+    },
+    "header": {
+      "category": "Layout & Structure",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "image": {
+      "category": "Media & Content",
+      "domains": [
+        "Marketing & Editorial",
+        "Food Discovery",
+        "Commerce & Campaigns"
+      ]
+    },
+    "video": {
+      "category": "Media & Content",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "carousel": {
+      "category": "Media & Content",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "marquee": {
+      "category": "Media & Content",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "text": {
+      "category": "Media & Content",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "typography": {
+      "category": "Media & Content",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "icon": {
+      "category": "Media & Content",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "logo": {
+      "category": "Media & Content",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "attachment": {
+      "category": "Media & Content",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "code-block": {
+      "category": "Media & Content",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "code-tabs": {
+      "category": "Media & Content",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    },
+    "command-block": {
+      "category": "Media & Content",
+      "domains": [
+        "Marketing & Editorial"
+      ]
+    }
+  }
+}

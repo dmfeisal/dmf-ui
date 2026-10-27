@@ -13,9 +13,13 @@ import {portfolioComponents} from './portfolio-documentation';
 import {productComponents} from './product-documentation';
 import {navigationComponents} from './navigation-documentation';
 import {version} from '../../package.json';
+import {taxonomyGuide} from './taxonomy-documentation';
+import taxonomy from '../../contracts/taxonomy.json';
+import {merchantComponents} from './merchant-card-documentation';
 import {contentComponents,contentGuide} from './content-documentation';
 export type ComponentDoc = {slug:string;name:string;category:string;description:string;usage:string;options:[string,string,string][];notes:string[]};
-export const components: ComponentDoc[] = [
+const componentEntries: ComponentDoc[] = [
+ ...merchantComponents,
  ...codeComponents,
  ...fulldevComponents,
  ...modalComponents,
@@ -46,11 +50,16 @@ export const components: ComponentDoc[] = [
  {slug:'toast',name:'Toast',category:'Feedback',description:'Polite, transient feedback for a completed local action.',usage:`import { Toaster } from 'dmf-ui/toast';\n\n<Toaster id="notifications" portal={false} viewportLabel="Preview notifications" />\n\n<script>\n  import { createToast } from 'dmf-ui/toast';\n  const controller = createToast(document.getElementById('notifications')!, { portal: false });\n  // Call from a real action; destroy the controller during host teardown.\n  controller.show({ title: 'Preview complete', type: 'success' });\n</script>`,options:[['duration','number (ms)','Runtime default'],['limit','number','Runtime default'],['viewportLabel','string','Distinct name per viewport']],notes:['Keep important information available beyond a transient notification.','The host owns creation and disposal. Give multiple notification regions distinct names. This page previews DMF only.']},
  {slug:'tooltip',name:'Tooltip',category:'Disclosure',description:'Short supplemental help on pointer hover or keyboard focus.',usage:`import { Tooltip, TooltipTrigger, TooltipContent } from 'dmf-ui/tooltip';\n\n<Tooltip>\n  <TooltipTrigger>Preview help</TooltipTrigger>\n  <TooltipContent>Examples stay local to this page.</TooltipContent>\n</Tooltip>`,options:[['delay','number (ms)','300'],['side','top | right | bottom | left | inline-start | inline-end','top'],['mountStrategy','lazy | eager','lazy']],notes:['Use plain supplemental text and a native focusable trigger. Essential instructions stay visible.','Hovering the content keeps it open. Escape dismisses without moving focus. Touch taps cancel transient hover help. Use Popover for interactive content.']},
 ];
-components.sort((a,b)=>a.name.localeCompare(b.name));
-export const categories = [...new Set(components.map(item=>item.category))];
+export const components=componentEntries.map(item=>{
+ const entry=taxonomy.components[item.slug as keyof typeof taxonomy.components];
+ if(!entry)throw Error(`Missing canonical taxonomy for ${item.slug}`);
+ return {...item,previousCategory:item.category,category:entry.category,domains:entry.domains};
+}).sort((a,b)=>a.name.localeCompare(b.name));
+export const categories=taxonomy.categories;
+export const collections=taxonomy.collections;
 export type Guide = {slug:string;title:string;description:string;sections:{id:string;title:string;body:string[];code?:string}[]};
 export const guides: Guide[] = [
- architectureGuide,searchRecoveryGuide,
+ architectureGuide,searchRecoveryGuide,taxonomyGuide,
  novaGuide,
  ...foundationGuides,
  fulldevGuide,

@@ -4,15 +4,18 @@ import DocumentationLayout from '../../layouts/DocumentationLayout.astro';
 import BrandReference from '../../components/docs/BrandReference.astro';
 import FoundationExamples from '../../components/docs/FoundationExamples.astro';
 import IconGallery from '../../components/docs/IconGallery.astro';
+import NavigationIcon from '../../components/docs/NavigationIcon.astro';
 import {guides} from '../../data/documentation';
 export function getStaticPaths(){return guides.map(guide=>({params:{slug:guide.slug},props:{guide}}));}
 const {guide}=Astro.props;
 ---
 <DocumentationLayout title={guide.title} description={guide.description} section="docs" crumbs={[{name:'Docs',href:'../'},{name:guide.title}]} toc={guide.sections.map(section=>({id:section.id,title:section.title}))}>
-<h1>{guide.title}</h1><p class="docs-lead">{guide.description}</p>{guide.sections.map(section=><section id={section.id} class="docs-section docs-prose"><h2>{section.title}</h2>{section.body.map(paragraph=><p>{paragraph}</p>)}{section.id==='tokens'&&guide.slug.startsWith('foundation-')&&<FoundationExamples slug={guide.slug}/>}
+<h1 class="guide-title">{(guide.slug==='foundations'||guide.slug.startsWith('foundation-'))&&<NavigationIcon name={guide.slug} size={28}/>}<span>{guide.title}</span></h1><p class="docs-lead">{guide.description}</p>{guide.sections.map(section=><section id={section.id} class="docs-section docs-prose"><h2>{section.title}</h2>{section.body.map(paragraph=><p>{paragraph}</p>)}{section.id==='tokens'&&guide.slug.startsWith('foundation-')&&<FoundationExamples slug={guide.slug}/>}
 {section.code&&<CodeSnippet code={section.code} language={section.code.startsWith('npm')||section.code.startsWith('git')?'bash':section.code.includes('<')?'astro':'ts'} title={section.title} id={`guide-${guide.slug}-${section.id}`} label={`${section.title} code example`} maxHeight={480}/>}</section>)}
 {guide.slug==='foundations'&&<FoundationExamples slug={guide.slug}/>}
 {guide.slug==='brand-mappings'&&<BrandReference/>}
 {guide.slug==='icons'&&<><IconGallery/><p class="docs-note"><a href="https://lucide.dev/packages">Official Lucide packages</a> · <a href="https://lucide.dev/icons/">Complete icon library</a></p></>}
 {guide.slug==='credits'&&<p class="docs-note docs-section"><a href="../../dmf-ui-notices.txt">Open full license notices</a> · <a href="https://ui.shadcn.com/">shadcn/ui</a> · <a href="https://ui.full.dev/">Fulldev UI</a> · <a href="https://github.com/dmfeisal/dmf-ui">DMF UI source</a></p>}
 </DocumentationLayout>
+
+<style>.guide-title{display:flex;align-items:center;gap:.75rem}.guide-title span{min-inline-size:0;overflow-wrap:anywhere}.guide-title :global(svg){flex-shrink:0}</style>
