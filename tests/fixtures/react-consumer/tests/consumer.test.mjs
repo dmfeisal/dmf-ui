@@ -1,5 +1,5 @@
 import test from 'node:test';
-import assert from 'node:assert/strict';
+import assert from './assert.mjs';
 import {JSDOM} from 'jsdom';
 import {act,createElement as h,createRef,StrictMode} from 'react';
 import {userEvent} from '@testing-library/user-event';

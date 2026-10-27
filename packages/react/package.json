@@ -14,7 +14,7 @@
   "scripts": {
     "check": "tsc --noEmit",
     "build:test": "esbuild src/index.tsx --bundle --platform=node --format=esm --external:react --outfile=.test-dist/index.mjs && esbuild tests/server.tsx --bundle --platform=node --format=esm --external:react --external:react-dom/server --outfile=.test-dist/server.mjs && esbuild tests/browser.tsx --bundle --format=esm --outfile=.test-dist/browser.js",
-    "test": "npm run check && npm run build:test && node --test tests/*.test.mjs",
+    "test": "npm run check && npm run build:test && node --max-old-space-size=256 --test --test-concurrency=1 --test-timeout=15000 tests/*.test.mjs",
     "build": "node build.mjs",
     "prepack": "npm run build"
   },

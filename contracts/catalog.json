@@ -7214,6 +7214,7 @@
         "status": "references-only",
         "sources": [
           "tests/design-profile.test.mjs",
+          "tests/process-guard.test.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-selection.mjs"
@@ -11063,6 +11064,7 @@
           "tests/blocks.test.mjs",
           "tests/form-composition.test.mjs",
           "tests/package.test.mjs",
+          "tests/process-guard.test.mjs",
           "tests/product-details.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
@@ -12492,6 +12494,7 @@
         "sources": [
           "tests/blocks.test.mjs",
           "tests/form-composition.test.mjs",
+          "tests/process-guard.test.mjs",
           "tests/selection.test.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-data-display.mjs",

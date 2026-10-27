@@ -1,5 +1,5 @@
 import test from 'node:test';
-import assert from 'node:assert/strict';
+import assert from './assert.mjs';
 import {readFile} from 'node:fs/promises';
 import {JSDOM} from 'jsdom';
 import {createElement as h,createRef,StrictMode,act} from 'react';
@@ -11,7 +11,7 @@ const base={id:'search',action:'/catalog/',options:[{value:'cafe',label:'Café'}
 async function withDOM(html,run,url='https://consumer.test/discovery.html'){
  const dom=new JSDOM(`<div id="root">${html}</div>`,{url}),saved=new Map(),warnings=[],previous=console.error;
  for(const key of ['window','document','HTMLElement','navigator','FormData','URLSearchParams','location','history','IS_REACT_ACT_ENVIRONMENT']){saved.set(key,Object.getOwnPropertyDescriptor(globalThis,key));Object.defineProperty(globalThis,key,{configurable:true,writable:true,value:key==='IS_REACT_ACT_ENVIRONMENT'?true:dom.window[key]});}
- for(const key of ['addEventListener','removeEventListener']){saved.set(key,Object.getOwnPropertyDescriptor(globalThis,key));Object.defineProperty(globalThis,key,{configurable:true,value:dom.window[key].bind(dom.window)});}
+ for(const key of ['addEventListener','removeEventListener']){saved.set(key,Object.getOwnPropertyDescriptor(globalThis,key));Object.defineProperty(globalThis,key,{configurable:true,writable:true,value:dom.window[key].bind(dom.window)});}
  console.error=(...args)=>warnings.push(args.join(' '));const roots=[];
  try{const {createRoot,hydrateRoot}=await import('react-dom/client');await run({dom,user:userEvent.setup({document}),mount:async element=>{const root=createRoot(document.querySelector('#root'));roots.push(root);await act(async()=>root.render(element));return root;},hydrate:async()=>{let root;await act(async()=>{root=hydrateRoot(document.querySelector('#root'),h(StrictMode,{},h(DiscoveryProof)),{identifierPrefix:'discovery-',onRecoverableError:e=>warnings.push(String(e))});});roots.push(root);}});assert.deepEqual(warnings,[]);}finally{await act(async()=>{for(const root of roots)root.unmount();});console.error=previous;dom.window.close();for(const [key,value] of saved){if(value)Object.defineProperty(globalThis,key,value);else delete globalThis[key];}}
 }
@@ -41,3 +41,19 @@ test('example hydrates the packed form, restores deep links, applies drafts and 
 test('production discovery explains static GET fallback and leaves preview controls disabled before hydration',async()=>{
  const dom=new JSDOM(await readFile('dist/discovery.html','utf8'));try{const d=dom.window.document;assert.match(d.querySelector('[data-static-discovery]').textContent,/requires JavaScript/);assert(d.querySelector('.discovery-tools').disabled);assert.equal(d.querySelector('#discovery-filters [type=submit]').disabled,false);assert.equal(d.querySelector('#discovery-filters').method,'get');assert.equal(d.querySelector('#discovery-filters').getAttribute('action'),'/discovery.html');assert.equal(d.querySelectorAll('#discovery-results ul>li').length,3);assert.equal(d.querySelectorAll('.discovery-pagination a').length,2);}finally{dom.window.close();}
 });
+test('repeated discovery mounting releases history listeners and keeps retained heap bounded',()=>withDOM('',async({mount})=>{
+ const listeners=new Set(),add=globalThis.addEventListener,remove=globalThis.removeEventListener;
+ globalThis.addEventListener=(type,listener,...rest)=>{if(type==='popstate')listeners.add(listener);return add(type,listener,...rest);};
+ globalThis.removeEventListener=(type,listener,...rest)=>{if(type==='popstate')listeners.delete(listener);return remove(type,listener,...rest);};
+ try{
+  const root=await mount(h(StrictMode,{},h(DiscoveryProof)));
+  const cycle=async()=>{await act(async()=>root.render(null));assert.equal(listeners.size,0);assert.equal(document.querySelector('#root').childElementCount,0);await act(async()=>root.render(h(StrictMode,{},h(DiscoveryProof))));assert.equal(listeners.size,1);};
+  for(let n=0;n<5;n++)await cycle();
+  assert.equal(typeof globalThis.gc,'function','Run the fixture through its bounded npm test command.');
+  globalThis.gc();const baseline=process.memoryUsage().heapUsed;
+  for(let n=0;n<25;n++)await cycle();
+  await act(async()=>root.render(null));globalThis.gc();const growth=process.memoryUsage().heapUsed-baseline;
+  assert.ok(growth<8*1024*1024,`Retained heap grew ${Math.round(growth/1024)} KiB after 25 warmed mount/unmount cycles`);
+  assert.equal(listeners.size,0);console.log(`Discovery lifecycle soak: retained heap delta ${Math.round(growth/1024)} KiB; zero retained history listeners.`);
+ }finally{globalThis.addEventListener=add;globalThis.removeEventListener=remove;}
+}));

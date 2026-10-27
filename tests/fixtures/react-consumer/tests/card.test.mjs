@@ -1,5 +1,5 @@
 import test from 'node:test';
-import assert from 'node:assert/strict';
+import assert from './assert.mjs';
 import {readFile} from 'node:fs/promises';
 import {JSDOM} from 'jsdom';
 import {createElement as h,StrictMode,act} from 'react';

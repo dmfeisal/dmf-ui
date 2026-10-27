@@ -115,6 +115,8 @@ No generic SignInFormBlock alias, new package, registry installer, React Native 
 
 ## SearchFiltersBlock and discovery example
 
+Verification runs serially with a 256 MiB V8 old-space limit and per-test deadlines. Use the repository's packed-consumer runner for external RSS/output/deadline guards and the exclusive verification lock. DOM identity checks use bounded diagnostics rather than printing cyclic React/jsdom graphs. See `docs/DMF-UI-MEMORY-VERIFICATION.md` for measured scope and limits; do not launch overlapping retries.
+
 `SearchFiltersBlock` is available from `@dmf-ui/react`. It composes native Input, Select and Checkbox with a GET form, visible labels, optional facets, host error, pending/disabled state and native form props/ref. `query`, `selectedValue` and each facet's `checked` supply uncontrolled initial/reset defaults. Native reset restores those defaults without changing the URL or submitting. `fields` and children are host extension points; use unique IDs and label custom controls. Capture FormData before disabling fields. `pendingLabel` is separately announced while the submit label stays stable.
 
 ```tsx

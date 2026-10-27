@@ -2,7 +2,7 @@ import {mkdtemp,cp,readFile,writeFile,mkdir,rename,rm,readdir,lstat,realpath} fr
 import {tmpdir} from 'node:os';
 import {join,resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {spawn} from 'node:child_process';
+import {acquireVerificationLock,runBounded} from './dmf-ui-process.mjs';
 import assert from 'node:assert/strict';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const template=join(root,'tests/fixtures/react-consumer');
@@ -10,12 +10,14 @@ const scratch=await realpath(await mkdtemp(join(tmpdir(),'dmf-ui-react-consumer-
 const update=process.argv.includes('--update-lock');
 const keep=process.argv.includes('--keep');
 const npm=process.platform==='win32'?'npm.cmd':'npm';
+const metrics=[];let release;
 async function run(command,args,cwd,{capture=false}={}){
- const child=spawn(command,args,{cwd,stdio:['ignore',capture?'pipe':'inherit','inherit']});
- let output='';child.stdout?.on('data',chunk=>output+=chunk);
- const code=await new Promise((done,reject)=>{child.on('error',reject);child.on('exit',done);});
- if(code!==0)throw new Error(`${command} ${args.join(' ')} exited ${code}`);
- return output;
+ const testing=args[0]==='test';
+ try{
+  const {output,...usage}=await runBounded(command,args,{cwd,capture,timeoutMs:testing?60000:180000,maxRssBytes:(testing?512:1024)*1024*1024});
+  metrics.push({step:args.join(' '),status:'passed',...usage});return output;
+ }catch(error){metrics.push({step:args.join(' '),status:'failed',peakRssBytes:error.peakRssBytes,durationMs:error.durationMs,reason:error.message});throw error;}
+ finally{await writeFile(join(root,'.dmf-ui-test-results/react-process-metrics.json'),JSON.stringify(metrics,null,2)+'\n');}
 }
 async function materialize(directory){
  for(const entry of await readdir(directory,{withFileTypes:true})){
@@ -25,6 +27,7 @@ async function materialize(directory){
  }
 }
 try{
+ release=await acquireVerificationLock(root);
  console.log(`Isolated React consumer: ${scratch}`);
  await run(npm,['run','build'],join(root,'packages/react'));
  await cp(template,scratch,{recursive:true});await materialize(scratch);await mkdir(join(scratch,'vendor'));
@@ -76,4 +79,4 @@ try{
  await run(npm,['test'],scratch);
  console.log(`PASS packed React consumer: ${scratch}`);
  if(keep)console.log('Retained consumer; run npm run dev in that directory to inspect it.');
-}finally{if(!keep)await rm(scratch,{recursive:true,force:true});}
+}finally{await release?.();if(!keep)await rm(scratch,{recursive:true,force:true});}

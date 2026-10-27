@@ -6,7 +6,7 @@
   "scripts": {
     "check": "tsc --noEmit",
     "build": "npm run check && vite build && esbuild src/entry-server.tsx --bundle --platform=node --format=esm --external:react --external:react-dom/server --external:@dmf-ui/react --outfile=.test-dist/server.mjs && node scripts/prerender.mjs",
-    "test": "node --test tests/*.test.mjs",
+    "test": "node --expose-gc --max-old-space-size=256 --test --test-concurrency=1 --test-timeout=15000 tests/*.test.mjs",
     "dev": "vite --host 127.0.0.1"
   },
   "dependencies": {
