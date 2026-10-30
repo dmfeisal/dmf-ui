@@ -1,6 +1,75 @@
 {
   "blocks": [
     {
+      "slug": "otp-verification",
+      "title": "OTPVerificationBlock",
+      "category": "Authentication",
+      "description": "A native single-field numeric code form with separate host-owned verification and resend POST actions.",
+      "components": [
+        "Card",
+        "Field",
+        "Input",
+        "LoadingButton",
+        "Button",
+        "Alert"
+      ],
+      "limitations": "Presentation only. Hosts own challenge issuance, delivery, verification, expiry, single-use, attempt limits, resend eligibility and sessions. No code is generated, retrieved or accepted as an initial value; no automatic submission or client-side security decision is implemented.",
+      "entry": "dmf-ui/blocks",
+      "framework": "Astro",
+      "source": "src/components/dmf-ui/blocks/otp-verification.astro",
+      "sha256": "3a0692bd219c9419c784f64ce1153b14ddcdcd3ad6c0336fbf241218d17641a6",
+      "declaration": "interface Props extends Omit<HTMLAttributes<'form'>,'id'|'method'|'action'|'title'> {\n id:string; action:string; title?:string; description?:string; headingLevel?:'h1'|'h2'|'h3';\n codeName?:string; codeLabel?:string; codeLength?:number; challengeState?:'unverified'|'ready'|'locked'|'expired';\n complete?:boolean; completionMessage?:string; unverifiedMessage?:string; lockedMessage?:string; expiredMessage?:string;\n codeHelp?:string; submitLabel?:string; pendingLabel?:string; pending?:boolean; disabled?:boolean; submitDisabled?:boolean;\n error?:string; errorTitle?:string; fieldErrors?:{code?:string};\n resendAction?:string; resendLabel?:string; resendPendingLabel?:string; resendPending?:boolean; resendDisabled?:boolean; resendHelp?:string; resendStatus?:string; signinHref?:string; signinLabel?:string; recoveryHref?:string; recoveryLabel?:string;\n}",
+      "defaults": {
+        "title": "'Enter a verification code'",
+        "description": "'Use the code provided by your account service.'",
+        "headingLevel": "'h2'",
+        "codeName": "'code'",
+        "codeLabel": "'Verification code'",
+        "codeLength": "6",
+        "challengeState": "'unverified'",
+        "complete": "false",
+        "completionMessage": "'Follow your account service’s sign-in instructions.'",
+        "unverifiedMessage": "'Your account service must start a verification challenge before you enter a code.'",
+        "lockedMessage": "'This verification attempt is unavailable. Follow your account service’s instructions.'",
+        "expiredMessage": "'This code has expired. Request another code if your account service allows it.'",
+        "codeHelp": "'Enter the ASCII digits provided by your account service.'",
+        "submitLabel": "'Verify code'",
+        "pendingLabel": "'Verifying code…'",
+        "pending": "false",
+        "disabled": "false",
+        "submitDisabled": "false",
+        "errorTitle": "'Unable to verify the code'",
+        "fieldErrors": "{}",
+        "resendLabel": "'Request another code'",
+        "resendPendingLabel": "'Requesting another code…'",
+        "resendPending": "false",
+        "resendDisabled": "false",
+        "signinLabel": "'Sign in'",
+        "recoveryLabel": "'Request new recovery instructions'"
+      },
+      "slots": [
+        "fields",
+        "footer",
+        "resend-fields",
+        "default"
+      ],
+      "status": "partial",
+      "acceptance": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate.",
+      "support": {
+        "astro": {
+          "status": "experimental",
+          "entry": "dmf-ui/blocks"
+        },
+        "react": {
+          "status": "experimental",
+          "entry": "@dmf-ui/react",
+          "exportName": "OTPVerificationBlock"
+        },
+        "platform": "web",
+        "verification": "Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate."
+      }
+    },
+    {
       "slug": "reset-password",
       "title": "ResetPasswordBlock",
       "category": "Authentication",
@@ -519,6 +588,20 @@
         "stateOwnership": "Native uncontrolled fields; host owns submission, pending, errors and reset policy."
       },
       {
+        "name": "OTPVerificationBlock",
+        "entry": "@dmf-ui/react",
+        "source": "packages/react/src/blocks/otp-verification.tsx",
+        "sha256": "21d316e194a0e89c28999e8331a44895e16fea11bbd6c0bc9327a6a514ab8399",
+        "types": [
+          {
+            "name": "OTPVerificationBlockProps",
+            "declaration": "export type OTPVerificationBlockProps = Omit<ComponentPropsWithRef<'form'>, 'id' | 'action' | 'method' | 'title'> & {\n id:string; action:string; title?:string; description?:string; headingLevel?:'h1'|'h2'|'h3';\n codeName?:string; codeLabel?:string; codeLength?:number; challengeState?:'unverified'|'ready'|'locked'|'expired';\n complete?:boolean; completionMessage?:string; unverifiedMessage?:string; lockedMessage?:string; expiredMessage?:string;\n codeHelp?:string; submitLabel?:string; pendingLabel?:string; pending?:boolean; disabled?:boolean; submitDisabled?:boolean;\n error?:string; errorTitle?:string; fieldErrors?:{code?:string};\n resendAction?:string; resendLabel?:string; resendPendingLabel?:string; resendPending?:boolean; resendDisabled?:boolean; resendHelp?:string; resendStatus?:string; signinHref?:string; signinLabel?:string; recoveryHref?:string; recoveryLabel?:string;\n fields?:ReactNode; footer?:ReactNode; resendFields?:ReactNode; onResendSubmit?:ComponentPropsWithRef<'form'>['onSubmit']; resendFormRef?:Ref<HTMLFormElement>;\n};"
+          }
+        ],
+        "status": "experimental",
+        "stateOwnership": "Native uncontrolled fields; host owns submission, pending, errors and reset policy."
+      },
+      {
         "name": "HeroBlock",
         "entry": "@dmf-ui/react",
         "source": "packages/react/src/blocks/hero.tsx",
@@ -619,6 +702,7 @@
       "SignUpBlock",
       "PasswordRecoveryBlock",
       "ResetPasswordBlock",
+      "OTPVerificationBlock",
       "HeroBlock",
       "MerchantListingBlock",
       "MerchantCard",
@@ -771,7 +855,7 @@
       }
     ],
     "source": "packages/react/src/index.tsx",
-    "sha256": "ea1127a8d0af3620919c00aaccadb027fed7e93eb5bc4b71a54579d539950df5",
+    "sha256": "8019ed4b1169d0b6148697efbc38b8592840f7862d849ca32f7d9b22e6f789c9",
     "status": "separate-web-alpha",
     "note": "React native props and controlled/uncontrolled patterns differ from Astro. No Astro parity claim."
   },
@@ -12204,6 +12288,7 @@
           "tests/blocks.test.mjs",
           "tests/form-composition.test.mjs",
           "tests/m5-documentation.test.mjs",
+          "tests/otp-verification.test.mjs",
           "tests/package.test.mjs",
           "tests/process-guard.test.mjs",
           "tests/product-details.test.mjs",
@@ -13773,6 +13858,7 @@
           "tests/authentication-blocks.test.mjs",
           "tests/blocks.test.mjs",
           "tests/form-composition.test.mjs",
+          "tests/otp-verification.test.mjs",
           "tests/process-guard.test.mjs",
           "tests/reset-password.test.mjs",
           "tests/selection.test.mjs",
@@ -25534,6 +25620,7 @@
           "tests/form-composition.test.mjs",
           "tests/foundations.test.mjs",
           "tests/modal-components.test.mjs",
+          "tests/otp-verification.test.mjs",
           "tests/reset-password.test.mjs",
           "tests/selection.test.mjs",
           "tests/structure.test.mjs",
@@ -26956,6 +27043,7 @@
         "sources": [
           "tests/authentication-blocks.test.mjs",
           "tests/blocks.test.mjs",
+          "tests/otp-verification.test.mjs",
           "tests/reset-password.test.mjs",
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-overlays.mjs"

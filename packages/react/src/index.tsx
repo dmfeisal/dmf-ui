@@ -1,3 +1,5 @@
+export {OTPVerificationBlock} from './blocks/otp-verification';
+export type {OTPVerificationBlockProps} from './blocks/otp-verification';
 export {ResetPasswordBlock} from './blocks/reset-password';
 export type {ResetPasswordBlockProps} from './blocks/reset-password';
 export {SignUpBlock} from './blocks/sign-up';

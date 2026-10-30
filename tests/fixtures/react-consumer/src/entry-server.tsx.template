@@ -32,3 +32,7 @@ export function renderAuthentication(){return renderToString(<StrictMode><Authen
 import {ResetProof} from './ResetProof';
 export {ResetProof};
 export function renderReset(){return renderToString(<StrictMode><ResetProof/></StrictMode>,{identifierPrefix:'reset-'});}
+
+import {OTPProof} from './OTPProof';
+export {OTPProof};
+export function renderOTP(){return renderToString(<StrictMode><OTPProof/></StrictMode>,{identifierPrefix:'otp-'});}

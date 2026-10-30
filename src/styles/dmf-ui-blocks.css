@@ -95,3 +95,7 @@
 .dmf-auth-block .dmf-sign-in-pending,.dmf-sign-up-block .dmf-sign-in-pending { position:static; flex:none; order:-1; }
 
 .dmf-auth-block [data-reset-status]:empty { margin:0; }
+
+.dmf-auth-block [data-otp-status]:empty,.dmf-auth-block [data-otp-resend-status]:empty { margin:0; }
+.dmf-otp-resend { display:grid; gap:.5rem; margin-block-start:1rem; }
+.dmf-otp-resend button { max-inline-size:100%; white-space:normal; block-size:auto; overflow-wrap:anywhere; }

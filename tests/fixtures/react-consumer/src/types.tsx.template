@@ -106,3 +106,9 @@ const tokenReset=<ResetPasswordBlock id="bad-reset" action="/account/reset" toke
 // @ts-expect-error Initial password values are not supported.
 const valueReset=<ResetPasswordBlock id="bad-password" action="/account/reset" password="not-supported"/>;
 void reset;void tokenReset;void valueReset;
+
+import {OTPVerificationBlock} from '@dmf-ui/react';
+const otp=<OTPVerificationBlock id="typed-otp" action="/verify" resendAction="/resend" onResendSubmit={e=>e.preventDefault()}/>;
+// @ts-expect-error Initial verification codes are not supported.
+const initialOTP=<OTPVerificationBlock id="bad-otp" action="/verify" code="not-supported"/>;
+void otp;void initialOTP;

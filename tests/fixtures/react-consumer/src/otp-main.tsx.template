@@ -1,0 +1,5 @@
+import {StrictMode} from 'react';
+import {hydrateRoot} from 'react-dom/client';
+import {OTPProof} from './OTPProof';
+import './styles.css';
+hydrateRoot(document.getElementById('root')!,<StrictMode><OTPProof/></StrictMode>,{identifierPrefix:'otp-'});

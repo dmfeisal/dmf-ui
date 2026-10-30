@@ -1,0 +1,18 @@
+---
+import {OTPVerificationBlock} from '../dmf-ui/blocks';
+import {Button} from '../dmf-ui/button';
+---
+<div class="dmf-ui docs-preview" data-otp-preview data-docs-preview data-system="dmf">
+<p class="docs-note">Illustrative ready challenge UI. No code is issued, delivered, read or verified. Real challenge state and request limits belong to the server.</p><noscript><p>The demo remains guarded without JavaScript. The exported forms support native POST to your own endpoints.</p></noscript>
+<OTPVerificationBlock id="otp-demo" action="/blocks/otp-verification/" challengeState="ready" resendAction="/blocks/otp-verification/" submitDisabled resendDisabled resendHelp="The host decides when another request is allowed." signinHref="/blocks/sign-in/"/>
+<div class="docs-actions auth-demo-actions" data-otp-tools hidden><Button variant="outline" data-otp-finish>Finish local preview</Button><Button variant="outline" data-otp-error>Show local error</Button><Button variant="outline" data-otp-reset>Reset fields</Button></div><p role="status" aria-atomic="true" data-otp-demo-status>Local inspection only.</p><p role="alert" data-otp-demo-error hidden>The local preview could not complete. No request was made.</p>
+</div>
+<script>
+ import {setLoadingButtonState} from '../dmf-ui/loading-button';
+ const bindings=new Map<HTMLElement,AbortController>();
+ function init(){for(const root of document.querySelectorAll<HTMLElement>('[data-otp-preview]')){if(bindings.has(root))continue;const c=new AbortController();bindings.set(root,c);const {signal}=c,form=root.querySelector<HTMLFormElement>('[data-slot=otp-form]')!,resend=root.querySelector<HTMLFormElement>('[data-slot=otp-resend-form]')!,button=form.querySelector<HTMLButtonElement>('[data-block-submit]')!,status=root.querySelector<HTMLElement>('[data-otp-demo-status]')!,error=root.querySelector<HTMLElement>('[data-otp-demo-error]')!;
+ const busy=(value:boolean)=>{form.querySelector<HTMLFieldSetElement>('fieldset')!.disabled=value;resend.querySelector<HTMLFieldSetElement>('fieldset')!.disabled=value;form.setAttribute('aria-busy',String(value));setLoadingButtonState(button,value);};button.disabled=false;button.dataset.idleDisabled='false';resend.querySelector<HTMLFieldSetElement>('fieldset')!.disabled=false;root.querySelector<HTMLElement>('[data-otp-tools]')!.hidden=false;
+ form.addEventListener('submit',e=>{e.preventDefault();busy(true);error.hidden=true;status.textContent='Local verification pending. No code was read or sent.';},{signal});resend.addEventListener('submit',e=>{e.preventDefault();form.reset();busy(true);error.hidden=true;status.textContent='Local resend pending. No code was generated or sent; the entered value was cleared.';},{signal});
+ root.querySelector('[data-otp-finish]')!.addEventListener('click',()=>{busy(false);form.reset();status.textContent='Local preview finished. No challenge was verified or delivered.';},{signal});root.querySelector('[data-otp-error]')!.addEventListener('click',()=>{busy(false);error.hidden=false;},{signal});root.querySelector('[data-otp-reset]')!.addEventListener('click',()=>{busy(false);form.reset();error.hidden=true;status.textContent='Native fields reset. Server challenge state is unchanged.';},{signal});}}
+ init();document.addEventListener('astro:page-load',init);document.addEventListener('astro:before-swap',()=>{for(const c of bindings.values())c.abort();bindings.clear();});
+</script>

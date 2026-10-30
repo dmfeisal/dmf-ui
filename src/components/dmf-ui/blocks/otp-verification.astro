@@ -1,0 +1,42 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {Card,CardHeader,CardContent,CardFooter} from '../card';
+import {Field,FieldLabel,FieldDescription,FieldError} from '../field';
+import {Input} from '../input';
+import {Button} from '../button';
+import {LoadingButton} from '../loading-button';
+import {Alert,AlertTitle,AlertDescription} from '../alert';
+import {cn} from '../utils';
+interface Props extends Omit<HTMLAttributes<'form'>,'id'|'method'|'action'|'title'> {
+ id:string; action:string; title?:string; description?:string; headingLevel?:'h1'|'h2'|'h3';
+ codeName?:string; codeLabel?:string; codeLength?:number; challengeState?:'unverified'|'ready'|'locked'|'expired';
+ complete?:boolean; completionMessage?:string; unverifiedMessage?:string; lockedMessage?:string; expiredMessage?:string;
+ codeHelp?:string; submitLabel?:string; pendingLabel?:string; pending?:boolean; disabled?:boolean; submitDisabled?:boolean;
+ error?:string; errorTitle?:string; fieldErrors?:{code?:string};
+ resendAction?:string; resendLabel?:string; resendPendingLabel?:string; resendPending?:boolean; resendDisabled?:boolean; resendHelp?:string; resendStatus?:string; signinHref?:string; signinLabel?:string; recoveryHref?:string; recoveryLabel?:string;
+}
+const {id,action,title='Enter a verification code',description='Use the code provided by your account service.',headingLevel:Heading='h2',codeName='code',codeLabel='Verification code',codeLength=6,challengeState='unverified',complete=false,completionMessage='Follow your account service’s sign-in instructions.',unverifiedMessage='Your account service must start a verification challenge before you enter a code.',lockedMessage='This verification attempt is unavailable. Follow your account service’s instructions.',expiredMessage='This code has expired. Request another code if your account service allows it.',codeHelp='Enter the ASCII digits provided by your account service.',submitLabel='Verify code',pendingLabel='Verifying code…',pending=false,disabled=false,submitDisabled=false,error,errorTitle='Unable to verify the code',fieldErrors={},resendAction,resendLabel='Request another code',resendPendingLabel='Requesting another code…',resendPending=false,resendDisabled=false,resendHelp,resendStatus,signinHref,signinLabel='Sign in',recoveryHref,recoveryLabel='Request new recovery instructions',class:className,...props}=Astro.props;
+if(!id?.trim()||!action?.trim()||!codeName.trim()||(resendAction!==undefined&&!resendAction.trim()))throw Error('OTPVerificationBlock needs an id, host action and field name.');
+if(!Number.isInteger(codeLength)||codeLength<1||codeLength>12)throw Error('OTPVerificationBlock codeLength must be an integer from 1 to 12.');
+if(!['unverified','ready','locked','expired'].includes(challengeState))throw Error('Unsupported OTPVerificationBlock challengeState.');
+const ready=challengeState==='ready'&&!complete;
+const status=complete?completionMessage:challengeState==='ready'?'':challengeState==='expired'?expiredMessage:challengeState==='locked'?lockedMessage:unverifiedMessage;
+---
+<section class="dmf-block dmf-auth-block dmf-otp-verification-block" data-slot="otp-verification-block">
+<form {...props} id={id} action={action} method="post" aria-labelledby={`${id}-title`} aria-describedby={`${id}-description`} aria-busy={pending&&ready?'true':undefined} data-slot="otp-form" class={cn('dmf-otp-form',className)}>
+ <Card><CardHeader><Heading id={`${id}-title`}>{title}</Heading><p id={`${id}-description`}>{description}</p></CardHeader><CardContent>
+  {error&&<Alert variant="destructive" role="alert"><AlertTitle>{errorTitle}</AlertTitle><AlertDescription>{error}</AlertDescription></Alert>}
+  <p id={`${id}-status`} role="status" aria-atomic="true" tabindex={!ready?-1:undefined} data-otp-status>{status}</p>
+  {ready&&<fieldset disabled={disabled||pending||resendPending} class="dmf-block-fields"><legend class="sr-only">{title}</legend>
+   <Field data-invalid={fieldErrors.code?'true':undefined}><FieldLabel for={`${id}-code`}>{codeLabel}</FieldLabel><Input id={`${id}-code`} name={codeName} type="text" inputmode="numeric" autocomplete="one-time-code" autocapitalize="none" spellcheck={false} dir="ltr" minlength={codeLength} maxlength={codeLength} pattern={`[0-9]{${codeLength}}`} required aria-invalid={fieldErrors.code?'true':undefined} aria-describedby={[codeHelp?`${id}-code-help`:'',fieldErrors.code?`${id}-code-error`:''].filter(Boolean).join(' ')||undefined}/>{codeHelp&&<FieldDescription id={`${id}-code-help`}>{codeHelp}</FieldDescription>}<FieldError id={`${id}-code-error`} errors={[{message:fieldErrors.code}]}/></Field>
+   <slot name="fields"/>
+   <LoadingButton type="submit" label={submitLabel} loadingLabel={pendingLabel} loading={pending} disabled={disabled||submitDisabled} presentation="icon-label" class="w-full" data-block-submit/>
+  </fieldset>}
+
+ </CardContent>{(signinHref||recoveryHref||Astro.slots.has('footer'))&&<CardFooter>{signinHref&&<a href={signinHref}>{signinLabel}</a>}{recoveryHref&&<a href={recoveryHref}>{recoveryLabel}</a>}<slot name="footer"/></CardFooter>}</Card>
+</form>
+{resendAction&&<form id={`${id}-resend`} action={resendAction} method="post" aria-label={resendLabel} aria-busy={resendPending?'true':undefined} data-slot="otp-resend-form" class="dmf-otp-resend">
+ <fieldset class="dmf-block-fields" disabled={disabled||pending||resendPending||resendDisabled||complete||!['ready','expired'].includes(challengeState)}><legend class="sr-only">{resendLabel}</legend><slot name="resend-fields"/><Button type="submit" variant="outline" aria-describedby={resendHelp?`${id}-resend-help`:undefined}>{resendLabel}</Button></fieldset>
+ {resendHelp&&<p id={`${id}-resend-help`}>{resendHelp}</p>}<p role="status" aria-atomic="true" data-otp-resend-status>{resendPending?resendPendingLabel:resendStatus}</p>
+ </form>}<slot/>
+</section>

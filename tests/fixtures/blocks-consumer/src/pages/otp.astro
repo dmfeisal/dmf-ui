@@ -1,0 +1,10 @@
+---
+import {OTPVerificationBlock} from 'dmf-ui/blocks';
+import {Input} from 'dmf-ui/input';
+import 'dmf-ui/styles.css';
+---
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Native OTP forms</title></head><body class="dmf-ui"><main><h1>OTP forms specimen</h1><p>Illustrative ready UI; no codes are issued or validated.</p>
+<OTPVerificationBlock id="external-otp" action="/account/verify" challengeState="ready" codeName="verificationCode" resendAction="/account/resend" fieldErrors={{code:'Illustrative host error'}}><Input slot="fields" type="hidden" name="verifyContext" value="preview-verification"/><Input slot="resend-fields" type="hidden" name="resendContext" value="preview-resend"/></OTPVerificationBlock>
+<OTPVerificationBlock id="external-otp-unverified" title="Unverified OTP example" action="/account/verify"/>
+<OTPVerificationBlock id="external-otp-locked" title="Locked OTP example" action="/account/verify" challengeState="locked"/>
+</main></body></html><style is:global>body{margin:0}main{max-width:56rem;margin-inline:auto;padding:20px;display:grid;gap:24px}</style>
