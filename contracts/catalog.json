@@ -9255,7 +9255,7 @@
         },
         {
           "path": "src/components/dmf-ui/dialog/dialog.astro",
-          "sha256": "83ee3ee73a218839739a9a53761ae2b6b10c155ecd2f2eb2320bb9c15606daaf"
+          "sha256": "daf1905628175ba9f13d54033bc528ede595a1d0387b2e4c070b930fe69aa519"
         },
         {
           "path": "src/components/dmf-ui/dialog/index.ts",
