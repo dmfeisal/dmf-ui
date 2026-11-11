@@ -17,7 +17,7 @@ try{
  lock.name=manifest.name;lock.version=manifest.version;lock.packages['']={name:manifest.name,version:manifest.version,dependencies:manifest.dependencies,devDependencies:manifest.devDependencies};
  lock.packages['node_modules/dmf-ui']={version:source.version,resolved:'file:vendor/core.tgz',integrity:packed.integrity,dependencies:source.dependencies,peerDependencies:source.peerDependencies,engines:source.engines};
  await writeFile(join(scratch,'package.json'),JSON.stringify(manifest,null,2));await writeFile(join(scratch,'package-lock.json'),JSON.stringify(lock,null,2));
- await run(['ci','--ignore-scripts','--no-audit','--no-fund'],scratch);
+ await run(['ci','--prefer-offline','--ignore-scripts','--no-audit','--no-fund'],scratch);
  const installed=join(scratch,'node_modules/dmf-ui');assert.equal((await lstat(installed)).isSymbolicLink(),false);assert((await realpath(installed)).startsWith(scratch+'/'));
  await run(['run','build'],scratch);
  const html=await readFile(join(scratch,'dist/index.html'),'utf8');
