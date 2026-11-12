@@ -26,10 +26,10 @@ The CB preset uses `data-system="cb-ui" data-color-mode="light"` on `.dmf-ui` an
 
 ## Update a consumer
 
-1. Make and verify changes here. Bump `package.json` and its lockfile for a new snapshot.
-2. Run `npm pack --ignore-scripts --pack-destination /tmp`.
-3. Put the new archive in the consumer's `vendor/` directory and install that exact file with `npm install --save-exact`.
-4. Verify the consumer and review its package-lock integrity change. Commit source and consumer changes when requested.
+1. Make and verify changes here. Bump `package.json` and its lockfile for a new snapshot, and commit it.
+2. Run `npm run release:record`. It packs the committed `HEAD` from a clean worktree into `releases/<version>/` with its SHA-256, source commit and pack metadata, and refuses a version that is already recorded.
+3. Copy the archive into the consumer's `vendor/` directory and install that exact file with `npm install --save-exact`.
+4. Verify the consumer, confirm its package-lock integrity equals `releases/<version>/pack.json`, and commit the release record with the source changes when requested. `npm run release:verify -- <archive>` checks any vendored archive against the records.
 
 Do not edit installed package files or recreate component copies in consumers. A future Git SHA or registry release can replace archive pins. No local folder link is required for clean builds.
 

@@ -14,3 +14,6 @@ packages/react/.test-dist/
 
 # Netlify local site linkage
 .netlify/
+
+# Packed release archives (records are tracked, archives are not)
+releases/*/*.tgz

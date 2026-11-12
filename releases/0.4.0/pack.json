@@ -1,0 +1,696 @@
+[
+  {
+    "id": "dmf-ui@0.4.0",
+    "name": "dmf-ui",
+    "version": "0.4.0",
+    "size": 184216,
+    "unpackedSize": 570482,
+    "shasum": "b92520dc5e52c19dc96bd633b2b292a1dccaac06",
+    "integrity": "sha512-grzoTIW3uvUgHLZHXU7dP9+6QhXzsGAv72awL031IWU0qa2pSKKDCiVkbGU/VlEtXPuFj8ASYyptDNsyLf3Ldw==",
+    "filename": "dmf-ui-0.4.0.tgz",
+    "files": [
+      {
+        "path": "README.md",
+        "size": 5132,
+        "mode": 420
+      },
+      {
+        "path": "contracts/components.json",
+        "size": 2637,
+        "mode": 420
+      },
+      {
+        "path": "docs/DMF-UI-UPSTREAM.json",
+        "size": 10663,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 4505,
+        "mode": 420
+      },
+      {
+        "path": "public/dmf-ui-notices.txt",
+        "size": 25249,
+        "mode": 420
+      },
+      {
+        "path": "src/assets/fonts/nunito.ttf",
+        "size": 276932,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/accordion/accordion-content.astro",
+        "size": 672,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/accordion/accordion-item.astro",
+        "size": 415,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/accordion/accordion-trigger.astro",
+        "size": 1326,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/accordion/accordion.astro",
+        "size": 1695,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/accordion/index.ts",
+        "size": 267,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/alert/alert-action.astro",
+        "size": 323,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/alert/alert-description.astro",
+        "size": 442,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/alert/alert-title.astro",
+        "size": 397,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/alert/alert.astro",
+        "size": 1040,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/alert/index.ts",
+        "size": 243,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/badge/badge-variants.ts",
+        "size": 1549,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/badge/badge.astro",
+        "size": 575,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/badge/index.ts",
+        "size": 123,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/button/button-variants.ts",
+        "size": 3310,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/button/button.astro",
+        "size": 694,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/button/index.ts",
+        "size": 128,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/card/card-action.astro",
+        "size": 344,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/card/card-content.astro",
+        "size": 318,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/card/card-description.astro",
+        "size": 304,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/card/card-footer.astro",
+        "size": 368,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/card/card-header.astro",
+        "size": 546,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/card/card-title.astro",
+        "size": 411,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/card/card.astro",
+        "size": 752,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/card/index.ts",
+        "size": 417,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/checkbox/checkbox.astro",
+        "size": 3078,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/checkbox/index.ts",
+        "size": 55,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dialog/dialog-close.astro",
+        "size": 404,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dialog/dialog-content.astro",
+        "size": 1387,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dialog/dialog-description.astro",
+        "size": 369,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dialog/dialog-footer.astro",
+        "size": 519,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dialog/dialog-header.astro",
+        "size": 291,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dialog/dialog-overlay.astro",
+        "size": 572,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dialog/dialog-portal.astro",
+        "size": 271,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dialog/dialog-title.astro",
+        "size": 305,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dialog/dialog-trigger.astro",
+        "size": 241,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dialog/dialog.astro",
+        "size": 1174,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dialog/index.ts",
+        "size": 639,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-checkbox-item.astro",
+        "size": 1449,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-content.astro",
+        "size": 1901,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-group.astro",
+        "size": 267,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-item.astro",
+        "size": 1548,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-label.astro",
+        "size": 412,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-portal.astro",
+        "size": 233,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-radio-item.astro",
+        "size": 1437,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-separator.astro",
+        "size": 295,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-shortcut.astro",
+        "size": 402,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-trigger.astro",
+        "size": 281,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu.astro",
+        "size": 2555,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/dropdown-menu/index.ts",
+        "size": 860,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/examples/ContentExamples.astro",
+        "size": 3827,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/examples/DisclosureExamples.astro",
+        "size": 4057,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/examples/FormExample.astro",
+        "size": 10182,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/examples/OverlayExamples.astro",
+        "size": 3702,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/examples/SystemExamples.astro",
+        "size": 1916,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/examples/TabsExamples.astro",
+        "size": 2657,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/field/field-content.astro",
+        "size": 388,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/field/field-description.astro",
+        "size": 580,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/field/field-error.astro",
+        "size": 943,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/field/field-group.astro",
+        "size": 456,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/field/field-label.astro",
+        "size": 1041,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/field/field-legend.astro",
+        "size": 439,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/field/field-separator.astro",
+        "size": 693,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/field/field-set.astro",
+        "size": 423,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/field/field-title.astro",
+        "size": 408,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/field/field.astro",
+        "size": 1457,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/field/index.ts",
+        "size": 611,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/index.ts",
+        "size": 684,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/input/index.ts",
+        "size": 49,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/input/input.astro",
+        "size": 1125,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/label/index.ts",
+        "size": 49,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/label/label.astro",
+        "size": 679,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/overlay-scope.ts",
+        "size": 1314,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/popover/index.ts",
+        "size": 395,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/popover/popover-content.astro",
+        "size": 1918,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/popover/popover-description.astro",
+        "size": 293,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/popover/popover-header.astro",
+        "size": 300,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/popover/popover-title.astro",
+        "size": 280,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/popover/popover-trigger.astro",
+        "size": 266,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/popover/popover.astro",
+        "size": 2127,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/radio-group/index.ts",
+        "size": 129,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/radio-group/radio-group-item.astro",
+        "size": 1680,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/radio-group/radio-group.astro",
+        "size": 1413,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/select/index.ts",
+        "size": 499,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/select/select-content.astro",
+        "size": 2274,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/select/select-group.astro",
+        "size": 286,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/select/select-item.astro",
+        "size": 1524,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/select/select-label.astro",
+        "size": 312,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/select/select-separator.astro",
+        "size": 308,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/select/select-trigger.astro",
+        "size": 1433,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/select/select-value.astro",
+        "size": 296,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/select/select.astro",
+        "size": 6931,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/separator/index.ts",
+        "size": 57,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/separator/separator.astro",
+        "size": 802,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/switch/index.ts",
+        "size": 51,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/switch/switch.astro",
+        "size": 3208,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/tabs/index.ts",
+        "size": 315,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/tabs/tabs-content.astro",
+        "size": 381,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/tabs/tabs-list-variants.ts",
+        "size": 606,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/tabs/tabs-list.astro",
+        "size": 1020,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/tabs/tabs-trigger.astro",
+        "size": 2129,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/tabs/tabs.astro",
+        "size": 6431,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/text/index.ts",
+        "size": 46,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/text/text.astro",
+        "size": 948,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/textarea/index.ts",
+        "size": 55,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/textarea/textarea.astro",
+        "size": 834,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/toast/index.ts",
+        "size": 1013,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/toast/toast-action.astro",
+        "size": 485,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/toast/toast-close.astro",
+        "size": 593,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/toast/toast-content.astro",
+        "size": 368,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/toast/toast-description.astro",
+        "size": 338,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/toast/toast-icon.astro",
+        "size": 1351,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/toast/toast-item.astro",
+        "size": 4565,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/toast/toast-template.astro",
+        "size": 201,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/toast/toast-title.astro",
+        "size": 289,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/toast/toast-viewport.astro",
+        "size": 1007,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/toast/toast.astro",
+        "size": 686,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/toast/toaster.astro",
+        "size": 1184,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/tooltip/index.ts",
+        "size": 189,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/tooltip/tooltip-content.astro",
+        "size": 2543,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/tooltip/tooltip-trigger.astro",
+        "size": 566,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/tooltip/tooltip.astro",
+        "size": 2074,
+        "mode": 420
+      },
+      {
+        "path": "src/components/dmf-ui/utils.ts",
+        "size": 25,
+        "mode": 420
+      },
+      {
+        "path": "src/styles/dmf-ui-cb.css",
+        "size": 1171,
+        "mode": 420
+      },
+      {
+        "path": "src/styles/dmf-ui-examples.css",
+        "size": 2641,
+        "mode": 420
+      },
+      {
+        "path": "src/styles/dmf-ui-tokens.css",
+        "size": 5499,
+        "mode": 420
+      },
+      {
+        "path": "src/styles/dmf-ui.css",
+        "size": 5815,
+        "mode": 420
+      },
+      {
+        "path": "src/styles/upstream/fulldev-base.json",
+        "size": 5436,
+        "mode": 420
+      },
+      {
+        "path": "src/styles/upstream/shadcn.css",
+        "size": 16340,
+        "mode": 420
+      },
+      {
+        "path": "tokens/design.tokens.json",
+        "size": 38230,
+        "mode": 420
+      },
+      {
+        "path": "tokens/resolved.json",
+        "size": 37924,
+        "mode": 420
+      }
+    ],
+    "entryCount": 136,
+    "bundled": []
+  }
+]
