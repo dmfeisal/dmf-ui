@@ -661,7 +661,7 @@
       }
     ],
     "package": "@dmf-ui/react",
-    "version": "0.1.0-alpha.4",
+    "version": "0.1.0-alpha.5",
     "exports": [
       "Button",
       "Input",
@@ -855,7 +855,7 @@
       }
     ],
     "source": "packages/react/src/index.tsx",
-    "sha256": "8019ed4b1169d0b6148697efbc38b8592840f7862d849ca32f7d9b22e6f789c9",
+    "sha256": "8be1f7a459f49f03bffc050db11ca4ab4fc2164c4b1d8f6a2b7cbe496f94147a",
     "status": "separate-web-alpha",
     "note": "React native props and controlled/uncontrolled patterns differ from Astro. No Astro parity claim."
   },
@@ -4353,6 +4353,7 @@
         "status": "references-only",
         "sources": [
           "tests/content.test.mjs",
+          "tests/core-package.test.mjs",
           "tests/feedback.test.mjs",
           "tests/foundations.test.mjs",
           "tests/m5-documentation.test.mjs",
@@ -22715,6 +22716,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/core-package.test.mjs",
           "tests/modal-components.test.mjs",
           "tests/browser/dmf-ui-content.mjs",
           "tests/browser/dmf-ui-modal-components.mjs"

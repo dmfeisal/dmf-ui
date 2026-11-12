@@ -1,4 +1,4 @@
-@import "dmf-ui/styles.css";
+@import "@dmf-ui/core/styles.css";
 @source "./src";
 /* Native checkbox state also handles form validation and reset. */
 .dmf-ui .dmf-react-switch { display:inline-flex; align-items:center; gap:12px;  position:relative; cursor:pointer; }

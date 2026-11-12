@@ -1,0 +1,46 @@
+{
+  "name": "@dmf-ui/core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Framework-neutral DMF UI tokens, contracts, stylesheets, preset fonts and Button variants.",
+  "type": "module",
+  "sideEffects": ["*.css"],
+  "exports": {
+    "./styles.css": "./dist/styles/dmf-ui.css",
+    "./tokens.css": "./dist/styles/dmf-ui-tokens.css",
+    "./presets/cb-ui.css": "./dist/styles/dmf-ui-cb.css",
+    "./presets/hui.css": "./dist/styles/dmf-ui-hui.css",
+    "./presets/qdi.css": "./dist/styles/dmf-ui-qdi.css",
+    "./presets/portfolio.css": "./dist/styles/dmf-ui-portfolio.css",
+    "./button/variants": {
+      "types": "./dist/button/variants.d.ts",
+      "import": "./dist/button/variants.js"
+    },
+    "./tokens.json": "./dist/tokens/design.tokens.json",
+    "./tokens/resolved.json": "./dist/tokens/resolved.json",
+    "./foundations": "./dist/tokens/foundations.json",
+    "./contracts.json": "./dist/contracts/components.json",
+    "./contracts/catalog": "./dist/contracts/catalog.json",
+    "./contracts/brands": "./dist/contracts/brands.json",
+    "./design-profile": "./dist/contracts/design-profile.json",
+    "./taxonomy.json": "./dist/contracts/taxonomy.json",
+    "./assets/*": "./dist/assets/*",
+    "./notices": "./dist/THIRD-PARTY-NOTICES.txt",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "prepack": "node build.mjs"
+  },
+  "dependencies": {
+    "class-variance-authority": "0.7.1",
+    "tw-animate-css": "1.4.0"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4.3.3"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ]
+}

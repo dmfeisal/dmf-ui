@@ -1,6 +1,6 @@
 import {useEffect,useState} from 'react';
 import {HeroBlock} from '@dmf-ui/react';
-import {buttonVariants} from 'dmf-ui/button/variants';
+import {buttonVariants} from '@dmf-ui/core/button/variants';
 const illustration='/component-demo.svg';
 
 export function HeroProof(){

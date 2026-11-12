@@ -61,7 +61,7 @@ The source repository builds Home (`/`), the searchable Components catalog (`/co
 
 ## React web alpha
 
-The private `packages/react` proof provides Button, Text, Input, Switch and Card. After the root `npm ci`, run `npm ci --prefix packages/react` before source checks or documentation builds. Run `npm test --prefix packages/react` for type, server rendering and DOM hydration checks. Run `npm run test:dmf-ui:react-consumer` for a separate locked Vite app installed from packed archives, with production asset and form/ref checks. Alpha.2 exports compiled ESM and declarations. The documentation proof is `/examples/react/`. See [React alpha boundaries](docs/DMF-UI-REACT.md). Astro-only consumers do not install React or this package.
+The private `packages/react` proof provides Button, Text, Input, Switch and Card. After the root `npm ci`, run `npm ci --prefix packages/react` before source checks or documentation builds. Run `npm test --prefix packages/react` for type, server rendering and DOM hydration checks. Run `npm run test:dmf-ui:react-consumer` for a separate locked Vite app installed from packed archives, with production asset and form/ref checks. Alpha.2 exports compiled ESM and declarations. The documentation proof is `/examples/react/`. See [React alpha boundaries](docs/DMF-UI-REACT.md). Astro-only consumers do not install React or this package. Build the shared core first with `npm run build --prefix packages/core`: since alpha.5 the adapter depends on `@dmf-ui/core` (tokens, contracts, stylesheets, fonts and Button variants, with no Astro dependency) instead of `dmf-ui`. See [`packages/core`](packages/core/README.md).
 
 ### HUI preset
 

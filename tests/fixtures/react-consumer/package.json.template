@@ -10,8 +10,8 @@
     "dev": "vite --host 127.0.0.1"
   },
   "dependencies": {
+    "@dmf-ui/core": "file:vendor/core.tgz",
     "@dmf-ui/react": "file:vendor/react.tgz",
-    "dmf-ui": "file:vendor/core.tgz",
     "react": "19.3.1",
     "react-dom": "19.3.1"
   },

@@ -29,13 +29,15 @@ async function materialize(directory){
 try{
  release=await acquireVerificationLock(root);
  console.log(`Isolated React consumer: ${scratch}`);
+ await run(npm,['run','build'],join(root,'packages/core'));
  await run(npm,['run','build'],join(root,'packages/react'));
  await cp(template,scratch,{recursive:true});await materialize(scratch);await mkdir(join(scratch,'vendor'));
  // Copy the same source-owned example used by documentation; resolve its UI imports through the installed package.
  for(const name of ['discovery-model.ts','discovery.css'])await cp(join(root,'packages/react/examples',name),join(scratch,'src',name));
  const discoverySource=await readFile(join(root,'packages/react/examples/discovery.tsx'),'utf8');
  await writeFile(join(scratch,'src/discovery.tsx'),discoverySource.replace("from '../src/index'","from '@dmf-ui/react'"));
- const packages=[['core',root],['react',join(root,'packages/react')]];
+ const packages=[['core',join(root,'packages/core')],['react',join(root,'packages/react')]];
+ const packageName={core:'@dmf-ui/core',react:'@dmf-ui/react'};
  const packed=[];
  for(const [name,cwd] of packages){
   const [info]=JSON.parse(await run(npm,['pack','--ignore-scripts','--json','--pack-destination',join(scratch,'vendor')],cwd,{capture:true}));
@@ -44,7 +46,7 @@ try{
  if(update){
   const lock=JSON.parse(await readFile(join(scratch,'package-lock.json'),'utf8').catch(()=>'{}'));
   if(lock.packages){
-   delete lock.packages['node_modules/dmf-ui'];delete lock.packages['node_modules/@dmf-ui/react'];
+   for(const name of ['dmf-ui','@dmf-ui/core','@dmf-ui/react'])delete lock.packages[`node_modules/${name}`];
    await writeFile(join(scratch,'package-lock.json'),JSON.stringify(lock,null,2)+'\n');
   }
   await run(npm,['install','--package-lock-only','--ignore-scripts','--no-audit','--no-fund'],scratch);
@@ -52,10 +54,10 @@ try{
  }else{
   const lock=JSON.parse(await readFile(join(scratch,'package-lock.json'),'utf8'));
   for(const info of packed){
-   const name=info.archiveName==='core'?'dmf-ui':'@dmf-ui/react';
+   const name=packageName[info.archiveName];
    const entry=lock.packages[`node_modules/${name}`];
    assert.equal(entry.version,info.version,`${name} changed version; regenerate the fixture lock`);
-   const manifest=JSON.parse(await readFile(join(info.archiveName==='core'?root:join(root,'packages/react'),'package.json'),'utf8'));
+   const manifest=JSON.parse(await readFile(join(root,'packages',info.archiveName,'package.json'),'utf8'));
    for(const field of ['dependencies','peerDependencies'])assert.deepEqual(entry[field]??{},manifest[field]??{},`${name} ${field} changed; regenerate the fixture lock`);
    // Only generated archive bytes change; the locked dependency graph stays fixed.
    entry.integrity=info.integrity;
@@ -63,7 +65,7 @@ try{
   await writeFile(join(scratch,'package-lock.json'),JSON.stringify(lock,null,2)+'\n');
  }
  await run(npm,['ci','--ignore-scripts','--no-audit','--no-fund'],scratch);
- for(const name of ['dmf-ui','@dmf-ui/react']){
+ for(const name of Object.values(packageName)){
   const path=join(scratch,'node_modules',name);
   assert.equal((await lstat(path)).isSymbolicLink(),false,`${name} must be installed, not linked`);
   assert.ok((await realpath(path)).startsWith(scratch+'/'),`${name} escapes the isolated consumer`);
@@ -71,10 +73,10 @@ try{
   assert.equal(installed.version,packed.find(info=>info.name===name).version,`${name} installed stale archive metadata`);
  }
  await mkdir(join(scratch,'public'),{recursive:true});
- await cp(join(scratch,'node_modules/dmf-ui/src/assets/examples/component-demo.svg'),join(scratch,'public/component-demo.svg'));
+ await cp(join(scratch,'node_modules/@dmf-ui/core/dist/assets/examples/component-demo.svg'),join(scratch,'public/component-demo.svg'));
  await mkdir(join(scratch,'public/merchant-card'),{recursive:true});
- for(const name of ['verified','hours','distance','star'])await cp(join(scratch,`node_modules/dmf-ui/src/assets/merchant-card/${name}.svg`),join(scratch,`public/merchant-card/${name}.svg`));
- for(const n of [1,2,3])await cp(join(scratch,`node_modules/dmf-ui/src/assets/examples/merchant-card/photo-${n}.png`),join(scratch,`public/merchant-card/photo-${n}.png`));
+ for(const name of ['verified','hours','distance','star'])await cp(join(scratch,`node_modules/@dmf-ui/core/dist/assets/merchant-card/${name}.svg`),join(scratch,`public/merchant-card/${name}.svg`));
+ for(const n of [1,2,3])await cp(join(scratch,`node_modules/@dmf-ui/core/dist/assets/examples/merchant-card/photo-${n}.png`),join(scratch,`public/merchant-card/photo-${n}.png`));
  await run(npm,['run','build'],scratch);
  await run(npm,['test'],scratch);
  console.log(`PASS packed React consumer: ${scratch}`);

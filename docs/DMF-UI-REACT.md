@@ -28,7 +28,7 @@ Core semantic tokens, preset CSS and Button variants remain shared web inputs. R
 
 Run root `npm ci`, then `npm ci --prefix packages/react`. Run `npm test --prefix packages/react` for source types, server rendering and JSDOM hydration/form/reset/unmount checks. Run `npm run build --prefix packages/react` to produce ESM, TypeScript declarations and bundled third-party notices. `npm pack` in that package runs this build automatically. The package exports compiled ESM rather than requiring the consumer to transform dependency TSX. Its source remains included only for Tailwind discovery. React 19 and an ESM host are required.
 
-The documentation proof remains `/examples/react/`. React is not installed by Astro-only consumers of the core archive. A React consumer currently installs the full core package for shared CSS and tokens; that package's Astro/Data Slot dependencies and Astro peer are still in its installed dependency graph. They do not initialize in the React app. A smaller framework-neutral web foundation is future packaging work.
+The documentation proof remains `/examples/react/`. React is not installed by Astro-only consumers of the core archive. Since React `0.1.0-alpha.5`, a React consumer installs `@dmf-ui/core` for shared CSS, fonts, tokens and Button variants instead of the Astro package. Core has no Astro, Lucide or Data Slot dependency; see `packages/core/README.md` and [M9](DMF-UI-M9.md).
 
 ## Separate packed consumer
 

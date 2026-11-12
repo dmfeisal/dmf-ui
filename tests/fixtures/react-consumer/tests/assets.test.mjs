@@ -9,7 +9,7 @@ test('production CSS includes adapter utilities, both presets, focus rules and b
  for(const selector of ['.dmf-react-switch','.border-input','.text-2xl','.bg-primary','data-system=cb-ui','data-theme=dark','focus-visible'])assert.ok(css.includes(selector),`Missing compiled styling: ${selector}`);
  assert.match(css,/#26ade4/i);assert.match(css,/DMF CB Nunito/);assert.ok(!css.includes('@tailwind'),'Tailwind must be compiled');
  const fontURLs=[...css.matchAll(/url\(([^)]+\.ttf[^)]*)\)/g)].map(match=>match[1].replace(/["']/g,''));assert.ok(fontURLs.length>0,'Bundled font URL missing');
- const original=await readFile('node_modules/dmf-ui/src/assets/fonts/nunito.ttf');
+ const original=await readFile('node_modules/@dmf-ui/core/dist/assets/fonts/nunito.ttf');
  const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
  for(const url of fontURLs){assert.ok(url.startsWith('/assets/'),'Font must be a local production asset');const bytes=await readFile(join('dist',url));assert.equal(hash(bytes),hash(original));}
  const js=(await Promise.all(assets.filter(name=>name.endsWith('.js')).map(name=>readFile(join('dist/assets',name),'utf8')))).join('\n');
