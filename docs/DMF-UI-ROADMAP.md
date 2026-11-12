@@ -28,9 +28,44 @@ The brand registry is `contracts/brands.json`; token source is `tokens/design.to
 - Done: foundations ([M1](DMF-UI-M1.md)), portable tokens in 0.3.0 ([tokens](DMF-UI-TOKENS.md)), Blocks ([M4](DMF-UI-M4-BLOCKS.md)), documentation and production quality ([M5](DMF-UI-M5.md)), React alpha ([notes](DMF-UI-0.5.0-REACT-ALPHA-RELEASE-NOTES.md)), Authentication Blocks ([M6.1](DMF-UI-M6.md), [M6.2](DMF-UI-M6-2-RESET.md), [M6.3](DMF-UI-M6-3-OTP.md)), Nova profile ([Nova](DMF-UI-NOVA.md)), 0.5.0 release, release records and the [new-brand guide](DMF-UI-NEW-BRAND.md) ([M7](DMF-UI-M7.md)), preset showcase pages in dmf-web ([M8](DMF-UI-M8.md)), shared core for React ([M9](DMF-UI-M9.md)).
 - Every archive given to dmf-web has a record in `releases/`. See `releases/README.md`.
 
-## Now
+## Now: M10 — preset completeness from recorded sources
 
-No milestone in progress. The next one is chosen from "Next" and planned here before work starts.
+Goal: close the past-work preset gaps that the recorded sources support, and make the records say plainly what they cannot support. Nothing is invented.
+
+Audit, 13 November 2026:
+- **No dark-mode source for any past-work preset.**
+  - CB's recovered token file (`public/css/cb-ui-tokens.css` in dmf-web) has a `dark` colour role, but no dark theme.
+  - The HUI and QDI brand books record no dark mode.
+  - Dark variants would therefore be new design, not reconstruction. They are not part of M10.
+- **Docs contradict what ships.** The CB and HUI preset pages still say primary actions use dark or black labels. The shipped CSS and `brands.json` use white labels by owner preference.
+
+1. **HUI Black headline weight.**
+   - The brand book's typography page specifies Black headlines; the preset ships M PLUS Rounded 1c only at 500 and 700.
+   - Add the Latin 900 WOFF2 from the same Fontsource 5.2.8 release, under the OFL licence already bundled.
+   - Add its `@font-face` through the token generator, and use 900 for HUI headings where the brand book specifies Black.
+   - Replace the first HUI gap with whatever remains true, such as Latin-only coverage.
+2. **Correct the CB and HUI preset docs.**
+   - They should state the white primary label, the owner preference and the recorded ratio (about 2.57:1 for CB and 4.29:1 for HUI) as a contrast exception, matching `actionTextPolicy`.
+   - Any other contrast pair the docs mention stays as measured.
+3. **Explicit dark-mode gaps.** Every past-work preset records in `brands.json` that no dark-mode source exists and it stays light-only. CB gains the gap it lacks today; HUI and QDI keep theirs, in consistent wording.
+4. **A drift check.** A test reads `brands.json` and each preset's doc. It fails when:
+   - a preset with an `actionTextPolicy` describes a different label colour, or omits its exception ratio
+   - a preset whose `modes` is light-only claims a dark mode
+
+Done when:
+
+- HUI headings render at weight 900 from the packaged font.
+- Package and token tests assert the new WOFF2 file is packed, and check its signature.
+- The notices still cover M PLUS Rounded 1c.
+- The CB and HUI docs match `actionTextPolicy`, and the drift check passes.
+- `brands.json` gaps are updated, and `contracts:check`, `npm test`, `check` and `build` pass, along with the React consumer and Blocks consumer runs.
+- `docs/DMF-UI-M10.md` records what shipped and what was verified, and this page moves M10 to "Where it stands".
+
+Not in M10:
+- **Dark palettes.** They would need source material or an explicit decision to design new ones.
+- **A complete CB specification.** That needs an original source.
+- **HUI spacing, radius and state scales.** The brand book has none.
+- **Packing.** New font bytes change both `dmf-ui` and `@dmf-ui/core`, so the next archive of each needs a version bump before it is given to a consumer. dmf-web's preset pages pick up the new gaps only with that archive.
 
 Ongoing, not a milestone gate:
 
@@ -38,7 +73,6 @@ Ongoing, not a milestone gate:
 
 ## Next
 
-6. **Preset completeness.** Dark modes where a source exists (CB, HUI and QDI are light-only today); close the gaps listed in `brands.json` without inventing values the sources do not support.
 7. **Performance follow-ups** from M5: the ~27KB inline search index per docs page and ~458KB decoded CSS on Discovery, after measuring.
 
 ## Later
