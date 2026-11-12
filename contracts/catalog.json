@@ -12291,6 +12291,7 @@
           "tests/m5-documentation.test.mjs",
           "tests/otp-verification.test.mjs",
           "tests/package.test.mjs",
+          "tests/preset-records.test.mjs",
           "tests/process-guard.test.mjs",
           "tests/product-details.test.mjs",
           "tests/release-records.test.mjs",
@@ -15163,6 +15164,7 @@
           "tests/feedback.test.mjs",
           "tests/form-composition.test.mjs",
           "tests/navigation-patterns.test.mjs",
+          "tests/preset-records.test.mjs",
           "tests/product-details.test.mjs",
           "tests/selection.test.mjs",
           "tests/tokens.test.mjs",
@@ -24608,6 +24610,7 @@
         "sources": [
           "tests/data-display.test.mjs",
           "tests/m5-documentation.test.mjs",
+          "tests/preset-records.test.mjs",
           "tests/selection.test.mjs",
           "tests/tokens.test.mjs",
           "tests/browser/dmf-ui-authentication.mjs",
@@ -25624,6 +25627,7 @@
           "tests/foundations.test.mjs",
           "tests/modal-components.test.mjs",
           "tests/otp-verification.test.mjs",
+          "tests/preset-records.test.mjs",
           "tests/reset-password.test.mjs",
           "tests/selection.test.mjs",
           "tests/structure.test.mjs",
@@ -28788,6 +28792,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/preset-records.test.mjs",
           "tests/taxonomy.test.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-foundations.mjs"

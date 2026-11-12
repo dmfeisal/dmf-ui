@@ -6,15 +6,17 @@ The HUI preset adds the brand direction confirmed in the owner's 2026-10-25 HUI 
 
 ## Foundations and evidence
 
-Confirmed brand colors: Off Red #EC2A00, Amber #FFB800, White #FFFFFF, Egyptian Blue #29329B, Kelly Green #63C132, Eerie Black #232323. Confirmed type direction: Rounded Mplus headings and Inter body. The preset bundles Latin WOFF2 editions of M PLUS Rounded 1c (500 and 700) and variable Inter from Fontsource 5.2.8, with their supplied OFL licenses and attribution. Other scripts fall back to the declared sans-serif families; this is not a multilingual font-coverage claim.
+Confirmed brand colors: Off Red #EC2A00, Amber #FFB800, White #FFFFFF, Egyptian Blue #29329B, Kelly Green #63C132, Eerie Black #232323. Confirmed type direction: Rounded Mplus headings and Inter body. The preset bundles Latin WOFF2 editions of M PLUS Rounded 1c (500, 700 and 900 Black) and variable Inter from Fontsource 5.2.8, with their supplied OFL licenses and attribution. Other scripts fall back to the declared sans-serif families; this is not a multilingual font-coverage claim.
 
 Source context: the owner's private portfolio report and design-system case study, based on confirmed 2023 foundations. Identifying private source paths are omitted from this public record. The original 48-page guideline PDF was unavailable at the initial extraction; subsequent local verification is recorded in DMF-UI-FOUNDATIONS.md. No logo, lockup, clear-space ratio or historical product token has been inferred.
 
 ## Present-day semantic mapping
 
-The six brand colors are preserved as `--hui-*` variables in `hui.light`. Primary uses Off Red; its label is black because white on #EC2A00 is approximately 4.29:1, below the normal-text threshold. Black on Off Red is approximately 4.90:1. Links and focus use Egyptian Blue. Amber secondary surfaces use Eerie Black labels. Kelly Green remains a brand/chart token, not small text on white. Error red, neutral surfaces, borders, shadows and the 0.5rem radius are new DMF implementation choices, not recovered product tokens. Chart colors do not promise adjacent-segment contrast; chart authors still need labels and suitable boundaries.
+The six brand colors are preserved as `--hui-*` variables in `hui.light`. Primary uses Off Red with a white label by owner preference. White on #EC2A00 is approximately 4.29:1, below the 4.5:1 normal-text threshold, so it is a recorded contrast exception (`actionTextPolicy` in `contracts/brands.json`), not an AA pass. Black on Off Red would be approximately 4.90:1. Links and focus use Egyptian Blue. Amber secondary surfaces use Eerie Black labels. Kelly Green remains a brand/chart token, not small text on white. Error red, neutral surfaces, borders, shadows and the 0.5rem radius are new DMF implementation choices, not recovered product tokens. Chart colors do not promise adjacent-segment contrast; chart authors still need labels and suitable boundaries.
 
-The preset is light only, including inside a dark documentation page. A dark HUI palette requires a separate decision and verification. Typography/radius overrides in Create are customizations, rather than official brand variants. Consumer App, Biz Suites and POS share this starting point; this change does not invent separate product themes.
+The page headline (`h1`) defaults to Rounded Mplus Black (900), the brand book's headline weight. Other heading levels keep their component or browser weight: the brand book's subheadline style (Rounded Mplus Medium) is not mapped to specific levels. The rule's specificity (0,0,2) is just above DMF UI's scoped heading reset, so a weight utility, Block style or other class-based rule still applies.
+
+The preset is light only, including inside a dark documentation page: no dark-mode source exists. A dark HUI palette would be new design and requires a separate decision and verification. Typography/radius overrides in Create are customizations, rather than official brand variants. Consumer App, Biz Suites and POS share this starting point; this change does not invent separate product themes.
 
 ## Use
 
@@ -43,4 +45,4 @@ These are Chromium checks. Safari/Firefox, spoken screen readers and other-scrip
 
 ## Current Nova profile
 
-The current default profile is Nova/Neutral. CB and HUI filled primary actions now use white labels by owner preference, superseding the earlier foreground mapping described above. Palette values remain unchanged. The known normal-text contrast exceptions and current verification are recorded in DMF-UI-NOVA.md.
+The current default profile is Nova/Neutral. CB and HUI filled primary actions use white labels by owner preference, as described above. Palette values remain unchanged. The known normal-text contrast exceptions and current verification are recorded in DMF-UI-NOVA.md.

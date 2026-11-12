@@ -46,7 +46,7 @@ test('HUI preserves palette/fonts and records owner-selected white primary label
  assert.match(outputs['src/styles/dmf-ui-hui.css'],/:root \.dmf-ui\[data-system="hui"\]/);
  assert(g['font-heading'].value.includes('DMF HUI Rounded Mplus'));
  const pkg=JSON.parse(await readFile('package.json','utf8'));assert.equal(pkg.exports['./presets/hui.css'],'./src/styles/dmf-ui-hui.css');
- for(const font of ['inter-latin-variable','mplus-rounded-latin-500','mplus-rounded-latin-700']){
+ for(const font of ['inter-latin-variable','mplus-rounded-latin-500','mplus-rounded-latin-700','mplus-rounded-latin-900']){
   const bytes=await readFile(`src/assets/fonts/hui/${font}.woff2`);assert.equal(bytes.subarray(0,4).toString(),'wOF2');
  }
 });
