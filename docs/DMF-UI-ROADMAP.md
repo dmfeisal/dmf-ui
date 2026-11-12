@@ -23,26 +23,21 @@ The brand registry is `contracts/brands.json`; token source is `tokens/design.to
 
 ## Where it stands
 
-- Core `dmf-ui@0.4.0` and `@dmf-ui/react@0.1.0-alpha.3`, both private and experimental.
+- Core `dmf-ui@0.5.0` and `@dmf-ui/react@0.1.0-alpha.4`, both private and experimental. dmf-web runs the recorded 0.5.0 archive.
 - 80 Astro families, Authentication and discovery Blocks, 15 React families. Counts come from `contracts/catalog.json`.
-- Done: foundations ([M1](DMF-UI-M1.md)), portable tokens in 0.3.0 ([tokens](DMF-UI-TOKENS.md)), Blocks ([M4](DMF-UI-M4-BLOCKS.md)), documentation and production quality ([M5](DMF-UI-M5.md)), React alpha ([notes](DMF-UI-0.5.0-REACT-ALPHA-RELEASE-NOTES.md)), Authentication Blocks ([M6.1](DMF-UI-M6.md), [M6.2](DMF-UI-M6-2-RESET.md), [M6.3](DMF-UI-M6-3-OTP.md)), Nova profile ([Nova](DMF-UI-NOVA.md)).
-- Everything after the 0.4.0 source commit (`fe93ad9`) is unreleased: dmf-web still runs the 0.4.0 archive. See `releases/README.md`.
+- Done: foundations ([M1](DMF-UI-M1.md)), portable tokens in 0.3.0 ([tokens](DMF-UI-TOKENS.md)), Blocks ([M4](DMF-UI-M4-BLOCKS.md)), documentation and production quality ([M5](DMF-UI-M5.md)), React alpha ([notes](DMF-UI-0.5.0-REACT-ALPHA-RELEASE-NOTES.md)), Authentication Blocks ([M6.1](DMF-UI-M6.md), [M6.2](DMF-UI-M6-2-RESET.md), [M6.3](DMF-UI-M6-3-OTP.md)), Nova profile ([Nova](DMF-UI-NOVA.md)), 0.5.0 release, release records and the [new-brand guide](DMF-UI-NEW-BRAND.md) ([M7](DMF-UI-M7.md)).
+- Every archive given to dmf-web has a record in `releases/`. See `releases/README.md`.
 
-## Now: M7 — 0.5.0 release and new-brand guide
+## Now: choose M8
 
-Goal: ship everything since 0.4.0 to dmf-web, and make adding a brand (past or future) a documented, checked step.
+M7 is complete ([report](DMF-UI-M7.md)). M8 is one of the first two Next items, chosen by the owner:
 
-1. **Release 0.5.0.** Bump core `package.json` and `package-lock.json`, record the archive with `npm run release:record`, copy it into dmf-web's `vendor/`, install it exactly and verify the portfolio. This puts Nova, React alpha.3 and M6 into the portfolio so the showcase matches the source.
-2. **New-brand guide.** One document for adding a preset: required token groups and modes, font bundling and licences, the `brands.json` entry (status, source, gaps, action-text policy), contrast exceptions, export path and the tests that must pass. Today each preset is documented separately and QDI has no preset page of its own; the guide closes that and makes the next brand a small, checked addition.
+- **Preset showcase (item 4)** makes the past-work layer visible in dmf-web.
+- **Smaller shared core (item 5)** unblocks React apps and, later, native adapters.
 
-Done when:
+Plan the chosen milestone here with its own done-when checks before starting it.
 
-- `releases/0.5.0/` is recorded and `npm run release:verify -- <dmf-web>/vendor/dmf-ui-0.5.0.tgz` matches.
-- dmf-web's package-lock integrity for `dmf-ui` equals `releases/0.5.0/pack.json`, and its build and tests pass on Node 22 and 24.
-- The new-brand guide exists, and QDI is documented through it (CB and HUI pages link to it).
-- `docs/DMF-UI-M7.md` records what shipped and what was verified, and this page moves M7 to "Where it stands".
-
-Alongside M7 (ongoing, not a milestone gate):
+Ongoing, not a milestone gate:
 
 3. **Manual acceptance backlog.** Safari and Firefox, real password managers, phones and tablets, spoken screen readers for the Authentication Blocks and React alpha. Firefox automation is blocked by a geckodriver profile error.
 
