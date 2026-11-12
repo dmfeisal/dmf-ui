@@ -39,7 +39,7 @@ Goal: make the past-work layer visible. Each past-work preset gets a page in dmf
 
 Done when:
 
-- The four routes build in dmf-web from the 0.5.0 archive, and a dmf-web test asserts each page uses its `data-system`, shows its recorded gaps and exception, and links its hub.
+- The four routes build in dmf-web from the 0.5.0 archive, and a dmf-web test asserts each page uses its `data-system`, shows its recorded gaps, shows a contrast exception only where `brands.json` records an `actionTextPolicy` (CB UI and HUI; QDI shows none), and links its hub.
 - dmf-web `check`, `build` and tests pass locally and in CI on Node 22 and 24.
 - `docs/DMF-UI-M8.md` records what shipped and what was verified, and this page moves M8 to "Where it stands".
 
