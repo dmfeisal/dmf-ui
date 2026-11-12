@@ -24,6 +24,10 @@ Public imports include component directories (`dmf-ui/dialog`, `dmf-ui/select`, 
 
 The CB preset uses `data-system="cb-ui" data-color-mode="light"` on `.dmf-ui` and retains `--dmf-cb-ui-color-primary: #26ade4`. Its licensed Nunito font is bundled through CSS asset URLs, without a consumer-owned font route. The preset is a 2026 reconstruction, not a historical shipped-system claim.
 
+## Roadmap
+
+DMF UI is a personal design system for past client work (presets) and future products. Direction, layers and sequencing live in [the roadmap](docs/DMF-UI-ROADMAP.md).
+
 ## Update a consumer
 
 1. Make and verify changes here. Bump `package.json` and its lockfile for a new snapshot.
