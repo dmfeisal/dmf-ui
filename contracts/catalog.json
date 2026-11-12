@@ -12292,6 +12292,7 @@
           "tests/package.test.mjs",
           "tests/process-guard.test.mjs",
           "tests/product-details.test.mjs",
+          "tests/release-records.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
           "tests/browser/dmf-ui-authentication-consumer.mjs",
           "tests/browser/dmf-ui-blocks.mjs",

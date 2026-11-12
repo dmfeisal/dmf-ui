@@ -10,6 +10,10 @@ Use only these public preset labels and identifiers:
 
 Never expand these abbreviations into client or company identities. Apply this rule to source, scripts, comments, documentation, search indexes, filenames, font-family names, assets, exports and generated outputs. Do not copy private guideline PDFs or identifying filenames into the repository. Preserve required third-party license text. Do not rewrite Git history without an explicit request.
 
+## Release records
+
+Every archive given to a consumer is recorded in `releases/<version>/` (source commit, SHA-256, pack metadata) with `npm run release:record`; see `releases/README.md`. A recorded version is immutable, so any later change to shipped files needs a version bump before packing. Archives stay out of Git. Packing, recording and updating a consumer's vendored archive happen only when asked.
+
 ## Natural sizing
 
 Do not impose a blanket 44px mobile/touch minimum width or height. Use component variants, content and padding for natural sizing, preserving keyboard behavior and visible focus.
