@@ -20,4 +20,6 @@ Commits after 0.4.0's source commit still declare version 0.4.0 but pack differe
 
 The same applies after 0.5.0: M9 regenerated `contracts/catalog.json` for React `0.1.0-alpha.5` and added a core note to `README.md`, so `dmf-ui` packs the same file list as 0.5.0 but different bytes in those two files. The next `dmf-ui` archive given to a consumer needs a version bump first.
 
+M10 then added the HUI 900 font file, so the next `dmf-ui` and `@dmf-ui/core` archives both need a version bump.
+
 These records cover `dmf-ui` only. `@dmf-ui/core` and `@dmf-ui/react` archives are packed by the test runners and not yet given to any consumer, so they have no records.
