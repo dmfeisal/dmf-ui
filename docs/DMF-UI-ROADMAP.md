@@ -28,10 +28,22 @@ The brand registry is `contracts/brands.json`; token source is `tokens/design.to
 - Done: foundations ([M1](DMF-UI-M1.md)), portable tokens in 0.3.0 ([tokens](DMF-UI-TOKENS.md)), Blocks ([M4](DMF-UI-M4-BLOCKS.md)), documentation and production quality ([M5](DMF-UI-M5.md)), React alpha ([notes](DMF-UI-0.5.0-REACT-ALPHA-RELEASE-NOTES.md)), Authentication Blocks ([M6.1](DMF-UI-M6.md), [M6.2](DMF-UI-M6-2-RESET.md), [M6.3](DMF-UI-M6-3-OTP.md)), Nova profile ([Nova](DMF-UI-NOVA.md)).
 - Everything after the 0.4.0 source commit (`fe93ad9`) is unreleased: dmf-web still runs the 0.4.0 archive. See `releases/README.md`.
 
-## Now
+## Now: M7 — 0.5.0 release and new-brand guide
 
-1. **Release 0.5.0.** Bump core, record the archive with `npm run release:record`, update dmf-web's vendored archive and verify it. This puts Nova, React alpha.3 and M6 into the portfolio so the showcase matches the source.
+Goal: ship everything since 0.4.0 to dmf-web, and make adding a brand (past or future) a documented, checked step.
+
+1. **Release 0.5.0.** Bump core `package.json` and `package-lock.json`, record the archive with `npm run release:record`, copy it into dmf-web's `vendor/`, install it exactly and verify the portfolio. This puts Nova, React alpha.3 and M6 into the portfolio so the showcase matches the source.
 2. **New-brand guide.** One document for adding a preset: required token groups and modes, font bundling and licences, the `brands.json` entry (status, source, gaps, action-text policy), contrast exceptions, export path and the tests that must pass. Today each preset is documented separately and QDI has no preset page of its own; the guide closes that and makes the next brand a small, checked addition.
+
+Done when:
+
+- `releases/0.5.0/` is recorded and `npm run release:verify -- <dmf-web>/vendor/dmf-ui-0.5.0.tgz` matches.
+- dmf-web's package-lock integrity for `dmf-ui` equals `releases/0.5.0/pack.json`, and its build and tests pass on Node 22 and 24.
+- The new-brand guide exists, and QDI is documented through it (CB and HUI pages link to it).
+- `docs/DMF-UI-M7.md` records what shipped and what was verified, and this page moves M7 to "Where it stands".
+
+Alongside M7 (ongoing, not a milestone gate):
+
 3. **Manual acceptance backlog.** Safari and Firefox, real password managers, phones and tablets, spoken screen readers for the Authentication Blocks and React alpha. Firefox automation is blocked by a geckodriver profile error.
 
 ## Next
@@ -58,4 +70,4 @@ Templates registry, npm publication and a stable API promise, WordPress integrat
 - CB and HUI filled primary actions keep white labels by owner preference (about 2.57:1 and 4.29:1); they stay recorded exceptions, not WCAG AA passes.
 - Released versions are immutable and recorded in `releases/`.
 
-Update this page when an item ships or the order changes; move finished items to "Where it stands" with a link to their report.
+Each milestone is planned here and reported in its own `DMF-UI-M<n>.md`; reports are not merged into this page. Update this page when an item ships or the order changes; move finished items to "Where it stands" with a link to their report.
