@@ -25,23 +25,31 @@ The brand registry is `contracts/brands.json`; token source is `tokens/design.to
 
 - Core `dmf-ui@0.5.0` and `@dmf-ui/react@0.1.0-alpha.4`, both private and experimental. dmf-web runs the recorded 0.5.0 archive.
 - 80 Astro families, Authentication and discovery Blocks, 15 React families. Counts come from `contracts/catalog.json`.
-- Done: foundations ([M1](DMF-UI-M1.md)), portable tokens in 0.3.0 ([tokens](DMF-UI-TOKENS.md)), Blocks ([M4](DMF-UI-M4-BLOCKS.md)), documentation and production quality ([M5](DMF-UI-M5.md)), React alpha ([notes](DMF-UI-0.5.0-REACT-ALPHA-RELEASE-NOTES.md)), Authentication Blocks ([M6.1](DMF-UI-M6.md), [M6.2](DMF-UI-M6-2-RESET.md), [M6.3](DMF-UI-M6-3-OTP.md)), Nova profile ([Nova](DMF-UI-NOVA.md)), 0.5.0 release, release records and the [new-brand guide](DMF-UI-NEW-BRAND.md) ([M7](DMF-UI-M7.md)).
+- Done: foundations ([M1](DMF-UI-M1.md)), portable tokens in 0.3.0 ([tokens](DMF-UI-TOKENS.md)), Blocks ([M4](DMF-UI-M4-BLOCKS.md)), documentation and production quality ([M5](DMF-UI-M5.md)), React alpha ([notes](DMF-UI-0.5.0-REACT-ALPHA-RELEASE-NOTES.md)), Authentication Blocks ([M6.1](DMF-UI-M6.md), [M6.2](DMF-UI-M6-2-RESET.md), [M6.3](DMF-UI-M6-3-OTP.md)), Nova profile ([Nova](DMF-UI-NOVA.md)), 0.5.0 release, release records and the [new-brand guide](DMF-UI-NEW-BRAND.md) ([M7](DMF-UI-M7.md)), preset showcase pages in dmf-web ([M8](DMF-UI-M8.md)).
 - Every archive given to dmf-web has a record in `releases/`. See `releases/README.md`.
 
-## Now: M8 — preset showcase
+## Now: M9 — shared core for React
 
-Goal: make the past-work layer visible. Each past-work preset gets a page in dmf-web rendered by the installed package, not screenshots.
+Goal: a React app installs the tokens, CSS and contracts without Astro. Today the packed React consumer fixture installs `dmf-ui`, and with it Astro, Vite plugins, `@lucide/astro` and the `@data-slot` runtimes: 426 lock entries for 15 React families that use only `dmf-ui/styles.css` and `dmf-ui/button/variants`.
 
-1. **Routes.** `/examples/dmf-ui/presets/` lists the presets; `/examples/dmf-ui/presets/<id>/` shows one (`cb-ui`, `hui`, `qdi`). Standalone like `/examples/dmf-ui/`: no portfolio styles, scripts or fonts.
-2. **Content from package data only.** Status, modes, source, mapping, gaps and action-text policy come from `dmf-ui/contracts/brands`; swatches render the preset's own CSS variables. dmf-web adds only the link to its company hub. Nothing is invented.
-3. **Specimen.** The same component set under each `data-system`: Buttons, Badge, Alert, Card with Field, Input, Checkbox and Switch, Tabs. Recorded contrast exceptions are shown with their measured ratio.
-4. **Links.** Each company hub's Documentation section and the `/ui/` page link to the matching preset page.
+1. **`@dmf-ui/core` 0.1.0** in `packages/core`, private and experimental like the React adapter. It holds:
+   - `tokens/*.json`, `contracts/*.json`, the token, foundation, Nova and preset stylesheets (`cb-ui`, `hui`, `qdi`, `portfolio`), and `button/variants`.
+   - The upstream shadcn CSS with its license notice.
+   - Dependencies: `class-variance-authority` and `tw-animate-css`, with `tailwindcss` as a peer. No Astro peer and no component files.
+2. **One source.** The files stay where they are in this repository. The core package's build copies them, the way `packages/react/build.mjs` does, and a test fails if any copy differs from its source.
+3. **Stylesheet split.** The core `styles.css` keeps every `@import` from `dmf-ui.css` that React needs, but not `@source "../components/dmf-ui"`, so Tailwind no longer scans Astro components. Its only `@source` is its own `button/variants`. Whether Blocks CSS belongs in core is decided by the React fixture's needs, not assumed.
+4. **React `0.1.0-alpha.5`.** Its peer changes from `dmf-ui` to `@dmf-ui/core ^0.1.0`, and its imports move to `@dmf-ui/core/...`.
+5. **`dmf-ui` itself is unchanged.** Astro consumers, including dmf-web, keep the 0.5.0 archive and its exports. Making `dmf-ui` depend on core is later work, and only if it removes real duplication.
 
 Done when:
 
-- The four routes build in dmf-web from the 0.5.0 archive, and a dmf-web test asserts each page uses its `data-system`, shows its recorded gaps, shows a contrast exception only where `brands.json` records an `actionTextPolicy` (CB UI and HUI; QDI shows none), and links its hub.
-- dmf-web `check`, `build` and tests pass locally and in CI on Node 22 and 24.
-- `docs/DMF-UI-M8.md` records what shipped and what was verified, and this page moves M8 to "Where it stands".
+- The guarded React consumer run (`scripts/test-dmf-ui-react-consumer.mjs`) installs packed `@dmf-ui/core` and `@dmf-ui/react` archives and passes its existing tests.
+- The fixture lock has no `astro`, `@astrojs/*`, `@lucide/astro` or `@data-slot/*` entries. The report records the new entry count against 426.
+- A core test checks that every shipped file is byte-identical to its source and that the manifest has no Astro dependency or peer.
+- `npm pack --dry-run` of `dmf-ui` lists the same files as `releases/0.5.0/pack.json`, so no `dmf-ui` version bump is needed.
+- `docs/DMF-UI-M9.md` records what shipped and what was verified, and this page moves M9 to "Where it stands".
+
+Out of scope: publication, a native adapter, moving Astro components onto core, and handing a core archive to dmf-web. Archives are packed and recorded only when one is given to a consumer.
 
 Ongoing, not a milestone gate:
 
@@ -49,7 +57,6 @@ Ongoing, not a milestone gate:
 
 ## Next
 
-5. **Smaller shared core for React.** React consumers currently install the full Astro package. Split a framework-neutral foundation (tokens, CSS, contracts) so React — and later native — consumers take only what they use.
 6. **Preset completeness.** Dark modes where a source exists (CB, HUI and QDI are light-only today); close the gaps listed in `brands.json` without inventing values the sources do not support.
 7. **Performance follow-ups** from M5: the ~27KB inline search index per docs page and ~458KB decoded CSS on Discovery, after measuring.
 
