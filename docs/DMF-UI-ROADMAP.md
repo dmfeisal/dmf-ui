@@ -28,14 +28,20 @@ The brand registry is `contracts/brands.json`; token source is `tokens/design.to
 - Done: foundations ([M1](DMF-UI-M1.md)), portable tokens in 0.3.0 ([tokens](DMF-UI-TOKENS.md)), Blocks ([M4](DMF-UI-M4-BLOCKS.md)), documentation and production quality ([M5](DMF-UI-M5.md)), React alpha ([notes](DMF-UI-0.5.0-REACT-ALPHA-RELEASE-NOTES.md)), Authentication Blocks ([M6.1](DMF-UI-M6.md), [M6.2](DMF-UI-M6-2-RESET.md), [M6.3](DMF-UI-M6-3-OTP.md)), Nova profile ([Nova](DMF-UI-NOVA.md)), 0.5.0 release, release records and the [new-brand guide](DMF-UI-NEW-BRAND.md) ([M7](DMF-UI-M7.md)).
 - Every archive given to dmf-web has a record in `releases/`. See `releases/README.md`.
 
-## Now: choose M8
+## Now: M8 — preset showcase
 
-M7 is complete ([report](DMF-UI-M7.md)). M8 is one of the first two Next items, chosen by the owner:
+Goal: make the past-work layer visible. Each past-work preset gets a page in dmf-web rendered by the installed package, not screenshots.
 
-- **Preset showcase (item 4)** makes the past-work layer visible in dmf-web.
-- **Smaller shared core (item 5)** unblocks React apps and, later, native adapters.
+1. **Routes.** `/examples/dmf-ui/presets/` lists the presets; `/examples/dmf-ui/presets/<id>/` shows one (`cb-ui`, `hui`, `qdi`). Standalone like `/examples/dmf-ui/`: no portfolio styles, scripts or fonts.
+2. **Content from package data only.** Status, modes, source, mapping, gaps and action-text policy come from `dmf-ui/contracts/brands`; swatches render the preset's own CSS variables. dmf-web adds only the link to its company hub. Nothing is invented.
+3. **Specimen.** The same component set under each `data-system`: Buttons, Badge, Alert, Card with Field, Input, Checkbox and Switch, Tabs. Recorded contrast exceptions are shown with their measured ratio.
+4. **Links.** Each company hub's Documentation section and the `/ui/` page link to the matching preset page.
 
-Plan the chosen milestone here with its own done-when checks before starting it.
+Done when:
+
+- The four routes build in dmf-web from the 0.5.0 archive, and a dmf-web test asserts each page uses its `data-system`, shows its recorded gaps, shows a contrast exception only where `brands.json` records an `actionTextPolicy` (CB UI and HUI; QDI shows none), and links its hub.
+- dmf-web `check`, `build` and tests pass locally and in CI on Node 22 and 24.
+- `docs/DMF-UI-M8.md` records what shipped and what was verified, and this page moves M8 to "Where it stands".
 
 Ongoing, not a milestone gate:
 
@@ -43,7 +49,6 @@ Ongoing, not a milestone gate:
 
 ## Next
 
-4. **Preset showcase in dmf-web.** Present each past-work preset as a case study rendered by the real package (not screenshots), one route per preset.
 5. **Smaller shared core for React.** React consumers currently install the full Astro package. Split a framework-neutral foundation (tokens, CSS, contracts) so React — and later native — consumers take only what they use.
 6. **Preset completeness.** Dark modes where a source exists (CB, HUI and QDI are light-only today); close the gaps listed in `brands.json` without inventing values the sources do not support.
 7. **Performance follow-ups** from M5: the ~27KB inline search index per docs page and ~458KB decoded CSS on Discovery, after measuring.
