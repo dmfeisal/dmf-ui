@@ -8,7 +8,7 @@ Use Node >=22.12. Run `npm ci`, `npm run check`, `npm run build` and `npm test`.
 
 ## Consume
 
-Install a packed version of this repository with `npm install ./vendor/dmf-ui-0.4.0.tgz --save-exact`. The package is private and has not been published to npm.
+Install a packed version of this repository with `npm install ./vendor/dmf-ui-0.5.0.tgz --save-exact`. The package is private and has not been published to npm.
 
 ```astro
 ---
@@ -26,7 +26,7 @@ The CB preset uses `data-system="cb-ui" data-color-mode="light"` on `.dmf-ui` an
 
 ## Roadmap
 
-DMF UI is a personal design system for past client work (presets) and future products. Direction, layers and sequencing live in [the roadmap](docs/DMF-UI-ROADMAP.md).
+DMF UI is a personal design system for past client work (presets) and future products. Direction, layers and sequencing live in [the roadmap](docs/DMF-UI-ROADMAP.md). To add a brand preset, follow [the new-brand guide](docs/DMF-UI-NEW-BRAND.md).
 
 ## Update a consumer
 
@@ -54,6 +54,8 @@ Edit `tokens/design.tokens.json`, then run `npm run tokens:build`. The generated
 ## Documentation site
 
 Version 0.4.0 adds Text, Card, Badge and Alert, with both-preset previews, a Component contracts guide and the experimental `dmf-ui/contracts.json` export. The current catalog contains 79 documented Astro families. See [content contracts and authoring](docs/DMF-UI-CONTENT.md).
+
+Version 0.5.0 ships the work merged since 0.4.0: the Nova/Neutral default profile and Code Block compositions, Fulldev family adoption, form, modal, navigation, selection and data-display families, Product Details, Merchant Discovery and Authentication Blocks (sign-up, recovery, reset, OTP), the portfolio, HUI and QDI presets, and React alpha.4. Its source commit and checksum are in `releases/0.5.0/`.
 
 The source repository builds Home (`/`), the searchable Components catalog (`/components/`), individual component pages and Docs (`/docs/`). The existing `/examples/dmf-ui/` remains the independent integration gallery. Run `npm run dev` to view it locally and `npm run test:dmf-ui:docs` for documentation browser checks. See [documentation ownership and routes](docs/DMF-UI-DOCUMENTATION.md). Documentation host files are excluded from the component archive.
 

@@ -1,5 +1,7 @@
 # HUI preset
 
+To add another brand, follow the [new-brand guide](DMF-UI-NEW-BRAND.md).
+
 The HUI preset adds the brand direction confirmed in the owner's 2026-10-25 HUI discussions and portfolio case study. It uses shared Astro components and changes their theme, not their behavior. Core stays 0.4.0; React stays 0.1.0-alpha.3. No package publication or release tag is part of this work.
 
 ## Foundations and evidence
