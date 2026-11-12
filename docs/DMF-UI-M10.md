@@ -77,5 +77,5 @@ Dark variants would be new design, not reconstruction, so the owner chose to clo
 - **A complete CB specification.** It needs an original source.
 - **HUI spacing, radius and application state scales.** The brand book has none.
 - **HUI subheadline mapping.** Rounded Mplus Medium is not assigned to heading levels.
-- **Packing.** The new font changes both `dmf-ui` and `@dmf-ui/core`, so the next archive of each needs a version bump before it is given to a consumer. dmf-web's preset pages show the updated gaps only after that.
+- **Packing.** M10 packed nothing. The new font changed `dmf-ui`'s shipped files, so `dmf-ui` 0.6.0 carries it to dmf-web. `@dmf-ui/core` 0.1.0 has never been given to a consumer, so its version stays until its first recorded archive.
 - **Manual backlog unchanged.** Safari, Firefox, real devices and spoken screen readers remain on it.
