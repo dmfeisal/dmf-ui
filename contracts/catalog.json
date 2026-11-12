@@ -661,7 +661,7 @@
       }
     ],
     "package": "@dmf-ui/react",
-    "version": "0.1.0-alpha.3",
+    "version": "0.1.0-alpha.4",
     "exports": [
       "Button",
       "Input",

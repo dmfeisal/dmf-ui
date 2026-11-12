@@ -1,5 +1,7 @@
 # CB UI reconstruction preset for DMF UI
 
+To add another brand, follow the [new-brand guide](DMF-UI-NEW-BRAND.md).
+
 Status: experimental, present-day 2026 reconstruction. Examples are in `/ui/#fulldev-pilot` and `/examples/dmf-ui/#standalone-forms-title`. This does not change or claim to reproduce the original employer-period system or migrate the existing CB UI playground.
 
 ## Verified source and translation
