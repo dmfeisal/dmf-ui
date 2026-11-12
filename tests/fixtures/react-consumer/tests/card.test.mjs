@@ -19,6 +19,6 @@ test('packed MerchantCard hydrates without replacing server nodes',async()=>{
 });
 test('production card and exact supplied assets survive packing',async()=>{
  const dom=new JSDOM(await readFile('dist/card.html','utf8'));try{assert.equal(dom.window.document.querySelector('#reference-card a').getAttribute('href'),'#details');assert(dom.window.document.querySelector('#details'));}finally{dom.window.close();}
- for(const name of ['verified','hours','distance','star'])assert.deepEqual(await readFile(`dist/merchant-card/${name}.svg`),await readFile(`node_modules/dmf-ui/src/assets/merchant-card/${name}.svg`));
- for(const n of [1,2,3])assert.deepEqual(await readFile(`dist/merchant-card/photo-${n}.png`),await readFile(`node_modules/dmf-ui/src/assets/examples/merchant-card/photo-${n}.png`));
+ for(const name of ['verified','hours','distance','star'])assert.deepEqual(await readFile(`dist/merchant-card/${name}.svg`),await readFile(`node_modules/@dmf-ui/core/dist/assets/merchant-card/${name}.svg`));
+ for(const n of [1,2,3])assert.deepEqual(await readFile(`dist/merchant-card/photo-${n}.png`),await readFile(`node_modules/@dmf-ui/core/dist/assets/examples/merchant-card/photo-${n}.png`));
 });

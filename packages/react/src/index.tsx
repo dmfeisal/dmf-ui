@@ -18,7 +18,7 @@ export {MerchantListingBlock} from './blocks/merchant-listing';
 export type {MerchantListingBlockProps} from './blocks/merchant-listing';
 export {MerchantCard} from './blocks/merchant-card';
 export type {MerchantCardProps} from './blocks/merchant-card';
-import { buttonVariants } from 'dmf-ui/button/variants';
+import { buttonVariants } from '@dmf-ui/core/button/variants';
 const join = (...parts:(string|undefined|null|false)[]) => parts.filter(Boolean).join(' ');
 export type ButtonProps = ComponentPropsWithRef<'button'> & Parameters<typeof buttonVariants>[0];
 export function Button({variant,size,className,type='button',...props}:ButtonProps) {

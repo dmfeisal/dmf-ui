@@ -17,3 +17,7 @@ The archives themselves are ignored by Git; consumers keep the copy they install
 Versions 0.1.0 to 0.4.0 were recorded on 12 November 2026 by repacking the listed commits; each reproduced the archive vendored in dmf-web byte for byte.
 
 Commits after 0.4.0's source commit still declare version 0.4.0 but pack different files. They have not been released; the next archive must bump the version first.
+
+The same applies after 0.5.0: M9 regenerated `contracts/catalog.json` for React `0.1.0-alpha.5` and added a core note to `README.md`, so `dmf-ui` packs the same file list as 0.5.0 but different bytes in those two files. The next `dmf-ui` archive given to a consumer needs a version bump first.
+
+These records cover `dmf-ui` only. `@dmf-ui/core` and `@dmf-ui/react` archives are packed by the test runners and not yet given to any consumer, so they have no records.

@@ -28,6 +28,8 @@ jobs:
           cache: npm
       - name: Install locked dependencies
         run: npm ci
+      - name: Build shared core
+        run: npm run build --prefix packages/core
       - name: Install isolated React alpha dependencies
         run: npm ci --prefix packages/react
       - name: Verify React alpha contracts and hydration

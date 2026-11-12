@@ -42,5 +42,5 @@ test('bare packed Hero forwards a section ref and leaves media failure recovery 
 
 test('production Hero has usable static links/media before hydration and ships the installed illustration',async()=>{
  const dom=new JSDOM(await readFile('dist/hero.html','utf8'));try{const d=dom.window.document;assert.equal(d.querySelector('#consumer-hero-title').textContent,'Build with a shared foundation');assert.equal(d.querySelector('[data-hero-primary]').getAttribute('href'),'#details');assert(d.querySelector('#details'));assert.equal(d.querySelector('[data-hero-primary]').hasAttribute('aria-disabled'),false);assert.equal(d.querySelector('img').getAttribute('src'),'/component-demo.svg');assert.equal(d.querySelector('[data-hero-layout]').disabled,true);}finally{dom.window.close();}
- assert.deepEqual(await readFile('dist/component-demo.svg'),await readFile('node_modules/dmf-ui/src/assets/examples/component-demo.svg'));
+ assert.deepEqual(await readFile('dist/component-demo.svg'),await readFile('node_modules/@dmf-ui/core/dist/assets/examples/component-demo.svg'));
 });
