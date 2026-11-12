@@ -13,7 +13,7 @@ test('package exports exist and npm pack excludes host pages and example layout 
  for(const path of ['src/components/dmf-ui/blocks/index.ts','src/components/dmf-ui/blocks/sign-in.astro','src/components/dmf-ui/blocks/search-filters.astro','src/styles/dmf-ui-blocks.css'])assert(paths.includes(path),`Missing packed Block source ${path}`);
  assert(paths.includes('src/assets/fonts/nunito.ttf'));
  assert(paths.includes('src/styles/dmf-ui-hui.css'));
- for(const name of ['inter-latin-variable.woff2','mplus-rounded-latin-500.woff2','mplus-rounded-latin-700.woff2','MPLUS-OFL.txt','INTER-OFL.txt'])assert(paths.includes(`src/assets/fonts/hui/${name}`));
+ for(const name of ['inter-latin-variable.woff2','mplus-rounded-latin-500.woff2','mplus-rounded-latin-700.woff2','mplus-rounded-latin-900.woff2','MPLUS-OFL.txt','INTER-OFL.txt'])assert(paths.includes(`src/assets/fonts/hui/${name}`));
  assert(paths.includes('public/dmf-ui-notices.txt'));
  assert(paths.includes('tokens/design.tokens.json'));
  assert(paths.includes('tokens/resolved.json'));

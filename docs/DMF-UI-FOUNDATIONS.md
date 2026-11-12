@@ -40,7 +40,7 @@ State taxonomy covers interaction, selection, disclosure, validation, async and 
 
 `contracts/brands.json` records document identity, SHA-256, relevant pages, verified values, application mappings and gaps. Both PDFs were read locally and palette pages visually inspected. No PDF, proprietary logo, Quru artwork or other proprietary brand asset is copied into this repository.
 
-HUI v1.3: palette page 20, typography page 23, CTA page 25, icon guidance pages 45–46. Existing primary and accessible action pairings are preserved. The official headline is Rounded Mplus Black; shipped font files cover weights 500/700, so exact headline parity remains unresolved. Kerning -25 is recorded as the source statement, without inventing a CSS conversion. The marketing CTA rule is not represented as a complete application button-state system. Missing application spacing/radius/dark mode use shared DMF policy, never an official-brand label.
+HUI v1.3: palette page 20, typography page 23, CTA page 25, icon guidance pages 45–46. Existing primary and accessible action pairings are preserved. The official headline is Rounded Mplus Black; since M10 the preset ships the Latin 900 file and HUI `h1` defaults to it. Kerning -25 is recorded as the source statement, without inventing a CSS conversion. The marketing CTA rule is not represented as a complete application button-state system. Missing application spacing/radius/dark mode use shared DMF policy, never an official-brand label.
 
 QDI v3: corporate palette page 38; UI colors page 67, typography page 68, layout page 69, spacing page 70, radius page 71, elevation page 72 and iconography pages 75–78. Raw palette values remain exact. The source has an eight-point layout rhythm and separate four-point spacing increments; radius includes 2 despite the prose's general multiples-of-four rule. Typography source sizes use sp; web specimens/adaptations do not imply native scaling parity.
 
@@ -73,7 +73,8 @@ The later [M1 reconciliation](DMF-UI-M1.md) records Contract v2 review integrati
 - [ ] Replace remaining utility dimensions with component assignments where that provides a useful API; preserve defaults and source hashes.
 - [ ] Add valid variant/size/content controls beyond Button/Input and record per-combination acceptance.
 - [ ] Complete full per-family QDI/preset keyboard, portal, forced-color and contrast acceptance beyond the tested foundation/Create examples.
-- [ ] Resolve HUI headline font-weight fidelity without synthetic claims; audit marketing CTA versus application mappings.
+- [x] Resolve HUI headline font-weight fidelity without synthetic claims (M10: Latin 900 Black file and `h1` default).
+- [ ] Audit marketing CTA versus application mappings.
 - [ ] Safari/Firefox acceptance for this milestone, real-device/virtual-keyboard behavior and spoken VoiceOver/NVDA checks. Previous React-only Safari evidence does not approve the new catalog.
 
 ### Future portfolio note

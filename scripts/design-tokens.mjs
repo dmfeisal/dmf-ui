@@ -86,10 +86,14 @@ export function compileTokens(source){
 @font-face { font-family:'DMF HUI Inter'; src:url('../assets/fonts/hui/inter-latin-variable.woff2') format('woff2'); font-style:normal; font-weight:100 900; font-display:swap; }
 @font-face { font-family:'DMF HUI Rounded Mplus'; src:url('../assets/fonts/hui/mplus-rounded-latin-500.woff2') format('woff2'); font-style:normal; font-weight:500; font-display:swap; }
 @font-face { font-family:'DMF HUI Rounded Mplus'; src:url('../assets/fonts/hui/mplus-rounded-latin-700.woff2') format('woff2'); font-style:normal; font-weight:700; font-display:swap; }
+@font-face { font-family:'DMF HUI Rounded Mplus'; src:url('../assets/fonts/hui/mplus-rounded-latin-900.woff2') format('woff2'); font-style:normal; font-weight:900; font-display:swap; }
 :root .dmf-ui[data-system="hui"] {
 ${declarations('hui.light')}
 }
 :root .dmf-ui[data-system="hui"] :where(h1,h2,h3,h4,h5,h6) { font-family:var(--font-heading); }
+/* HUI v1.3: the headline is Rounded Mplus Black. Only h1 defaults to it; subheadline mapping is not imposed.
+   Specificity 0,0,2 beats the scoped heading reset in dmf-ui.css (h1, 0,0,1) but loses to weight utilities and Block styles (0,1,0 and up). */
+:where(:root .dmf-ui[data-system="hui"]) h1:is(h1) { font-weight:900; }
 `;
  const portfolio=`${header}/* Portfolio palette; component-role mapping documented in docs/DMF-UI-PORTFOLIO.md. */
 @font-face { font-family:'DMF Portfolio Inter'; src:url('../assets/fonts/hui/inter-latin-variable.woff2') format('woff2'); font-weight:100 900; font-style:normal; font-display:swap; }

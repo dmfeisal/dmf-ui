@@ -16,7 +16,8 @@
       ],
       "source": "docs/DMF-UI-CB-PRESET.md",
       "gaps": [
-        "No newly verified complete official CB specification."
+        "No newly verified complete official CB specification.",
+        "No dark-mode source; the recovered token file has a dark colour role but no dark theme. CB UI stays light-only."
       ],
       "actionTextPolicy": {
         "foreground": "#FFFFFF",
@@ -63,8 +64,9 @@
         "cta": "Inter Bold"
       },
       "gaps": [
-        "Existing shipped heading font files cover weights 500/700, not the specified Black headline weight. Do not claim exact typographic parity.",
-        "No official full spacing, radius, dark-mode or application state scale.",
+        "Heading font files are Latin-only WOFF2 (Rounded Mplus 500, 700 and 900 Black); other scripts fall back to the declared sans-serif families.",
+        "No official full spacing, radius or application state scale.",
+        "No dark-mode source; HUI stays light-only.",
         "Existing accessible action pairing is a DMF application mapping; it does not replace the official marketing CTA rule."
       ],
       "actionTextPolicy": {
@@ -235,7 +237,7 @@
       },
       "gaps": [
         "Semantic role assignments and hover/focus state behavior are DMF mappings, not official brand rules.",
-        "No official dark mode; QDI remains light-only.",
+        "No dark-mode source; QDI stays light-only.",
         "Tiny 10px source caption/tag sizes are recorded, not imposed on essential application text."
       ],
       "iconSizes": [
