@@ -41,7 +41,21 @@ async function execute(source, cwd) {
     child.once('exit',code=>resolve(code??1));
   });}finally{process.removeListener('SIGINT',interrupt);process.removeListener('SIGTERM',interrupt);}
 }
-export async function runBrowserSuite({root,scenarios,taskName,executeBrowser=execute,spaceId=null,buildDir=join(root,'dist')}) {
+// DMF_UI_BROWSER=playwright runs headless Chromium (CI); otherwise the installed Ego Browser CLI.
+async function selectedExecutor(){
+  if(process.env.DMF_UI_BROWSER==='playwright'){const {executePlaywright}=await import('./playwright.mjs');return executePlaywright;}
+  if(process.env.DMF_UI_BROWSER&&process.env.DMF_UI_BROWSER!=='ego')throw new Error('DMF_UI_BROWSER must be ego or playwright.');
+  return execute;
+}
+// DMF_UI_TEST_SHARD=i/n keeps every n-th scenario starting at the i-th, so CI can split a suite across jobs.
+export function shard(names,value=process.env.DMF_UI_TEST_SHARD){
+  if(!value)return names;
+  const match=/^(\d+)\/(\d+)$/.exec(value);const index=Number(match?.[1]),count=Number(match?.[2]);
+  if(!match||count<1||index<1||index>count)throw new Error('DMF_UI_TEST_SHARD must look like 1/4.');
+  return names.filter((_,position)=>position%count===index-1);
+}
+export async function runBrowserSuite({root,scenarios,taskName,executeBrowser,spaceId=null,buildDir=join(root,'dist')}) {
+  executeBrowser??=await selectedExecutor();
   const selected=process.env.DMF_UI_TEST_FILTER?.split(',').map(x=>x.trim()).filter(Boolean);
   if(selected&&selected.length===0)throw new Error('Select at least one DMF UI suite.');
   if(selected?.some(name=>!scenarios.includes(name)))throw new Error(`Unknown DMF UI suite; choose ${scenarios.join(', ')}`);
@@ -53,7 +67,7 @@ export async function runBrowserSuite({root,scenarios,taskName,executeBrowser=ex
   try {
     await cp(buildDir,snapshot,{recursive:true,mode:constants.COPYFILE_FICLONE});
     server=await serveBuild(snapshot);
-    const options={finish:spaceId===null&&process.env.DMF_UI_TEST_KEEP_SPACE!=='1',baseURL:server.baseURL,taskName,spaceId,artifacts,runtime:pathToFileURL(join(root,'tests/browser/dmf-ui-runtime.mjs')).href,scenarios:scenarios.filter(name=>!selected||selected.includes(name)).map(name=>[name,pathToFileURL(join(root,`tests/browser/dmf-ui-${name}.mjs`)).href])};
+    const options={finish:spaceId===null&&process.env.DMF_UI_TEST_KEEP_SPACE!=='1',baseURL:server.baseURL,taskName,spaceId,artifacts,runtime:pathToFileURL(join(root,'tests/browser/dmf-ui-runtime.mjs')).href,scenarios:shard(scenarios.filter(name=>!selected||selected.includes(name))).map(name=>[name,pathToFileURL(join(root,`tests/browser/dmf-ui-${name}.mjs`)).href])};
     const source=bootstrap(options);await writeFile(join(artifacts,'run.mjs'),source);
     const code=await executeBrowser(source,root);
     if(server.blockedWrites)throw new Error(`Browser tests attempted ${server.blockedWrites} write request(s); all were blocked.`);

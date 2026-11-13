@@ -28,9 +28,23 @@ The brand registry is `contracts/brands.json`; token source is `tokens/design.to
 - Done: foundations ([M1](DMF-UI-M1.md)), portable tokens in 0.3.0 ([tokens](DMF-UI-TOKENS.md)), Blocks ([M4](DMF-UI-M4-BLOCKS.md)), documentation and production quality ([M5](DMF-UI-M5.md)), React alpha ([notes](DMF-UI-0.5.0-REACT-ALPHA-RELEASE-NOTES.md)), Authentication Blocks ([M6.1](DMF-UI-M6.md), [M6.2](DMF-UI-M6-2-RESET.md), [M6.3](DMF-UI-M6-3-OTP.md)), Nova profile ([Nova](DMF-UI-NOVA.md)), 0.5.0 release, release records and the [new-brand guide](DMF-UI-NEW-BRAND.md) ([M7](DMF-UI-M7.md)), preset showcase pages in dmf-web ([M8](DMF-UI-M8.md)), shared core for React ([M9](DMF-UI-M9.md)), preset completeness from recorded sources ([M10](DMF-UI-M10.md)), docs site performance ([M11](DMF-UI-M11.md)), the 0.7.0 release (M12).
 - Every archive given to dmf-web has a record in `releases/`. See `releases/README.md`.
 
-## Now
+## Now: M13 — docs browser suite in CI
 
-No milestone in progress. M13 is next.
+Goal: the 25 docs browser scenarios run in CI, so they cannot fail unnoticed again. Today they run only in Ego Browser on the owner's machine, which is how 9 failed until dmfeisal/dmf-ui#17 repaired them.
+
+1. **Playwright adapter.**
+   - A second executor for the existing runner (`scripts/dmf-ui-browser/`). It supplies the same `taskSpace()` and `page` interface on headless Chromium, with `page.cdp()` backed by a Chromium CDP session.
+   - `DMF_UI_BROWSER=playwright` selects it. Ego Browser stays the default locally.
+   - Scenarios are unchanged. A scenario that passes in Ego but fails in Playwright is either an adapter gap to fix or a real bug to report, never a weakened assertion.
+2. **Sharding.** `DMF_UI_TEST_SHARD=i/n` runs every n-th scenario, so CI splits the 25 scenarios across parallel jobs.
+3. **Workflow.** This follows the CI rule under "Standing constraints".
+
+Done when:
+
+- All 25 scenarios pass headless under Playwright, locally and in hosted CI.
+- The workflow runs on a PR that changes `src/`, and skips a docs-only PR.
+- The CI time per shard and in total is recorded in `docs/DMF-UI-M13.md`, and this page moves M13 to "Where it stands".
+- After two weeks without flaky failures, the browser check becomes a required check. That step is the owner's to switch on, in the repository settings.
 
 ## Versions
 
@@ -40,10 +54,6 @@ Milestones are units of work; versions are what a consumer receives. A milestone
 
 Ready to start, in this order. M12 (M11 report and `dmf-ui` 0.7.0) is done. They keep what exists healthy, then make React a real option for future products.
 
-- **M13 — docs browser suite in CI.**
-  - dmfeisal/dmf-ui#17 repaired all 25 scenarios. They run only in Ego Browser on the owner's machine, which is how 9 failed unnoticed.
-  - Run them on every PR with a CI-capable headless browser, keeping the same scenarios and assertions.
-  - *Ships in:* nothing.
 - **M14 — manual acceptance pass.**
   - Safari and Firefox, including the geckodriver profile error that blocks Firefox automation.
   - Real phones and tablets, password managers, and VoiceOver and NVDA, for the Authentication Blocks and the React adapter.
@@ -114,5 +124,15 @@ New domain families are not planned without a concrete product.
 - Natural sizing: no blanket 44px minimums. Header tools share 32px.
 - CB and HUI filled primary actions keep white labels by owner preference (about 2.57:1 and 4.29:1); they stay recorded exceptions, not WCAG AA passes.
 - Released versions are immutable and recorded in `releases/`.
+- **CI rule for browser suites** (decided for M13; applies to every future browser suite and deployment check):
+  - **Triggers:**
+    - Pull requests that change `src/`, `packages/`, `tokens/`, `contracts/`, `tests/browser/`, `scripts/` or build config. Docs-only PRs skip it.
+    - A nightly full run on `main`.
+    - A manual "Run workflow" trigger.
+  - **Shape:**
+    - The suite is sharded across parallel jobs on one Node version (24); the Node 22/24 matrix stays on the source checks.
+    - Browser downloads are cached.
+    - A failing scenario uploads its screenshots and axe results as artifacts.
+  - **Adoption:** a new browser check starts non-blocking. It becomes required after two weeks without flaky failures. Full-suite-on-every-PR, nightly-only and required-from-day-one were rejected.
 
 Each milestone is planned here and reported in its own `DMF-UI-M<n>.md`; reports are not merged into this page. Update this page when an item ships or the order changes; move finished items to "Where it stands" with a link to their report.
