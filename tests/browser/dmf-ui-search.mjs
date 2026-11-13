@@ -16,18 +16,27 @@ export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
   assert(!result.violations.length,JSON.stringify(result));
  }
  await resetBrowser();await navigate(`${baseURL}/components/button/`);
+ // The index is one shared file fetched on first use. A failed fetch shows an error with a fallback link, and the next open retries.
+ await page.evaluate(()=>{window.__realFetch=window.fetch;window.fetch=url=>String(url).includes('/search-index.json')?Promise.reject(new TypeError('offline')):window.__realFetch(url);});
+ await page.click('#docs-search-trigger');await page.waitForFunction(()=>document.querySelector('#docs-search-results')?.dataset.searchState==='error');
+ assert(await page.evaluate(()=>document.querySelector('#docs-search-dialog').open&&document.querySelector('#docs-search-count').textContent.startsWith('Search could not load')&&!!document.querySelector('#docs-search-results a[href="/components/"]')),'Search failure state is missing its message or fallback link');
+ await page.keyboard.press('Escape');await page.evaluate(()=>{window.fetch=window.__realFetch;});
+ await page.click('#docs-search-trigger');await page.waitForFunction(()=>!document.querySelector('#docs-search-results')?.dataset.searchState);
+ assert(await page.evaluate(()=>document.querySelectorAll('#docs-search-results a').length>1&&!document.querySelector('#docs-search-results').dataset.searchState),'Search did not recover after a failed load');
+ await page.keyboard.press('Escape');
+ assert(await page.evaluate(()=>!document.querySelector('script#docs-search-index')&&performance.getEntriesByType('resource').filter(e=>e.name.endsWith('/search-index.json')).length===1),'Search index was inlined or fetched more than once');
  assert(await page.evaluate(()=>document.querySelectorAll('.docs-sidebar .docs-nav-group').length>1),'Component navigation is not grouped');
- await page.click('#docs-search-trigger');
+ await page.click('#docs-search-trigger');await page.waitForFunction(()=>!document.querySelector('#docs-search-results')?.dataset.searchState);
  assert(await page.evaluate(()=>document.querySelector('#docs-search-dialog').open&&document.activeElement.id==='docs-search-input'),'Search did not open with input focus');
  await page.fill('#docs-search-input','no-such-page');assert(await page.evaluate(()=>document.querySelector('#docs-search-count').textContent==='0 results'&&document.querySelector('.docs-search-empty')),'Search empty state missing');
  await audit();await page.fill('#docs-search-input','radio group');await audit();await page.screenshot({path:'/tmp/dmf-ui-search-desktop.png'});await page.evaluate(()=>document.documentElement.dataset.theme='dark');await audit();await page.evaluate(()=>document.documentElement.dataset.theme='light');assert(await page.evaluate(()=>!!document.querySelector('#docs-search-results a[href="/components/radio-group/"]')),'Multiword search missed Radio Group');
  await page.fill('#docs-search-input','switch');await page.keyboard.press('ArrowDown');
  assert(await page.evaluate(()=>document.activeElement.getAttribute('href')==='/components/switch/'),'Search ArrowDown did not select the matching native link');
  await page.keyboard.press('Enter');await page.waitForURL(`${baseURL}/components/switch/`);await settle();
- await page.focus('#docs-search-trigger');await page.keyboard.press('Control+k');
+ await page.focus('#docs-search-trigger');await page.keyboard.press('Control+k');await page.waitForFunction(()=>!document.querySelector('#docs-search-results')?.dataset.searchState);
  await page.fill('#docs-search-input','installation');assert(await page.evaluate(()=>!!document.querySelector('#docs-search-results a[href="/docs/installation/"]')),'Guide search missing');
  await page.keyboard.press('Escape');await settle();assert(await page.evaluate(()=>!document.querySelector('#docs-search-dialog').open&&document.activeElement.id==='docs-search-trigger'),'Search Escape/focus return failed');
- await page.keyboard.press('/');await page.fill('#docs-search-input','preset export');assert(await page.evaluate(()=>!!document.querySelector('#docs-search-results a[href="/create/"]')),'Create search missing');
+ await page.keyboard.press('/');await page.waitForFunction(()=>!document.querySelector('#docs-search-results')?.dataset.searchState);await page.fill('#docs-search-input','preset export');assert(await page.evaluate(()=>!!document.querySelector('#docs-search-results a[href="/create/"]')),'Create search missing');
  await page.fill('#docs-search-input','<script>alert(1)</script>');assert(await page.evaluate(()=>!document.querySelector('#docs-search-results script')&&document.querySelector('#docs-search-count').textContent==='0 results'),'Search text was interpreted as markup');
  await page.keyboard.press('Escape');
  await navigate(`${baseURL}/components/input/`);await page.focus('#docs-input-dmf');await page.keyboard.press('/');
@@ -36,7 +45,7 @@ export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
  await page.click('[data-copy-code]');assert(await page.evaluate(()=>window.searchCopied===document.querySelector('#usage-input code').textContent&&document.querySelector('#copy-input').textContent==='Code copied.'),'Usage copy mismatch');
  await page.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw Error('Denied');}}}));
  await page.click('[data-copy-code]');assert(await page.evaluate(()=>document.activeElement.id==='usage-input'&&document.querySelector('#copy-input').textContent.includes('Copy unavailable')),'Copy fallback failed');
- await mobile();await page.click('#docs-search-trigger');await page.fill('#docs-search-input','field');await audit();
+ await mobile();await page.click('#docs-search-trigger');await page.waitForFunction(()=>!document.querySelector('#docs-search-results')?.dataset.searchState);await page.fill('#docs-search-input','field');await audit();
  for(const size of ['87.5%','175%']){
   await page.evaluate(size=>document.documentElement.style.fontSize=size,size);await settle();
   assert(await page.evaluate(()=>{const r=document.querySelector('#docs-search-dialog').getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&document.documentElement.scrollWidth<=390;}),'Mobile search overflow');

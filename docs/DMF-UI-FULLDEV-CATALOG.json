@@ -768,7 +768,7 @@
         {
           "path": "src/components/dmf-ui/layout/layout.astro",
           "upstreamSha256": "903856d08c26080604b85227fac7c9772c8a3e6d1dcd1b0f9998410f6ea21bc8",
-          "adoptedSha256": "c2f948710f6c3ed700998c8bdfc6a3452705f966e203a60bb69ee48dc17b13a1"
+          "adoptedSha256": "e9b0b5c565364ae5dc477ba5794938d7b518354385b25ba5b1e646a6353b4197"
         },
         {
           "path": "src/components/dmf-ui/layout/layout-head.astro",
@@ -1326,7 +1326,7 @@
   "adaptations": [
     "Existing DMF implementations retained; no destructive upstream overwrite",
     "Registry imports resolve to package-owned DMF modules",
-    "Layout imports scoped core styles and leaves transitions to the host",
+    "Layout leaves its stylesheet and transitions to the host: hosts import dmf-ui/styles.css once, so no page gets a second Tailwind build",
     "Content icons use local Lucide/Simple Icons imports instead of host-root globs",
     "Theme controls use data-theme and coordinate with the documentation header",
     "Drawer/Hover Card portalling retains originating preset and direction",

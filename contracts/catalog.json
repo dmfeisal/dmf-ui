@@ -9205,6 +9205,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/docs-build.test.mjs",
           "tests/modal-components.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
@@ -15247,7 +15248,8 @@
         "Adapted from the pinned Fulldev UI 0.25.5 base-vega snapshot under MIT. Existing DMF component APIs and tokens remain in place.",
         "The copyable composition is a starting point; source props are authoritative. Use explicit labels, meaningful native links/actions and heading levels that fit the host page.",
         "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document.",
-        "Layout is a complete document shell and must not be nested inside another document. Global view transitions are left to the host; none are enabled automatically."
+        "Layout is a complete document shell and must not be nested inside another document. Global view transitions are left to the host; none are enabled automatically.",
+        "Import dmf-ui/styles.css once in the host. Since M11 Layout no longer imports it, so a page never gets a second copy of the stylesheet."
       ],
       "documentation": "src/data/fulldev-documentation.ts",
       "previousCategory": "Foundation",
@@ -15562,7 +15564,7 @@
         },
         {
           "path": "src/components/dmf-ui/layout/layout.astro",
-          "sha256": "c2f948710f6c3ed700998c8bdfc6a3452705f966e203a60bb69ee48dc17b13a1"
+          "sha256": "e9b0b5c565364ae5dc477ba5794938d7b518354385b25ba5b1e646a6353b4197"
         }
       ],
       "gaps": [
@@ -22719,6 +22721,7 @@
         "status": "references-only",
         "sources": [
           "tests/core-package.test.mjs",
+          "tests/docs-build.test.mjs",
           "tests/modal-components.test.mjs",
           "tests/browser/dmf-ui-content.mjs",
           "tests/browser/dmf-ui-modal-components.mjs"
