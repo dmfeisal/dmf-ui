@@ -8,7 +8,7 @@ Use Node >=22.12. Run `npm ci`, `npm run check`, `npm run build` and `npm test`.
 
 ## Consume
 
-Install a packed version of this repository with `npm install ./vendor/dmf-ui-0.6.0.tgz --save-exact`. The package is private and has not been published to npm.
+Install a packed version of this repository with `npm install ./vendor/dmf-ui-0.7.0.tgz --save-exact`. The package is private and has not been published to npm.
 
 ```astro
 ---
@@ -58,6 +58,8 @@ Version 0.4.0 adds Text, Card, Badge and Alert, with both-preset previews, a Com
 Version 0.5.0 ships the work merged since 0.4.0: the Nova/Neutral default profile and Code Block compositions, Fulldev family adoption, form, modal, navigation, selection and data-display families, Product Details, Merchant Discovery and Authentication Blocks (sign-up, recovery, reset, OTP), the portfolio, HUI and QDI presets, and React alpha.4. Its source commit and checksum are in `releases/0.5.0/`.
 
 Version 0.6.0 ships M9 and M10. React apps now depend on the framework-neutral `@dmf-ui/core` package instead of this one, and the catalog records React `0.1.0-alpha.5`. The HUI preset adds the Rounded Mplus Black (900) headline weight, which `h1` defaults to. `contracts/brands.json` records that CB UI, HUI and QDI have no dark-mode source and stay light-only. Components, exports and other presets are unchanged. Its source commit and checksum are in `releases/0.6.0/`.
+
+Version 0.7.0 ships M11. `Layout` no longer imports the DMF UI stylesheet: import `dmf-ui/styles.css` once in the host, as every other component already requires. This is a breaking change for hosts that relied on `Layout` bringing its own CSS. The Fulldev adaptation record and the component catalog are updated to match. No other component, export or preset changes. Its source commit and checksum are in `releases/0.7.0/`.
 
 The source repository builds Home (`/`), the searchable Components catalog (`/components/`), individual component pages and Docs (`/docs/`). The existing `/examples/dmf-ui/` remains the independent integration gallery. Run `npm run dev` to view it locally and `npm run test:dmf-ui:docs` for documentation browser checks. See [documentation ownership and routes](docs/DMF-UI-DOCUMENTATION.md). Documentation host files are excluded from the component archive.
 
