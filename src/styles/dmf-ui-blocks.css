@@ -90,7 +90,7 @@
 .dmf-auth-block [data-slot=card-footer],.dmf-sign-up-block [data-slot=card-footer] { display:flex; flex-wrap:wrap; gap:.75rem; }
 .dmf-auth-block [data-recovery-completion]:empty { margin:0; }
 .dmf-auth-block :focus-visible,.dmf-sign-up-block :focus-visible { outline:2px solid var(--foreground); outline-offset:3px; }
-.dmf-auth-block [data-block-submit],.dmf-sign-up-block [data-block-submit] { white-space:normal; block-size:auto; overflow-wrap:anywhere; }
+.dmf-auth-block [data-block-submit],.dmf-sign-up-block [data-block-submit] { overflow-wrap:anywhere; }
 .dmf-auth-block [data-block-submit] > span,.dmf-sign-up-block [data-block-submit] > span { min-inline-size:0; }
 .dmf-auth-block .dmf-sign-in-pending,.dmf-sign-up-block .dmf-sign-in-pending { position:static; flex:none; order:-1; }
 
