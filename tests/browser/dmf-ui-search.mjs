@@ -26,6 +26,7 @@ export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
  await page.keyboard.press('Escape');
  assert(await page.evaluate(()=>!document.querySelector('script#docs-search-index')&&performance.getEntriesByType('resource').filter(e=>e.name.endsWith('/search-index.json')).length===1),'Search index was inlined or fetched more than once');
  assert(await page.evaluate(()=>document.querySelectorAll('.docs-sidebar .docs-nav-group').length>1),'Component navigation is not grouped');
+ assert(await page.evaluate(()=>{const t=document.querySelector('#docs-search-trigger');return !t.hasAttribute('aria-label')&&/^(Meta|Control)\+K$/.test(t.getAttribute('aria-keyshortcuts')??'');}),'Search trigger must keep its visible label as its name and expose the shortcut through aria-keyshortcuts');
  await page.click('#docs-search-trigger');await page.waitForFunction(()=>!document.querySelector('#docs-search-results')?.dataset.searchState);
  assert(await page.evaluate(()=>document.querySelector('#docs-search-dialog').open&&document.activeElement.id==='docs-search-input'),'Search did not open with input focus');
  await page.fill('#docs-search-input','no-such-page');assert(await page.evaluate(()=>document.querySelector('#docs-search-count').textContent==='0 results'&&document.querySelector('.docs-search-empty')),'Search empty state missing');

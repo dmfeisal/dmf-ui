@@ -10,7 +10,10 @@ import { pathToFileURL } from 'node:url';
 const viewport = { width: 1440, height: 900 };
 
 export async function executePlaywright(source, cwd) {
-  const { chromium } = await import('playwright');
+  // A variable specifier keeps `astro check` from loading Playwright's large type definitions, which pushed
+  // the check past its 640MB heap in CI. The module itself is loaded only when this executor runs.
+  const playwright = 'playwright';
+  const { chromium } = await import(playwright);
   const browser = await chromium.launch({ headless: true });
   try {
     const context = await browser.newContext({ viewport, acceptDownloads: true });

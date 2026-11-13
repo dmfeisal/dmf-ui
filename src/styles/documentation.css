@@ -108,8 +108,8 @@ html { font-size: 87.5%; scroll-padding-top: 10rem; }
 .docs-search-result:focus-visible { outline:2px solid var(--foreground); outline-offset:-2px; }
 .docs-search-empty,.docs-search-more { padding:12px 10px; margin:0; color:var(--muted-foreground); line-height:1.6; }
 #docs-search-help { padding:12px 18px; margin:0; border-top:1px solid var(--border); font-size:.8rem; color:var(--muted-foreground); }
-@media(max-width:1000px) and (min-width:761px) { .docs-search-trigger { width:auto; justify-content:center; padding:0; } .docs-search-trigger span,.docs-search-trigger kbd { display:none; } }
-@media(max-width:760px) { .docs-header-inner { gap:12px; } .docs-search-trigger { width:auto;  justify-content:center; padding:0; } .docs-search-trigger span,.docs-search-trigger kbd { display:none; } .docs-search-dialog { margin-top:24px; max-height:calc(100svh - 48px); } .docs-search-dialog-heading { padding-inline:14px; } .docs-search-dialog-heading h2 { font-size:.95rem; } }
+@media(max-width:1000px) and (min-width:761px) { .docs-search-trigger { width:auto; justify-content:center; padding:0; } .docs-search-trigger kbd { display:none; } .docs-search-trigger span { position:absolute; inline-size:1px; block-size:1px; margin:-1px; padding:0; overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0; } }
+@media(max-width:760px) { .docs-header-inner { gap:12px; } .docs-search-trigger { width:auto;  justify-content:center; padding:0; } .docs-search-trigger kbd { display:none; } .docs-search-trigger span { position:absolute; inline-size:1px; block-size:1px; margin:-1px; padding:0; overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0; } .docs-search-dialog { margin-top:24px; max-height:calc(100svh - 48px); } .docs-search-dialog-heading { padding-inline:14px; } .docs-search-dialog-heading h2 { font-size:.95rem; } }
 
 @media(max-width:760px) { .docs-primary { flex-wrap:wrap; column-gap:16px; row-gap:0; } .docs-logo,.docs-theme,.docs-search-trigger { flex-shrink:0; } }
 .docs-search-dialog-heading,.docs-search-input-shell,.docs-search-count,#docs-search-help { flex-shrink:0; }

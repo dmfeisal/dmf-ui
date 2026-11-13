@@ -15188,6 +15188,7 @@
           "tests/browser/dmf-ui-overlays.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
+          "tests/browser/dmf-ui-search.mjs",
           "tests/browser/dmf-ui-select.mjs",
           "tests/browser/dmf-ui-selection.mjs",
           "tests/browser/dmf-ui-tabs.mjs",
