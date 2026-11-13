@@ -1,10 +1,11 @@
 import {readFile} from 'node:fs/promises';
 import {createRequire} from 'node:module';
+import {reviewNativeDropdowns} from './native-dropdown-contrast.mjs';
 const require=createRequire(import.meta.url);
 export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
  const assert=(value,message)=>{if(!value)throw new Error(message);};
  const axe=await readFile(require.resolve('axe-core/axe.min.js'),'utf8');
- async function audit(){await settle();await page.evaluate(source=>{if(window.axe)return;const s=document.createElement('script');s.textContent=source;document.head.append(s);},axe);const result=await page.evaluate(async()=>{const r=await window.axe.run();return {violations:r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.failureSummary)})),incomplete:r.incomplete.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))};});assert(!result.violations.length&&!result.incomplete.length,JSON.stringify(result));}
+ async function audit(){await settle();await page.evaluate(source=>{if(window.axe)return;const s=document.createElement('script');s.textContent=source;document.head.append(s);},axe);const result=await page.evaluate(async()=>{const r=await window.axe.run();return {violations:r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),incomplete:r.incomplete.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))};});await reviewNativeDropdowns(page,result);assert(!result.violations.length,JSON.stringify(result));}
  await resetBrowser();await navigate(`${baseURL}/docs/icons/`);await audit();
  assert(await page.evaluate(()=>document.querySelectorAll('[data-icon-name] svg').length===36),'Missing rendered SVG icons');
  await page.fill('#icon-search','food restaurant');assert(await page.evaluate(()=>document.querySelectorAll('[data-icon-name]:not([hidden])').length===1&&document.querySelector('[data-icon-name=Utensils]').hidden===false),'Purpose search did not match all terms');

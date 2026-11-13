@@ -1,6 +1,6 @@
 ---
 import {icons} from '../../data/icons';
-import {Button} from '../dmf-ui/button';
+import {CodeSnippet} from '../dmf-ui/code-block';
 const example=`---\nimport { Search } from '@lucide/astro';\nimport { Button } from 'dmf-ui/button';\n---\n<Button variant="outline">\n  <Search size={20} stroke-width={2} aria-hidden="true" />\n  Search\n</Button>\n\n<Button size="icon" variant="outline" aria-label="Search">\n  <Search size={20} stroke-width={2} aria-hidden="true" />\n</Button>`;
 ---
 <section id="icon-gallery" class="docs-section" aria-labelledby="icon-gallery-title">
@@ -10,7 +10,7 @@ const example=`---\nimport { Search } from '@lucide/astro';\nimport { Button } f
 <p id="icon-count" role="status" class="docs-note">36 icons</p>
 <div id="icon-grid" class="icon-grid">{icons.map(({name,icon:Icon,tags})=><button type="button" class="icon-choice" data-icon-name={name} data-icon-search={`${name} ${name.replace(/([a-z])([A-Z])/g,'$1 $2')} ${tags}`.toLowerCase()} aria-pressed={name==='Search'?'true':'false'}><Icon size={20} stroke-width={2} aria-hidden="true"/><span>{name}</span></button>)}</div>
 <p id="icon-empty" class="docs-note" hidden>No icons match. Try a name or purpose, or browse the full library above.</p>
-<section class="docs-section" aria-labelledby="icon-example-title"><div class="docs-code-heading"><h3 id="icon-example-title">Use Search</h3><Button variant="outline" class="docs-copy" data-copy-code="icon-example" data-copy-status="icon-copy-status" hidden>Copy example</Button><span id="icon-copy-status" role="status" class="docs-copy-status"/></div><p class="docs-note">The first example pairs an icon with visible text. The second names the icon button. Use each example for a real action in your application.</p><pre id="icon-example" class="docs-code" tabindex="0" role="region" aria-label="Selected icon usage"><code>{example}</code></pre></section>
+<section class="docs-section" aria-labelledby="icon-example-title"><div class="docs-code-heading"><h3 id="icon-example-title">Use Search</h3></div><p class="docs-note">The first example pairs an icon with visible text. The second names the icon button. Use each example for a real action in your application.</p><CodeSnippet code={example} language="astro" title="Icon usage" id="icon-example" statusId="icon-copy-status" label="Selected icon usage"/></section>
 </section>
 <script>
  const input=document.querySelector<HTMLInputElement>('#icon-search')!;
@@ -20,7 +20,8 @@ const example=`---\nimport { Search } from '@lucide/astro';\nimport { Button } f
  function updateExample(){
   document.querySelector('#icon-example-title')!.textContent=`Use ${selected}`;
   document.querySelector('#icon-copy-status')!.textContent='';
-  document.querySelector('#icon-example code')!.textContent=`---\nimport { ${selected} } from '@lucide/astro';\nimport { Button } from 'dmf-ui/button';\n---\n<Button variant="outline">\n  <${selected} size={${size.value}} stroke-width={${stroke.value}} aria-hidden="true" />\n  ${selected}\n</Button>\n\n<Button size="icon" variant="outline" aria-label="${selected}">\n  <${selected} size={${size.value}} stroke-width={${stroke.value}} aria-hidden="true" />\n</Button>`;
+  const code=`---\nimport { ${selected} } from '@lucide/astro';\nimport { Button } from 'dmf-ui/button';\n---\n<Button variant="outline">\n  <${selected} size={${size.value}} stroke-width={${stroke.value}} aria-hidden="true" />\n  ${selected}\n</Button>\n\n<Button size="icon" variant="outline" aria-label="${selected}">\n  <${selected} size={${size.value}} stroke-width={${stroke.value}} aria-hidden="true" />\n</Button>`;
+  document.querySelector('#icon-example code')!.textContent=code;document.querySelector<HTMLElement>('[data-copy-code=icon-example]')!.dataset.copyValue=code;
   for(const button of choices){button.setAttribute('aria-pressed',String(button.dataset.iconName===selected));const svg=button.querySelector('svg')!;svg.setAttribute('width',size.value);svg.setAttribute('height',size.value);svg.setAttribute('stroke-width',stroke.value);}
  }
  for(const button of choices)button.addEventListener('click',()=>{selected=button.dataset.iconName!;updateExample();});

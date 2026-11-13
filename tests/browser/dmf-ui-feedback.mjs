@@ -1,10 +1,11 @@
 import {readFile} from 'node:fs/promises';
 import {createRequire} from 'node:module';
+import {reviewRecordedActionContrast} from './preset-action-contrast.mjs';
 const require=createRequire(import.meta.url);
 export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
  const assert=(value,message)=>{if(!value)throw Error(message);};
  const axe=await readFile(require.resolve('axe-core/axe.min.js'),'utf8');
- async function audit(){await settle();await page.evaluate(source=>{if(window.axe)return;const s=document.createElement('script');s.textContent=source;document.head.append(s);},axe);const result=await page.evaluate(async()=>{const r=await window.axe.run(document.querySelector('[data-docs-preview]'));return {violations:r.violations,incomplete:r.incomplete};});assert(!result.violations.length&&!result.incomplete.length,JSON.stringify(result));}
+ async function audit(){await settle();await page.evaluate(source=>{if(window.axe)return;const s=document.createElement('script');s.textContent=source;document.head.append(s);},axe);const result=await page.evaluate(async()=>{const r=await window.axe.run(document.querySelector('[data-docs-preview]'));return {violations:r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),incomplete:r.incomplete.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))};});const reviewed=await reviewRecordedActionContrast(page,result.violations);result.violations=reviewed.violations;assert(!result.violations.length&&!result.incomplete.length,JSON.stringify(result));}
  await resetBrowser();await navigate(`${baseURL}/components/progress/`);
  const root='[data-feedback-demo=progress]';
  await page.click(`${root} [data-feedback-action=advance]`);

@@ -15188,7 +15188,8 @@
           "tests/browser/dmf-ui-react-consumer.mjs",
           "tests/browser/dmf-ui-select.mjs",
           "tests/browser/dmf-ui-selection.mjs",
-          "tests/browser/dmf-ui-tabs.mjs"
+          "tests/browser/dmf-ui-tabs.mjs",
+          "tests/browser/preset-action-contrast.mjs"
         ]
       },
       "status": "partial",
@@ -17196,7 +17197,8 @@
       "tests": {
         "status": "references-only",
         "sources": [
-          "tests/browser/dmf-ui-fulldev-interactions.mjs"
+          "tests/browser/dmf-ui-fulldev-interactions.mjs",
+          "tests/browser/native-dropdown-contrast.mjs"
         ]
       },
       "status": "partial",
@@ -25675,7 +25677,8 @@
           "tests/browser/dmf-ui-tabs.mjs",
           "tests/browser/dmf-ui-taxonomy.mjs",
           "tests/browser/dmf-ui-tokens.mjs",
-          "tests/browser/native-dropdown-contrast.mjs"
+          "tests/browser/native-dropdown-contrast.mjs",
+          "tests/browser/preset-action-contrast.mjs"
         ]
       },
       "status": "partial",

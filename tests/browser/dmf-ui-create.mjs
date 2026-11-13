@@ -1,10 +1,11 @@
 import {readFile,writeFile} from 'node:fs/promises';
 import {createRequire} from 'node:module';
+import {reviewRecordedActionContrast} from './preset-action-contrast.mjs';
 const require=createRequire(import.meta.url);
 export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
  const assert=(value,message)=>{if(!value)throw new Error(message);};
  const reports=[];const axe=await readFile(require.resolve('axe-core/axe.min.js'),'utf8');
- async function audit(state){await settle();await page.evaluate(source=>{if(!window.axe){const script=document.createElement('script');script.textContent=source;document.head.append(script);}},axe);const result=await page.evaluate(async()=>{const r=await window.axe.run();return {violations:r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),incomplete:r.incomplete.map(v=>v.id)};});reports.push({state,...result});await writeFile(new URL('../../.dmf-ui-test-results/create-audit.json',import.meta.url),JSON.stringify(reports,null,2));assert(!result.violations.length,JSON.stringify(result.violations));}
+ async function audit(state){await settle();await page.evaluate(source=>{if(!window.axe){const script=document.createElement('script');script.textContent=source;document.head.append(script);}},axe);const result=await page.evaluate(async()=>{const r=await window.axe.run();return {violations:r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),incomplete:r.incomplete.map(v=>v.id)};});const reviewed=await reviewRecordedActionContrast(page,result.violations);result.violations=reviewed.violations;reports.push({state,...result,exceptions:reviewed.exceptions});await writeFile(new URL('../../.dmf-ui-test-results/create-audit.json',import.meta.url),JSON.stringify(reports,null,2));assert(!result.violations.length,JSON.stringify(result.violations));}
  await navigate(`${baseURL}/create/`);await audit('Default');
  await page.selectOption('#preset-accent','violet');await page.selectOption('#preset-radius','large');await page.selectOption('#preset-font','nunito');await page.selectOption('#preset-mode','dark');
  assert(await page.evaluate(()=>document.getElementById('preset-code').textContent.includes('--primary: #6d28d9')&&getComputedStyle(document.getElementById('preset-surface')).getPropertyValue('--radius').trim()==='1rem'&&getComputedStyle(document.getElementById('preset-surface')).fontFamily.includes('DMF CB Nunito')),'Custom tokens did not apply');

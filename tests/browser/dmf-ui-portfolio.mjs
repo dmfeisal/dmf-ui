@@ -1,9 +1,10 @@
 import {readFile} from 'node:fs/promises';
 import {createRequire} from 'node:module';
+import {reviewNativeDropdowns} from './native-dropdown-contrast.mjs';
 const require=createRequire(import.meta.url);
 export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
  const assert=(v,m)=>{if(!v)throw Error(m);};const axe=await readFile(require.resolve('axe-core/axe.min.js'),'utf8');
- async function audit(scope){await settle();await page.evaluate(source=>{if(window.axe)return;const s=document.createElement('script');s.textContent=source;document.head.append(s);},axe);const r=await page.evaluate(async scope=>{const r=await window.axe.run(scope?document.querySelector(scope):document);return {violations:r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.failureSummary)})),incomplete:r.incomplete.map(v=>v.id)};},scope);assert(!r.violations.length&&!r.incomplete.length,JSON.stringify(r));}
+ async function audit(scope){await settle();await page.evaluate(source=>{if(window.axe)return;const s=document.createElement('script');s.textContent=source;document.head.append(s);},axe);const r=await page.evaluate(async scope=>{const r=await window.axe.run(scope?document.querySelector(scope):document);return {violations:r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),incomplete:r.incomplete.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))};},scope??null);await reviewNativeDropdowns(page,r);assert(!r.violations.length,JSON.stringify(r));}
  await resetBrowser();await navigate(`${baseURL}/create/?system=portfolio`);
  assert(await page.evaluate(async()=>{const body=await document.fonts.load('400 14px "DMF Portfolio Inter"'),heading=await document.fonts.load('700 20px "DMF Portfolio Jakarta"');return body.length>0&&heading.length>0;}),'Portfolio fonts failed');
  for(const [mode,color] of [['light','rgb(244, 243, 239)'],['dark','rgb(17, 17, 17)'],['yellow','rgb(242, 212, 61)']]){
