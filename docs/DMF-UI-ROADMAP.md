@@ -25,26 +25,18 @@ The brand registry is `contracts/brands.json`; token source is `tokens/design.to
 
 - Astro package `dmf-ui@0.7.0`, framework-neutral `@dmf-ui/core@0.1.0` and `@dmf-ui/react@0.1.0-alpha.5`, all private and experimental. React depends on core, not on the Astro package. dmf-web runs the recorded 0.7.0 archive.
 - 80 Astro families, Authentication and discovery Blocks, 15 React families. Counts come from `contracts/catalog.json`.
-- Done: foundations ([M1](DMF-UI-M1.md)), portable tokens in 0.3.0 ([tokens](DMF-UI-TOKENS.md)), Blocks ([M4](DMF-UI-M4-BLOCKS.md)), documentation and production quality ([M5](DMF-UI-M5.md)), React alpha ([notes](DMF-UI-0.5.0-REACT-ALPHA-RELEASE-NOTES.md)), Authentication Blocks ([M6.1](DMF-UI-M6.md), [M6.2](DMF-UI-M6-2-RESET.md), [M6.3](DMF-UI-M6-3-OTP.md)), Nova profile ([Nova](DMF-UI-NOVA.md)), 0.5.0 release, release records and the [new-brand guide](DMF-UI-NEW-BRAND.md) ([M7](DMF-UI-M7.md)), preset showcase pages in dmf-web ([M8](DMF-UI-M8.md)), shared core for React ([M9](DMF-UI-M9.md)), preset completeness from recorded sources ([M10](DMF-UI-M10.md)), docs site performance ([M11](DMF-UI-M11.md)), the 0.7.0 release (M12).
+- Done: foundations ([M1](DMF-UI-M1.md)), portable tokens in 0.3.0 ([tokens](DMF-UI-TOKENS.md)), Blocks ([M4](DMF-UI-M4-BLOCKS.md)), documentation and production quality ([M5](DMF-UI-M5.md)), React alpha ([notes](DMF-UI-0.5.0-REACT-ALPHA-RELEASE-NOTES.md)), Authentication Blocks ([M6.1](DMF-UI-M6.md), [M6.2](DMF-UI-M6-2-RESET.md), [M6.3](DMF-UI-M6-3-OTP.md)), Nova profile ([Nova](DMF-UI-NOVA.md)), 0.5.0 release, release records and the [new-brand guide](DMF-UI-NEW-BRAND.md) ([M7](DMF-UI-M7.md)), preset showcase pages in dmf-web ([M8](DMF-UI-M8.md)), shared core for React ([M9](DMF-UI-M9.md)), preset completeness from recorded sources ([M10](DMF-UI-M10.md)), docs site performance ([M11](DMF-UI-M11.md)), the 0.7.0 release (M12), the docs browser suite in CI ([M13](DMF-UI-M13.md)).
 - Every archive given to dmf-web has a record in `releases/`. See `releases/README.md`.
+- The 26 docs browser scenarios run in CI (`DMF UI browser`, 4 shards, about 2 min 20 s wall clock). The check stays non-blocking until 27 November 2026. After that, if it has had no flaky failures, the owner makes it required in the repository settings.
+- `main` has shipped-file changes since 0.7.0 (Tabs, EmptyState and Button reflow), so the next `dmf-ui` archive needs a version bump.
 
-## Now: M13 — docs browser suite in CI
+## Now: M14 — manual acceptance pass
 
-Goal: the 25 docs browser scenarios run in CI, so they cannot fail unnoticed again. Today they run only in Ego Browser on the owner's machine, which is how 9 failed until dmfeisal/dmf-ui#17 repaired them.
+Goal: check what CI cannot automate.
 
-1. **Playwright adapter.**
-   - A second executor for the existing runner (`scripts/dmf-ui-browser/`). It supplies the same `taskSpace()` and `page` interface on headless Chromium, with `page.cdp()` backed by a Chromium CDP session.
-   - `DMF_UI_BROWSER=playwright` selects it. Ego Browser stays the default locally.
-   - Scenarios are unchanged. A scenario that passes in Ego but fails in Playwright is either an adapter gap to fix or a real bug to report, never a weakened assertion.
-2. **Sharding.** `DMF_UI_TEST_SHARD=i/n` runs every n-th scenario, so CI splits the 25 scenarios across parallel jobs.
-3. **Workflow.** This follows the CI rule under "Standing constraints".
-
-Done when:
-
-- All 25 scenarios pass headless under Playwright, locally and in hosted CI.
-- The workflow runs on a PR that changes `src/`, and skips a docs-only PR.
-- The CI time per shard and in total is recorded in `docs/DMF-UI-M13.md`, and this page moves M13 to "Where it stands".
-- After two weeks without flaky failures, the browser check becomes a required check. That step is the owner's to switch on, in the repository settings.
+- Safari and Firefox, including the geckodriver profile error that blocks Firefox automation.
+- Real phones and tablets, password managers, and VoiceOver and NVDA, for the Authentication Blocks and the React adapter.
+- *Ships in:* nothing, or `dmf-ui` patches for bugs it finds.
 
 ## Versions
 
@@ -52,12 +44,8 @@ Milestones are units of work; versions are what a consumer receives. A milestone
 
 ## Next
 
-Ready to start, in this order. M12 (M11 report and `dmf-ui` 0.7.0) is done. They keep what exists healthy, then make React a real option for future products.
+Ready to start, in this order, after M14. They make React a real option for future products.
 
-- **M14 — manual acceptance pass.**
-  - Safari and Firefox, including the geckodriver profile error that blocks Firefox automation.
-  - Real phones and tablets, password managers, and VoiceOver and NVDA, for the Authentication Blocks and the React adapter.
-  - *Ships in:* nothing, or `dmf-ui` patches for bugs it finds.
 - **M15 — React parity, round 1.** Interactive families a real app needs first: Dialog, Tabs, Tooltip, Popover, Dropdown Menu and Toast. React has 15 families today; Astro has 80.
   - *Ships in:* `@dmf-ui/react` 0.2.0-alpha.n. These are not recorded until a consumer exists.
 - **M16 — React parity, round 2.** Form and data families: Combobox, Number Field, Table, Pagination, Breadcrumb, Accordion and Sheet.
@@ -124,7 +112,7 @@ New domain families are not planned without a concrete product.
 - Natural sizing: no blanket 44px minimums. Header tools share 32px.
 - CB and HUI filled primary actions keep white labels by owner preference (about 2.57:1 and 4.29:1); they stay recorded exceptions, not WCAG AA passes.
 - Released versions are immutable and recorded in `releases/`.
-- **CI rule for browser suites** (decided for M13; applies to every future browser suite and deployment check):
+- **CI rule for browser suites** (decided in M13; applies to every future browser suite and deployment check):
   - **Triggers:**
     - Pull requests that change `src/`, `packages/`, `tokens/`, `contracts/`, `tests/browser/`, `scripts/` or build config. Docs-only PRs skip it.
     - A nightly full run on `main`.
