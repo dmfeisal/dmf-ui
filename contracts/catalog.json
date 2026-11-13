@@ -12313,6 +12313,7 @@
           "tests/browser/dmf-ui-react-consumer.mjs",
           "tests/browser/dmf-ui-reset-password-consumer.mjs",
           "tests/browser/dmf-ui-runtime.mjs",
+          "tests/browser/dmf-ui-search.mjs",
           "tests/browser/dmf-ui-select.mjs",
           "tests/browser/dmf-ui-switch.mjs"
         ]
