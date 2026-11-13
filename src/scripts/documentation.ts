@@ -5,11 +5,25 @@ const dialog=document.querySelector<HTMLDialogElement>('#docs-search-dialog');
 const input=document.querySelector<HTMLInputElement>('#docs-search-input');
 const results=document.querySelector<HTMLElement>('#docs-search-results');
 const count=document.querySelector<HTMLElement>('#docs-search-count');
-const source=document.querySelector('#docs-search-index');
-if(trigger&&dialog&&input&&results&&count&&source){
- const entries=JSON.parse(source.textContent??'[]') as SearchEntry[];
+const indexUrl=dialog?.dataset.searchIndex;
+if(trigger&&dialog&&input&&results&&count&&indexUrl){
+ // The index is one cached file shared by every page. It is fetched once: on first hover or focus of the
+ // trigger, or at the latest when search opens. A failure is shown in the dialog and retried on the next open.
+ let entries:SearchEntry[]|null=null,loading:Promise<SearchEntry[]>|null=null,failed=false;
+ function load(){
+  loading??=fetch(indexUrl!).then(response=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json() as Promise<SearchEntry[]>;})
+   .then(data=>{entries=data;failed=false;return data;})
+   .catch(error=>{loading=null;failed=true;throw error;});
+  return loading;
+ }
+ function status(text:string,state:'loading'|'error'){
+  results!.replaceChildren();count!.textContent=text;results!.dataset.searchState=state;
+  if(state==='error'){const fallback=document.createElement('a');fallback.href='/components/';fallback.className='docs-search-result';const title=document.createElement('span');title.textContent='Browse all components';fallback.append(title);results!.append(fallback);}
+ }
  let returnFocus:HTMLElement|null=null;
  function render(){
+  if(!entries){status(failed?'Search could not load. Check your connection and reopen search.':'Loading search…',failed?'error':'loading');return;}
+  delete results!.dataset.searchState;
   const query=normalize(input!.value.trim()),terms=query.split(/\s+/).filter(Boolean);
   const matches=entries.map((entry,index)=>({entry,index,text:normalize(`${entry.title} ${entry.description} ${entry.keywords}`)})).filter(item=>terms.every(term=>item.text.includes(term))).sort((a,b)=>{
    const score=(item:typeof a)=>normalize(item.entry.title)===query?3:normalize(item.entry.title).startsWith(query)?2:1;
@@ -31,10 +45,11 @@ if(trigger&&dialog&&input&&results&&count&&source){
   }
   if(matches.length>shown.length){const hint=document.createElement('p');hint.className='docs-search-more';hint.textContent='Showing the first 12 results. Type more to narrow your search.';results!.append(hint);}
  }
- function open(){if(dialog!.open||trigger?.closest('[inert]'))return;returnFocus=document.activeElement instanceof HTMLElement?document.activeElement:trigger;input!.value='';render();dialog!.showModal();input!.focus();}
+ function open(){if(dialog!.open||trigger?.closest('[inert]'))return;returnFocus=document.activeElement instanceof HTMLElement?document.activeElement:trigger;input!.value='';if(!entries)failed=false;render();dialog!.showModal();input!.focus();if(!entries)load().then(()=>{if(dialog!.open)render();},()=>{if(dialog!.open)render();});}
  trigger.hidden=false;document.querySelector<HTMLElement>('.docs-search-fallback')!.hidden=true;
  const shortcut=trigger.querySelector('kbd');if(shortcut){shortcut.textContent=/Mac|iPhone|iPad/.test(navigator.platform)?'⌘ K':'Ctrl K';trigger.setAttribute('aria-label',`Search documentation ${shortcut.textContent}`);}
  trigger.addEventListener('click',open);
+ for(const type of ['pointerenter','focus'])trigger.addEventListener(type,()=>{load().catch(()=>{});},{once:true});
  input.addEventListener('input',render);
  dialog.querySelector('[data-search-close]')?.addEventListener('click',()=>dialog.close());
  dialog.addEventListener('close',()=>{if(returnFocus?.isConnected)returnFocus.focus();else trigger.focus();});

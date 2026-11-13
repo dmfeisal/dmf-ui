@@ -20,7 +20,7 @@ import 'dmf-ui/styles.css';
 
 Enable the Tailwind Vite plugin in your Astro configuration. Component classes are discovered from the installed package. Add explicit `@source` paths for consumer-authored utility classes in your own stylesheet. Core styles preserve scoped normalization instead of global Preflight and never set a global root font size. The examples retain a relative 14px root.
 
-Public imports include component directories (`dmf-ui/dialog`, `dmf-ui/select`, etc.), the aggregate `dmf-ui` entry, `dmf-ui/button/variants`, `dmf-ui/styles.css`, `dmf-ui/tokens.css`, and `dmf-ui/presets/cb-ui.css`. Host-owned toast controllers are available from `dmf-ui/toast`. Optional specimens use `dmf-ui/examples/*` and `dmf-ui/examples.css`; component CSS does not import documentation layout rules.
+Public imports include component directories (`dmf-ui/dialog`, `dmf-ui/select`, etc.), the aggregate `dmf-ui` entry, `dmf-ui/button/variants`, `dmf-ui/styles.css`, `dmf-ui/tokens.css`, and `dmf-ui/presets/cb-ui.css`. Host-owned toast controllers are available from `dmf-ui/toast`. Optional specimens use `dmf-ui/examples/*` and `dmf-ui/examples.css`; component CSS does not import documentation layout rules. Import `dmf-ui/styles.css` once per page; components, including `Layout`, do not import it themselves.
 
 The CB preset uses `data-system="cb-ui" data-color-mode="light"` on `.dmf-ui` and retains `--dmf-cb-ui-color-primary: #26ade4`. Its licensed Nunito font is bundled through CSS asset URLs, without a consumer-owned font route. The preset is a 2026 reconstruction, not a historical shipped-system claim.
 

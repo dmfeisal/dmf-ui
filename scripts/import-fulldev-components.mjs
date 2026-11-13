@@ -17,7 +17,9 @@ for(const entry of manifest.components){
   const destination=resolve(root,entry.name,file.path.slice(prefix.length));
   if(!destination.startsWith(root+sep))throw Error('Source path escapes component tree');
   const localImport=path=>{let value=relative(dirname(destination),path).split(sep).join('/');return value.startsWith('.')?value:`./${value}`;};
-  let content=file.content.replace(/@\/lib\/utils/g,localImport(`${root}/utils`)).replace(/@\/components\/ui\/([a-z0-9-]+)/g,(_,name)=>localImport(`${root}/${name}`)).replace(/@\/styles\/global\.css/g,localImport(resolve('src/styles/dmf-ui.css')));
+  let content=file.content.replace(/@\/lib\/utils/g,localImport(`${root}/utils`)).replace(/@\/components\/ui\/([a-z0-9-]+)/g,(_,name)=>localImport(`${root}/${name}`)).replace(/^import "@\/styles\/global\.css"\n\n?/m,'');
+  // Hosts import dmf-ui/styles.css once. A component-level import (Fulldev's Layout) would add a second Tailwind build per page.
+  if(content.includes('@/styles/global.css'))throw Error(`Unhandled global stylesheet import: ${file.path}`);
   if(write){try{await access(destination);}catch{await mkdir(dirname(destination),{recursive:true});await writeFile(destination,content);}}
   const adopted=await readFile(destination);
   const localPath=relative(resolve('.'),destination).split(sep).join('/');

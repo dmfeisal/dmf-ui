@@ -405,7 +405,7 @@ export const fulldevComponents:ComponentDoc[]=[
     "name": "Layout",
     "category": "Foundation",
     "description": "Build a complete document shell with metadata and native page structure.",
-    "usage": "import { Layout, LayoutHead, LayoutBody, LayoutMain } from 'dmf-ui/layout';\n\n<Layout lang=\"en\">\n  <LayoutHead title=\"Example\" description=\"A local document.\" />\n  <LayoutBody><LayoutMain><h1>Example page</h1></LayoutMain></LayoutBody>\n</Layout>",
+    "usage": "import 'dmf-ui/styles.css';\nimport { Layout, LayoutHead, LayoutBody, LayoutMain } from 'dmf-ui/layout';\n\n<Layout lang=\"en\">\n  <LayoutHead title=\"Example\" description=\"A local document.\" />\n  <LayoutBody><LayoutMain><h1>Example page</h1></LayoutMain></LayoutBody>\n</Layout>",
     "options": [
       [
         "parts",
@@ -422,7 +422,8 @@ export const fulldevComponents:ComponentDoc[]=[
       "Adapted from the pinned Fulldev UI 0.25.5 base-vega snapshot under MIT. Existing DMF component APIs and tokens remain in place.",
       "The copyable composition is a starting point; source props are authoritative. Use explicit labels, meaningful native links/actions and heading levels that fit the host page.",
       "No application backend or data persistence is added. Browser and assistive-technology verification boundaries are recorded in the Fulldev adoption document.",
-      "Layout is a complete document shell and must not be nested inside another document. Global view transitions are left to the host; none are enabled automatically."
+      "Layout is a complete document shell and must not be nested inside another document. Global view transitions are left to the host; none are enabled automatically.",
+      "Import dmf-ui/styles.css once in the host. Since M11 Layout no longer imports it, so a page never gets a second copy of the stylesheet."
     ]
   },
   {

@@ -7,6 +7,6 @@ export async function run({page,baseURL,navigate,mobile,resetBrowser}){
  await mobile();await page.evaluate(()=>document.documentElement.dir='rtl');assert(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),'Hero docs standard RTL overflow');
  await page.evaluate(()=>document.documentElement.style.fontSize='200%');assert(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth),'Hero docs enlarged overflow');
  await resetBrowser();await navigate(baseURL+'/blocks/hero/');await page.click('#hero-preview a[href="/docs/architecture/"]');await page.waitForURL(baseURL+'/docs/architecture/');
- await page.click('#docs-search-trigger');await page.fill('#docs-search-input','HeroBlock');assert(await page.evaluate(()=>!!document.querySelector('#docs-search-results a[href="/blocks/hero/"]')),'Hero global search entry');await page.keyboard.press('Escape');
+ await page.click('#docs-search-trigger');await page.waitForFunction(()=>!document.querySelector('#docs-search-results')?.dataset.searchState);await page.fill('#docs-search-input','HeroBlock');assert(await page.evaluate(()=>!!document.querySelector('#docs-search-results a[href="/blocks/hero/"]')),'Hero global search entry');await page.keyboard.press('Escape');
  await resetBrowser();console.log('PASS Hero docs: index/search/source examples, image, real guide link, preset/mode controls, standard RTL and enlarged containment.');
 }
