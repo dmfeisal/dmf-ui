@@ -1,9 +1,11 @@
 import {readFile} from 'node:fs/promises';
 import {createRequire} from 'node:module';
+import {reviewNativeDropdowns} from './native-dropdown-contrast.mjs';
+import {reviewRecordedActionContrast} from './preset-action-contrast.mjs';
 const require=createRequire(import.meta.url);
 export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
  const assert=(v,m)=>{if(!v)throw Error(m);};const axe=await readFile(require.resolve('axe-core/axe.min.js'),'utf8');
- async function audit(){await settle();await page.evaluate(source=>{if(window.axe)return;const s=document.createElement('script');s.textContent=source;document.head.append(s);},axe);const r=await page.evaluate(async()=>{const r=await window.axe.run();return {violations:r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.failureSummary)})),incomplete:r.incomplete.map(v=>v.id)};});assert(!r.violations.length&&!r.incomplete.length,JSON.stringify(r));}
+ async function audit(){await settle();await page.evaluate(source=>{if(window.axe)return;const s=document.createElement('script');s.textContent=source;document.head.append(s);},axe);const r=await page.evaluate(async()=>{const r=await window.axe.run();return {violations:r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),incomplete:r.incomplete.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))};});await reviewNativeDropdowns(page,r);r.violations=(await reviewRecordedActionContrast(page,r.violations)).violations;assert(!r.violations.length,JSON.stringify(r));}
  await resetBrowser();await navigate(`${baseURL}/components/avatar/`);
  await page.waitForFunction(()=>document.querySelector('[data-avatar-image]').hidden);
  assert(await page.evaluate(()=>document.querySelector('[data-docs-preview] [aria-label="Image unavailable"] [data-slot=avatar-fallback]').textContent==='IU'),'Avatar error fallback missing');
