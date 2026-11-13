@@ -143,6 +143,8 @@ import { Toaster } from '../../../components/dmf-ui/toast';
   .example-tabs { margin-block-start: 24px; }
   .example-presets { margin-block-start: 40px; }
   .example-presets > h2 { font-size: 2rem; font-weight: 600; margin-block-end: 24px; }
+  /* Long words in headings break instead of widening the page (large text, wide fonts). */
+  .example-intro h1, .example-surface h2, .example-presets > h2 { overflow-wrap: anywhere; }
   .example-footer { padding-block: 32px 64px; color: var(--muted-foreground); }
   .skip-link { position: absolute; inset-inline-start: 20px; top: -100px; padding: 12px; background: var(--background); color: var(--foreground); z-index: 100; }
   .skip-link:focus { top: 8px; }

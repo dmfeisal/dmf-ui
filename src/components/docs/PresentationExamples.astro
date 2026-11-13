@@ -25,7 +25,7 @@ const items=[{label:'Components',href:'/components/',icon:Layers},{label:'Docs',
 {slug==='button'&&(presentation==='icon'?<Tooltip portal={false}><TooltipTrigger data-docs-action="Settings" class={buttonVariants({size:'icon'})} aria-label="Settings"><Settings size={18} aria-hidden="true"/></TooltipTrigger><TooltipContent>Settings</TooltipContent></Tooltip>:<Button data-docs-action="Settings">{presentation==='icon-label'&&<Settings size={18} aria-hidden="true"/>}Settings</Button>)}
 </div>)}</div>}
 <style>
-.docs-presentations { display:grid; gap:28px; margin-top:28px; padding-top:24px; border-top:1px solid var(--border); }
-.docs-presentations > div { min-width:0; display:grid; gap:12px; }
+.docs-presentations { display:grid; grid-template-columns:minmax(0,1fr); gap:28px; margin-top:28px; padding-top:24px; border-top:1px solid var(--border); }
+.docs-presentations > div { min-width:0; display:grid; grid-template-columns:minmax(0,1fr); gap:12px; }
 .docs-presentations .docs-presentation-label { font-size:1rem; font-weight:600; }
 </style>
