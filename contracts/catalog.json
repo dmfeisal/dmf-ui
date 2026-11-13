@@ -5463,7 +5463,8 @@
       "tests": {
         "status": "references-only",
         "sources": [
-          "tests/browser/dmf-ui-fulldev-interactions.mjs"
+          "tests/browser/dmf-ui-fulldev-interactions.mjs",
+          "tests/browser/dmf-ui-large-text-reflow.mjs"
         ]
       },
       "status": "partial",
@@ -10933,6 +10934,7 @@
           "tests/browser/dmf-ui-form-composition.mjs",
           "tests/browser/dmf-ui-hero-consumer.mjs",
           "tests/browser/dmf-ui-icons.mjs",
+          "tests/browser/dmf-ui-large-text-reflow.mjs",
           "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-navigation.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
@@ -11259,7 +11261,8 @@
         "status": "references-only",
         "sources": [
           "tests/feedback.test.mjs",
-          "tests/browser/dmf-ui-feedback.mjs"
+          "tests/browser/dmf-ui-feedback.mjs",
+          "tests/browser/dmf-ui-large-text-reflow.mjs"
         ]
       },
       "status": "partial",
@@ -15543,6 +15546,7 @@
           "tests/browser/dmf-ui-foundations.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-hero-consumer.mjs",
+          "tests/browser/dmf-ui-large-text-reflow.mjs",
           "tests/browser/dmf-ui-runtime.mjs",
           "tests/browser/dmf-ui-sign-in-consumer.mjs"
         ]
@@ -23034,6 +23038,7 @@
           "tests/navigation-patterns.test.mjs",
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
+          "tests/browser/dmf-ui-large-text-reflow.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-search.mjs",
           "tests/browser/dmf-ui-taxonomy.mjs"
@@ -24989,11 +24994,13 @@
       "tokens": [
         "background",
         "border",
+        "dmf-tabs-row",
         "foreground",
         "input",
         "muted",
         "muted-foreground",
-        "ring"
+        "ring",
+        "spacing"
       ],
       "reviewedContract": null,
       "presets": {
@@ -25016,6 +25023,7 @@
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-forms.mjs",
+          "tests/browser/dmf-ui-large-text-reflow.mjs",
           "tests/browser/dmf-ui-navigation.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-tabs.mjs"
@@ -25033,7 +25041,7 @@
         },
         {
           "path": "src/components/dmf-ui/tabs/tabs-list-variants.ts",
-          "sha256": "f78b991edca3c5b52c16504de1ab6ee9fdfd950cbb758fff3198dbdf1998146f"
+          "sha256": "d13511e7ccb5d2c2743f11b8894f6deab7ff50c537b3afbddddd57f89f12204c"
         },
         {
           "path": "src/components/dmf-ui/tabs/tabs-list.astro",
@@ -25041,7 +25049,7 @@
         },
         {
           "path": "src/components/dmf-ui/tabs/tabs-trigger.astro",
-          "sha256": "cab83dd08e4f12b3d3224103c4635e77f37a4b47988bcbb22b63fa61bc4ab77f"
+          "sha256": "222094a35192252f79ac67e5c341f6a2338fbd0fb31bdc4c01fbb92ebfb16ab3"
         },
         {
           "path": "src/components/dmf-ui/tabs/tabs.astro",
@@ -25661,6 +25669,7 @@
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-hero-consumer.mjs",
           "tests/browser/dmf-ui-icons.mjs",
+          "tests/browser/dmf-ui-large-text-reflow.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
           "tests/browser/dmf-ui-m5.mjs",
           "tests/browser/dmf-ui-merchant-card-consumer.mjs",
