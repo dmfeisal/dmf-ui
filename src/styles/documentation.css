@@ -22,6 +22,8 @@ html { font-size: 87.5%; scroll-padding-top: 10rem; }
 .docs-layout.docs-has-sidebar { grid-template-columns:15rem minmax(0,1fr); grid-template-areas:'sidebar content'; }
 .docs-layout.docs-has-sidebar.docs-has-toc { grid-template-columns:15rem minmax(0,1fr) 13rem; grid-template-areas:'sidebar content toc'; }
 .docs-page { grid-area:content; min-width:0; }
+/* Long single words (component names, large text, wide fonts) break instead of widening the page. Previews keep component styling. */
+:where(.docs-page) :where(h1,h2,h3,h4,p,li,dt,dd,a,label,output):not(:where(.docs-preview *)) { overflow-wrap:anywhere; }
 .docs-sidebar { grid-area:sidebar; }
 .docs-sidebar nav,.docs-toc nav { position:sticky; top:132px; max-height:calc(100svh - 156px); overflow:auto; display:grid; align-content:start; gap:4px; }
 .docs-sidebar a,.docs-toc a,.docs-mobile-navigation a { display:block; padding:9px 0; text-decoration:none; font-size:.95rem; }
@@ -55,8 +57,9 @@ html { font-size: 87.5%; scroll-padding-top: 10rem; }
 .docs-options { width:100%; border-collapse:collapse; font-size:.95rem; }
 .docs-options th,.docs-options td { padding:12px; text-align:start; border-bottom:1px solid var(--border); vertical-align:top; overflow-wrap:anywhere; }
 .docs-table-scroll { overflow:auto; }
-.docs-search { display:grid; gap:10px; margin-block:28px; }
-.docs-search input { max-width:34rem; color:var(--foreground); background:var(--background); padding:12px; border:1px solid var(--input); border-radius:var(--docs-radius-control); font:inherit;  }
+/* minmax(0,1fr): an input's intrinsic width must not widen the column past the viewport (large text, wide fonts). */
+.docs-search { display:grid; grid-template-columns:minmax(0,1fr); gap:10px; margin-block:28px; }
+.docs-search input { min-inline-size:0; max-width:34rem; color:var(--foreground); background:var(--background); padding:12px; border:1px solid var(--input); border-radius:var(--docs-radius-control); font:inherit;  }
 .docs-search output { color:var(--muted-foreground); font-size:.9rem; }
 .docs-footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:20px; padding-block:28px; border-top:1px solid var(--border); color:var(--muted-foreground); font-size:.9rem; }
 .docs-footer nav { display:flex; gap:20px; flex-wrap:wrap; }

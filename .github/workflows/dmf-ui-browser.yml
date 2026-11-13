@@ -71,3 +71,5 @@ jobs:
             /tmp/dmf-ui-*.png
           retention-days: 14
           if-no-files-found: ignore
+          # The results directory starts with a dot, which upload-artifact skips by default.
+          include-hidden-files: true
