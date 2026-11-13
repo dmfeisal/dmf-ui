@@ -8,6 +8,17 @@ Each `releases/<version>/` folder traces one packed `dmf-ui` archive back to its
 
 The archives themselves are ignored by Git; consumers keep the copy they install in their own `vendor/` folder. Records are immutable: once a version is recorded, any change to shipped files needs a new version.
 
+## Version rules
+
+Before 1.0:
+
+- **Minor (`0.x.0`):** any breaking change, new family or new export. For example, removing a stylesheet import that hosts relied on.
+- **Patch (`0.x.y`):** fixes only. No API, export or visual-default changes.
+- **Prerelease (`-alpha.n`):** an adapter stays a prerelease until a real consumer has used it.
+- **Independent packages.** `dmf-ui`, `@dmf-ui/core` and `@dmf-ui/react` each keep their own version line, and a release bumps only the packages whose shipped files changed.
+- **Ships in.** Milestones name the release they ship in (see `docs/DMF-UI-ROADMAP.md`). One release may carry several milestones, and milestones that change only tests or docs ship nothing.
+- **1.0.0** follows the stable API policy (M28), not a date.
+
 | Command | Purpose |
 | --- | --- |
 | `npm run release:record` | Pack `HEAD` from a clean Git worktree into `releases/<version>/` and write the records. Refuses an existing version. `-- --commit <rev>` packs another commit. |

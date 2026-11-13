@@ -59,23 +59,85 @@ Done when:
 
 Not in M11: merging the React proof's stylesheet into the docs build, a search engine change, page-weight budgets for dmf-ui's docs (dmf-web already has one), and packing a release.
 
-Ongoing, not a milestone gate:
+## Versions
 
-3. **Manual acceptance backlog.** Safari and Firefox, real password managers, phones and tablets, spoken screen readers for the Authentication Blocks and React alpha. Firefox automation is blocked by a geckodriver profile error.
+Milestones are units of work; versions are what a consumer receives. A milestone that changes shipped files names the release it **ships in**. Milestones that only change tests or docs ship nothing, and several milestones can share one release. Archives are packed and recorded only when given to a consumer. The version rules are in `releases/README.md`.
 
 ## Next
 
-Nothing queued after M11. The next milestone comes from "Later" once its prerequisite exists, such as a second real sign-in page or a product that needs a pattern.
+Ready to start, in this order. They keep what exists healthy, then make React a real option for future products.
+
+- **M12 — M11 report and 0.7.0 release.**
+  - Write `docs/DMF-UI-M11.md`.
+  - Record `dmf-ui` 0.7.0 and move dmf-web onto it. `Layout` no longer imports the stylesheet, which is a breaking change for hosts that relied on it, so this is a minor version.
+  - *Ships in:* `dmf-ui` 0.7.0.
+- **M13 — docs browser suite in CI.**
+  - dmfeisal/dmf-ui#17 repaired all 25 scenarios. They run only in Ego Browser on the owner's machine, which is how 9 failed unnoticed.
+  - Run them on every PR with a CI-capable headless browser, keeping the same scenarios and assertions.
+  - *Ships in:* nothing.
+- **M14 — manual acceptance pass.**
+  - Safari and Firefox, including the geckodriver profile error that blocks Firefox automation.
+  - Real phones and tablets, password managers, and VoiceOver and NVDA, for the Authentication Blocks and the React adapter.
+  - *Ships in:* nothing, or `dmf-ui` patches for bugs it finds.
+- **M15 — React parity, round 1.** Interactive families a real app needs first: Dialog, Tabs, Tooltip, Popover, Dropdown Menu and Toast. React has 15 families today; Astro has 80.
+  - *Ships in:* `@dmf-ui/react` 0.2.0-alpha.n. These are not recorded until a consumer exists.
+- **M16 — React parity, round 2.** Form and data families: Combobox, Number Field, Table, Pagination, Breadcrumb, Accordion and Sheet.
+  - *Ships in:* `@dmf-ui/react` 0.2.0-alpha.n.
+- **M17 — first recorded core and React release.** Pack and record both packages for a real consumer, the way `dmf-ui` is recorded.
+  - **Needs:** a React consumer.
+  - *Ships in:* `@dmf-ui/core` 0.1.0 and `@dmf-ui/react` 0.2.0. These are the first recorded release of each, and React drops its alpha tag.
 
 ## Later
 
-8. **`AuthCenteredTemplate`** once a second real authentication page validates its logo, form, support and footer API.
-9. **React Native, then SwiftUI** proofs with Button, Text, Input, Switch and Card, generated from the shared token JSON ([platform direction](DMF-UI-PLATFORMS.md)).
-10. **Product patterns** for the first future product that needs them: Food Discovery Templates, dashboards, tablet POS. Each needs its interaction and data requirements first.
+Each item waits for the condition it names. Version numbers are assigned when the item is planned, not before.
+
+**Cross-platform** (see [platform direction](DMF-UI-PLATFORMS.md))
+
+- **M18 — native token outputs.** Generate React Native and Swift token files from `tokens/design.tokens.json`, checked like the CSS outputs. This is the prerequisite for M19 and M20.
+  - *Ships in:* `@dmf-ui/core` 0.2.0, for the new exports.
+- **M19 — React Native proof.** Button, Text, Input, Switch and Card, using the generated tokens and presets.
+  - *Ships in:* a new package, starting at 0.1.0-alpha.1.
+- **M20 — SwiftUI proof.** The same five components.
+  - *Ships in:* a new Swift package, starting at 0.1.0-alpha.1.
+
+**Patterns and presets**
+
+- **M21 — `AuthCenteredTemplate`.** A shared sign-in page template covering logo, form, support and footer.
+  - **Needs:** a second real authentication page to validate the API.
+  - *Ships in:* a `dmf-ui` minor.
+- **M22 — new-brand preset tooling.** A scaffold command that creates the files and checks the [new-brand guide](DMF-UI-NEW-BRAND.md) describes.
+  - *Ships in:* nothing, because the scripts are not packed.
+- **M23 — first future-product preset**, built through the guide and the tooling.
+  - **Needs:** that product's brand direction.
+  - *Ships in:* a `dmf-ui` minor.
+- **M24 — Food Discovery templates.** Full pages built from the merchant Blocks.
+  - **Needs:** that product's interaction and data requirements.
+  - *Ships in:* a `dmf-ui` minor.
+- **M25 — dashboard patterns.** Layout, filters, tables and charts for admin views.
+  - **Needs:** a real dashboard.
+  - *Ships in:* a `dmf-ui` minor.
+- **M26 — tablet POS patterns.** Touch-first ordering and checkout layouts.
+  - **Needs:** a POS product.
+  - *Ships in:* a `dmf-ui` minor.
+- **M27 — past-work source follow-ups.** A complete CB specification, HUI subheadline mapping, and dark palettes for CB UI, HUI and QDI.
+  - **Needs:** new source files, or an owner decision to design dark variants as new work.
+  - *Ships in:* a `dmf-ui` minor, or nothing if only records change.
 
 ## Deferred
 
-Templates registry, npm publication and a stable API promise, WordPress integration, marketing Blocks, new domain families without a concrete product.
+Kept as milestones so their order is clear. None starts without an explicit decision.
+
+- **M28 — stable API policy.** The 1.0 criteria, deprecation process and the gates for calling a family stable.
+  - *Ships in:* nothing. It defines what 1.0.0 requires.
+- **M29 — npm publication.** Publish the packages that meet M28's gates, instead of handing over archives.
+  - **Needs:** M28.
+  - *Ships in:* 1.0.0 for those packages.
+- **M30 — templates registry.** Installable page templates.
+  - **Needs:** M24–M26 to have produced templates worth registering.
+- **M31 — WordPress integration and marketing Blocks.**
+  - **Needs:** a concrete site.
+
+New domain families are not planned without a concrete product.
 
 ## Standing constraints
 
