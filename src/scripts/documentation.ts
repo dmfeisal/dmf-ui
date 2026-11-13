@@ -47,7 +47,8 @@ if(trigger&&dialog&&input&&results&&count&&indexUrl){
  }
  function open(){if(dialog!.open||trigger?.closest('[inert]'))return;returnFocus=document.activeElement instanceof HTMLElement?document.activeElement:trigger;input!.value='';if(!entries)failed=false;render();dialog!.showModal();input!.focus();if(!entries)load().then(()=>{if(dialog!.open)render();},()=>{if(dialog!.open)render();});}
  trigger.hidden=false;document.querySelector<HTMLElement>('.docs-search-fallback')!.hidden=true;
- const shortcut=trigger.querySelector('kbd');if(shortcut){shortcut.textContent=/Mac|iPhone|iPad/.test(navigator.platform)?'⌘ K':'Ctrl K';trigger.setAttribute('aria-label',`Search documentation ${shortcut.textContent}`);}
+ // The name stays the visible label; the shortcut is announced through aria-keyshortcuts, not appended to the name (WCAG 2.5.3).
+ const apple=/Mac|iPhone|iPad/.test(navigator.platform),shortcut=trigger.querySelector('kbd');if(shortcut)shortcut.textContent=apple?'⌘ K':'Ctrl K';trigger.setAttribute('aria-keyshortcuts',apple?'Meta+K':'Control+K');
  trigger.addEventListener('click',open);
  for(const type of ['pointerenter','focus'])trigger.addEventListener(type,()=>{load().catch(()=>{});},{once:true});
  input.addEventListener('input',render);

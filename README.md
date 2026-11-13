@@ -61,7 +61,7 @@ Version 0.6.0 ships M9 and M10. React apps now depend on the framework-neutral `
 
 Version 0.7.0 ships M11. `Layout` no longer imports the DMF UI stylesheet: import `dmf-ui/styles.css` once in the host, as every other component already requires. This is a breaking change for hosts that relied on `Layout` bringing its own CSS. The Fulldev adaptation record and the component catalog are updated to match. No other component, export or preset changes. Its source commit and checksum are in `releases/0.7.0/`.
 
-The source repository builds Home (`/`), the searchable Components catalog (`/components/`), individual component pages and Docs (`/docs/`). The existing `/examples/dmf-ui/` remains the independent integration gallery. Run `npm run dev` to view it locally and `npm run test:dmf-ui:docs` for documentation browser checks. See [documentation ownership and routes](docs/DMF-UI-DOCUMENTATION.md). Documentation host files are excluded from the component archive.
+The source repository builds Home (`/`), the searchable Components catalog (`/components/`), individual component pages and Docs (`/docs/`). The existing `/examples/dmf-ui/` remains the independent integration gallery. Run `npm run dev` to view it locally and `npm run test:dmf-ui:docs` for documentation browser checks. Those checks use the installed Ego Browser by default. Set `DMF_UI_BROWSER=playwright` to run them in headless Chromium instead (`npx playwright install chromium` once), and `DMF_UI_TEST_SHARD=1/4` to run one shard. CI runs them that way in the `DMF UI browser` workflow. See [documentation ownership and routes](docs/DMF-UI-DOCUMENTATION.md). Documentation host files are excluded from the component archive.
 
 ## React web alpha
 

@@ -1,0 +1,73 @@
+# Docs browser suite in headless Chromium (M13). Follows the CI rule in docs/DMF-UI-ROADMAP.md:
+# path-filtered pull requests, a nightly full run on main and a manual trigger; sharded on one Node version;
+# non-blocking until it has run two weeks without flaky failures.
+name: DMF UI browser
+on:
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'packages/**'
+      - 'tokens/**'
+      - 'contracts/**'
+      - 'public/**'
+      - 'tests/browser/**'
+      - 'scripts/**'
+      - 'astro.config.mjs'
+      - 'tsconfig.json'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/dmf-ui-browser.yml'
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: dmf-ui-browser-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  docs:
+    name: Docs browser / shard ${{ matrix.shard }} of 4
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      ASTRO_TELEMETRY_DISABLED: 1
+      DMF_UI_BROWSER: playwright
+      DMF_UI_TEST_SHARD: ${{ matrix.shard }}/4
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Install isolated React alpha dependencies
+        run: |
+          npm run build --prefix packages/core
+          npm ci --prefix packages/react
+      - name: Cache Playwright Chromium
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - name: Install Chromium and its system libraries
+        run: npx playwright install --with-deps chromium
+      - name: Build documentation
+        run: npm run build
+      - name: Run docs browser scenarios (shard ${{ matrix.shard }} of 4)
+        run: node scripts/test-dmf-ui-documentation.mjs
+      - name: Upload failure evidence
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: docs-browser-shard-${{ matrix.shard }}
+          path: |
+            .dmf-ui-test-results/
+            /tmp/dmf-ui-*.png
+          retention-days: 14
+          if-no-files-found: ignore
