@@ -17,7 +17,7 @@ Before 1.0:
 - **Prerelease (`-alpha.n`):** an adapter stays a prerelease until a real consumer has used it.
 - **Independent packages.** `dmf-ui`, `@dmf-ui/core` and `@dmf-ui/react` each keep their own version line, and a release bumps only the packages whose shipped files changed.
 - **Ships in.** Milestones name the release they ship in (see `docs/DMF-UI-ROADMAP.md`). One release may carry several milestones, and milestones that change only tests or docs ship nothing.
-- **1.0.0** follows the stable API policy (M28), not a date.
+- **1.0.0** follows the stable API policy (M31), not a date.
 
 | Command | Purpose |
 | --- | --- |
