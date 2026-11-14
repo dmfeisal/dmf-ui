@@ -34,8 +34,8 @@
  "totals": {
   "families": 50,
   "match": 643,
-  "intentional": 2,
-  "gap": 345,
+  "intentional": 6,
+  "gap": 341,
   "differs": 2,
   "extra": 619
  },
@@ -402,16 +402,6 @@
       ],
       "accordion/compound#accordion-trigger": [
        {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
         "property": "borderTopLeftRadius",
         "shadcn": "10px",
         "dmf": "8px"
@@ -442,16 +432,6 @@
       ],
       "accordion/compound#accordion-trigger": [
        {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
         "property": "borderTopLeftRadius",
         "shadcn": "10px",
         "dmf": "8px"
@@ -465,6 +445,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -676,6 +660,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -1057,6 +1045,10 @@
     "differences": {
      "light": {},
      "dark": {}
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -1937,6 +1929,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -2234,6 +2230,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -2749,1846 +2749,162 @@
    "measured": {
     "cases": 48,
     "matching": {
-     "light": 0,
-     "dark": 0
+     "light": 40,
+     "dark": 40
     },
     "differences": {
      "light": {
-      "button/Button?variant=default&size=default": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=default&size=xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=default&size=sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "12.8px",
-        "dmf": "14px"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "18.2857px",
-        "dmf": "20px"
-       }
-      ],
-      "button/Button?variant=default&size=lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=default&size=icon": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=default&size=icon-xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=default&size=icon-sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=default&size=icon-lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=outline&size=default": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=outline&size=xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=outline&size=sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "12.8px",
-        "dmf": "14px"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "18.2857px",
-        "dmf": "20px"
-       }
-      ],
-      "button/Button?variant=outline&size=lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=outline&size=icon": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=outline&size=icon-xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=outline&size=icon-sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=outline&size=icon-lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=secondary&size=default": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=secondary&size=xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=secondary&size=sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "12.8px",
-        "dmf": "14px"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "18.2857px",
-        "dmf": "20px"
-       }
-      ],
-      "button/Button?variant=secondary&size=lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=secondary&size=icon": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=secondary&size=icon-xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=secondary&size=icon-sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=secondary&size=icon-lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=ghost&size=default": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=ghost&size=xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=ghost&size=sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "12.8px",
-        "dmf": "14px"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "18.2857px",
-        "dmf": "20px"
-       }
-      ],
-      "button/Button?variant=ghost&size=lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=ghost&size=icon": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=ghost&size=icon-xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=ghost&size=icon-sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=ghost&size=icon-lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
       "button/Button?variant=destructive&size=default": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
        {
         "property": "color",
         "shadcn": "231,0,11,255",
-        "dmf": "182,10,19,255"
+        "dmf": "182,10,19,255",
+        "status": "intentional",
+        "reason": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
        }
       ],
       "button/Button?variant=destructive&size=xs": [
        {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
         "property": "color",
         "shadcn": "231,0,11,255",
-        "dmf": "182,10,19,255"
+        "dmf": "182,10,19,255",
+        "status": "intentional",
+        "reason": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
        }
       ],
       "button/Button?variant=destructive&size=sm": [
        {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "12.8px",
-        "dmf": "14px"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "18.2857px",
-        "dmf": "20px"
-       },
-       {
         "property": "color",
         "shadcn": "231,0,11,255",
-        "dmf": "182,10,19,255"
+        "dmf": "182,10,19,255",
+        "status": "intentional",
+        "reason": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
        }
       ],
       "button/Button?variant=destructive&size=lg": [
        {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
         "property": "color",
         "shadcn": "231,0,11,255",
-        "dmf": "182,10,19,255"
+        "dmf": "182,10,19,255",
+        "status": "intentional",
+        "reason": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
        }
       ],
       "button/Button?variant=destructive&size=icon": [
        {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
         "property": "color",
         "shadcn": "231,0,11,255",
-        "dmf": "182,10,19,255"
+        "dmf": "182,10,19,255",
+        "status": "intentional",
+        "reason": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
        }
       ],
       "button/Button?variant=destructive&size=icon-xs": [
        {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
         "property": "color",
         "shadcn": "231,0,11,255",
-        "dmf": "182,10,19,255"
+        "dmf": "182,10,19,255",
+        "status": "intentional",
+        "reason": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
        }
       ],
       "button/Button?variant=destructive&size=icon-sm": [
        {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
         "property": "color",
         "shadcn": "231,0,11,255",
-        "dmf": "182,10,19,255"
+        "dmf": "182,10,19,255",
+        "status": "intentional",
+        "reason": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
        }
       ],
       "button/Button?variant=destructive&size=icon-lg": [
        {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
         "property": "color",
         "shadcn": "231,0,11,255",
-        "dmf": "182,10,19,255"
-       }
-      ],
-      "button/Button?variant=link&size=default": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=link&size=xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=link&size=sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "12.8px",
-        "dmf": "14px"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "18.2857px",
-        "dmf": "20px"
-       }
-      ],
-      "button/Button?variant=link&size=lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=link&size=icon": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=link&size=icon-xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=link&size=icon-sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=link&size=icon-lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
+        "dmf": "182,10,19,255",
+        "status": "intentional",
+        "reason": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
        }
       ]
      },
      "dark": {
-      "button/Button?variant=default&size=default": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=default&size=xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=default&size=sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "12.8px",
-        "dmf": "14px"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "18.2857px",
-        "dmf": "20px"
-       }
-      ],
-      "button/Button?variant=default&size=lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=default&size=icon": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=default&size=icon-xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=default&size=icon-sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=default&size=icon-lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=outline&size=default": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=outline&size=xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=outline&size=sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "12.8px",
-        "dmf": "14px"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "18.2857px",
-        "dmf": "20px"
-       }
-      ],
-      "button/Button?variant=outline&size=lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=outline&size=icon": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=outline&size=icon-xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=outline&size=icon-sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=outline&size=icon-lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=secondary&size=default": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=secondary&size=xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=secondary&size=sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "12.8px",
-        "dmf": "14px"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "18.2857px",
-        "dmf": "20px"
-       }
-      ],
-      "button/Button?variant=secondary&size=lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=secondary&size=icon": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=secondary&size=icon-xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=secondary&size=icon-sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=secondary&size=icon-lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=ghost&size=default": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=ghost&size=xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=ghost&size=sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "12.8px",
-        "dmf": "14px"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "18.2857px",
-        "dmf": "20px"
-       }
-      ],
-      "button/Button?variant=ghost&size=lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=ghost&size=icon": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=ghost&size=icon-xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=ghost&size=icon-sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=ghost&size=icon-lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
       "button/Button?variant=destructive&size=default": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
        {
         "property": "color",
         "shadcn": "255,100,103,255",
-        "dmf": "255,134,132,255"
+        "dmf": "255,134,132,255",
+        "status": "intentional",
+        "reason": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
        }
       ],
       "button/Button?variant=destructive&size=xs": [
        {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
         "property": "color",
         "shadcn": "255,100,103,255",
-        "dmf": "255,134,132,255"
+        "dmf": "255,134,132,255",
+        "status": "intentional",
+        "reason": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
        }
       ],
       "button/Button?variant=destructive&size=sm": [
        {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "12.8px",
-        "dmf": "14px"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "18.2857px",
-        "dmf": "20px"
-       },
-       {
         "property": "color",
         "shadcn": "255,100,103,255",
-        "dmf": "255,134,132,255"
+        "dmf": "255,134,132,255",
+        "status": "intentional",
+        "reason": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
        }
       ],
       "button/Button?variant=destructive&size=lg": [
        {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
         "property": "color",
         "shadcn": "255,100,103,255",
-        "dmf": "255,134,132,255"
+        "dmf": "255,134,132,255",
+        "status": "intentional",
+        "reason": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
        }
       ],
       "button/Button?variant=destructive&size=icon": [
        {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
         "property": "color",
         "shadcn": "255,100,103,255",
-        "dmf": "255,134,132,255"
+        "dmf": "255,134,132,255",
+        "status": "intentional",
+        "reason": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
        }
       ],
       "button/Button?variant=destructive&size=icon-xs": [
        {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
         "property": "color",
         "shadcn": "255,100,103,255",
-        "dmf": "255,134,132,255"
+        "dmf": "255,134,132,255",
+        "status": "intentional",
+        "reason": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
        }
       ],
       "button/Button?variant=destructive&size=icon-sm": [
        {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
         "property": "color",
         "shadcn": "255,100,103,255",
-        "dmf": "255,134,132,255"
+        "dmf": "255,134,132,255",
+        "status": "intentional",
+        "reason": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
        }
       ],
       "button/Button?variant=destructive&size=icon-lg": [
        {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
         "property": "color",
         "shadcn": "255,100,103,255",
-        "dmf": "255,134,132,255"
-       }
-      ],
-      "button/Button?variant=link&size=default": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=link&size=xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=link&size=sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "12.8px",
-        "dmf": "14px"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "18.2857px",
-        "dmf": "20px"
-       }
-      ],
-      "button/Button?variant=link&size=lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       }
-      ],
-      "button/Button?variant=link&size=icon": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=link&size=icon-xs": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=link&size=icon-sm": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "button/Button?variant=link&size=icon-lg": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
+        "dmf": "255,134,132,255",
+        "status": "intentional",
+        "reason": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 8,
+     "dark": 8
     }
    }
   },
@@ -4820,6 +3136,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -5161,6 +3481,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -5547,8 +3871,8 @@
    },
    "counts": {
     "match": 3,
-    "intentional": 0,
-    "gap": 3,
+    "intentional": 2,
+    "gap": 1,
     "differs": 0,
     "extra": 2
    },
@@ -5605,7 +3929,8 @@
      "value": "aria-checked",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "A native checkbox exposes its checked state itself, so it carries no aria-checked."
     },
     {
      "id": "stateHooks:aria-invalid",
@@ -5619,7 +3944,8 @@
      "value": "data-checked",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's Checkbox is a native input, styled through :checked."
     }
    ],
    "nova": {
@@ -5638,6 +3964,10 @@
     "differences": {
      "light": {},
      "dark": {}
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -7664,11 +5994,6 @@
         "property": "height",
         "shadcn": 129,
         "dmf": 110
-       },
-       {
-        "property": "borderTopLeftRadius",
-        "shadcn": "14px",
-        "dmf": "0px"
        }
       ],
       "dialog/compound#dialog-header": [
@@ -7744,11 +6069,6 @@
         "property": "height",
         "shadcn": 129,
         "dmf": 110
-       },
-       {
-        "property": "borderTopLeftRadius",
-        "shadcn": "14px",
-        "dmf": "0px"
        }
       ],
       "dialog/compound#dialog-header": [
@@ -7818,6 +6138,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -9769,6 +8093,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -10165,6 +8493,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -10177,8 +8509,8 @@
    },
    "counts": {
     "match": 34,
-    "intentional": 0,
-    "gap": 2,
+    "intentional": 1,
+    "gap": 1,
     "differs": 0,
     "extra": 7
    },
@@ -10504,7 +8836,8 @@
      "value": "data-checked",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Field styles a checked choice with has-[[data-checked],:checked], which covers native inputs as well as data-checked."
     },
     {
      "id": "stateHooks:data-disabled",
@@ -10829,6 +9162,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -11429,6 +9766,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -11512,6 +9853,10 @@
     "differences": {
      "light": {},
      "dark": {}
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -12080,6 +10425,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -12989,6 +11338,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -13061,21 +11414,27 @@
        {
         "property": "color",
         "shadcn": "115,115,115,255",
-        "dmf": "10,10,10,255"
+        "dmf": "10,10,10,255",
+        "status": "intentional",
+        "reason": "Kbd keeps foreground text: Nova's muted-foreground on bg-muted is about 4.4:1 in Neutral, below AA for its 12px text."
        }
       ],
       "kbd/compound#kbd": [
        {
         "property": "color",
         "shadcn": "115,115,115,255",
-        "dmf": "10,10,10,255"
+        "dmf": "10,10,10,255",
+        "status": "intentional",
+        "reason": "Kbd keeps foreground text: Nova's muted-foreground on bg-muted is about 4.4:1 in Neutral, below AA for its 12px text."
        }
       ],
       "kbd/compound#kbd:2": [
        {
         "property": "color",
         "shadcn": "115,115,115,255",
-        "dmf": "10,10,10,255"
+        "dmf": "10,10,10,255",
+        "status": "intentional",
+        "reason": "Kbd keeps foreground text: Nova's muted-foreground on bg-muted is about 4.4:1 in Neutral, below AA for its 12px text."
        }
       ]
      },
@@ -13084,24 +11443,34 @@
        {
         "property": "color",
         "shadcn": "161,161,161,255",
-        "dmf": "250,250,250,255"
+        "dmf": "250,250,250,255",
+        "status": "intentional",
+        "reason": "Kbd keeps foreground text: Nova's muted-foreground on bg-muted is about 4.4:1 in Neutral, below AA for its 12px text."
        }
       ],
       "kbd/compound#kbd": [
        {
         "property": "color",
         "shadcn": "161,161,161,255",
-        "dmf": "250,250,250,255"
+        "dmf": "250,250,250,255",
+        "status": "intentional",
+        "reason": "Kbd keeps foreground text: Nova's muted-foreground on bg-muted is about 4.4:1 in Neutral, below AA for its 12px text."
        }
       ],
       "kbd/compound#kbd:2": [
        {
         "property": "color",
         "shadcn": "161,161,161,255",
-        "dmf": "250,250,250,255"
+        "dmf": "250,250,250,255",
+        "status": "intentional",
+        "reason": "Kbd keeps foreground text: Nova's muted-foreground on bg-muted is about 4.4:1 in Neutral, below AA for its 12px text."
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 3,
+     "dark": 3
     }
    }
   },
@@ -13175,6 +11544,10 @@
     "differences": {
      "light": {},
      "dark": {}
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -13352,6 +11725,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -14442,6 +12819,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -14877,8 +13258,8 @@
    "measured": {
     "cases": 3,
     "matching": {
-     "light": 0,
-     "dark": 0
+     "light": 2,
+     "dark": 2
     },
     "differences": {
      "light": {
@@ -14897,50 +13278,6 @@
         "property": "rowGap",
         "shadcn": "8px",
         "dmf": "12px"
-       }
-      ],
-      "radio-group/compound#radio-group-item": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "radio-group/compound#radio-group-item:2": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
        }
       ]
      },
@@ -14961,52 +13298,12 @@
         "shadcn": "8px",
         "dmf": "12px"
        }
-      ],
-      "radio-group/compound#radio-group-item": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
-      ],
-      "radio-group/compound#radio-group-item:2": [
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "6px"
-       }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -16246,6 +14543,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -16385,6 +14686,10 @@
     "differences": {
      "light": {},
      "dark": {}
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -17543,6 +15848,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -17851,6 +16160,10 @@
     "differences": {
      "light": {},
      "dark": {}
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -18141,6 +16454,10 @@
     "differences": {
      "light": {},
      "dark": {}
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -19240,6 +17557,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -19252,8 +17573,8 @@
    },
    "counts": {
     "match": 19,
-    "intentional": 0,
-    "gap": 1,
+    "intentional": 1,
+    "gap": 0,
     "differs": 0,
     "extra": 18
    },
@@ -19531,7 +17852,8 @@
      "value": "data-active",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI styles the active trigger with data-[state=active]; the data-active custom variant (upstream/shadcn.css) matches it too, so Nova's classes apply as they are."
     },
     {
      "id": "stateHooks:data-horizontal",
@@ -19713,6 +18035,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -19802,6 +18128,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -21305,6 +19635,10 @@
        }
       ]
      }
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   },
@@ -22072,6 +20406,10 @@
     "differences": {
      "light": {},
      "dark": {}
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
     }
    }
   }
@@ -22079,15 +20417,19 @@
  "measuredTotals": {
   "cases": 189,
   "matching": {
-   "light": 40,
-   "dark": 40
+   "light": 82,
+   "dark": 82
   },
   "compoundParts": {
    "parts": 94,
    "matching": {
-    "light": 28,
-    "dark": 28
+    "light": 30,
+    "dark": 30
    }
+  },
+  "accepted": {
+   "light": 11,
+   "dark": 11
   }
  }
 }

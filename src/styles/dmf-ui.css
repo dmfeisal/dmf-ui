@@ -51,11 +51,12 @@
  --radius-2xl: calc(var(--radius) * 1.8);
  --font-heading: var(--font-sans);
 }
-/* Scoped native normalization preserves upstream utility sizing and focus. */
+/* Scoped native normalization preserves upstream utility sizing and focus. Buttons lose the browser's default
+   padding, as under Tailwind's preflight, so a component's padding comes only from its own classes. */
 @scope (.dmf-ui) {
  *, ::before, ::after { box-sizing: border-box; border: 0 solid; }
  button, input, textarea { font: inherit; color: inherit; background-color: transparent; border-radius: 0; }
- button { appearance: button; }
+ button { appearance: button; padding: 0; }
  a { color:inherit; }
  button:enabled { cursor: pointer; }
  h1, h2, h3, h4, p { margin: 0; font-size: inherit; font-weight: inherit; }

@@ -26,7 +26,7 @@
 .dmf-ui [data-slot="accordion-trigger"] { padding-block:.625rem; }
 .dmf-ui [data-slot="accordion-content"]>div { padding-block-end:.625rem; }
 .dmf-ui [data-slot="alert"] { padding:.5rem .625rem; }
-.dmf-ui [data-slot="dialog-content"] { padding:1rem; gap:1rem; border-radius:var(--radius-xl); }
+.dmf-ui [data-slot="dialog-content"] { padding:1rem; gap:1rem; border-radius:--theme(--radius-xl); }
 .dmf-ui [data-slot="card-header"] { gap:.25rem; }
 .dmf-ui [data-slot="code-block-header"] { padding:.75rem .75rem 0; }
 .dmf-ui [data-slot="code-block-content"] { padding:.75rem; }
@@ -37,7 +37,7 @@
   :root .dmf-ui[data-system] [data-slot="switch"][data-checked] [data-slot="switch-thumb"] { background:HighlightText; }
   :root .dmf-ui[data-system] [data-slot="switch"]:focus-visible { outline:2px solid Highlight; outline-offset:2px; }
 }
-.dmf-code-snippet { background:color-mix(in srgb,var(--muted) 55%,var(--background)); border:1px solid var(--border); border-radius:var(--radius-lg); }
+.dmf-code-snippet { background:color-mix(in srgb,var(--muted) 55%,var(--background)); border:1px solid var(--border); border-radius:--theme(--radius-lg); }
 .dmf-code-snippet [data-slot="code-block-header"] { padding:.5rem .75rem; border-block-end:1px solid var(--border); gap:.5rem; }
 .dmf-code-snippet [data-slot="code-block-title"] { font:500 .8125rem/1.5 var(--font-sans); color:var(--muted-foreground); }
 .dmf-code-snippet [data-slot="code-block-content"] { margin:0; border:0; border-radius:0; padding:.875rem 1rem; font:400 .8125rem/1.7 ui-monospace,SFMono-Regular,Menlo,monospace; white-space:pre; overflow:auto; max-inline-size:100%; tab-size:2; background:transparent!important; }
@@ -58,5 +58,5 @@
 .dmf-highlighted-code code { display:grid; min-inline-size:max-content; }
 .dmf-highlighted-code[data-wrap] code { min-inline-size:0; }
 .dmf-ui [data-slot="card"]:has([data-slot="card-footer"]) { padding-block-end:0; }
-.dmf-ui [data-slot="card-footer"] { padding:var(--card-spacing,var(--dmf-card-padding)); border-block-start:1px solid var(--border); border-end-start-radius:var(--radius-xl); border-end-end-radius:var(--radius-xl); background:color-mix(in srgb,var(--muted) 50%,transparent); }
+.dmf-ui [data-slot="card-footer"] { padding:var(--card-spacing,var(--dmf-card-padding)); border-block-start:1px solid var(--border); border-end-start-radius:--theme(--radius-xl); border-end-end-radius:--theme(--radius-xl); background:color-mix(in srgb,var(--muted) 50%,transparent); }
 .dmf-ui[data-system="cb-ui"] .dmf-react-switch input:checked+.dmf-react-switch-track .dmf-react-switch-thumb { background:var(--foreground); }

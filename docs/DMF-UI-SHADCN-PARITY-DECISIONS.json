@@ -1,9 +1,23 @@
 {
- "about": "Owner decisions for docs/DMF-UI-SHADCN-PARITY.json. Each key is an item id from that record (an id ending in * covers every id with that prefix) and each value is the reason the difference is intentional. A decision that no longer matches a difference fails `npm run shadcn:check`.",
+ "about": "Owner decisions for docs/DMF-UI-SHADCN-PARITY.json. Each key is an item id from that record (an id ending in * covers every id with that prefix) and each value is the reason the difference is intentional. Keys starting with `measured.<property>:` cover a measured difference for a case or part id. A decision that no longer matches a difference fails `npm run shadcn:check`.",
  "families": {
   "button": {
    "variants.size:md": "Kept as an alias of default for existing consumers (DMF-UI-NOVA.md).",
-   "props.Button.as": "Astro polymorphism: DMF UI renders <a> or <button> through `as` (and `href`) instead of Base UI's `render` prop."
+   "props.Button.as": "Astro polymorphism: DMF UI renders <a> or <button> through `as` (and `href`) instead of Base UI's `render` prop.",
+   "measured.color:button/Button?variant=destructive*": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
+  },
+  "kbd": {
+   "measured.color:kbd/*": "Kbd keeps foreground text: Nova's muted-foreground on bg-muted is about 4.4:1 in Neutral, below AA for its 12px text."
+  },
+  "tabs": {
+   "stateHooks:data-active": "DMF UI styles the active trigger with data-[state=active]; the data-active custom variant (upstream/shadcn.css) matches it too, so Nova's classes apply as they are."
+  },
+  "field": {
+   "stateHooks:data-checked": "Field styles a checked choice with has-[[data-checked],:checked], which covers native inputs as well as data-checked."
+  },
+  "checkbox": {
+   "stateHooks:data-checked": "DMF UI's Checkbox is a native input, styled through :checked.",
+   "stateHooks:aria-checked": "A native checkbox exposes its checked state itself, so it carries no aria-checked."
   }
  }
 }

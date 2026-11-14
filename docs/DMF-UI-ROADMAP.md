@@ -63,7 +63,7 @@ Ready to start, in this order, after M14. First the Astro families are brought t
 - **M16 — shadcn parity fixes.** Close the gaps from M15 in six batches, listed in `docs/DMF-UI-M16-BATCHES.json` with their reasons in [M15](DMF-UI-M15.md): shared foundations, actions and inputs, selection, overlays and menus, navigation, then data display and feedback.
   - Each batch turns its `gap` entries into `match` or `intentional`, and its scenario then fails on any new gap.
   - DMF additions (for example Button's `md` alias and per-preset size variables) stay, recorded as `intentional`. Presets change theme only.
-  - Axe and no-JavaScript results must not get worse than the M15 baseline. Bytes may grow only where a batch adds parts shadcn has, and the PR states the growth.
+  - Axe and no-JavaScript results must not get worse than the M15 baseline. Bytes may grow only where a batch adds parts shadcn has or matches Nova's styling, and the PR states the growth.
   - *Ships in:* `dmf-ui` minors, one per batch or a few batches together.
 - **M17 — missing shadcn families.** Add the general-purpose shadcn families that DMF UI lacks:
   - Context Menu, Menubar and Scroll Area.
