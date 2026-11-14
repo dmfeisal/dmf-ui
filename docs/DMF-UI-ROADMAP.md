@@ -44,13 +44,41 @@ Milestones are units of work; versions are what a consumer receives. A milestone
 
 ## Next
 
-Ready to start, in this order, after M14. They make React a real option for future products.
+Ready to start, in this order, after M14. First the Astro families are brought to shadcn/ui parity, so that React ports start from audited specifications instead of copying today's differences. Then React becomes a real option for future products.
 
-- **M15 — React parity, round 1.** Interactive families a real app needs first: Dialog, Tabs, Tooltip, Popover, Dropdown Menu and Toast. React has 15 families today; Astro has 80.
+"Parity" means matching shadcn/ui's Nova specification: variants, sizes, attributes, parts and behaviour. It does not mean adopting its runtime. DMF UI keeps native elements, Data Slot and its own enhancement scripts, and adds no Radix or Base UI dependency. Natural sizing, preset rules and the CB/HUI white-label exceptions still apply.
+
+- **M15 — shadcn parity audit.** Measure the gap; change no shipped file.
+  - **References:** vendor each shared family's Nova source and docs from the pinned shadcn snapshot into `vendor/shadcn`. Today only Button and the Nova stylesheet are vendored. Each file keeps its text extension, the pin is recorded in `contracts/design-profile.json`, and the files stay out of the packed archive.
+  - **Parity record:** add `contracts/shadcn-parity.json`, with one entry per family that both libraries have. Each entry records shadcn's value, DMF's value and a status (`match`, `intentional` with a reason, or `gap`) for:
+    - **Variants:** every `variant` value and its colours in rest, hover, focus-visible, active, disabled and `aria-invalid` states, in light and dark.
+    - **Sizes:** every size (`xs`, `sm`, `default`, `lg`, the icon sizes, and family-specific ones): height, inline and block padding, gap, radius, font size and weight, and icon size.
+    - **Attributes:** public props and their defaults, `data-slot` names, state attributes (`data-state`, `data-orientation`, `data-side`, `data-align`, `data-disabled`, `data-variant`, `data-size`), ARIA roles and properties, and icon placement (`data-icon="inline-start"` and `"inline-end"`).
+    - **Parts:** sub-components (for example `DialogHeader`, `DialogFooter`, `DialogClose`) and how they nest.
+    - **Behaviour:** keyboard support, focus management, dismissal, RTL and reduced motion.
+  - **Check:** a `contracts:check` rule keeps the record in step with the catalog. A browser scenario renders every variant × size, measures computed dimensions, and reads attributes against the record. `gap` entries are reported, not failed, until M16 closes them.
+  - **Optimization baseline:** per family, record CSS and JavaScript bytes, axe results, and whether it works without JavaScript.
+  - **Exit:** all shared families recorded, with a gap list ordered by family.
+  - *Ships in:* nothing.
+- **M16 — shadcn parity fixes.** Close the gaps from M15 in batches of related families: actions and inputs, then selection, overlays and menus, navigation, then data display and feedback.
+  - Each batch turns its `gap` entries into `match` or `intentional`, and its scenario then fails on any new gap.
+  - DMF additions (for example Button's `md` alias and per-preset size variables) stay, recorded as `intentional`. Presets change theme only.
+  - Byte, axe and no-JavaScript results must not get worse than the M15 baseline.
+  - *Ships in:* `dmf-ui` minors, one per batch or a few batches together.
+- **M17 — missing shadcn families.** Add the general-purpose shadcn families that DMF UI lacks:
+  - Context Menu, Menubar and Scroll Area.
+  - Input OTP, extracted from the OTP verification Block as a family, with the Block then using it.
+  - Data Table, as a documented composition of Table, Pagination, Dropdown Menu and Checkbox, not a new runtime.
+  - Sonner is matched by the existing Toast; any gap goes in the parity record instead of a second toast family.
+  - Calendar, Date Picker and Chart wait for M28, which needs a real dashboard.
+  - Each new family enters the parity record at `match` or `intentional`.
+  - *Ships in:* a `dmf-ui` minor.
+
+- **M18 — React parity, round 1.** Each React family matches its audited Astro entry in the parity record. Interactive families a real app needs first: Dialog, Tabs, Tooltip, Popover, Dropdown Menu and Toast. React has 15 families today; Astro has 80.
   - *Ships in:* `@dmf-ui/react` 0.2.0-alpha.n. These are not recorded until a consumer exists.
-- **M16 — React parity, round 2.** Form and data families: Combobox, Number Field, Table, Pagination, Breadcrumb, Accordion and Sheet.
+- **M19 — React parity, round 2.** Form and data families: Combobox, Number Field, Table, Pagination, Breadcrumb, Accordion and Sheet.
   - *Ships in:* `@dmf-ui/react` 0.2.0-alpha.n.
-- **M17 — first recorded core and React release.** Pack and record both packages for a real consumer, the way `dmf-ui` is recorded.
+- **M20 — first recorded core and React release.** Pack and record both packages for a real consumer, the way `dmf-ui` is recorded.
   - **Needs:** a React consumer.
   - *Ships in:* `@dmf-ui/core` 0.1.0 and `@dmf-ui/react` 0.2.0. These are the first recorded release of each, and React drops its alpha tag.
 
@@ -60,33 +88,33 @@ Each item waits for the condition it names. Version numbers are assigned when th
 
 **Cross-platform** (see [platform direction](DMF-UI-PLATFORMS.md))
 
-- **M18 — native token outputs.** Generate React Native and Swift token files from `tokens/design.tokens.json`, checked like the CSS outputs. This is the prerequisite for M19 and M20.
+- **M21 — native token outputs.** Generate React Native and Swift token files from `tokens/design.tokens.json`, checked like the CSS outputs. This is the prerequisite for M22 and M23.
   - *Ships in:* `@dmf-ui/core` 0.2.0, for the new exports.
-- **M19 — React Native proof.** Button, Text, Input, Switch and Card, using the generated tokens and presets.
+- **M22 — React Native proof.** Button, Text, Input, Switch and Card, using the generated tokens and presets.
   - *Ships in:* a new package, starting at 0.1.0-alpha.1.
-- **M20 — SwiftUI proof.** The same five components.
+- **M23 — SwiftUI proof.** The same five components.
   - *Ships in:* a new Swift package, starting at 0.1.0-alpha.1.
 
 **Patterns and presets**
 
-- **M21 — `AuthCenteredTemplate`.** A shared sign-in page template covering logo, form, support and footer.
+- **M24 — `AuthCenteredTemplate`.** A shared sign-in page template covering logo, form, support and footer.
   - **Needs:** a second real authentication page to validate the API.
   - *Ships in:* a `dmf-ui` minor.
-- **M22 — new-brand preset tooling.** A scaffold command that creates the files and checks the [new-brand guide](DMF-UI-NEW-BRAND.md) describes.
+- **M25 — new-brand preset tooling.** A scaffold command that creates the files and checks the [new-brand guide](DMF-UI-NEW-BRAND.md) describes.
   - *Ships in:* nothing, because the scripts are not packed.
-- **M23 — first future-product preset**, built through the guide and the tooling.
+- **M26 — first future-product preset**, built through the guide and the tooling.
   - **Needs:** that product's brand direction.
   - *Ships in:* a `dmf-ui` minor.
-- **M24 — Food Discovery templates.** Full pages built from the merchant Blocks.
+- **M27 — Food Discovery templates.** Full pages built from the merchant Blocks.
   - **Needs:** that product's interaction and data requirements.
   - *Ships in:* a `dmf-ui` minor.
-- **M25 — dashboard patterns.** Layout, filters, tables and charts for admin views.
+- **M28 — dashboard patterns.** Layout, filters, tables and charts for admin views. It adds the shadcn Calendar, Date Picker and Chart families, entered in the parity record from M15.
   - **Needs:** a real dashboard.
   - *Ships in:* a `dmf-ui` minor.
-- **M26 — tablet POS patterns.** Touch-first ordering and checkout layouts.
+- **M29 — tablet POS patterns.** Touch-first ordering and checkout layouts.
   - **Needs:** a POS product.
   - *Ships in:* a `dmf-ui` minor.
-- **M27 — past-work source follow-ups.** A complete CB specification, HUI subheadline mapping, and dark palettes for CB UI, HUI and QDI.
+- **M30 — past-work source follow-ups.** A complete CB specification, HUI subheadline mapping, and dark palettes for CB UI, HUI and QDI.
   - **Needs:** new source files, or an owner decision to design dark variants as new work.
   - *Ships in:* a `dmf-ui` minor, or nothing if only records change.
 
@@ -94,14 +122,14 @@ Each item waits for the condition it names. Version numbers are assigned when th
 
 Kept as milestones so their order is clear. None starts without an explicit decision.
 
-- **M28 — stable API policy.** The 1.0 criteria, deprecation process and the gates for calling a family stable.
+- **M31 — stable API policy.** The 1.0 criteria, deprecation process and the gates for calling a family stable.
   - *Ships in:* nothing. It defines what 1.0.0 requires.
-- **M29 — npm publication.** Publish the packages that meet M28's gates, instead of handing over archives.
-  - **Needs:** M28.
+- **M32 — npm publication.** Publish the packages that meet M31's gates, instead of handing over archives.
+  - **Needs:** M31.
   - *Ships in:* 1.0.0 for those packages.
-- **M30 — templates registry.** Installable page templates.
-  - **Needs:** M24–M26 to have produced templates worth registering.
-- **M31 — WordPress integration and marketing Blocks.**
+- **M33 — templates registry.** Installable page templates.
+  - **Needs:** M27–M29 to have produced templates worth registering.
+- **M34 — WordPress integration and marketing Blocks.**
   - **Needs:** a concrete site.
 
 New domain families are not planned without a concrete product.
