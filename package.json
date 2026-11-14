@@ -10,7 +10,7 @@
     "test:dmf-ui:tokens": "npm run build && node scripts/test-dmf-ui-tokens.mjs",
     "test:dmf-ui:content": "npm run build && node scripts/test-dmf-ui-content.mjs",
     "predev": "npm run tokens:check",
-    "precheck": "npm run tokens:check && npm run upstream:check && npm run contracts:check",
+    "precheck": "npm run tokens:check && npm run upstream:check && npm run contracts:check && npm run shadcn:check",
     "prebuild": "npm run tokens:check",
     "prepack": "npm run tokens:check",
     "dev": "node scripts/astro.mjs dev",
@@ -31,6 +31,9 @@
     "foundations:check": "node scripts/foundations.mjs --check",
     "contracts:build": "node scripts/component-contracts.mjs",
     "contracts:check": "node scripts/component-contracts.mjs --check",
+    "shadcn:vendor": "node scripts/shadcn-vendor.mjs --fetch",
+    "shadcn:write": "node scripts/shadcn-parity.mjs --write",
+    "shadcn:check": "node scripts/shadcn-vendor.mjs --check && node scripts/shadcn-parity.mjs --check",
     "release:record": "node scripts/release-record.mjs record",
     "release:verify": "node scripts/release-record.mjs verify",
     "release:check": "node scripts/release-record.mjs check"

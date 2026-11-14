@@ -3141,6 +3141,7 @@
         "sources": [
           "tests/navigation-patterns.test.mjs",
           "tests/product-details.test.mjs",
+          "tests/shadcn-parity.test.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-product-details.mjs"
         ]
@@ -4361,6 +4362,7 @@
           "tests/navigation-components.test.mjs",
           "tests/portfolio.test.mjs",
           "tests/selection.test.mjs",
+          "tests/shadcn-parity.test.mjs",
           "tests/browser/authentication-audit.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
           "tests/browser/dmf-ui-authentication-consumer.mjs",
@@ -4710,7 +4712,9 @@
       },
       "tests": {
         "status": "references-only",
-        "sources": []
+        "sources": [
+          "tests/shadcn-parity.test.mjs"
+        ]
       },
       "status": "partial",
       "sources": [
@@ -13326,6 +13330,7 @@
           "tests/feedback.test.mjs",
           "tests/fulldev-catalog.test.mjs",
           "tests/navigation-patterns.test.mjs",
+          "tests/shadcn-parity.test.mjs",
           "tests/taxonomy.test.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
@@ -25019,6 +25024,7 @@
           "tests/design-profile.test.mjs",
           "tests/foundations.test.mjs",
           "tests/package.test.mjs",
+          "tests/shadcn-parity.test.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
