@@ -1,6 +1,6 @@
 export async function run({page,baseURL,navigate,mobile,resetBrowser}){
  const assert=(value,message)=>{if(!value)throw Error(message);};
- await resetBrowser();await navigate(baseURL+'/blocks/');await page.click('.docs-entry a[href="/blocks/hero/"]');await page.waitForURL(baseURL+'/blocks/hero/');
+ await resetBrowser();await navigate(baseURL+'/blocks/');await page.click('.docs-block-viewer-title a[href="/blocks/hero/"]');await page.waitForURL(baseURL+'/blocks/hero/');
  assert(await page.evaluate(()=>document.querySelectorAll('[data-slot=hero-block]').length===2&&document.querySelector('#hero-preview-title').tagName==='H2'&&!document.querySelector('[data-block-demo]')&&document.querySelector('[data-copy-value]')),'Hero docs composition and source-owned code');
  await page.waitForFunction(()=>document.querySelector('#hero-preview img').naturalWidth===640);
  await page.selectOption('[data-contract-preset]','hui');await page.waitForFunction(()=>document.querySelector('[data-docs-preview]').dataset.system==='hui');assert(await page.evaluate(()=>document.querySelector('[data-contract-mode]').disabled),'Light-only preview mode');

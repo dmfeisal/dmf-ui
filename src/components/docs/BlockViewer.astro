@@ -1,0 +1,95 @@
+---
+import {Monitor,Tablet,Smartphone,Maximize2,Eye,Code} from '@lucide/astro';
+import {CodeSnippet} from '../dmf-ui/code-block';
+interface Props {
+ slug:string;title:string;description:string;
+ /** Link to the block's documentation page; omit on that page itself. */
+ href?:string;
+ /** Heading level for the toolbar name; omit to render it as text. */
+ headingLevel?:'h2'|'h3';
+ /** Usage source shown by the Code view. */
+ code?:string;codeTitle?:string;
+ /** Load the standalone view route in an isolated frame instead of rendering the slot inline. */
+ framed?:boolean;
+ note?:string;
+}
+const {slug,title,description,href,headingLevel,code,codeTitle=`${title}.astro`,framed=false,note}=Astro.props;
+const id=`block-viewer-${slug}`,view=`/blocks/${slug}/view/`;
+const Heading=headingLevel??'p';
+const sizes=[{value:'desktop',label:'Desktop',icon:Monitor},{value:'tablet',label:'Tablet',icon:Tablet},{value:'mobile',label:'Mobile',icon:Smartphone}];
+---
+<section class="docs-block-viewer" id={id} data-block-viewer data-view="preview" data-size="desktop" aria-labelledby={`${id}-title`}>
+ <div class="docs-block-viewer-toolbar">
+  <div class="docs-block-viewer-heading">
+   <Heading id={`${id}-title`} class="docs-block-viewer-title">{href?<a href={href}>{title}</a>:title}</Heading>
+   <p class="docs-block-viewer-description">{description}</p>
+   {note&&<p class="docs-block-viewer-note" data-support-summary>{note}</p>}
+  </div>
+  <div class="docs-block-viewer-controls">
+   {code&&<div class="docs-block-viewer-group" role="group" aria-label={`${title} view`} data-viewer-views hidden>
+    <button type="button" aria-pressed="true" data-viewer-view="preview"><Eye size={14} aria-hidden="true"/>Preview</button>
+    <button type="button" aria-pressed="false" data-viewer-view="code"><Code size={14} aria-hidden="true"/>Code</button>
+   </div>}
+   <div class="docs-block-viewer-group" role="group" aria-label={`${title} preview width`} data-viewer-sizes hidden>
+    {sizes.map(({value,label,icon:Icon})=><button type="button" aria-pressed={value==='desktop'?'true':'false'} data-viewer-size={value} title={label}><Icon size={14} aria-hidden="true"/><span class="docs-sr-only">{label}</span></button>)}
+   </div>
+   <a class="docs-block-viewer-open" href={view} title="Open in full screen"><Maximize2 size={14} aria-hidden="true"/><span class="docs-sr-only">Open {title} in full screen</span></a>
+  </div>
+ </div>
+ <div class="docs-block-viewer-panel" data-viewer-panel="preview">
+  <div class="docs-block-viewer-stage" data-viewer-stage>
+   <div class="docs-block-viewer-frame" id={`${id}-frame`} data-viewer-frame>
+    {framed?<iframe src={view} title={`${title} preview`} loading="lazy" data-viewer-iframe></iframe>:<slot/>}
+   </div>
+   <div class="docs-block-viewer-handle" role="separator" tabindex="0" aria-orientation="vertical" aria-controls={`${id}-frame`} aria-label={`Resize ${title} preview`} data-viewer-handle hidden><span aria-hidden="true"></span></div>
+  </div>
+ </div>
+ {code&&<div class="docs-block-viewer-panel docs-block-viewer-code" data-viewer-panel="code"><CodeSnippet code={code} language="astro" title={codeTitle} label={`${title} source`} wrap/></div>}
+</section>
+<script>
+ const MIN=320,STEP=16,PRESETS:Record<string,number|null>={desktop:null,tablet:768,mobile:375};
+ const owners=new Map<HTMLElement,AbortController>();
+ function syncTheme(frame:HTMLIFrameElement){const doc=frame.contentDocument;if(doc?.documentElement)doc.documentElement.dataset.theme=document.documentElement.dataset.theme??'light';}
+ function fitFrame(frame:HTMLIFrameElement,signal:AbortSignal){
+  const win=frame.contentWindow,doc=frame.contentDocument;if(!win||!doc)return;
+  const target=doc.querySelector<HTMLElement>('[data-block-view-content]')??doc.body;if(!target)return;
+  const fit=()=>{frame.style.blockSize=`${Math.ceil(target.getBoundingClientRect().height)}px`;};
+  const observer=new (win as Window&typeof globalThis).ResizeObserver(fit);observer.observe(target);signal.addEventListener('abort',()=>observer.disconnect());fit();
+ }
+ function initialize(){for(const root of document.querySelectorAll<HTMLElement>('[data-block-viewer]')){
+  if(owners.has(root))continue;const abort=new AbortController(),{signal}=abort;owners.set(root,abort);root.dataset.enhanced='true';
+  const stage=root.querySelector<HTMLElement>('[data-viewer-stage]')!,frame=root.querySelector<HTMLElement>('[data-viewer-frame]')!,handle=root.querySelector<HTMLElement>('[data-viewer-handle]')!;
+  const sizeButtons=[...root.querySelectorAll<HTMLButtonElement>('[data-viewer-size]')],viewButtons=[...root.querySelectorAll<HTMLButtonElement>('[data-viewer-view]')];
+  for(const group of root.querySelectorAll<HTMLElement>('[data-viewer-sizes],[data-viewer-views]'))group.hidden=false;handle.hidden=false;
+  const rtl=()=>getComputedStyle(root).direction==='rtl';
+  const edges=()=>{const style=getComputedStyle(frame);return parseFloat(style.borderInlineStartWidth)+parseFloat(style.borderInlineEndWidth);};
+  const available=()=>Math.max(MIN,stage.clientWidth-handle.offsetWidth-edges());
+  let current:number|null=null;
+  const describe=(target?:number)=>{const max=available(),width=Math.round(Math.min(target??current??max,max));handle.setAttribute('aria-valuemin','0');handle.setAttribute('aria-valuemax','100');handle.setAttribute('aria-valuenow',String(Math.round(Math.min(100,width/max*100))));handle.setAttribute('aria-valuetext',`${width} pixels wide`);};
+  const setWidth=(width:number|null,size?:string)=>{
+   const target=width===null?available():Math.round(Math.min(available(),Math.max(MIN,width)));
+   current=width===null?null:target;
+   if(width===null)frame.style.removeProperty('inline-size');else frame.style.inlineSize=`${target+edges()}px`;
+   const match=size??(width===null?'desktop':Object.keys(PRESETS).find(key=>PRESETS[key]===Math.round(width)));
+   root.dataset.size=match??'custom';for(const button of sizeButtons)button.setAttribute('aria-pressed',String(button.dataset.viewerSize===match));describe(target);
+  };
+  for(const button of sizeButtons)button.addEventListener('click',()=>setWidth(PRESETS[button.dataset.viewerSize!]??null,button.dataset.viewerSize),{signal});
+  for(const button of viewButtons)button.addEventListener('click',()=>{const view=button.dataset.viewerView!;root.dataset.view=view;for(const other of viewButtons)other.setAttribute('aria-pressed',String(other===button));},{signal});
+  handle.addEventListener('keydown',event=>{
+   const width=Math.min(current??available(),available()),sign=rtl()?-1:1;let next:number|null|undefined;
+   if(event.key==='ArrowLeft')next=width-STEP*sign;else if(event.key==='ArrowRight')next=width+STEP*sign;else if(event.key==='Home')next=MIN;else if(event.key==='End')next=null;
+   if(next===undefined)return;event.preventDefault();setWidth(next!==null&&next>=available()?null:next);
+  },{signal});
+  handle.addEventListener('pointerdown',event=>{
+   if(event.button!==0)return;event.preventDefault();handle.setPointerCapture(event.pointerId);root.dataset.resizing='true';handle.focus();
+   const move=(e:PointerEvent)=>{const box=frame.getBoundingClientRect(),width=(rtl()?box.right-e.clientX:e.clientX-box.left)-edges();setWidth(width>=available()?null:width);};
+   const end=()=>{delete root.dataset.resizing;handle.removeEventListener('pointermove',move);handle.removeEventListener('pointerup',end);handle.removeEventListener('pointercancel',end);};
+   handle.addEventListener('pointermove',move,{signal});handle.addEventListener('pointerup',end,{signal});handle.addEventListener('pointercancel',end,{signal});
+  },{signal});
+  const stageObserver=new ResizeObserver(()=>describe());stageObserver.observe(stage);signal.addEventListener('abort',()=>stageObserver.disconnect());describe();
+  const iframe=root.querySelector<HTMLIFrameElement>('[data-viewer-iframe]');
+  if(iframe){let fitted=false;const ready=()=>{if(!fitted&&iframe.contentDocument?.readyState==='complete'&&iframe.contentDocument.querySelector('[data-block-view-content]')){fitted=true;syncTheme(iframe);fitFrame(iframe,signal);}};iframe.addEventListener('load',ready,{signal});ready();
+   const theme=new MutationObserver(()=>syncTheme(iframe));theme.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});signal.addEventListener('abort',()=>theme.disconnect());}
+ }}
+ initialize();document.addEventListener('astro:page-load',initialize);document.addEventListener('astro:before-swap',()=>{for(const abort of owners.values())abort.abort();owners.clear();});
+</script>

@@ -1,0 +1,20 @@
+---
+import '../../../styles/documentation.css';
+import designProfile from '../../../../contracts/design-profile.json';
+import BlockExample from '../../../components/docs/BlockExample.astro';
+import {blocks} from '../../../data/blocks';
+export function getStaticPaths(){return blocks.map(block=>({params:{slug:block.slug},props:{block}}));}
+const {block}=Astro.props;
+const page=`/blocks/${block.slug}/`;
+const canonical=new URL(page,Astro.site??'https://ui.feisal.id').href;
+---
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex"/><meta name="description" content={block.description}/><title>{`${block.title} preview · DMF UI`}</title><link rel="canonical" href={canonical}/>
+<script is:inline>try{document.documentElement.dataset.theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}catch{document.documentElement.dataset.theme='light';}</script>
+</head>
+<body class="dmf-ui docs-shell docs-block-view" data-design-style={designProfile.style} data-base-color={designProfile.baseColor} data-theme-color={designProfile.theme}>
+<main class="docs-block-view-content" data-block-view-content aria-label={`${block.title} preview`}>
+ <a class="docs-skip docs-block-view-back" href={page}>Back to {block.title} documentation</a>
+ <BlockExample slug={block.slug}/>
+</main>
+</body></html>

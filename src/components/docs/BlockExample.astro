@@ -1,0 +1,10 @@
+---
+import BlockPreview from './BlockPreview.astro';
+import OTPVerificationPreview from './OTPVerificationPreview.astro';
+import AuthenticationPreview from './AuthenticationPreview.astro';
+import MerchantListingPreview from './MerchantListingPreview.astro';
+import HeroBlockPreview from './HeroBlockPreview.astro';
+interface Props {slug:string;}
+const {slug}=Astro.props;
+---
+{slug==='otp-verification'?<OTPVerificationPreview/>:slug==='sign-up'||slug==='password-recovery'||slug==='reset-password'?<AuthenticationPreview kind={slug}/>:slug==='merchant-listing'?<MerchantListingPreview/>:slug==='hero'?<HeroBlockPreview/>:<BlockPreview slug={slug}/>}
