@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {stateHooks,novaRules,readShadcn,build} from '../scripts/shadcn-parity.mjs';
+import {stateHooks,novaRules,readShadcn,build,applyMeasuredDecisions} from '../scripts/shadcn-parity.mjs';
 
 const json=async path=>JSON.parse(await readFile(path,'utf8'));
 
@@ -74,4 +74,14 @@ test('compositions measure compound parts, including open overlays and inner sha
  // A shadcn part that renders another component (FieldLabel renders Label) carries that component's classes.
  const label=byFamily.field.nodes.find(n=>n.component==='FieldLabel');
  assert.equal(label.reference.tag,'label');assert.ok(label.reference.classes.includes('cn-label')&&label.reference.classes.includes('cn-field-label'));
+});
+
+test('measured decisions mark matching differences intentional and report unused ones',()=>{
+ const diffs=()=>({'b/B?variant=destructive&size=sm':[{property:'color'},{property:'height'}],'b/B?variant=destructive&size=lg':[{property:'color'}]});
+ const families={b:{measured:{differences:{light:diffs(),dark:diffs()}}}};
+ const orphans=applyMeasuredDecisions(families,{families:{b:{'measured.color:b/B?variant=destructive*':'contrast','measured.width:b/B':'unused'}}});
+ assert.deepEqual(orphans,['b/measured.width:b/B']);
+ const light=families.b.measured.differences.light;
+ assert.equal(light['b/B?variant=destructive&size=sm'][0].status,'intentional');assert.equal(light['b/B?variant=destructive&size=sm'][1].status,undefined);
+ assert.deepEqual(families.b.measured.accepted,{light:1,dark:1});
 });

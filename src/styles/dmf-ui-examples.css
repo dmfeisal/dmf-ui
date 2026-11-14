@@ -6,7 +6,7 @@
 .dmf-ui .dmf-pilot-heading:first-child { margin-block-start: 0; }
 .dmf-pilot-swatches { display: grid; grid-template-columns: repeat(auto-fit,minmax(130px,1fr)); gap: 12px; }
 .dmf-pilot-swatches code { font-size: .875rem; overflow-wrap: anywhere; }
-.dmf-pilot-swatch { height: 48px; border: 1px solid var(--border); border-radius: var(--radius-md); margin-block-end: 8px; }
+.dmf-pilot-swatch { height: 48px; border: 1px solid var(--border); border-radius: --theme(--radius-md); margin-block-end: 8px; }
 .dmf-tabs-examples { display: grid; gap: 28px; min-width: 0; }
 .dmf-tabs-heading { font-size: 1rem; font-weight: 600; margin-block-end: 8px; }
 .dmf-tabs-hint { color: var(--muted-foreground); font-size: .875rem; margin-block: 8px 16px; max-width: 65ch; }

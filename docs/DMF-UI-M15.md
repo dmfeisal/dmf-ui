@@ -307,5 +307,5 @@ Gaps include the two `differs` items (Sheet's `side` default and Carousel's `ori
 - Leave each measured difference matched or recorded as intentional. Some differences are DMF UI choices, such as roomier menus or a larger Table, and an owner decision can keep them.
 - Not make the baseline worse:
   - axe results and `withoutJs` statuses must stay the same or improve;
-  - CSS and JavaScript bytes may grow only where the batch adds parts shadcn has, and the PR says by how much.
+  - CSS and JavaScript bytes may grow only where the batch adds parts shadcn has or matches Nova's styling, and the PR says by how much.
 - Keep natural sizing, the 32px header controls and the CB/HUI white primary labels. Presets change theme only.

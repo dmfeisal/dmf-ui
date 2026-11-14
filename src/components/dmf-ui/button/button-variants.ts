@@ -18,10 +18,11 @@ export const buttonVariants = cva(
         link: "text-(--fd-link,var(--primary)) dark:supports-[color:oklch(from_red_l_c_h)]:[--fd-link:oklch(from_var(--primary)_max(l,0.7)_calc(c*1.2)_h)] underline-offset-4 hover:underline",
       },
       size: {
+        // sm matches Nova's 0.8rem text. cn() merges away the base text-sm, so its line height is restated.
         default: "h-[var(--dmf-button-height,2rem)] gap-[var(--dmf-button-gap,.375rem)] px-[var(--dmf-button-padding-inline,.625rem)] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
         md: "h-[var(--dmf-button-height,2rem)] gap-[var(--dmf-button-gap,.375rem)] px-[var(--dmf-button-padding-inline,.625rem)] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
         xs: "h-[var(--dmf-button-height-xs,1.5rem)] gap-1 rounded-[min(calc(var(--radius)*.8),10px)] px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-[var(--dmf-button-height-sm,1.75rem)] gap-1 rounded-[min(calc(var(--radius)*.8),12px)] px-2.5 in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5",
+        sm: "h-[var(--dmf-button-height-sm,1.75rem)] gap-1 rounded-[min(calc(var(--radius)*.8),12px)] px-2.5 text-[0.8rem] leading-[calc(1.25/0.875)] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
         lg: "h-[var(--dmf-button-height-lg,2.25rem)] gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
         icon: "size-[var(--dmf-button-height,2rem)]",
         "icon-xs": "size-[var(--dmf-button-height-xs,1.5rem)] rounded-[min(calc(var(--radius)*.8),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
