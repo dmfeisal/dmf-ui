@@ -19,7 +19,7 @@ const name=node=>node?.name?.text??node?.name?.getText?.();
 const literal=node=>node&&(ts.isStringLiteral(node)||ts.isNoSubstitutionTemplateLiteral(node))?node.text:undefined;
 const sorted=values=>[...new Set(values)].sort();
 const pascal=slug=>slug.split('-').map(p=>p[0].toUpperCase()+p.slice(1)).join('');
-const recordPath='docs/DMF-UI-SHADCN-PARITY.json',decisionsPath='docs/DMF-UI-SHADCN-PARITY-DECISIONS.json';
+const casesPath='src/data/shadcn-parity-cases.json',recordPath='docs/DMF-UI-SHADCN-PARITY.json',decisionsPath='docs/DMF-UI-SHADCN-PARITY-DECISIONS.json';
 // Props every component forwards; they say nothing about parity.
 const ignoredProps=new Set(['className','class','props','children','asChild','render','style','ref']);
 
@@ -75,8 +75,34 @@ export function readShadcn(path,source,nova){
    const unions={};
    if(node.parameters[0]?.type)walk(node.parameters[0].type,t=>{if(ts.isPropertySignature(t)&&t.type&&ts.isUnionTypeNode(t.type)&&t.type.types.every(u=>ts.isLiteralTypeNode(u)&&ts.isStringLiteral(u.literal)))unions[name(t)]=t.type.types.map(u=>u.literal.text);});
    for(const [axis,keys] of Object.entries(unions)){unionAxes[axis]=sorted([...(unionAxes[axis]??[]),...keys]);if(!(axis in props))props[axis]=null;}
-   let slot;walk(node,child=>{if(!slot&&ts.isJsxAttribute(child)&&child.name.getText(ast)==='data-slot'&&child.initializer&&ts.isStringLiteral(child.initializer))slot=child.initializer.text;});
-   components[name(node)]={slot:slot??null,props};
+   // The root element is the first JSX element with a data-slot. Its className literals, any cva call it makes and
+   // the data-* attributes it derives from props are what a reference rendering needs.
+   let slot,root;
+   walk(node,child=>{if(root||!(ts.isJsxOpeningElement(child)||ts.isJsxSelfClosingElement(child)))return;const a=child.attributes.properties.find(p=>ts.isJsxAttribute(p)&&p.name.getText(ast)==='data-slot'&&p.initializer&&ts.isStringLiteral(p.initializer));if(a){root=child;slot=a.initializer.text;}});
+   const reference={classes:[],cva:null,attributes:{}};
+   if(root)for(const a of root.attributes.properties){
+    if(!ts.isJsxAttribute(a)||!a.initializer)continue;const attr=a.name.getText(ast);
+    if(attr==='className'){
+     if(ts.isStringLiteral(a.initializer))reference.classes.push(a.initializer.text);
+     else walk(a.initializer,c=>{if(ts.isCallExpression(c)&&ts.isIdentifier(c.expression)&&c.expression.text!=='cn')reference.cva=c.expression.text;const t=literal(c);if(t!==undefined&&!(ts.isCallExpression(c.parent)&&c.parent.expression.getText(ast)!=='cn'&&c.parent.arguments.includes(c)))reference.classes.push(t);});
+    }else if(attr.startsWith('data-')&&attr!=='data-slot'){
+     if(ts.isStringLiteral(a.initializer))reference.attributes[attr]={value:a.initializer.text};
+     else if(ts.isJsxExpression(a.initializer)&&a.initializer.expression&&ts.isIdentifier(a.initializer.expression))reference.attributes[attr]={prop:a.initializer.expression.text};
+    }
+   }
+   // useRender components (Badge, Item, …) name their slot and data attributes in `state` and their classes in props.
+   if(!root)walk(node,c=>{
+    if(slot||!ts.isCallExpression(c)||c.expression.getText(ast)!=='useRender')return;const options=c.arguments[0];if(!options||!ts.isObjectLiteralExpression(options))return;
+    const state=options.properties.find(p=>name(p)==='state');
+    if(state&&ts.isPropertyAssignment(state)&&ts.isObjectLiteralExpression(state.initializer))for(const p of state.initializer.properties){
+     if(name(p)==='slot'&&ts.isPropertyAssignment(p))slot=literal(p.initializer);
+     else if(ts.isShorthandPropertyAssignment(p))reference.attributes[`data-${name(p)}`]={prop:name(p)};
+     else if(ts.isPropertyAssignment(p)&&ts.isIdentifier(p.initializer))reference.attributes[`data-${name(p)}`]={prop:p.initializer.text};
+    }
+    walk(options,k=>{if(ts.isPropertyAssignment(k)&&name(k)==='className')walk(k.initializer,v=>{if(ts.isCallExpression(v)&&ts.isIdentifier(v.expression)&&v.expression.text!=='cn')reference.cva=v.expression.text;const t=literal(v);if(t!==undefined&&!(ts.isCallExpression(v.parent)&&v.parent.expression.getText(ast)!=='cn'))reference.classes.push(t);});});
+   });
+   reference.classes=reference.classes.filter(c=>c.trim());
+   components[name(node)]={slot:slot??null,props,reference,unions};
   }
  });
  const used=sorted([...classText.matchAll(/(?<![\w-])(cn-[a-z0-9-]+)/g)].map(m=>m[1]));
@@ -114,6 +140,44 @@ async function readDmf(family){
  return {exports,components,axes,slots:sorted(family.parts.flatMap(p=>p.dataSlots)),dataAttributes:sorted(dataAttributes),stateHooks:stateHooks(source)};
 }
 
+// Root components the measuring scenario renders standalone, with the text they get as children (void: none).
+// Parts that need a parent, children (Progress needs its track, Table its rows), an open overlay or script state are
+// measured in a later round. `tag` and `state` stand in for the element and resting data attributes Base UI renders.
+export const measured={
+ 'alert':{Alert:{text:'Alert'}},'aspect-ratio':{AspectRatio:{text:'',props:{ratio:1.5}}},'avatar':{Avatar:{void:true,props:{name:'Ada Byron'}}},'badge':{Badge:{text:'Badge'}},
+ 'button':{Button:{text:'Label'}},'button-group':{ButtonGroup:{text:'Group'}},'card':{Card:{text:'Card'}},'checkbox':{Checkbox:{void:true,tag:'span',state:{'data-unchecked':'',role:'checkbox'}}},
+ 'empty':{Empty:{text:'Empty'}},'field':{Field:{text:'Field'}},'input':{Input:{void:true}},'input-group':{InputGroup:{text:''}},
+ 'item':{Item:{text:'Item'}},'kbd':{Kbd:{text:'K'}},'label':{Label:{text:'Label'}},'native-select':{NativeSelect:{void:true}},
+ 'separator':{Separator:{void:true,state:{'data-orientation':'horizontal'}}},'skeleton':{Skeleton:{void:true}},'spinner':{Spinner:{void:true}},
+ 'switch':{Switch:{void:true,tag:'span',state:{'data-unchecked':'',role:'switch'}}},'textarea':{Textarea:{void:true}},'toggle':{Toggle:{text:'Bold',tag:'button'}},
+};
+
+// One case per variant combination: the full product of the component's axes when it is small (Button's 6 variants x
+// 8 sizes), otherwise each axis value with the others at their defaults.
+function casesFor(slug,s,d){
+ const out=[];
+ for(const [component,options] of Object.entries(measured[slug]??{})){
+  const sc=s.components[component];if(!sc||!d.components[component])throw Error(`${slug}: ${component} is not exported by both sides`);
+  const cva=sc.reference.cva?s.cvas[sc.reference.cva]:null,axes={...(cva?Object.fromEntries(Object.entries(cva.variants).map(([a,k])=>[a,Object.keys(k)])):{}),...sc.unions};
+  const defaults={...(cva?.defaults??{})};for(const a of Object.keys(axes))defaults[a]??=sc.props[a]??axes[a][0];
+  const names=Object.keys(axes),product=names.reduce((n,a)=>n*axes[a].length,1);
+  let combos=[{}];
+  if(product<=72)for(const a of names)combos=combos.flatMap(c=>axes[a].map(v=>({...c,[a]:v})));
+  else combos=[{...defaults},...names.flatMap(a=>axes[a].filter(v=>v!==defaults[a]).map(v=>({...defaults,[a]:v})))];
+  for(const combo of combos){
+   const values={...defaults,...combo};
+   const classes=[...sc.reference.classes,...(cva?[cva.base,...Object.entries(cva.variants).map(([a,k])=>k[values[a]]??'')]:[])].join(' ').split(/\s+/).filter(Boolean);
+   const attributes={'data-slot':sc.slot,...(options.state??{})};
+   for(const [attr,source] of Object.entries(sc.reference.attributes))attributes[attr]=source.value??values[source.prop]??sc.props[source.prop]??'';
+   const dmfProps={...(options.props??{})},unsupported=[];
+   for(const [axis,value] of Object.entries(values)){if(d.axes[axis]?.includes(value))dmfProps[axis]=value;else unsupported.push(axis);}
+   const query=Object.entries(values).map(([a,v])=>`${a}=${v}`).join('&');
+   out.push({id:`${slug}/${component}${query?'?'+query:''}`,family:slug,component,slot:sc.slot,values,text:options.text??'',void:!!options.void,reference:{tag:options.tag??null,classes:sorted(classes),attributes},dmf:{props:dmfProps},unsupported});
+  }
+ }
+ return out;
+}
+
 const shadcnAxes=s=>{const axes=structuredClone(s.unionAxes);for(const c of Object.values(s.cvas))for(const [axis,keys] of Object.entries(c.variants))axes[axis]=sorted([...(axes[axis]??[]),...Object.keys(keys)]);return axes;};
 
 // A decision id may end in `*` to cover every item with that prefix, e.g. `dataAttributes:data-close-*`.
@@ -138,10 +202,11 @@ export async function build(){
  const shadcnFamilies=manifest.files.filter(f=>f.path.startsWith('vendor/shadcn/base/')).map(f=>f.path.match(/base\/(.+)\.tsx\.txt$/)[1]);
  const dmfBySlug=Object.fromEntries(catalog.components.map(c=>[c.slug,c]));
  const shared=shadcnFamilies.filter(f=>dmfBySlug[f]).sort();
- const families={},used=new Set();
+ const families={},used=new Set(),cases=[];
  for(const slug of shared){
   const path=`vendor/shadcn/base/${slug}.tsx.txt`,s=readShadcn(path,await read(path),nova),d=await readDmf(dmfBySlug[slug]);
   const decisions=decisionsFile.families?.[slug]??{};
+  cases.push(...casesFor(slug,s,d));
   const sAxes=shadcnAxes(s),axes={};
   for(const axis of sorted([...Object.keys(sAxes),...Object.keys(d.axes)]))axes[axis]=compareSets(sAxes[axis]??[],d.axes[axis]??[],decisions,`variants.${axis}`);
   // Defaults and props per component that both sides export.
@@ -191,16 +256,30 @@ export async function build(){
   shadcnOnly:shadcnFamilies.filter(f=>!dmfBySlug[f]).sort(),
   totals,
   families,
- },orphans};
+ },cases,orphans};
 }
 
 const format=value=>JSON.stringify(value,null,1)+'\n';
 if(process.argv.includes('--write')||process.argv.includes('--check')){
- const {record,orphans}=await build();
+ const {record,cases,orphans}=await build();
+ const casesText=format({about:'Generated by scripts/shadcn-parity.mjs for the internal shadcn parity page and scenario.',cases});
  const existing=await read(recordPath).catch(()=>null);
  if(existing){const previous=JSON.parse(existing);for(const [slug,f] of Object.entries(record.families))f.measured=previous.families?.[slug]?.measured??null;}
+ // --measured <file> stores the scenario's differences per family: case count and, per theme, differing properties.
+ const measuredArg=process.argv.indexOf('--measured');
+ if(measuredArg>0){
+  const summary=JSON.parse(await readFile(process.argv[measuredArg+1],'utf8'));
+  for(const [slug,f] of Object.entries(record.families)){
+   const ids=cases.filter(c=>c.family===slug).map(c=>c.id);
+   if(!ids.length){f.measured=null;continue;}
+   const pick=theme=>Object.fromEntries(Object.entries(summary.differences[theme]).filter(([id])=>ids.includes(id)));
+   const differences={light:pick('light'),dark:pick('dark')};
+   f.measured={cases:ids.length,matching:{light:ids.length-Object.keys(differences.light).length,dark:ids.length-Object.keys(differences.dark).length},differences};
+  }
+  record.measuredTotals={cases:cases.length,matching:{light:cases.length-Object.keys(summary.differences.light).length,dark:cases.length-Object.keys(summary.differences.dark).length}};
+ }else if(existing)record.measuredTotals=JSON.parse(existing).measuredTotals;
  if(orphans.length){console.error(`Decisions that no longer match a difference:\n ${orphans.join('\n ')}`);process.exit(1);}
- if(process.argv.includes('--write')){await writeFile(new URL(recordPath,root),format(record));console.log(`Wrote ${recordPath}:`,record.totals);}
- else if(existing!==format(record)){console.error(`${recordPath} is stale; run node scripts/shadcn-parity.mjs --write`);process.exit(1);}
+ if(process.argv.includes('--write')){await writeFile(new URL(recordPath,root),format(record));await writeFile(new URL(casesPath,root),casesText);console.log(`Wrote ${recordPath} and ${cases.length} cases:`,record.totals);}
+ else if(existing!==format(record)||await read(casesPath).catch(()=>null)!==casesText){console.error(`${recordPath} or ${casesPath} is stale; run npm run shadcn:write`);process.exit(1);}
  else console.log('shadcn parity record is current:',record.totals);
 }

@@ -529,7 +529,17 @@
      }
     }
    },
-   "measured": null
+   "measured": {
+    "cases": 2,
+    "matching": {
+     "light": 2,
+     "dark": 2
+    },
+    "differences": {
+     "light": {},
+     "dark": {}
+    }
+   }
   },
   "alert-dialog": {
    "name": "Alert Dialog",
@@ -900,7 +910,17 @@
     "classes": [],
     "cva": {}
    },
-   "measured": null
+   "measured": {
+    "cases": 1,
+    "matching": {
+     "light": 1,
+     "dark": 1
+    },
+    "differences": {
+     "light": {},
+     "dark": {}
+    }
+   }
   },
   "attachment": {
    "name": "Attachment",
@@ -1606,7 +1626,181 @@
     ],
     "cva": {}
    },
-   "measured": null
+   "measured": {
+    "cases": 3,
+    "matching": {
+     "light": 0,
+     "dark": 0
+    },
+    "differences": {
+     "light": {
+      "avatar/Avatar?size=default": [
+       {
+        "property": "height",
+        "shadcn": 32,
+        "dmf": 40
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "normal",
+        "dmf": "10px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "normal",
+        "dmf": "10px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "3.35544e+07px",
+        "dmf": "0px"
+       },
+       {
+        "property": "width",
+        "shadcn": 32,
+        "dmf": 40
+       }
+      ],
+      "avatar/Avatar?size=sm": [
+       {
+        "property": "height",
+        "shadcn": 24,
+        "dmf": 32
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "normal",
+        "dmf": "10px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "normal",
+        "dmf": "10px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "3.35544e+07px",
+        "dmf": "0px"
+       },
+       {
+        "property": "width",
+        "shadcn": 24,
+        "dmf": 32
+       }
+      ],
+      "avatar/Avatar?size=lg": [
+       {
+        "property": "height",
+        "shadcn": 40,
+        "dmf": 64
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "normal",
+        "dmf": "10px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "normal",
+        "dmf": "10px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "3.35544e+07px",
+        "dmf": "0px"
+       },
+       {
+        "property": "width",
+        "shadcn": 40,
+        "dmf": 64
+       }
+      ]
+     },
+     "dark": {
+      "avatar/Avatar?size=default": [
+       {
+        "property": "height",
+        "shadcn": 32,
+        "dmf": 40
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "normal",
+        "dmf": "10px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "normal",
+        "dmf": "10px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "3.35544e+07px",
+        "dmf": "0px"
+       },
+       {
+        "property": "width",
+        "shadcn": 32,
+        "dmf": 40
+       }
+      ],
+      "avatar/Avatar?size=sm": [
+       {
+        "property": "height",
+        "shadcn": 24,
+        "dmf": 32
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "normal",
+        "dmf": "10px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "normal",
+        "dmf": "10px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "3.35544e+07px",
+        "dmf": "0px"
+       },
+       {
+        "property": "width",
+        "shadcn": 24,
+        "dmf": 32
+       }
+      ],
+      "avatar/Avatar?size=lg": [
+       {
+        "property": "height",
+        "shadcn": 40,
+        "dmf": 64
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "normal",
+        "dmf": "10px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "normal",
+        "dmf": "10px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "3.35544e+07px",
+        "dmf": "0px"
+       },
+       {
+        "property": "width",
+        "shadcn": 40,
+        "dmf": 64
+       }
+      ]
+     }
+    }
+   }
   },
   "badge": {
    "name": "Badge",
@@ -1787,7 +1981,123 @@
      }
     }
    },
-   "measured": null
+   "measured": {
+    "cases": 6,
+    "matching": {
+     "light": 0,
+     "dark": 0
+    },
+    "differences": {
+     "light": {
+      "badge/Badge?variant=default": [
+       {
+        "property": "height",
+        "shadcn": 20,
+        "dmf": 22
+       }
+      ],
+      "badge/Badge?variant=secondary": [
+       {
+        "property": "height",
+        "shadcn": 20,
+        "dmf": 22
+       }
+      ],
+      "badge/Badge?variant=destructive": [
+       {
+        "property": "height",
+        "shadcn": 20,
+        "dmf": 22
+       },
+       {
+        "property": "color",
+        "shadcn": "231,0,11,255",
+        "dmf": "182,10,19,255"
+       }
+      ],
+      "badge/Badge?variant=outline": [
+       {
+        "property": "height",
+        "shadcn": 20,
+        "dmf": 22
+       }
+      ],
+      "badge/Badge?variant=ghost": [
+       {
+        "property": "height",
+        "shadcn": 20,
+        "dmf": 22
+       }
+      ],
+      "badge/Badge?variant=link": [
+       {
+        "property": "height",
+        "shadcn": 20,
+        "dmf": 22
+       },
+       {
+        "property": "color",
+        "shadcn": "23,23,23,255",
+        "dmf": "10,10,10,255"
+       }
+      ]
+     },
+     "dark": {
+      "badge/Badge?variant=default": [
+       {
+        "property": "height",
+        "shadcn": 20,
+        "dmf": 22
+       }
+      ],
+      "badge/Badge?variant=secondary": [
+       {
+        "property": "height",
+        "shadcn": 20,
+        "dmf": 22
+       }
+      ],
+      "badge/Badge?variant=destructive": [
+       {
+        "property": "height",
+        "shadcn": 20,
+        "dmf": 22
+       },
+       {
+        "property": "color",
+        "shadcn": "255,100,103,255",
+        "dmf": "255,134,132,255"
+       }
+      ],
+      "badge/Badge?variant=outline": [
+       {
+        "property": "height",
+        "shadcn": 20,
+        "dmf": 22
+       }
+      ],
+      "badge/Badge?variant=ghost": [
+       {
+        "property": "height",
+        "shadcn": 20,
+        "dmf": 22
+       }
+      ],
+      "badge/Badge?variant=link": [
+       {
+        "property": "height",
+        "shadcn": 20,
+        "dmf": 22
+       },
+       {
+        "property": "color",
+        "shadcn": "229,229,229,255",
+        "dmf": "250,250,250,255"
+       }
+      ]
+     }
+    }
+   }
   },
   "breadcrumb": {
    "name": "Breadcrumb",
@@ -2298,7 +2608,1851 @@
      }
     }
    },
-   "measured": null
+   "measured": {
+    "cases": 48,
+    "matching": {
+     "light": 0,
+     "dark": 0
+    },
+    "differences": {
+     "light": {
+      "button/Button?variant=default&size=default": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=default&size=xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=default&size=sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "12.8px",
+        "dmf": "14px"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "18.2857px",
+        "dmf": "20px"
+       }
+      ],
+      "button/Button?variant=default&size=lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=default&size=icon": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=default&size=icon-xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=default&size=icon-sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=default&size=icon-lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=outline&size=default": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=outline&size=xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=outline&size=sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "12.8px",
+        "dmf": "14px"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "18.2857px",
+        "dmf": "20px"
+       }
+      ],
+      "button/Button?variant=outline&size=lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=outline&size=icon": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=outline&size=icon-xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=outline&size=icon-sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=outline&size=icon-lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=secondary&size=default": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=secondary&size=xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=secondary&size=sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "12.8px",
+        "dmf": "14px"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "18.2857px",
+        "dmf": "20px"
+       }
+      ],
+      "button/Button?variant=secondary&size=lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=secondary&size=icon": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=secondary&size=icon-xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=secondary&size=icon-sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=secondary&size=icon-lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=ghost&size=default": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=ghost&size=xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=ghost&size=sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "12.8px",
+        "dmf": "14px"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "18.2857px",
+        "dmf": "20px"
+       }
+      ],
+      "button/Button?variant=ghost&size=lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=ghost&size=icon": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=ghost&size=icon-xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=ghost&size=icon-sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=ghost&size=icon-lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=destructive&size=default": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "color",
+        "shadcn": "231,0,11,255",
+        "dmf": "182,10,19,255"
+       }
+      ],
+      "button/Button?variant=destructive&size=xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "color",
+        "shadcn": "231,0,11,255",
+        "dmf": "182,10,19,255"
+       }
+      ],
+      "button/Button?variant=destructive&size=sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "12.8px",
+        "dmf": "14px"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "18.2857px",
+        "dmf": "20px"
+       },
+       {
+        "property": "color",
+        "shadcn": "231,0,11,255",
+        "dmf": "182,10,19,255"
+       }
+      ],
+      "button/Button?variant=destructive&size=lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "color",
+        "shadcn": "231,0,11,255",
+        "dmf": "182,10,19,255"
+       }
+      ],
+      "button/Button?variant=destructive&size=icon": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "color",
+        "shadcn": "231,0,11,255",
+        "dmf": "182,10,19,255"
+       }
+      ],
+      "button/Button?variant=destructive&size=icon-xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "color",
+        "shadcn": "231,0,11,255",
+        "dmf": "182,10,19,255"
+       }
+      ],
+      "button/Button?variant=destructive&size=icon-sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "color",
+        "shadcn": "231,0,11,255",
+        "dmf": "182,10,19,255"
+       }
+      ],
+      "button/Button?variant=destructive&size=icon-lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "color",
+        "shadcn": "231,0,11,255",
+        "dmf": "182,10,19,255"
+       }
+      ],
+      "button/Button?variant=link&size=default": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=link&size=xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=link&size=sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "12.8px",
+        "dmf": "14px"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "18.2857px",
+        "dmf": "20px"
+       }
+      ],
+      "button/Button?variant=link&size=lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=link&size=icon": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=link&size=icon-xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=link&size=icon-sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=link&size=icon-lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ]
+     },
+     "dark": {
+      "button/Button?variant=default&size=default": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=default&size=xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=default&size=sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "12.8px",
+        "dmf": "14px"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "18.2857px",
+        "dmf": "20px"
+       }
+      ],
+      "button/Button?variant=default&size=lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=default&size=icon": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=default&size=icon-xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=default&size=icon-sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=default&size=icon-lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=outline&size=default": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=outline&size=xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=outline&size=sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "12.8px",
+        "dmf": "14px"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "18.2857px",
+        "dmf": "20px"
+       }
+      ],
+      "button/Button?variant=outline&size=lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=outline&size=icon": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=outline&size=icon-xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=outline&size=icon-sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=outline&size=icon-lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=secondary&size=default": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=secondary&size=xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=secondary&size=sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "12.8px",
+        "dmf": "14px"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "18.2857px",
+        "dmf": "20px"
+       }
+      ],
+      "button/Button?variant=secondary&size=lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=secondary&size=icon": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=secondary&size=icon-xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=secondary&size=icon-sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=secondary&size=icon-lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=ghost&size=default": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=ghost&size=xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=ghost&size=sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "12.8px",
+        "dmf": "14px"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "18.2857px",
+        "dmf": "20px"
+       }
+      ],
+      "button/Button?variant=ghost&size=lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=ghost&size=icon": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=ghost&size=icon-xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=ghost&size=icon-sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=ghost&size=icon-lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=destructive&size=default": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "color",
+        "shadcn": "255,100,103,255",
+        "dmf": "255,134,132,255"
+       }
+      ],
+      "button/Button?variant=destructive&size=xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "color",
+        "shadcn": "255,100,103,255",
+        "dmf": "255,134,132,255"
+       }
+      ],
+      "button/Button?variant=destructive&size=sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "12.8px",
+        "dmf": "14px"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "18.2857px",
+        "dmf": "20px"
+       },
+       {
+        "property": "color",
+        "shadcn": "255,100,103,255",
+        "dmf": "255,134,132,255"
+       }
+      ],
+      "button/Button?variant=destructive&size=lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "color",
+        "shadcn": "255,100,103,255",
+        "dmf": "255,134,132,255"
+       }
+      ],
+      "button/Button?variant=destructive&size=icon": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "color",
+        "shadcn": "255,100,103,255",
+        "dmf": "255,134,132,255"
+       }
+      ],
+      "button/Button?variant=destructive&size=icon-xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "color",
+        "shadcn": "255,100,103,255",
+        "dmf": "255,134,132,255"
+       }
+      ],
+      "button/Button?variant=destructive&size=icon-sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "color",
+        "shadcn": "255,100,103,255",
+        "dmf": "255,134,132,255"
+       }
+      ],
+      "button/Button?variant=destructive&size=icon-lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "color",
+        "shadcn": "255,100,103,255",
+        "dmf": "255,134,132,255"
+       }
+      ],
+      "button/Button?variant=link&size=default": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=link&size=xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=link&size=sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "12.8px",
+        "dmf": "14px"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "18.2857px",
+        "dmf": "20px"
+       }
+      ],
+      "button/Button?variant=link&size=lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       }
+      ],
+      "button/Button?variant=link&size=icon": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=link&size=icon-xs": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=link&size=icon-sm": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ],
+      "button/Button?variant=link&size=icon-lg": [
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "6px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "6px"
+       }
+      ]
+     }
+    }
+   }
   },
   "button-group": {
    "name": "Button Group",
@@ -2493,7 +4647,17 @@
      }
     }
    },
-   "measured": null
+   "measured": {
+    "cases": 2,
+    "matching": {
+     "light": 2,
+     "dark": 2
+    },
+    "differences": {
+     "light": {},
+     "dark": {}
+    }
+   }
   },
   "card": {
    "name": "Card",
@@ -2694,7 +4858,47 @@
     ],
     "cva": {}
    },
-   "measured": null
+   "measured": {
+    "cases": 2,
+    "matching": {
+     "light": 0,
+     "dark": 0
+    },
+    "differences": {
+     "light": {
+      "card/Card?size=default": [
+       {
+        "property": "height",
+        "shadcn": 52,
+        "dmf": 112
+       }
+      ],
+      "card/Card?size=sm": [
+       {
+        "property": "height",
+        "shadcn": 44,
+        "dmf": 104
+       }
+      ]
+     },
+     "dark": {
+      "card/Card?size=default": [
+       {
+        "property": "height",
+        "shadcn": 52,
+        "dmf": 112
+       }
+      ],
+      "card/Card?size=sm": [
+       {
+        "property": "height",
+        "shadcn": 44,
+        "dmf": 104
+       }
+      ]
+     }
+    }
+   }
   },
   "carousel": {
    "name": "Carousel",
@@ -3161,7 +5365,17 @@
     ],
     "cva": {}
    },
-   "measured": null
+   "measured": {
+    "cases": 1,
+    "matching": {
+     "light": 1,
+     "dark": 1
+    },
+    "differences": {
+     "light": {},
+     "dark": {}
+    }
+   }
   },
   "code-block": {
    "name": "Code Block",
@@ -7002,7 +9216,83 @@
      }
     }
    },
-   "measured": null
+   "measured": {
+    "cases": 1,
+    "matching": {
+     "light": 0,
+     "dark": 0
+    },
+    "differences": {
+     "light": {
+      "empty/Empty": [
+       {
+        "property": "height",
+        "shadcn": 72,
+        "dmf": 120
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "24px",
+        "dmf": "48px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "24px",
+        "dmf": "48px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "24px",
+        "dmf": "48px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "24px",
+        "dmf": "48px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "14px",
+        "dmf": "10px"
+       }
+      ]
+     },
+     "dark": {
+      "empty/Empty": [
+       {
+        "property": "height",
+        "shadcn": 72,
+        "dmf": 120
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "24px",
+        "dmf": "48px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "24px",
+        "dmf": "48px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "24px",
+        "dmf": "48px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "24px",
+        "dmf": "48px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "14px",
+        "dmf": "10px"
+       }
+      ]
+     }
+    }
+   }
   },
   "field": {
    "name": "Field",
@@ -7418,7 +9708,91 @@
      }
     }
    },
-   "measured": null
+   "measured": {
+    "cases": 3,
+    "matching": {
+     "light": 0,
+     "dark": 0
+    },
+    "differences": {
+     "light": {
+      "field/Field?orientation=vertical": [
+       {
+        "property": "columnGap",
+        "shadcn": "8px",
+        "dmf": "12px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "8px",
+        "dmf": "12px"
+       }
+      ],
+      "field/Field?orientation=horizontal": [
+       {
+        "property": "columnGap",
+        "shadcn": "8px",
+        "dmf": "12px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "8px",
+        "dmf": "12px"
+       }
+      ],
+      "field/Field?orientation=responsive": [
+       {
+        "property": "columnGap",
+        "shadcn": "8px",
+        "dmf": "12px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "8px",
+        "dmf": "12px"
+       }
+      ]
+     },
+     "dark": {
+      "field/Field?orientation=vertical": [
+       {
+        "property": "columnGap",
+        "shadcn": "8px",
+        "dmf": "12px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "8px",
+        "dmf": "12px"
+       }
+      ],
+      "field/Field?orientation=horizontal": [
+       {
+        "property": "columnGap",
+        "shadcn": "8px",
+        "dmf": "12px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "8px",
+        "dmf": "12px"
+       }
+      ],
+      "field/Field?orientation=responsive": [
+       {
+        "property": "columnGap",
+        "shadcn": "8px",
+        "dmf": "12px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "8px",
+        "dmf": "12px"
+       }
+      ]
+     }
+    }
+   }
   },
   "hover-card": {
    "name": "Hover Card",
@@ -8025,7 +10399,17 @@
     ],
     "cva": {}
    },
-   "measured": null
+   "measured": {
+    "cases": 1,
+    "matching": {
+     "light": 1,
+     "dark": 1
+    },
+    "differences": {
+     "light": {},
+     "dark": {}
+    }
+   }
   },
   "input-group": {
    "name": "Input Group",
@@ -8329,7 +10713,103 @@
      }
     }
    },
-   "measured": null
+   "measured": {
+    "cases": 1,
+    "matching": {
+     "light": 0,
+     "dark": 0
+    },
+    "differences": {
+     "light": {
+      "input-group/InputGroup": [
+       {
+        "property": "height",
+        "shadcn": 32,
+        "dmf": 10
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "4px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "4px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "normal",
+        "dmf": "8px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "normal",
+        "dmf": "8px"
+       },
+       {
+        "property": "backgroundColor",
+        "shadcn": "transparent",
+        "dmf": "255,255,255,255"
+       }
+      ]
+     },
+     "dark": {
+      "input-group/InputGroup": [
+       {
+        "property": "height",
+        "shadcn": 32,
+        "dmf": 10
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "4px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "4px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "normal",
+        "dmf": "8px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "normal",
+        "dmf": "8px"
+       },
+       {
+        "property": "backgroundColor",
+        "shadcn": "255,255,255,11",
+        "dmf": "10,10,10,255"
+       }
+      ]
+     }
+    }
+   }
   },
   "item": {
    "name": "Item",
@@ -8708,7 +11188,355 @@
      }
     }
    },
-   "measured": null
+   "measured": {
+    "cases": 9,
+    "matching": {
+     "light": 0,
+     "dark": 0
+    },
+    "differences": {
+     "light": {
+      "item/Item?variant=default&size=default": [
+       {
+        "property": "height",
+        "shadcn": 42,
+        "dmf": 50
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "12px",
+        "dmf": "16px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "12px",
+        "dmf": "16px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ],
+      "item/Item?variant=default&size=sm": [
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ],
+      "item/Item?variant=default&size=xs": [
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ],
+      "item/Item?variant=outline&size=default": [
+       {
+        "property": "height",
+        "shadcn": 42,
+        "dmf": 50
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "12px",
+        "dmf": "16px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "12px",
+        "dmf": "16px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ],
+      "item/Item?variant=outline&size=sm": [
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ],
+      "item/Item?variant=outline&size=xs": [
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ],
+      "item/Item?variant=muted&size=default": [
+       {
+        "property": "height",
+        "shadcn": 42,
+        "dmf": 50
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "12px",
+        "dmf": "16px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "12px",
+        "dmf": "16px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ],
+      "item/Item?variant=muted&size=sm": [
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ],
+      "item/Item?variant=muted&size=xs": [
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ]
+     },
+     "dark": {
+      "item/Item?variant=default&size=default": [
+       {
+        "property": "height",
+        "shadcn": 42,
+        "dmf": 50
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "12px",
+        "dmf": "16px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "12px",
+        "dmf": "16px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ],
+      "item/Item?variant=default&size=sm": [
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ],
+      "item/Item?variant=default&size=xs": [
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ],
+      "item/Item?variant=outline&size=default": [
+       {
+        "property": "height",
+        "shadcn": 42,
+        "dmf": 50
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "12px",
+        "dmf": "16px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "12px",
+        "dmf": "16px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ],
+      "item/Item?variant=outline&size=sm": [
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ],
+      "item/Item?variant=outline&size=xs": [
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ],
+      "item/Item?variant=muted&size=default": [
+       {
+        "property": "height",
+        "shadcn": 42,
+        "dmf": 50
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "12px",
+        "dmf": "16px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "12px",
+        "dmf": "16px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "10px",
+        "dmf": "14px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ],
+      "item/Item?variant=muted&size=sm": [
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ],
+      "item/Item?variant=muted&size=xs": [
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ]
+     }
+    }
+   }
   },
   "kbd": {
    "name": "Kbd",
@@ -8767,7 +11595,33 @@
     ],
     "cva": {}
    },
-   "measured": null
+   "measured": {
+    "cases": 1,
+    "matching": {
+     "light": 0,
+     "dark": 0
+    },
+    "differences": {
+     "light": {
+      "kbd/Kbd": [
+       {
+        "property": "color",
+        "shadcn": "115,115,115,255",
+        "dmf": "10,10,10,255"
+       }
+      ]
+     },
+     "dark": {
+      "kbd/Kbd": [
+       {
+        "property": "color",
+        "shadcn": "161,161,161,255",
+        "dmf": "250,250,250,255"
+       }
+      ]
+     }
+    }
+   }
   },
   "label": {
    "name": "Label",
@@ -8830,7 +11684,17 @@
     ],
     "cva": {}
    },
-   "measured": null
+   "measured": {
+    "cases": 1,
+    "matching": {
+     "light": 1,
+     "dark": 1
+    },
+    "differences": {
+     "light": {},
+     "dark": {}
+    }
+   }
   },
   "native-select": {
    "name": "Native Select",
@@ -8971,7 +11835,43 @@
     ],
     "cva": {}
    },
-   "measured": null
+   "measured": {
+    "cases": 1,
+    "matching": {
+     "light": 0,
+     "dark": 0
+    },
+    "differences": {
+     "light": {
+      "native-select/NativeSelect": [
+       {
+        "property": "height",
+        "shadcn": 0,
+        "dmf": 32
+       },
+       {
+        "property": "width",
+        "shadcn": 0,
+        "dmf": 44
+       }
+      ]
+     },
+     "dark": {
+      "native-select/NativeSelect": [
+       {
+        "property": "height",
+        "shadcn": 0,
+        "dmf": 32
+       },
+       {
+        "property": "width",
+        "shadcn": 0,
+        "dmf": 44
+       }
+      ]
+     }
+    }
+   }
   },
   "navigation-menu": {
    "name": "Navigation Menu",
@@ -11429,7 +14329,17 @@
     "classes": [],
     "cva": {}
    },
-   "measured": null
+   "measured": {
+    "cases": 1,
+    "matching": {
+     "light": 1,
+     "dark": 1
+    },
+    "differences": {
+     "light": {},
+     "dark": {}
+    }
+   }
   },
   "sheet": {
    "name": "Sheet",
@@ -12551,7 +15461,43 @@
     ],
     "cva": {}
    },
-   "measured": null
+   "measured": {
+    "cases": 1,
+    "matching": {
+     "light": 0,
+     "dark": 0
+    },
+    "differences": {
+     "light": {
+      "skeleton/Skeleton": [
+       {
+        "property": "height",
+        "shadcn": 0,
+        "dmf": 16
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "8px",
+        "dmf": "10px"
+       }
+      ]
+     },
+     "dark": {
+      "skeleton/Skeleton": [
+       {
+        "property": "height",
+        "shadcn": 0,
+        "dmf": 16
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "8px",
+        "dmf": "10px"
+       }
+      ]
+     }
+    }
+   }
   },
   "slider": {
    "name": "Slider",
@@ -12849,7 +15795,30 @@
     "classes": [],
     "cva": {}
    },
-   "measured": null
+   "measured": {
+    "cases": 1,
+    "matching": {
+     "light": 1,
+     "dark": 0
+    },
+    "differences": {
+     "light": {},
+     "dark": {
+      "spinner/Spinner": [
+       {
+        "property": "height",
+        "shadcn": 19,
+        "dmf": 20
+       },
+       {
+        "property": "width",
+        "shadcn": 19,
+        "dmf": 20
+       }
+      ]
+     }
+    }
+   }
   },
   "switch": {
    "name": "Switch",
@@ -13129,7 +16098,17 @@
     ],
     "cva": {}
    },
-   "measured": null
+   "measured": {
+    "cases": 2,
+    "matching": {
+     "light": 2,
+     "dark": 2
+    },
+    "differences": {
+     "light": {},
+     "dark": {}
+    }
+   }
   },
   "table": {
    "name": "Table",
@@ -13800,7 +16779,33 @@
     ],
     "cva": {}
    },
-   "measured": null
+   "measured": {
+    "cases": 1,
+    "matching": {
+     "light": 0,
+     "dark": 0
+    },
+    "differences": {
+     "light": {
+      "textarea/Textarea": [
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ]
+     },
+     "dark": {
+      "textarea/Textarea": [
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "10px",
+        "dmf": "8px"
+       }
+      ]
+     }
+    }
+   }
   },
   "toast": {
    "name": "Toast",
@@ -14572,7 +17577,738 @@
      }
     }
    },
-   "measured": null
+   "measured": {
+    "cases": 6,
+    "matching": {
+     "light": 0,
+     "dark": 0
+    },
+    "differences": {
+     "light": {
+      "toggle/Toggle?variant=default&size=default": [
+       {
+        "property": "height",
+        "shadcn": 32,
+        "dmf": 18
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "borderTopWidth",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "14px",
+        "dmf": "16px"
+       },
+       {
+        "property": "fontWeight",
+        "shadcn": "500",
+        "dmf": "400"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "20px",
+        "dmf": "24px"
+       },
+       {
+        "property": "borderTopColor",
+        "shadcn": "229,229,229,255",
+        "dmf": "transparent"
+       }
+      ],
+      "toggle/Toggle?variant=default&size=sm": [
+       {
+        "property": "height",
+        "shadcn": 28,
+        "dmf": 18
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "8px",
+        "dmf": "10px"
+       },
+       {
+        "property": "borderTopWidth",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "12.8px",
+        "dmf": "16px"
+       },
+       {
+        "property": "fontWeight",
+        "shadcn": "500",
+        "dmf": "400"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "18.2857px",
+        "dmf": "24px"
+       },
+       {
+        "property": "borderTopColor",
+        "shadcn": "229,229,229,255",
+        "dmf": "transparent"
+       }
+      ],
+      "toggle/Toggle?variant=default&size=lg": [
+       {
+        "property": "height",
+        "shadcn": 36,
+        "dmf": 18
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "borderTopWidth",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "14px",
+        "dmf": "16px"
+       },
+       {
+        "property": "fontWeight",
+        "shadcn": "500",
+        "dmf": "400"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "20px",
+        "dmf": "24px"
+       },
+       {
+        "property": "borderTopColor",
+        "shadcn": "229,229,229,255",
+        "dmf": "transparent"
+       }
+      ],
+      "toggle/Toggle?variant=outline&size=default": [
+       {
+        "property": "height",
+        "shadcn": 32,
+        "dmf": 18
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "14px",
+        "dmf": "16px"
+       },
+       {
+        "property": "fontWeight",
+        "shadcn": "500",
+        "dmf": "400"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "20px",
+        "dmf": "24px"
+       }
+      ],
+      "toggle/Toggle?variant=outline&size=sm": [
+       {
+        "property": "height",
+        "shadcn": 28,
+        "dmf": 18
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "8px",
+        "dmf": "10px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "12.8px",
+        "dmf": "16px"
+       },
+       {
+        "property": "fontWeight",
+        "shadcn": "500",
+        "dmf": "400"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "18.2857px",
+        "dmf": "24px"
+       }
+      ],
+      "toggle/Toggle?variant=outline&size=lg": [
+       {
+        "property": "height",
+        "shadcn": 36,
+        "dmf": 18
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "14px",
+        "dmf": "16px"
+       },
+       {
+        "property": "fontWeight",
+        "shadcn": "500",
+        "dmf": "400"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "20px",
+        "dmf": "24px"
+       }
+      ]
+     },
+     "dark": {
+      "toggle/Toggle?variant=default&size=default": [
+       {
+        "property": "height",
+        "shadcn": 32,
+        "dmf": 18
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "borderTopWidth",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "14px",
+        "dmf": "16px"
+       },
+       {
+        "property": "fontWeight",
+        "shadcn": "500",
+        "dmf": "400"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "20px",
+        "dmf": "24px"
+       },
+       {
+        "property": "borderTopColor",
+        "shadcn": "245,255,255,26",
+        "dmf": "transparent"
+       }
+      ],
+      "toggle/Toggle?variant=default&size=sm": [
+       {
+        "property": "height",
+        "shadcn": 28,
+        "dmf": 18
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "8px",
+        "dmf": "10px"
+       },
+       {
+        "property": "borderTopWidth",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "12.8px",
+        "dmf": "16px"
+       },
+       {
+        "property": "fontWeight",
+        "shadcn": "500",
+        "dmf": "400"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "18.2857px",
+        "dmf": "24px"
+       },
+       {
+        "property": "borderTopColor",
+        "shadcn": "245,255,255,26",
+        "dmf": "transparent"
+       }
+      ],
+      "toggle/Toggle?variant=default&size=lg": [
+       {
+        "property": "height",
+        "shadcn": 36,
+        "dmf": 18
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "borderTopWidth",
+        "shadcn": "0px",
+        "dmf": "1px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "14px",
+        "dmf": "16px"
+       },
+       {
+        "property": "fontWeight",
+        "shadcn": "500",
+        "dmf": "400"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "20px",
+        "dmf": "24px"
+       },
+       {
+        "property": "borderTopColor",
+        "shadcn": "245,255,255,26",
+        "dmf": "transparent"
+       }
+      ],
+      "toggle/Toggle?variant=outline&size=default": [
+       {
+        "property": "height",
+        "shadcn": 32,
+        "dmf": 18
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "14px",
+        "dmf": "16px"
+       },
+       {
+        "property": "fontWeight",
+        "shadcn": "500",
+        "dmf": "400"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "20px",
+        "dmf": "24px"
+       },
+       {
+        "property": "borderTopColor",
+        "shadcn": "255,255,255,38",
+        "dmf": "245,255,255,26"
+       }
+      ],
+      "toggle/Toggle?variant=outline&size=sm": [
+       {
+        "property": "height",
+        "shadcn": 28,
+        "dmf": 18
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "borderTopLeftRadius",
+        "shadcn": "8px",
+        "dmf": "10px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "12.8px",
+        "dmf": "16px"
+       },
+       {
+        "property": "fontWeight",
+        "shadcn": "500",
+        "dmf": "400"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "18.2857px",
+        "dmf": "24px"
+       },
+       {
+        "property": "borderTopColor",
+        "shadcn": "255,255,255,38",
+        "dmf": "245,255,255,26"
+       }
+      ],
+      "toggle/Toggle?variant=outline&size=lg": [
+       {
+        "property": "height",
+        "shadcn": 36,
+        "dmf": 18
+       },
+       {
+        "property": "paddingTop",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingRight",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "paddingBottom",
+        "shadcn": "0px",
+        "dmf": "8px"
+       },
+       {
+        "property": "paddingLeft",
+        "shadcn": "10px",
+        "dmf": "12px"
+       },
+       {
+        "property": "columnGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "rowGap",
+        "shadcn": "4px",
+        "dmf": "8px"
+       },
+       {
+        "property": "fontSize",
+        "shadcn": "14px",
+        "dmf": "16px"
+       },
+       {
+        "property": "fontWeight",
+        "shadcn": "500",
+        "dmf": "400"
+       },
+       {
+        "property": "lineHeight",
+        "shadcn": "20px",
+        "dmf": "24px"
+       },
+       {
+        "property": "borderTopColor",
+        "shadcn": "255,255,255,38",
+        "dmf": "245,255,255,26"
+       }
+      ]
+     }
+    }
+   }
   },
   "toggle-group": {
    "name": "Toggle Group",
@@ -15330,6 +19066,13 @@
     "cva": {}
    },
    "measured": null
+  }
+ },
+ "measuredTotals": {
+  "cases": 95,
+  "matching": {
+   "light": 12,
+   "dark": 11
   }
  }
 }

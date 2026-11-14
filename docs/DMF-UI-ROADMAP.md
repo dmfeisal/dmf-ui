@@ -48,7 +48,7 @@ Ready to start, in this order, after M14. First the Astro families are brought t
 
 "Parity" means matching shadcn/ui's Nova specification: variants, sizes, attributes, parts and behaviour. It does not mean adopting its runtime. DMF UI keeps native elements, Data Slot and its own enhancement scripts, and adds no Radix or Base UI dependency. Natural sizing, preset rules and the CB/HUI white-label exceptions still apply.
 
-- **M15 — shadcn parity audit.** Measure the gap; change no component file. Part 1, the static audit of names, variants and attributes, is reported in [M15](DMF-UI-M15.md); part 2, measurement and the baseline, is next.
+- **M15 — shadcn parity audit.** Measure the gap; change no component file. Part 1 (static audit) and part 2a (rendered measurement of 95 cases) are reported in [M15](DMF-UI-M15.md); the optimization baseline and compound-part measurement are next.
   - **References:** vendor each shared family's Nova source and docs from the pinned shadcn snapshot into `vendor/shadcn`. Today only Button and the Nova stylesheet are vendored. Each file keeps its text extension, the pin is recorded in `contracts/design-profile.json`, and the files stay out of the packed archive.
   - **Parity record:** add `docs/DMF-UI-SHADCN-PARITY.json` (kept out of the packed archive), with one entry per family that both libraries have. Each entry records shadcn's value, DMF's value and a status (`match`, `intentional` with a reason, or `gap`) for:
     - **Variants:** every `variant` value and its colours in rest, hover, focus-visible, active, disabled and `aria-invalid` states, in light and dark.

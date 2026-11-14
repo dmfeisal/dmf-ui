@@ -4391,6 +4391,7 @@
           "tests/browser/dmf-ui-select.mjs",
           "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-selection.mjs",
+          "tests/browser/dmf-ui-shadcn-parity.mjs",
           "tests/browser/dmf-ui-sign-in-consumer.mjs",
           "tests/browser/dmf-ui-tabs.mjs"
         ]
@@ -12322,6 +12323,7 @@
           "tests/browser/dmf-ui-runtime.mjs",
           "tests/browser/dmf-ui-search.mjs",
           "tests/browser/dmf-ui-select.mjs",
+          "tests/browser/dmf-ui-shadcn-parity.mjs",
           "tests/browser/dmf-ui-switch.mjs"
         ]
       },
@@ -21241,7 +21243,8 @@
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-portfolio.mjs",
-          "tests/browser/dmf-ui-react-consumer.mjs"
+          "tests/browser/dmf-ui-react-consumer.mjs",
+          "tests/browser/dmf-ui-shadcn-parity.mjs"
         ]
       },
       "status": "partial",
@@ -22737,7 +22740,8 @@
           "tests/docs-build.test.mjs",
           "tests/modal-components.test.mjs",
           "tests/browser/dmf-ui-content.mjs",
-          "tests/browser/dmf-ui-modal-components.mjs"
+          "tests/browser/dmf-ui-modal-components.mjs",
+          "tests/browser/dmf-ui-shadcn-parity.mjs"
         ]
       },
       "status": "partial",
@@ -25694,6 +25698,7 @@
           "tests/browser/dmf-ui-search.mjs",
           "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-selection.mjs",
+          "tests/browser/dmf-ui-shadcn-parity.mjs",
           "tests/browser/dmf-ui-sign-in-consumer.mjs",
           "tests/browser/dmf-ui-tabs.mjs",
           "tests/browser/dmf-ui-taxonomy.mjs",
