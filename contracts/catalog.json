@@ -4367,6 +4367,7 @@
           "tests/browser/dmf-ui-accessibility.mjs",
           "tests/browser/dmf-ui-authentication-consumer.mjs",
           "tests/browser/dmf-ui-baseline.mjs",
+          "tests/browser/dmf-ui-block-viewer.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-data-display.mjs",
@@ -5100,6 +5101,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/block-viewer.test.mjs",
           "tests/blocks.test.mjs",
           "tests/content.test.mjs",
           "tests/m5-documentation.test.mjs",
@@ -9213,6 +9215,7 @@
         "status": "references-only",
         "sources": [
           "tests/baseline.test.mjs",
+          "tests/block-viewer.test.mjs",
           "tests/docs-build.test.mjs",
           "tests/modal-components.test.mjs",
           "tests/shadcn-parity.test.mjs",
@@ -12619,8 +12622,10 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/block-viewer.test.mjs",
           "tests/dmf-ui-browser.test.mjs",
           "tests/m5-documentation.test.mjs",
+          "tests/browser/dmf-ui-block-viewer.mjs",
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
@@ -15192,6 +15197,7 @@
           "tests/browser/dmf-ui-accessibility.mjs",
           "tests/browser/dmf-ui-authentication-consumer.mjs",
           "tests/browser/dmf-ui-authentication.mjs",
+          "tests/browser/dmf-ui-block-viewer.mjs",
           "tests/browser/dmf-ui-disclosures.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
@@ -15557,6 +15563,7 @@
           "tests/fulldev-catalog.test.mjs",
           "tests/package.test.mjs",
           "tests/taxonomy.test.mjs",
+          "tests/browser/dmf-ui-block-viewer.mjs",
           "tests/browser/dmf-ui-discovery-consumer.mjs",
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-foundations.mjs",
@@ -16917,6 +16924,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/block-viewer.test.mjs",
           "tests/blocks.test.mjs",
           "tests/m5-documentation.test.mjs",
           "tests/taxonomy.test.mjs",
@@ -22106,6 +22114,7 @@
           "tests/browser/dmf-ui-authentication-consumer.mjs",
           "tests/browser/dmf-ui-authentication.mjs",
           "tests/browser/dmf-ui-baseline.mjs",
+          "tests/browser/dmf-ui-block-viewer.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-disclosures.mjs",
@@ -22441,7 +22450,9 @@
       },
       "tests": {
         "status": "references-only",
-        "sources": []
+        "sources": [
+          "tests/browser/dmf-ui-block-viewer.mjs"
+        ]
       },
       "status": "partial",
       "sources": [
@@ -23056,6 +23067,7 @@
         "sources": [
           "tests/blocks.test.mjs",
           "tests/navigation-patterns.test.mjs",
+          "tests/browser/dmf-ui-block-viewer.mjs",
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-large-text-reflow.mjs",
@@ -24649,6 +24661,7 @@
           "tests/tokens.test.mjs",
           "tests/browser/dmf-ui-authentication.mjs",
           "tests/browser/dmf-ui-baseline.mjs",
+          "tests/browser/dmf-ui-block-viewer.mjs",
           "tests/browser/dmf-ui-data-display.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
@@ -25678,6 +25691,7 @@
           "tests/browser/dmf-ui-authentication-consumer.mjs",
           "tests/browser/dmf-ui-authentication.mjs",
           "tests/browser/dmf-ui-baseline.mjs",
+          "tests/browser/dmf-ui-block-viewer.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-content-docs.mjs",
           "tests/browser/dmf-ui-content.mjs",
@@ -27472,6 +27486,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/block-viewer.test.mjs",
           "tests/selection.test.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
