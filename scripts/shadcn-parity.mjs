@@ -80,7 +80,7 @@ export function readShadcn(path,source,nova){
    // the data-* attributes it derives from props are what a reference rendering needs.
    let slot,root;
    walk(node,child=>{if(root||!(ts.isJsxOpeningElement(child)||ts.isJsxSelfClosingElement(child)))return;const a=child.attributes.properties.find(p=>ts.isJsxAttribute(p)&&p.name.getText(ast)==='data-slot'&&p.initializer&&ts.isStringLiteral(p.initializer));if(a){root=child;slot=a.initializer.text;}});
-   const reference={classes:[],cva:null,attributes:{}};
+   const reference={element:root?root.tagName.getText(ast):null,classes:[],cva:null,attributes:{}};
    if(root)for(const a of root.attributes.properties){
     if(!ts.isJsxAttribute(a)||!a.initializer)continue;const attr=a.name.getText(ast);
     if(attr==='className'){
@@ -103,7 +103,22 @@ export function readShadcn(path,source,nova){
     walk(options,k=>{if(ts.isPropertyAssignment(k)&&name(k)==='className')walk(k.initializer,v=>{if(ts.isCallExpression(v)&&ts.isIdentifier(v.expression)&&v.expression.text!=='cn')reference.cva=v.expression.text;const t=literal(v);if(t!==undefined&&!(ts.isCallExpression(v.parent)&&v.parent.expression.getText(ast)!=='cn'))reference.classes.push(t);});});
    });
    reference.classes=reference.classes.filter(c=>c.trim());
-   components[name(node)]={slot:slot??null,props,reference,unions};
+   // Every element the component marks with a data-slot, for compositions that need an inner part (Table's <table>,
+   // Hover Card's popup inside its portal).
+   const elements={};
+   walk(node,child=>{
+    if(!(ts.isJsxOpeningElement(child)||ts.isJsxSelfClosingElement(child)))return;
+    const a=child.attributes.properties.find(p=>ts.isJsxAttribute(p)&&p.name.getText(ast)==='data-slot'&&p.initializer&&ts.isStringLiteral(p.initializer));
+    if(!a||elements[a.initializer.text])return;
+    const entry={element:child.tagName.getText(ast),classes:[],cva:null};
+    for(const p of child.attributes.properties){
+     if(!ts.isJsxAttribute(p)||!p.initializer||p.name.getText(ast)!=='className')continue;
+     if(ts.isStringLiteral(p.initializer))entry.classes.push(p.initializer.text);
+     else walk(p.initializer,c=>{if(ts.isCallExpression(c)&&ts.isIdentifier(c.expression)&&c.expression.text!=='cn')entry.cva=c.expression.text;const t=literal(c);if(t!==undefined&&!(ts.isCallExpression(c.parent)&&c.parent.expression.getText(ast)!=='cn'&&c.parent.arguments.includes(c)))entry.classes.push(t);});
+    }
+    entry.classes=entry.classes.filter(c=>c.trim());elements[a.initializer.text]=entry;
+   });
+   components[name(node)]={slot:slot??null,props,reference,unions,elements};
   }
  });
  const used=sorted([...classText.matchAll(/(?<![\w-])(cn-[a-z0-9-]+)/g)].map(m=>m[1]));
@@ -129,7 +144,7 @@ async function readDmf(family){
    if(p.name!=='as'&&union.length>1&&union.every(s=>/^["'][^"']+["']$/.test(s)))axes[p.name]=sorted([...(axes[p.name]??[]),...union.map(s=>s.slice(1,-1))]);
   }
   for(const [key,value] of Object.entries(family.defaults))if(key.startsWith(file+':')){const prop=key.slice(file.length+1);if(!ignoredProps.has(prop)&&prop!=='as')props[prop]=value.replace(/^(["'])([^"']*)\1$/,'$2');}
-  components[component]={slot:part.dataSlots[0]??null,props};
+  components[component]={slot:part.dataSlots[0]??null,slots:part.dataSlots,props};
  }
  let source='';const dataAttributes=new Set();
  for(const f of (await readdir(new URL(`${dir}/`,root))).filter(f=>/\.(astro|ts)$/.test(f))){
@@ -179,6 +194,84 @@ function casesFor(slug,s,d){
  return out;
 }
 
+// Compositions for parts that need a parent, children or an open overlay. Each node is
+// [Component, options, children]; options are `text`, `void`, `props` (DMF props), `state` (the attributes Base UI
+// sets at runtime, such as data-open), `tag` (the element a Base UI primitive renders), `part` (measure an inner
+// shadcn element by its slot instead of the component root), `inner` (shadcn element the children go into) and
+// `measure: false` for nodes that only hold the composition together. `open` names the DMF trigger slot to activate
+// and how (click, focus, or `event` dispatched on the DMF `root` slot), so overlay contents are measured open.
+export const compositions={
+ card:['Card',{},[['CardHeader',{},[['CardTitle',{text:'Title'}],['CardDescription',{text:'Description'}],['CardAction',{text:'Action'}]]],['CardContent',{text:'Content'}],['CardFooter',{text:'Footer'}]]],
+ alert:['Alert',{},[['AlertTitle',{text:'Title'}],['AlertDescription',{text:'Description'}],['AlertAction',{text:'Action'}]]],
+ table:['Table',{props:{caption:'Caption'},inner:'table',part:'table'},[
+  ['TableHeader',{},[['TableRow',{},[['TableHead',{text:'Name'}],['TableHead',{text:'Status'}]]]]],
+  ['TableBody',{},[['TableRow',{},[['TableCell',{text:'Ada'}],['TableCell',{text:'Active'}]]]]],
+  ['TableFooter',{},[['TableRow',{},[['TableCell',{text:'Total'}],['TableCell',{text:'1'}]]]]]]],
+ field:['FieldSet',{},[['FieldLegend',{text:'Profile'}],['FieldGroup',{},[
+  ['Field',{},[['FieldLabel',{text:'Name'}],['FieldDescription',{text:'Description'}]]],
+  ['FieldSeparator',{text:'Or'}],
+  ['Field',{},[['FieldContent',{},[['FieldTitle',{text:'Title'}]]],['FieldError',{text:'Error'}]]]]]]],
+ item:['ItemGroup',{},[['Item',{},[['ItemMedia',{text:'•'}],['ItemContent',{},[['ItemTitle',{text:'Title'}],['ItemDescription',{text:'Description'}]]],['ItemActions',{text:'Action'}]]],['ItemSeparator',{void:true,state:{'data-orientation':'horizontal'}}],['Item',{},[['ItemHeader',{text:'Header'}],['ItemFooter',{text:'Footer'}]]]]],
+ empty:['Empty',{},[['EmptyHeader',{},[['EmptyMedia',{text:'•'}],['EmptyTitle',{text:'Title'}],['EmptyDescription',{text:'Description'}]]],['EmptyContent',{text:'Content'}]]],
+ 'input-group':['InputGroup',{},[['InputGroupAddon',{text:'@'}],['InputGroupInput',{void:true}]]],
+ 'button-group':['ButtonGroup',{},[['ButtonGroupText',{text:'Text'}],['ButtonGroupSeparator',{void:true,state:{'data-orientation':'vertical'}}]]],
+ kbd:['KbdGroup',{},[['Kbd',{text:'Ctrl'}],['Kbd',{text:'K'}]]],
+ tabs:['Tabs',{props:{defaultValue:'one'},state:{'data-orientation':'horizontal'}},[['TabsList',{state:{'data-orientation':'horizontal'}},[['TabsTrigger',{props:{value:'one'},text:'One',state:{'data-active':'','aria-selected':'true'}}],['TabsTrigger',{props:{value:'two'},text:'Two',state:{'aria-selected':'false'}}]]],['TabsContent',{props:{value:'one'},text:'Panel'}]]],
+ accordion:['Accordion',{props:{defaultValue:'one'}},[['AccordionItem',{props:{value:'one'},state:{'data-open':''}},[['AccordionTrigger',{props:{'aria-expanded':'true'},text:'Question',state:{'data-panel-open':''}}],['AccordionContent',{props:{hidden:false},text:'Answer',state:{'data-open':'',style:'--accordion-panel-height:auto;animation:none'}}]]]]],
+ 'radio-group':['RadioGroup',{props:{name:'parity-radio',defaultValue:'one','aria-label':'Choice'}},[['RadioGroupItem',{void:true,tag:'span',props:{value:'one','aria-label':'One'},state:{'data-checked':'',role:'radio'}}],['RadioGroupItem',{void:true,tag:'span',props:{value:'two','aria-label':'Two'},state:{'data-unchecked':'',role:'radio'}}]]],
+ dialog:['Dialog',{element:false,measure:false,open:{trigger:'dialog-trigger',action:'click'}},[['DialogTrigger',{element:false,text:'Open',measure:false}],['DialogContent',{state:{'data-open':''}},[['DialogHeader',{},[['DialogTitle',{text:'Title'}],['DialogDescription',{text:'Description'}]]],['DialogFooter',{text:'Footer'}]]]]],
+ popover:['Popover',{element:false,measure:false,open:{trigger:'popover-trigger',action:'click'}},[['PopoverTrigger',{element:false,text:'Open',measure:false}],['PopoverContent',{state:{'data-open':'','data-side':'bottom'}},[['PopoverHeader',{},[['PopoverTitle',{text:'Title'}],['PopoverDescription',{text:'Description'}]]]]]]],
+ 'dropdown-menu':['DropdownMenu',{element:false,measure:false,open:{trigger:'dropdown-menu-trigger',action:'click'}},[['DropdownMenuTrigger',{element:false,text:'Open',measure:false}],['DropdownMenuContent',{state:{'data-open':'','data-side':'bottom'}},[['DropdownMenuGroup',{},[['DropdownMenuLabel',{text:'Label'}],['DropdownMenuItem',{text:'Item'}]]],['DropdownMenuSeparator',{void:true}],['DropdownMenuItem',{text:'Other'}]]]]],
+ select:['Select',{measure:false,props:{name:'parity-select',defaultValue:'apple'},open:{trigger:'select-trigger',action:'click'}},[['SelectTrigger',{measure:false},[['SelectValue',{measure:false,void:true}]]],['SelectContent',{state:{'data-open':'','data-side':'bottom'}},[['SelectGroup',{},[['SelectLabel',{text:'Fruit'}],['SelectItem',{props:{value:'apple'},text:'Apple'}],['SelectItem',{props:{value:'pear'},text:'Pear'}]]],['SelectSeparator',{void:true}]]]]],
+ tooltip:['Tooltip',{element:false,measure:false,props:{portal:false},open:{trigger:'tooltip-trigger',action:'focus'}},[['TooltipTrigger',{element:false,text:'Help',measure:false}],['TooltipContent',{text:'Tip',state:{'data-open':'','data-side':'top'}}]]],
+ 'hover-card':['HoverCard',{element:false,measure:false,open:{trigger:'hover-card-trigger',action:'event',root:'hover-card',event:'hover-card:set'}},[['HoverCardTrigger',{element:false,props:{href:'#parity-cases'},text:'Link',measure:false}],['HoverCardContent',{text:'Card',part:'hover-card-content',state:{'data-open':'','data-side':'bottom'}}]]],
+};
+
+// Base UI primitives and composed shadcn components, by the element they render.
+const primitiveTags={Root:'div',List:'div',Tab:'button',Panel:'div',Item:'div',Trigger:'button',Popup:'div',Title:'h2',Description:'p',Group:'div',GroupLabel:'div',Separator:'div',Header:'h3'};
+export const composedComponents={Label:['label','Label'],Input:['input','Input'],Separator:['separator','Separator'],Button:['button','Button']};
+const tagOf=element=>!element||element==='null'?'div':/^[a-z]/.test(element)?element:primitiveTags[element.split('.').pop()]??'div';
+
+function compositionCase(slug,s,d,composed){
+ const spec=compositions[slug];if(!spec)return [];
+ const nodes=[],seen={};let open=null,openKey=null;
+ const visit=([component,options,children=[]],parent,inOpen)=>{
+  const sc=s.components[component],dc=d.components[component];
+  if(!dc||!sc&&options.measure!==false&&options.element!==false)throw Error(`${slug}: ${component} is not exported by both sides`);
+  // A Base UI root such as Dialog renders no element of its own; its children go straight into the parent.
+  if(!sc||options.element===false){const key=String(nodes.length);nodes.push({key,parent,component,id:null,dmfSlot:null,occurrence:0,inOpen,text:'',void:false,reference:null,inner:null});if(options.open)open=options.open;return {component,props:options.props??{},text:options.text??'',void:!!options.void,children:children.map(child=>visit(child,key,inOpen))};}
+  // `part` alone measures that inner element in place of the root; with `inner` the root stays and the part sits inside it.
+  const asPart=options.part&&!options.inner;
+  const shadcnSlot=options.part??sc.slot,source=asPart?sc.elements[options.part]:{element:sc.reference.element,classes:sc.reference.classes,cva:sc.reference.cva};
+  if(!source)throw Error(`${slug}: ${component} has no ${options.part} element`);
+  const innerSource=options.inner?sc.elements[options.inner]:null;
+  if(options.inner&&!innerSource)throw Error(`${slug}: ${component} has no ${options.inner} element`);
+  // A shadcn component that renders another (FieldLabel renders Label) gets that component's classes first.
+  let element=source.element,classes=[...source.classes],cvaName=source.cva;
+  const via=composedComponents[element];
+  if(via){const inner=composed[via[0]].components[via[1]];element=inner.reference.element;const cva=inner.reference.cva?composed[via[0]].cvas[inner.reference.cva]:null;classes=[...inner.reference.classes,...(cva?[cva.base,...Object.entries(cva.variants).map(([a,k])=>k[cva.defaults[a]]??'')]:[]),...classes];}
+  const cva=cvaName?s.cvas[cvaName]:null;
+  if(cva)classes.push(cva.base,...Object.entries(cva.variants).map(([a,k])=>k[cva.defaults[a]]??''));
+  const attributes={'data-slot':asPart||!options.part?shadcnSlot:sc.slot,...(options.state??{})};
+  for(const [attr,src] of Object.entries(asPart?{}:sc.reference.attributes))if(src.value!==undefined)attributes[attr]=src.value;else{const v=cva?.defaults[src.prop]??sc.props[src.prop];if(v!=null&&v!=='false')attributes[attr]=String(v);}
+  const dmfSlot=dc.slots.includes(shadcnSlot)?shadcnSlot:dc.slot;
+  const key=String(nodes.length),measure=options.measure!==false&&!!dmfSlot;
+  let id=null;if(measure){const base=`${slug}/compound#${shadcnSlot}`;seen[base]=(seen[base]??0)+1;id=seen[base]>1?`${base}:${seen[base]}`:base;}
+  const occurrence=nodes.filter(n=>n.dmfSlot===dmfSlot&&n.inOpen===inOpen).length;
+  const node={key,parent,component,id,dmfSlot,occurrence,inOpen,text:options.text??'',void:!!options.void,reference:{tag:options.tag??tagOf(element),classes:sorted(classes.join(' ').split(/\s+/).filter(Boolean)),attributes},
+   inner:innerSource?{tag:tagOf(innerSource.element),classes:sorted(innerSource.classes.join(' ').split(/\s+/).filter(Boolean)),attributes:{'data-slot':options.inner},measured:options.part===options.inner}:null};
+  nodes.push(node);
+  if(options.open){open=options.open;}
+  const contentHere=Boolean(open&&!inOpen&&parent!==null&&!openKey&&component.endsWith('Content'));
+  if(contentHere){openKey=key;node.inOpen=true;node.occurrence=0;}
+  const dmf={component,props:options.props??{},text:options.text??'',void:!!options.void,children:children.map(child=>visit(child,key,inOpen||contentHere))};
+  return dmf;
+ };
+ const tree=visit(spec,null,false);
+ const parts=nodes.filter(n=>n.id).map(n=>n.id);
+ return [{id:`${slug}/compound`,family:slug,kind:'compound',open,tree,nodes,parts}];
+}
+
 const shadcnAxes=s=>{const axes=structuredClone(s.unionAxes);for(const c of Object.values(s.cvas))for(const [axis,keys] of Object.entries(c.variants))axes[axis]=sorted([...(axes[axis]??[]),...Object.keys(keys)]);return axes;};
 
 // A decision id may end in `*` to cover every item with that prefix, e.g. `dataAttributes:data-close-*`.
@@ -204,10 +297,11 @@ export async function build(){
  const dmfBySlug=Object.fromEntries(catalog.components.map(c=>[c.slug,c]));
  const shared=shadcnFamilies.filter(f=>dmfBySlug[f]).sort();
  const families={},used=new Set(),cases=[];
+ const composed={};for(const [family] of Object.values(composedComponents)){const path=`vendor/shadcn/base/${family}.tsx.txt`;composed[family]=readShadcn(path,await read(path),nova);}
  for(const slug of shared){
   const path=`vendor/shadcn/base/${slug}.tsx.txt`,s=readShadcn(path,await read(path),nova),d=await readDmf(dmfBySlug[slug]);
   const decisions=decisionsFile.families?.[slug]??{};
-  cases.push(...casesFor(slug,s,d));
+  cases.push(...casesFor(slug,s,d),...compositionCase(slug,s,d,composed));
   const sAxes=shadcnAxes(s),axes={};
   for(const axis of sorted([...Object.keys(sAxes),...Object.keys(d.axes)]))axes[axis]=compareSets(sAxes[axis]??[],d.axes[axis]??[],decisions,`variants.${axis}`);
   // Defaults and props per component that both sides export.
@@ -273,13 +367,15 @@ if(main&&(process.argv.includes('--write')||process.argv.includes('--check'))){
  if(measuredArg>0){
   const summary=JSON.parse(await readFile(process.argv[measuredArg+1],'utf8'));
   for(const [slug,f] of Object.entries(record.families)){
-   const ids=cases.filter(c=>c.family===slug).map(c=>c.id);
+   const ids=cases.filter(c=>c.family===slug).flatMap(c=>c.parts??[c.id]);
    if(!ids.length){f.measured=null;continue;}
    const pick=theme=>Object.fromEntries(Object.entries(summary.differences[theme]).filter(([id])=>ids.includes(id)));
    const differences={light:pick('light'),dark:pick('dark')};
    f.measured={cases:ids.length,matching:{light:ids.length-Object.keys(differences.light).length,dark:ids.length-Object.keys(differences.dark).length},differences};
   }
-  record.measuredTotals={cases:cases.length,matching:{light:cases.length-Object.keys(summary.differences.light).length,dark:cases.length-Object.keys(summary.differences.dark).length}};
+  const all=cases.flatMap(c=>c.parts??[c.id]),compound=cases.filter(c=>c.parts).flatMap(c=>c.parts);
+  const matching=(ids,theme)=>ids.filter(id=>!summary.differences[theme][id]).length;
+  record.measuredTotals={cases:all.length,matching:{light:matching(all,'light'),dark:matching(all,'dark')},compoundParts:{parts:compound.length,matching:{light:matching(compound,'light'),dark:matching(compound,'dark')}}};
  }else if(existing)record.measuredTotals=JSON.parse(existing).measuredTotals;
  if(orphans.length){console.error(`Decisions that no longer match a difference:\n ${orphans.join('\n ')}`);process.exit(1);}
  if(process.argv.includes('--write')){await writeFile(new URL(recordPath,root),format(record));await writeFile(new URL(casesPath,root),casesText);console.log(`Wrote ${recordPath} and ${cases.length} cases:`,record.totals);}

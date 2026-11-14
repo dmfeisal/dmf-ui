@@ -9,21 +9,46 @@ import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('../../',import.meta.url));
 export const properties=['height','paddingTop','paddingRight','paddingBottom','paddingLeft','columnGap','rowGap','borderTopLeftRadius','borderTopWidth','fontSize','fontWeight','lineHeight','letterSpacing','color','backgroundColor','borderTopColor','opacity'];
 
-export async function measure(page){
- return page.evaluate(properties=>{
+// Installs the measuring helpers in the page once: computed-style reading, the shadcn reference builders for single
+// and compound cases, and the lookup of a composition's DMF part (inside its case, or inside the open overlay).
+async function install(page){
+ await page.evaluate(properties=>{
+  if(window.__parity)return;
   const cases=JSON.parse(document.getElementById('parity-cases').textContent);
   const context=document.createElement('canvas').getContext('2d',{willReadFrequently:true});
   const rgba=value=>{context.clearRect(0,0,1,1);context.fillStyle='#000';context.fillStyle=value;context.fillRect(0,0,1,1);return [...context.getImageData(0,0,1,1).data].join(',');};
   const colour=/color$/i;
-  const read=element=>{const style=getComputedStyle(element),rect=element.getBoundingClientRect(),out={};
+  // Looping animations (Spinner's rotation) change the box from frame to frame; hold them at their first frame.
+  const still=()=>{for(const a of document.getAnimations())if(!Number.isFinite(a.effect?.getComputedTiming().endTime)){a.pause();a.currentTime=0;}};
+  const read=element=>{still();const style=getComputedStyle(element),rect=element.getBoundingClientRect(),out={};
    for(const p of properties)out[p]=p==='height'?Math.round(rect.height*2)/2:colour.test(p)?(style[p]==='rgba(0, 0, 0, 0)'||style[p]==='transparent'?'transparent':rgba(style[p])):style[p];
    out.width=Math.round(rect.width*2)/2;return out;};
-  const results=[];
-  for(const c of cases){
-   const section=document.querySelector(`[data-parity-case="${CSS.escape(c.id)}"]`);
-   const dmf=section.querySelector(`[data-parity-side=dmf] [data-slot="${c.slot}"]`);
-   const side=section.querySelector('[data-parity-side=shadcn]');
-   if(!dmf){results.push({id:c.id,status:'no-dmf-slot'});continue;}
+  const section=c=>document.querySelector(`[data-parity-case="${CSS.escape(c.id)}"]`);
+  const create=ref=>{const e=document.createElement(ref.tag);e.className=ref.classes.join(' ');for(const [k,v] of Object.entries(ref.attributes))e.setAttribute(k,v);return e;};
+  // Builds a composition's shadcn tree once. Nodes without an element (Base UI roots, triggers) pass their children up.
+  const buildTree=c=>{
+   const side=section(c).querySelector('[data-parity-side=shadcn]');if(side.firstElementChild)return;
+   const containers={},byKey=Object.fromEntries(c.nodes.map(n=>[n.key,n]));
+   const holder=key=>key===null?side:containers[key]??holder(byKey[key].parent);
+   for(const n of c.nodes){
+    if(!n.reference)continue;
+    const element=create(n.reference);let target=element,measured=element;
+    if(n.inner){const inner=create(n.inner);element.append(inner);target=inner;if(n.inner.measured)measured=inner;}
+    measured.dataset.parityNode=n.key;
+    if(!n.void&&n.text)target.append(n.text);
+    holder(n.parent).append(element);containers[n.key]=target;
+   }
+  };
+  const shown=e=>e.getClientRects().length>0&&(typeof e.checkVisibility!=='function'||e.checkVisibility());
+  const openContent=c=>{if(!c.open)return null;const content=c.nodes.find(n=>n.inOpen&&n.dmfSlot&&c.nodes.find(p=>p.key===n.parent&&!p.inOpen));
+   return [...document.querySelectorAll(`[data-slot="${content.dmfSlot}"]`)].find(e=>!e.closest('[data-parity-side=shadcn]')&&shown(e));};
+  const dmfPart=(c,n)=>{
+   if(n.inOpen){const content=openContent(c);if(!content)return null;return n.occurrence===0&&content.dataset.slot===n.dmfSlot?content:[...content.querySelectorAll(`[data-slot="${n.dmfSlot}"]`)][n.occurrence-(content.dataset.slot===n.dmfSlot?1:0)]??null;}
+   return [...section(c).querySelectorAll(`[data-parity-side=dmf] [data-slot="${n.dmfSlot}"]`)].filter(e=>!openContent(c)?.contains(e))[n.occurrence]??null;
+  };
+  const single=c=>{
+   const at=section(c),dmf=at.querySelector(`[data-parity-side=dmf] [data-slot="${c.slot}"]`),side=at.querySelector('[data-parity-side=shadcn]');
+   if(!dmf)return {id:c.id,status:'no-dmf-slot'};
    if(!side.firstElementChild){
     const element=document.createElement(c.reference.tag??dmf.tagName.toLowerCase());
     element.className=c.reference.classes.join(' ');
@@ -32,10 +57,43 @@ export async function measure(page){
     if(!c.void&&c.text)element.textContent=c.text;
     side.append(element);
    }
-   results.push({id:c.id,unsupported:c.unsupported,void:c.void,shadcn:read(side.firstElementChild),dmf:read(dmf)});
-  }
-  return results;
+   return {id:c.id,unsupported:c.unsupported,void:c.void,shadcn:read(side.firstElementChild),dmf:read(dmf)};
+  };
+  // `open` false measures the closed parts of a composition, true only the parts inside its open overlay.
+  const compound=(c,open)=>{buildTree(c);return c.nodes.filter(n=>n.id&&!!n.inOpen===open).map(n=>{
+   const dmf=dmfPart(c,n),ref=section(c).querySelector(`[data-parity-node="${n.key}"]`);
+   return dmf?{id:n.id,void:n.void,shadcn:read(ref),dmf:read(dmf)}:{id:n.id,status:'no-dmf-slot'};});};
+  window.__parity={cases,single,compound,openContent,shown,section};
  },properties);
+}
+
+export async function measure(page){
+ await install(page);
+ const results=await page.evaluate(()=>{const {cases,single,compound}=window.__parity;return cases.flatMap(c=>c.kind==='compound'?compound(c,false):[single(c)]);});
+ // Overlay contents one at a time: open from the DMF trigger, measure, then close with Escape.
+ const open=await page.evaluate(()=>window.__parity.cases.filter(c=>c.open).map(c=>c.id));
+ for(const id of open){
+  const ready=await page.evaluate(async id=>{
+   const {cases,section,openContent}=window.__parity,c=cases.find(c=>c.id===id);
+   const trigger=section(c).querySelector(`[data-parity-side=dmf] [data-slot="${c.open.trigger}"]`);
+   if(!trigger)return false;
+   if(c.open.action==='focus')trigger.focus();
+   else if(c.open.action==='event')trigger.closest(`[data-slot="${c.open.root}"]`).dispatchEvent(new CustomEvent(c.open.event,{detail:{open:true}}));
+   else trigger.click();
+   for(let i=0;i<60&&!openContent(c);i++)await new Promise(r=>setTimeout(r,50));
+   await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+   // Let the opening transition finish; looping animations (spinners) never do, so only finite ones count.
+   const finite=document.getAnimations().filter(a=>Number.isFinite(a.effect?.getComputedTiming().endTime));
+   await Promise.race([Promise.all(finite.map(a=>a.finished.catch(()=>{}))),new Promise(r=>setTimeout(r,1500))]);
+   return !!openContent(c);
+  },id);
+  results.push(...await page.evaluate(({id,ready})=>{const {cases,compound}=window.__parity,c=cases.find(c=>c.id===id);
+   return ready?compound(c,true):c.nodes.filter(n=>n.id&&n.inOpen).map(n=>({id:n.id,status:'not-opened'}));},{id,ready}));
+  await page.keyboard.press('Escape');
+  await page.evaluate(async id=>{const {cases,openContent}=window.__parity,c=cases.find(c=>c.id===id);
+   document.activeElement?.blur?.();for(let i=0;i<60&&openContent(c);i++)await new Promise(r=>setTimeout(r,50));},id);
+ }
+ return results;
 }
 
 // Numeric values within half a pixel match; everything else must be equal. Width is compared only for void
