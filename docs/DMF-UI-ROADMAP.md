@@ -48,7 +48,7 @@ Ready to start, in this order, after M14. First the Astro families are brought t
 
 "Parity" means matching shadcn/ui's Nova specification: variants, sizes, attributes, parts and behaviour. It does not mean adopting its runtime. DMF UI keeps native elements, Data Slot and its own enhancement scripts, and adds no Radix or Base UI dependency. Natural sizing, preset rules and the CB/HUI white-label exceptions still apply.
 
-- **M15 — shadcn parity audit.** Measure the gap; change no component file. Part 1 (static audit), part 2a (rendered measurement of 95 cases), part 2b (the optimization baseline in `docs/DMF-UI-BASELINE.json`, checked by `npm run baseline:check`) and part 2c (94 compound and open-overlay parts measured in 18 families) are reported in [M15](DMF-UI-M15.md); ordering the M16 batches is next.
+- **M15 — shadcn parity audit.** Measure the gap; change no component file. Part 1 (static audit), part 2a (rendered measurement of 95 cases), part 2b (the optimization baseline in `docs/DMF-UI-BASELINE.json`, checked by `npm run baseline:check`) and part 2c (94 compound and open-overlay parts measured in 18 families) are reported in [M15](DMF-UI-M15.md), with the ordered M16 batches.
   - **References:** vendor each shared family's Nova source and docs from the pinned shadcn snapshot into `vendor/shadcn`. Today only Button and the Nova stylesheet are vendored. Each file keeps its text extension, the pin is recorded in `contracts/design-profile.json`, and the files stay out of the packed archive.
   - **Parity record:** add `docs/DMF-UI-SHADCN-PARITY.json` (kept out of the packed archive), with one entry per family that both libraries have. Each entry records shadcn's value, DMF's value and a status (`match`, `intentional` with a reason, or `gap`) for:
     - **Variants:** every `variant` value and its colours in rest, hover, focus-visible, active, disabled and `aria-invalid` states, in light and dark.
@@ -60,10 +60,10 @@ Ready to start, in this order, after M14. First the Astro families are brought t
   - **Optimization baseline:** per family, record CSS and JavaScript bytes, axe results, and whether it works without JavaScript.
   - **Exit:** all shared families recorded, with a gap list ordered by family.
   - *Ships in:* nothing.
-- **M16 — shadcn parity fixes.** Close the gaps from M15 in batches of related families: actions and inputs, then selection, overlays and menus, navigation, then data display and feedback.
+- **M16 — shadcn parity fixes.** Close the gaps from M15 in six batches, listed in `docs/DMF-UI-M16-BATCHES.json` with their reasons in [M15](DMF-UI-M15.md): shared foundations, actions and inputs, selection, overlays and menus, navigation, then data display and feedback.
   - Each batch turns its `gap` entries into `match` or `intentional`, and its scenario then fails on any new gap.
   - DMF additions (for example Button's `md` alias and per-preset size variables) stay, recorded as `intentional`. Presets change theme only.
-  - Byte, axe and no-JavaScript results must not get worse than the M15 baseline.
+  - Axe and no-JavaScript results must not get worse than the M15 baseline. Bytes may grow only where a batch adds parts shadcn has, and the PR states the growth.
   - *Ships in:* `dmf-ui` minors, one per batch or a few batches together.
 - **M17 — missing shadcn families.** Add the general-purpose shadcn families that DMF UI lacks:
   - Context Menu, Menubar and Scroll Area.

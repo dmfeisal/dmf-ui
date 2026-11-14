@@ -1,0 +1,11 @@
+{
+ "about": "M16 batch order, from the M15 parity record (docs/DMF-UI-SHADCN-PARITY.json) and baseline (docs/DMF-UI-BASELINE.json). Every shared family is in exactly one batch; tests/m16-batches.test.mjs checks that. Reasons and acceptance rules are in docs/DMF-UI-M15.md (M16 batches).",
+ "batches": [
+  {"id": "m16-1-foundations", "name": "Shared foundations", "families": ["button", "kbd"], "crossCutting": ["Reset the browser's default button padding for every button-based part (Button, Radio Group items).", "Find why `var(--radius-xl)` is empty on portaled Dialog content, and fix it for every overlay that uses it.", "Record the custom variants that bridge Base UI state attributes (data-open, data-checked, data-active, data-disabled, orientation) as intentional, family by family."]},
+  {"id": "m16-2-actions-inputs", "name": "Actions and inputs", "families": ["button-group", "toggle", "toggle-group", "input", "textarea", "label", "field", "input-group", "native-select", "checkbox", "switch"]},
+  {"id": "m16-3-selection", "name": "Selection", "families": ["radio-group", "slider", "select", "combobox"]},
+  {"id": "m16-4-overlays-menus", "name": "Overlays and menus", "families": ["dialog", "alert-dialog", "sheet", "drawer", "popover", "hover-card", "tooltip", "dropdown-menu", "command", "accordion", "collapsible"]},
+  {"id": "m16-5-navigation", "name": "Navigation", "families": ["tabs", "breadcrumb", "pagination", "navigation-menu", "sidebar"]},
+  {"id": "m16-6-data-display-feedback", "name": "Data display and feedback", "families": ["card", "item", "badge", "avatar", "table", "alert", "empty", "progress", "skeleton", "spinner", "toast", "separator", "aspect-ratio", "resizable", "carousel", "attachment", "code-block"]}
+ ]
+}

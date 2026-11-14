@@ -1,11 +1,11 @@
 # M15: shadcn parity audit
 
-**In progress.** Planned in the [roadmap](DMF-UI-ROADMAP.md).
+**Done.** Planned in the [roadmap](DMF-UI-ROADMAP.md).
 - Part 1 (dmfeisal/dmf-ui#26): the static audit of names, variants and attributes.
 - Part 2a (dmfeisal/dmf-ui#27): rendered measurement.
 - Part 2b (dmfeisal/dmf-ui#28): the per-family optimization baseline.
-- Part 2c (this report's last part): compound parts, measured inside their parent and in open overlays.
-- Still open: turning the record into the ordered M16 batches.
+- Part 2c (dmfeisal/dmf-ui#29): compound parts, measured inside their parent and in open overlays.
+- M16 batches (this report's last part): the record ordered into six batches.
 
 M15 changes no component file.
 
@@ -272,6 +272,40 @@ Part 2a measured 22 root components on their own. Part 2c measures the parts tha
 - Sheet and Alert Dialog, whose DMF content uses Dialog's slots.
 - Their composition cases come with the M16 batches that add those parts.
 
-## Still open in M15
+## M16 batches
 
-- Ordering the gaps and differences in the record into the M16 batches.
+The 50 shared families are split into six batches, in order. `docs/DMF-UI-M16-BATCHES.json` lists them, and `tests/m16-batches.test.mjs` checks that every shared family is in exactly one batch.
+
+| # | Batch | Families | Gaps | Measured differing | Extras to decide |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Shared foundations | Button, Kbd, plus fixes across families | 0 | 51 of 52 | 2 |
+| 2 | Actions and inputs | Button Group, Toggle, Toggle Group, Input, Textarea, Label, Field, Input Group, Native Select, Checkbox, Switch | 55 | 21 of 34 | 63 |
+| 3 | Selection | Radio Group, Slider, Select, Combobox | 55 | 9 of 9 | 66 |
+| 4 | Overlays and menus | Dialog, Alert Dialog, Sheet, Drawer, Popover, Hover Card, Tooltip, Dropdown Menu, Command, Accordion, Collapsible | 66 | 17 of 21 | 286 |
+| 5 | Navigation | Tabs, Breadcrumb, Pagination, Navigation Menu, Sidebar | 125 | 2 of 5 | 43 |
+| 6 | Data display and feedback | Card, Item, Badge, Avatar, Table, Alert, Empty, Progress, Skeleton, Spinner, Toast, Separator, Aspect Ratio, Resizable, Carousel, Attachment, Code Block | 46 | 49 of 68 | 159 |
+
+Gaps include the two `differs` items (Sheet's `side` default and Carousel's `orientation` default), 347 in all. Measured counts are in light mode, from parts 2a and 2c.
+
+**Why this order**
+1. **Shared foundations first.** A few causes account for many measured differences, and fixing them changes later batches' measurements:
+   - DMF UI doesn't reset the browser's button padding. That accounts for all 48 Button cases and the Radio Group items.
+   - `--radius-xl` resolves empty on portaled Dialog content.
+   - Kbd uses foreground text where Nova uses muted foreground.
+   - The state-hook gaps that the custom variants already bridge are recorded as `intentional` here, family by family, so later batches only see real gaps.
+   - Button's `sm` text size (14px against Nova's 12.8px) and the destructive colour are decided here too.
+2. **Actions and inputs.** These are the building blocks the later families compose: Field and Input Group sit inside Combobox, Command and dialog forms. The batch adds Input Group's addon `align` and button sizes, Toggle's `size`, and Toggle Group's parts.
+3. **Selection.** Combobox is the largest public API change in the batch (42 gaps: 14 parts and 16 slots) and reuses batch 2's Input Group. Select and Radio Group are small by comparison.
+4. **Overlays and menus.** This batch carries the most JavaScript (six families at 6–11 KB gzip each) and the most extras: 286 configuration attributes and props, which each need a keep-or-remove decision. Alert Dialog and Sheet move from Dialog's slot names to their own.
+5. **Navigation.** It has the most gaps, 125, of which Sidebar has 76 and Navigation Menu 25. It splits two single-component families into shadcn's parts, and comes after overlays because Navigation Menu's viewport and Sidebar's mobile sheet build on them.
+6. **Data display and feedback.** These are mostly spacing and size differences (Table, Item, Card, Empty), plus Avatar's image and fallback, Progress's track and indicator, and Toast's parts.
+
+**What each batch must do**
+- Turn its `gap` and `differs` items into `match`, or into `intentional` with a reason in `docs/DMF-UI-SHADCN-PARITY-DECISIONS.json`.
+- Decide every `extra` in its families: keep it as `intentional`, or remove it.
+- Add composition cases for parts it adds, such as Progress's track or Combobox's chips, so they are measured.
+- Leave each measured difference matched or recorded as intentional. Some differences are DMF UI choices, such as roomier menus or a larger Table, and an owner decision can keep them.
+- Not make the baseline worse:
+  - axe results and `withoutJs` statuses must stay the same or improve;
+  - CSS and JavaScript bytes may grow only where the batch adds parts shadcn has, and the PR says by how much.
+- Keep natural sizing, the 32px header controls and the CB/HUI white primary labels. Presets change theme only.
