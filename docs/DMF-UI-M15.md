@@ -1,6 +1,11 @@
 # M15: shadcn parity audit
 
-**In progress.** Planned in the [roadmap](DMF-UI-ROADMAP.md). This report covers part 1: the static audit of names, variants and attributes. Part 2, the measuring browser scenario and the optimization baseline, follows in its own PR. M15 changes no component file.
+**In progress.** Planned in the [roadmap](DMF-UI-ROADMAP.md).
+- Part 1 (dmfeisal/dmf-ui#26): the static audit of names, variants and attributes.
+- Part 2a (this report's second half): rendered measurement.
+- Still open: the per-family optimization baseline.
+
+M15 changes no component file.
 
 ## What part 1 adds
 
@@ -100,8 +105,55 @@ Totals across the 50 families:
 - Variant axes are merged per family on both sides.
 - Rendered sizes, colours and spacing are not measured yet. The `measured` field is empty until part 2.
 
-## Part 2 (next)
+## Part 2a: rendered measurement
 
-- **Measuring scenario:** a browser scenario that renders each variant × size, reads computed height, padding, gap, radius, font and colours, and compares them with the Nova utilities stored in the record.
-- **Optimization baseline:** CSS and JavaScript bytes per family, axe results, and whether each family works without JavaScript.
-- **Exit:** all 50 families measured, and the gap list above turned into the ordered M16 batches.
+**How it measures**
+- The internal page `/internal/shadcn-parity/` renders each case as the real DMF UI component. It is not linked, has `noindex`, and isn't packed.
+- The cases come from `src/data/shadcn-parity-cases.json`, which `npm run shadcn:write` generates from the record. That gives 95 cases across 22 root components. Button covers the full product of its 6 variants and 8 sizes (48 cases); other components cover each axis value.
+- The `shadcn-parity` browser scenario builds the matching shadcn element beside each one: same tag, the same base-nova classes and data attributes, and the same text.
+- The reference styles come from `src/styles/shadcn-reference.css`. It compiles the vendored `style-nova.css` and the case classes against DMF UI's own Tailwind theme, so both sides resolve the same Neutral tokens.
+- The scenario compares computed styles in light and dark: height, padding, gap, radius, border width and colour, font size, weight, line height, letter spacing, colour, background, opacity, plus width for void elements.
+- A border colour is only compared when there is a border. Sizes within half a pixel count as matching.
+
+**What the reference adds to stand in for shadcn's runtime**
+- The parts of Tailwind preflight that shadcn assumes, scoped to the reference elements, plus its base border colour.
+- DMF UI's radius scale, because a raw `var(--radius-md)` inside an arbitrary value is not emitted as a theme variable.
+- Base UI's resting attributes where the source doesn't show them: `data-unchecked` on Checkbox and Switch, `data-orientation` on Separator.
+- The element tags Base UI renders for Checkbox, Switch and Toggle are an assumption. With the preflight reset and classes that set `display`, the tag doesn't change the measured box.
+
+**Guard**
+- The differences are stored per family under `measured` in the record.
+- The scenario fails when the set of differing case, property and theme combinations changes. The values themselves are informative only, because font metrics differ between platforms.
+- To accept a change: `npm run shadcn:write -- --measured .dmf-ui-test-results/shadcn-parity-measured.json`.
+
+**Results**
+
+12 of 95 cases match in light and 11 in dark. These match fully:
+- Alert, Aspect Ratio, Button Group, Checkbox, Input, Label, Separator and Switch
+- Spinner, in light only
+
+| Family | Match (light / dark) | Differing properties |
+| --- | --- | --- |
+| button | 0/48 | padding, plus sm font size and destructive colour (see below) |
+| item | 0/9 | padding, gap, height, radius |
+| badge | 0/6 | height, colour |
+| toggle | 0/6 | height, padding, gap, border, font, radius |
+| avatar | 0/3 | size 40px vs 32px, radius, gap |
+| field | 0/3 | gap |
+| card | 0/2 | height |
+| empty, input-group, native-select, skeleton, textarea, kbd | 0/1 each | see record |
+
+**Notable**
+- **Button padding.** Every Button case differs only by padding. DMF UI's base styles don't reset the browser's default button padding, so text buttons get 1px of block padding and icon buttons get 1px 6px. Heights still match. This is a real DMF difference worth fixing in M16, because the 6px inline padding narrows icon buttons' content box.
+- **Button `sm`.** DMF UI uses 14px/20px text where Nova uses 0.8rem (12.8px).
+- **Destructive colour.** Text is `182,10,19` in DMF UI and `231,0,11` in Nova.
+- **Item, Toggle, Avatar and Empty** use larger spacing or sizes than Nova. **Kbd** uses foreground text where Nova uses muted foreground.
+- **Not measured yet:** parts that need a parent, children or an open state. That covers Progress (track), Table (rows) and overlay contents, plus the 26 other shared families with no standalone root case. They are listed for the next measuring round.
+
+**State hooks, a correction to part 1.** DMF UI's Tailwind setup (`src/styles/upstream/shadcn.css`) defines `data-open`, `data-closed`, `data-checked`, `data-unchecked`, `data-active`, `data-disabled`, `data-horizontal` and `data-vertical` as custom variants. They match both Base UI's boolean attributes and DMF UI's `data-state`/`data-orientation`. Many of part 1's state-hook gaps are therefore bridged in styling, and M16 should review them as likely `intentional`, not as work.
+
+## Still open in M15
+
+- The optimization baseline: CSS and JavaScript bytes per family, axe results, and whether each family works without JavaScript.
+- Measurement cases for compound parts (with a parent, children or an open state).
+- Then the gap list becomes the ordered M16 batches.

@@ -1,0 +1,15 @@
+/* Internal: shadcn/ui base-nova reference styles for the M15 parity page only. Not packed.
+   Utilities are compiled against DMF UI's theme, so both libraries resolve the same Neutral tokens. */
+@reference "./dmf-ui.css";
+@tailwind utilities source(none);
+@source "../data/shadcn-parity-cases.json";
+@import "../../vendor/shadcn/style-nova.css";
+
+/* Raw var(--radius-md) in Nova's arbitrary values is not a theme-variable use Tailwind can see, so DMF UI's own
+   radius scale (dmf-ui.css @theme) is declared here for the reference elements. */
+.style-nova { --radius-md: calc(var(--radius) * 0.8); }
+
+/* shadcn assumes Tailwind's preflight. DMF UI's base layer is smaller, so the reference elements get the parts of
+   preflight that affect measured boxes, plus the border colour from shadcn's base layer (`* { @apply border-border }`). */
+.style-nova *, .style-nova ::before, .style-nova ::after { box-sizing: border-box; margin: 0; padding: 0; border: 0 solid var(--border); }
+.style-nova button, .style-nova input, .style-nova select, .style-nova textarea { font: inherit; letter-spacing: inherit; color: inherit; background-color: transparent; border-radius: 0; opacity: 1; appearance: none; }
