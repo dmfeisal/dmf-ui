@@ -3,8 +3,9 @@
 **In progress.** Planned in the [roadmap](DMF-UI-ROADMAP.md).
 - Part 1 (dmfeisal/dmf-ui#26): the static audit of names, variants and attributes.
 - Part 2a (dmfeisal/dmf-ui#27): rendered measurement.
-- Part 2b (this report's last part): the per-family optimization baseline.
-- Still open: measurement cases for compound parts.
+- Part 2b (dmfeisal/dmf-ui#28): the per-family optimization baseline.
+- Part 2c (this report's last part): compound parts, measured inside their parent and in open overlays.
+- Still open: turning the record into the ordered M16 batches.
 
 M15 changes no component file.
 
@@ -214,7 +215,63 @@ What the `reduced` and `more` results are:
 - The no-JavaScript comparison counts what's visible. It doesn't operate the controls, so `same` means the content renders, not that the behaviour works.
 - Docs previews include other families, so axe and no-JavaScript results describe the family as documented, not in isolation.
 
+## Part 2c: compound parts
+
+Part 2a measured 22 root components on their own. Part 2c measures the parts that only make sense inside a parent, with children, or in an open overlay: 94 parts across 18 families.
+
+**How it measures**
+- `compositions` in `scripts/shadcn-parity.mjs` describes one small composition per family, such as a Card with a header, title, description, action, content and footer.
+- `npm run shadcn:write` turns each into a `<family>/compound` case.
+  - The internal page renders the composition with the real DMF UI components.
+  - The scenario builds the same tree from base-nova classes beside it.
+  - Both sides are 24rem wide, so text wraps the same way.
+- Each part gets an id such as `card/compound#card-title`. A repeated part is numbered: `table/compound#table-cell:4`.
+- **Overlays** (Dialog, Popover, Dropdown Menu, Select, Tooltip, Hover Card):
+  - The scenario opens the DMF trigger, waits for the content and its opening transition, measures the content and its parts, then closes it with Escape.
+  - The shadcn side is built open, with `data-open` and `data-side`.
+  - Hover Card opens through its `hover-card:set` event, because it only opens on a real pointer hover or a keyboard focus.
+- **What the reference adds for shadcn's runtime:**
+  - Base UI's state attributes: `data-active` on the selected tab, `data-open` on the open accordion item, `data-checked` on the selected radio.
+  - The elements its primitives render: a tab is a `<button>`, a radio a `<span>`, a dialog title an `<h2>`.
+  - The open Accordion panel's settled height.
+  - The classes of components a part renders through: FieldLabel renders Label, and InputGroupInput renders Input.
+- shadcn's Table wraps its `<table>` in a scroll container. The record compares DMF UI's table with the inner `<table>`.
+- Looping animations are paused at their first frame before measuring. Spinner's rotation had made its box change between runs.
+
+**Results**
+
+28 of the 94 parts match in both themes. Across all 189 measured cases and parts, 40 match in light and in dark.
+
+| Family | Parts matching | Differing properties |
+| --- | --- | --- |
+| tooltip | 1/1 | none |
+| item | 8/11 | padding, gap, radius of the items |
+| field | 4/10 | gaps, label line height |
+| tabs | 3/5 | trigger padding, radius and colours |
+| alert | 2/4 | height, padding next to the action |
+| button-group | 2/3 | text radius and border colour |
+| card | 2/7 | gaps, title line height |
+| empty | 2/6 | padding, radius, title size |
+| popover | 2/4 | padding, gap, radius |
+| dialog | 1/5 | content radius, title size, footer |
+| kbd | 1/3 | colour |
+| accordion, dropdown-menu, hover-card, input-group, radio-group, select, table | 0 each | see record |
+
+**Notable**
+- **Dialog radius.** DMF UI's dialog content measures 0px radius where Nova has 14px. Its rule uses `var(--radius-xl)`, which is empty on the portaled content in the parity page's stylesheet. M16 should check whether a consumer build has the same problem.
+- **Table** is larger than Nova throughout: 16px text where Nova uses 14px, and 14px by 16px cell padding against 8px. DMF UI draws a top border on every cell and tints its header; Nova borders only the footer.
+- **Menus** (Dropdown Menu, Select): items are 32px tall with 6px by 8px padding, against Nova's 28px with 4px by 6px. Nova's popup background is translucent (70% white in light); DMF UI's is opaque.
+- **Radio Group** items inherit the browser's button padding (1px by 6px), the same reset gap Button has.
+- **Input Group**'s addon uses 16px foreground text where Nova uses 14px muted text. The group itself has 4px by 8px padding that Nova doesn't have.
+- **Tabs** triggers are 2px wider each side than Nova's. The active trigger has a white background, where Nova's default list leaves it transparent.
+- **Kbd** in a group keeps the foreground colour, as in part 2a.
+
+**Not measured**
+- Parts whose DMF component has no data slot: FieldGroup and InputGroupInput (both already recorded as slot gaps).
+- Parts DMF UI doesn't have yet: Progress track and indicator, Avatar image and fallback, the Sidebar, Combobox and Navigation Menu parts.
+- Sheet and Alert Dialog, whose DMF content uses Dialog's slots.
+- Their composition cases come with the M16 batches that add those parts.
+
 ## Still open in M15
 
-- Measurement cases for compound parts (with a parent, children or an open state).
-- Then the gap list becomes the ordered M16 batches.
+- Ordering the gaps and differences in the record into the M16 batches.

@@ -54,5 +54,24 @@ test('measuring cases are generated for the standalone root components',async()=
  const committed=await json('src/data/shadcn-parity-cases.json');
  assert.deepEqual(committed.cases,cases);
  assert.equal(cases.filter(c=>c.family==='button').length,48);
- assert.ok(cases.every(c=>c.reference.attributes['data-slot']===c.slot));
+ assert.ok(cases.filter(c=>!c.kind).every(c=>c.reference.attributes['data-slot']===c.slot));
+});
+
+test('compositions measure compound parts, including open overlays and inner shadcn elements',async()=>{
+ const {cases}=await build();
+ const compound=cases.filter(c=>c.kind==='compound'),byFamily=Object.fromEntries(compound.map(c=>[c.family,c]));
+ assert.ok(compound.length>=15);
+ assert.ok(compound.every(c=>c.parts.length&&new Set(c.parts).size===c.parts.length));
+ // Table measures shadcn's <table> inside its scroll container; repeated parts get numbered ids.
+ const table=byFamily.table.nodes.find(n=>n.component==='Table');
+ assert.equal(table.reference.attributes['data-slot'],'table-container');assert.deepEqual([table.inner.tag,table.inner.measured],['table',true]);
+ assert.ok(byFamily.table.parts.includes('table/compound#table-cell:4'));
+ // Overlay roots and triggers render no shadcn element; the content and its parts are measured open.
+ const dialog=byFamily.dialog;
+ assert.deepEqual(dialog.open,{trigger:'dialog-trigger',action:'click'});
+ assert.equal(dialog.nodes.find(n=>n.component==='Dialog').reference,null);
+ assert.ok(dialog.nodes.filter(n=>n.id).every(n=>n.inOpen));
+ // A shadcn part that renders another component (FieldLabel renders Label) carries that component's classes.
+ const label=byFamily.field.nodes.find(n=>n.component==='FieldLabel');
+ assert.equal(label.reference.tag,'label');assert.ok(label.reference.classes.includes('cn-label')&&label.reference.classes.includes('cn-field-label'));
 });

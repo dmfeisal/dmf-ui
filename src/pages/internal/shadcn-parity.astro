@@ -1,10 +1,12 @@
 ---
 // Internal M15 measuring page: each case renders the DMF UI component. The shadcn-parity browser scenario builds
-// the matching shadcn base-nova element next to it from the same case data and compares computed styles.
+// the matching shadcn base-nova element next to it from the same case data and compares computed styles. Compound
+// cases render a whole composition (ParityNode) so parts are measured inside their parent.
 // Not linked, not indexed and not part of the packed archive.
 import '../../styles/dmf-ui.css';
 import '../../styles/shadcn-reference.css';
 import data from '../../data/shadcn-parity-cases.json';
+import ParityNode from '../../components/internal/ParityNode.astro';
 const modules=import.meta.glob('../../components/dmf-ui/*/index.ts',{eager:true}) as Record<string,Record<string,any>>;
 const family=(slug:string)=>modules[`../../components/dmf-ui/${slug}/index.ts`];
 ---
@@ -13,10 +15,11 @@ const family=(slug:string)=>modules[`../../components/dmf-ui/${slug}/index.ts`];
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>shadcn parity cases</title></head>
 <body class="dmf-ui">
 <main>
-{data.cases.map(c=>{const Component=family(c.family)[c.component];return (
+{data.cases.map((c:any)=>{const Component=c.component?family(c.family)[c.component]:null;return (
  <section data-parity-case={c.id} style="display:flex;gap:2rem;align-items:flex-start;padding:1rem">
-  <div data-parity-side="dmf">{c.void?<Component {...c.dmf.props}/>:<Component {...c.dmf.props}>{c.text}</Component>}</div>
-  <div data-parity-side="shadcn" class="style-nova"></div>
+  {/* Compositions lay out to their container, so both sides get the same width. */}
+  <div data-parity-side="dmf" style={c.kind==='compound'?'flex:0 0 24rem;min-width:0':undefined}>{'tree' in c?<ParityNode node={c.tree as any} family={family(c.family)}/>:c.void?<Component {...c.dmf.props}/>:<Component {...c.dmf.props}>{c.text}</Component>}</div>
+  <div data-parity-side="shadcn" class="style-nova" style={c.kind==='compound'?'flex:0 0 24rem;min-width:0':undefined}></div>
  </section>
 );})}
 </main>

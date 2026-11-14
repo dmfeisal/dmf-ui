@@ -1,0 +1,10 @@
+---
+// Renders one node of an M15 parity composition (src/data/shadcn-parity-cases.json) with the real DMF UI component,
+// then its children recursively. Used only by the internal /internal/shadcn-parity/ page; not packed.
+interface Node {component:string;props:Record<string,unknown>;text:string;void:boolean;children:Node[];}
+interface Props {node:Node;family:Record<string,any>;}
+const {node,family}=Astro.props;
+const Component=family[node.component];
+if(!Component)throw new Error(`Parity composition: ${node.component} is not exported`);
+---
+{node.void?<Component {...node.props}/>:<Component {...node.props}>{node.text}{node.children.map(child=><Astro.self node={child} family={family}/>)}</Component>}
