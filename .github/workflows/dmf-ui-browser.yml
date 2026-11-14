@@ -12,6 +12,9 @@ on:
       - 'public/**'
       - 'tests/browser/**'
       - 'scripts/**'
+      # Records the browser scenarios compare against.
+      - 'docs/DMF-UI-SHADCN-PARITY.json'
+      - 'docs/DMF-UI-BASELINE.json'
       - 'astro.config.mjs'
       - 'tsconfig.json'
       - 'package.json'

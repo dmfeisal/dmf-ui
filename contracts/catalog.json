@@ -4366,6 +4366,7 @@
           "tests/browser/authentication-audit.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
           "tests/browser/dmf-ui-authentication-consumer.mjs",
+          "tests/browser/dmf-ui-baseline.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-data-display.mjs",
@@ -9211,6 +9212,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/baseline.test.mjs",
           "tests/docs-build.test.mjs",
           "tests/modal-components.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
@@ -12306,6 +12308,7 @@
           "tests/release-records.test.mjs",
           "tests/browser/dmf-ui-accessibility.mjs",
           "tests/browser/dmf-ui-authentication-consumer.mjs",
+          "tests/browser/dmf-ui-baseline.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-disclosures.mjs",
@@ -13871,6 +13874,7 @@
         "status": "references-only",
         "sources": [
           "tests/authentication-blocks.test.mjs",
+          "tests/baseline.test.mjs",
           "tests/blocks.test.mjs",
           "tests/form-composition.test.mjs",
           "tests/otp-verification.test.mjs",
@@ -13879,6 +13883,7 @@
           "tests/selection.test.mjs",
           "tests/browser/dmf-ui-authentication-consumer.mjs",
           "tests/browser/dmf-ui-authentication.mjs",
+          "tests/browser/dmf-ui-baseline.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-data-display.mjs",
           "tests/browser/dmf-ui-form-composition.mjs",
@@ -14182,6 +14187,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/baseline.test.mjs",
           "tests/form-composition.test.mjs",
           "tests/browser/dmf-ui-form-composition.mjs"
         ]
@@ -22086,6 +22092,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/baseline.test.mjs",
           "tests/dmf-ui-browser.test.mjs",
           "tests/feedback.test.mjs",
           "tests/form-composition.test.mjs",
@@ -22095,6 +22102,7 @@
           "tests/browser/dmf-ui-accessibility.mjs",
           "tests/browser/dmf-ui-authentication-consumer.mjs",
           "tests/browser/dmf-ui-authentication.mjs",
+          "tests/browser/dmf-ui-baseline.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-create.mjs",
           "tests/browser/dmf-ui-disclosures.mjs",
@@ -24635,6 +24643,7 @@
           "tests/selection.test.mjs",
           "tests/tokens.test.mjs",
           "tests/browser/dmf-ui-authentication.mjs",
+          "tests/browser/dmf-ui-baseline.mjs",
           "tests/browser/dmf-ui-data-display.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
@@ -25644,6 +25653,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/baseline.test.mjs",
           "tests/content.test.mjs",
           "tests/data-display.test.mjs",
           "tests/design-profile.test.mjs",
@@ -25662,6 +25672,7 @@
           "tests/browser/dmf-ui-accessibility.mjs",
           "tests/browser/dmf-ui-authentication-consumer.mjs",
           "tests/browser/dmf-ui-authentication.mjs",
+          "tests/browser/dmf-ui-baseline.mjs",
           "tests/browser/dmf-ui-blocks.mjs",
           "tests/browser/dmf-ui-content-docs.mjs",
           "tests/browser/dmf-ui-content.mjs",
@@ -25963,6 +25974,7 @@
       "tests": {
         "status": "references-only",
         "sources": [
+          "tests/browser/dmf-ui-baseline.mjs",
           "tests/browser/dmf-ui-forms.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs"
         ]
