@@ -48,15 +48,15 @@ Ready to start, in this order, after M14. First the Astro families are brought t
 
 "Parity" means matching shadcn/ui's Nova specification: variants, sizes, attributes, parts and behaviour. It does not mean adopting its runtime. DMF UI keeps native elements, Data Slot and its own enhancement scripts, and adds no Radix or Base UI dependency. Natural sizing, preset rules and the CB/HUI white-label exceptions still apply.
 
-- **M15 — shadcn parity audit.** Measure the gap; change no shipped file.
+- **M15 — shadcn parity audit.** Measure the gap; change no component file. Part 1, the static audit of names, variants and attributes, is reported in [M15](DMF-UI-M15.md); part 2, measurement and the baseline, is next.
   - **References:** vendor each shared family's Nova source and docs from the pinned shadcn snapshot into `vendor/shadcn`. Today only Button and the Nova stylesheet are vendored. Each file keeps its text extension, the pin is recorded in `contracts/design-profile.json`, and the files stay out of the packed archive.
-  - **Parity record:** add `contracts/shadcn-parity.json`, with one entry per family that both libraries have. Each entry records shadcn's value, DMF's value and a status (`match`, `intentional` with a reason, or `gap`) for:
+  - **Parity record:** add `docs/DMF-UI-SHADCN-PARITY.json` (kept out of the packed archive), with one entry per family that both libraries have. Each entry records shadcn's value, DMF's value and a status (`match`, `intentional` with a reason, or `gap`) for:
     - **Variants:** every `variant` value and its colours in rest, hover, focus-visible, active, disabled and `aria-invalid` states, in light and dark.
     - **Sizes:** every size (`xs`, `sm`, `default`, `lg`, the icon sizes, and family-specific ones): height, inline and block padding, gap, radius, font size and weight, and icon size.
     - **Attributes:** public props and their defaults, `data-slot` names, state attributes (`data-state`, `data-orientation`, `data-side`, `data-align`, `data-disabled`, `data-variant`, `data-size`), ARIA roles and properties, and icon placement (`data-icon="inline-start"` and `"inline-end"`).
     - **Parts:** sub-components (for example `DialogHeader`, `DialogFooter`, `DialogClose`) and how they nest.
     - **Behaviour:** keyboard support, focus management, dismissal, RTL and reduced motion.
-  - **Check:** a `contracts:check` rule keeps the record in step with the catalog. A browser scenario renders every variant × size, measures computed dimensions, and reads attributes against the record. `gap` entries are reported, not failed, until M16 closes them.
+  - **Check:** `npm run shadcn:check` (part of `npm run check`) keeps the record in step with the catalog. A browser scenario renders every variant × size, measures computed dimensions, and reads attributes against the record. `gap` entries are reported, not failed, until M16 closes them.
   - **Optimization baseline:** per family, record CSS and JavaScript bytes, axe results, and whether it works without JavaScript.
   - **Exit:** all shared families recorded, with a gap list ordered by family.
   - *Ships in:* nothing.

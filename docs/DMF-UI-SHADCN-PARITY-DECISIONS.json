@@ -1,0 +1,9 @@
+{
+ "about": "Owner decisions for docs/DMF-UI-SHADCN-PARITY.json. Each key is an item id from that record (an id ending in * covers every id with that prefix) and each value is the reason the difference is intentional. A decision that no longer matches a difference fails `npm run shadcn:check`.",
+ "families": {
+  "button": {
+   "variants.size:md": "Kept as an alias of default for existing consumers (DMF-UI-NOVA.md).",
+   "props.Button.as": "Astro polymorphism: DMF UI renders <a> or <button> through `as` (and `href`) instead of Base UI's `render` prop."
+  }
+ }
+}
