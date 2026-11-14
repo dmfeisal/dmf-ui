@@ -52,9 +52,10 @@
  --font-heading: var(--font-sans);
 }
 /* Scoped native normalization preserves upstream utility sizing and focus. Buttons lose the browser's default
-   padding, as under Tailwind's preflight, so a component's padding comes only from its own classes. */
+   padding, as under Tailwind's preflight, so a component's padding comes only from its own classes. Borders without
+   a colour class use --border, as shadcn/ui's base layer sets, not the foreground colour. */
 @scope (.dmf-ui) {
- *, ::before, ::after { box-sizing: border-box; border: 0 solid; }
+ *, ::before, ::after { box-sizing: border-box; border: 0 solid; border-color: var(--border); }
  button, input, textarea { font: inherit; color: inherit; background-color: transparent; border-radius: 0; }
  button { appearance: button; padding: 0; }
  a { color:inherit; }
@@ -351,12 +352,6 @@
 .dmf-combobox [role=listbox] { max-height:var(--combobox-available-height,15rem); }
 .dmf-combobox .dmf-combobox-input input:focus-visible { outline:none; }
 
-.dmf-input-group { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; min-width:0; padding:.25rem .5rem; border:1px solid var(--input); border-radius:var(--radius); background:var(--background); color:var(--foreground); }
-.dmf-input-group:focus-within { outline:2px solid var(--foreground); outline-offset:3px; }
-.dmf-input-group > .dmf-input-group-input { flex:1 1 8rem; width:auto; min-width:0; border:0; background:transparent; box-shadow:none; }
-.dmf-input-group > .dmf-input-group-input:focus-visible { outline:none; box-shadow:none; }
-.dmf-input-group-addon { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; min-width:0; max-width:100%; overflow-wrap:anywhere; }
-.dmf-input-group-addon svg { flex-shrink:0; }
 
 .dmf-number-field,.dmf-file-input { display:grid; gap:.5rem; min-width:0; color:var(--foreground); }
 .dmf-number-control { display:flex; align-items:center; flex-wrap:wrap; gap:.5rem; min-width:0; }

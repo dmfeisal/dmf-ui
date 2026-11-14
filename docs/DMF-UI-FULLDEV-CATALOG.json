@@ -171,7 +171,7 @@
         {
           "path": "src/components/dmf-ui/button-group/button-group-text.astro",
           "upstreamSha256": "76cf584621b0c9b3522fd8fcb4a87eb11e3ac4939dc4e5febad9c7858c3e785c",
-          "adoptedSha256": "8f8fa90e648709564300eee4a3e23965eec105383862b0eeb7b3b494706055d1"
+          "adoptedSha256": "bf91c170c91984b8240dd6f4040e6813691ba4ef4d06e8439455ff4d6bcedba6"
         },
         {
           "path": "src/components/dmf-ui/button-group/button-group-variants.ts",

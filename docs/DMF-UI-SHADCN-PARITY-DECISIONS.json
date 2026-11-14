@@ -13,11 +13,53 @@
    "stateHooks:data-active": "DMF UI styles the active trigger with data-[state=active]; the data-active custom variant (upstream/shadcn.css) matches it too, so Nova's classes apply as they are."
   },
   "field": {
-   "stateHooks:data-checked": "Field styles a checked choice with has-[[data-checked],:checked], which covers native inputs as well as data-checked."
+   "stateHooks:data-checked": "Field styles a checked choice with has-[[data-checked],:checked], which covers native inputs as well as data-checked.",
+   "props.Field.as": "Astro polymorphism: DMF UI renders another element through `as`, where Base UI uses `render`.",
+   "props.FieldContent.as": "Astro polymorphism: DMF UI renders another element through `as`, where Base UI uses `render`.",
+   "props.FieldDescription.as": "Astro polymorphism: DMF UI renders another element through `as`, where Base UI uses `render`.",
+   "props.FieldSet.as": "Astro polymorphism: DMF UI renders another element through `as`, where Base UI uses `render`.",
+   "props.FieldTitle.as": "Astro polymorphism: DMF UI renders another element through `as`, where Base UI uses `render`.",
+   "props.FieldError.message": "A single error string as a prop, alongside children; shadcn takes `errors` objects from a form library."
   },
   "checkbox": {
    "stateHooks:data-checked": "DMF UI's Checkbox is a native input, styled through :checked.",
-   "stateHooks:aria-checked": "A native checkbox exposes its checked state itself, so it carries no aria-checked."
+   "stateHooks:aria-checked": "A native checkbox exposes its checked state itself, so it carries no aria-checked.",
+   "slots:checkbox-indicator": "DMF UI's Checkbox is a native input that draws its mark with ::before, so there is no indicator element.",
+   "props.Checkbox.indeterminate": "Server-renders the mixed state; a small script sets the native input's indeterminate property. Base UI accepts the same prop through its spread.",
+   "dataAttributes:data-indeterminate": "Carries the indeterminate prop to the script that sets the native property."
+  },
+  "button-group": {
+   "slots:button-group-text": "DMF UI marks ButtonGroupText with a data-slot so parents can style it; shadcn's renders through useRender without one.",
+   "props.ButtonGroup.as": "Astro polymorphism: DMF UI renders another element through `as`, where Base UI uses `render`.",
+   "props.ButtonGroupText.as": "Astro polymorphism: DMF UI renders another element through `as`, where Base UI uses `render`.",
+   "props.ButtonGroupSeparator.decorative": "Chooses between role=separator and a presentational divider, as DMF UI's Separator does; Base UI's Separator always exposes role=separator."
+  },
+  "input": {
+   "props.Input.type": "DMF UI passes `type` straight through as a native attribute; shadcn names it only to forward it to Base UI."
+  },
+  "input-group": {
+   "props.InputGroup.label": "Names the group in one prop (aria-label on role=group); shadcn leaves naming to the consumer."
+  },
+  "switch": {
+   "props.Switch.defaultChecked": "Base UI's Switch accepts this through its props spread; DMF UI names it because its runtime reads it.",
+   "props.Switch.disabled": "Base UI's Switch accepts this through its props spread; DMF UI names it because its runtime reads it.",
+   "props.Switch.name": "Base UI's Switch accepts this through its props spread; DMF UI names it because its runtime reads it.",
+   "props.Switch.readOnly": "Base UI's Switch accepts this through its props spread; DMF UI names it because its runtime reads it.",
+   "props.Switch.required": "Base UI's Switch accepts this through its props spread; DMF UI names it because its runtime reads it.",
+   "props.Switch.uncheckedValue": "Base UI's Switch accepts this through its props spread; DMF UI names it because its runtime reads it.",
+   "props.Switch.value": "Base UI's Switch accepts this through its props spread; DMF UI names it because its runtime reads it.",
+   "dataAttributes:data-checked": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root.",
+   "dataAttributes:data-default-checked": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root.",
+   "dataAttributes:data-disabled": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root.",
+   "dataAttributes:data-dmf-switch-ready": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root.",
+   "dataAttributes:data-name": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root.",
+   "dataAttributes:data-read-only": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root.",
+   "dataAttributes:data-readonly": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root.",
+   "dataAttributes:data-required": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root.",
+   "dataAttributes:data-unchecked": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root.",
+   "dataAttributes:data-unchecked-value": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root.",
+   "dataAttributes:data-value": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root.",
+   "stateHooks:data-readonly": "Styles the read-only state the runtime sets (cursor-default); Base UI exposes it as data-readonly too but Nova doesn't style it."
   }
  }
 }

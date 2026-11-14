@@ -3510,6 +3510,7 @@
             "default"
           ],
           "dataSlots": [
+            "banner-container",
             "banner-close"
           ],
           "properties": [
@@ -4726,7 +4727,7 @@
         },
         {
           "path": "src/components/dmf-ui/button-group/button-group-text.astro",
-          "sha256": "8f8fa90e648709564300eee4a3e23965eec105383862b0eeb7b3b494706055d1"
+          "sha256": "bf91c170c91984b8240dd6f4040e6813691ba4ef4d06e8439455ff4d6bcedba6"
         },
         {
           "path": "src/components/dmf-ui/button-group/button-group-variants.ts",
@@ -5219,6 +5220,7 @@
             "default"
           ],
           "dataSlots": [
+            "carousel-container",
             "carousel-content"
           ],
           "properties": [],
@@ -5232,7 +5234,9 @@
           "slots": [
             "default"
           ],
-          "dataSlots": [],
+          "dataSlots": [
+            "carousel-item"
+          ],
           "properties": [],
           "native": [
             "HTMLAttributes<\"div\">"
@@ -5244,7 +5248,9 @@
           "slots": [
             "default"
           ],
-          "dataSlots": [],
+          "dataSlots": [
+            "carousel-next"
+          ],
           "properties": [],
           "native": [
             "HTMLAttributes<\"button\">"
@@ -5256,7 +5262,9 @@
           "slots": [
             "default"
           ],
-          "dataSlots": [],
+          "dataSlots": [
+            "carousel-previous"
+          ],
           "properties": [],
           "native": [
             "HTMLAttributes<\"button\">"
@@ -5268,7 +5276,9 @@
           "slots": [
             "default"
           ],
-          "dataSlots": [],
+          "dataSlots": [
+            "carousel"
+          ],
           "properties": [
             {
               "name": "opts",
@@ -11405,7 +11415,9 @@
           "slots": [
             "default"
           ],
-          "dataSlots": [],
+          "dataSlots": [
+            "field-group"
+          ],
           "properties": [],
           "native": [
             "HTMLAttributes<\"div\">"
@@ -11732,7 +11744,7 @@
       "sources": [
         {
           "path": "src/components/dmf-ui/field/field-content.astro",
-          "sha256": "9eb6349adee2e6bb1bf4bb32572f0ed744d0f1a67440e9b73bbb4d1270ca8459"
+          "sha256": "737a3c27ec7cc63e829711c9fa0d064744897955cd8a62932ca6584493a05800"
         },
         {
           "path": "src/components/dmf-ui/field/field-description.astro",
@@ -11744,11 +11756,11 @@
         },
         {
           "path": "src/components/dmf-ui/field/field-group.astro",
-          "sha256": "796eab05c829992807c7c77b15ab7e62a0b0bc5b2b6e754b443ec7d1e912be05"
+          "sha256": "96832377f97dddda618f5d7a3eafb93bbfd178306bdc16fac133b1cfbd83758e"
         },
         {
           "path": "src/components/dmf-ui/field/field-label.astro",
-          "sha256": "2cdb2f04cb8ec9a452e7b6905f507ece495164a10d5e1f52c5870709e2cd694c"
+          "sha256": "390eadc3fc0d924baeedb957902716a66106529197ae2db510f3a83758fe18f3"
         },
         {
           "path": "src/components/dmf-ui/field/field-legend.astro",
@@ -11760,15 +11772,15 @@
         },
         {
           "path": "src/components/dmf-ui/field/field-set.astro",
-          "sha256": "da6439a0836f9eb5020bb650c11d0c72637023adf99cf4edbe277b8966eea32f"
+          "sha256": "ae4b86dc7b236aa837e07a2178685b9e2d5e5c5ad75542ac4af6fe1f4a84423f"
         },
         {
           "path": "src/components/dmf-ui/field/field-title.astro",
-          "sha256": "88212567da3398ce3dd092a05436b5568231b124772e850a3a008e600549a849"
+          "sha256": "83fc41795d97c1324f454b393d2944ba0d38a7e914b5de64002899d8a6168297"
         },
         {
           "path": "src/components/dmf-ui/field/field.astro",
-          "sha256": "a9736742ccb5af9f1bcea9f6de124f39cd9c14e43df1e7e1dda5e8779efce0fd"
+          "sha256": "bad8438bb58fb22b9916d98a17376d2033f36bd30622a84066699895148a60a2"
         },
         {
           "path": "src/components/dmf-ui/field/index.ts",
@@ -12431,7 +12443,9 @@
           "slots": [
             "default"
           ],
-          "dataSlots": [],
+          "dataSlots": [
+            "header"
+          ],
           "properties": [],
           "native": [
             "HTMLAttributes<\"header\">"
@@ -13145,7 +13159,9 @@
         {
           "file": "src/components/dmf-ui/icon/icon.astro",
           "slots": [],
-          "dataSlots": [],
+          "dataSlots": [
+            "icon"
+          ],
           "properties": [
             {
               "name": "href",
@@ -13692,7 +13708,9 @@
         {
           "file": "src/components/dmf-ui/input/input.astro",
           "slots": [],
-          "dataSlots": [],
+          "dataSlots": [
+            "input"
+          ],
           "properties": [],
           "native": [
             "HTMLAttributes<\"input\">"
@@ -13956,19 +13974,29 @@
         ],
         [
           "parts",
-          "Addon, Input",
+          "Addon, Button, Text, Input, Textarea",
           "Authored composition"
         ],
         [
-          "Input props",
-          "Native input attributes",
-          "Input defaults"
+          "align (InputGroupAddon)",
+          "inline-start | inline-end | block-start | block-end",
+          "None: the addon stays where it is written"
+        ],
+        [
+          "size (InputGroupButton)",
+          "xs | sm | icon-xs | icon-sm",
+          "xs"
+        ],
+        [
+          "Input and Textarea props",
+          "Native attributes",
+          "Input and Textarea defaults"
         ]
       ],
       "accessibility": [
         "Keep a visible Label associated with the actual input. A group label names the group, not its control. Associate meaningful prefix/suffix text through aria-describedby; only the input value is submitted. Decorative icons may be aria-hidden.",
         "Addons can contain text, icons or real buttons. Do not hide interactive addons from assistive technology. Compose label-only, icon-with-label or named icon-only action buttons; shared Tooltip can supply supplemental help.",
-        "The wrapper reflows at narrow widths and retains visible focus. It does not intercept events, create validity, invent an action or submit a form. Use standard input types and native disabled/readonly/form attributes."
+        "`align` places an addon at either end or above or below the control, as in shadcn/ui; without it the addon keeps its written position. A click on an addon's text moves focus to the control; buttons and links inside it keep their own clicks. The group keeps visible focus and does not create validity, invent an action or submit a form. Use standard input types and native disabled/readonly/form attributes."
       ],
       "documentation": "src/data/form-composition-documentation.ts",
       "previousCategory": "Forms",
@@ -13985,23 +14013,83 @@
             "default"
           ],
           "dataSlots": [
-            "input-group-addon"
+            "input-group-addon",
+            "input-group",
+            "input-group-control"
           ],
-          "properties": [],
+          "properties": [
+            {
+              "name": "align",
+              "type": "'inline-start'|'inline-end'|'block-start'|'block-end'",
+              "optional": true
+            }
+          ],
+          "native": [],
+          "declaration": "interface Props extends HTMLAttributes<'div'> {align?:'inline-start'|'inline-end'|'block-start'|'block-end';}"
+        },
+        {
+          "file": "src/components/dmf-ui/input-group/input-group-button.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [],
+          "properties": [
+            {
+              "name": "size",
+              "type": "'xs'|'sm'|'icon-xs'|'icon-sm'",
+              "optional": true
+            },
+            {
+              "name": "variant",
+              "type": "ButtonVariantProps['variant']",
+              "optional": true
+            },
+            {
+              "name": "type",
+              "type": "'button'|'submit'|'reset'",
+              "optional": true
+            }
+          ],
           "native": [
-            "HTMLAttributes<'div'>"
+            "HTMLAttributes<'button'>"
           ],
-          "declaration": "type Props=HTMLAttributes<'div'>;"
+          "declaration": "interface Props extends Omit<HTMLAttributes<'button'>,'type'> {size?:'xs'|'sm'|'icon-xs'|'icon-sm';variant?:ButtonVariantProps['variant'];type?:'button'|'submit'|'reset';}"
         },
         {
           "file": "src/components/dmf-ui/input-group/input-group-input.astro",
           "slots": [],
-          "dataSlots": [],
+          "dataSlots": [
+            "input-group-control"
+          ],
           "properties": [],
           "native": [
             "HTMLAttributes<'input'>"
           ],
           "declaration": "type Props=HTMLAttributes<'input'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/input-group/input-group-text.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'span'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'span'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/input-group/input-group-textarea.astro",
+          "slots": [],
+          "dataSlots": [
+            "input-group-control"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'textarea'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'textarea'>;"
         },
         {
           "file": "src/components/dmf-ui/input-group/input-group.astro",
@@ -14022,8 +14110,25 @@
           "declaration": "interface Props extends HTMLAttributes<'div'> {label?:string;}"
         }
       ],
-      "variants": {},
-      "defaults": {},
+      "variants": {
+        "align": [
+          "inline-start",
+          "inline-end",
+          "block-start",
+          "block-end"
+        ],
+        "size": [
+          "xs",
+          "sm",
+          "icon-xs",
+          "icon-sm"
+        ]
+      },
+      "defaults": {
+        "input-group-button.astro:type": "'button'",
+        "input-group-button.astro:variant": "'ghost'",
+        "input-group-button.astro:size": "'xs'"
+      },
       "states": {
         "default": {
           "status": "authored-default",
@@ -14038,16 +14143,16 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         },
         "focus": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "focus-visible": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "disabled": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "unselected": {
           "status": "not-established",
@@ -14102,8 +14207,8 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         },
         "invalid": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "warning": {
           "status": "not-established",
@@ -14158,8 +14263,8 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         },
         "resizing": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "editing": {
           "status": "not-established",
@@ -14174,7 +14279,13 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         }
       },
-      "tokens": [],
+      "tokens": [
+        "destructive",
+        "input",
+        "muted-foreground",
+        "radius",
+        "ring"
+      ],
       "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
@@ -14198,19 +14309,35 @@
       "sources": [
         {
           "path": "src/components/dmf-ui/input-group/index.ts",
-          "sha256": "231c7b91a80b307006613faab1519a16504523b92372f273aafb8e0a80100ec1"
+          "sha256": "f8c4b9b96d5885a0c46ac23e2e306eb597bc430caac1ec14433ab4ddfe5e9917"
         },
         {
           "path": "src/components/dmf-ui/input-group/input-group-addon.astro",
-          "sha256": "ae6df21068e1c9f18f4f6221fc7acca499742237fcf1738180b849356060fef2"
+          "sha256": "11d78d0417a43dba8e1ec70b53d96c3cbbb5fa60b76470507c146df77e62807e"
+        },
+        {
+          "path": "src/components/dmf-ui/input-group/input-group-button.astro",
+          "sha256": "12f8c91c8f2b45cb5215ceaa751aad2dde6015007dc9320b2c4217f8e3210312"
         },
         {
           "path": "src/components/dmf-ui/input-group/input-group-input.astro",
-          "sha256": "1d173920cce3ae60140ce935811ddcaab0af7de2f7cd826e632f09bb6afc0f9c"
+          "sha256": "3ad73b29fcfc8e2cdcaa9e617a991ef152cd52dc98aebe3d959c164d83742699"
+        },
+        {
+          "path": "src/components/dmf-ui/input-group/input-group-text.astro",
+          "sha256": "a6d6e78b1483df41bc0aa03d2360c4d233997c185471fe2e550bb577647a89d8"
+        },
+        {
+          "path": "src/components/dmf-ui/input-group/input-group-textarea.astro",
+          "sha256": "43bdb59aa5c837946dcf725ad0760bd5c6dd0084849fa62bfa83eda29a13fc5f"
+        },
+        {
+          "path": "src/components/dmf-ui/input-group/input-group-variants.ts",
+          "sha256": "c2a91f331574f62940e98763adebe0936c4720ff184d3307f50f171ca51c2c44"
         },
         {
           "path": "src/components/dmf-ui/input-group/input-group.astro",
-          "sha256": "9929b7d5e28ea05a5df8237b84e493fff5e293d34e1cc3398d12f8f6b002d750"
+          "sha256": "409faf4ae7157a17f06d87700c81f0c0828dea439933f222d0d240ee61002191"
         }
       ],
       "gaps": [
@@ -14232,12 +14359,20 @@
         "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
       },
       "dependencies": [
+        "../button",
+        "../button/button-variants",
         "../input",
+        "../textarea",
         "../utils",
         "./input-group-addon.astro",
+        "./input-group-button.astro",
         "./input-group-input.astro",
+        "./input-group-text.astro",
+        "./input-group-textarea.astro",
+        "./input-group-variants",
         "./input-group.astro",
-        "astro/types"
+        "astro/types",
+        "class-variance-authority"
       ]
     },
     {
@@ -14999,7 +15134,9 @@
           "slots": [
             "default"
           ],
-          "dataSlots": [],
+          "dataSlots": [
+            "label"
+          ],
           "properties": [],
           "native": [
             "HTMLAttributes<\"label\">"
@@ -16002,7 +16139,9 @@
           "slots": [
             "default"
           ],
-          "dataSlots": [],
+          "dataSlots": [
+            "logo-text"
+          ],
           "properties": [],
           "native": [
             "HTMLAttributes<\"span\">"
@@ -16014,7 +16153,9 @@
           "slots": [
             "default"
           ],
-          "dataSlots": [],
+          "dataSlots": [
+            "logo"
+          ],
           "properties": [],
           "native": [
             "HTMLAttributes<\"div\">",
@@ -16277,7 +16418,9 @@
           "slots": [
             "default"
           ],
-          "dataSlots": [],
+          "dataSlots": [
+            "marquee-content"
+          ],
           "properties": [
             {
               "name": "reverse",
@@ -16295,7 +16438,9 @@
           "slots": [
             "default"
           ],
-          "dataSlots": [],
+          "dataSlots": [
+            "marquee-item"
+          ],
           "properties": [],
           "native": [
             "HTMLAttributes<\"div\">"
@@ -16305,7 +16450,9 @@
         {
           "file": "src/components/dmf-ui/marquee/marquee-toggle.astro",
           "slots": [],
-          "dataSlots": [],
+          "dataSlots": [
+            "marquee-toggle"
+          ],
           "properties": [
             {
               "name": "playLabel",
@@ -16328,7 +16475,9 @@
           "slots": [
             "default"
           ],
-          "dataSlots": [],
+          "dataSlots": [
+            "marquee"
+          ],
           "properties": [],
           "native": [
             "HTMLAttributes<\"div\">"
@@ -18716,7 +18865,9 @@
           "slots": [
             "default"
           ],
-          "dataSlots": [],
+          "dataSlots": [
+            "price-unit"
+          ],
           "properties": [],
           "native": [
             "HTMLAttributes<\"span\">"
@@ -18726,7 +18877,9 @@
         {
           "file": "src/components/dmf-ui/price/price-value.astro",
           "slots": [],
-          "dataSlots": [],
+          "dataSlots": [
+            "price-value"
+          ],
           "properties": [
             {
               "name": "price",
@@ -18779,7 +18932,9 @@
           "slots": [
             "default"
           ],
-          "dataSlots": [],
+          "dataSlots": [
+            "price"
+          ],
           "properties": [],
           "native": [
             "HTMLAttributes<\"div\">"
@@ -21007,7 +21162,9 @@
           "slots": [
             "default"
           ],
-          "dataSlots": [],
+          "dataSlots": [
+            "section-container"
+          ],
           "properties": [],
           "native": [
             "HTMLAttributes<\"div\">"
@@ -21053,7 +21210,9 @@
           "slots": [
             "default"
           ],
-          "dataSlots": [],
+          "dataSlots": [
+            "section"
+          ],
           "properties": [],
           "native": [
             "HTMLAttributes<\"section\">"
@@ -22250,7 +22409,9 @@
         {
           "file": "src/components/dmf-ui/separator/separator.astro",
           "slots": [],
-          "dataSlots": [],
+          "dataSlots": [
+            "separator"
+          ],
           "properties": [
             {
               "name": "orientation",
@@ -25797,7 +25958,9 @@
         {
           "file": "src/components/dmf-ui/textarea/textarea.astro",
           "slots": [],
-          "dataSlots": [],
+          "dataSlots": [
+            "textarea"
+          ],
           "properties": [],
           "native": [
             "HTMLAttributes<\"textarea\">"
@@ -25992,7 +26155,7 @@
         },
         {
           "path": "src/components/dmf-ui/textarea/textarea.astro",
-          "sha256": "88a8a17c24b46438826fb9650a99ee29ee7443285051b4a1c5ccf516bed599fb"
+          "sha256": "459cc8032c0544ffcded5cf06a3d6adce661e4630d2936dd98cc118aa901f926"
         }
       ],
       "gaps": [
@@ -28989,7 +29152,9 @@
         {
           "file": "src/components/dmf-ui/video/video.astro",
           "slots": [],
-          "dataSlots": [],
+          "dataSlots": [
+            "video"
+          ],
           "properties": [
             {
               "name": "src",

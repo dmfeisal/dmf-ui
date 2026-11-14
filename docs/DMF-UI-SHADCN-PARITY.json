@@ -33,11 +33,11 @@
  ],
  "totals": {
   "families": 50,
-  "match": 643,
-  "intentional": 6,
-  "gap": 341,
+  "match": 679,
+  "intentional": 40,
+  "gap": 310,
   "differs": 2,
-  "extra": 619
+  "extra": 574
  },
  "families": {
   "accordion": {
@@ -2917,10 +2917,10 @@
    },
    "counts": {
     "match": 12,
-    "intentional": 0,
+    "intentional": 4,
     "gap": 0,
     "differs": 0,
-    "extra": 4
+    "extra": 0
    },
    "parts": [
     {
@@ -2965,7 +2965,8 @@
      "value": "button-group-text",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "DMF UI marks ButtonGroupText with a data-slot so parents can style it; shadcn's renders through useRender without one."
     }
    ],
    "variants": {
@@ -2995,7 +2996,8 @@
      "dmf": {
       "default": "div"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Astro polymorphism: DMF UI renders another element through `as`, where Base UI uses `render`."
     },
     {
      "id": "props.ButtonGroup.orientation",
@@ -3017,7 +3019,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Chooses between role=separator and a presentational divider, as DMF UI's Separator does; Base UI's Separator always exposes role=separator."
     },
     {
      "id": "props.ButtonGroupSeparator.orientation",
@@ -3039,7 +3042,8 @@
      "dmf": {
       "default": "div"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Astro polymorphism: DMF UI renders another element through `as`, where Base UI uses `render`."
     }
    ],
    "dataAttributes": [
@@ -3104,38 +3108,12 @@
    "measured": {
     "cases": 5,
     "matching": {
-     "light": 4,
-     "dark": 4
+     "light": 5,
+     "dark": 5
     },
     "differences": {
-     "light": {
-      "button-group/compound#button-group-text": [
-       {
-        "property": "borderTopLeftRadius",
-        "shadcn": "10px",
-        "dmf": "8px"
-       },
-       {
-        "property": "borderTopColor",
-        "shadcn": "229,229,229,255",
-        "dmf": "10,10,10,255"
-       }
-      ]
-     },
-     "dark": {
-      "button-group/compound#button-group-text": [
-       {
-        "property": "borderTopLeftRadius",
-        "shadcn": "10px",
-        "dmf": "8px"
-       },
-       {
-        "property": "borderTopColor",
-        "shadcn": "245,255,255,26",
-        "dmf": "250,250,250,255"
-       }
-      ]
-     }
+     "light": {},
+     "dark": {}
     },
     "accepted": {
      "light": 0,
@@ -3496,11 +3474,11 @@
     "docs": "vendor/shadcn/docs/carousel.mdx"
    },
    "counts": {
-    "match": 11,
+    "match": 17,
     "intentional": 0,
-    "gap": 7,
+    "gap": 3,
     "differs": 1,
-    "extra": 20
+    "extra": 14
    },
    "parts": [
     {
@@ -3551,8 +3529,15 @@
      "id": "slots:carousel",
      "value": "carousel",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
+    },
+    {
+     "id": "slots:carousel-container",
+     "value": "carousel-container",
+     "shadcn": false,
+     "dmf": true,
+     "status": "extra"
     },
     {
      "id": "slots:carousel-content",
@@ -3565,22 +3550,22 @@
      "id": "slots:carousel-item",
      "value": "carousel-item",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:carousel-next",
      "value": "carousel-next",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:carousel-previous",
      "value": "carousel-previous",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "variants": {
@@ -3588,16 +3573,16 @@
      {
       "id": "variants.orientation:horizontal",
       "value": "horizontal",
-      "shadcn": false,
+      "shadcn": true,
       "dmf": true,
-      "status": "extra"
+      "status": "match"
      },
      {
       "id": "variants.orientation:vertical",
       "value": "vertical",
-      "shadcn": false,
+      "shadcn": true,
       "dmf": true,
-      "status": "extra"
+      "status": "match"
      }
     ]
    },
@@ -3606,16 +3591,6 @@
      "id": "props.Carousel.aria-roledescription",
      "component": "Carousel",
      "prop": "aria-roledescription",
-     "shadcn": null,
-     "dmf": {
-      "default": "carousel"
-     },
-     "status": "extra"
-    },
-    {
-     "id": "props.Carousel.data-slot",
-     "component": "Carousel",
-     "prop": "data-slot",
      "shadcn": null,
      "dmf": {
       "default": "carousel"
@@ -3677,16 +3652,6 @@
      "status": "gap"
     },
     {
-     "id": "props.CarouselContent.data-slot",
-     "component": "CarouselContent",
-     "prop": "data-slot",
-     "shadcn": null,
-     "dmf": {
-      "default": "carousel-container"
-     },
-     "status": "extra"
-    },
-    {
      "id": "props.CarouselItem.aria-roledescription",
      "component": "CarouselItem",
      "prop": "aria-roledescription",
@@ -3697,32 +3662,12 @@
      "status": "extra"
     },
     {
-     "id": "props.CarouselItem.data-slot",
-     "component": "CarouselItem",
-     "prop": "data-slot",
-     "shadcn": null,
-     "dmf": {
-      "default": "carousel-item"
-     },
-     "status": "extra"
-    },
-    {
      "id": "props.CarouselItem.role",
      "component": "CarouselItem",
      "prop": "role",
      "shadcn": null,
      "dmf": {
       "default": "group"
-     },
-     "status": "extra"
-    },
-    {
-     "id": "props.CarouselNext.data-slot",
-     "component": "CarouselNext",
-     "prop": "data-slot",
-     "shadcn": null,
-     "dmf": {
-      "default": "carousel-next"
      },
      "status": "extra"
     },
@@ -3749,16 +3694,6 @@
       "default": "outline"
      },
      "status": "match"
-    },
-    {
-     "id": "props.CarouselPrevious.data-slot",
-     "component": "CarouselPrevious",
-     "prop": "data-slot",
-     "shadcn": null,
-     "dmf": {
-      "default": "carousel-previous"
-     },
-     "status": "extra"
     },
     {
      "id": "props.CarouselPrevious.size",
@@ -3871,10 +3806,10 @@
    },
    "counts": {
     "match": 3,
-    "intentional": 2,
-    "gap": 1,
+    "intentional": 5,
+    "gap": 0,
     "differs": 0,
-    "extra": 2
+    "extra": 0
    },
    "parts": [
     {
@@ -3898,7 +3833,8 @@
      "value": "checkbox-indicator",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's Checkbox is a native input that draws its mark with ::before, so there is no indicator element."
     }
    ],
    "variants": {},
@@ -3911,7 +3847,8 @@
      "dmf": {
       "default": "false"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Server-renders the mixed state; a small script sets the native input's indeterminate property. Base UI accepts the same prop through its spread."
     }
    ],
    "dataAttributes": [
@@ -3920,7 +3857,8 @@
      "value": "data-indeterminate",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Carries the indeterminate prop to the script that sets the native property."
     }
    ],
    "stateHooks": [
@@ -6055,11 +5993,6 @@
         "property": "backgroundColor",
         "shadcn": "245,245,245,128",
         "dmf": "transparent"
-       },
-       {
-        "property": "borderTopColor",
-        "shadcn": "229,229,229,255",
-        "dmf": "10,10,10,255"
        }
       ]
      },
@@ -6130,11 +6063,6 @@
         "property": "backgroundColor",
         "shadcn": "38,38,38,128",
         "dmf": "transparent"
-       },
-       {
-        "property": "borderTopColor",
-        "shadcn": "245,255,255,26",
-        "dmf": "250,250,250,255"
        }
       ]
      }
@@ -8508,11 +8436,11 @@
     "docs": "vendor/shadcn/docs/field.mdx"
    },
    "counts": {
-    "match": 34,
-    "intentional": 1,
-    "gap": 1,
+    "match": 35,
+    "intentional": 7,
+    "gap": 0,
     "differs": 0,
-    "extra": 7
+    "extra": 0
    },
    "parts": [
     {
@@ -8619,8 +8547,8 @@
      "id": "slots:field-group",
      "value": "field-group",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:field-label",
@@ -8708,7 +8636,8 @@
      "dmf": {
       "default": "div"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Astro polymorphism: DMF UI renders another element through `as`, where Base UI uses `render`."
     },
     {
      "id": "props.Field.orientation",
@@ -8730,7 +8659,8 @@
      "dmf": {
       "default": "div"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Astro polymorphism: DMF UI renders another element through `as`, where Base UI uses `render`."
     },
     {
      "id": "props.FieldDescription.as",
@@ -8740,7 +8670,8 @@
      "dmf": {
       "default": "p"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Astro polymorphism: DMF UI renders another element through `as`, where Base UI uses `render`."
     },
     {
      "id": "props.FieldError.errors",
@@ -8762,17 +8693,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
-    },
-    {
-     "id": "props.FieldGroup.data-slot",
-     "component": "FieldGroup",
-     "prop": "data-slot",
-     "shadcn": null,
-     "dmf": {
-      "default": "field-group"
-     },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "A single error string as a prop, alongside children; shadcn takes `errors` objects from a form library."
     },
     {
      "id": "props.FieldLegend.variant",
@@ -8794,7 +8716,8 @@
      "dmf": {
       "default": "fieldset"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Astro polymorphism: DMF UI renders another element through `as`, where Base UI uses `render`."
     },
     {
      "id": "props.FieldTitle.as",
@@ -8804,7 +8727,8 @@
      "dmf": {
       "default": "div"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Astro polymorphism: DMF UI renders another element through `as`, where Base UI uses `render`."
     }
    ],
    "dataAttributes": [
@@ -8916,249 +8840,27 @@
     }
    },
    "measured": {
-    "cases": 13,
+    "cases": 14,
     "matching": {
-     "light": 4,
-     "dark": 4
+     "light": 13,
+     "dark": 13
     },
     "differences": {
      "light": {
-      "field/Field?orientation=vertical": [
-       {
-        "property": "columnGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       }
-      ],
-      "field/Field?orientation=horizontal": [
-       {
-        "property": "columnGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       }
-      ],
-      "field/Field?orientation=responsive": [
-       {
-        "property": "columnGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       }
-      ],
       "field/compound#field-set": [
        {
         "property": "height",
         "shadcn": 164.5,
-        "dmf": 200.5
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "16px",
-        "dmf": "24px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "16px",
-        "dmf": "24px"
-       }
-      ],
-      "field/compound#field": [
-       {
-        "property": "height",
-        "shadcn": 43,
-        "dmf": 52.5
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       }
-      ],
-      "field/compound#field-label": [
-       {
-        "property": "height",
-        "shadcn": 14,
-        "dmf": 19.5
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "14px",
-        "dmf": "19.25px"
-       }
-      ],
-      "field/compound#field:2": [
-       {
-        "property": "height",
-        "shadcn": 47.5,
-        "dmf": 52
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       }
-      ],
-      "field/compound#field-content": [
-       {
-        "property": "columnGap",
-        "shadcn": "2px",
-        "dmf": "4px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "2px",
-        "dmf": "4px"
-       }
-      ],
-      "field/compound#field-label:2": [
-       {
-        "property": "lineHeight",
-        "shadcn": "19.25px",
-        "dmf": "20px"
+        "dmf": 170.5
        }
       ]
      },
      "dark": {
-      "field/Field?orientation=vertical": [
-       {
-        "property": "columnGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       }
-      ],
-      "field/Field?orientation=horizontal": [
-       {
-        "property": "columnGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       }
-      ],
-      "field/Field?orientation=responsive": [
-       {
-        "property": "columnGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       }
-      ],
       "field/compound#field-set": [
        {
         "property": "height",
         "shadcn": 164.5,
-        "dmf": 200.5
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "16px",
-        "dmf": "24px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "16px",
-        "dmf": "24px"
-       }
-      ],
-      "field/compound#field": [
-       {
-        "property": "height",
-        "shadcn": 43,
-        "dmf": 52.5
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       }
-      ],
-      "field/compound#field-label": [
-       {
-        "property": "height",
-        "shadcn": 14,
-        "dmf": 19.5
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "14px",
-        "dmf": "19.25px"
-       }
-      ],
-      "field/compound#field:2": [
-       {
-        "property": "height",
-        "shadcn": 47.5,
-        "dmf": 52
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       }
-      ],
-      "field/compound#field-content": [
-       {
-        "property": "columnGap",
-        "shadcn": "2px",
-        "dmf": "4px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "2px",
-        "dmf": "4px"
-       }
-      ],
-      "field/compound#field-label:2": [
-       {
-        "property": "lineHeight",
-        "shadcn": "19.25px",
-        "dmf": "20px"
+        "dmf": 170.5
        }
       ]
      }
@@ -9781,11 +9483,11 @@
     "docs": "vendor/shadcn/docs/input.mdx"
    },
    "counts": {
-    "match": 2,
-    "intentional": 0,
-    "gap": 2,
+    "match": 3,
+    "intentional": 1,
+    "gap": 0,
     "differs": 0,
-    "extra": 1
+    "extra": 0
    },
    "parts": [
     {
@@ -9801,22 +9503,12 @@
      "id": "slots:input",
      "value": "input",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "variants": {},
    "props": [
-    {
-     "id": "props.Input.data-slot",
-     "component": "Input",
-     "prop": "data-slot",
-     "shadcn": null,
-     "dmf": {
-      "default": "input"
-     },
-     "status": "extra"
-    },
     {
      "id": "props.Input.type",
      "component": "Input",
@@ -9825,7 +9517,8 @@
       "default": null
      },
      "dmf": null,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI passes `type` straight through as a native attribute; shadcn names it only to forward it to Base UI."
     }
    ],
    "dataAttributes": [],
@@ -9868,11 +9561,11 @@
     "docs": "vendor/shadcn/docs/input-group.mdx"
    },
    "counts": {
-    "match": 5,
-    "intentional": 0,
-    "gap": 20,
+    "match": 28,
+    "intentional": 1,
+    "gap": 0,
     "differs": 0,
-    "extra": 1
+    "extra": 0
    },
    "parts": [
     {
@@ -9893,8 +9586,8 @@
      "id": "parts:InputGroupButton",
      "value": "InputGroupButton",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:InputGroupInput",
@@ -9907,15 +9600,15 @@
      "id": "parts:InputGroupText",
      "value": "InputGroupText",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:InputGroupTextarea",
      "value": "InputGroupTextarea",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "slots": [
@@ -9937,8 +9630,8 @@
      "id": "slots:input-group-control",
      "value": "input-group-control",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "variants": {
@@ -9947,29 +9640,29 @@
       "id": "variants.align:block-end",
       "value": "block-end",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.align:block-start",
       "value": "block-start",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.align:inline-end",
       "value": "inline-end",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.align:inline-start",
       "value": "inline-start",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      }
     ],
     "size": [
@@ -9977,29 +9670,29 @@
       "id": "variants.size:icon-sm",
       "value": "icon-sm",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.size:icon-xs",
       "value": "icon-xs",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.size:sm",
       "value": "sm",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.size:xs",
       "value": "xs",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      }
     ],
     "type": [
@@ -10007,22 +9700,22 @@
       "id": "variants.type:button",
       "value": "button",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.type:reset",
       "value": "reset",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.type:submit",
       "value": "submit",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      }
     ]
    },
@@ -10035,7 +9728,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Names the group in one prop (aria-label on role=group); shadcn leaves naming to the consumer."
     },
     {
      "id": "props.InputGroupAddon.align",
@@ -10044,8 +9738,46 @@
      "shadcn": {
       "default": "inline-start"
      },
-     "dmf": null,
-     "status": "gap"
+     "dmf": {
+      "default": null
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.InputGroupButton.size",
+     "component": "InputGroupButton",
+     "prop": "size",
+     "shadcn": {
+      "default": "xs"
+     },
+     "dmf": {
+      "default": "xs"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.InputGroupButton.type",
+     "component": "InputGroupButton",
+     "prop": "type",
+     "shadcn": {
+      "default": "button"
+     },
+     "dmf": {
+      "default": "button"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.InputGroupButton.variant",
+     "component": "InputGroupButton",
+     "prop": "variant",
+     "shadcn": {
+      "default": "ghost"
+     },
+     "dmf": {
+      "default": "ghost"
+     },
+     "status": "match"
     }
    ],
    "dataAttributes": [
@@ -10053,15 +9785,15 @@
      "id": "dataAttributes:data-align",
      "value": "data-align",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "dataAttributes:data-size",
      "value": "data-size",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "stateHooks": [
@@ -10069,15 +9801,15 @@
      "id": "stateHooks:aria-invalid",
      "value": "aria-invalid",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-disabled",
      "value": "data-disabled",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "nova": {
@@ -10163,268 +9895,14 @@
     }
    },
    "measured": {
-    "cases": 3,
+    "cases": 6,
     "matching": {
-     "light": 0,
-     "dark": 0
+     "light": 6,
+     "dark": 6
     },
     "differences": {
-     "light": {
-      "input-group/InputGroup": [
-       {
-        "property": "height",
-        "shadcn": 32,
-        "dmf": 10
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "4px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "4px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "normal",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "normal",
-        "dmf": "8px"
-       },
-       {
-        "property": "backgroundColor",
-        "shadcn": "transparent",
-        "dmf": "255,255,255,255"
-       }
-      ],
-      "input-group/compound#input-group": [
-       {
-        "property": "height",
-        "shadcn": 32,
-        "dmf": 42
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "4px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "4px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "normal",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "normal",
-        "dmf": "8px"
-       },
-       {
-        "property": "backgroundColor",
-        "shadcn": "transparent",
-        "dmf": "255,255,255,255"
-       }
-      ],
-      "input-group/compound#input-group-addon": [
-       {
-        "property": "height",
-        "shadcn": 32,
-        "dmf": 24
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "6px",
-        "dmf": "0px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "6px",
-        "dmf": "0px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "8px",
-        "dmf": "0px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "14px",
-        "dmf": "16px"
-       },
-       {
-        "property": "fontWeight",
-        "shadcn": "500",
-        "dmf": "400"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "20px",
-        "dmf": "24px"
-       },
-       {
-        "property": "color",
-        "shadcn": "115,115,115,255",
-        "dmf": "10,10,10,255"
-       }
-      ]
-     },
-     "dark": {
-      "input-group/InputGroup": [
-       {
-        "property": "height",
-        "shadcn": 32,
-        "dmf": 10
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "4px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "4px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "normal",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "normal",
-        "dmf": "8px"
-       },
-       {
-        "property": "backgroundColor",
-        "shadcn": "255,255,255,11",
-        "dmf": "10,10,10,255"
-       }
-      ],
-      "input-group/compound#input-group": [
-       {
-        "property": "height",
-        "shadcn": 32,
-        "dmf": 42
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "4px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "4px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "normal",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "normal",
-        "dmf": "8px"
-       },
-       {
-        "property": "backgroundColor",
-        "shadcn": "255,255,255,11",
-        "dmf": "10,10,10,255"
-       }
-      ],
-      "input-group/compound#input-group-addon": [
-       {
-        "property": "height",
-        "shadcn": 32,
-        "dmf": 24
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "6px",
-        "dmf": "0px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "6px",
-        "dmf": "0px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "8px",
-        "dmf": "0px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "14px",
-        "dmf": "16px"
-       },
-       {
-        "property": "fontWeight",
-        "shadcn": "500",
-        "dmf": "400"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "20px",
-        "dmf": "24px"
-       },
-       {
-        "property": "color",
-        "shadcn": "161,161,161,255",
-        "dmf": "250,250,250,255"
-       }
-      ]
-     }
+     "light": {},
+     "dark": {}
     },
     "accepted": {
      "light": 0,
@@ -11482,11 +10960,11 @@
     "docs": "vendor/shadcn/docs/label.mdx"
    },
    "counts": {
-    "match": 2,
+    "match": 3,
     "intentional": 0,
-    "gap": 1,
+    "gap": 0,
     "differs": 0,
-    "extra": 1
+    "extra": 0
    },
    "parts": [
     {
@@ -11502,23 +10980,12 @@
      "id": "slots:label",
      "value": "label",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "variants": {},
-   "props": [
-    {
-     "id": "props.Label.data-slot",
-     "component": "Label",
-     "prop": "data-slot",
-     "shadcn": null,
-     "dmf": {
-      "default": "label"
-     },
-     "status": "extra"
-    }
-   ],
+   "props": [],
    "dataAttributes": [],
    "stateHooks": [
     {
@@ -11559,11 +11026,11 @@
     "docs": "vendor/shadcn/docs/native-select.mdx"
    },
    "counts": {
-    "match": 12,
+    "match": 14,
     "intentional": 0,
     "gap": 0,
     "differs": 0,
-    "extra": 2
+    "extra": 0
    },
    "parts": [
     {
@@ -11630,16 +11097,16 @@
      {
       "id": "variants.size:default",
       "value": "default",
-      "shadcn": false,
+      "shadcn": true,
       "dmf": true,
-      "status": "extra"
+      "status": "match"
      },
      {
       "id": "variants.size:sm",
       "value": "sm",
-      "shadcn": false,
+      "shadcn": true,
       "dmf": true,
-      "status": "extra"
+      "status": "match"
      }
     ]
    },
@@ -11693,38 +11160,12 @@
    "measured": {
     "cases": 1,
     "matching": {
-     "light": 0,
-     "dark": 0
+     "light": 1,
+     "dark": 1
     },
     "differences": {
-     "light": {
-      "native-select/NativeSelect": [
-       {
-        "property": "height",
-        "shadcn": 0,
-        "dmf": 32
-       },
-       {
-        "property": "width",
-        "shadcn": 0,
-        "dmf": 44
-       }
-      ]
-     },
-     "dark": {
-      "native-select/NativeSelect": [
-       {
-        "property": "height",
-        "shadcn": 0,
-        "dmf": 32
-       },
-       {
-        "property": "width",
-        "shadcn": 0,
-        "dmf": 44
-       }
-      ]
-     }
+     "light": {},
+     "dark": {}
     },
     "accepted": {
      "light": 0,
@@ -14558,11 +13999,11 @@
     "docs": "vendor/shadcn/docs/separator.mdx"
    },
    "counts": {
-    "match": 4,
+    "match": 5,
     "intentional": 0,
-    "gap": 1,
+    "gap": 0,
     "differs": 0,
-    "extra": 7
+    "extra": 6
    },
    "parts": [
     {
@@ -14578,8 +14019,8 @@
      "id": "slots:separator",
      "value": "separator",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "variants": {
@@ -14601,16 +14042,6 @@
     ]
    },
    "props": [
-    {
-     "id": "props.Separator.data-slot",
-     "component": "Separator",
-     "prop": "data-slot",
-     "shadcn": null,
-     "dmf": {
-      "default": "separator"
-     },
-     "status": "extra"
-    },
     {
      "id": "props.Separator.decorative",
      "component": "Separator",
@@ -16176,10 +15607,10 @@
    },
    "counts": {
     "match": 12,
-    "intentional": 0,
+    "intentional": 19,
     "gap": 0,
     "differs": 0,
-    "extra": 19
+    "extra": 0
    },
    "parts": [
     {
@@ -16233,7 +15664,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's Switch accepts this through its props spread; DMF UI names it because its runtime reads it."
     },
     {
      "id": "props.Switch.disabled",
@@ -16243,7 +15675,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's Switch accepts this through its props spread; DMF UI names it because its runtime reads it."
     },
     {
      "id": "props.Switch.name",
@@ -16253,7 +15686,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's Switch accepts this through its props spread; DMF UI names it because its runtime reads it."
     },
     {
      "id": "props.Switch.readOnly",
@@ -16263,7 +15697,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's Switch accepts this through its props spread; DMF UI names it because its runtime reads it."
     },
     {
      "id": "props.Switch.required",
@@ -16273,7 +15708,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's Switch accepts this through its props spread; DMF UI names it because its runtime reads it."
     },
     {
      "id": "props.Switch.size",
@@ -16295,7 +15731,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's Switch accepts this through its props spread; DMF UI names it because its runtime reads it."
     },
     {
      "id": "props.Switch.value",
@@ -16305,7 +15742,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's Switch accepts this through its props spread; DMF UI names it because its runtime reads it."
     }
    ],
    "dataAttributes": [
@@ -16314,56 +15752,64 @@
      "value": "data-checked",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root."
     },
     {
      "id": "dataAttributes:data-default-checked",
      "value": "data-default-checked",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root."
     },
     {
      "id": "dataAttributes:data-disabled",
      "value": "data-disabled",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root."
     },
     {
      "id": "dataAttributes:data-dmf-switch-ready",
      "value": "data-dmf-switch-ready",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root."
     },
     {
      "id": "dataAttributes:data-name",
      "value": "data-name",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root."
     },
     {
      "id": "dataAttributes:data-read-only",
      "value": "data-read-only",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root."
     },
     {
      "id": "dataAttributes:data-readonly",
      "value": "data-readonly",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root."
     },
     {
      "id": "dataAttributes:data-required",
      "value": "data-required",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root."
     },
     {
      "id": "dataAttributes:data-size",
@@ -16377,21 +15823,24 @@
      "value": "data-unchecked",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root."
     },
     {
      "id": "dataAttributes:data-unchecked-value",
      "value": "data-unchecked-value",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root."
     },
     {
      "id": "dataAttributes:data-value",
      "value": "data-value",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root."
     }
    ],
    "stateHooks": [
@@ -16421,7 +15870,8 @@
      "value": "data-readonly",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Styles the read-only state the runtime sets (cursor-default); Base UI exposes it as data-readonly too but Nova doesn't style it."
     },
     {
      "id": "stateHooks:data-size",
@@ -17010,11 +16460,6 @@
         "property": "backgroundColor",
         "shadcn": "245,245,245,128",
         "dmf": "245,245,245,255"
-       },
-       {
-        "property": "borderTopColor",
-        "shadcn": "229,229,229,255",
-        "dmf": "10,10,10,255"
        }
       ],
       "table/compound#table-row:3": [
@@ -17433,11 +16878,6 @@
         "property": "backgroundColor",
         "shadcn": "38,38,38,128",
         "dmf": "38,38,38,255"
-       },
-       {
-        "property": "borderTopColor",
-        "shadcn": "245,255,255,26",
-        "dmf": "250,250,250,255"
        }
       ],
       "table/compound#table-row:3": [
@@ -18050,11 +17490,11 @@
     "docs": "vendor/shadcn/docs/textarea.mdx"
    },
    "counts": {
-    "match": 2,
+    "match": 3,
     "intentional": 0,
-    "gap": 1,
+    "gap": 0,
     "differs": 0,
-    "extra": 1
+    "extra": 0
    },
    "parts": [
     {
@@ -18070,23 +17510,12 @@
      "id": "slots:textarea",
      "value": "textarea",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "variants": {},
-   "props": [
-    {
-     "id": "props.Textarea.data-slot",
-     "component": "Textarea",
-     "prop": "data-slot",
-     "shadcn": null,
-     "dmf": {
-      "default": "textarea"
-     },
-     "status": "extra"
-    }
-   ],
+   "props": [],
    "dataAttributes": [],
    "stateHooks": [
     {
@@ -18106,28 +17535,12 @@
    "measured": {
     "cases": 1,
     "matching": {
-     "light": 0,
-     "dark": 0
+     "light": 1,
+     "dark": 1
     },
     "differences": {
-     "light": {
-      "textarea/Textarea": [
-       {
-        "property": "borderTopLeftRadius",
-        "shadcn": "10px",
-        "dmf": "8px"
-       }
-      ]
-     },
-     "dark": {
-      "textarea/Textarea": [
-       {
-        "property": "borderTopLeftRadius",
-        "shadcn": "10px",
-        "dmf": "8px"
-       }
-      ]
-     }
+     "light": {},
+     "dark": {}
     },
     "accepted": {
      "light": 0,
@@ -20415,16 +19828,16 @@
   }
  },
  "measuredTotals": {
-  "cases": 189,
+  "cases": 193,
   "matching": {
-   "light": 82,
-   "dark": 82
+   "light": 100,
+   "dark": 100
   },
   "compoundParts": {
-   "parts": 94,
+   "parts": 99,
    "matching": {
-    "light": 30,
-    "dark": 30
+    "light": 43,
+    "dark": 43
    }
   },
   "accepted": {

@@ -7,33 +7,33 @@
  },
  "stylesheet": {
   "compiled": {
-   "bytes": 74794,
-   "gzip": 12509
+   "bytes": 74151,
+   "gzip": 12432
   },
   "componentRules": {
-   "bytes": 30384,
-   "gzip": 5777
+   "bytes": 29826,
+   "gzip": 5716
   },
   "note": "dmf-ui.css compiled without utilities: theme, tokens, presets and hand-written rules. componentRules is the part attributed to a family; the rest is shared."
  },
  "totals": {
   "families": 80,
-  "withScripts": 30,
+  "withScripts": 31,
   "js": {
-   "bytes": 342264,
-   "gzip": 124356
+   "bytes": 342567,
+   "gzip": 124565
   },
   "sharedFamilies": {
    "count": 50,
    "dmfCss": {
-    "bytes": 282145,
-    "gzip": 65125
+    "bytes": 291707,
+    "gzip": 66792
    },
    "shadcnCss": {
     "bytes": 335824,
     "gzip": 71327
    },
-   "smallerThanShadcn": 21
+   "smallerThanShadcn": 20
   },
   "axe": {
    "audited": 79,
@@ -490,16 +490,16 @@
    "shadcn": true,
    "css": {
     "utilities": {
-     "bytes": 5083,
-     "gzip": 1305
+     "bytes": 3479,
+     "gzip": 1068
     },
     "rules": {
      "bytes": 0,
      "gzip": 20
     },
     "total": {
-     "bytes": 5083,
-     "gzip": 1305
+     "bytes": 3479,
+     "gzip": 1068
     }
    },
    "shadcnCss": {
@@ -1183,16 +1183,16 @@
    "shadcn": true,
    "css": {
     "utilities": {
-     "bytes": 9681,
-     "gzip": 2056
+     "bytes": 9685,
+     "gzip": 2064
     },
     "rules": {
      "bytes": 0,
      "gzip": 20
     },
     "total": {
-     "bytes": 9681,
-     "gzip": 2056
+     "bytes": 9685,
+     "gzip": 2064
     }
    },
    "shadcnCss": {
@@ -1303,12 +1303,12 @@
      "gzip": 823
     },
     "rules": {
-     "bytes": 0,
-     "gzip": 20
+     "bytes": 107,
+     "gzip": 103
     },
     "total": {
-     "bytes": 2989,
-     "gzip": 823
+     "bytes": 3096,
+     "gzip": 873
     }
    },
    "shadcnCss": null,
@@ -1455,12 +1455,12 @@
      "gzip": 1321
     },
     "rules": {
-     "bytes": 0,
-     "gzip": 20
+     "bytes": 112,
+     "gzip": 98
     },
     "total": {
-     "bytes": 5912,
-     "gzip": 1321
+     "bytes": 6024,
+     "gzip": 1359
     }
    },
    "shadcnCss": {
@@ -1490,23 +1490,28 @@
    "shadcn": true,
    "css": {
     "utilities": {
+     "bytes": 11731,
+     "gzip": 2167
+    },
+    "rules": {
      "bytes": 0,
      "gzip": 20
     },
-    "rules": {
-     "bytes": 670,
-     "gzip": 303
-    },
     "total": {
-     "bytes": 670,
-     "gzip": 303
+     "bytes": 11731,
+     "gzip": 2167
     }
    },
    "shadcnCss": {
     "bytes": 11499,
     "gzip": 1782
    },
-   "js": null,
+   "js": {
+    "scripts": 1,
+    "consumerRuntime": false,
+    "bytes": 303,
+    "gzip": 209
+   },
    "axe": {
     "light": [],
     "dark": []
@@ -2862,16 +2867,16 @@
    "shadcn": true,
    "css": {
     "utilities": {
-     "bytes": 5414,
-     "gzip": 1241
+     "bytes": 5403,
+     "gzip": 1235
     },
     "rules": {
      "bytes": 0,
      "gzip": 20
     },
     "total": {
-     "bytes": 5414,
-     "gzip": 1241
+     "bytes": 5403,
+     "gzip": 1235
     }
    },
    "shadcnCss": {

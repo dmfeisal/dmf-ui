@@ -1,7 +1,19 @@
 ---
 import type {HTMLAttributes} from 'astro/types';
 import {cn} from '../utils';
-type Props=HTMLAttributes<'div'>;
-const {class:className,...props}=Astro.props;
+import {inputGroupAddonVariants} from './input-group-variants';
+interface Props extends HTMLAttributes<'div'> {align?:'inline-start'|'inline-end'|'block-start'|'block-end';}
+const {align,class:className,...props}=Astro.props;
+// Without `align` the addon keeps its DOM position; the first and last addons get Nova's inline padding.
+const position=align?undefined:"first:pl-2 last:pr-2";
 ---
-<div {...props} data-slot="input-group-addon" class={cn('dmf-input-group-addon',className)}><slot/></div>
+<div {...props} data-slot="input-group-addon" data-align={align??undefined} class={cn(inputGroupAddonVariants({align}),position,className)}><slot/></div>
+<script>
+  // As in shadcn, a click on an addon's text moves focus to the group's control; its own buttons keep their clicks.
+  document.addEventListener('click',event=>{
+    const target=event.target instanceof Element?event.target:null;
+    const addon=target?.closest<HTMLElement>('[data-slot="input-group-addon"]');
+    if(!addon||target?.closest('button,a,input,select,textarea,label,[tabindex]'))return;
+    addon.closest('[data-slot="input-group"]')?.querySelector<HTMLElement>('[data-slot="input-group-control"]')?.focus();
+  });
+</script>

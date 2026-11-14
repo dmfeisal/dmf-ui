@@ -4328,8 +4328,8 @@
      "key": "2",
      "parent": "0",
      "component": "FieldGroup",
-     "id": null,
-     "dmfSlot": null,
+     "id": "field/compound#field-group",
+     "dmfSlot": "field-group",
      "occurrence": 0,
      "inOpen": false,
      "text": "",
@@ -4567,6 +4567,7 @@
    "parts": [
     "field/compound#field-set",
     "field/compound#field-legend",
+    "field/compound#field-group",
     "field/compound#field",
     "field/compound#field-label",
     "field/compound#field-description",
@@ -4753,10 +4754,29 @@
      },
      {
       "component": "InputGroupInput",
-      "props": {},
+      "props": {
+       "aria-label": "Handle"
+      },
       "text": "",
       "void": true,
       "children": []
+     },
+     {
+      "component": "InputGroupAddon",
+      "props": {
+       "align": "inline-end"
+      },
+      "text": "",
+      "void": false,
+      "children": [
+       {
+        "component": "InputGroupButton",
+        "props": {},
+        "text": "Go",
+        "void": false,
+        "children": []
+       }
+      ]
      }
     ]
    },
@@ -4823,14 +4843,14 @@
      "key": "2",
      "parent": "0",
      "component": "InputGroupInput",
-     "id": null,
-     "dmfSlot": null,
+     "id": "input-group/compound#input-group-control",
+     "dmfSlot": "input-group-control",
      "occurrence": 0,
      "inOpen": false,
      "text": "",
      "void": true,
      "reference": {
-      "tag": "div",
+      "tag": "input",
       "classes": [
        "cn-input",
        "cn-input-group-input",
@@ -4852,11 +4872,84 @@
       }
      },
      "inner": null
+    },
+    {
+     "key": "3",
+     "parent": "0",
+     "component": "InputGroupAddon",
+     "id": "input-group/compound#input-group-addon:2",
+     "dmfSlot": "input-group-addon",
+     "occurrence": 1,
+     "inOpen": false,
+     "text": "",
+     "void": false,
+     "reference": {
+      "tag": "div",
+      "classes": [
+       "cn-input-group-addon",
+       "cn-input-group-addon-align-inline-end",
+       "cursor-text",
+       "flex",
+       "items-center",
+       "justify-center",
+       "order-last",
+       "select-none"
+      ],
+      "attributes": {
+       "data-slot": "input-group-addon",
+       "data-align": "inline-end"
+      }
+     },
+     "inner": null
+    },
+    {
+     "key": "4",
+     "parent": "3",
+     "component": "InputGroupButton",
+     "id": "input-group/compound#button",
+     "dmfSlot": "button",
+     "occurrence": 0,
+     "inOpen": false,
+     "text": "Go",
+     "void": false,
+     "reference": {
+      "tag": "button",
+      "classes": [
+       "[&_svg]:pointer-events-none",
+       "[&_svg]:shrink-0",
+       "cn-button",
+       "cn-button-size-default",
+       "cn-button-variant-ghost",
+       "cn-input-group-button",
+       "cn-input-group-button-size-xs",
+       "disabled:opacity-50",
+       "disabled:pointer-events-none",
+       "flex",
+       "group/button",
+       "inline-flex",
+       "items-center",
+       "justify-center",
+       "outline-none",
+       "select-none",
+       "shadow-none",
+       "shrink-0",
+       "transition-all",
+       "whitespace-nowrap"
+      ],
+      "attributes": {
+       "data-slot": "button",
+       "data-size": "xs"
+      }
+     },
+     "inner": null
     }
    ],
    "parts": [
     "input-group/compound#input-group",
-    "input-group/compound#input-group-addon"
+    "input-group/compound#input-group-addon",
+    "input-group/compound#input-group-control",
+    "input-group/compound#input-group-addon:2",
+    "input-group/compound#button"
    ]
   },
   {
@@ -5826,31 +5919,94 @@
    "unsupported": []
   },
   {
-   "id": "native-select/NativeSelect",
+   "id": "native-select/compound",
    "family": "native-select",
-   "component": "NativeSelect",
-   "slot": "native-select-wrapper",
-   "values": {},
-   "text": "",
-   "void": true,
-   "reference": {
-    "tag": null,
-    "classes": [
-     "cn-native-select-wrapper",
-     "group/native-select",
-     "has-[select:disabled]:opacity-50",
-     "relative",
-     "w-fit"
-    ],
-    "attributes": {
-     "data-slot": "native-select-wrapper",
-     "data-size": "default"
+   "kind": "compound",
+   "open": null,
+   "tree": {
+    "component": "NativeSelect",
+    "props": {
+     "aria-label": "Fruit"
+    },
+    "text": "",
+    "void": false,
+    "children": [
+     {
+      "component": "NativeSelectOption",
+      "props": {
+       "value": "apple"
+      },
+      "text": "Apple",
+      "void": false,
+      "children": []
+     }
+    ]
+   },
+   "nodes": [
+    {
+     "key": "0",
+     "parent": null,
+     "component": "NativeSelect",
+     "id": "native-select/compound#native-select",
+     "dmfSlot": "native-select",
+     "occurrence": 0,
+     "inOpen": false,
+     "text": "",
+     "void": false,
+     "reference": {
+      "tag": "div",
+      "classes": [
+       "cn-native-select-wrapper",
+       "group/native-select",
+       "has-[select:disabled]:opacity-50",
+       "relative",
+       "w-fit"
+      ],
+      "attributes": {
+       "data-slot": "native-select-wrapper",
+       "data-size": "default"
+      }
+     },
+     "inner": {
+      "tag": "select",
+      "classes": [
+       "cn-native-select",
+       "disabled:cursor-not-allowed",
+       "disabled:pointer-events-none",
+       "outline-none"
+      ],
+      "attributes": {
+       "data-slot": "native-select"
+      },
+      "measured": true
+     }
+    },
+    {
+     "key": "1",
+     "parent": "0",
+     "component": "NativeSelectOption",
+     "id": null,
+     "dmfSlot": "native-select-option",
+     "occurrence": 0,
+     "inOpen": false,
+     "text": "Apple",
+     "void": false,
+     "reference": {
+      "tag": "option",
+      "classes": [
+       "bg-[Canvas]",
+       "text-[CanvasText]"
+      ],
+      "attributes": {
+       "data-slot": "native-select-option"
+      }
+     },
+     "inner": null
     }
-   },
-   "dmf": {
-    "props": {}
-   },
-   "unsupported": []
+   ],
+   "parts": [
+    "native-select/compound#native-select"
+   ]
   },
   {
    "id": "popover/compound",
@@ -6349,9 +6505,9 @@
       ],
       "attributes": {
        "data-slot": "select-content",
+       "data-align-trigger": "true",
        "data-open": "",
-       "data-side": "bottom",
-       "data-align-trigger": "true"
+       "data-side": "bottom"
       }
      },
      "inner": null
@@ -7161,8 +7317,8 @@
       ],
       "attributes": {
        "data-slot": "tabs-list",
-       "data-orientation": "horizontal",
-       "data-variant": "default"
+       "data-variant": "default",
+       "data-orientation": "horizontal"
       }
      },
      "inner": null
