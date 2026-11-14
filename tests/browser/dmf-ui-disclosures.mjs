@@ -10,7 +10,7 @@ export async function run({hover,page,baseURL,navigate,focused,mobile,tap}) {
   for(const [path,prefix] of [['/examples/dmf-ui/','standalone-form']]) {
     await navigate(`${baseURL}${path}`);
     await page.waitForSelector(`#${prefix}-cb-ui-tooltip[data-dmf-tooltip-ready]`);
-    const ssr=await page.evaluate(async()=>{const text=await(await fetch(location.pathname)).text();const doc=new DOMParser().parseFromString(text,'text/html');return [...doc.querySelectorAll('[data-slot=accordion-content][id$="foundation-panel"]')].every(e=>!e.hidden&&e.textContent.includes('Fulldev'));});
+    const ssr=await page.evaluate(async()=>{const text=await(await fetch(location.pathname)).text();const doc=new DOMParser().parseFromString(text,'text/html');return [...doc.querySelectorAll('[data-slot=accordion-content][id$="foundation-panel"]')].every(e=>!e.hidden&&e.textContent.includes('DMF UI foundation'));});
     assert(ssr,'Authored default content is not present in server HTML');
     for(const system of ['dmf','cb-ui']) {
       const id=`${prefix}-${system}`;
