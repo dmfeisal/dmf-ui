@@ -2,8 +2,9 @@
 
 **In progress.** Planned in the [roadmap](DMF-UI-ROADMAP.md).
 - Part 1 (dmfeisal/dmf-ui#26): the static audit of names, variants and attributes.
-- Part 2a (this report's second half): rendered measurement.
-- Still open: the per-family optimization baseline.
+- Part 2a (dmfeisal/dmf-ui#27): rendered measurement.
+- Part 2b (this report's last part): the per-family optimization baseline.
+- Still open: measurement cases for compound parts.
 
 M15 changes no component file.
 
@@ -152,8 +153,68 @@ Totals across the 50 families:
 
 **State hooks, a correction to part 1.** DMF UI's Tailwind setup (`src/styles/upstream/shadcn.css`) defines `data-open`, `data-closed`, `data-checked`, `data-unchecked`, `data-active`, `data-disabled`, `data-horizontal` and `data-vertical` as custom variants. They match both Base UI's boolean attributes and DMF UI's `data-state`/`data-orientation`. Many of part 1's state-hook gaps are therefore bridged in styling, and M16 should review them as likely `intentional`, not as work.
 
+## Part 2b: optimization baseline
+
+The baseline records what each of the 80 catalog families costs today, so M16 can show that a fix doesn't make a family heavier, less accessible or more dependent on JavaScript. The record is `docs/DMF-UI-BASELINE.json` (not packed).
+
+**What it measures**
+
+| Field | How |
+| --- | --- |
+| `css.utilities` | The Tailwind utilities the family's own sources emit, compiled against DMF UI's theme the way a consumer's build does. |
+| `css.rules` | Hand-written rules in the shipped stylesheets that target the family's `.dmf-<family>` classes or its data slots. |
+| `shadcnCss` | For the 50 shared families: the base-nova rules for the family's `cn-*` classes, plus the utilities its source writes inline, compiled against the same theme. |
+| `js` | The family's own client `<script>` blocks, bundled and minified with what they import (Data Slot, DMF helpers). Toast counts the `createToast` runtime its consumers start. |
+| `axe` | axe-core 4.14 (WCAG 2.2 AA and best practice) on the family's docs preview, in light and dark. |
+| `withoutJs` | The docs preview with JavaScript disabled, compared with the enhanced page: visible elements, focusable controls and visible text. |
+
+- Sizes are minified bytes and gzip (level 9) bytes.
+- Each number is the family's cost on its own. Families share utilities and Data Slot code, so the numbers don't add up to the package size.
+- The hand-written part of the stylesheet compiles to 74.8 KB (12.5 KB gzip). 30.4 KB of it is attributed to a family; the rest is theme, tokens and presets.
+
+**Checks**
+- `npm run baseline:check` runs as part of `npm run check`. It fails when the sizes are stale. Byte counts must match exactly; gzip sizes may differ by up to 2% (at least 8 bytes), because zlib builds differ between Node versions.
+- The `baseline` browser scenario fails when a family's axe rule ids or its `withoutJs` status change. The counts are informative only.
+- To accept a change: `npm run baseline:write`, adding `-- --browser .dmf-ui-test-results/baseline-browser.json` after a browser run.
+- The browser workflow now also runs when `docs/DMF-UI-BASELINE.json` or `docs/DMF-UI-SHADCN-PARITY.json` changes, since its scenarios compare against them.
+
+**Results**
+
+*Accessibility.* No family's docs preview has an axe violation in light or dark. Merchant Card has its own documentation page with no `[data-docs-preview]`, so it isn't audited.
+
+*CSS, shared families.*
+- Together the 50 families cost 281.8 KB (65.1 KB gzip) in DMF UI and 335.8 KB (71.3 KB gzip) in base-nova.
+- DMF UI is smaller for 21 of the 50. The largest savings are in families where DMF UI has fewer parts: Sidebar, Input Group, Navigation Menu, Combobox, Avatar, Slider. Those gaps are M16 work, so these families will grow.
+- DMF UI is larger for 29. In gzip: Skeleton 1.6×, Card 1.5×, Command 1.5×, Radio Group 1.4×, Switch 1.4×, Carousel 1.4×, Button 1.35×, Tabs 1.3× and Toast 1.3×. Collapsible is 380 bytes against shadcn's empty styling.
+- The heaviest DMF families are Drawer (18.6 KB, 3.2 KB gzip), Toast (17.7 / 3.1), Code Block, Select, Attachment, Tabs and Button.
+
+*JavaScript.*
+- 30 families ship client code.
+- The heaviest are Select (33.4 KB, 11.6 KB gzip), Drawer (32.7 / 11.0), Dropdown Menu (30.8 / 10.5), Toast (26.3 / 8.9), Hover Card, Tooltip, Popover and Marquee.
+- The overlay families each carry their own copy of Data Slot's positioning and dismiss code in this measure. In a site build Vite shares it between them, so their combined cost is lower than the sum.
+- shadcn's JavaScript isn't compared: it runs on React and Base UI, which a DMF UI consumer doesn't load.
+
+*Without JavaScript.*
+
+| Status | Families | What it means |
+| --- | --- | --- |
+| `static` | 33 | No client script, and the preview renders the same. |
+| `same` | 10 | Accordion, Banner, Checkbox, Collapsible, Dialog, Drawer, Dropdown Menu, Popover, Tabs, Toast. Same content and controls; scripts only add behaviour. |
+| `reduced` | 20 | The preview shows fewer elements or controls. |
+| `more` | 16 | The preview shows extra elements. |
+
+What the `reduced` and `more` results are:
+- **Disabled until ready.** Sheet, Alert Dialog, Toggle, Toggle Group, Native Select's action, Resizable and Theme Toggle render their triggers `disabled` until the script runs. This is deliberate, but without JavaScript those controls do nothing and can't be focused.
+- **Fallbacks.** Combobox falls back to a native `<select>`. Number Field shows a plain input without its stepper buttons.
+- **Script-only extras.** Code Block's copy buttons and Marquee's pause button only appear with JavaScript, which is correct.
+- **Empty popup wrappers.** Tooltip, Hover Card and Select leave their portal and positioner wrappers with a box when JavaScript is off. Their content stays hidden. Most `more` families (Button, Breadcrumb, Pagination, the navigation families) get this result from a Tooltip inside their example.
+
+**Limits**
+- CSS attribution is by selector. A rule for one family that only names another family's slot is counted under that other family.
+- The no-JavaScript comparison counts what's visible. It doesn't operate the controls, so `same` means the content renders, not that the behaviour works.
+- Docs previews include other families, so axe and no-JavaScript results describe the family as documented, not in isolation.
+
 ## Still open in M15
 
-- The optimization baseline: CSS and JavaScript bytes per family, axe results, and whether each family works without JavaScript.
 - Measurement cases for compound parts (with a parent, children or an open state).
 - Then the gap list becomes the ordered M16 batches.
