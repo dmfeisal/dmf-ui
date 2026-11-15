@@ -2,6 +2,8 @@
 import type {HTMLAttributes} from 'astro/types';
 import type {ButtonVariantProps} from '../button/button-variants';
 import {Button} from '../button';
-type Props=HTMLAttributes<'button'>&ButtonVariantProps;
+// Declared here so the props are part of the component's contract; they go straight to Button, as in shadcn.
+type Props=HTMLAttributes<'button'>&ButtonVariantProps&{variant?:ButtonVariantProps['variant'];size?:ButtonVariantProps['size'];};
+const {variant,size,...props}=Astro.props;
 ---
-<Button variant="outline" {...Astro.props} type="button" data-slot="dialog-close" autofocus><slot>Cancel</slot></Button>
+<Button {...props} variant={variant??'outline'} size={size??'default'} type="button" data-slot="dialog-close" autofocus><slot>Cancel</slot></Button>

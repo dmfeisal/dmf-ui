@@ -7,7 +7,7 @@
 | 1. Shared foundations | Done (dmfeisal/dmf-ui#33) |
 | 2. Actions and inputs | Done (dmfeisal/dmf-ui#35, #36) |
 | 3. Selection | 3a (dmfeisal/dmf-ui#37) and 3b in this report |
-| 4. Overlays and menus | Extras decided; 20 gaps open (features) |
+| 4. Overlays and menus | Gaps closed except drawer snap-point list; extras decided |
 | 5–6 | Planned |
 
 ## Batch 1: shared foundations
@@ -279,6 +279,8 @@ The items-mode tests and the selection contracts pass unchanged.
 - **Collapsible parts:** one component, with the summary as trigger and the body as content.
 - **Dropdown Menu and Command:** `aria-expanded` and `aria-selected` stand in for Base UI's `data-popup-open` and `data-checked`.
 
+**Earlier list, now handled in part 2 below.**
+
 **Still gaps (20)**
 - **Dropdown Menu submenus:** `DropdownMenuSub`, `DropdownMenuSubTrigger`, `DropdownMenuSubContent`, and their slots. This is a nested-menu feature.
 - **Drawer:** `snapPoints`, the swipe handle and its props, swipe axis, and nested-drawer state. These need the drawer's gesture runtime.
@@ -301,3 +303,42 @@ The items-mode tests and the selection contracts pass unchanged.
 | Static extras, all families | 619 | 197 |
 
 Accessibility, no-JavaScript and the overlay browser scenarios (Sheet, Alert Dialog, navigation components) are unchanged. The docs suite and unit tests pass.
+
+## Batch 4, part 2: the features
+
+Batch 4 now closes its feature gaps, except one: the drawer's snap-point list.
+
+**Dropdown Menu submenus.** Data Slot's dropdown has no nested menus, so DMF UI runs its own small submenu runtime.
+- **Parts:** `DropdownMenuSub`, `DropdownMenuSubTrigger` and `DropdownMenuSubContent`.
+- **Opening:** Enter, Space or the forward arrow opens it and focuses its first item. Hover opens it too, with a short delay before it closes.
+- **Keyboard:** arrow keys move through enabled items and skip disabled ones; Home and End jump to the ends. Escape or the back arrow closes the submenu only and returns focus to its trigger, and the menu stays open.
+- **Activation:** Enter on a submenu item clicks it. The menu runtime doesn't handle submenu items itself, so a plain key press wouldn't select them.
+- **Placement:** the panel is `fixed`, and its offsets are taken from the containing block. Data Slot's positioner uses a transform, which makes it that containing block. Without this correction, the panel landed far from its trigger.
+- **Props:** `side` (`inline-end`, `inline-start`, `left`, `right`), `sideOffset`, `align` and `alignOffset`.
+
+**Dropdown checkbox items.** `checked` is rendered on the server, as `data-checked` and `aria-checked`. Once the menu runtime is running, it owns later changes.
+
+**Alert Dialog Cancel.** `size` and `variant` are now declared props and pass to Button. `variant` still defaults to `outline`. The sm width moved into the content's class, so `data-size` is styled in source.
+
+**Drawer.** Most of what the record called missing already exists under DMF UI's names:
+- Data Slot's drawer runtime names its backdrop `drawer-backdrop` and its nested state `data-nested-swiping`. DMF UI uses those names.
+- Swipe direction is `data-swipe-direction`. The swipe handle sits on `DrawerContent`, next to the popup it belongs to.
+- Modal state is set by aria attributes, so there's no `data-modal` hook.
+These are recorded as intentional with those reasons.
+
+**Still a gap: the snap-point list.** shadcn's `snapPoints` takes a list. Data Slot's runtime takes one snap point (`snapPoint` and `defaultSnapPoint`, which DMF UI exposes), and it has no way to switch between several. Building the list would mean DMF UI implementing the switching itself, so I've left it as a gap.
+
+**Found along the way: two dropdown menus on one page.** On `main`, a page with one dropdown opens it normally. Add a second dropdown, with no submenu or other parts, and the first no longer opens. The same happens with two plain dropdowns, so the cause is the dropdown runtime, not the submenu. This is an existing issue, and it would affect any page with two menus. I haven't fixed it. The submenu example sits inside the existing Actions menu so the docs page keeps one menu.
+
+**Results**
+
+| | Before part 2 | Now |
+| --- | --- | --- |
+| Batch 4 gaps | 20 | 3 (drawer snap-point list) |
+| Batch 4 extras undecided | 0 | 0 |
+| Static gaps, all families | 193 | 180 |
+| Static extras, all families | 197 | 197 |
+
+Browser scenarios: the new submenu scenario, the documentation, modal, navigation, parity and baseline scenarios all pass. The full docs suite runs 30 scenarios and passes. 83 unit tests and the type check pass.
+
+**Size changes:** the submenu adds a small runtime and styles. Dropdown Menu's CSS and JS grow as a result.

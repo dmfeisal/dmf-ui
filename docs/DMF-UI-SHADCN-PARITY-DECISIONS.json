@@ -279,7 +279,6 @@
    "stateHooks:data-instant": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
   },
   "dropdown-menu": {
-   "stateHooks:aria-expanded": "DMF UI's trigger reports its open state with aria-expanded, but Nova's style for it targets Base UI's data-popup-open; the trigger needs no separate hook.",
    "stateHooks:data-popup-open": "DMF UI styles the open trigger from aria-expanded and data-state; Base UI's data-popup-open is not set.",
    "slots:dropdown-menu-positioner": "Element the family's positioning creates. Base UI renders the same element as its Positioner, Portal or Viewport.",
    "props.DropdownMenu.align": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
@@ -331,7 +330,21 @@
    "dataAttributes:data-side": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
    "dataAttributes:data-side-offset": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
    "dataAttributes:data-value": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
-   "stateHooks:data-checked": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
+   "stateHooks:data-checked": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
+   "variants.align:center": "DMF UI option value, passed to the family's runtime.",
+   "variants.align:end": "DMF UI option value, passed to the family's runtime.",
+   "variants.align:start": "DMF UI option value, passed to the family's runtime.",
+   "variants.side:inline-end": "DMF UI option value, passed to the family's runtime.",
+   "variants.side:inline-start": "DMF UI option value, passed to the family's runtime.",
+   "variants.side:left": "DMF UI option value, passed to the family's runtime.",
+   "variants.side:right": "DMF UI option value, passed to the family's runtime.",
+   "props.DropdownMenuSubTrigger.disabled": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
+   "props.DropdownMenuSubTrigger.type": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
+   "dataAttributes:data-checked": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
+   "stateHooks:aria-disabled": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
+   "props.DropdownMenuSubContent.side": "DMF UI's default is inline-end, the reading direction's end; shadcn's right is the same edge in left-to-right text. Callers can set either.",
+   "props.DropdownMenuSubContent.sideOffset": "DMF UI's default gap is 4px; shadcn's is 0. Callers can set either.",
+   "props.DropdownMenuSubContent.alignOffset": "DMF UI's default offset is 0; shadcn's is -3. Callers can set either."
   },
   "command": {
    "stateHooks:data-checked": "DMF UI marks the selected item with aria-selected, which its styles use; shadcn's checked hook is for Base UI's checkbox items.",
@@ -391,6 +404,13 @@
    "dataAttributes:data-lock-scroll": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
   },
   "drawer": {
+   "slots:drawer-overlay": "DMF UI's overlay is named drawer-backdrop, the part name Data Slot's drawer runtime uses for its backdrop.",
+   "slots:drawer-swipe-handle": "DMF UI names its handle drawer-handle. The handle has no runtime binding; its styles come from the popup's classes.",
+   "props.Drawer.showSwipeHandle": "DMF UI sets the swipe handle on DrawerContent, next to the popup it belongs to, instead of on the root.",
+   "dataAttributes:data-swipe-axis": "Data Slot names this data-swipe-direction, and DMF UI's styles use that name.",
+   "stateHooks:data-swipe-axis": "Data Slot names this data-swipe-direction, and DMF UI's styles use that name.",
+   "stateHooks:data-nested-drawer-swiping": "Data Slot sets data-nested-swiping on the root while a nested drawer is swiped; DMF UI's styles use that name.",
+   "stateHooks:data-modal": "Data Slot handles modal state through aria attributes, so DMF UI's styles need no data-modal hook.",
    "parts:DrawerBackdrop": "A DMF UI part name for this family's runtime. shadcn's part set follows Base UI, so the names differ.",
    "parts:DrawerIndent": "A DMF UI part name for this family's runtime. shadcn's part set follows Base UI, so the names differ.",
    "parts:DrawerIndentBackground": "A DMF UI part name for this family's runtime. shadcn's part set follows Base UI, so the names differ.",

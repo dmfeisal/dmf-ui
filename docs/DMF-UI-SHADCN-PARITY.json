@@ -33,9 +33,9 @@
  ],
  "totals": {
   "families": 50,
-  "match": 749,
-  "intentional": 499,
-  "gap": 193,
+  "match": 762,
+  "intentional": 519,
+  "gap": 176,
   "differs": 1,
   "extra": 197
  },
@@ -698,9 +698,9 @@
     "docs": "vendor/shadcn/docs/alert-dialog.mdx"
    },
    "counts": {
-    "match": 14,
+    "match": 17,
     "intentional": 20,
-    "gap": 3,
+    "gap": 0,
     "differs": 0,
     "extra": 0
    },
@@ -943,8 +943,10 @@
      "shadcn": {
       "default": "default"
      },
-     "dmf": null,
-     "status": "gap"
+     "dmf": {
+      "default": null
+     },
+     "status": "match"
     },
     {
      "id": "props.AlertDialogCancel.variant",
@@ -953,8 +955,10 @@
      "shadcn": {
       "default": "outline"
      },
-     "dmf": null,
-     "status": "gap"
+     "dmf": {
+      "default": null
+     },
+     "status": "match"
     },
     {
      "id": "props.AlertDialogContent.size",
@@ -1007,8 +1011,8 @@
      "id": "stateHooks:data-size",
      "value": "data-size",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "nova": {
@@ -6436,8 +6440,8 @@
    },
    "counts": {
     "match": 30,
-    "intentional": 46,
-    "gap": 10,
+    "intentional": 53,
+    "gap": 3,
     "differs": 0,
     "extra": 0
    },
@@ -6656,7 +6660,8 @@
      "value": "drawer-overlay",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's overlay is named drawer-backdrop, the part name Data Slot's drawer runtime uses for its backdrop."
     },
     {
      "id": "slots:drawer-popup",
@@ -6685,7 +6690,8 @@
      "value": "drawer-swipe-handle",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI names its handle drawer-handle. The handle has no runtime binding; its styles come from the popup's classes."
     },
     {
      "id": "slots:drawer-title",
@@ -6794,7 +6800,8 @@
       "default": "false"
      },
      "dmf": null,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI sets the swipe handle on DrawerContent, next to the popup it belongs to, instead of on the root."
     },
     {
      "id": "props.Drawer.snapPoint",
@@ -7078,7 +7085,8 @@
      "value": "data-swipe-axis",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Data Slot names this data-swipe-direction, and DMF UI's styles use that name."
     },
     {
      "id": "dataAttributes:data-swipe-direction",
@@ -7110,7 +7118,8 @@
      "value": "data-modal",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Data Slot handles modal state through aria attributes, so DMF UI's styles need no data-modal hook."
     },
     {
      "id": "stateHooks:data-nested-drawer-open",
@@ -7124,7 +7133,8 @@
      "value": "data-nested-drawer-swiping",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Data Slot sets data-nested-swiping on the root while a nested drawer is swiped; DMF UI's styles use that name."
     },
     {
      "id": "stateHooks:data-nested-swiping",
@@ -7153,7 +7163,8 @@
      "value": "data-swipe-axis",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Data Slot names this data-swipe-direction, and DMF UI's styles use that name."
     },
     {
      "id": "stateHooks:data-swipe-direction",
@@ -7194,9 +7205,9 @@
     "docs": "vendor/shadcn/docs/dropdown-menu.mdx"
    },
    "counts": {
-    "match": 46,
-    "intentional": 53,
-    "gap": 7,
+    "match": 56,
+    "intentional": 66,
+    "gap": 0,
     "differs": 0,
     "extra": 0
    },
@@ -7282,22 +7293,22 @@
      "id": "parts:DropdownMenuSub",
      "value": "DropdownMenuSub",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:DropdownMenuSubContent",
      "value": "DropdownMenuSubContent",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:DropdownMenuSubTrigger",
      "value": "DropdownMenuSubTrigger",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:DropdownMenuTrigger",
@@ -7411,22 +7422,22 @@
      "id": "slots:dropdown-menu-sub",
      "value": "dropdown-menu-sub",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:dropdown-menu-sub-content",
      "value": "dropdown-menu-sub-content",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:dropdown-menu-sub-trigger",
      "value": "dropdown-menu-sub-trigger",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:dropdown-menu-trigger",
@@ -7437,6 +7448,66 @@
     }
    ],
    "variants": {
+    "align": [
+     {
+      "id": "variants.align:center",
+      "value": "center",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
+     },
+     {
+      "id": "variants.align:end",
+      "value": "end",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
+     },
+     {
+      "id": "variants.align:start",
+      "value": "start",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
+     }
+    ],
+    "side": [
+     {
+      "id": "variants.side:inline-end",
+      "value": "inline-end",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
+     },
+     {
+      "id": "variants.side:inline-start",
+      "value": "inline-start",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
+     },
+     {
+      "id": "variants.side:left",
+      "value": "left",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
+     },
+     {
+      "id": "variants.side:right",
+      "value": "right",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
+     }
+    ],
     "variant": [
      {
       "id": "variants.variant:default",
@@ -7616,8 +7687,10 @@
      "shadcn": {
       "default": null
      },
-     "dmf": null,
-     "status": "gap"
+     "dmf": {
+      "default": null
+     },
+     "status": "match"
     },
     {
      "id": "props.DropdownMenuCheckboxItem.defaultChecked",
@@ -7904,6 +7977,91 @@
      "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
+     "id": "props.DropdownMenuSubContent.align",
+     "component": "DropdownMenuSubContent",
+     "prop": "align",
+     "shadcn": {
+      "default": "start"
+     },
+     "dmf": {
+      "default": "start"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.DropdownMenuSubContent.alignOffset",
+     "component": "DropdownMenuSubContent",
+     "prop": "alignOffset",
+     "shadcn": {
+      "default": "-3"
+     },
+     "dmf": {
+      "default": "0"
+     },
+     "status": "intentional",
+     "reason": "DMF UI's default offset is 0; shadcn's is -3. Callers can set either."
+    },
+    {
+     "id": "props.DropdownMenuSubContent.side",
+     "component": "DropdownMenuSubContent",
+     "prop": "side",
+     "shadcn": {
+      "default": "right"
+     },
+     "dmf": {
+      "default": "inline-end"
+     },
+     "status": "intentional",
+     "reason": "DMF UI's default is inline-end, the reading direction's end; shadcn's right is the same edge in left-to-right text. Callers can set either."
+    },
+    {
+     "id": "props.DropdownMenuSubContent.sideOffset",
+     "component": "DropdownMenuSubContent",
+     "prop": "sideOffset",
+     "shadcn": {
+      "default": "0"
+     },
+     "dmf": {
+      "default": "4"
+     },
+     "status": "intentional",
+     "reason": "DMF UI's default gap is 4px; shadcn's is 0. Callers can set either."
+    },
+    {
+     "id": "props.DropdownMenuSubTrigger.disabled",
+     "component": "DropdownMenuSubTrigger",
+     "prop": "disabled",
+     "shadcn": null,
+     "dmf": {
+      "default": null
+     },
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
+    },
+    {
+     "id": "props.DropdownMenuSubTrigger.inset",
+     "component": "DropdownMenuSubTrigger",
+     "prop": "inset",
+     "shadcn": {
+      "default": null
+     },
+     "dmf": {
+      "default": null
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.DropdownMenuSubTrigger.type",
+     "component": "DropdownMenuSubTrigger",
+     "prop": "type",
+     "shadcn": null,
+     "dmf": {
+      "default": "button"
+     },
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
+    },
+    {
      "id": "props.DropdownMenuTrigger.type",
      "component": "DropdownMenuTrigger",
      "prop": "type",
@@ -7935,6 +8093,14 @@
     {
      "id": "dataAttributes:data-avoid-collisions",
      "value": "data-avoid-collisions",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
+    },
+    {
+     "id": "dataAttributes:data-checked",
+     "value": "data-checked",
      "shadcn": false,
      "dmf": true,
      "status": "intentional",
@@ -8077,12 +8243,19 @@
    ],
    "stateHooks": [
     {
+     "id": "stateHooks:aria-disabled",
+     "value": "aria-disabled",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
+    },
+    {
      "id": "stateHooks:aria-expanded",
      "value": "aria-expanded",
      "shadcn": true,
-     "dmf": false,
-     "status": "intentional",
-     "reason": "DMF UI's trigger reports its open state with aria-expanded, but Nova's style for it targets Base UI's data-popup-open; the trigger needs no separate hook."
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-checked",

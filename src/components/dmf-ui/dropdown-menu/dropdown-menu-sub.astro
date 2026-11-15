@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"div">
+
+const { class: className, ...props } = Astro.props
+// Wraps one submenu: a DropdownMenuSubTrigger and a DropdownMenuSubContent.
+---
+
+<div data-slot="dropdown-menu-sub" class={cn("relative", className)} {...props}>
+  <slot />
+</div>
+<script>import './dropdown-menu-sub-runtime';</script>

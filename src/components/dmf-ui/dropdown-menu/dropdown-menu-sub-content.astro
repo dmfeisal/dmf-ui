@@ -1,0 +1,43 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"div"> & {
+  /** Which edge of the trigger the panel opens from. Logical sides follow reading direction. Default: inline-end. */
+  side?: "inline-end" | "inline-start" | "left" | "right"
+  /** Gap between the trigger and the panel, in pixels. Default: 4. */
+  sideOffset?: number
+  /** Where the panel lines up along the trigger. Default: start. */
+  align?: "start" | "center" | "end"
+  /** Shift along the trigger, in pixels. Default: 0. */
+  alignOffset?: number
+}
+
+const {
+  class: className,
+  side = "inline-end",
+  sideOffset = 4,
+  align = "start",
+  alignOffset = 0,
+  ...props
+} = Astro.props
+// The submenu panel. Hidden until its trigger opens it; the submenu runtime positions it from these attributes.
+---
+
+<div
+  role="menu"
+  hidden
+  data-slot="dropdown-menu-sub-content"
+  data-side={side}
+  data-side-offset={sideOffset}
+  data-align={align}
+  data-align-offset={alignOffset}
+  class={cn(
+    "bg-popover text-popover-foreground ring-foreground/10 fixed z-50 min-w-32 overflow-hidden rounded-lg p-1 shadow-md ring-1",
+    className
+  )}
+  {...props}
+>
+  <slot />
+</div>
