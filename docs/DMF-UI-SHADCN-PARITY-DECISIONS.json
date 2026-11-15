@@ -60,6 +60,40 @@
    "dataAttributes:data-unchecked-value": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root.",
    "dataAttributes:data-value": "Configuration or state the DMF Switch runtime (@data-slot/switch) reads or sets on the root.",
    "stateHooks:data-readonly": "Styles the read-only state the runtime sets (cursor-default); Base UI exposes it as data-readonly too but Nova doesn't style it."
+  },
+  "toggle": {
+   "slots:tooltip-trigger": "An icon-only Toggle is its Tooltip's trigger, so the label shows on hover and focus.",
+   "props.Toggle.label": "Required accessible name. DMF UI shows it as text or, for icon-only toggles, as the icon's tooltip, so the name never depends on the icon.",
+   "props.Toggle.icon": "DMF UI's shared presentation model (label, icon-label, icon) keeps one accessible name across the three looks; shadcn composes children instead.",
+   "props.Toggle.presentation": "DMF UI's shared presentation model (label, icon-label, icon) keeps one accessible name across the three looks; shadcn composes children instead.",
+   "props.Toggle.value": "Identifies the toggle in toggle:change events and its group's values.",
+   "props.Toggle.defaultPressed": "Base UI's Toggle accepts this through its props spread; DMF UI names it because its runtime and server render read it.",
+   "dataAttributes:data-default-pressed": "Configuration or state the DMF Toggle runtime reads or sets.",
+   "dataAttributes:data-presentation": "Configuration or state the DMF Toggle runtime reads or sets.",
+   "dataAttributes:data-size": "Configuration or state the DMF Toggle runtime reads or sets.",
+   "dataAttributes:data-toggle-disabled": "Configuration or state the DMF Toggle runtime reads or sets.",
+   "dataAttributes:data-type": "Configuration or state the DMF Toggle runtime reads or sets.",
+   "dataAttributes:data-value": "Configuration or state the DMF Toggle runtime reads or sets.",
+   "dataAttributes:data-variant": "Configuration or state the DMF Toggle runtime reads or sets."
+  },
+  "toggle-group": {
+   "variants.type:single": "DMF UI keeps `type` (single or multiple), as Radix-based shadcn did; Base UI uses a boolean `multiple`. No existing prop is removed.",
+   "variants.type:multiple": "DMF UI keeps `type` (single or multiple), as Radix-based shadcn did; Base UI uses a boolean `multiple`. No existing prop is removed.",
+   "props.ToggleGroup.type": "DMF UI keeps `type` (single or multiple), as Radix-based shadcn did; Base UI uses a boolean `multiple`. No existing prop is removed.",
+   "props.ToggleGroup.items": "Renders the items from data, the original DMF API. ToggleGroupItem children work as in shadcn.",
+   "props.ToggleGroup.label": "Required group name (aria-label on role=group).",
+   "props.ToggleGroup.defaultValue": "Base UI's Toggle accepts this through its props spread; DMF UI names it because its runtime and server render read it.",
+   "props.ToggleGroup.disabled": "Base UI's Toggle accepts this through its props spread; DMF UI names it because its runtime and server render read it.",
+   "props.ToggleGroup.value": "The value field of `items` entries, read as a prop by the extractor.",
+   "props.ToggleGroup.icon": "DMF UI's shared presentation model (label, icon-label, icon) keeps one accessible name across the three looks; shadcn composes children instead.",
+   "props.ToggleGroup.presentation": "DMF UI's shared presentation model (label, icon-label, icon) keeps one accessible name across the three looks; shadcn composes children instead.",
+   "props.ToggleGroupItem.label": "Required accessible name. DMF UI shows it as text or, for icon-only toggles, as the icon's tooltip, so the name never depends on the icon.",
+   "props.ToggleGroupItem.icon": "DMF UI's shared presentation model (label, icon-label, icon) keeps one accessible name across the three looks; shadcn composes children instead.",
+   "props.ToggleGroupItem.presentation": "DMF UI's shared presentation model (label, icon-label, icon) keeps one accessible name across the three looks; shadcn composes children instead.",
+   "props.ToggleGroupItem.value": "Identifies the item in the group's values; required, as Base UI's is.",
+   "props.ToggleGroupItem.defaultPressed": "Base UI's Toggle accepts this through its props spread; DMF UI names it because its runtime and server render read it.",
+   "dataAttributes:data-presentation": "Configuration or state the DMF Toggle runtime reads or sets.",
+   "dataAttributes:data-type": "Tells the Toggle runtime whether the group allows one or several pressed items."
   }
  }
 }

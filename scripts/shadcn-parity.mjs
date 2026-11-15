@@ -174,7 +174,7 @@ export const measured={
  'empty':{Empty:{text:'Empty'}},'field':{Field:{text:'Field'}},'input':{Input:{void:true}},'input-group':{InputGroup:{text:''}},
  'item':{Item:{text:'Item'}},'kbd':{Kbd:{text:'K'}},'label':{Label:{text:'Label'}},
  'separator':{Separator:{void:true,state:{'data-orientation':'horizontal'}}},'skeleton':{Skeleton:{void:true}},'spinner':{Spinner:{void:true}},
- 'switch':{Switch:{void:true,tag:'span',state:{'data-unchecked':'',role:'switch'}}},'textarea':{Textarea:{void:true}},'toggle':{Toggle:{text:'Bold',tag:'button'}},
+ 'switch':{Switch:{void:true,tag:'span',state:{'data-unchecked':'',role:'switch'}}},'textarea':{Textarea:{void:true}},'toggle':{Toggle:{text:'Bold',tag:'button',props:{label:'Bold'},state:{'aria-pressed':'false'}}},
 };
 
 // One case per variant combination: the full product of the component's axes when it is small (Button's 6 variants x
@@ -225,6 +225,7 @@ export const compositions={
  item:['ItemGroup',{},[['Item',{},[['ItemMedia',{text:'•'}],['ItemContent',{},[['ItemTitle',{text:'Title'}],['ItemDescription',{text:'Description'}]]],['ItemActions',{text:'Action'}]]],['ItemSeparator',{void:true,state:{'data-orientation':'horizontal'}}],['Item',{},[['ItemHeader',{text:'Header'}],['ItemFooter',{text:'Footer'}]]]]],
  empty:['Empty',{},[['EmptyHeader',{},[['EmptyMedia',{text:'•'}],['EmptyTitle',{text:'Title'}],['EmptyDescription',{text:'Description'}]]],['EmptyContent',{text:'Content'}]]],
  'native-select':['NativeSelect',{inner:'native-select',part:'native-select',props:{'aria-label':'Fruit'}},[['NativeSelectOption',{text:'Apple',props:{value:'apple'},measure:false}]]],
+ 'toggle-group':['ToggleGroup',{props:{label:'Format'},values:{variant:'outline'},state:{'data-orientation':'horizontal','data-spacing':'2',style:'--gap:2'}},[['ToggleGroupItem',{text:'Bold',props:{label:'Bold',value:'bold'},values:{variant:'outline'},state:{'aria-pressed':'false'}}],['ToggleGroupItem',{text:'Italic',props:{label:'Italic',value:'italic'},values:{variant:'outline'},state:{'aria-pressed':'false'}}]]],
  'input-group':['InputGroup',{},[['InputGroupAddon',{text:'@'}],['InputGroupInput',{void:true,props:{'aria-label':'Handle'}}],['InputGroupAddon',{values:{align:'inline-end'}},[['InputGroupButton',{text:'Go',dmfSlot:'button',inner_values:{variant:'ghost'}}]]]]],
  'button-group':['ButtonGroup',{},[['ButtonGroupText',{text:'Text'}],['ButtonGroupSeparator',{void:true,state:{'data-orientation':'vertical'}}]]],
  kbd:['KbdGroup',{},[['Kbd',{text:'Ctrl'}],['Kbd',{text:'K'}]]],
@@ -242,7 +243,7 @@ export const compositions={
 // Base UI primitives and composed shadcn components, by the element they render.
 const primitiveTags={Root:'div',List:'div',Tab:'button',Panel:'div',Item:'div',Trigger:'button',Popup:'div',Title:'h2',Description:'p',Group:'div',GroupLabel:'div',Separator:'div',Header:'h3'};
 export const composedComponents={Label:['label','Label'],Input:['input','Input'],Separator:['separator','Separator'],Button:['button','Button']};
-const namedTags={InputPrimitive:'input',ButtonPrimitive:'button'};
+const namedTags={InputPrimitive:'input',ButtonPrimitive:'button',TogglePrimitive:'button'};
 const tagOf=element=>!element||element==='null'?'div':/^[a-z]/.test(element)?element:namedTags[element]??primitiveTags[element.split('.').pop()]??'div';
 
 function compositionCase(slug,s,d,composed){
@@ -263,7 +264,8 @@ function compositionCase(slug,s,d,composed){
   let element=source.element,classes=[...source.classes],cvaName=source.cva;
   const via=composedComponents[element];let viaSlot=null;
   if(via){const inner=composed[via[0]].components[via[1]];element=inner.reference.element;viaSlot=inner.slot;const cva=inner.reference.cva?composed[via[0]].cvas[inner.reference.cva]:null;classes=[...inner.reference.classes,...(cva?[cva.base,...Object.entries(cva.variants).map(([a,k])=>k[options.inner_values?.[a]??cva.defaults[a]]??'')]:[]),...classes];}
-  const cva=cvaName?s.cvas[cvaName]:null;
+  // A cva imported from another family (ToggleGroupItem uses Toggle's toggleVariants) is looked up there.
+  const cva=cvaName?s.cvas[cvaName]??Object.values(composed).find(f=>f.cvas[cvaName])?.cvas[cvaName]??null:null;
   // `values` picks variant values (Input Group addon `align`); the DMF side gets them as props too.
   const values={...(cva?.defaults??{}),...(options.values??{})};
   if(cva)classes.push(cva.base,...Object.entries(cva.variants).map(([a,k])=>k[values[a]]??''));
@@ -315,9 +317,11 @@ export async function build(){
  const dmfBySlug=Object.fromEntries(catalog.components.map(c=>[c.slug,c]));
  const shared=shadcnFamilies.filter(f=>dmfBySlug[f]).sort();
  const families={},used=new Set(),cases=[];
- const composed={};for(const [family] of Object.values(composedComponents)){const path=`vendor/shadcn/base/${family}.tsx.txt`;composed[family]=readShadcn(path,await read(path),nova);}
+ const composed={};for(const family of new Set([...Object.values(composedComponents).map(([family])=>family),'toggle'])){const path=`vendor/shadcn/base/${family}.tsx.txt`;composed[family]=readShadcn(path,await read(path),nova);}
  for(const slug of shared){
   const path=`vendor/shadcn/base/${slug}.tsx.txt`,s=readShadcn(path,await read(path),nova),d=await readDmf(dmfBySlug[slug]);
+  // A cva imported from another family (ToggleGroup uses Toggle's toggleVariants) counts as this family's too.
+  for(const c of Object.values(s.components))if(c.reference.cva&&!s.cvas[c.reference.cva]){const from=Object.values(composed).find(f=>f.cvas[c.reference.cva]);if(from)s.cvas[c.reference.cva]=from.cvas[c.reference.cva];}
   const decisions=decisionsFile.families?.[slug]??{};
   cases.push(...casesFor(slug,s,d),...compositionCase(slug,s,d,composed));
   const sAxes=shadcnAxes(s),axes={};

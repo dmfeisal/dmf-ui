@@ -5,8 +5,9 @@
 | Batch | Status |
 | --- | --- |
 | 1. Shared foundations | Done (dmfeisal/dmf-ui#33) |
-| 2. Actions and inputs | 2a in this report; 2b (Toggle, Toggle Group) next |
-| 3–6 | Planned |
+| 2. Actions and inputs | 2a done (dmfeisal/dmf-ui#35); 2b in this report |
+| 3. Selection | Next |
+| 4–6 | Planned |
 
 ## Batch 1: shared foundations
 
@@ -112,3 +113,53 @@ Field Set is the one 2a part still measuring differently, 6px taller than Nova (
 - **Header and Input** show about 0.1 KB more each. This is attribution, not growth: the catalog now sees their slots, so existing rules for `[data-slot=header]` and `[data-slot=input]` are counted under them.
 
 **Local suites.** The examples and accessibility suites still fail only on CB's white primary labels, as on `main`.
+
+## Batch 2b: Toggle and Toggle Group
+
+**Toggle**
+- **Size:** gains Nova's `size` (`default`, `sm`, `lg`).
+- **Styles:** Nova's classes, from a `toggleVariants` cva that the family now exports, replace the hand-written `.dmf-toggle` CSS.
+- **Kept from DMF UI:**
+  - `label`, `icon` and `presentation`, so every look keeps the same accessible name. Icon-only toggles use the shared Tooltip.
+  - `value`, `defaultPressed`, the `toggle:change` event, and buttons that stay disabled until the script runs.
+- **Pressed state:** it keeps an inset underline on top of Nova's muted fill. The fill alone is about 1.1:1 against the page, so it can't carry the state by itself. The forced-colors pressed outline stays.
+
+**Toggle Group**
+- **`ToggleGroupItem`:** a new part, so items can be written as children, as in shadcn. The `items` array still works, and no prop is removed.
+- **New group props:**
+  - `size`;
+  - `spacing`: a number of spacing steps, default 2, with 0 joining the items as in Nova;
+  - `orientation`: `horizontal` or `vertical`.
+- **Inheritance:** shadcn passes the group's variant and size to its items through React context, and Astro has none. Items therefore take them from the group's `data-variant`, `data-size` and `data-spacing` through `group-data-*` classes. As in shadcn, the group's value wins over the item's.
+- **Kept from DMF UI:**
+  - `type` (single or multiple), where Base UI uses a boolean `multiple`;
+  - a required group `label`;
+  - wrapping at narrow widths, which the enlarged mobile test relies on.
+
+**Extractor and catalog**
+- The catalog reads the string literals inside a `data-slot={…}` expression, plus a `slotName` passed to a shared control. Toggle's control renders `toggle` or `tooltip-trigger`, and Toggle Group items render `toggle-group-item`. As a side effect, Chip and Rating also gain their `tooltip-trigger` slot.
+- A cva that a shadcn family imports from another counts as its own. ToggleGroup takes Toggle's `variant` and `size` this way.
+- The single Toggle cases now pass DMF's required `label`. Without it, DMF rendered an empty button, which was the 18px height measured before.
+- Toggle Group is measured as a composition of two outline items.
+
+**Decisions recorded:** the presentation model (`label`, `icon`, `presentation`), `value`, `defaultPressed` and `type`, the `items` API, and the runtime's data attributes.
+
+**Results**
+
+| | Before 2b | After |
+| --- | --- | --- |
+| Gaps, Toggle and Toggle Group | 26 | 0 |
+| Extras, Toggle and Toggle Group | 25 | 0 (all decided) |
+| Static gaps, all families | 310 | 284 |
+| Toggle measured | 0 of 6 | 6 of 6 |
+| Toggle Group measured | — | 3 of 3 |
+| Measured cases and parts matching (light / dark) | 100 / 100 of 193 | 109 / 109 of 196 |
+| axe violations in docs previews | 0 | 0 |
+
+**Size changes**
+- **Toggle CSS:** 1.2 → 6.4 KB (0.6 → 1.7 KB gzip). Nova's version is 5.2 KB.
+- **Toggle Group CSS:** 0.4 → 6.2 KB (0.3 → 1.2 KB gzip). Nova's version is 3.3 KB. The difference is mostly the classes items use to read the group's variant, size and spacing, which stand in for React context.
+- **Hand-written stylesheet:** −0.8 KB.
+- No JavaScript changed.
+
+Batch 2 is complete. Batch 3 (selection) is next.

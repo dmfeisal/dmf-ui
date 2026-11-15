@@ -33,11 +33,11 @@
  ],
  "totals": {
   "families": 50,
-  "match": 679,
-  "intentional": 40,
-  "gap": 310,
+  "match": 712,
+  "intentional": 70,
+  "gap": 284,
   "differs": 2,
-  "extra": 574
+  "extra": 549
  },
  "families": {
   "accordion": {
@@ -18055,11 +18055,11 @@
     "docs": "vendor/shadcn/docs/toggle.mdx"
    },
    "counts": {
-    "match": 4,
-    "intentional": 0,
-    "gap": 9,
+    "match": 13,
+    "intentional": 13,
+    "gap": 0,
     "differs": 0,
-    "extra": 11
+    "extra": 0
    },
    "parts": [
     {
@@ -18075,8 +18075,16 @@
      "id": "slots:toggle",
      "value": "toggle",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
+    },
+    {
+     "id": "slots:tooltip-trigger",
+     "value": "tooltip-trigger",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "An icon-only Toggle is its Tooltip's trigger, so the label shows on hover and focus."
     }
    ],
    "variants": {
@@ -18085,22 +18093,22 @@
       "id": "variants.size:default",
       "value": "default",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.size:lg",
       "value": "lg",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.size:sm",
       "value": "sm",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      }
     ],
     "variant": [
@@ -18129,7 +18137,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's Toggle accepts this through its props spread; DMF UI names it because its runtime and server render read it."
     },
     {
      "id": "props.Toggle.icon",
@@ -18139,7 +18148,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "DMF UI's shared presentation model (label, icon-label, icon) keeps one accessible name across the three looks; shadcn composes children instead."
     },
     {
      "id": "props.Toggle.label",
@@ -18149,7 +18159,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Required accessible name. DMF UI shows it as text or, for icon-only toggles, as the icon's tooltip, so the name never depends on the icon."
     },
     {
      "id": "props.Toggle.presentation",
@@ -18159,7 +18170,8 @@
      "dmf": {
       "default": "label"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "DMF UI's shared presentation model (label, icon-label, icon) keeps one accessible name across the three looks; shadcn composes children instead."
     },
     {
      "id": "props.Toggle.size",
@@ -18168,8 +18180,10 @@
      "shadcn": {
       "default": "default"
      },
-     "dmf": null,
-     "status": "gap"
+     "dmf": {
+      "default": null
+     },
+     "status": "match"
     },
     {
      "id": "props.Toggle.value",
@@ -18179,7 +18193,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Identifies the toggle in toggle:change events and its group's values."
     },
     {
      "id": "props.Toggle.variant",
@@ -18200,42 +18215,56 @@
      "value": "data-default-pressed",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Toggle runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-presentation",
      "value": "data-presentation",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Toggle runtime reads or sets."
+    },
+    {
+     "id": "dataAttributes:data-size",
+     "value": "data-size",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Toggle runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-toggle-disabled",
      "value": "data-toggle-disabled",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Toggle runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-type",
      "value": "data-type",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Toggle runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-value",
      "value": "data-value",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Toggle runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-variant",
      "value": "data-variant",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Toggle runtime reads or sets."
     }
    ],
    "stateHooks": [
@@ -18243,29 +18272,29 @@
      "id": "stateHooks:aria-invalid",
      "value": "aria-invalid",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:aria-pressed",
      "value": "aria-pressed",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-icon",
      "value": "data-icon",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-state",
      "value": "data-state",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "nova": {
@@ -18321,733 +18350,12 @@
    "measured": {
     "cases": 6,
     "matching": {
-     "light": 0,
-     "dark": 0
+     "light": 6,
+     "dark": 6
     },
     "differences": {
-     "light": {
-      "toggle/Toggle?variant=default&size=default": [
-       {
-        "property": "height",
-        "shadcn": 32,
-        "dmf": 18
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "borderTopWidth",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "14px",
-        "dmf": "16px"
-       },
-       {
-        "property": "fontWeight",
-        "shadcn": "500",
-        "dmf": "400"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "20px",
-        "dmf": "24px"
-       },
-       {
-        "property": "borderTopColor",
-        "shadcn": "229,229,229,255",
-        "dmf": "transparent"
-       }
-      ],
-      "toggle/Toggle?variant=default&size=sm": [
-       {
-        "property": "height",
-        "shadcn": 28,
-        "dmf": 18
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "borderTopLeftRadius",
-        "shadcn": "8px",
-        "dmf": "10px"
-       },
-       {
-        "property": "borderTopWidth",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "12.8px",
-        "dmf": "16px"
-       },
-       {
-        "property": "fontWeight",
-        "shadcn": "500",
-        "dmf": "400"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "18.2857px",
-        "dmf": "24px"
-       },
-       {
-        "property": "borderTopColor",
-        "shadcn": "229,229,229,255",
-        "dmf": "transparent"
-       }
-      ],
-      "toggle/Toggle?variant=default&size=lg": [
-       {
-        "property": "height",
-        "shadcn": 36,
-        "dmf": 18
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "borderTopWidth",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "14px",
-        "dmf": "16px"
-       },
-       {
-        "property": "fontWeight",
-        "shadcn": "500",
-        "dmf": "400"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "20px",
-        "dmf": "24px"
-       },
-       {
-        "property": "borderTopColor",
-        "shadcn": "229,229,229,255",
-        "dmf": "transparent"
-       }
-      ],
-      "toggle/Toggle?variant=outline&size=default": [
-       {
-        "property": "height",
-        "shadcn": 32,
-        "dmf": 18
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "14px",
-        "dmf": "16px"
-       },
-       {
-        "property": "fontWeight",
-        "shadcn": "500",
-        "dmf": "400"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "20px",
-        "dmf": "24px"
-       }
-      ],
-      "toggle/Toggle?variant=outline&size=sm": [
-       {
-        "property": "height",
-        "shadcn": 28,
-        "dmf": 18
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "borderTopLeftRadius",
-        "shadcn": "8px",
-        "dmf": "10px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "12.8px",
-        "dmf": "16px"
-       },
-       {
-        "property": "fontWeight",
-        "shadcn": "500",
-        "dmf": "400"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "18.2857px",
-        "dmf": "24px"
-       }
-      ],
-      "toggle/Toggle?variant=outline&size=lg": [
-       {
-        "property": "height",
-        "shadcn": 36,
-        "dmf": 18
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "14px",
-        "dmf": "16px"
-       },
-       {
-        "property": "fontWeight",
-        "shadcn": "500",
-        "dmf": "400"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "20px",
-        "dmf": "24px"
-       }
-      ]
-     },
-     "dark": {
-      "toggle/Toggle?variant=default&size=default": [
-       {
-        "property": "height",
-        "shadcn": 32,
-        "dmf": 18
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "borderTopWidth",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "14px",
-        "dmf": "16px"
-       },
-       {
-        "property": "fontWeight",
-        "shadcn": "500",
-        "dmf": "400"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "20px",
-        "dmf": "24px"
-       },
-       {
-        "property": "borderTopColor",
-        "shadcn": "245,255,255,26",
-        "dmf": "transparent"
-       }
-      ],
-      "toggle/Toggle?variant=default&size=sm": [
-       {
-        "property": "height",
-        "shadcn": 28,
-        "dmf": 18
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "borderTopLeftRadius",
-        "shadcn": "8px",
-        "dmf": "10px"
-       },
-       {
-        "property": "borderTopWidth",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "12.8px",
-        "dmf": "16px"
-       },
-       {
-        "property": "fontWeight",
-        "shadcn": "500",
-        "dmf": "400"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "18.2857px",
-        "dmf": "24px"
-       },
-       {
-        "property": "borderTopColor",
-        "shadcn": "245,255,255,26",
-        "dmf": "transparent"
-       }
-      ],
-      "toggle/Toggle?variant=default&size=lg": [
-       {
-        "property": "height",
-        "shadcn": 36,
-        "dmf": 18
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "borderTopWidth",
-        "shadcn": "0px",
-        "dmf": "1px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "14px",
-        "dmf": "16px"
-       },
-       {
-        "property": "fontWeight",
-        "shadcn": "500",
-        "dmf": "400"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "20px",
-        "dmf": "24px"
-       },
-       {
-        "property": "borderTopColor",
-        "shadcn": "245,255,255,26",
-        "dmf": "transparent"
-       }
-      ],
-      "toggle/Toggle?variant=outline&size=default": [
-       {
-        "property": "height",
-        "shadcn": 32,
-        "dmf": 18
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "14px",
-        "dmf": "16px"
-       },
-       {
-        "property": "fontWeight",
-        "shadcn": "500",
-        "dmf": "400"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "20px",
-        "dmf": "24px"
-       },
-       {
-        "property": "borderTopColor",
-        "shadcn": "255,255,255,38",
-        "dmf": "245,255,255,26"
-       }
-      ],
-      "toggle/Toggle?variant=outline&size=sm": [
-       {
-        "property": "height",
-        "shadcn": 28,
-        "dmf": 18
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "borderTopLeftRadius",
-        "shadcn": "8px",
-        "dmf": "10px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "12.8px",
-        "dmf": "16px"
-       },
-       {
-        "property": "fontWeight",
-        "shadcn": "500",
-        "dmf": "400"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "18.2857px",
-        "dmf": "24px"
-       },
-       {
-        "property": "borderTopColor",
-        "shadcn": "255,255,255,38",
-        "dmf": "245,255,255,26"
-       }
-      ],
-      "toggle/Toggle?variant=outline&size=lg": [
-       {
-        "property": "height",
-        "shadcn": 36,
-        "dmf": 18
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "0px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "10px",
-        "dmf": "12px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "4px",
-        "dmf": "8px"
-       },
-       {
-        "property": "fontSize",
-        "shadcn": "14px",
-        "dmf": "16px"
-       },
-       {
-        "property": "fontWeight",
-        "shadcn": "500",
-        "dmf": "400"
-       },
-       {
-        "property": "lineHeight",
-        "shadcn": "20px",
-        "dmf": "24px"
-       },
-       {
-        "property": "borderTopColor",
-        "shadcn": "255,255,255,38",
-        "dmf": "245,255,255,26"
-       }
-      ]
-     }
+     "light": {},
+     "dark": {}
     },
     "accepted": {
      "light": 0,
@@ -19063,11 +18371,11 @@
     "docs": "vendor/shadcn/docs/toggle-group.mdx"
    },
    "counts": {
-    "match": 3,
-    "intentional": 0,
-    "gap": 17,
+    "match": 27,
+    "intentional": 17,
+    "gap": 0,
     "differs": 0,
-    "extra": 14
+    "extra": 0
    },
    "parts": [
     {
@@ -19081,8 +18389,8 @@
      "id": "parts:ToggleGroupItem",
      "value": "ToggleGroupItem",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "slots": [
@@ -19097,8 +18405,8 @@
      "id": "slots:toggle-group-item",
      "value": "toggle-group-item",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "variants": {
@@ -19107,15 +18415,38 @@
       "id": "variants.orientation:horizontal",
       "value": "horizontal",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.orientation:vertical",
       "value": "vertical",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
+     }
+    ],
+    "size": [
+     {
+      "id": "variants.size:default",
+      "value": "default",
+      "shadcn": true,
+      "dmf": true,
+      "status": "match"
+     },
+     {
+      "id": "variants.size:lg",
+      "value": "lg",
+      "shadcn": true,
+      "dmf": true,
+      "status": "match"
+     },
+     {
+      "id": "variants.size:sm",
+      "value": "sm",
+      "shadcn": true,
+      "dmf": true,
+      "status": "match"
      }
     ],
     "type": [
@@ -19124,30 +18455,32 @@
       "value": "multiple",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "DMF UI keeps `type` (single or multiple), as Radix-based shadcn did; Base UI uses a boolean `multiple`. No existing prop is removed."
      },
      {
       "id": "variants.type:single",
       "value": "single",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "DMF UI keeps `type` (single or multiple), as Radix-based shadcn did; Base UI uses a boolean `multiple`. No existing prop is removed."
      }
     ],
     "variant": [
      {
       "id": "variants.variant:default",
       "value": "default",
-      "shadcn": false,
+      "shadcn": true,
       "dmf": true,
-      "status": "extra"
+      "status": "match"
      },
      {
       "id": "variants.variant:outline",
       "value": "outline",
-      "shadcn": false,
+      "shadcn": true,
       "dmf": true,
-      "status": "extra"
+      "status": "match"
      }
     ]
    },
@@ -19160,7 +18493,8 @@
      "dmf": {
       "default": "[]"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's Toggle accepts this through its props spread; DMF UI names it because its runtime and server render read it."
     },
     {
      "id": "props.ToggleGroup.disabled",
@@ -19170,7 +18504,8 @@
      "dmf": {
       "default": "false"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's Toggle accepts this through its props spread; DMF UI names it because its runtime and server render read it."
     },
     {
      "id": "props.ToggleGroup.icon",
@@ -19180,7 +18515,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "DMF UI's shared presentation model (label, icon-label, icon) keeps one accessible name across the three looks; shadcn composes children instead."
     },
     {
      "id": "props.ToggleGroup.items",
@@ -19190,7 +18526,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Renders the items from data, the original DMF API. ToggleGroupItem children work as in shadcn."
     },
     {
      "id": "props.ToggleGroup.label",
@@ -19200,7 +18537,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Required group name (aria-label on role=group)."
     },
     {
      "id": "props.ToggleGroup.orientation",
@@ -19209,8 +18547,10 @@
      "shadcn": {
       "default": "horizontal"
      },
-     "dmf": null,
-     "status": "gap"
+     "dmf": {
+      "default": "horizontal"
+     },
+     "status": "match"
     },
     {
      "id": "props.ToggleGroup.presentation",
@@ -19220,7 +18560,8 @@
      "dmf": {
       "default": "label"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "DMF UI's shared presentation model (label, icon-label, icon) keeps one accessible name across the three looks; shadcn composes children instead."
     },
     {
      "id": "props.ToggleGroup.size",
@@ -19229,8 +18570,10 @@
      "shadcn": {
       "default": null
      },
-     "dmf": null,
-     "status": "gap"
+     "dmf": {
+      "default": "default"
+     },
+     "status": "match"
     },
     {
      "id": "props.ToggleGroup.spacing",
@@ -19239,8 +18582,10 @@
      "shadcn": {
       "default": "2"
      },
-     "dmf": null,
-     "status": "gap"
+     "dmf": {
+      "default": "2"
+     },
+     "status": "match"
     },
     {
      "id": "props.ToggleGroup.type",
@@ -19250,7 +18595,8 @@
      "dmf": {
       "default": "single"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "DMF UI keeps `type` (single or multiple), as Radix-based shadcn did; Base UI uses a boolean `multiple`. No existing prop is removed."
     },
     {
      "id": "props.ToggleGroup.value",
@@ -19260,7 +18606,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "The value field of `items` entries, read as a prop by the extractor."
     },
     {
      "id": "props.ToggleGroup.variant",
@@ -19273,6 +18620,85 @@
       "default": "outline"
      },
      "status": "match"
+    },
+    {
+     "id": "props.ToggleGroupItem.defaultPressed",
+     "component": "ToggleGroupItem",
+     "prop": "defaultPressed",
+     "shadcn": null,
+     "dmf": {
+      "default": null
+     },
+     "status": "intentional",
+     "reason": "Base UI's Toggle accepts this through its props spread; DMF UI names it because its runtime and server render read it."
+    },
+    {
+     "id": "props.ToggleGroupItem.icon",
+     "component": "ToggleGroupItem",
+     "prop": "icon",
+     "shadcn": null,
+     "dmf": {
+      "default": null
+     },
+     "status": "intentional",
+     "reason": "DMF UI's shared presentation model (label, icon-label, icon) keeps one accessible name across the three looks; shadcn composes children instead."
+    },
+    {
+     "id": "props.ToggleGroupItem.label",
+     "component": "ToggleGroupItem",
+     "prop": "label",
+     "shadcn": null,
+     "dmf": {
+      "default": null
+     },
+     "status": "intentional",
+     "reason": "Required accessible name. DMF UI shows it as text or, for icon-only toggles, as the icon's tooltip, so the name never depends on the icon."
+    },
+    {
+     "id": "props.ToggleGroupItem.presentation",
+     "component": "ToggleGroupItem",
+     "prop": "presentation",
+     "shadcn": null,
+     "dmf": {
+      "default": "label"
+     },
+     "status": "intentional",
+     "reason": "DMF UI's shared presentation model (label, icon-label, icon) keeps one accessible name across the three looks; shadcn composes children instead."
+    },
+    {
+     "id": "props.ToggleGroupItem.size",
+     "component": "ToggleGroupItem",
+     "prop": "size",
+     "shadcn": {
+      "default": "default"
+     },
+     "dmf": {
+      "default": null
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.ToggleGroupItem.value",
+     "component": "ToggleGroupItem",
+     "prop": "value",
+     "shadcn": null,
+     "dmf": {
+      "default": null
+     },
+     "status": "intentional",
+     "reason": "Identifies the item in the group's values; required, as Base UI's is."
+    },
+    {
+     "id": "props.ToggleGroupItem.variant",
+     "component": "ToggleGroupItem",
+     "prop": "variant",
+     "shadcn": {
+      "default": "default"
+     },
+     "dmf": {
+      "default": null
+     },
+     "status": "match"
     }
    ],
    "dataAttributes": [
@@ -19280,43 +18706,45 @@
      "id": "dataAttributes:data-orientation",
      "value": "data-orientation",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "dataAttributes:data-presentation",
      "value": "data-presentation",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Toggle runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-size",
      "value": "data-size",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "dataAttributes:data-spacing",
      "value": "data-spacing",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "dataAttributes:data-type",
      "value": "data-type",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Tells the Toggle runtime whether the group allows one or several pressed items."
     },
     {
      "id": "dataAttributes:data-variant",
      "value": "data-variant",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "stateHooks": [
@@ -19324,43 +18752,43 @@
      "id": "stateHooks:data-horizontal",
      "value": "data-horizontal",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-icon",
      "value": "data-icon",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-size",
      "value": "data-size",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-spacing",
      "value": "data-spacing",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-variant",
      "value": "data-variant",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-vertical",
      "value": "data-vertical",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "nova": {
@@ -19368,9 +18796,62 @@
      "cn-toggle-group",
      "cn-toggle-group-item"
     ],
-    "cva": {}
+    "cva": {
+     "toggleVariants": {
+      "base": [
+       {
+        "class": "cn-toggle",
+        "utilities": "hover:text-foreground aria-pressed:bg-muted focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[state=on]:bg-muted gap-1 rounded-lg text-sm font-medium transition-all [&_svg:not([class*='size-'])]:size-4"
+       }
+      ],
+      "defaults": {
+       "variant": "default",
+       "size": "default"
+      },
+      "variants": {
+       "variant": {
+        "default": {
+         "classes": "cn-toggle-variant-default",
+         "utilities": "bg-transparent"
+        },
+        "outline": {
+         "classes": "cn-toggle-variant-outline",
+         "utilities": "border-input hover:bg-muted border bg-transparent"
+        }
+       },
+       "size": {
+        "default": {
+         "classes": "cn-toggle-size-default",
+         "utilities": "h-8 min-w-8 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2"
+        },
+        "sm": {
+         "classes": "cn-toggle-size-sm",
+         "utilities": "h-7 min-w-7 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5"
+        },
+        "lg": {
+         "classes": "cn-toggle-size-lg",
+         "utilities": "h-9 min-w-9 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2"
+        }
+       }
+      }
+     }
+    }
    },
-   "measured": null
+   "measured": {
+    "cases": 3,
+    "matching": {
+     "light": 3,
+     "dark": 3
+    },
+    "differences": {
+     "light": {},
+     "dark": {}
+    },
+    "accepted": {
+     "light": 0,
+     "dark": 0
+    }
+   }
   },
   "tooltip": {
    "name": "Tooltip",
@@ -19828,16 +19309,16 @@
   }
  },
  "measuredTotals": {
-  "cases": 193,
+  "cases": 196,
   "matching": {
-   "light": 100,
-   "dark": 100
+   "light": 109,
+   "dark": 109
   },
   "compoundParts": {
-   "parts": 99,
+   "parts": 102,
    "matching": {
-    "light": 43,
-    "dark": 43
+    "light": 46,
+    "dark": 46
    }
   },
   "accepted": {
