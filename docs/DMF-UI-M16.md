@@ -336,9 +336,13 @@ These are recorded as intentional with those reasons.
 | --- | --- | --- |
 | Batch 4 gaps | 20 | 3 (drawer snap-point list) |
 | Batch 4 extras undecided | 0 | 0 |
-| Static gaps, all families | 193 | 180 |
+| Static gaps, all families | 193 | 177 (176 gaps and 1 differs) |
 | Static extras, all families | 197 | 197 |
 
 Browser scenarios: the new submenu scenario, the documentation, modal, navigation, parity and baseline scenarios all pass. The full docs suite runs 30 scenarios and passes. 83 unit tests and the type check pass.
 
-**Size changes:** the submenu adds a small runtime and styles. Dropdown Menu's CSS and JS grow as a result.
+**Size changes**
+- **Dropdown Menu CSS:** 10.4 → 12.8 KB (2.4 → 2.8 KB gzip). The submenu styles and the new parts.
+- **Dropdown Menu JS:** 30.8 → 34.2 KB (10.5 → 11.3 KB gzip). The submenu runtime and the checked-item change.
+- **Alert Dialog CSS:** 1.7 → 1.7 KB, with the sm width now in the class.
+- Drawer and Collapsible are unchanged.
