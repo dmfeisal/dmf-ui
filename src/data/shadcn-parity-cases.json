@@ -7551,17 +7551,18 @@
      "whitespace-nowrap"
     ],
     "attributes": {
-     "data-slot": "toggle"
+     "data-slot": "toggle",
+     "aria-pressed": "false"
     }
    },
    "dmf": {
     "props": {
-     "variant": "default"
+     "label": "Bold",
+     "variant": "default",
+     "size": "default"
     }
    },
-   "unsupported": [
-    "size"
-   ]
+   "unsupported": []
   },
   {
    "id": "toggle/Toggle?variant=default&size=sm",
@@ -7594,17 +7595,18 @@
      "whitespace-nowrap"
     ],
     "attributes": {
-     "data-slot": "toggle"
+     "data-slot": "toggle",
+     "aria-pressed": "false"
     }
    },
    "dmf": {
     "props": {
-     "variant": "default"
+     "label": "Bold",
+     "variant": "default",
+     "size": "sm"
     }
    },
-   "unsupported": [
-    "size"
-   ]
+   "unsupported": []
   },
   {
    "id": "toggle/Toggle?variant=default&size=lg",
@@ -7637,17 +7639,18 @@
      "whitespace-nowrap"
     ],
     "attributes": {
-     "data-slot": "toggle"
+     "data-slot": "toggle",
+     "aria-pressed": "false"
     }
    },
    "dmf": {
     "props": {
-     "variant": "default"
+     "label": "Bold",
+     "variant": "default",
+     "size": "lg"
     }
    },
-   "unsupported": [
-    "size"
-   ]
+   "unsupported": []
   },
   {
    "id": "toggle/Toggle?variant=outline&size=default",
@@ -7680,17 +7683,18 @@
      "whitespace-nowrap"
     ],
     "attributes": {
-     "data-slot": "toggle"
+     "data-slot": "toggle",
+     "aria-pressed": "false"
     }
    },
    "dmf": {
     "props": {
-     "variant": "outline"
+     "label": "Bold",
+     "variant": "outline",
+     "size": "default"
     }
    },
-   "unsupported": [
-    "size"
-   ]
+   "unsupported": []
   },
   {
    "id": "toggle/Toggle?variant=outline&size=sm",
@@ -7723,17 +7727,18 @@
      "whitespace-nowrap"
     ],
     "attributes": {
-     "data-slot": "toggle"
+     "data-slot": "toggle",
+     "aria-pressed": "false"
     }
    },
    "dmf": {
     "props": {
-     "variant": "outline"
+     "label": "Bold",
+     "variant": "outline",
+     "size": "sm"
     }
    },
-   "unsupported": [
-    "size"
-   ]
+   "unsupported": []
   },
   {
    "id": "toggle/Toggle?variant=outline&size=lg",
@@ -7766,16 +7771,184 @@
      "whitespace-nowrap"
     ],
     "attributes": {
-     "data-slot": "toggle"
+     "data-slot": "toggle",
+     "aria-pressed": "false"
     }
    },
    "dmf": {
     "props": {
-     "variant": "outline"
+     "label": "Bold",
+     "variant": "outline",
+     "size": "lg"
     }
    },
-   "unsupported": [
-    "size"
+   "unsupported": []
+  },
+  {
+   "id": "toggle-group/compound",
+   "family": "toggle-group",
+   "kind": "compound",
+   "open": null,
+   "tree": {
+    "component": "ToggleGroup",
+    "props": {
+     "variant": "outline",
+     "label": "Format"
+    },
+    "text": "",
+    "void": false,
+    "children": [
+     {
+      "component": "ToggleGroupItem",
+      "props": {
+       "variant": "outline",
+       "label": "Bold",
+       "value": "bold"
+      },
+      "text": "Bold",
+      "void": false,
+      "children": []
+     },
+     {
+      "component": "ToggleGroupItem",
+      "props": {
+       "variant": "outline",
+       "label": "Italic",
+       "value": "italic"
+      },
+      "text": "Italic",
+      "void": false,
+      "children": []
+     }
+    ]
+   },
+   "nodes": [
+    {
+     "key": "0",
+     "parent": null,
+     "component": "ToggleGroup",
+     "id": "toggle-group/compound#toggle-group",
+     "dmfSlot": "toggle-group",
+     "occurrence": 0,
+     "inOpen": false,
+     "text": "",
+     "void": false,
+     "reference": {
+      "tag": "div",
+      "classes": [
+       "cn-toggle-group",
+       "data-vertical:flex-col",
+       "data-vertical:items-stretch",
+       "flex",
+       "flex-row",
+       "gap-[--spacing(var(--gap))]",
+       "group/toggle-group",
+       "items-center",
+       "w-fit"
+      ],
+      "attributes": {
+       "data-slot": "toggle-group",
+       "data-variant": "outline",
+       "data-spacing": "2",
+       "data-orientation": "horizontal",
+       "style": "--gap:2"
+      }
+     },
+     "inner": null
+    },
+    {
+     "key": "1",
+     "parent": "0",
+     "component": "ToggleGroupItem",
+     "id": "toggle-group/compound#toggle-group-item",
+     "dmfSlot": "toggle-group-item",
+     "occurrence": 0,
+     "inOpen": false,
+     "text": "Bold",
+     "void": false,
+     "reference": {
+      "tag": "button",
+      "classes": [
+       "[&_svg]:pointer-events-none",
+       "[&_svg]:shrink-0",
+       "cn-toggle",
+       "cn-toggle-group-item",
+       "cn-toggle-size-default",
+       "cn-toggle-variant-outline",
+       "disabled:opacity-50",
+       "disabled:pointer-events-none",
+       "focus-visible:ring-[3px]",
+       "focus-visible:z-10",
+       "focus:z-10",
+       "group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:border-l-0",
+       "group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-l",
+       "group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:border-t-0",
+       "group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-t",
+       "group/toggle",
+       "hover:bg-muted",
+       "inline-flex",
+       "items-center",
+       "justify-center",
+       "outline-none",
+       "shrink-0",
+       "whitespace-nowrap"
+      ],
+      "attributes": {
+       "data-slot": "toggle-group-item",
+       "aria-pressed": "false"
+      }
+     },
+     "inner": null
+    },
+    {
+     "key": "2",
+     "parent": "0",
+     "component": "ToggleGroupItem",
+     "id": "toggle-group/compound#toggle-group-item:2",
+     "dmfSlot": "toggle-group-item",
+     "occurrence": 1,
+     "inOpen": false,
+     "text": "Italic",
+     "void": false,
+     "reference": {
+      "tag": "button",
+      "classes": [
+       "[&_svg]:pointer-events-none",
+       "[&_svg]:shrink-0",
+       "cn-toggle",
+       "cn-toggle-group-item",
+       "cn-toggle-size-default",
+       "cn-toggle-variant-outline",
+       "disabled:opacity-50",
+       "disabled:pointer-events-none",
+       "focus-visible:ring-[3px]",
+       "focus-visible:z-10",
+       "focus:z-10",
+       "group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:border-l-0",
+       "group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-l",
+       "group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:border-t-0",
+       "group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:first:border-t",
+       "group/toggle",
+       "hover:bg-muted",
+       "inline-flex",
+       "items-center",
+       "justify-center",
+       "outline-none",
+       "shrink-0",
+       "whitespace-nowrap"
+      ],
+      "attributes": {
+       "data-slot": "toggle-group-item",
+       "aria-pressed": "false"
+      }
+     },
+     "inner": null
+    }
+   ],
+   "parts": [
+    "toggle-group/compound#toggle-group",
+    "toggle-group/compound#toggle-group-item",
+    "toggle-group/compound#toggle-group-item:2"
    ]
   },
   {

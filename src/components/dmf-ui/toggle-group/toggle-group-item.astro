@@ -1,0 +1,13 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import type {NavigationIcon,Presentation} from '../navigation-types';
+import Control from '../toggle/toggle-control.astro';
+import {Tooltip,TooltipContent} from '../tooltip';
+import {cn} from '../utils';
+import {toggleGroupItemClasses} from './toggle-group-variants';
+interface Props extends Omit<HTMLAttributes<'button'>,'type'|'value'|'aria-pressed'> {label:string;value:string;defaultPressed?:boolean;icon?:NavigationIcon;presentation?:Presentation;variant?:'default'|'outline';size?:'default'|'sm'|'lg';}
+const {presentation='label',label,icon:Icon,class:className,...props}=Astro.props;
+if(!props.value)throw new Error('ToggleGroupItem requires a nonempty value.');
+const classes=cn(toggleGroupItemClasses,className);
+---
+{presentation==='icon'?<Tooltip side="bottom" portal={false} class="dmf-inline-tooltip"><Control {...props} class={classes} label={label} icon={Icon} presentation={presentation} tooltipTrigger/><TooltipContent>{label}</TooltipContent></Tooltip>:<Control {...props} class={classes} label={label} icon={Icon} presentation={presentation} slotName="toggle-group-item"/>}

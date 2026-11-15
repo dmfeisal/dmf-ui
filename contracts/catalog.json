@@ -3510,8 +3510,8 @@
             "default"
           ],
           "dataSlots": [
-            "banner-container",
-            "banner-close"
+            "banner-close",
+            "banner-container"
           ],
           "properties": [
             {
@@ -5222,8 +5222,8 @@
             "default"
           ],
           "dataSlots": [
-            "carousel-container",
-            "carousel-content"
+            "carousel-content",
+            "carousel-container"
           ],
           "properties": [],
           "native": [
@@ -5879,7 +5879,8 @@
             "default"
           ],
           "dataSlots": [
-            "chip"
+            "chip",
+            "tooltip-trigger"
           ],
           "properties": [
             {
@@ -20198,7 +20199,9 @@
         {
           "file": "src/components/dmf-ui/rating/rating-choice.astro",
           "slots": [],
-          "dataSlots": [],
+          "dataSlots": [
+            "tooltip-trigger"
+          ],
           "properties": [
             {
               "name": "number",
@@ -27367,13 +27370,18 @@
           "default"
         ],
         [
+          "size",
+          "default | sm | lg",
+          "default"
+        ],
+        [
           "disabled",
           "boolean",
           "false"
         ]
       ],
       "accessibility": [
-        "A native type=button exposes aria-pressed and retains its label when pressed. Enter/Space changes the state; icon-only buttons use the shared Tooltip. Pressed styling includes a border/underline cue as well as a fill.",
+        "A native type=button exposes aria-pressed and retains its label when pressed. Enter/Space changes the state; icon-only buttons use the shared Tooltip. Pressed styling adds an underline cue to the muted fill, so the state does not rely on the fill alone.",
         "Listen for bubbling toggle:change with detail.pressed. setTogglePressed(button, boolean) also enforces a containing single group and emits changes. The host owns the actual command effect and persistence.",
         "Toggles are commands, not successful form controls: no automatic name/value submission or form reset is invented. Buttons remain disabled until enhancement, including without JavaScript. Use Checkbox or Chip for submitted boolean choices."
       ],
@@ -27390,7 +27398,10 @@
         {
           "file": "src/components/dmf-ui/toggle/toggle-control.astro",
           "slots": [],
-          "dataSlots": [],
+          "dataSlots": [
+            "tooltip-trigger",
+            "toggle"
+          ],
           "properties": [
             {
               "name": "label",
@@ -27423,15 +27434,25 @@
               "optional": true
             },
             {
+              "name": "size",
+              "type": "'default'|'sm'|'lg'",
+              "optional": true
+            },
+            {
               "name": "tooltipTrigger",
               "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "slotName",
+              "type": "string",
               "optional": true
             }
           ],
           "native": [
             "HTMLAttributes<'button'>"
           ],
-          "declaration": "interface Props extends Omit<HTMLAttributes<'button'>,'type'|'value'|'aria-pressed'> {label:string;value?:string;defaultPressed?:boolean;icon?:NavigationIcon;presentation?:Presentation;variant?:'default'|'outline';tooltipTrigger?:boolean;}"
+          "declaration": "interface Props extends Omit<HTMLAttributes<'button'>,'type'|'value'|'aria-pressed'> {label:string;value?:string;defaultPressed?:boolean;icon?:NavigationIcon;presentation?:Presentation;variant?:'default'|'outline';size?:'default'|'sm'|'lg';tooltipTrigger?:boolean;slotName?:string;}"
         },
         {
           "file": "src/components/dmf-ui/toggle/toggle.astro",
@@ -27467,20 +27488,37 @@
               "name": "variant",
               "type": "'default'|'outline'",
               "optional": true
+            },
+            {
+              "name": "size",
+              "type": "'default'|'sm'|'lg'",
+              "optional": true
             }
           ],
           "native": [
             "HTMLAttributes<'button'>"
           ],
-          "declaration": "interface Props extends Omit<HTMLAttributes<'button'>,'type'|'value'|'aria-pressed'> {label:string;value?:string;defaultPressed?:boolean;icon?:NavigationIcon;presentation?:Presentation;variant?:'default'|'outline';}"
+          "declaration": "interface Props extends Omit<HTMLAttributes<'button'>,'type'|'value'|'aria-pressed'> {label:string;value?:string;defaultPressed?:boolean;icon?:NavigationIcon;presentation?:Presentation;variant?:'default'|'outline';size?:'default'|'sm'|'lg';}"
         }
       ],
-      "variants": {},
+      "variants": {
+        "variant": [
+          "default",
+          "outline"
+        ],
+        "size": [
+          "default",
+          "sm",
+          "lg"
+        ]
+      },
       "defaults": {
         "toggle-control.astro:defaultPressed": "false",
         "toggle-control.astro:presentation": "'label'",
         "toggle-control.astro:variant": "'default'",
+        "toggle-control.astro:size": "'default'",
         "toggle-control.astro:tooltipTrigger": "false",
+        "toggle-control.astro:slotName": "'toggle'",
         "toggle-control.astro:disabled": "false",
         "toggle.astro:presentation": "'label'"
       },
@@ -27490,8 +27528,8 @@
           "note": "Default authored composition."
         },
         "hover": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "pressed": {
           "status": "source-evidence",
@@ -27502,8 +27540,8 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         },
         "focus-visible": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "disabled": {
           "status": "source-evidence",
@@ -27562,8 +27600,8 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         },
         "invalid": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "warning": {
           "status": "not-established",
@@ -27634,7 +27672,14 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         }
       },
-      "tokens": [],
+      "tokens": [
+        "destructive",
+        "foreground",
+        "input",
+        "muted",
+        "radius",
+        "ring"
+      ],
       "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
@@ -27663,7 +27708,7 @@
       "sources": [
         {
           "path": "src/components/dmf-ui/toggle/index.ts",
-          "sha256": "b31b2c20d08711085323b9cad0d2f6daf500d95016d94674ab3574c0c689a694"
+          "sha256": "189d530443eafd73b18f8d706983c1ecbf11d4fa872e5232d8c91b44f9fc83db"
         },
         {
           "path": "src/components/dmf-ui/toggle/runtime.ts",
@@ -27675,11 +27720,15 @@
         },
         {
           "path": "src/components/dmf-ui/toggle/toggle-control.astro",
-          "sha256": "3a4112e7835e30e73798ff951b07fa52db4f9258a55edbd9c6dbba7d327ed08e"
+          "sha256": "8e4cd032e63c3679fbeeffac75bf79a92cbb3d828de228d93f5473657b9ff083"
+        },
+        {
+          "path": "src/components/dmf-ui/toggle/toggle-variants.ts",
+          "sha256": "541f7a886d62ab57f3060ed72605f50c26861e845aea352fd7121353de23a882"
         },
         {
           "path": "src/components/dmf-ui/toggle/toggle.astro",
-          "sha256": "789d2df8189394d7301180ee14c37c25e35af4337e1cb82be81dae4c1b6dc25a"
+          "sha256": "8b6471df60a70725e07f7a1e7cae60bee7846ecfcedae6da6b91dfa3bed63e16"
         }
       ],
       "gaps": [
@@ -27707,8 +27756,10 @@
         "../utils",
         "./state",
         "./toggle-control.astro",
+        "./toggle-variants",
         "./toggle.astro",
-        "astro/types"
+        "astro/types",
+        "class-variance-authority"
       ]
     },
     {
@@ -27743,13 +27794,33 @@
           "outline"
         ],
         [
+          "size",
+          "default | sm | lg",
+          "default"
+        ],
+        [
+          "spacing",
+          "number of spacing steps; 0 joins the items",
+          "2"
+        ],
+        [
+          "orientation",
+          "horizontal | vertical",
+          "horizontal"
+        ],
+        [
+          "children",
+          "ToggleGroupItem, in place of items",
+          "None"
+        ],
+        [
           "disabled",
           "boolean",
           "false"
         ]
       ],
       "accessibility": [
-        "Uses role=group with native pressed buttons. Every available button remains a normal Tab stop; no toolbar/radio keyboard model is implied. Single mode permits zero or one pressed item. Multiple mode permits any combination.",
+        "Items come from `items` or from ToggleGroupItem children; the group's variant and size apply to both. Uses role=group with native pressed buttons. Every available button remains a normal Tab stop; no toolbar/radio keyboard model is implied. Single mode permits zero or one pressed item. Multiple mode permits any combination.",
         "Values must be unique and nonempty, and initial selections must refer to items. Icon-only items require icons and retain stable names and shared tooltips. Disabled buttons cannot be activated.",
         "Bubbling toggle-group:change exposes detail.values. The host applies effects and persistence. These commands do not submit form values or automatically reset with a form; use Radio Group or Checkbox for form choices."
       ],
@@ -27764,8 +27835,58 @@
       "entry": "./src/components/dmf-ui/toggle-group/index.ts",
       "parts": [
         {
-          "file": "src/components/dmf-ui/toggle-group/toggle-group.astro",
+          "file": "src/components/dmf-ui/toggle-group/toggle-group-item.astro",
           "slots": [],
+          "dataSlots": [
+            "toggle-group-item"
+          ],
+          "properties": [
+            {
+              "name": "label",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "value",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "defaultPressed",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "icon",
+              "type": "NavigationIcon",
+              "optional": true
+            },
+            {
+              "name": "presentation",
+              "type": "Presentation",
+              "optional": true
+            },
+            {
+              "name": "variant",
+              "type": "'default'|'outline'",
+              "optional": true
+            },
+            {
+              "name": "size",
+              "type": "'default'|'sm'|'lg'",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'button'>"
+          ],
+          "declaration": "interface Props extends Omit<HTMLAttributes<'button'>,'type'|'value'|'aria-pressed'> {label:string;value:string;defaultPressed?:boolean;icon?:NavigationIcon;presentation?:Presentation;variant?:'default'|'outline';size?:'default'|'sm'|'lg';}"
+        },
+        {
+          "file": "src/components/dmf-ui/toggle-group/toggle-group.astro",
+          "slots": [
+            "default"
+          ],
           "dataSlots": [
             "toggle-group"
           ],
@@ -27778,7 +27899,7 @@
             {
               "name": "items",
               "type": "{value:string;label:string;icon?:NavigationIcon;disabled?:boolean}[]",
-              "optional": false
+              "optional": true
             },
             {
               "name": "value",
@@ -27824,19 +27945,38 @@
               "name": "variant",
               "type": "'default'|'outline'",
               "optional": true
+            },
+            {
+              "name": "size",
+              "type": "'default'|'sm'|'lg'",
+              "optional": true
+            },
+            {
+              "name": "spacing",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "orientation",
+              "type": "'horizontal'|'vertical'",
+              "optional": true
             }
           ],
           "native": [],
-          "declaration": "interface Props extends HTMLAttributes<'div'> {label:string;items:{value:string;label:string;icon?:NavigationIcon;disabled?:boolean}[];type?:'single'|'multiple';defaultValue?:string[];disabled?:boolean;presentation?:Presentation;variant?:'default'|'outline';}"
+          "declaration": "interface Props extends HTMLAttributes<'div'> {label:string;items?:{value:string;label:string;icon?:NavigationIcon;disabled?:boolean}[];type?:'single'|'multiple';defaultValue?:string[];disabled?:boolean;presentation?:Presentation;variant?:'default'|'outline';size?:'default'|'sm'|'lg';spacing?:number;orientation?:'horizontal'|'vertical';}"
         }
       ],
       "variants": {},
       "defaults": {
+        "toggle-group-item.astro:presentation": "'label'",
         "toggle-group.astro:type": "'single'",
         "toggle-group.astro:defaultValue": "[]",
         "toggle-group.astro:disabled": "false",
         "toggle-group.astro:presentation": "'label'",
-        "toggle-group.astro:variant": "'outline'"
+        "toggle-group.astro:variant": "'outline'",
+        "toggle-group.astro:size": "'default'",
+        "toggle-group.astro:spacing": "2",
+        "toggle-group.astro:orientation": "'horizontal'"
       },
       "states": {
         "default": {
@@ -27848,16 +27988,16 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         },
         "pressed": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "focus": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "focus-visible": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "disabled": {
           "status": "source-evidence",
@@ -27988,7 +28128,11 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         }
       },
-      "tokens": [],
+      "tokens": [
+        "gap",
+        "input",
+        "radius"
+      ],
       "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
@@ -28011,11 +28155,19 @@
       "sources": [
         {
           "path": "src/components/dmf-ui/toggle-group/index.ts",
-          "sha256": "f86c2746047d73caffa813d5da19dcac6ca00e2a0877736333b08f34672fbf35"
+          "sha256": "d436fd5499d559f1298b6ea61606be3871c26fab0f4fda4f8ba748eda021d291"
+        },
+        {
+          "path": "src/components/dmf-ui/toggle-group/toggle-group-item.astro",
+          "sha256": "5855ddfd73087181c64638a99b62e2763ef0293fbf5889b051d621ef729b443e"
+        },
+        {
+          "path": "src/components/dmf-ui/toggle-group/toggle-group-variants.ts",
+          "sha256": "7f1cc1d79168209fd77d6845a1bf035c40a19896b5450ace6d312acd250c50fa"
         },
         {
           "path": "src/components/dmf-ui/toggle-group/toggle-group.astro",
-          "sha256": "41cbe296f36ed74e7029d1ff1f787eeaf312b791218e3612ef5668050df9af2e"
+          "sha256": "295c52c854207ed928b84edb2777d40a8f434eb361f2dce1a96de07d269e2033"
         }
       ],
       "gaps": [
@@ -28038,8 +28190,11 @@
       },
       "dependencies": [
         "../navigation-types",
-        "../toggle",
+        "../toggle/toggle-control.astro",
+        "../tooltip",
         "../utils",
+        "./toggle-group-item.astro",
+        "./toggle-group-variants",
         "./toggle-group.astro",
         "astro/types"
       ]

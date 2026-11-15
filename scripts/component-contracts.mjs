@@ -2,6 +2,18 @@ import ts from 'typescript';
 import {readFile,writeFile,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+// The data-slot values a source can render: literal attributes, an overridable prop default
+// ("data-slot": dataSlot = "input"), the string literals inside a data-slot={...} expression, and a
+// slotName="..." passed to a shared control (Toggle Group's items render Toggle's control).
+function slotsOf(source){
+ const found=[];
+ for(const m of source.matchAll(/data-slot="([^"]+)"/g))found.push(m[1]);
+ for(const m of source.matchAll(/["']data-slot["']\s*:\s*\w+\s*=\s*["']([^"']+)["']/g))found.push(m[1]);
+ for(const m of source.matchAll(/data-slot=\{([^}]*)\}/g))for(const n of m[1].matchAll(/["']([a-z][a-z0-9-]*)["']/g))found.push(n[1]);
+ for(const m of source.matchAll(/slotName\s*=\s*["']([a-z][a-z0-9-]*)["']/g))found.push(m[1]);
+ return [...new Set(found)];
+}
+
 const root=new URL('../',import.meta.url);
 const read=path=>readFile(new URL(path,root),'utf8');
 const parse=(path,text)=>ts.createSourceFile(path,text,ts.ScriptTarget.Latest,true,ts.ScriptKind.TSX);
@@ -41,7 +53,7 @@ export async function inventory(){
     if(ts.isVariableDeclaration(node)&&ts.isObjectBindingPattern(node.name)&&node.initializer?.getText(ast)==='Astro.props')for(const item of node.name.elements){if(item.dotDotDotToken)continue;const key=item.propertyName?.text??item.name.getText(ast);if(item.initializer)defaults[`${f}:${key}`]=item.initializer.getText(ast);}
     if(ts.isPropertyAssignment(node)&&name(node)==='variants'&&ts.isObjectLiteralExpression(node.initializer))for(const axis of node.initializer.properties){if(ts.isPropertyAssignment(axis)&&ts.isObjectLiteralExpression(axis.initializer))variants[name(axis)]=[...new Set([...(variants[name(axis)]??[]),...axis.initializer.properties.map(name)])];}
    });
-   if(f.endsWith('.astro'))parts.push({file:path,slots:[...new Set([...source.matchAll(/<slot(?:\s+name="([^"]+)")?/g)].map(m=>m[1]??'default'))],dataSlots:[...new Set([...source.matchAll(/["']data-slot["']\s*:\s*\w+\s*=\s*["']([^"']+)["']|data-slot="([^"]+)"/g)].map(m=>m[1]??m[2]))],properties,native:[...new Set(native)],declaration:declarations.join('\n')||'Props inherited through the source imports; inspect source before use.'});
+   if(f.endsWith('.astro'))parts.push({file:path,slots:[...new Set([...source.matchAll(/<slot(?:\s+name="([^"]+)")?/g)].map(m=>m[1]??'default'))],dataSlots:slotsOf(source),properties,native:[...new Set(native)],declaration:declarations.join('\n')||'Props inherited through the source imports; inspect source before use.'});
   }
   const observed={hover:/hover:|:hover/.test(combined),pressed:/active:|aria-pressed/.test(combined),'focus-visible':/focus-visible/.test(combined),focus:/focus\(|focus:|focusin/.test(combined),disabled:/disabled/.test(combined),selected:/selected/.test(combined),checked:/checked/.test(combined),unchecked:/unchecked/.test(combined),indeterminate:/indeterminate/.test(combined),current:/aria-current|current\??:/.test(combined),open:/defaultOpen|data-open|aria-expanded|open\??:/.test(combined),closed:/data-closed|closed/.test(combined),expanded:/expanded/.test(combined),collapsed:/collapsed/.test(combined),invalid:/invalid/.test(combined),required:/required/.test(combined),loading:/loading/.test(combined),pending:/pending/.test(combined),empty:/empty/.test(combined),error:/error/.test(combined),success:/success/.test(combined),highlighted:/highlighted/.test(combined),resizing:/resiz/.test(combined),'read-only':/readonly|readOnly/.test(combined),visited:/visited:/.test(combined)};
   const stateMatrix=Object.fromEntries(Object.values(states).flat().map(state=>[state,{status:state==='default'?'authored-default':observed[state]?'source-evidence':'not-established',note:state==='default'?'Default authored composition.':observed[state]?'Source contains this state vocabulary; not a certification of every part or combination.':'No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed.'}]));
