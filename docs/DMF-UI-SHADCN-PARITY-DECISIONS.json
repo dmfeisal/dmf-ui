@@ -215,6 +215,36 @@
    "stateHooks:data-active": "Styles the option the runtime highlights (data-active, with aria-activedescendant).",
    "measured.backgroundColor:combobox/compound#combobox-content": "DMF UI keeps opaque menus. Nova's source marks the popup cn-menu-translucent: a 70% background with a backdrop blur.",
    "measured.backgroundColor:combobox/compound#combobox-separator": "Nova's translucent menu rule draws separators in foreground/5; DMF UI's opaque menu uses --border, as Nova's own separator rule does."
+  },
+  "alert-dialog": {
+   "slots:alert-dialog*": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding.",
+   "parts:AlertDialogMedia": "Media is an icon slot inside the header; DMF UI places the icon with the header's own classes instead of a part.",
+   "parts:AlertDialogOverlay": "The overlay is Dialog's overlay, shared through the common runtime (see slots).",
+   "parts:AlertDialogPortal": "The portal is Dialog's portal, shared through the common runtime (see slots).",
+   "stateHooks:data-open": "DMF UI styles open and closed through the data-open and data-closed custom variants, which match DMF's data-state too.",
+   "stateHooks:data-closed": "DMF UI styles open and closed through the data-open and data-closed custom variants, which match DMF's data-state too."
+  },
+  "sheet": {
+   "slots:sheet*": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding.",
+   "props.SheetContent.side": "Accepts shadcn's left and right, which follow reading direction. DMF UI's default stays inline-end, so the sheet opens from the reading direction's end in right-to-left text.",
+   "stateHooks:data-side": "DMF UI sets data-side to its logical side and styles it. Nova's Base UI side hook is for its slide-in animation, which DMF UI runs from keyframes.",
+   "stateHooks:data-starting-style": "DMF UI runs the open and close animations from keyframes on data-open and data-closed, not Base UI's starting and ending style attributes.",
+   "stateHooks:data-ending-style": "DMF UI runs the open and close animations from keyframes on data-open and data-closed, not Base UI's starting and ending style attributes."
+  },
+  "tooltip": {
+   "parts:TooltipProvider": "DMF UI tooltips set their delay per instance (delay and closeDelay props); there is no shared provider to group them.",
+   "slots:tooltip-provider": "DMF UI tooltips set their delay per instance (delay and closeDelay props); there is no shared provider to group them."
+  },
+  "dropdown-menu": {
+   "stateHooks:aria-expanded": "DMF UI's trigger reports its open state with aria-expanded, but Nova's style for it targets Base UI's data-popup-open; the trigger needs no separate hook.",
+   "stateHooks:data-popup-open": "DMF UI styles the open trigger from aria-expanded and data-state; Base UI's data-popup-open is not set."
+  },
+  "command": {
+   "stateHooks:data-checked": "DMF UI marks the selected item with aria-selected, which its styles use; shadcn's checked hook is for Base UI's checkbox items."
+  },
+  "collapsible": {
+   "parts:CollapsibleTrigger": "DMF UI's Collapsible is one component: its summary is the trigger and its body the content, with the label and icon as props.",
+   "parts:CollapsibleContent": "DMF UI's Collapsible is one component: its summary is the trigger and its body the content, with the label and icon as props."
   }
  }
 }

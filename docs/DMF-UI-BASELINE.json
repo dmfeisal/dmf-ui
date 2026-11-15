@@ -7,12 +7,12 @@
  },
  "stylesheet": {
   "compiled": {
-   "bytes": 74058,
-   "gzip": 12472
+   "bytes": 74134,
+   "gzip": 12482
   },
   "componentRules": {
-   "bytes": 29733,
-   "gzip": 5732
+   "bytes": 29809,
+   "gzip": 5743
   },
   "note": "dmf-ui.css compiled without utilities: theme, tokens, presets and hand-written rules. componentRules is the part attributed to a family; the rest is shared."
  },
@@ -26,8 +26,8 @@
   "sharedFamilies": {
    "count": 50,
    "dmfCss": {
-    "bytes": 308905,
-    "gzip": 70228
+    "bytes": 308981,
+    "gzip": 70247
    },
    "shadcnCss": {
     "bytes": 335824,
@@ -139,12 +139,12 @@
      "gzip": 242
     },
     "rules": {
-     "bytes": 1263,
-     "gzip": 530
+     "bytes": 1339,
+     "gzip": 548
     },
     "total": {
-     "bytes": 1629,
-     "gzip": 704
+     "bytes": 1705,
+     "gzip": 723
     }
    },
    "shadcnCss": {
