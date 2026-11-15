@@ -7,7 +7,7 @@
 | 1. Shared foundations | Done (dmfeisal/dmf-ui#33) |
 | 2. Actions and inputs | Done (dmfeisal/dmf-ui#35, #36) |
 | 3. Selection | 3a (dmfeisal/dmf-ui#37) and 3b in this report |
-| 4. Overlays and menus | In progress: gaps 66 → 20; extras not yet decided |
+| 4. Overlays and menus | Extras decided; 20 gaps open (features) |
 | 5–6 | Planned |
 
 ## Batch 1: shared foundations
@@ -286,15 +286,18 @@ The items-mode tests and the selection contracts pass unchanged.
 - **Alert Dialog Cancel:** `size` and `variant` props, and `data-size` on the content.
 - **Dropdown Menu checkbox item:** a `checked` prop.
 
-**Still undecided (extras)**
-- Batch 4 has 286 DMF-only props and attributes. Most are runtime configuration: `data-close-delay`, `data-mount-strategy`, `data-side-offset` and similar. Each needs a keep or remove decision, which I haven't made yet. Decisions can use `*` to cover a group.
+**Extras decided**
+- All 286 DMF-only props and attributes now have a recorded reason, so none is undecided. They're kept as DMF API, and each reason says what it is: runtime configuration the family's script reads, the element a positioner or portal creates, a DMF part name, or a DMF option value.
+- Nothing was removed. Removing runtime options would break consumers, so that's left for a later decision if the owner wants it.
 
 **Results so far**
 
 | | Before | Now |
 | --- | --- | --- |
 | Gaps, batch 4 | 66 | 20 |
-| Extras, batch 4 | 286 | 286 (not yet decided) |
+| Extras, batch 4 | 286 | 0 undecided (all recorded as intentional) |
+
 | Static gaps, all families | 238 | 193 |
+| Static extras, all families | 619 | 197 |
 
 Accessibility, no-JavaScript and the overlay browser scenarios (Sheet, Alert Dialog, navigation components) are unchanged. The docs suite and unit tests pass.

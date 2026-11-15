@@ -34,10 +34,10 @@
  "totals": {
   "families": 50,
   "match": 749,
-  "intentional": 213,
+  "intentional": 499,
   "gap": 193,
   "differs": 1,
-  "extra": 483
+  "extra": 197
  },
  "families": {
   "accordion": {
@@ -49,10 +49,10 @@
    },
    "counts": {
     "match": 15,
-    "intentional": 0,
+    "intentional": 23,
     "gap": 0,
     "differs": 0,
-    "extra": 23
+    "extra": 0
    },
    "parts": [
     {
@@ -104,7 +104,8 @@
      "value": "accordion-content-inner",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Element the family's positioning creates. Base UI renders the same element as its Positioner, Portal or Viewport."
     },
     {
      "id": "slots:accordion-item",
@@ -135,14 +136,16 @@
       "value": "horizontal",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
      },
      {
       "id": "variants.orientation:vertical",
       "value": "vertical",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
      }
     ]
    },
@@ -155,7 +158,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Accordion.defaultValue",
@@ -165,7 +169,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Accordion.disabled",
@@ -175,7 +180,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Accordion.hiddenUntilFound",
@@ -185,7 +191,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Accordion.loopFocus",
@@ -195,7 +202,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Accordion.multiple",
@@ -205,7 +213,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Accordion.orientation",
@@ -215,7 +224,8 @@
      "dmf": {
       "default": "vertical"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.AccordionContent.hidden",
@@ -225,7 +235,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.AccordionItem.disabled",
@@ -235,7 +246,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.AccordionItem.value",
@@ -245,7 +257,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.AccordionTrigger.type",
@@ -255,7 +268,8 @@
      "dmf": {
       "default": "button"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     }
    ],
    "dataAttributes": [
@@ -264,63 +278,72 @@
      "value": "data-collapsible",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-default-value",
      "value": "data-default-value",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-disabled",
      "value": "data-disabled",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-dmf-accordion-ready",
      "value": "data-dmf-accordion-ready",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-hidden-until-found",
      "value": "data-hidden-until-found",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-loop-focus",
      "value": "data-loop-focus",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-multiple",
      "value": "data-multiple",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-orientation",
      "value": "data-orientation",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-value",
      "value": "data-value",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     }
    ],
    "stateHooks": [
@@ -676,10 +699,10 @@
    },
    "counts": {
     "match": 14,
-    "intentional": 16,
+    "intentional": 20,
     "gap": 3,
     "differs": 0,
-    "extra": 4
+    "extra": 0
    },
    "parts": [
     {
@@ -871,14 +894,16 @@
      "value": "dialog-close",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:dialog-content",
      "value": "dialog-content",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     }
    ],
    "variants": {
@@ -908,7 +933,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.AlertDialogCancel.size",
@@ -949,7 +975,8 @@
      "value": "data-component",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Names the overlay for DMF UI's styles and tests; the Dialog runtime is shared (see the slots decision)."
     },
     {
      "id": "dataAttributes:data-size",
@@ -4614,10 +4641,10 @@
    },
    "counts": {
     "match": 4,
-    "intentional": 2,
+    "intentional": 7,
     "gap": 0,
     "differs": 0,
-    "extra": 5
+    "extra": 0
    },
    "parts": [
     {
@@ -4677,7 +4704,8 @@
      "dmf": {
       "default": "false"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Collapsible.icon",
@@ -4687,7 +4715,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option of DMF UI's shared navigation presentation (label, icon, presentation), not a Base UI prop."
     },
     {
      "id": "props.Collapsible.label",
@@ -4697,7 +4726,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option of DMF UI's shared navigation presentation (label, icon, presentation), not a Base UI prop."
     },
     {
      "id": "props.Collapsible.presentation",
@@ -4707,7 +4737,8 @@
      "dmf": {
       "default": "label"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option of DMF UI's shared navigation presentation (label, icon, presentation), not a Base UI prop."
     }
    ],
    "dataAttributes": [
@@ -4716,7 +4747,8 @@
      "value": "data-presentation",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     }
    ],
    "stateHooks": [],
@@ -5389,10 +5421,10 @@
    },
    "counts": {
     "match": 23,
-    "intentional": 1,
+    "intentional": 34,
     "gap": 0,
     "differs": 0,
-    "extra": 33
+    "extra": 0
    },
    "parts": [
     {
@@ -5414,7 +5446,8 @@
      "value": "CommandDialogTrigger",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "A DMF UI part name for this family's runtime. shadcn's part set follows Base UI, so the names differ."
     },
     {
      "id": "parts:CommandEmpty",
@@ -5493,7 +5526,8 @@
      "value": "command-group-heading",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "A DMF UI part name for this family's runtime. shadcn's part set follows Base UI, so the names differ."
     },
     {
      "id": "slots:command-input",
@@ -5548,7 +5582,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Command.defaultValue",
@@ -5558,7 +5593,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Command.disablePointerSelection",
@@ -5568,7 +5604,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Command.label",
@@ -5578,7 +5615,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Command.loop",
@@ -5588,7 +5626,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Command.shouldFilter",
@@ -5598,7 +5637,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Command.vimBindings",
@@ -5608,7 +5648,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.CommandDialog.contentClass",
@@ -5618,7 +5659,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.CommandDialog.description",
@@ -5664,7 +5706,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.CommandGroup.forceMount",
@@ -5674,7 +5717,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.CommandGroup.heading",
@@ -5684,7 +5728,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.CommandGroup.value",
@@ -5694,7 +5739,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.CommandInput.wrapperClass",
@@ -5704,7 +5750,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.CommandItem.disabled",
@@ -5714,7 +5761,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.CommandItem.forceMount",
@@ -5724,7 +5772,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.CommandItem.href",
@@ -5734,7 +5783,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Renders the trigger as a link or another element through `as` and `href`, as DMF UI's Button does (see the Button decision)."
     },
     {
      "id": "props.CommandItem.keywords",
@@ -5744,7 +5794,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.CommandItem.label",
@@ -5754,7 +5805,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.CommandItem.value",
@@ -5764,7 +5816,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     }
    ],
    "dataAttributes": [
@@ -5773,84 +5826,96 @@
      "value": "data-default-search",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-default-value",
      "value": "data-default-value",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-disable-pointer-selection",
      "value": "data-disable-pointer-selection",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-disabled",
      "value": "data-disabled",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-force-mount",
      "value": "data-force-mount",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-keywords",
      "value": "data-keywords",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-label",
      "value": "data-label",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-loop",
      "value": "data-loop",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-should-filter",
      "value": "data-should-filter",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-slot",
      "value": "data-slot",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-value",
      "value": "data-value",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-vim-bindings",
      "value": "data-vim-bindings",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     }
    ],
    "stateHooks": [
@@ -5906,10 +5971,10 @@
    },
    "counts": {
     "match": 24,
-    "intentional": 0,
+    "intentional": 10,
     "gap": 0,
     "differs": 0,
-    "extra": 10
+    "extra": 0
    },
    "parts": [
     {
@@ -6065,7 +6130,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Dialog.closeOnClickOutside",
@@ -6075,7 +6141,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Dialog.closeOnEscape",
@@ -6085,7 +6152,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Dialog.defaultOpen",
@@ -6095,7 +6163,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Dialog.lockScroll",
@@ -6105,7 +6174,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DialogContent.showCloseButton",
@@ -6138,35 +6208,40 @@
      "value": "data-alert-dialog",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-close-on-click-outside",
      "value": "data-close-on-click-outside",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-close-on-escape",
      "value": "data-close-on-escape",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-default-open",
      "value": "data-default-open",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-lock-scroll",
      "value": "data-lock-scroll",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     }
    ],
    "stateHooks": [
@@ -6361,10 +6436,10 @@
    },
    "counts": {
     "match": 30,
-    "intentional": 0,
+    "intentional": 46,
     "gap": 10,
     "differs": 0,
-    "extra": 46
+    "extra": 0
    },
    "parts": [
     {
@@ -6379,7 +6454,8 @@
      "value": "DrawerBackdrop",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "A DMF UI part name for this family's runtime. shadcn's part set follows Base UI, so the names differ."
     },
     {
      "id": "parts:DrawerClose",
@@ -6421,14 +6497,16 @@
      "value": "DrawerIndent",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "A DMF UI part name for this family's runtime. shadcn's part set follows Base UI, so the names differ."
     },
     {
      "id": "parts:DrawerIndentBackground",
      "value": "DrawerIndentBackground",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "A DMF UI part name for this family's runtime. shadcn's part set follows Base UI, so the names differ."
     },
     {
      "id": "parts:DrawerOverlay",
@@ -6442,7 +6520,8 @@
      "value": "DrawerPopup",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "A DMF UI part name for this family's runtime. shadcn's part set follows Base UI, so the names differ."
     },
     {
      "id": "parts:DrawerPortal",
@@ -6456,7 +6535,8 @@
      "value": "DrawerProvider",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "A DMF UI part name for this family's runtime. shadcn's part set follows Base UI, so the names differ."
     },
     {
      "id": "parts:DrawerSwipeHandle",
@@ -6484,14 +6564,16 @@
      "value": "DrawerViewport",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "A DMF UI part name for this family's runtime. shadcn's part set follows Base UI, so the names differ."
     },
     {
      "id": "parts:DrawerVirtualKeyboardProvider",
      "value": "DrawerVirtualKeyboardProvider",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "A DMF UI part name for this family's runtime. shadcn's part set follows Base UI, so the names differ."
     }
    ],
    "slots": [
@@ -6507,7 +6589,8 @@
      "value": "drawer-backdrop",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "A DMF UI part name for this family's runtime. shadcn's part set follows Base UI, so the names differ."
     },
     {
      "id": "slots:drawer-close",
@@ -6542,7 +6625,8 @@
      "value": "drawer-handle",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "A DMF UI part name for this family's runtime. shadcn's part set follows Base UI, so the names differ."
     },
     {
      "id": "slots:drawer-header",
@@ -6556,14 +6640,16 @@
      "value": "drawer-indent",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "A DMF UI part name for this family's runtime. shadcn's part set follows Base UI, so the names differ."
     },
     {
      "id": "slots:drawer-indent-background",
      "value": "drawer-indent-background",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "A DMF UI part name for this family's runtime. shadcn's part set follows Base UI, so the names differ."
     },
     {
      "id": "slots:drawer-overlay",
@@ -6591,7 +6677,8 @@
      "value": "drawer-provider",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Element the family's positioning creates. Base UI renders the same element as its Positioner, Portal or Viewport."
     },
     {
      "id": "slots:drawer-swipe-handle",
@@ -6626,7 +6713,8 @@
      "value": "drawer-virtual-keyboard-provider",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Element the family's positioning creates. Base UI renders the same element as its Positioner, Portal or Viewport."
     }
    ],
    "variants": {},
@@ -6639,7 +6727,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Drawer.defaultOpen",
@@ -6649,7 +6738,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Drawer.defaultSnapPoint",
@@ -6659,7 +6749,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Drawer.defaultTriggerId",
@@ -6669,7 +6760,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Drawer.disablePointerDismissal",
@@ -6679,7 +6771,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Drawer.modal",
@@ -6711,7 +6804,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Drawer.snapPoints",
@@ -6743,7 +6837,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DrawerContent.container",
@@ -6753,7 +6848,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DrawerContent.keepMounted",
@@ -6763,7 +6859,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DrawerContent.overlayClass",
@@ -6773,7 +6870,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DrawerContent.showOverlay",
@@ -6783,7 +6881,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DrawerContent.showSwipeHandle",
@@ -6793,7 +6892,8 @@
      "dmf": {
       "default": "false"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DrawerContent.viewportClass",
@@ -6803,7 +6903,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DrawerPortal.container",
@@ -6813,7 +6914,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DrawerPortal.hidden",
@@ -6823,7 +6925,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DrawerPortal.keepMounted",
@@ -6833,7 +6936,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DrawerTrigger.drawerTarget",
@@ -6843,7 +6947,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DrawerTrigger.payload",
@@ -6853,7 +6958,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     }
    ],
    "dataAttributes": [
@@ -6862,70 +6968,80 @@
      "value": "data-close-on-escape",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-container",
      "value": "data-container",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-default-open",
      "value": "data-default-open",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-default-snap-point",
      "value": "data-default-snap-point",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-default-trigger-id",
      "value": "data-default-trigger-id",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-disable-pointer-dismissal",
      "value": "data-disable-pointer-dismissal",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-drawer-target",
      "value": "data-drawer-target",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-final-focus",
      "value": "data-final-focus",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-initial-focus",
      "value": "data-initial-focus",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-keep-mounted",
      "value": "data-keep-mounted",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-modal",
@@ -6939,14 +7055,16 @@
      "value": "data-payload",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-snap-point",
      "value": "data-snap-point",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-snap-points",
@@ -6967,14 +7085,16 @@
      "value": "data-swipe-direction",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-trigger-id",
      "value": "data-trigger-id",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     }
    ],
    "stateHooks": [
@@ -7011,7 +7131,8 @@
      "value": "data-nested-swiping",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "stateHooks:data-snap-points",
@@ -7074,10 +7195,10 @@
    },
    "counts": {
     "match": 46,
-    "intentional": 2,
+    "intentional": 53,
     "gap": 7,
     "differs": 0,
-    "extra": 51
+    "extra": 0
    },
    "parts": [
     {
@@ -7248,7 +7369,8 @@
      "value": "dropdown-menu-positioner",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Element the family's positioning creates. Base UI renders the same element as its Positioner, Portal or Viewport."
     },
     {
      "id": "slots:dropdown-menu-radio-group",
@@ -7341,7 +7463,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenu.alignOffset",
@@ -7351,7 +7474,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenu.avoidCollisions",
@@ -7361,7 +7485,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenu.closeOnClickOutside",
@@ -7371,7 +7496,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenu.closeOnEscape",
@@ -7381,7 +7507,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenu.closeOnSelect",
@@ -7391,7 +7518,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenu.collisionPadding",
@@ -7401,7 +7529,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenu.defaultOpen",
@@ -7411,7 +7540,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenu.defaultValue",
@@ -7421,7 +7551,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenu.defaultValues",
@@ -7431,7 +7562,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenu.highlightItemOnHover",
@@ -7441,7 +7573,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenu.lockScroll",
@@ -7451,7 +7584,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenu.side",
@@ -7461,7 +7595,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenu.sideOffset",
@@ -7471,7 +7606,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenuCheckboxItem.checked",
@@ -7491,7 +7627,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenuCheckboxItem.disabled",
@@ -7501,7 +7638,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenuCheckboxItem.inset",
@@ -7523,7 +7661,8 @@
      "dmf": {
       "default": "button"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenuCheckboxItem.value",
@@ -7533,7 +7672,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenuCheckboxItem.variant",
@@ -7543,7 +7683,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenuContent.align",
@@ -7577,7 +7718,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenuContent.collisionPadding",
@@ -7587,7 +7729,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenuContent.hidden",
@@ -7597,7 +7740,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenuContent.side",
@@ -7631,7 +7775,8 @@
      "dmf": {
       "default": "\"href\" in Astro.props ? \"a\" : \"button\""
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Renders the trigger as a link or another element through `as` and `href`, as DMF UI's Button does (see the Button decision)."
     },
     {
      "id": "props.DropdownMenuItem.disabled",
@@ -7641,7 +7786,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenuItem.inset",
@@ -7663,7 +7809,8 @@
      "dmf": {
       "default": "button"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenuItem.variant",
@@ -7697,7 +7844,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenuRadioItem.disabled",
@@ -7707,7 +7855,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenuRadioItem.inset",
@@ -7729,7 +7878,8 @@
      "dmf": {
       "default": "button"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenuRadioItem.value",
@@ -7739,7 +7889,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenuRadioItem.variant",
@@ -7749,7 +7900,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.DropdownMenuTrigger.type",
@@ -7759,7 +7911,8 @@
      "dmf": {
       "default": "button"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     }
    ],
    "dataAttributes": [
@@ -7768,98 +7921,112 @@
      "value": "data-align",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-align-offset",
      "value": "data-align-offset",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-avoid-collisions",
      "value": "data-avoid-collisions",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-close-on-click-outside",
      "value": "data-close-on-click-outside",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-close-on-escape",
      "value": "data-close-on-escape",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-close-on-select",
      "value": "data-close-on-select",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-collision-padding",
      "value": "data-collision-padding",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-default-checked",
      "value": "data-default-checked",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-default-open",
      "value": "data-default-open",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-default-value",
      "value": "data-default-value",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-default-values",
      "value": "data-default-values",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-disabled",
      "value": "data-disabled",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-dmf-overlay-ready",
      "value": "data-dmf-overlay-ready",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-highlight-item-on-hover",
      "value": "data-highlight-item-on-hover",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-inset",
@@ -7873,28 +8040,32 @@
      "value": "data-lock-scroll",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-side",
      "value": "data-side",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-side-offset",
      "value": "data-side-offset",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-value",
      "value": "data-value",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-variant",
@@ -7918,7 +8089,8 @@
      "value": "data-checked",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "stateHooks:data-closed",
@@ -9161,10 +9333,10 @@
    },
    "counts": {
     "match": 14,
-    "intentional": 0,
+    "intentional": 45,
     "gap": 0,
     "differs": 0,
-    "extra": 45
+    "extra": 0
    },
    "parts": [
     {
@@ -9216,7 +9388,8 @@
      "value": "hover-card-positioner",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Element the family's positioning creates. Base UI renders the same element as its Positioner, Portal or Viewport."
     },
     {
      "id": "slots:hover-card-trigger",
@@ -9233,21 +9406,24 @@
       "value": "center",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
      },
      {
       "id": "variants.align:end",
       "value": "end",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
      },
      {
       "id": "variants.align:start",
       "value": "start",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
      }
     ],
     "mountStrategy": [
@@ -9256,14 +9432,16 @@
       "value": "eager",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
      },
      {
       "id": "variants.mountStrategy:lazy",
       "value": "lazy",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
      }
     ],
     "side": [
@@ -9272,28 +9450,32 @@
       "value": "bottom",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
      },
      {
       "id": "variants.side:left",
       "value": "left",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
      },
      {
       "id": "variants.side:right",
       "value": "right",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
      },
      {
       "id": "variants.side:top",
       "value": "top",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
      }
     ]
    },
@@ -9306,7 +9488,8 @@
      "dmf": {
       "default": "center"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCard.alignOffset",
@@ -9316,7 +9499,8 @@
      "dmf": {
       "default": "0"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCard.avoidCollisions",
@@ -9326,7 +9510,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCard.closeDelay",
@@ -9336,7 +9521,8 @@
      "dmf": {
       "default": "300"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCard.closeOnClickOutside",
@@ -9346,7 +9532,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCard.closeOnEscape",
@@ -9356,7 +9543,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCard.collisionPadding",
@@ -9366,7 +9554,8 @@
      "dmf": {
       "default": "8"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCard.defaultOpen",
@@ -9376,7 +9565,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCard.delay",
@@ -9386,7 +9576,8 @@
      "dmf": {
       "default": "700"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCard.mountStrategy",
@@ -9396,7 +9587,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCard.open",
@@ -9406,7 +9598,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCard.portal",
@@ -9416,7 +9609,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCard.side",
@@ -9426,7 +9620,8 @@
      "dmf": {
       "default": "bottom"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCard.sideOffset",
@@ -9436,7 +9631,8 @@
      "dmf": {
       "default": "4"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCard.skipDelayDuration",
@@ -9446,7 +9642,8 @@
      "dmf": {
       "default": "300"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCardContent.align",
@@ -9480,7 +9677,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCardContent.collisionPadding",
@@ -9490,7 +9688,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCardContent.hidden",
@@ -9500,7 +9699,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.HoverCardContent.side",
@@ -9534,7 +9734,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Renders the trigger as a link or another element through `as` and `href`, as DMF UI's Button does (see the Button decision)."
     },
     {
      "id": "props.HoverCardTrigger.href",
@@ -9544,7 +9745,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Renders the trigger as a link or another element through `as` and `href`, as DMF UI's Button does (see the Button decision)."
     }
    ],
    "dataAttributes": [
@@ -9553,105 +9755,120 @@
      "value": "data-align",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-align-offset",
      "value": "data-align-offset",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-avoid-collisions",
      "value": "data-avoid-collisions",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-close-delay",
      "value": "data-close-delay",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-close-on-click-outside",
      "value": "data-close-on-click-outside",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-close-on-escape",
      "value": "data-close-on-escape",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-collision-padding",
      "value": "data-collision-padding",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-controlled-open",
      "value": "data-controlled-open",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-default-open",
      "value": "data-default-open",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-delay",
      "value": "data-delay",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-mount-strategy",
      "value": "data-mount-strategy",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-portal",
      "value": "data-portal",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-side",
      "value": "data-side",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-side-offset",
      "value": "data-side-offset",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-skip-delay-duration",
      "value": "data-skip-delay-duration",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     }
    ],
    "stateHooks": [
@@ -11975,10 +12192,10 @@
    },
    "counts": {
     "match": 19,
-    "intentional": 0,
+    "intentional": 30,
     "gap": 0,
     "differs": 0,
-    "extra": 30
+    "extra": 0
    },
    "parts": [
     {
@@ -12058,14 +12275,16 @@
      "value": "popover-portal",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Element the family's positioning creates. Base UI renders the same element as its Positioner, Portal or Viewport."
     },
     {
      "id": "slots:popover-positioner",
      "value": "popover-positioner",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Element the family's positioning creates. Base UI renders the same element as its Positioner, Portal or Viewport."
     },
     {
      "id": "slots:popover-title",
@@ -12092,7 +12311,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Popover.alignOffset",
@@ -12102,7 +12322,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Popover.avoidCollisions",
@@ -12112,7 +12333,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Popover.closeOnClickOutside",
@@ -12122,7 +12344,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Popover.closeOnEscape",
@@ -12132,7 +12355,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Popover.collisionPadding",
@@ -12142,7 +12366,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Popover.defaultOpen",
@@ -12152,7 +12377,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Popover.portal",
@@ -12162,7 +12388,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Popover.position",
@@ -12172,7 +12399,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Popover.side",
@@ -12182,7 +12410,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Popover.sideOffset",
@@ -12192,7 +12421,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.PopoverContent.align",
@@ -12226,7 +12456,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.PopoverContent.collisionPadding",
@@ -12236,7 +12467,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.PopoverContent.hidden",
@@ -12246,7 +12478,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.PopoverContent.position",
@@ -12256,7 +12489,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.PopoverContent.side",
@@ -12290,7 +12524,8 @@
      "dmf": {
       "default": "button"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     }
    ],
    "dataAttributes": [
@@ -12299,84 +12534,96 @@
      "value": "data-align",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-align-offset",
      "value": "data-align-offset",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-avoid-collisions",
      "value": "data-avoid-collisions",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-close-on-click-outside",
      "value": "data-close-on-click-outside",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-close-on-escape",
      "value": "data-close-on-escape",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-collision-padding",
      "value": "data-collision-padding",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-default-open",
      "value": "data-default-open",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-dmf-overlay-ready",
      "value": "data-dmf-overlay-ready",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-portal",
      "value": "data-portal",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-position",
      "value": "data-position",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-side",
      "value": "data-side",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-side-offset",
      "value": "data-side-offset",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     }
    ],
    "stateHooks": [
@@ -14224,10 +14471,10 @@
    },
    "counts": {
     "match": 14,
-    "intentional": 14,
+    "intentional": 21,
     "gap": 0,
     "differs": 0,
-    "extra": 7
+    "extra": 0
    },
    "parts": [
     {
@@ -14293,14 +14540,16 @@
      "value": "dialog-close",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:dialog-content",
      "value": "dialog-content",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:sheet",
@@ -14397,14 +14646,16 @@
       "value": "inline-end",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
      },
      {
       "id": "variants.side:inline-start",
       "value": "inline-start",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
      },
      {
       "id": "variants.side:left",
@@ -14438,7 +14689,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Sheet.defaultOpen",
@@ -14448,7 +14700,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.SheetContent.showCloseButton",
@@ -14482,7 +14735,8 @@
      "value": "data-component",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Names the overlay for DMF UI's styles and tests; the Dialog runtime is shared (see the slots decision)."
     },
     {
      "id": "dataAttributes:data-side",
@@ -19018,10 +19272,10 @@
    },
    "counts": {
     "match": 14,
-    "intentional": 2,
+    "intentional": 34,
     "gap": 0,
     "differs": 0,
-    "extra": 32
+    "extra": 0
    },
    "parts": [
     {
@@ -19067,7 +19321,8 @@
      "value": "tooltip-arrow",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Element the family's positioning creates. Base UI renders the same element as its Positioner, Portal or Viewport."
     },
     {
      "id": "slots:tooltip-content",
@@ -19081,14 +19336,16 @@
      "value": "tooltip-portal",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Element the family's positioning creates. Base UI renders the same element as its Positioner, Portal or Viewport."
     },
     {
      "id": "slots:tooltip-positioner",
      "value": "tooltip-positioner",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Element the family's positioning creates. Base UI renders the same element as its Positioner, Portal or Viewport."
     },
     {
      "id": "slots:tooltip-provider",
@@ -19113,14 +19370,16 @@
       "value": "eager",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
      },
      {
       "id": "variants.mountStrategy:lazy",
       "value": "lazy",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "DMF UI option value, passed to the family's runtime."
      }
     ]
    },
@@ -19133,7 +19392,8 @@
      "dmf": {
       "default": "center"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Tooltip.alignOffset",
@@ -19143,7 +19403,8 @@
      "dmf": {
       "default": "0"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Tooltip.avoidCollisions",
@@ -19153,7 +19414,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Tooltip.collisionPadding",
@@ -19163,7 +19425,8 @@
      "dmf": {
       "default": "8"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Tooltip.delay",
@@ -19173,7 +19436,8 @@
      "dmf": {
       "default": "300"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Tooltip.mountStrategy",
@@ -19183,7 +19447,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Tooltip.portal",
@@ -19193,7 +19458,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Tooltip.side",
@@ -19203,7 +19469,8 @@
      "dmf": {
       "default": "top"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Tooltip.sideOffset",
@@ -19213,7 +19480,8 @@
      "dmf": {
       "default": "4"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Tooltip.skipDelayDuration",
@@ -19223,7 +19491,8 @@
      "dmf": {
       "default": "300"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.TooltipContent.align",
@@ -19257,7 +19526,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.TooltipContent.collisionPadding",
@@ -19267,7 +19537,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.TooltipContent.hidden",
@@ -19277,7 +19548,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.TooltipContent.side",
@@ -19311,7 +19583,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Renders the trigger as a link or another element through `as` and `href`, as DMF UI's Button does (see the Button decision)."
     },
     {
      "id": "props.TooltipTrigger.href",
@@ -19321,7 +19594,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Renders the trigger as a link or another element through `as` and `href`, as DMF UI's Button does (see the Button decision)."
     }
    ],
    "dataAttributes": [
@@ -19330,77 +19604,88 @@
      "value": "data-align",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-align-offset",
      "value": "data-align-offset",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-avoid-collisions",
      "value": "data-avoid-collisions",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-collision-padding",
      "value": "data-collision-padding",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-delay",
      "value": "data-delay",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-dmf-tooltip-ready",
      "value": "data-dmf-tooltip-ready",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-mount-strategy",
      "value": "data-mount-strategy",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-portal",
      "value": "data-portal",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-side",
      "value": "data-side",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-side-offset",
      "value": "data-side-offset",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-skip-delay-duration",
      "value": "data-skip-delay-duration",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     }
    ],
    "stateHooks": [
@@ -19416,7 +19701,8 @@
      "value": "data-instant",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "stateHooks:data-open",
