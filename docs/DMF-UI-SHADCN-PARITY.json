@@ -33,11 +33,11 @@
  ],
  "totals": {
   "families": 50,
-  "match": 712,
-  "intentional": 70,
-  "gap": 284,
+  "match": 716,
+  "intentional": 143,
+  "gap": 271,
   "differs": 2,
-  "extra": 549
+  "extra": 489
  },
  "families": {
   "accordion": {
@@ -12479,10 +12479,10 @@
    },
    "counts": {
     "match": 8,
-    "intentional": 0,
+    "intentional": 16,
     "gap": 0,
     "differs": 0,
-    "extra": 16
+    "extra": 0
    },
    "parts": [
     {
@@ -12533,7 +12533,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's RadioGroup accepts this through its props spread; DMF UI names it because its runtime and server render read it."
     },
     {
      "id": "props.RadioGroup.disabled",
@@ -12543,7 +12544,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's RadioGroup accepts this through its props spread; DMF UI names it because its runtime and server render read it."
     },
     {
      "id": "props.RadioGroup.name",
@@ -12553,7 +12555,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's RadioGroup accepts this through its props spread; DMF UI names it because its runtime and server render read it."
     },
     {
      "id": "props.RadioGroup.readOnly",
@@ -12563,7 +12566,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's RadioGroup accepts this through its props spread; DMF UI names it because its runtime and server render read it."
     },
     {
      "id": "props.RadioGroup.required",
@@ -12573,7 +12577,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's RadioGroup accepts this through its props spread; DMF UI names it because its runtime and server render read it."
     },
     {
      "id": "props.RadioGroupItem.disabled",
@@ -12583,7 +12588,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's Radio accepts this through its props spread; DMF UI names it for its runtime."
     },
     {
      "id": "props.RadioGroupItem.indicatorClass",
@@ -12593,7 +12599,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Styles the indicator element, which shadcn's item renders internally with no prop."
     },
     {
      "id": "props.RadioGroupItem.value",
@@ -12603,7 +12610,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's Radio accepts this through its props spread; DMF UI names it for its runtime."
     }
    ],
    "dataAttributes": [
@@ -12612,49 +12620,56 @@
      "value": "data-default-value",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Radio Group runtime (@data-slot/radio-group) reads or sets."
     },
     {
      "id": "dataAttributes:data-disabled",
      "value": "data-disabled",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Radio Group runtime (@data-slot/radio-group) reads or sets."
     },
     {
      "id": "dataAttributes:data-dmf-radio-group-ready",
      "value": "data-dmf-radio-group-ready",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Radio Group runtime (@data-slot/radio-group) reads or sets."
     },
     {
      "id": "dataAttributes:data-name",
      "value": "data-name",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Radio Group runtime (@data-slot/radio-group) reads or sets."
     },
     {
      "id": "dataAttributes:data-read-only",
      "value": "data-read-only",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Radio Group runtime (@data-slot/radio-group) reads or sets."
     },
     {
      "id": "dataAttributes:data-required",
      "value": "data-required",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Radio Group runtime (@data-slot/radio-group) reads or sets."
     },
     {
      "id": "dataAttributes:data-value",
      "value": "data-value",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Radio Group runtime (@data-slot/radio-group) reads or sets."
     }
    ],
    "stateHooks": [
@@ -12684,7 +12699,8 @@
      "value": "data-disabled",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Styles the disabled state the runtime sets; Base UI sets data-disabled too, and Nova styles disabled radios through :disabled."
     }
    ],
    "nova": {
@@ -12699,48 +12715,12 @@
    "measured": {
     "cases": 3,
     "matching": {
-     "light": 2,
-     "dark": 2
+     "light": 3,
+     "dark": 3
     },
     "differences": {
-     "light": {
-      "radio-group/compound#radio-group": [
-       {
-        "property": "height",
-        "shadcn": 40,
-        "dmf": 44
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       }
-      ]
-     },
-     "dark": {
-      "radio-group/compound#radio-group": [
-       {
-        "property": "height",
-        "shadcn": 40,
-        "dmf": 44
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "8px",
-        "dmf": "12px"
-       }
-      ]
-     }
+     "light": {},
+     "dark": {}
     },
     "accepted": {
      "light": 0,
@@ -13047,11 +13027,11 @@
     "docs": "vendor/shadcn/docs/select.mdx"
    },
    "counts": {
-    "match": 34,
-    "intentional": 0,
-    "gap": 6,
+    "match": 35,
+    "intentional": 42,
+    "gap": 0,
     "differs": 0,
-    "extra": 37
+    "extra": 0
    },
    "parts": [
     {
@@ -13094,14 +13074,16 @@
      "value": "SelectScrollDownButton",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "The DMF list scrolls natively (overflow-y: auto), so there are no scroll buttons."
     },
     {
      "id": "parts:SelectScrollUpButton",
      "value": "SelectScrollUpButton",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "The DMF list scrolls natively (overflow-y: auto), so there are no scroll buttons."
     },
     {
      "id": "parts:SelectSeparator",
@@ -13131,7 +13113,8 @@
      "value": "select",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "The root element that the @data-slot/select runtime binds to; Base UI's Root renders no element."
     },
     {
      "id": "slots:select-content",
@@ -13159,7 +13142,8 @@
      "value": "select-item-text",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "An element the @data-slot/select runtime needs, as Base UI renders its Portal, Positioner and List."
     },
     {
      "id": "slots:select-label",
@@ -13173,28 +13157,32 @@
      "value": "select-portal",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "An element the @data-slot/select runtime needs, as Base UI renders its Portal, Positioner and List."
     },
     {
      "id": "slots:select-positioner",
      "value": "select-positioner",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "An element the @data-slot/select runtime needs, as Base UI renders its Portal, Positioner and List."
     },
     {
      "id": "slots:select-scroll-down-button",
      "value": "select-scroll-down-button",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "The DMF list scrolls natively (overflow-y: auto), so there are no scroll buttons."
     },
     {
      "id": "slots:select-scroll-up-button",
      "value": "select-scroll-up-button",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "The DMF list scrolls natively (overflow-y: auto), so there are no scroll buttons."
     },
     {
      "id": "slots:select-separator",
@@ -13222,7 +13210,8 @@
      "value": "select-viewport",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "An element the @data-slot/select runtime needs, as Base UI renders its Portal, Positioner and List."
     }
    ],
    "variants": {
@@ -13232,14 +13221,16 @@
       "value": "eager",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "Data Slot option for when the list is mounted."
      },
      {
       "id": "variants.mountStrategy:lazy",
       "value": "lazy",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "Data Slot option for when the list is mounted."
      }
     ],
     "size": [
@@ -13279,8 +13270,10 @@
      "shadcn": {
       "default": "true"
      },
-     "dmf": null,
-     "status": "gap"
+     "dmf": {
+      "default": null
+     },
+     "status": "match"
     },
     {
      "id": "props.SelectContent.alignOffset",
@@ -13302,7 +13295,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "A @data-slot/select positioning option; Base UI's Positioner takes the same option."
     },
     {
      "id": "props.SelectContent.collisionPadding",
@@ -13312,7 +13306,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "A @data-slot/select positioning option; Base UI's Positioner takes the same option."
     },
     {
      "id": "props.SelectContent.hidden",
@@ -13322,7 +13317,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "The list is server-rendered hidden until the runtime opens it."
     },
     {
      "id": "props.SelectContent.position",
@@ -13332,7 +13328,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Data Slot's name for alignItemWithTrigger: item-aligned or popper."
     },
     {
      "id": "props.SelectContent.side",
@@ -13366,7 +13363,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's Item accepts this through its props spread; DMF UI names it for its runtime."
     },
     {
      "id": "props.SelectItem.label",
@@ -13376,7 +13374,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Text the trigger shows for this item, when it differs from the item's content."
     },
     {
      "id": "props.SelectItem.value",
@@ -13386,7 +13385,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Base UI's Item accepts this through its props spread; DMF UI names it for its runtime."
     },
     {
      "id": "props.SelectTrigger.showIcon",
@@ -13396,7 +13396,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Hides the chevron where the trigger already shows one."
     },
     {
      "id": "props.SelectTrigger.size",
@@ -13418,7 +13419,8 @@
      "dmf": {
       "default": "button"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Native button type, fixed to button so the trigger never submits a form."
     }
    ],
    "dataAttributes": [
@@ -13427,14 +13429,16 @@
      "value": "data-align",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-align-offset",
      "value": "data-align-offset",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-align-trigger",
@@ -13448,112 +13452,128 @@
      "value": "data-avoid-collisions",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-collision-padding",
      "value": "data-collision-padding",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-default-open",
      "value": "data-default-open",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-default-value",
      "value": "data-default-value",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-disabled",
      "value": "data-disabled",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-dmf-select-ready",
      "value": "data-dmf-select-ready",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-highlight-item-on-hover",
      "value": "data-highlight-item-on-hover",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-label",
      "value": "data-label",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-lock-scroll",
      "value": "data-lock-scroll",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-mount-strategy",
      "value": "data-mount-strategy",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-name",
      "value": "data-name",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-placeholder",
      "value": "data-placeholder",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-position",
      "value": "data-position",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-required",
      "value": "data-required",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-side",
      "value": "data-side",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-side-offset",
      "value": "data-side-offset",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-size",
@@ -13567,7 +13587,8 @@
      "value": "data-value",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the @data-slot/select runtime reads or sets."
     }
    ],
    "stateHooks": [
@@ -13576,7 +13597,8 @@
      "value": "aria-expanded",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Comes from Nova's translucent menu rule (cn-menu-translucent), which DMF UI does not use."
     },
     {
      "id": "stateHooks:aria-invalid",
@@ -13632,14 +13654,16 @@
      "value": "data-position",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Styles the item-aligned position the runtime sets."
     },
     {
      "id": "stateHooks:data-selected",
      "value": "data-selected",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Styles the selected item the runtime marks."
     },
     {
      "id": "stateHooks:data-side",
@@ -13687,307 +13711,93 @@
    "measured": {
     "cases": 6,
     "matching": {
-     "light": 0,
-     "dark": 0
+     "light": 3,
+     "dark": 3
     },
     "differences": {
      "light": {
       "select/compound#select-content": [
        {
-        "property": "height",
-        "shadcn": 97,
-        "dmf": 109
-       },
-       {
-        "property": "borderTopLeftRadius",
-        "shadcn": "10px",
-        "dmf": "8px"
-       },
-       {
         "property": "backgroundColor",
         "shadcn": "255,255,255,178",
-        "dmf": "255,255,255,255"
-       }
-      ],
-      "select/compound#select-group": [
-       {
-        "property": "height",
-        "shadcn": 88,
-        "dmf": 100
-       }
-      ],
-      "select/compound#select-label": [
-       {
-        "property": "height",
-        "shadcn": 24,
-        "dmf": 28
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "4px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "6px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "4px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "6px",
-        "dmf": "8px"
+        "dmf": "255,255,255,255",
+        "status": "intentional",
+        "reason": "DMF UI keeps opaque menus. Nova's source marks the popup cn-menu-translucent: a 70% background with a backdrop blur."
        }
       ],
       "select/compound#select-item": [
        {
-        "property": "height",
-        "shadcn": 28,
-        "dmf": 32
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "4px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "4px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "6px",
-        "dmf": "8px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "6px",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "6px",
-        "dmf": "8px"
-       },
-       {
-        "property": "borderTopLeftRadius",
-        "shadcn": "8px",
-        "dmf": "6px"
-       },
-       {
         "property": "color",
         "shadcn": "10,10,10,255",
-        "dmf": "23,23,23,255"
+        "dmf": "23,23,23,255",
+        "status": "intentional",
+        "reason": "The open DMF list highlights the selected item, as Base UI focuses it on open; the static reference is not focused."
        },
        {
         "property": "backgroundColor",
         "shadcn": "transparent",
-        "dmf": "245,245,245,255"
-       }
-      ],
-      "select/compound#select-item:2": [
-       {
-        "property": "height",
-        "shadcn": 28,
-        "dmf": 32
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "4px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "4px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "6px",
-        "dmf": "8px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "6px",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "6px",
-        "dmf": "8px"
-       },
-       {
-        "property": "borderTopLeftRadius",
-        "shadcn": "8px",
-        "dmf": "6px"
+        "dmf": "245,245,245,255",
+        "status": "intentional",
+        "reason": "The open DMF list highlights the selected item, as Base UI focuses it on open; the static reference is not focused."
        }
       ],
       "select/compound#select-separator": [
        {
         "property": "backgroundColor",
         "shadcn": "20,20,20,13",
-        "dmf": "229,229,229,255"
+        "dmf": "229,229,229,255",
+        "status": "intentional",
+        "reason": "Nova's translucent menu rule draws separators in foreground/5; DMF UI's opaque menu uses --border, as Nova's own separator rule does."
        },
        {
         "property": "width",
         "shadcn": 392,
-        "dmf": 93.5
+        "dmf": 91.5,
+        "status": "intentional",
+        "reason": "A measuring artifact: Nova's popup takes its width from Base UI's --anchor-width, which the static reference has no trigger to set, so it spans the whole column."
        }
       ]
      },
      "dark": {
       "select/compound#select-content": [
        {
-        "property": "height",
-        "shadcn": 97,
-        "dmf": 109
-       },
-       {
-        "property": "borderTopLeftRadius",
-        "shadcn": "10px",
-        "dmf": "8px"
-       },
-       {
         "property": "backgroundColor",
         "shadcn": "23,23,23,179",
-        "dmf": "23,23,23,255"
-       }
-      ],
-      "select/compound#select-group": [
-       {
-        "property": "height",
-        "shadcn": 88,
-        "dmf": 100
-       }
-      ],
-      "select/compound#select-label": [
-       {
-        "property": "height",
-        "shadcn": 24,
-        "dmf": 28
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "4px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingRight",
-        "shadcn": "6px",
-        "dmf": "8px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "4px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "6px",
-        "dmf": "8px"
+        "dmf": "23,23,23,255",
+        "status": "intentional",
+        "reason": "DMF UI keeps opaque menus. Nova's source marks the popup cn-menu-translucent: a 70% background with a backdrop blur."
        }
       ],
       "select/compound#select-item": [
        {
-        "property": "height",
-        "shadcn": 28,
-        "dmf": 32
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "4px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "4px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "6px",
-        "dmf": "8px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "6px",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "6px",
-        "dmf": "8px"
-       },
-       {
-        "property": "borderTopLeftRadius",
-        "shadcn": "8px",
-        "dmf": "6px"
-       },
-       {
         "property": "backgroundColor",
         "shadcn": "transparent",
-        "dmf": "38,38,38,255"
-       }
-      ],
-      "select/compound#select-item:2": [
-       {
-        "property": "height",
-        "shadcn": 28,
-        "dmf": 32
-       },
-       {
-        "property": "paddingTop",
-        "shadcn": "4px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingBottom",
-        "shadcn": "4px",
-        "dmf": "6px"
-       },
-       {
-        "property": "paddingLeft",
-        "shadcn": "6px",
-        "dmf": "8px"
-       },
-       {
-        "property": "columnGap",
-        "shadcn": "6px",
-        "dmf": "8px"
-       },
-       {
-        "property": "rowGap",
-        "shadcn": "6px",
-        "dmf": "8px"
-       },
-       {
-        "property": "borderTopLeftRadius",
-        "shadcn": "8px",
-        "dmf": "6px"
+        "dmf": "38,38,38,255",
+        "status": "intentional",
+        "reason": "The open DMF list highlights the selected item, as Base UI focuses it on open; the static reference is not focused."
        }
       ],
       "select/compound#select-separator": [
        {
         "property": "backgroundColor",
         "shadcn": "255,255,255,13",
-        "dmf": "245,255,255,26"
+        "dmf": "245,255,255,26",
+        "status": "intentional",
+        "reason": "Nova's translucent menu rule draws separators in foreground/5; DMF UI's opaque menu uses --border, as Nova's own separator rule does."
        },
        {
         "property": "width",
         "shadcn": 392,
-        "dmf": 93.5
+        "dmf": 91.5,
+        "status": "intentional",
+        "reason": "A measuring artifact: Nova's popup takes its width from Base UI's --anchor-width, which the static reference has no trigger to set, so it spans the whole column."
        }
       ]
      }
     },
     "accepted": {
-     "light": 0,
-     "dark": 0
+     "light": 3,
+     "dark": 3
     }
    }
   },
@@ -15294,11 +15104,11 @@
     "docs": "vendor/shadcn/docs/slider.mdx"
    },
    "counts": {
-    "match": 5,
-    "intentional": 0,
-    "gap": 7,
+    "match": 8,
+    "intentional": 15,
+    "gap": 0,
     "differs": 0,
-    "extra": 7
+    "extra": 0
    },
    "parts": [
     {
@@ -15322,24 +15132,46 @@
      "value": "slider-range",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's Slider is a native range input; the track, range and thumb are its pseudo-elements, styled to Nova, not separate elements."
     },
     {
      "id": "slots:slider-thumb",
      "value": "slider-thumb",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's Slider is a native range input; the track, range and thumb are its pseudo-elements, styled to Nova, not separate elements."
     },
     {
      "id": "slots:slider-track",
      "value": "slider-track",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's Slider is a native range input; the track, range and thumb are its pseudo-elements, styled to Nova, not separate elements."
     }
    ],
-   "variants": {},
+   "variants": {
+    "orientation": [
+     {
+      "id": "variants.orientation:horizontal",
+      "value": "horizontal",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "Base UI's Slider accepts orientation through its props spread; DMF UI names it because its markup and styles read it."
+     },
+     {
+      "id": "variants.orientation:vertical",
+      "value": "vertical",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "Base UI's Slider accepts orientation through its props spread; DMF UI names it because its markup and styles read it."
+     }
+    ]
+   },
    "props": [
     {
      "id": "props.Slider.defaultValue",
@@ -15348,8 +15180,10 @@
      "shadcn": {
       "default": null
      },
-     "dmf": null,
-     "status": "gap"
+     "dmf": {
+      "default": null
+     },
+     "status": "match"
     },
     {
      "id": "props.Slider.icon",
@@ -15359,7 +15193,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Optional icon beside the label, in DMF UI's shared presentation model."
     },
     {
      "id": "props.Slider.id",
@@ -15369,7 +15204,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Required so the visible label can name the native input."
     },
     {
      "id": "props.Slider.label",
@@ -15379,7 +15215,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Required visible label."
     },
     {
      "id": "props.Slider.max",
@@ -15406,6 +15243,17 @@
      "status": "match"
     },
     {
+     "id": "props.Slider.orientation",
+     "component": "Slider",
+     "prop": "orientation",
+     "shadcn": null,
+     "dmf": {
+      "default": "horizontal"
+     },
+     "status": "intentional",
+     "reason": "Base UI's Slider accepts orientation through its props spread; DMF UI names it because its markup and styles read it."
+    },
+    {
      "id": "props.Slider.showValue",
      "component": "Slider",
      "prop": "showValue",
@@ -15413,7 +15261,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Shows the current value next to the label."
     },
     {
      "id": "props.Slider.step",
@@ -15423,7 +15272,8 @@
      "dmf": {
       "default": "1"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "The native step attribute, named so the server can validate the initial value against it."
     },
     {
      "id": "props.Slider.unit",
@@ -15433,7 +15283,8 @@
      "dmf": {
       "default": ""
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Suffix for the shown value and aria-valuetext."
     },
     {
      "id": "props.Slider.value",
@@ -15443,18 +15294,27 @@
       "default": null
      },
      "dmf": {
-      "default": "min"
+      "default": "defaultValue??min"
      },
      "status": "match"
     }
    ],
    "dataAttributes": [
     {
+     "id": "dataAttributes:data-orientation",
+     "value": "data-orientation",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "Base UI's Slider accepts orientation through its props spread; DMF UI names it because its markup and styles read it."
+    },
+    {
      "id": "dataAttributes:data-unit",
      "value": "data-unit",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Carries the unit to the script that updates the shown value."
     }
    ],
    "stateHooks": [
@@ -15463,21 +15323,22 @@
      "value": "data-disabled",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "The native input's :disabled state is styled instead."
     },
     {
      "id": "stateHooks:data-horizontal",
      "value": "data-horizontal",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-vertical",
      "value": "data-vertical",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "nova": {
@@ -19311,19 +19172,19 @@
  "measuredTotals": {
   "cases": 196,
   "matching": {
-   "light": 109,
-   "dark": 109
+   "light": 113,
+   "dark": 113
   },
   "compoundParts": {
    "parts": 102,
    "matching": {
-    "light": 46,
-    "dark": 46
+    "light": 50,
+    "dark": 50
    }
   },
   "accepted": {
-   "light": 11,
-   "dark": 11
+   "light": 14,
+   "dark": 14
   }
  }
 }

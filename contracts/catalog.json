@@ -20111,7 +20111,7 @@
         },
         {
           "path": "src/components/dmf-ui/radio-group/radio-group.astro",
-          "sha256": "5af5b1eb9306bf91757912d6fc1f6b29ad2eae4a497314315339f97b31b27baa"
+          "sha256": "d102151763970bc93516e15585f9d52d55ff105d3b42a41b4fecd58d5ac520c1"
         }
       ],
       "gaps": [
@@ -21804,6 +21804,11 @@
           "required",
           "boolean",
           "false"
+        ],
+        [
+          "alignItemWithTrigger (SelectContent)",
+          "boolean; false opens the list below the trigger",
+          "true, as position=\"item-aligned\""
         ]
       ],
       "accessibility": [
@@ -21832,6 +21837,11 @@
             "select-viewport"
           ],
           "properties": [
+            {
+              "name": "alignItemWithTrigger",
+              "type": "boolean",
+              "optional": true
+            },
             {
               "name": "position",
               "type": "Position",
@@ -21871,7 +21881,7 @@
           "native": [
             "HTMLAttributes<\"div\">"
           ],
-          "declaration": "type Props = HTMLAttributes<\"div\"> & {\n  position?: Position\n  side?: Side\n  align?: Align\n  sideOffset?: number\n  alignOffset?: number\n  avoidCollisions?: boolean\n  collisionPadding?: number\n}"
+          "declaration": "type Props = HTMLAttributes<\"div\"> & {\n  /** shadcn/ui's name for the default position: false is position=\"popper\". */\n  alignItemWithTrigger?: boolean\n  position?: Position\n  side?: Side\n  align?: Align\n  sideOffset?: number\n  alignOffset?: number\n  avoidCollisions?: boolean\n  collisionPadding?: number\n}"
         },
         {
           "file": "src/components/dmf-ui/select/select-group.astro",
@@ -22244,6 +22254,7 @@
         "muted-foreground",
         "popover",
         "popover-foreground",
+        "radius",
         "ring"
       ],
       "reviewedContract": {
@@ -22324,7 +22335,7 @@
         },
         {
           "path": "src/components/dmf-ui/select/select-content.astro",
-          "sha256": "c7bd055ed71cda72b5dc5b22a8fee69de9031c635a2eab0c48a6a103cc45e41f"
+          "sha256": "e8970a6f22b3f9937864c0d2471428973907a7ac3a35c5351ee456832b65a544"
         },
         {
           "path": "src/components/dmf-ui/select/select-group.astro",
@@ -22332,11 +22343,11 @@
         },
         {
           "path": "src/components/dmf-ui/select/select-item.astro",
-          "sha256": "e1820fe247b29cedcacd8bd8822a755cd03a1a639b1a6f87b7f1289603a2fd39"
+          "sha256": "45fc414ce5cb86d09f3f07a212d1459dba282a216cd48f91d3700ed485fa8098"
         },
         {
           "path": "src/components/dmf-ui/select/select-label.astro",
-          "sha256": "59bc812b646ad37ffa5af720077d124f3b6db63aa9278908d04d4e029b1a279b"
+          "sha256": "f5aff84f8284e0072d2d9825370aa2d83b284a9c868beac58935e7fb329cdd1e"
         },
         {
           "path": "src/components/dmf-ui/select/select-separator.astro",
@@ -22344,7 +22355,7 @@
         },
         {
           "path": "src/components/dmf-ui/select/select-trigger.astro",
-          "sha256": "90a5c827d4c6a03e2416c0d21bf90bb4f17fb0dd895eb2cfdd399e9725360c7e"
+          "sha256": "63fc881649dd3feb25bc084737e40f243b7b4f49a6eafdbaf061abaaa46ba543"
         },
         {
           "path": "src/components/dmf-ui/select/select-value.astro",
@@ -23564,9 +23575,14 @@
           "1"
         ],
         [
-          "value",
-          "finite number in bounds, aligned to step",
+          "value / defaultValue",
+          "finite number in bounds, aligned to step; defaultValue is shadcn/ui's name for the same initial value",
           "min"
+        ],
+        [
+          "orientation",
+          "horizontal | vertical",
+          "horizontal"
         ],
         [
           "unit",
@@ -23641,6 +23657,11 @@
               "optional": true
             },
             {
+              "name": "defaultValue",
+              "type": "number",
+              "optional": true
+            },
+            {
               "name": "unit",
               "type": "string",
               "optional": true
@@ -23654,12 +23675,17 @@
               "name": "icon",
               "type": "NavigationIcon",
               "optional": true
+            },
+            {
+              "name": "orientation",
+              "type": "'horizontal'|'vertical'",
+              "optional": true
             }
           ],
           "native": [
             "HTMLAttributes<'input'>"
           ],
-          "declaration": "interface Props extends Omit<HTMLAttributes<'input'>,'type'|'min'|'max'|'step'|'value'|'id'> {id:string;label:string;min?:number;max?:number;step?:number|'any';value?:number;unit?:string;showValue?:boolean;icon?:NavigationIcon;}"
+          "declaration": "interface Props extends Omit<HTMLAttributes<'input'>,'type'|'min'|'max'|'step'|'value'|'id'> {id:string;label:string;min?:number;max?:number;step?:number|'any';value?:number;defaultValue?:number;unit?:string;showValue?:boolean;icon?:NavigationIcon;orientation?:'horizontal'|'vertical';}"
         }
       ],
       "variants": {},
@@ -23667,9 +23693,10 @@
         "slider.astro:min": "0",
         "slider.astro:max": "100",
         "slider.astro:step": "1",
-        "slider.astro:value": "min",
+        "slider.astro:value": "defaultValue??min",
         "slider.astro:unit": "''",
-        "slider.astro:showValue": "true"
+        "slider.astro:showValue": "true",
+        "slider.astro:orientation": "'horizontal'"
       },
       "states": {
         "default": {
@@ -23849,7 +23876,7 @@
         },
         {
           "path": "src/components/dmf-ui/slider/slider.astro",
-          "sha256": "b6acf46043469c6b4731cc08c0cad0a0767558dca22117cbf75df1b4c3a7eeea"
+          "sha256": "9d5f5bf22b7a2957d5ac9000e024b3444544a8d415f0223a408d030874de0189"
         },
         {
           "path": "src/components/dmf-ui/slider/validation.ts",
