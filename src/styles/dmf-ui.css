@@ -300,11 +300,26 @@
 .dmf-slider label { display:inline-flex; align-items:center; gap:.5rem; min-width:0; overflow-wrap:anywhere; }
 .dmf-slider label svg { flex-shrink:0; }
 .dmf-slider [data-slider-value] { font-variant-numeric:tabular-nums; }
-.dmf-slider input[type=range] { display:block; width:100%; min-width:0;  margin:0; accent-color:var(--foreground); cursor:pointer; }
-.dmf-slider input[type=range]:focus-visible { outline:2px solid var(--foreground); outline-offset:3px; border-radius:var(--radius); }
+/* A native range input drawn as Nova's slider: a 4px muted track filled with primary up to the value, and a 12px
+   white thumb with a ring border. The fill follows --slider-fill, which the server renders and the script updates. */
+.dmf-slider input[type=range] { --slider-track:linear-gradient(to right,var(--primary) var(--slider-fill,0%),var(--muted) var(--slider-fill,0%)); display:block; width:100%; min-width:0; height:.75rem; margin:0; padding:0; background:transparent; cursor:pointer; appearance:none; touch-action:none; }
+.dmf-slider input[type=range]:dir(rtl) { --slider-track:linear-gradient(to left,var(--primary) var(--slider-fill,0%),var(--muted) var(--slider-fill,0%)); }
+.dmf-slider input[type=range]::-webkit-slider-runnable-track { height:.25rem; border-radius:9999px; background:var(--slider-track); }
+.dmf-slider input[type=range]::-moz-range-track { height:.25rem; border-radius:9999px; background:var(--muted); }
+.dmf-slider input[type=range]::-moz-range-progress { height:.25rem; border-radius:9999px; background:var(--primary); }
+.dmf-slider input[type=range]::-webkit-slider-thumb { width:.75rem; height:.75rem; margin-top:-.25rem; border:1px solid var(--ring); border-radius:9999px; background:#fff; appearance:none; transition:box-shadow .15s; }
+.dmf-slider input[type=range]::-moz-range-thumb { box-sizing:border-box; width:.75rem; height:.75rem; border:1px solid var(--ring); border-radius:9999px; background:#fff; transition:box-shadow .15s; }
+.dmf-slider input[type=range]:hover::-webkit-slider-thumb, .dmf-slider input[type=range]:focus-visible::-webkit-slider-thumb, .dmf-slider input[type=range]:active::-webkit-slider-thumb { box-shadow:0 0 0 3px color-mix(in oklab,var(--ring) 50%,transparent); }
+.dmf-slider input[type=range]:hover::-moz-range-thumb, .dmf-slider input[type=range]:focus-visible::-moz-range-thumb, .dmf-slider input[type=range]:active::-moz-range-thumb { box-shadow:0 0 0 3px color-mix(in oklab,var(--ring) 50%,transparent); }
+.dmf-slider input[type=range]:focus-visible { outline:none; }
+.dmf-slider[data-orientation=vertical] { justify-items:center; }
+.dmf-slider[data-orientation=vertical] input[type=range] { --slider-track:linear-gradient(to top,var(--primary) var(--slider-fill,0%),var(--muted) var(--slider-fill,0%)); width:.75rem; height:auto; min-height:10rem; writing-mode:vertical-lr; direction:rtl; }
+.dmf-slider[data-orientation=vertical] input[type=range]::-webkit-slider-runnable-track { width:.25rem; height:100%; }
+.dmf-slider[data-orientation=vertical] input[type=range]::-webkit-slider-thumb { margin-top:0; margin-left:-.25rem; }
+.dmf-slider[data-orientation=vertical] input[type=range]::-moz-range-track, .dmf-slider[data-orientation=vertical] input[type=range]::-moz-range-progress { width:.25rem; height:auto; }
 .dmf-slider input:disabled { cursor:not-allowed; }
-.dmf-slider:has(input:disabled) { opacity:.65; }
-@media(forced-colors:active) { .dmf-slider input[type=range] { accent-color:auto; } .dmf-table-scroll { border-color:CanvasText; } }
+.dmf-slider:has(input:disabled) { opacity:.5; }
+@media(forced-colors:active) { .dmf-slider input[type=range] { appearance:auto; accent-color:auto; background:none; } .dmf-slider input[type=range]::-webkit-slider-runnable-track, .dmf-slider input[type=range]::-webkit-slider-thumb { appearance:auto; background:none; border:0; box-shadow:none; } .dmf-table-scroll { border-color:CanvasText; } }
 
 .dmf-collapsible { border:1px solid var(--border); border-radius:var(--radius); color:var(--foreground); }
 .dmf-collapsible > summary { display:flex; align-items:center; gap:.5rem;  padding:.75rem 1rem; cursor:pointer; list-style:none; }

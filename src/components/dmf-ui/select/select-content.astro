@@ -5,6 +5,8 @@ import type { Align, Position, Side } from "@data-slot/select"
 import { cn } from "../utils"
 
 type Props = HTMLAttributes<"div"> & {
+  /** shadcn/ui's name for the default position: false is position="popper". */
+  alignItemWithTrigger?: boolean
   position?: Position
   side?: Side
   align?: Align
@@ -17,7 +19,8 @@ type Props = HTMLAttributes<"div"> & {
 const {
   class: className,
   hidden = true,
-  position,
+  alignItemWithTrigger,
+  position: positionProp,
   side,
   align,
   sideOffset,
@@ -26,6 +29,7 @@ const {
   collisionPadding,
   ...props
 } = Astro.props
+const position = positionProp ?? (alignItemWithTrigger === false ? "popper" : alignItemWithTrigger ? "item-aligned" : undefined)
 ---
 
 <div data-slot="select-portal">
@@ -52,7 +56,7 @@ const {
       data-collision-padding={collisionPadding}
       hidden={hidden}
       class={cn(
-        "bg-popover text-popover-foreground data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 ring-foreground/10 min-w-36 rounded-md shadow-md ring-1 duration-100 data-[side=inline-start]:slide-in-from-right-2 data-[side=inline-end]:slide-in-from-left-2 relative isolate z-[1000] max-h-(--available-height) w-(--anchor-width) origin-(--transform-origin) overflow-x-hidden overflow-y-auto outline-none data-[align-trigger=true]:animate-none",
+        "bg-popover text-popover-foreground data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 ring-foreground/10 min-w-36 rounded-lg shadow-md ring-1 duration-100 data-[side=inline-start]:slide-in-from-right-2 data-[side=inline-end]:slide-in-from-left-2 relative isolate z-[1000] max-h-(--available-height) w-(--anchor-width) origin-(--transform-origin) overflow-x-hidden overflow-y-auto outline-none data-[align-trigger=true]:animate-none",
         className
       )}
       {...props}

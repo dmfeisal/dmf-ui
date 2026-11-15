@@ -5,8 +5,8 @@
 | Batch | Status |
 | --- | --- |
 | 1. Shared foundations | Done (dmfeisal/dmf-ui#33) |
-| 2. Actions and inputs | 2a done (dmfeisal/dmf-ui#35); 2b in this report |
-| 3. Selection | Next |
+| 2. Actions and inputs | Done (dmfeisal/dmf-ui#35, #36) |
+| 3. Selection | 3a in this report; 3b (Combobox) next |
 | 4–6 | Planned |
 
 ## Batch 1: shared foundations
@@ -162,4 +162,48 @@ Field Set is the one 2a part still measuring differently, 6px taller than Nova (
 - **Hand-written stylesheet:** −0.8 KB.
 - No JavaScript changed.
 
-Batch 2 is complete. Batch 3 (selection) is next.
+Batch 2 is complete.
+
+## Batch 3a: Radio Group, Slider and Select
+
+Batch 3 is split in two. Combobox has 42 gaps on its own, and moving it to shadcn's parts is a public API change, so it follows in 3b.
+
+**Slider**
+- **Native input, Nova styling:** DMF UI's Slider stays a native `<input type="range">`, so it keeps working without JavaScript, submits with its form, and gets the browser's keyboard support. It's drawn as Nova's slider: a 4px muted track filled with the primary colour up to the value, and a 12px white thumb with a ring border and Nova's hover and focus ring.
+- **Fill:** follows `--slider-fill`, which the server renders and the script updates. It follows `direction` too, so it fills from the right in RTL. Without JavaScript, the fill shows the initial value only; the thumb still moves.
+- **New props:** `orientation` (`horizontal` or `vertical`), drawn with `writing-mode`. `defaultValue` is an alias for `value`, shadcn's name for the initial value.
+- **Forced colours:** the native drawing returns, so system colours apply.
+- **Recorded as intentional:** shadcn's track, range and thumb are elements; here they're the input's pseudo-elements, so their slots are recorded as intentional. Multiple thumbs (range selection) aren't supported; a native input has one.
+
+**Select**
+- **Trigger:** Nova's heights, 32px default and 28px `sm` (they were 36px and 32px), plus `rounded-lg`, and no shadow.
+- **Content and items:** content `rounded-lg`; items `rounded-md` with Nova's tighter padding; the label takes Nova's spacing too.
+- **`alignItemWithTrigger` on `SelectContent`:** shadcn's name for Data Slot's default `item-aligned` position; `false` means `position="popper"`.
+- **Recorded as intentional:**
+  - **Scroll buttons:** DMF UI's list scrolls natively, so there are no scroll buttons.
+  - **Opaque menus:** DMF UI keeps them. Nova's source marks the popup `cn-menu-translucent`, a 70% background with a backdrop blur.
+  - **The open list highlights the selected item:** Base UI's focus does the same, but the static reference isn't focused.
+  - **Runtime config:** the elements and attributes the `@data-slot/select` runtime needs.
+
+**Radio Group:** takes Nova's `gap-2`. Its 16 extras are the form props and runtime attributes of `@data-slot/radio-group`, recorded with reasons.
+
+**Results**
+
+| | Before 3a | After |
+| --- | --- | --- |
+| Gaps, 3a families | 13 | 0 |
+| Extras, 3a families | 60 | 0 (all decided) |
+| Static gaps, all families | 284 | 271 |
+| Radio Group measured | 2 of 3 | 3 of 3 |
+| Select measured | 0 of 6 | 3 of 6 match, 3 intentional only |
+| Measured cases and parts matching (light / dark) | 109 / 109 of 196 | 113 / 113, plus 14 intentional only |
+| axe violations in docs previews | 0 | 0 |
+
+Slider is not in the measured set. Its shadcn reference is a tree of Base UI elements with no counterpart in a native input.
+
+**Size changes**
+- **Slider CSS:** 0.8 → 3.5 KB (0.4 → 0.9 KB gzip), for the pseudo-element styles. Its script grows by 0.1 KB to keep the fill in step.
+- **Select CSS:** +26 bytes.
+- **Hand-written stylesheet:** +2.5 KB, all of it the Slider rules.
+
+**Local suites.** The accessibility suite still fails only on CB's white primary labels, as on `main`. The `region` items it lists are the popup portals it already allows.
