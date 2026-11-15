@@ -1,0 +1,14 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+import { cn } from "../utils"
+
+type Props = HTMLAttributes<"div">
+
+const { class: className, ...props } = Astro.props
+// A group of DropdownMenuRadioItem children. The radio items keep their own checked state.
+---
+
+<div role="group" data-slot="dropdown-menu-radio-group" class={cn(className)} {...props}>
+  <slot />
+</div>

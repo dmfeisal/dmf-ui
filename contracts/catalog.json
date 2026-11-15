@@ -1654,11 +1654,17 @@
           "dataSlots": [
             "dialog-content"
           ],
-          "properties": [],
+          "properties": [
+            {
+              "name": "size",
+              "type": "'default'|'sm'",
+              "optional": true
+            }
+          ],
           "native": [
             "HTMLAttributes<'div'>"
           ],
-          "declaration": "type Props=HTMLAttributes<'div'>;"
+          "declaration": "type Props=HTMLAttributes<'div'> & {size?:'default'|'sm';};"
         },
         {
           "file": "src/components/dmf-ui/alert-dialog/alert-dialog.astro",
@@ -1678,7 +1684,9 @@
         }
       ],
       "variants": {},
-      "defaults": {},
+      "defaults": {
+        "alert-dialog-content.astro:size": "'default'"
+      },
       "states": {
         "default": {
           "status": "authored-default",
@@ -1862,7 +1870,7 @@
         },
         {
           "path": "src/components/dmf-ui/alert-dialog/alert-dialog-content.astro",
-          "sha256": "9af48d9263884c1a9c11bcab7ce9bbba4d3e737ab68eba6fed1932dc4c5d755e"
+          "sha256": "ad78972d24375e2bf107874d7ede94ee62d14f842653074e3de0da2132523eca"
         },
         {
           "path": "src/components/dmf-ui/alert-dialog/alert-dialog.astro",
@@ -7111,6 +7119,7 @@
           ],
           "dataSlots": [
             "collapsible",
+            "collapsible-trigger",
             "collapsible-content"
           ],
           "properties": [
@@ -7325,7 +7334,7 @@
       "sources": [
         {
           "path": "src/components/dmf-ui/collapsible/collapsible.astro",
-          "sha256": "deb0f9885128aea290740494614aaea8bc1cd6f4ef33f0ae0d7a4a639c375b6c"
+          "sha256": "1b30a3aea0f1d75efba2f072d896833f7878be99c3547d6a143383947c3773b8"
         },
         {
           "path": "src/components/dmf-ui/collapsible/index.ts",
@@ -10465,6 +10474,20 @@
           "declaration": "type Props = HTMLAttributes<\"div\">"
         },
         {
+          "file": "src/components/dmf-ui/dropdown-menu/dropdown-menu-radio-group.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "dropdown-menu-radio-group"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<\"div\">"
+          ],
+          "declaration": "type Props = HTMLAttributes<\"div\">"
+        },
+        {
           "file": "src/components/dmf-ui/dropdown-menu/dropdown-menu-radio-item.astro",
           "slots": [
             "default"
@@ -10848,6 +10871,10 @@
           "sha256": "fa85cb7f4bc57caad7f169b0e265ec6fec8a0d4b9d1b7b8a703aa4f1f848852f"
         },
         {
+          "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-radio-group.astro",
+          "sha256": "a2e2520501ae7a626caf8d79898d4f43efa30327524cc7b141290c47f224f32d"
+        },
+        {
           "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-radio-item.astro",
           "sha256": "1187edbf46c70ee0b88bb51d815f18a3c5f09ee30fd0cc07ba72886baece058e"
         },
@@ -10869,7 +10896,7 @@
         },
         {
           "path": "src/components/dmf-ui/dropdown-menu/index.ts",
-          "sha256": "1ef4c50ed0af9f796916b72cf448f052dbefadc246f1065d9a8b522083796add"
+          "sha256": "34b9eada919e68ca00bc26a51c96199fd362cb2b02cfd10ffbfd8741e3b435f7"
         }
       ],
       "gaps": [
@@ -10899,6 +10926,7 @@
         "./dropdown-menu-item.astro",
         "./dropdown-menu-label.astro",
         "./dropdown-menu-portal.astro",
+        "./dropdown-menu-radio-group.astro",
         "./dropdown-menu-radio-item.astro",
         "./dropdown-menu-separator.astro",
         "./dropdown-menu-shortcut.astro",
@@ -22983,7 +23011,7 @@
           "properties": [
             {
               "name": "side",
-              "type": "'inline-start'|'inline-end'|'top'|'bottom'",
+              "type": "'left'|'right'|'inline-start'|'inline-end'|'top'|'bottom'",
               "optional": true
             },
             {
@@ -22993,7 +23021,7 @@
             }
           ],
           "native": [],
-          "declaration": "interface Props extends HTMLAttributes<'div'> {side?:'inline-start'|'inline-end'|'top'|'bottom';showCloseButton?:boolean;}"
+          "declaration": "interface Props extends HTMLAttributes<'div'> {side?:'left'|'right'|'inline-start'|'inline-end'|'top'|'bottom';showCloseButton?:boolean;}"
         },
         {
           "file": "src/components/dmf-ui/sheet/sheet.astro",
@@ -23205,7 +23233,7 @@
         },
         {
           "path": "src/components/dmf-ui/sheet/sheet-content.astro",
-          "sha256": "4e21767be2ac55b396f416de7a3b0859b24550130b1e9eca2918e7f7c47a9d2e"
+          "sha256": "ed6c0d0691d4aff82f6b9ecba22c3c9917635211efd8ab119a4e4152b2106151"
         },
         {
           "path": "src/components/dmf-ui/sheet/sheet.astro",

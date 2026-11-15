@@ -4,8 +4,11 @@ import {X} from '@lucide/astro';
 import {DialogPortal,DialogOverlay} from '../dialog';
 import {Button} from '../button';
 import {cn} from '../utils';
-interface Props extends HTMLAttributes<'div'> {side?:'inline-start'|'inline-end'|'top'|'bottom';showCloseButton?:boolean;}
-const {side='inline-end',showCloseButton=true,class:className,style,...props}=Astro.props;
+// shadcn's `left` and `right` are accepted as aliases for the logical sides, so they follow reading direction; `right`
+// is the default in shadcn but DMF UI's logical `inline-end` keeps its position in right-to-left text.
+interface Props extends HTMLAttributes<'div'> {side?:'left'|'right'|'inline-start'|'inline-end'|'top'|'bottom';showCloseButton?:boolean;}
+const {side:sideProp='inline-end',showCloseButton=true,class:className,style,...props}=Astro.props;
+const side=sideProp==='left'?'inline-start':sideProp==='right'?'inline-end':sideProp;
 ---
 <DialogPortal><DialogOverlay/><div {...props} data-slot="dialog-content" data-component="sheet-content" data-side={side} hidden class={cn('dmf-sheet-content',className)} style={`z-index:calc(var(--dialog-content-stack-index,0) * 2 + 101);${style??''}`}>
  {showCloseButton&&<Button type="button" data-slot="dialog-close" variant="ghost" size="icon" class="dmf-sheet-dismiss" aria-label="Close panel"><X size={18} aria-hidden="true"/></Button>}

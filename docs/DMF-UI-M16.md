@@ -7,7 +7,7 @@
 | 1. Shared foundations | Done (dmfeisal/dmf-ui#33) |
 | 2. Actions and inputs | Done (dmfeisal/dmf-ui#35, #36) |
 | 3. Selection | 3a (dmfeisal/dmf-ui#37) and 3b in this report |
-| 4. Overlays and menus | Next |
+| 4. Overlays and menus | In progress: gaps 66 → 20; extras not yet decided |
 | 5–6 | Planned |
 
 ## Batch 1: shared foundations
@@ -263,3 +263,38 @@ The items-mode tests and the selection contracts pass unchanged.
 - **Combobox CSS:** 2.8 → 6.4 KB (0.9 → 1.8 KB gzip). Nova's is 15.9 KB.
 - **Combobox JS:** 4.5 → 5.8 KB (1.7 → 2.0 KB gzip), for the parts wiring, trigger, clear and group filtering.
 - **Hand-written stylesheet:** −1.8 KB.
+
+## Batch 4: overlays and menus (in progress)
+
+**Done in this pass**
+- **Sheet:** `side` accepts shadcn's `left` and `right` as aliases for the logical sides, so they follow reading direction. The default stays `inline-end`.
+- **Alert Dialog:** `size` (`default`, `sm`) on the content, with a narrower `sm` width.
+- **Dropdown Menu:** `DropdownMenuRadioGroup`, a group for radio items.
+- **Collapsible:** the summary carries `data-slot="collapsible-trigger"`.
+
+**Decided as intentional**
+- **Shared overlay slots** (Alert Dialog and Sheet): they reuse Dialog's slot names, and `data-component` identifies each overlay. Owner's choice.
+- **Animation and state hooks:** DMF UI runs open and close from keyframes on `data-open` and `data-closed`, and matches `data-state` through its custom variants.
+- **Tooltip provider:** DMF UI sets each tooltip's delay on the instance, so there's no shared provider.
+- **Collapsible parts:** one component, with the summary as trigger and the body as content.
+- **Dropdown Menu and Command:** `aria-expanded` and `aria-selected` stand in for Base UI's `data-popup-open` and `data-checked`.
+
+**Still gaps (20)**
+- **Dropdown Menu submenus:** `DropdownMenuSub`, `DropdownMenuSubTrigger`, `DropdownMenuSubContent`, and their slots. This is a nested-menu feature.
+- **Drawer:** `snapPoints`, the swipe handle and its props, swipe axis, and nested-drawer state. These need the drawer's gesture runtime.
+- **Drawer overlay slot.**
+- **Alert Dialog Cancel:** `size` and `variant` props, and `data-size` on the content.
+- **Dropdown Menu checkbox item:** a `checked` prop.
+
+**Still undecided (extras)**
+- Batch 4 has 286 DMF-only props and attributes. Most are runtime configuration: `data-close-delay`, `data-mount-strategy`, `data-side-offset` and similar. Each needs a keep or remove decision, which I haven't made yet. Decisions can use `*` to cover a group.
+
+**Results so far**
+
+| | Before | Now |
+| --- | --- | --- |
+| Gaps, batch 4 | 66 | 20 |
+| Extras, batch 4 | 286 | 286 (not yet decided) |
+| Static gaps, all families | 238 | 193 |
+
+Accessibility, no-JavaScript and the overlay browser scenarios (Sheet, Alert Dialog, navigation components) are unchanged. The docs suite and unit tests pass.

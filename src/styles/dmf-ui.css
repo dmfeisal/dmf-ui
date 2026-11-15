@@ -380,6 +380,7 @@
 .dmf-sheet-content [data-slot=dialog-title],.dmf-alert-dialog-content [data-slot=dialog-title] { font-size:1.25rem; line-height:1.3; overflow-wrap:anywhere; }
 .dmf-sheet-content [data-slot=dialog-description],.dmf-alert-dialog-content [data-slot=dialog-description] { line-height:1.65; }
 .dmf-sheet-dismiss { position:absolute; top:1rem; inset-inline-end:1rem;   }
+.dmf-alert-dialog-content[data-size=sm] { inline-size:min(24rem,calc(100vw - 2rem)); }
 .dmf-alert-dialog-content { top:50%; left:50%; transform:translate(-50%,-50%); inline-size:min(30rem,calc(100vw - 2rem)); max-block-size:calc(100dvh - 2rem); border-radius:1rem; }
 .dmf-alert-dialog-content [data-slot=dialog-footer],.dmf-sheet-content [data-slot=dialog-footer] { display:flex; flex-wrap:wrap; gap:.75rem; }
 

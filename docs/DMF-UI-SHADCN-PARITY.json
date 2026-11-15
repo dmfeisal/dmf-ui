@@ -33,10 +33,10 @@
  ],
  "totals": {
   "families": 50,
-  "match": 740,
-  "intentional": 176,
-  "gap": 238,
-  "differs": 2,
+  "match": 749,
+  "intentional": 213,
+  "gap": 193,
+  "differs": 1,
   "extra": 483
  },
  "families": {
@@ -675,9 +675,9 @@
     "docs": "vendor/shadcn/docs/alert-dialog.mdx"
    },
    "counts": {
-    "match": 10,
-    "intentional": 0,
-    "gap": 23,
+    "match": 14,
+    "intentional": 16,
+    "gap": 3,
     "differs": 0,
     "extra": 4
    },
@@ -736,21 +736,24 @@
      "value": "AlertDialogMedia",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Media is an icon slot inside the header; DMF UI places the icon with the header's own classes instead of a part."
     },
     {
      "id": "parts:AlertDialogOverlay",
      "value": "AlertDialogOverlay",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "The overlay is Dialog's overlay, shared through the common runtime (see slots)."
     },
     {
      "id": "parts:AlertDialogPortal",
      "value": "AlertDialogPortal",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "The portal is Dialog's portal, shared through the common runtime (see slots)."
     },
     {
      "id": "parts:AlertDialogTitle",
@@ -773,7 +776,8 @@
      "value": "alert-dialog",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:alert-dialog-action",
@@ -787,70 +791,80 @@
      "value": "alert-dialog-cancel",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:alert-dialog-content",
      "value": "alert-dialog-content",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:alert-dialog-description",
      "value": "alert-dialog-description",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:alert-dialog-footer",
      "value": "alert-dialog-footer",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:alert-dialog-header",
      "value": "alert-dialog-header",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:alert-dialog-media",
      "value": "alert-dialog-media",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:alert-dialog-overlay",
      "value": "alert-dialog-overlay",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:alert-dialog-portal",
      "value": "alert-dialog-portal",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:alert-dialog-title",
      "value": "alert-dialog-title",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:alert-dialog-trigger",
      "value": "alert-dialog-trigger",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:dialog-close",
@@ -873,15 +887,15 @@
       "id": "variants.size:default",
       "value": "default",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.size:sm",
       "value": "sm",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      }
     ]
    },
@@ -923,8 +937,10 @@
      "shadcn": {
       "default": "default"
      },
-     "dmf": null,
-     "status": "gap"
+     "dmf": {
+      "default": "default"
+     },
+     "status": "match"
     }
    ],
    "dataAttributes": [
@@ -939,8 +955,8 @@
      "id": "dataAttributes:data-size",
      "value": "data-size",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "stateHooks": [
@@ -949,14 +965,16 @@
      "value": "data-closed",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI styles open and closed through the data-open and data-closed custom variants, which match DMF's data-state too."
     },
     {
      "id": "stateHooks:data-open",
      "value": "data-open",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI styles open and closed through the data-open and data-closed custom variants, which match DMF's data-state too."
     },
     {
      "id": "stateHooks:data-size",
@@ -4595,9 +4613,9 @@
     "docs": "vendor/shadcn/docs/collapsible.mdx"
    },
    "counts": {
-    "match": 3,
-    "intentional": 0,
-    "gap": 3,
+    "match": 4,
+    "intentional": 2,
+    "gap": 0,
     "differs": 0,
     "extra": 5
    },
@@ -4614,14 +4632,16 @@
      "value": "CollapsibleContent",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's Collapsible is one component: its summary is the trigger and its body the content, with the label and icon as props."
     },
     {
      "id": "parts:CollapsibleTrigger",
      "value": "CollapsibleTrigger",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's Collapsible is one component: its summary is the trigger and its body the content, with the label and icon as props."
     }
    ],
    "slots": [
@@ -4643,8 +4663,8 @@
      "id": "slots:collapsible-trigger",
      "value": "collapsible-trigger",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "variants": {},
@@ -5369,8 +5389,8 @@
    },
    "counts": {
     "match": 23,
-    "intentional": 0,
-    "gap": 1,
+    "intentional": 1,
+    "gap": 0,
     "differs": 0,
     "extra": 33
    },
@@ -5839,7 +5859,8 @@
      "value": "data-checked",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI marks the selected item with aria-selected, which its styles use; shadcn's checked hook is for Base UI's checkbox items."
     },
     {
      "id": "stateHooks:data-disabled",
@@ -7052,9 +7073,9 @@
     "docs": "vendor/shadcn/docs/dropdown-menu.mdx"
    },
    "counts": {
-    "match": 44,
-    "intentional": 0,
-    "gap": 11,
+    "match": 46,
+    "intentional": 2,
+    "gap": 7,
     "differs": 0,
     "extra": 51
    },
@@ -7112,8 +7133,8 @@
      "id": "parts:DropdownMenuRadioGroup",
      "value": "DropdownMenuRadioGroup",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:DropdownMenuRadioItem",
@@ -7233,8 +7254,8 @@
      "id": "slots:dropdown-menu-radio-group",
      "value": "dropdown-menu-radio-group",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:dropdown-menu-radio-item",
@@ -7889,7 +7910,8 @@
      "value": "aria-expanded",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's trigger reports its open state with aria-expanded, but Nova's style for it targets Base UI's data-popup-open; the trigger needs no separate hook."
     },
     {
      "id": "stateHooks:data-checked",
@@ -7938,7 +7960,8 @@
      "value": "data-popup-open",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI styles the open trigger from aria-expanded and data-state; Base UI's data-popup-open is not set."
     },
     {
      "id": "stateHooks:data-side",
@@ -14200,10 +14223,10 @@
     "docs": "vendor/shadcn/docs/sheet.mdx"
    },
    "counts": {
-    "match": 12,
-    "intentional": 0,
-    "gap": 15,
-    "differs": 1,
+    "match": 14,
+    "intentional": 14,
+    "gap": 0,
+    "differs": 0,
     "extra": 7
    },
    "parts": [
@@ -14284,70 +14307,80 @@
      "value": "sheet",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:sheet-close",
      "value": "sheet-close",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:sheet-content",
      "value": "sheet-content",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:sheet-description",
      "value": "sheet-description",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:sheet-footer",
      "value": "sheet-footer",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:sheet-header",
      "value": "sheet-header",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:sheet-overlay",
      "value": "sheet-overlay",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:sheet-portal",
      "value": "sheet-portal",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:sheet-title",
      "value": "sheet-title",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     },
     {
      "id": "slots:sheet-trigger",
      "value": "sheet-trigger",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding."
     }
    ],
    "variants": {
@@ -14377,15 +14410,15 @@
       "id": "variants.side:left",
       "value": "left",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.side:right",
       "value": "right",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.side:top",
@@ -14439,7 +14472,8 @@
      "dmf": {
       "default": "inline-end"
      },
-     "status": "differs"
+     "status": "intentional",
+     "reason": "Accepts shadcn's left and right, which follow reading direction. DMF UI's default stays inline-end, so the sheet opens from the reading direction's end in right-to-left text."
     }
    ],
    "dataAttributes": [
@@ -14464,21 +14498,24 @@
      "value": "data-ending-style",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI runs the open and close animations from keyframes on data-open and data-closed, not Base UI's starting and ending style attributes."
     },
     {
      "id": "stateHooks:data-side",
      "value": "data-side",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI sets data-side to its logical side and styles it. Nova's Base UI side hook is for its slide-in animation, which DMF UI runs from keyframes."
     },
     {
      "id": "stateHooks:data-starting-style",
      "value": "data-starting-style",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI runs the open and close animations from keyframes on data-open and data-closed, not Base UI's starting and ending style attributes."
     }
    ],
    "nova": {
@@ -18981,8 +19018,8 @@
    },
    "counts": {
     "match": 14,
-    "intentional": 0,
-    "gap": 2,
+    "intentional": 2,
+    "gap": 0,
     "differs": 0,
     "extra": 32
    },
@@ -19006,7 +19043,8 @@
      "value": "TooltipProvider",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI tooltips set their delay per instance (delay and closeDelay props); there is no shared provider to group them."
     },
     {
      "id": "parts:TooltipTrigger",
@@ -19057,7 +19095,8 @@
      "value": "tooltip-provider",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI tooltips set their delay per instance (delay and closeDelay props); there is no shared provider to group them."
     },
     {
      "id": "slots:tooltip-trigger",
