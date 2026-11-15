@@ -3349,6 +3349,312 @@
    "unsupported": []
   },
   {
+   "id": "combobox/compound",
+   "family": "combobox",
+   "kind": "compound",
+   "open": {
+    "trigger": "input-group-control",
+    "action": "click"
+   },
+   "tree": {
+    "component": "Combobox",
+    "props": {
+     "id": "parity-combobox",
+     "label": "Fruit"
+    },
+    "text": "",
+    "void": false,
+    "children": [
+     {
+      "component": "ComboboxInput",
+      "props": {
+       "placeholder": "Search"
+      },
+      "text": "",
+      "void": true,
+      "children": []
+     },
+     {
+      "component": "ComboboxContent",
+      "props": {},
+      "text": "",
+      "void": false,
+      "children": [
+       {
+        "component": "ComboboxList",
+        "props": {},
+        "text": "",
+        "void": false,
+        "children": [
+         {
+          "component": "ComboboxGroup",
+          "props": {},
+          "text": "",
+          "void": false,
+          "children": [
+           {
+            "component": "ComboboxLabel",
+            "props": {},
+            "text": "Fruit",
+            "void": false,
+            "children": []
+           },
+           {
+            "component": "ComboboxItem",
+            "props": {
+             "value": "apple"
+            },
+            "text": "Apple",
+            "void": false,
+            "children": []
+           },
+           {
+            "component": "ComboboxItem",
+            "props": {
+             "value": "pear"
+            },
+            "text": "Pear",
+            "void": false,
+            "children": []
+           }
+          ]
+         },
+         {
+          "component": "ComboboxSeparator",
+          "props": {},
+          "text": "",
+          "void": true,
+          "children": []
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "nodes": [
+    {
+     "key": "0",
+     "parent": null,
+     "component": "Combobox",
+     "id": null,
+     "dmfSlot": null,
+     "occurrence": 0,
+     "inOpen": false,
+     "text": "",
+     "void": false,
+     "reference": null,
+     "inner": null
+    },
+    {
+     "key": "1",
+     "parent": "0",
+     "component": "ComboboxInput",
+     "id": null,
+     "dmfSlot": null,
+     "occurrence": 0,
+     "inOpen": false,
+     "text": "",
+     "void": false,
+     "reference": null,
+     "inner": null
+    },
+    {
+     "key": "2",
+     "parent": "0",
+     "component": "ComboboxContent",
+     "id": "combobox/compound#combobox-content",
+     "dmfSlot": "combobox-content",
+     "occurrence": 0,
+     "inOpen": true,
+     "text": "",
+     "void": false,
+     "reference": {
+      "tag": "div",
+      "classes": [
+       "cn-combobox-content",
+       "cn-combobox-content-logical",
+       "cn-menu-target",
+       "cn-menu-translucent",
+       "data-[chips=true]:min-w-(--anchor-width)",
+       "group/combobox-content",
+       "max-h-(--available-height)",
+       "max-w-(--available-width)",
+       "min-w-[calc(var(--anchor-width)+--spacing(7))]",
+       "origin-(--transform-origin)",
+       "relative",
+       "w-(--anchor-width)"
+      ],
+      "attributes": {
+       "data-slot": "combobox-content",
+       "data-open": "",
+       "data-side": "bottom"
+      }
+     },
+     "inner": null
+    },
+    {
+     "key": "3",
+     "parent": "2",
+     "component": "ComboboxList",
+     "id": "combobox/compound#combobox-list",
+     "dmfSlot": "combobox-list",
+     "occurrence": 0,
+     "inOpen": true,
+     "text": "",
+     "void": false,
+     "reference": {
+      "tag": "div",
+      "classes": [
+       "cn-combobox-list",
+       "overflow-y-auto",
+       "overscroll-contain"
+      ],
+      "attributes": {
+       "data-slot": "combobox-list"
+      }
+     },
+     "inner": null
+    },
+    {
+     "key": "4",
+     "parent": "3",
+     "component": "ComboboxGroup",
+     "id": "combobox/compound#combobox-group",
+     "dmfSlot": "combobox-group",
+     "occurrence": 0,
+     "inOpen": true,
+     "text": "",
+     "void": false,
+     "reference": {
+      "tag": "div",
+      "classes": [
+       "cn-combobox-group"
+      ],
+      "attributes": {
+       "data-slot": "combobox-group"
+      }
+     },
+     "inner": null
+    },
+    {
+     "key": "5",
+     "parent": "4",
+     "component": "ComboboxLabel",
+     "id": "combobox/compound#combobox-label",
+     "dmfSlot": "combobox-label",
+     "occurrence": 0,
+     "inOpen": true,
+     "text": "Fruit",
+     "void": false,
+     "reference": {
+      "tag": "div",
+      "classes": [
+       "cn-combobox-label"
+      ],
+      "attributes": {
+       "data-slot": "combobox-label"
+      }
+     },
+     "inner": null
+    },
+    {
+     "key": "6",
+     "parent": "4",
+     "component": "ComboboxItem",
+     "id": "combobox/compound#combobox-item",
+     "dmfSlot": "combobox-item",
+     "occurrence": 0,
+     "inOpen": true,
+     "text": "Apple",
+     "void": false,
+     "reference": {
+      "tag": "div",
+      "classes": [
+       "[&_svg]:pointer-events-none",
+       "[&_svg]:shrink-0",
+       "cn-combobox-item",
+       "cursor-default",
+       "data-disabled:opacity-50",
+       "data-disabled:pointer-events-none",
+       "flex",
+       "items-center",
+       "outline-hidden",
+       "relative",
+       "select-none",
+       "w-full"
+      ],
+      "attributes": {
+       "data-slot": "combobox-item"
+      }
+     },
+     "inner": null
+    },
+    {
+     "key": "7",
+     "parent": "4",
+     "component": "ComboboxItem",
+     "id": "combobox/compound#combobox-item:2",
+     "dmfSlot": "combobox-item",
+     "occurrence": 1,
+     "inOpen": true,
+     "text": "Pear",
+     "void": false,
+     "reference": {
+      "tag": "div",
+      "classes": [
+       "[&_svg]:pointer-events-none",
+       "[&_svg]:shrink-0",
+       "cn-combobox-item",
+       "cursor-default",
+       "data-disabled:opacity-50",
+       "data-disabled:pointer-events-none",
+       "flex",
+       "items-center",
+       "outline-hidden",
+       "relative",
+       "select-none",
+       "w-full"
+      ],
+      "attributes": {
+       "data-slot": "combobox-item"
+      }
+     },
+     "inner": null
+    },
+    {
+     "key": "8",
+     "parent": "3",
+     "component": "ComboboxSeparator",
+     "id": "combobox/compound#combobox-separator",
+     "dmfSlot": "combobox-separator",
+     "occurrence": 0,
+     "inOpen": true,
+     "text": "",
+     "void": true,
+     "reference": {
+      "tag": "div",
+      "classes": [
+       "cn-combobox-separator"
+      ],
+      "attributes": {
+       "data-slot": "combobox-separator"
+      }
+     },
+     "inner": null
+    }
+   ],
+   "parts": [
+    "combobox/compound#combobox-content",
+    "combobox/compound#combobox-list",
+    "combobox/compound#combobox-group",
+    "combobox/compound#combobox-label",
+    "combobox/compound#combobox-item",
+    "combobox/compound#combobox-item:2",
+    "combobox/compound#combobox-separator"
+   ]
+  },
+  {
    "id": "dialog/compound",
    "family": "dialog",
    "kind": "compound",

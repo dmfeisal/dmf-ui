@@ -1,0 +1,6 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+type Props=HTMLAttributes<'span'>;
+// Shows the chosen option's label anywhere inside the Combobox; the runtime keeps it current.
+---
+<span {...Astro.props} data-slot="combobox-value" data-combobox-value><slot/></span>

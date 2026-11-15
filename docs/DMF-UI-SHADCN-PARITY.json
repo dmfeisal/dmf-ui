@@ -33,11 +33,11 @@
  ],
  "totals": {
   "families": 50,
-  "match": 716,
-  "intentional": 143,
-  "gap": 271,
+  "match": 740,
+  "intentional": 176,
+  "gap": 238,
   "differs": 2,
-  "extra": 489
+  "extra": 483
  },
  "families": {
   "accordion": {
@@ -4714,11 +4714,11 @@
     "docs": "vendor/shadcn/docs/combobox.mdx"
    },
    "counts": {
-    "match": 1,
-    "intentional": 0,
-    "gap": 42,
+    "match": 25,
+    "intentional": 33,
+    "gap": 9,
     "differs": 0,
-    "extra": 6
+    "extra": 0
    },
    "parts": [
     {
@@ -4754,77 +4754,78 @@
      "value": "ComboboxCollection",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "A React render-prop for grouped arrays. In Astro, items are mapped from arrays directly."
     },
     {
      "id": "parts:ComboboxContent",
      "value": "ComboboxContent",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:ComboboxEmpty",
      "value": "ComboboxEmpty",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:ComboboxGroup",
      "value": "ComboboxGroup",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:ComboboxInput",
      "value": "ComboboxInput",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:ComboboxItem",
      "value": "ComboboxItem",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:ComboboxLabel",
      "value": "ComboboxLabel",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:ComboboxList",
      "value": "ComboboxList",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:ComboboxSeparator",
      "value": "ComboboxSeparator",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:ComboboxTrigger",
      "value": "ComboboxTrigger",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:ComboboxValue",
      "value": "ComboboxValue",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "slots": [
@@ -4833,7 +4834,8 @@
      "value": "combobox",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "The root element the runtime binds to; it holds the native fallback and the enhanced view. Base UI's Root renders no element."
     },
     {
      "id": "slots:combobox-chip",
@@ -4867,96 +4869,255 @@
      "id": "slots:combobox-clear",
      "value": "combobox-clear",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:combobox-collection",
      "value": "combobox-collection",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "A React render-prop for grouped arrays. In Astro, items are mapped from arrays directly."
     },
     {
      "id": "slots:combobox-content",
      "value": "combobox-content",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:combobox-empty",
      "value": "combobox-empty",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:combobox-group",
      "value": "combobox-group",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:combobox-item",
      "value": "combobox-item",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:combobox-label",
      "value": "combobox-label",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:combobox-list",
      "value": "combobox-list",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:combobox-separator",
      "value": "combobox-separator",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:combobox-trigger",
      "value": "combobox-trigger",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:combobox-value",
      "value": "combobox-value",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:input-group-button",
      "value": "input-group-button",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "variants": {},
-   "props": [],
+   "props": [
+    {
+     "id": "props.ComboboxContent.align",
+     "component": "ComboboxContent",
+     "prop": "align",
+     "shadcn": {
+      "default": "start"
+     },
+     "dmf": null,
+     "status": "intentional",
+     "reason": "DMF UI's runtime places the list below the input and flips it above when there is no room. Other sides, offsets and anchors are not offered."
+    },
+    {
+     "id": "props.ComboboxContent.alignOffset",
+     "component": "ComboboxContent",
+     "prop": "alignOffset",
+     "shadcn": {
+      "default": "0"
+     },
+     "dmf": null,
+     "status": "intentional",
+     "reason": "DMF UI's runtime places the list below the input and flips it above when there is no room. Other sides, offsets and anchors are not offered."
+    },
+    {
+     "id": "props.ComboboxContent.anchor",
+     "component": "ComboboxContent",
+     "prop": "anchor",
+     "shadcn": {
+      "default": null
+     },
+     "dmf": null,
+     "status": "intentional",
+     "reason": "DMF UI's runtime places the list below the input and flips it above when there is no room. Other sides, offsets and anchors are not offered."
+    },
+    {
+     "id": "props.ComboboxContent.side",
+     "component": "ComboboxContent",
+     "prop": "side",
+     "shadcn": {
+      "default": "bottom"
+     },
+     "dmf": null,
+     "status": "intentional",
+     "reason": "DMF UI's runtime places the list below the input and flips it above when there is no room. Other sides, offsets and anchors are not offered."
+    },
+    {
+     "id": "props.ComboboxContent.sideOffset",
+     "component": "ComboboxContent",
+     "prop": "sideOffset",
+     "shadcn": {
+      "default": "6"
+     },
+     "dmf": null,
+     "status": "intentional",
+     "reason": "DMF UI's runtime places the list below the input and flips it above when there is no room. Other sides, offsets and anchors are not offered."
+    },
+    {
+     "id": "props.ComboboxInput.disabled",
+     "component": "ComboboxInput",
+     "prop": "disabled",
+     "shadcn": {
+      "default": "false"
+     },
+     "dmf": null,
+     "status": "intentional",
+     "reason": "Disabled is set on the Combobox root, which disables both the native fallback and the enhanced input."
+    },
+    {
+     "id": "props.ComboboxInput.showClear",
+     "component": "ComboboxInput",
+     "prop": "showClear",
+     "shadcn": {
+      "default": "false"
+     },
+     "dmf": {
+      "default": "false"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.ComboboxInput.showTrigger",
+     "component": "ComboboxInput",
+     "prop": "showTrigger",
+     "shadcn": {
+      "default": "true"
+     },
+     "dmf": {
+      "default": "true"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.ComboboxItem.disabled",
+     "component": "ComboboxItem",
+     "prop": "disabled",
+     "shadcn": null,
+     "dmf": {
+      "default": "false"
+     },
+     "status": "intentional",
+     "reason": "Base UI's Item accepts this through its props spread; DMF UI names it because the fallback select and the runtime read it."
+    },
+    {
+     "id": "props.ComboboxItem.icon",
+     "component": "ComboboxItem",
+     "prop": "icon",
+     "shadcn": null,
+     "dmf": {
+      "default": null
+     },
+     "status": "intentional",
+     "reason": "Optional icon before the item text, in DMF UI's shared presentation model."
+    },
+    {
+     "id": "props.ComboboxItem.label",
+     "component": "ComboboxItem",
+     "prop": "label",
+     "shadcn": null,
+     "dmf": {
+      "default": null
+     },
+     "status": "intentional",
+     "reason": "The text the input shows once the item is chosen, when it differs from the item's content."
+    },
+    {
+     "id": "props.ComboboxItem.selected",
+     "component": "ComboboxItem",
+     "prop": "selected",
+     "shadcn": null,
+     "dmf": {
+      "default": "false"
+     },
+     "status": "intentional",
+     "reason": "Server-rendered selected state, used by items mode; parts mode leaves it to the runtime."
+    },
+    {
+     "id": "props.ComboboxItem.value",
+     "component": "ComboboxItem",
+     "prop": "value",
+     "shadcn": null,
+     "dmf": {
+      "default": null
+     },
+     "status": "intentional",
+     "reason": "Base UI's Item accepts this through its props spread; DMF UI names it because the fallback select and the runtime read it."
+    },
+    {
+     "id": "props.ComboboxTrigger.inInput",
+     "component": "ComboboxTrigger",
+     "prop": "inInput",
+     "shadcn": null,
+     "dmf": {
+      "default": "false"
+     },
+     "status": "intentional",
+     "reason": "Internal: ComboboxInput renders the trigger with Input Group's button slot, as shadcn's ComboboxInput does."
+    }
+   ],
    "dataAttributes": [
     {
      "id": "dataAttributes:data-active",
      "value": "data-active",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Combobox runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-chips",
@@ -4966,48 +5127,86 @@
      "status": "gap"
     },
     {
+     "id": "dataAttributes:data-combobox-id",
+     "value": "data-combobox-id",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Combobox runtime reads or sets."
+    },
+    {
+     "id": "dataAttributes:data-combobox-label",
+     "value": "data-combobox-label",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Combobox runtime reads or sets."
+    },
+    {
      "id": "dataAttributes:data-combobox-required",
      "value": "data-combobox-required",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Combobox runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-label",
      "value": "data-label",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Combobox runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-side",
      "value": "data-side",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Combobox runtime reads or sets."
     },
     {
      "id": "dataAttributes:data-value",
      "value": "data-value",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Configuration or state the DMF Combobox runtime reads or sets."
     }
    ],
    "stateHooks": [
+    {
+     "id": "stateHooks:aria-disabled",
+     "value": "aria-disabled",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "Disabled options are aria-disabled, as the listbox pattern expects, and styled through it."
+    },
     {
      "id": "stateHooks:aria-expanded",
      "value": "aria-expanded",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Nova styles its chip trigger with aria-expanded; DMF UI's input sets aria-expanded but needs no style for it."
     },
     {
      "id": "stateHooks:aria-invalid",
      "value": "aria-invalid",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Input Group styles aria-invalid on the control, so the Combobox's own classes need no hook."
+    },
+    {
+     "id": "stateHooks:data-active",
+     "value": "data-active",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "Styles the option the runtime highlights (data-active, with aria-activedescendant)."
     },
     {
      "id": "stateHooks:data-chips",
@@ -5021,56 +5220,63 @@
      "value": "data-closed",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "The list shows and hides through the hidden attribute, without Nova's open and close animation."
     },
     {
      "id": "stateHooks:data-disabled",
      "value": "data-disabled",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's runtime marks this state with aria-disabled on the option, which its classes style; Nova's Base UI hook is not set."
     },
     {
      "id": "stateHooks:data-empty",
      "value": "data-empty",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's runtime marks this state with the hidden attribute on ComboboxEmpty and the list, which its classes style; Nova's Base UI hook is not set."
     },
     {
      "id": "stateHooks:data-highlighted",
      "value": "data-highlighted",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's runtime marks this state with data-active (with aria-activedescendant), which its classes style; Nova's Base UI hook is not set."
     },
     {
      "id": "stateHooks:data-open",
      "value": "data-open",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "The list shows and hides through the hidden attribute, without Nova's open and close animation."
     },
     {
      "id": "stateHooks:data-pressed",
      "value": "data-pressed",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-side",
      "value": "data-side",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "The runtime sets data-side for positioning; Nova uses it only for its slide-in animation, which DMF UI does not run."
     },
     {
      "id": "stateHooks:data-variant",
      "value": "data-variant",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Comes from Nova's destructive item variant, which the Combobox does not offer."
     }
    ],
    "nova": {
@@ -5100,7 +5306,59 @@
     ],
     "cva": {}
    },
-   "measured": null
+   "measured": {
+    "cases": 7,
+    "matching": {
+     "light": 5,
+     "dark": 5
+    },
+    "differences": {
+     "light": {
+      "combobox/compound#combobox-content": [
+       {
+        "property": "backgroundColor",
+        "shadcn": "255,255,255,178",
+        "dmf": "255,255,255,255",
+        "status": "intentional",
+        "reason": "DMF UI keeps opaque menus. Nova's source marks the popup cn-menu-translucent: a 70% background with a backdrop blur."
+       }
+      ],
+      "combobox/compound#combobox-separator": [
+       {
+        "property": "backgroundColor",
+        "shadcn": "20,20,20,13",
+        "dmf": "229,229,229,255",
+        "status": "intentional",
+        "reason": "Nova's translucent menu rule draws separators in foreground/5; DMF UI's opaque menu uses --border, as Nova's own separator rule does."
+       }
+      ]
+     },
+     "dark": {
+      "combobox/compound#combobox-content": [
+       {
+        "property": "backgroundColor",
+        "shadcn": "23,23,23,179",
+        "dmf": "23,23,23,255",
+        "status": "intentional",
+        "reason": "DMF UI keeps opaque menus. Nova's source marks the popup cn-menu-translucent: a 70% background with a backdrop blur."
+       }
+      ],
+      "combobox/compound#combobox-separator": [
+       {
+        "property": "backgroundColor",
+        "shadcn": "255,255,255,13",
+        "dmf": "245,255,255,26",
+        "status": "intentional",
+        "reason": "Nova's translucent menu rule draws separators in foreground/5; DMF UI's opaque menu uses --border, as Nova's own separator rule does."
+       }
+      ]
+     }
+    },
+    "accepted": {
+     "light": 2,
+     "dark": 2
+    }
+   }
   },
   "command": {
    "name": "Command",
@@ -19170,21 +19428,21 @@
   }
  },
  "measuredTotals": {
-  "cases": 196,
+  "cases": 203,
   "matching": {
-   "light": 113,
-   "dark": 113
+   "light": 118,
+   "dark": 118
   },
   "compoundParts": {
-   "parts": 102,
+   "parts": 109,
    "matching": {
-    "light": 50,
-    "dark": 50
+    "light": 55,
+    "dark": 55
    }
   },
   "accepted": {
-   "light": 14,
-   "dark": 14
+   "light": 16,
+   "dark": 16
   }
  }
 }

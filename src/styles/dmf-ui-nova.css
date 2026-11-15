@@ -3,9 +3,6 @@
 .dmf-ui [data-slot="select-trigger"] { padding-inline-end:.625rem; border-radius:var(--radius); }
 .dmf-ui [data-slot="select-trigger"][data-size="sm"] { block-size:var(--dmf-select-height-sm); }
 .dmf-ui [data-slot="checkbox"],.dmf-ui [data-slot="radio-group-item"] { inline-size:var(--dmf-selection-size); block-size:var(--dmf-selection-size); }
-.dmf-ui .dmf-combobox-input { min-block-size:var(--dmf-select-height); padding-inline:.625rem; gap:.375rem; border-radius:var(--radius); }
-.dmf-ui .dmf-combobox-input input { padding-block:.25rem; font-size:.875rem; line-height:1.25rem; }
-.dmf-ui .dmf-combobox-input:has(input[aria-invalid="true"]) { border-color:var(--destructive); }
 @media (forced-colors:active) {
   .dmf-ui input[data-slot="checkbox"] { appearance:auto; }
   .dmf-ui input[data-slot="checkbox"]::before { display:none; }

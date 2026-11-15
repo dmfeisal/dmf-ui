@@ -7,12 +7,12 @@
  },
  "stylesheet": {
   "compiled": {
-   "bytes": 75873,
-   "gzip": 12696
+   "bytes": 74058,
+   "gzip": 12472
   },
   "componentRules": {
-   "bytes": 31548,
-   "gzip": 5962
+   "bytes": 29733,
+   "gzip": 5732
   },
   "note": "dmf-ui.css compiled without utilities: theme, tokens, presets and hand-written rules. componentRules is the part attributed to a family; the rest is shared."
  },
@@ -20,14 +20,14 @@
   "families": 80,
   "withScripts": 31,
   "js": {
-   "bytes": 342690,
-   "gzip": 124635
+   "bytes": 344010,
+   "gzip": 124923
   },
   "sharedFamilies": {
    "count": 50,
    "dmfCss": {
-    "bytes": 305389,
-    "gzip": 69331
+    "bytes": 308905,
+    "gzip": 70228
    },
    "shadcnCss": {
     "bytes": 335824,
@@ -816,16 +816,16 @@
    "shadcn": true,
    "css": {
     "utilities": {
-     "bytes": 69,
-     "gzip": 75
+     "bytes": 5400,
+     "gzip": 1530
     },
     "rules": {
-     "bytes": 2778,
-     "gzip": 884
+     "bytes": 963,
+     "gzip": 456
     },
     "total": {
-     "bytes": 2847,
-     "gzip": 908
+     "bytes": 6363,
+     "gzip": 1805
     }
    },
    "shadcnCss": {
@@ -835,8 +835,8 @@
    "js": {
     "scripts": 1,
     "consumerRuntime": false,
-    "bytes": 4465,
-    "gzip": 1744
+    "bytes": 5785,
+    "gzip": 2032
    },
    "axe": {
     "light": [],
@@ -845,14 +845,14 @@
    "withoutJs": {
     "status": "reduced",
     "js": {
-     "visible": 40,
-     "focusable": 4,
-     "text": 202
+     "visible": 50,
+     "focusable": 8,
+     "text": 290
     },
     "noJs": {
-     "visible": 19,
-     "focusable": 4,
-     "text": 397
+     "visible": 25,
+     "focusable": 5,
+     "text": 545
     }
    }
   },

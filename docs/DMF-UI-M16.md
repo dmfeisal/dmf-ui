@@ -6,8 +6,9 @@
 | --- | --- |
 | 1. Shared foundations | Done (dmfeisal/dmf-ui#33) |
 | 2. Actions and inputs | Done (dmfeisal/dmf-ui#35, #36) |
-| 3. Selection | 3a in this report; 3b (Combobox) next |
-| 4–6 | Planned |
+| 3. Selection | 3a (dmfeisal/dmf-ui#37) and 3b in this report |
+| 4. Overlays and menus | Next |
+| 5–6 | Planned |
 
 ## Batch 1: shared foundations
 
@@ -207,3 +208,58 @@ Slider is not in the measured set. Its shadcn reference is a tree of Base UI ele
 - **Hand-written stylesheet:** +2.5 KB, all of it the Slider rules.
 
 **Local suites.** The accessibility suite still fails only on CB's white primary labels, as on `main`. The `region` items it lists are the popup portals it already allows.
+
+## Batch 3b: Combobox
+
+The owner chose single-selection parts: restyle the Combobox to Nova and add shadcn's composable parts, keep the native-select fallback, and leave multi-select chips as recorded gaps.
+
+**Two ways to write it**
+- **Items mode**, the existing API: `<Combobox id label items={[…]} />`. It now renders the parts internally, so its markup and behaviour follow parts mode. The ids the tests and docs rely on are unchanged: `<id>`, `<id>-list` and `<id>-option-<n>`.
+- **Parts mode**, as in shadcn: `ComboboxInput` (with `showTrigger` and `showClear`), `ComboboxContent`, `ComboboxList`, `ComboboxItem`, `ComboboxGroup`, `ComboboxLabel`, `ComboboxSeparator`, `ComboboxEmpty`, `ComboboxTrigger` and `ComboboxValue`.
+
+**Keeping the no-JavaScript fallback in parts mode**
+- **On the server:** the root renders its children, reads each item's value, label and disabled state back from their markup, and builds the same native `<select>` from them.
+- **In the browser:** the runtime gives the input, list, options and group labels their ids and relationships, because a part can't see the root's id.
+
+**Markup and styling**
+- **Input:** an Input Group (batch 2a) with the combobox input and an inline-end addon holding the chevron trigger and an optional clear button. The trigger stays out of the tab order, because the input owns focus and the arrow keys open the list. As in shadcn, the trigger hides while the clear button shows, and the clear button shows only when there is a value.
+- **Content, list and items:** Nova's popover surface, padding and item spacing. The highlighted option keeps DMF UI's `data-active`, with `aria-activedescendant`.
+- **Group and separator:** groups are `role=group`, named by their label. The separator is presentational, because a listbox may own only groups and options.
+- **Filtering:** a group with no matching option hides, and separators hide while there is a query.
+- **CSS:** the hand-written option and input CSS is gone. What's left positions the popup and styles the native fallback at Nova's native-select size.
+- **Visual change in items mode:** the leading search icon is gone, as Nova's input has none.
+
+**Decisions recorded**
+- `ComboboxCollection`: a React render-prop. Astro maps arrays directly.
+- Positioning props: the list opens below and flips above when there isn't room.
+- `disabled` belongs on the root.
+- The runtime's state markers stand in for Base UI's hooks: `data-active`, `aria-disabled` and `hidden`.
+- Opaque menus.
+
+**Still gaps:** multi-select chips, 9 items: `ComboboxChips`, `ComboboxChip` and `ComboboxChipsInput`, their slots, and `data-chips`.
+
+**Results**
+
+| | Before 3b | After |
+| --- | --- | --- |
+| Gaps, Combobox | 42 | 9 (chips only) |
+| Extras, Combobox | 6 | 0 (all decided) |
+| Static gaps, all families | 271 | 238 |
+| Combobox measured | — | 5 of 7 match, 2 intentional only |
+| Measured cases and parts matching (light / dark) | 113 / 113 of 196 | 118 / 118 of 203, plus 16 intentional only |
+| axe violations in docs previews | 0 | 0 |
+
+**Tests.** The selection scenario now covers a parts-mode example on the Combobox docs page:
+- ids and named groups;
+- filtering that hides an empty group and the separator;
+- keyboard commit;
+- the clear button;
+- the trigger;
+- an axe audit.
+
+The items-mode tests and the selection contracts pass unchanged.
+
+**Size changes**
+- **Combobox CSS:** 2.8 → 6.4 KB (0.9 → 1.8 KB gzip). Nova's is 15.9 KB.
+- **Combobox JS:** 4.5 → 5.8 KB (1.7 → 2.0 KB gzip), for the parts wiring, trigger, clear and group filtering.
+- **Hand-written stylesheet:** −1.8 KB.
