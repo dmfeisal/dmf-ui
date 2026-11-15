@@ -1,0 +1,10 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {Button} from '../button';
+import type {ButtonVariantProps} from '../button/button-variants';
+import {cn} from '../utils';
+import {inputGroupButtonVariants} from './input-group-variants';
+interface Props extends Omit<HTMLAttributes<'button'>,'type'> {size?:'xs'|'sm'|'icon-xs'|'icon-sm';variant?:ButtonVariantProps['variant'];type?:'button'|'submit'|'reset';}
+const {class:className,type='button',variant='ghost',size='xs',...props}=Astro.props;
+---
+<Button {...props} type={type} variant={variant} data-size={size} class={cn(inputGroupButtonVariants({size}),className)}><slot/></Button>

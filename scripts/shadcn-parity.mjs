@@ -22,7 +22,7 @@ const sorted=values=>[...new Set(values)].sort();
 const pascal=slug=>slug.split('-').map(p=>p[0].toUpperCase()+p.slice(1)).join('');
 const casesPath='src/data/shadcn-parity-cases.json',recordPath='docs/DMF-UI-SHADCN-PARITY.json',decisionsPath='docs/DMF-UI-SHADCN-PARITY-DECISIONS.json';
 // Props every component forwards; they say nothing about parity.
-const ignoredProps=new Set(['className','class','props','children','asChild','render','style','ref']);
+const ignoredProps=new Set(['className','class','props','children','asChild','render','style','ref','data-slot']);
 
 // Attribute and state hooks named in class strings: data-active:, data-[variant=line]/tabs-list:, aria-invalid:,
 // has-data-[icon=inline-end]:. Slot references (data-[slot=…]) describe nesting, not state, and are skipped.
@@ -74,12 +74,21 @@ export function readShadcn(path,source,nova){
    }
    // Literal-union props declared inline, e.g. `& { size?: "default" | "sm" | "lg" }`, are variant axes too.
    const unions={};
-   if(node.parameters[0]?.type)walk(node.parameters[0].type,t=>{if(ts.isPropertySignature(t)&&t.type&&ts.isUnionTypeNode(t.type)&&t.type.types.every(u=>ts.isLiteralTypeNode(u)&&ts.isStringLiteral(u.literal)))unions[name(t)]=t.type.types.map(u=>u.literal.text);});
+   // Also follows local type aliases, e.g. NativeSelect's `NativeSelectProps`.
+   const aliases=Object.fromEntries(ast.statements.filter(ts.isTypeAliasDeclaration).map(a=>[a.name.text,a.type]));
+   const seenAlias=new Set();
+   const readUnions=type=>walk(type,t=>{
+    if(ts.isTypeReferenceNode(t)&&ts.isIdentifier(t.typeName)&&aliases[t.typeName.text]&&!seenAlias.has(t.typeName.text)){seenAlias.add(t.typeName.text);readUnions(aliases[t.typeName.text]);}
+    if(ts.isPropertySignature(t)&&t.type&&ts.isUnionTypeNode(t.type)&&t.type.types.every(u=>ts.isLiteralTypeNode(u)&&ts.isStringLiteral(u.literal)))unions[name(t)]=t.type.types.map(u=>u.literal.text);});
+   if(node.parameters[0]?.type)readUnions(node.parameters[0].type);
    for(const [axis,keys] of Object.entries(unions)){unionAxes[axis]=sorted([...(unionAxes[axis]??[]),...keys]);if(!(axis in props))props[axis]=null;}
    // The root element is the first JSX element with a data-slot. Its className literals, any cva call it makes and
    // the data-* attributes it derives from props are what a reference rendering needs.
    let slot,root;
    walk(node,child=>{if(root||!(ts.isJsxOpeningElement(child)||ts.isJsxSelfClosingElement(child)))return;const a=child.attributes.properties.find(p=>ts.isJsxAttribute(p)&&p.name.getText(ast)==='data-slot'&&p.initializer&&ts.isStringLiteral(p.initializer));if(a){root=child;slot=a.initializer.text;}});
+   // A component that marks no element at all (InputGroupButton renders <Button>) takes its first element as root.
+   const marked=node.getText(ast).includes('data-slot')||node.getText(ast).includes('useRender');
+   if(!root&&!marked)walk(node,child=>{if(!root&&(ts.isJsxOpeningElement(child)||ts.isJsxSelfClosingElement(child)))root=child;});
    const reference={element:root?root.tagName.getText(ast):null,classes:[],cva:null,attributes:{}};
    if(root)for(const a of root.attributes.properties){
     if(!ts.isJsxAttribute(a)||!a.initializer)continue;const attr=a.name.getText(ast);
@@ -163,7 +172,7 @@ export const measured={
  'alert':{Alert:{text:'Alert'}},'aspect-ratio':{AspectRatio:{text:'',props:{ratio:1.5}}},'avatar':{Avatar:{void:true,props:{name:'Ada Byron'}}},'badge':{Badge:{text:'Badge'}},
  'button':{Button:{text:'Label'}},'button-group':{ButtonGroup:{text:'Group'}},'card':{Card:{text:'Card'}},'checkbox':{Checkbox:{void:true,tag:'span',state:{'data-unchecked':'',role:'checkbox'}}},
  'empty':{Empty:{text:'Empty'}},'field':{Field:{text:'Field'}},'input':{Input:{void:true}},'input-group':{InputGroup:{text:''}},
- 'item':{Item:{text:'Item'}},'kbd':{Kbd:{text:'K'}},'label':{Label:{text:'Label'}},'native-select':{NativeSelect:{void:true}},
+ 'item':{Item:{text:'Item'}},'kbd':{Kbd:{text:'K'}},'label':{Label:{text:'Label'}},
  'separator':{Separator:{void:true,state:{'data-orientation':'horizontal'}}},'skeleton':{Skeleton:{void:true}},'spinner':{Spinner:{void:true}},
  'switch':{Switch:{void:true,tag:'span',state:{'data-unchecked':'',role:'switch'}}},'textarea':{Textarea:{void:true}},'toggle':{Toggle:{text:'Bold',tag:'button'}},
 };
@@ -195,9 +204,11 @@ function casesFor(slug,s,d){
 }
 
 // Compositions for parts that need a parent, children or an open overlay. Each node is
-// [Component, options, children]; options are `text`, `void`, `props` (DMF props), `state` (the attributes Base UI
+// [Component, options, children]; options are `text`, `void`, `props` (DMF props), `values` (variant values for
+// both sides), `state` (the attributes Base UI
 // sets at runtime, such as data-open), `tag` (the element a Base UI primitive renders), `part` (measure an inner
-// shadcn element by its slot instead of the component root), `inner` (shadcn element the children go into) and
+// shadcn element by its slot instead of the component root), `inner` (shadcn element the children go into), `dmfSlot` (the DMF slot when the part renders another component), `inner_values` (variant values the part passes
+// to the component it renders, such as InputGroupButton's ghost Button) and
 // `measure: false` for nodes that only hold the composition together. `open` names the DMF trigger slot to activate
 // and how (click, focus, or `event` dispatched on the DMF `root` slot), so overlay contents are measured open.
 export const compositions={
@@ -213,7 +224,8 @@ export const compositions={
   ['Field',{},[['FieldContent',{},[['FieldTitle',{text:'Title'}]]],['FieldError',{text:'Error'}]]]]]]],
  item:['ItemGroup',{},[['Item',{},[['ItemMedia',{text:'•'}],['ItemContent',{},[['ItemTitle',{text:'Title'}],['ItemDescription',{text:'Description'}]]],['ItemActions',{text:'Action'}]]],['ItemSeparator',{void:true,state:{'data-orientation':'horizontal'}}],['Item',{},[['ItemHeader',{text:'Header'}],['ItemFooter',{text:'Footer'}]]]]],
  empty:['Empty',{},[['EmptyHeader',{},[['EmptyMedia',{text:'•'}],['EmptyTitle',{text:'Title'}],['EmptyDescription',{text:'Description'}]]],['EmptyContent',{text:'Content'}]]],
- 'input-group':['InputGroup',{},[['InputGroupAddon',{text:'@'}],['InputGroupInput',{void:true}]]],
+ 'native-select':['NativeSelect',{inner:'native-select',part:'native-select',props:{'aria-label':'Fruit'}},[['NativeSelectOption',{text:'Apple',props:{value:'apple'},measure:false}]]],
+ 'input-group':['InputGroup',{},[['InputGroupAddon',{text:'@'}],['InputGroupInput',{void:true,props:{'aria-label':'Handle'}}],['InputGroupAddon',{values:{align:'inline-end'}},[['InputGroupButton',{text:'Go',dmfSlot:'button',inner_values:{variant:'ghost'}}]]]]],
  'button-group':['ButtonGroup',{},[['ButtonGroupText',{text:'Text'}],['ButtonGroupSeparator',{void:true,state:{'data-orientation':'vertical'}}]]],
  kbd:['KbdGroup',{},[['Kbd',{text:'Ctrl'}],['Kbd',{text:'K'}]]],
  tabs:['Tabs',{props:{defaultValue:'one'},state:{'data-orientation':'horizontal'}},[['TabsList',{state:{'data-orientation':'horizontal'}},[['TabsTrigger',{props:{value:'one'},text:'One',state:{'data-active':'','aria-selected':'true'}}],['TabsTrigger',{props:{value:'two'},text:'Two',state:{'aria-selected':'false'}}]]],['TabsContent',{props:{value:'one'},text:'Panel'}]]],
@@ -230,7 +242,8 @@ export const compositions={
 // Base UI primitives and composed shadcn components, by the element they render.
 const primitiveTags={Root:'div',List:'div',Tab:'button',Panel:'div',Item:'div',Trigger:'button',Popup:'div',Title:'h2',Description:'p',Group:'div',GroupLabel:'div',Separator:'div',Header:'h3'};
 export const composedComponents={Label:['label','Label'],Input:['input','Input'],Separator:['separator','Separator'],Button:['button','Button']};
-const tagOf=element=>!element||element==='null'?'div':/^[a-z]/.test(element)?element:primitiveTags[element.split('.').pop()]??'div';
+const namedTags={InputPrimitive:'input',ButtonPrimitive:'button'};
+const tagOf=element=>!element||element==='null'?'div':/^[a-z]/.test(element)?element:namedTags[element]??primitiveTags[element.split('.').pop()]??'div';
 
 function compositionCase(slug,s,d,composed){
  const spec=compositions[slug];if(!spec)return [];
@@ -242,19 +255,24 @@ function compositionCase(slug,s,d,composed){
   if(!sc||options.element===false){const key=String(nodes.length);nodes.push({key,parent,component,id:null,dmfSlot:null,occurrence:0,inOpen,text:'',void:false,reference:null,inner:null});if(options.open)open=options.open;return {component,props:options.props??{},text:options.text??'',void:!!options.void,children:children.map(child=>visit(child,key,inOpen))};}
   // `part` alone measures that inner element in place of the root; with `inner` the root stays and the part sits inside it.
   const asPart=options.part&&!options.inner;
-  const shadcnSlot=options.part??sc.slot,source=asPart?sc.elements[options.part]:{element:sc.reference.element,classes:sc.reference.classes,cva:sc.reference.cva};
+  let shadcnSlot=options.part??sc.slot;const source=asPart?sc.elements[options.part]:{element:sc.reference.element,classes:sc.reference.classes,cva:sc.reference.cva};
   if(!source)throw Error(`${slug}: ${component} has no ${options.part} element`);
   const innerSource=options.inner?sc.elements[options.inner]:null;
   if(options.inner&&!innerSource)throw Error(`${slug}: ${component} has no ${options.inner} element`);
   // A shadcn component that renders another (FieldLabel renders Label) gets that component's classes first.
   let element=source.element,classes=[...source.classes],cvaName=source.cva;
-  const via=composedComponents[element];
-  if(via){const inner=composed[via[0]].components[via[1]];element=inner.reference.element;const cva=inner.reference.cva?composed[via[0]].cvas[inner.reference.cva]:null;classes=[...inner.reference.classes,...(cva?[cva.base,...Object.entries(cva.variants).map(([a,k])=>k[cva.defaults[a]]??'')]:[]),...classes];}
+  const via=composedComponents[element];let viaSlot=null;
+  if(via){const inner=composed[via[0]].components[via[1]];element=inner.reference.element;viaSlot=inner.slot;const cva=inner.reference.cva?composed[via[0]].cvas[inner.reference.cva]:null;classes=[...inner.reference.classes,...(cva?[cva.base,...Object.entries(cva.variants).map(([a,k])=>k[options.inner_values?.[a]??cva.defaults[a]]??'')]:[]),...classes];}
   const cva=cvaName?s.cvas[cvaName]:null;
-  if(cva)classes.push(cva.base,...Object.entries(cva.variants).map(([a,k])=>k[cva.defaults[a]]??''));
-  const attributes={'data-slot':asPart||!options.part?shadcnSlot:sc.slot,...(options.state??{})};
-  for(const [attr,src] of Object.entries(asPart?{}:sc.reference.attributes))if(src.value!==undefined)attributes[attr]=src.value;else{const v=cva?.defaults[src.prop]??sc.props[src.prop];if(v!=null&&v!=='false')attributes[attr]=String(v);}
-  const dmfSlot=dc.slots.includes(shadcnSlot)?shadcnSlot:dc.slot;
+  // `values` picks variant values (Input Group addon `align`); the DMF side gets them as props too.
+  const values={...(cva?.defaults??{}),...(options.values??{})};
+  if(cva)classes.push(cva.base,...Object.entries(cva.variants).map(([a,k])=>k[values[a]]??''));
+  // A part without its own slot that renders another component (InputGroupButton renders Button) takes that slot.
+  if(!shadcnSlot&&viaSlot)shadcnSlot=viaSlot;
+  const attributes={'data-slot':asPart||!options.part?shadcnSlot:sc.slot};
+  for(const [attr,src] of Object.entries(asPart?{}:sc.reference.attributes))if(src.value!==undefined)attributes[attr]=src.value;else{const v=options.values?.[src.prop]??cva?.defaults[src.prop]??sc.props[src.prop];if(v!=null&&v!=='false')attributes[attr]=String(v);}
+  Object.assign(attributes,options.state??{});
+  const dmfSlot=options.dmfSlot??(dc.slots.includes(shadcnSlot)?shadcnSlot:dc.slot);
   const key=String(nodes.length),measure=options.measure!==false&&!!dmfSlot;
   let id=null;if(measure){const base=`${slug}/compound#${shadcnSlot}`;seen[base]=(seen[base]??0)+1;id=seen[base]>1?`${base}:${seen[base]}`:base;}
   const occurrence=nodes.filter(n=>n.dmfSlot===dmfSlot&&n.inOpen===inOpen).length;
@@ -264,7 +282,7 @@ function compositionCase(slug,s,d,composed){
   if(options.open){open=options.open;}
   const contentHere=Boolean(open&&!inOpen&&parent!==null&&!openKey&&component.endsWith('Content'));
   if(contentHere){openKey=key;node.inOpen=true;node.occurrence=0;}
-  const dmf={component,props:options.props??{},text:options.text??'',void:!!options.void,children:children.map(child=>visit(child,key,inOpen||contentHere))};
+  const dmf={component,props:{...(options.values??{}),...(options.props??{})},text:options.text??'',void:!!options.void,children:children.map(child=>visit(child,key,inOpen||contentHere))};
   return dmf;
  };
  const tree=visit(spec,null,false);

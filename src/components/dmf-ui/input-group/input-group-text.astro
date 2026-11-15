@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'span'>;
+const {class:className,...props}=Astro.props;
+---
+<span {...props} class={cn("text-muted-foreground flex items-center gap-2 text-sm [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",className)}><slot/></span>
