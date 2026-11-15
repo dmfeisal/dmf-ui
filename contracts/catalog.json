@@ -7366,9 +7366,19 @@
       "description": "Search a local list and explicitly choose one allowed value.",
       "options": [
         [
-          "id / label / items",
-          "string / string / {value,label,disabled?,icon?}[]",
+          "id / label",
+          "string / string",
           "Required"
+        ],
+        [
+          "items or parts",
+          "{value,label,disabled?,icon?}[], or ComboboxInput, ComboboxContent, ComboboxList, ComboboxItem, ComboboxGroup, ComboboxLabel, ComboboxSeparator, ComboboxEmpty, ComboboxTrigger and ComboboxValue children",
+          "Required"
+        ],
+        [
+          "showTrigger / showClear (ComboboxInput)",
+          "boolean",
+          "true / false"
         ],
         [
           "defaultValue",
@@ -7393,7 +7403,7 @@
       ],
       "accessibility": [
         "Enhanced input uses combobox/listbox semantics, a local case-insensitive label filter and manual selection. Arrow keys highlight available options; Enter or pointer selection commits. Escape, Tab and leaving the field discard the search query and restore the committed label. Input focus stays on the text field; active descendants identify highlighted options. Standard text-editing keys and composition are preserved.",
-        "Values must be unique/nonempty with visible labels; defaultValue must refer to an enabled item. Disabled options are shown but skipped by keyboard and cannot be chosen. Optional instances include Clear selection. Selection text remains visible; optional icons supplement option labels. No remote search, multi-selection or free-text submission is added.",
+        "Values must be unique/nonempty with visible labels; defaultValue must refer to an enabled item. Disabled options are shown but skipped by keyboard and cannot be chosen. Optional instances include Clear selection; in parts mode, ComboboxInput's showClear adds a clear button instead. Parts mode builds the native fallback from its items, and the runtime gives the input, list, options and group labels their ids. Multi-select chips are not offered. Selection text remains visible; optional icons supplement option labels. No remote search, multi-selection or free-text submission is added.",
         "A native select owns the submitted value and is the visible fallback without JavaScript. After enhancement, visible input owns required validity while the hidden select retains name and FormData. Reset restores native initial selection and display. Dispatch change after setting the native select programmatically to synchronize it. Provide unique ids and external error/helper associations.",
         "Popup stays local, inherits preset/direction and chooses above/below based on available viewport space; it does not portal out of clipping ancestors. The host must allow overlay overflow. Arrow highlighting does not commit or navigate; meaningful effects and submission are host-owned."
       ],
@@ -7407,6 +7417,182 @@
       "package": "dmf-ui",
       "entry": "./src/components/dmf-ui/combobox/index.ts",
       "parts": [
+        {
+          "file": "src/components/dmf-ui/combobox/combobox-content.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "combobox-content"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/combobox/combobox-empty.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "combobox-empty"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/combobox/combobox-group.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "combobox-group"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/combobox/combobox-input.astro",
+          "slots": [],
+          "dataSlots": [
+            "combobox-clear"
+          ],
+          "properties": [
+            {
+              "name": "showTrigger",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "showClear",
+              "type": "boolean",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'input'>"
+          ],
+          "declaration": "interface Props extends Omit<HTMLAttributes<'input'>,'type'|'role'> {showTrigger?:boolean;showClear?:boolean;}"
+        },
+        {
+          "file": "src/components/dmf-ui/combobox/combobox-item.astro",
+          "slots": [],
+          "dataSlots": [
+            "combobox-item"
+          ],
+          "properties": [
+            {
+              "name": "value",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "disabled",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "selected",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "icon",
+              "type": "NavigationIcon",
+              "optional": true
+            }
+          ],
+          "native": [],
+          "declaration": "interface Props extends HTMLAttributes<'div'> {value:string;label?:string;disabled?:boolean;selected?:boolean;icon?:NavigationIcon;}"
+        },
+        {
+          "file": "src/components/dmf-ui/combobox/combobox-label.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "combobox-label"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/combobox/combobox-list.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "combobox-list"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/combobox/combobox-separator.astro",
+          "slots": [],
+          "dataSlots": [
+            "combobox-separator"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/combobox/combobox-trigger.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "input-group-button",
+            "combobox-trigger"
+          ],
+          "properties": [
+            {
+              "name": "inInput",
+              "type": "boolean",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'button'>"
+          ],
+          "declaration": "interface Props extends Omit<HTMLAttributes<'button'>,'type'> {inInput?:boolean;}"
+        },
+        {
+          "file": "src/components/dmf-ui/combobox/combobox-value.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "combobox-value"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'span'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'span'>;"
+        },
         {
           "file": "src/components/dmf-ui/combobox/combobox.astro",
           "slots": [],
@@ -7427,7 +7613,7 @@
             {
               "name": "items",
               "type": "{value:string;label:string;disabled?:boolean;icon?:NavigationIcon}[]",
-              "optional": false
+              "optional": true
             },
             {
               "name": "value",
@@ -7468,11 +7654,16 @@
           "native": [
             "HTMLAttributes<'select'>"
           ],
-          "declaration": "interface Props extends Omit<HTMLAttributes<'select'>,'id'|'size'|'multiple'> {id:string;label:string;items:{value:string;label:string;disabled?:boolean;icon?:NavigationIcon}[];defaultValue?:string;placeholder?:string;emptyMessage?:string;}"
+          "declaration": "interface Props extends Omit<HTMLAttributes<'select'>,'id'|'size'|'multiple'> {id:string;label:string;items?:{value:string;label:string;disabled?:boolean;icon?:NavigationIcon}[];defaultValue?:string;placeholder?:string;emptyMessage?:string;}"
         }
       ],
       "variants": {},
       "defaults": {
+        "combobox-input.astro:showTrigger": "true",
+        "combobox-input.astro:showClear": "false",
+        "combobox-item.astro:disabled": "false",
+        "combobox-item.astro:selected": "false",
+        "combobox-trigger.astro:inInput": "false",
         "combobox.astro:defaultValue": "''",
         "combobox.astro:placeholder": "'Choose an option'",
         "combobox.astro:emptyMessage": "'No matching options.'",
@@ -7485,8 +7676,8 @@
           "note": "Default authored composition."
         },
         "hover": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "pressed": {
           "status": "source-evidence",
@@ -7629,7 +7820,15 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         }
       },
-      "tokens": [],
+      "tokens": [
+        "accent",
+        "accent-foreground",
+        "border",
+        "foreground",
+        "muted-foreground",
+        "popover",
+        "popover-foreground"
+      ],
       "reviewedContract": {
         "states": "Committed value, query, highlighted option, empty search, open/closed, disabled field/option, required validity and focus-visible. Highlight does not commit; Escape/Tab/blur restore the committed label. Composition and text-editing keys remain available.",
         "properties": "Required id, label and unique nonempty items; optional defaultValue, placeholder, emptyMessage and native select attributes excluding id/size/multiple. Name/form/required/disabled belong to the native select; aria-describedby/aria-invalid reach the visible input. Dispatch native change after programmatic select changes. No readOnly, remote search, free-text or multiple-selection API.",
@@ -7658,16 +7857,60 @@
       "status": "partial",
       "sources": [
         {
+          "path": "src/components/dmf-ui/combobox/combobox-content.astro",
+          "sha256": "901c9ac8cce5462af7c5a319e775bb7657c39b3f23b5423101af028c8a9f4ec7"
+        },
+        {
+          "path": "src/components/dmf-ui/combobox/combobox-empty.astro",
+          "sha256": "3ac40183618875d3d0c6da9c06b0d564f62b4f868b2263678253cc651ba2d741"
+        },
+        {
+          "path": "src/components/dmf-ui/combobox/combobox-group.astro",
+          "sha256": "0e6f05771d78f36f11977854751eea88963d64ff6e104fc9a762b7d69c79f234"
+        },
+        {
+          "path": "src/components/dmf-ui/combobox/combobox-input.astro",
+          "sha256": "0f831ec97b5d1d82cca38a478cd7acba932db6ffdd72b552e2ff3f3ba134c7d4"
+        },
+        {
+          "path": "src/components/dmf-ui/combobox/combobox-item.astro",
+          "sha256": "9b0de4e2e5ad61b92020d199d042d5f06950db29e07c795bbabb59cacbcc3cdf"
+        },
+        {
+          "path": "src/components/dmf-ui/combobox/combobox-label.astro",
+          "sha256": "c75c7fca3f2abddd7bd6468d09bebed1c48935504264e660bbcc1d0f67269306"
+        },
+        {
+          "path": "src/components/dmf-ui/combobox/combobox-list.astro",
+          "sha256": "95b6b9de2d567fd57caba43fe5e118326a327b4195a2e755efbd51dbdb02e1f3"
+        },
+        {
+          "path": "src/components/dmf-ui/combobox/combobox-separator.astro",
+          "sha256": "699c27657594d49cbc1d9d985bf63d6a553fee66c93ea5d4c69c37592e2f04ff"
+        },
+        {
+          "path": "src/components/dmf-ui/combobox/combobox-trigger.astro",
+          "sha256": "b756ac97d1de864e21b476f1fbb10c378f0f1fcd0db9c8afa3c4664f38204e08"
+        },
+        {
+          "path": "src/components/dmf-ui/combobox/combobox-value.astro",
+          "sha256": "9bd19fccee50dd85c000e097c20cf5abeae32ef4b0a006108af308d7b353291a"
+        },
+        {
           "path": "src/components/dmf-ui/combobox/combobox.astro",
-          "sha256": "d7640926d3f2bdfa25a32876621ef0fbc159a8a291ca9a37ddb8ea4c5f39fee7"
+          "sha256": "e7fb4c99020af1c14a16fdb5fc87af1da854cb96d928e7875bf21fd3c7989122"
         },
         {
           "path": "src/components/dmf-ui/combobox/index.ts",
-          "sha256": "6b591c7bd2fff0b2e36b80c80dde8b3dac25e51fe5b33e129dfc010829fe1e2a"
+          "sha256": "6dc2c347b5df9b1563e2fa2071535c851883f8415f5f83e20a8430f264fabc84"
+        },
+        {
+          "path": "src/components/dmf-ui/combobox/items.ts",
+          "sha256": "89d658882ea4eed5ed84c6dcf7c546d90160c9efd82dd01251999a46ff074ce8"
         },
         {
           "path": "src/components/dmf-ui/combobox/runtime.ts",
-          "sha256": "b215ee884f34ad0676f0d89d51727c7b74059262f71d2aad693c181b9a3c365b"
+          "sha256": "15507bebeb37216e61e81c4632e5a3bcbf94b857d9f6b371fad106ec2fcb50d9"
         }
       ],
       "gaps": [
@@ -7689,9 +7932,21 @@
         "verification": "Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate."
       },
       "dependencies": [
+        "../input-group",
         "../navigation-types",
         "../utils",
+        "./combobox-content.astro",
+        "./combobox-empty.astro",
+        "./combobox-group.astro",
+        "./combobox-input.astro",
+        "./combobox-item.astro",
+        "./combobox-label.astro",
+        "./combobox-list.astro",
+        "./combobox-separator.astro",
+        "./combobox-trigger.astro",
+        "./combobox-value.astro",
         "./combobox.astro",
+        "./items",
         "@lucide/astro",
         "astro/types"
       ]
@@ -22626,7 +22881,8 @@
       "tests": {
         "status": "references-only",
         "sources": [
-          "tests/browser/dmf-ui-block-viewer.mjs"
+          "tests/browser/dmf-ui-block-viewer.mjs",
+          "tests/browser/dmf-ui-selection.mjs"
         ]
       },
       "status": "partial",

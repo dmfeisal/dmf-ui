@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'div'>;
+const {class:className,...props}=Astro.props;
+---
+<div {...props} data-slot="combobox-empty" data-combobox-empty hidden class={cn('text-muted-foreground flex w-full justify-center py-2 text-center text-sm',className)}><slot/></div>

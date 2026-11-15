@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'div'>;
+const {class:className,...props}=Astro.props;
+---
+<div {...props} data-slot="combobox-content" data-combobox-popup hidden class={cn('group/combobox-content bg-popover text-popover-foreground ring-foreground/10 min-w-36 overflow-hidden rounded-lg shadow-md ring-1',className)}><slot/></div>

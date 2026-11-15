@@ -1,0 +1,13 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {Check} from '@lucide/astro';
+import type {NavigationIcon} from '../navigation-types';
+import {cn} from '../utils';
+import {textOf} from './items';
+interface Props extends HTMLAttributes<'div'> {value:string;label?:string;disabled?:boolean;selected?:boolean;icon?:NavigationIcon;}
+const {value,label,disabled=false,selected=false,icon:Icon,class:className,...props}=Astro.props;
+const content=Astro.slots.has('default')?await Astro.slots.render('default'):'';
+const text=label??textOf(content);
+if(!text)throw new Error('ComboboxItem needs visible text or a label.');
+---
+<div {...props} role="option" data-slot="combobox-item" data-value={value} data-label={text} aria-selected={selected?'true':'false'} aria-disabled={disabled?'true':undefined} class={cn("data-[active=true]:bg-accent data-[active=true]:text-accent-foreground not-aria-disabled:hover:bg-accent not-aria-disabled:hover:text-accent-foreground relative flex w-full cursor-default items-center gap-2 rounded-md py-1 pe-8 ps-1.5 text-sm outline-hidden select-none aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",className)}>{Icon&&<Icon aria-hidden="true"/>}{content?<span class="min-w-0 [overflow-wrap:anywhere]" set:html={content}/>:<span class="min-w-0 [overflow-wrap:anywhere]">{text}</span>}<span class="pointer-events-none absolute end-2 flex size-4 items-center justify-center"><Check class="dmf-combobox-check" aria-hidden="true"/></span></div>

@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'div'>;
+const {class:className,...props}=Astro.props;
+---
+<div {...props} role="group" data-slot="combobox-group" class={cn(className)}><slot/></div>

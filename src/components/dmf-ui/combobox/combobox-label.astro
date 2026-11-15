@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'div'>;
+const {class:className,...props}=Astro.props;
+// Names its group: the runtime gives it an id and points the group's aria-labelledby at it.
+---
+<div {...props} data-slot="combobox-label" class={cn('text-muted-foreground px-2 py-1.5 text-xs',className)}><slot/></div>

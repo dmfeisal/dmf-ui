@@ -49,6 +49,18 @@ export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
  await page.click('[data-combobox-demo] button[type=reset]');await page.waitForFunction(()=>document.querySelector('#docs-combobox-component').value===''&&document.querySelector('#docs-combobox-reference').value==='Card');
  await page.focus('#docs-combobox-reference');await page.keyboard.press('ArrowDown');await page.keyboard.press('Enter');assert(await page.evaluate(()=>new FormData(document.querySelector('[data-combobox-demo]')).get('reference')===''),'Optional clear selection failed');
  assert(await page.evaluate(()=>!new FormData(document.querySelector('[data-combobox-demo]')).has('unavailable')),'Disabled combobox leaked FormData');
+ // Parts mode: the runtime wires ids and group labels, filters groups and separators, and drives clear and trigger.
+ await navigate(`${baseURL}/components/combobox/`);const parts='#docs-combobox-parts';
+ assert(await page.evaluate(()=>{const i=document.querySelector('#docs-combobox-parts');const l=document.getElementById(i.getAttribute('aria-controls'));const groups=[...l.querySelectorAll('[role=group]')];return i.value==='Astro'&&l.getAttribute('role')==='listbox'&&l.getAttribute('aria-label')==='Framework options'&&groups.length===2&&groups.every(g=>document.getElementById(g.getAttribute('aria-labelledby'))?.textContent.trim())&&[...l.querySelectorAll('[role=option]')].every(o=>o.id)&&!document.querySelector('[data-combobox-parts] [data-combobox-clear]').hidden;}),'Parts combobox ids, group labels or clear state missing');
+ await page.fill(parts,'nex');
+ assert(await page.evaluate(()=>{const l=document.querySelector('#docs-combobox-parts-list, [data-combobox-parts] [role=listbox]');const groups=[...l.querySelectorAll('[role=group]')];return groups[0].hidden&&!groups[1].hidden&&l.querySelector('[data-slot=combobox-separator]').hidden;}),'Parts filter did not hide the empty group and the separator');
+ await page.keyboard.press('ArrowDown');await page.keyboard.press('Enter');
+ assert(await page.evaluate(()=>document.querySelector('#docs-combobox-parts').value==='Next.js'&&document.querySelector('#docs-combobox-parts-native').value==='next'),'Parts combobox commit failed');
+ await page.click('[data-combobox-parts] [data-combobox-clear]');
+ assert(await page.evaluate(()=>document.querySelector('#docs-combobox-parts-native').value===''&&document.querySelector('#docs-combobox-parts').value===''&&document.querySelector('[data-combobox-parts] [data-combobox-clear]').hidden&&document.activeElement.id==='docs-combobox-parts'),'Parts clear failed');
+ await page.click('[data-combobox-parts] [data-combobox-trigger]');
+ assert(await page.evaluate(()=>!document.querySelector('[data-combobox-parts] [data-combobox-popup]').hidden&&document.activeElement.id==='docs-combobox-parts'),'Parts trigger did not open the list');
+ await audit('[data-combobox-parts]');await page.keyboard.press('Escape');
  for(const slug of ['collapsible','toggle','toggle-group','combobox']){
   await resetBrowser();await navigate(`${baseURL}/components/${slug}/`);await audit();
   for(const preset of ['cb-ui','hui','portfolio']){await page.evaluate(preset=>document.querySelector('[data-docs-preview]').dataset.system=preset,preset);await audit();}
@@ -58,5 +70,5 @@ export async function run({page,baseURL,navigate,settle,mobile,resetBrowser}){
   await page.screenshot({path:`/tmp/dmf-ui-${slug}-mobile.png`});
  }
  await resetBrowser();await page.cdp('Emulation.setEmulatedMedia',{features:[{name:'forced-colors',value:'active'},{name:'prefers-reduced-motion',value:'reduce'}]});await navigate(`${baseURL}/components/combobox/`);await page.focus(input);await page.keyboard.press('ArrowDown');await page.keyboard.press('Enter');assert(await page.evaluate(()=>document.querySelector('#docs-combobox-component').value==='Button'),'Forced-colors selection failed');await page.screenshot({path:'/tmp/dmf-ui-combobox-forced-colors.png'});await navigate(`${baseURL}/components/toggle/`);await page.focus('[data-example-presentation=label] [data-dmf-toggle]');await page.keyboard.press('Space');assert(await page.evaluate(()=>document.querySelector('[data-example-presentation=label] [data-dmf-toggle]').getAttribute('aria-pressed')==='true'),'Forced-colors toggle failed');
- await resetBrowser();console.log('PASS native disclosures, stable-name Toggle presentations, single/multiple groups, combobox filtering/manual commit/Escape/Tab/clear/required/disabled/reset/FormData, four presets, dark/mobile RTL and scoped axe');
+ await resetBrowser();console.log('PASS native disclosures, stable-name Toggle presentations, single/multiple groups, combobox parts (ids, groups, clear, trigger), combobox filtering/manual commit/Escape/Tab/clear/required/disabled/reset/FormData, four presets, dark/mobile RTL and scoped axe');
 }

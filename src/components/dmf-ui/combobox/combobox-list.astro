@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'div'>;
+const {class:className,...props}=Astro.props;
+---
+<div {...props} role="listbox" data-slot="combobox-list" class={cn('scroll-py-1 overflow-y-auto overscroll-contain p-1',className)}><slot/></div>

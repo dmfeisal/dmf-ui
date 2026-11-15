@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'div'>;
+const {class:className,...props}=Astro.props;
+// A listbox may own only groups and options, so the separator is presentational.
+---
+<div {...props} role="presentation" aria-hidden="true" data-slot="combobox-separator" class={cn('bg-border -mx-1 my-1 h-px',className)}></div>

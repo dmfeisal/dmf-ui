@@ -1,0 +1,11 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {ChevronDown} from '@lucide/astro';
+import {InputGroupButton} from '../input-group';
+import {cn} from '../utils';
+interface Props extends Omit<HTMLAttributes<'button'>,'type'> {inInput?:boolean;}
+const {inInput=false,class:className,...props}=Astro.props;
+// The chevron opens and closes the list. It stays out of the tab order: keyboard users open the list with the arrow
+// keys on the combobox input, which owns focus.
+---
+<InputGroupButton {...props} variant="ghost" size="icon-xs" data-slot={inInput?'input-group-button':'combobox-trigger'} data-combobox-trigger tabindex="-1" aria-label="Show options" disabled class={cn(inInput&&'group-has-[[data-slot=combobox-clear]:not([hidden])]/input-group:hidden data-pressed:bg-transparent','[&_svg:not([class*=\'size-\'])]:size-4',className)}><slot/><ChevronDown class="text-muted-foreground size-4 pointer-events-none" aria-hidden="true"/></InputGroupButton>

@@ -9,14 +9,28 @@ function initialize(){for(const root of document.querySelectorAll<HTMLElement>('
  const popup=root.querySelector<HTMLElement>('[data-combobox-popup]')!;
  const list=root.querySelector<HTMLElement>('[role=listbox]')!;
  const options=[...list.querySelectorAll<HTMLElement>('[role=option]')];
- const empty=root.querySelector<HTMLElement>('[data-combobox-empty]')!;
+ // ComboboxEmpty is optional in parts mode.
+ const empty=root.querySelector<HTMLElement>('[data-combobox-empty]');
  const status=root.querySelector<HTMLElement>('[data-combobox-status]')!;
+ const triggers=[...root.querySelectorAll<HTMLButtonElement>('[data-combobox-trigger]')];
+ const clears=[...root.querySelectorAll<HTMLButtonElement>('[data-combobox-clear]')];
+ const values=[...root.querySelectorAll<HTMLElement>('[data-combobox-value]')];
+ const groups=[...list.querySelectorAll<HTMLElement>('[data-slot=combobox-group]')];
+ const separators=[...list.querySelectorAll<HTMLElement>('[data-slot=combobox-separator]')];
+ // Parts mode leaves ids and relationships to the runtime: the parts cannot see the root's id.
+ const base=root.dataset.comboboxId??'';
+ if(!input.id&&base)input.id=base;
+ if(!list.id)list.id=`${base}-list`;
+ input.setAttribute('aria-controls',list.id);
+ if(!list.hasAttribute('aria-label')&&!list.hasAttribute('aria-labelledby'))list.setAttribute('aria-label',`${root.dataset.comboboxLabel??''} options`);
+ options.forEach((option,index)=>{if(!option.id)option.id=`${base}-option-${index}`;});
+ groups.forEach((group,index)=>{const label=group.querySelector<HTMLElement>('[data-slot=combobox-label]');if(label&&!group.hasAttribute('aria-labelledby')){if(!label.id)label.id=`${base}-group-${index}`;group.setAttribute('aria-labelledby',label.id);}});
  const abort=new AbortController();owners.set(root,abort);const signal=abort.signal;
  let active:HTMLElement|undefined;let composing=false;
  const selectedLabel=()=>select.selectedOptions[0]?.value?select.selectedOptions[0].textContent??'':'';
  const available=()=>options.filter(option=>!option.hidden&&option.getAttribute('aria-disabled')!=='true');
  function highlight(option?:HTMLElement){if(active)delete active.dataset.active;active=option;if(active){active.dataset.active='true';input.setAttribute('aria-activedescendant',active.id);const optionRect=active.getBoundingClientRect(),listRect=list.getBoundingClientRect();if(optionRect.top<listRect.top)list.scrollTop-=listRect.top-optionRect.top;else if(optionRect.bottom>listRect.bottom)list.scrollTop+=optionRect.bottom-listRect.bottom;}else input.removeAttribute('aria-activedescendant');}
- function filter(query:string){const needle=query.trim().toLocaleLowerCase();for(const option of options)option.hidden=!option.dataset.label!.toLocaleLowerCase().includes(needle);highlight();const count=available().length;empty.hidden=options.some(option=>!option.hidden);list.hidden=!empty.hidden;status.textContent=count?`${count} option${count===1?'':'s'} available.`:'No available options.';}
+ function filter(query:string){const needle=query.trim().toLocaleLowerCase();for(const option of options)option.hidden=!option.dataset.label!.toLocaleLowerCase().includes(needle);for(const group of groups)group.hidden=![...group.querySelectorAll<HTMLElement>('[role=option]')].some(option=>!option.hidden);for(const separator of separators)separator.hidden=!!needle;highlight();const count=available().length;const matches=options.some(option=>!option.hidden);if(empty)empty.hidden=matches;list.hidden=!matches&&!!empty;status.textContent=count?`${count} option${count===1?'':'s'} available.`:'No available options.';}
  function position(){
   const rect=root.getBoundingClientRect();
   const below=Math.max(0,window.innerHeight-rect.bottom);
@@ -42,7 +56,7 @@ function initialize(){for(const root of document.querySelectorAll<HTMLElement>('
   input.setAttribute('aria-expanded',String(!list.hidden));
  }
  function close(){popup.hidden=true;input.setAttribute('aria-expanded','false');highlight();status.textContent='';input.value=selectedLabel();input.setCustomValidity('');}
- function sync(){input.disabled=select.disabled;input.value=selectedLabel();input.required=select.dataset.comboboxRequired==='true';for(const option of options)option.setAttribute('aria-selected',String(option.dataset.value===select.value));close();}
+ function sync(){input.disabled=select.disabled;input.value=selectedLabel();input.required=select.dataset.comboboxRequired==='true';for(const option of options)option.setAttribute('aria-selected',String(option.dataset.value===select.value));for(const trigger of triggers)trigger.disabled=select.disabled;for(const clear of clears){clear.disabled=select.disabled;clear.hidden=!select.value;}for(const value of values)value.textContent=selectedLabel();close();}
  function commit(option:HTMLElement){if(option.getAttribute('aria-disabled')==='true')return;select.value=option.dataset.value!;sync();select.dispatchEvent(new Event('input',{bubbles:true}));select.dispatchEvent(new Event('change',{bubbles:true}));input.focus();}
  input.addEventListener('click',()=>{if(popup.hidden)open();},{signal});
  input.addEventListener('compositionstart',()=>{composing=true;},{signal});input.addEventListener('compositionend',()=>{composing=false;open(input.value);},{signal});
@@ -56,6 +70,8 @@ function initialize(){for(const root of document.querySelectorAll<HTMLElement>('
   else if(event.key==='Tab')close();
  },{signal});
  list.addEventListener('pointerdown',event=>event.preventDefault(),{signal});
+ for(const trigger of triggers){trigger.addEventListener('pointerdown',event=>event.preventDefault(),{signal});trigger.addEventListener('click',()=>{if(popup.hidden)open();else close();input.focus();},{signal});}
+ for(const clear of clears)clear.addEventListener('click',()=>{select.value='';sync();select.dispatchEvent(new Event('input',{bubbles:true}));select.dispatchEvent(new Event('change',{bubbles:true}));input.focus();},{signal});
  list.addEventListener('click',event=>{const option=event.target instanceof Element?event.target.closest<HTMLElement>('[role=option]'):null;if(option&&options.includes(option))commit(option);},{signal});
  root.addEventListener('focusout',event=>{if(!(event.relatedTarget instanceof Node)||!root.contains(event.relatedTarget))close();},{signal});
  document.addEventListener('pointerdown',event=>{if(event.target instanceof Node&&!root.contains(event.target))close();},{signal});
