@@ -33,9 +33,9 @@
  ],
  "totals": {
   "families": 50,
-  "match": 910,
-  "intentional": 796,
-  "gap": 14,
+  "match": 912,
+  "intentional": 797,
+  "gap": 12,
   "differs": 0,
   "extra": 2
  },
@@ -15531,9 +15531,9 @@
     "docs": "vendor/shadcn/docs/sidebar.mdx"
    },
    "counts": {
-    "match": 84,
-    "intentional": 21,
-    "gap": 2,
+    "match": 86,
+    "intentional": 22,
+    "gap": 0,
     "differs": 0,
     "extra": 0
    },
@@ -15739,6 +15739,14 @@
      "shadcn": true,
      "dmf": true,
      "status": "match"
+    },
+    {
+     "id": "slots:sidebar-backdrop",
+     "value": "sidebar-backdrop",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "DMF UI's mobile sheet draws its own backdrop, which closes the sheet when clicked. shadcn draws the overlay inside its Sheet component."
     },
     {
      "id": "slots:sidebar-container",
@@ -16295,8 +16303,8 @@
      "id": "dataAttributes:data-mobile",
      "value": "data-mobile",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "dataAttributes:data-presentation",
@@ -16376,8 +16384,8 @@
      "id": "stateHooks:data-open",
      "value": "data-open",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-side",

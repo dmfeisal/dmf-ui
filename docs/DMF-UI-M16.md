@@ -8,7 +8,7 @@
 | 2. Actions and inputs | Done (dmfeisal/dmf-ui#35, #36) |
 | 3. Selection | 3a (dmfeisal/dmf-ui#37) and 3b in this report |
 | 4. Overlays and menus | Gaps closed except drawer snap-point list; extras decided |
-| 5. Navigation | 2 gaps open (Sidebar mobile sheet and data-open); the rest closed |
+| 5. Navigation | Done (Sidebar mobile sheet and data-open closed in the follow-up PR) |
 | 6. Data display and feedback | Done (dmfeisal/dmf-ui#44, and Progress parts in the follow-up PR) |
 
 ## Batch 1: shared foundations
@@ -454,3 +454,16 @@ Batch 6 started with 41 gaps and 152 DMF-only props and attributes. It now has 8
 **Checks:** unit tests (85 pass), `precheck`, the type check, and all 32 docs browser scenarios. The adapted attachment trigger was re-recorded with `import-fulldev-components.mjs --record`, because its source changed.
 
 **Not covered by a browser scenario yet:** the new Avatar and Table parts. The existing avatar and data-display scenarios cover the items mode.
+
+## Batch 5 follow-up: Sidebar mobile sheet and data-open
+
+Batch 5 was left with two Sidebar gaps. Both are closed.
+
+- **Mobile sheet:** below the `md` breakpoint, a sidebar that can collapse (`icon` or `offcanvas`) opens as an overlay sheet. It starts collapsed, and the trigger opens it over the page. A backdrop closes it. `collapsible="none"` stays visible at every size, as in shadcn.
+- **`data-mobile`:** each sidebar records whether the breakpoint is mobile.
+- **`data-open`:** the container carries it while the sidebar is expanded, and the sheet styles read it.
+- **Decided:** the backdrop, which DMF UI draws itself. shadcn draws its overlay inside its Sheet component.
+
+**Checks:** a browser scenario covers the sheet at phone width (starts collapsed, opens, the backdrop closes it). Desktop collapse is covered by the existing scenario. The full docs suite runs 32 scenarios and passes.
+
+**Results:** Sidebar has no gaps and no undecided extras.

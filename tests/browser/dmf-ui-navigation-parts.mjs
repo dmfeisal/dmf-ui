@@ -34,6 +34,17 @@ export async function run({page,baseURL,navigate,settle,resetBrowser}) {
   assert((await sidebar()).state==='collapsed'&&(await sidebar()).expanded==='false','Sidebar trigger did not collapse');
   await page.click('[data-sidebar-parts] [data-slot=sidebar-trigger]');
   assert((await sidebar()).state==='expanded','Sidebar trigger did not expand');
+  // On a phone the sidebar is a sheet: it starts collapsed, opens over the page, and its backdrop closes it.
+  await page.cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+  await navigate(`${baseURL}/components/sidebar/`);await settle();
+  const visibleSheet=()=>page.evaluate(()=>document.querySelector('[data-sidebar-parts] [data-slot=sidebar-container]').checkVisibility());
+  assert(!(await visibleSheet())&&(await page.evaluate(()=>document.querySelector('[data-sidebar-parts] [data-slot=sidebar]').dataset.mobile))==='true','Mobile sidebar did not start collapsed');
+  await page.click('[data-sidebar-parts] [data-slot=sidebar-trigger]');
+  assert(await visibleSheet(),'Mobile sidebar did not open as a sheet');
+  // The sheet covers the left of the screen; click the backdrop on the right, where it is uncovered.
+  await page.click('[data-sidebar-parts] [data-slot=sidebar-backdrop]',{position:{x:360,y:300}});
+  assert(!(await visibleSheet()),'Backdrop did not close the mobile sheet');
+  await resetBrowser();
   // Breadcrumb and Pagination parts mark the current page.
   await navigate(`${baseURL}/components/breadcrumb/`);await settle();
   assert(await page.evaluate(()=>{const parts=[...document.querySelectorAll('[data-slot=breadcrumb-page]')];return parts.length>0&&parts.every(p=>p.getAttribute('aria-current')==='page'&&p.getAttribute('aria-disabled')==='true');}),'Breadcrumb page part is not marked as the current page');

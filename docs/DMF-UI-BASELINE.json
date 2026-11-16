@@ -20,14 +20,14 @@
   "families": 80,
   "withScripts": 32,
   "js": {
-   "bytes": 352022,
-   "gzip": 127509
+   "bytes": 352651,
+   "gzip": 127733
   },
   "sharedFamilies": {
    "count": 50,
    "dmfCss": {
-    "bytes": 340396,
-    "gzip": 77557
+    "bytes": 341049,
+    "gzip": 77699
    },
    "shadcnCss": {
     "bytes": 335824,
@@ -2507,16 +2507,16 @@
    "shadcn": true,
    "css": {
     "utilities": {
-     "bytes": 12467,
-     "gzip": 2788
+     "bytes": 13120,
+     "gzip": 2934
     },
     "rules": {
      "bytes": 1008,
      "gzip": 395
     },
     "total": {
-     "bytes": 13475,
-     "gzip": 3032
+     "bytes": 14128,
+     "gzip": 3174
     }
    },
    "shadcnCss": {
@@ -2526,8 +2526,8 @@
    "js": {
     "scripts": 2,
     "consumerRuntime": false,
-    "bytes": 1234,
-    "gzip": 558
+    "bytes": 1863,
+    "gzip": 782
    },
    "axe": {
     "light": [],
