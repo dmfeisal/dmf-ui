@@ -3835,8 +3835,98 @@
       "entry": "./src/components/dmf-ui/breadcrumb/index.ts",
       "parts": [
         {
-          "file": "src/components/dmf-ui/breadcrumb/breadcrumb.astro",
+          "file": "src/components/dmf-ui/breadcrumb/breadcrumb-ellipsis.astro",
           "slots": [],
+          "dataSlots": [
+            "breadcrumb-ellipsis"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'span'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'span'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/breadcrumb/breadcrumb-item.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "breadcrumb-item"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'li'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'li'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/breadcrumb/breadcrumb-link.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "breadcrumb-link"
+          ],
+          "properties": [
+            {
+              "name": "href",
+              "type": "string",
+              "optional": false
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'a'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'a'>&{href:string;};"
+        },
+        {
+          "file": "src/components/dmf-ui/breadcrumb/breadcrumb-list.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "breadcrumb-list"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'ol'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'ol'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/breadcrumb/breadcrumb-page.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "breadcrumb-page"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'span'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'span'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/breadcrumb/breadcrumb-separator.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "breadcrumb-separator"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'li'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'li'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/breadcrumb/breadcrumb.astro",
+          "slots": [
+            "default"
+          ],
           "dataSlots": [
             "breadcrumb"
           ],
@@ -3844,7 +3934,7 @@
             {
               "name": "items",
               "type": "{label:string;href?:string;icon?:NavigationIcon}[]",
-              "optional": false
+              "optional": true
             },
             {
               "name": "label",
@@ -3873,7 +3963,7 @@
             }
           ],
           "native": [],
-          "declaration": "interface Props extends HTMLAttributes<'nav'> {items:{label:string;href?:string;icon?:NavigationIcon}[];label?:string;presentation?:Presentation;}"
+          "declaration": "interface Props extends HTMLAttributes<'nav'> {items?:{label:string;href?:string;icon?:NavigationIcon}[];label?:string;presentation?:Presentation;}"
         }
       ],
       "variants": {},
@@ -3887,8 +3977,8 @@
           "note": "Default authored composition."
         },
         "hover": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "pressed": {
           "status": "not-established",
@@ -3903,8 +3993,8 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         },
         "disabled": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "unselected": {
           "status": "not-established",
@@ -4031,7 +4121,10 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         }
       },
-      "tokens": [],
+      "tokens": [
+        "foreground",
+        "muted-foreground"
+      ],
       "reviewedContract": {
         "states": "Native links plus one final aria-current=page label; no open/selected controller state.",
         "properties": "items with label/href?/icon?, label=Breadcrumb, presentation=label and native nav attributes. Final item is current text even when href is supplied; nonfinal items navigate only with a real href.",
@@ -4061,12 +4154,36 @@
       "status": "partial",
       "sources": [
         {
+          "path": "src/components/dmf-ui/breadcrumb/breadcrumb-ellipsis.astro",
+          "sha256": "fa2c7d76932f6120b16531048e3f46211ffda83379f6db72355b92f39fc81e31"
+        },
+        {
+          "path": "src/components/dmf-ui/breadcrumb/breadcrumb-item.astro",
+          "sha256": "5651bd09d3529e5c6295f03d5cf44f5b0dcad37eb2371b886a6939e3c71f7aeb"
+        },
+        {
+          "path": "src/components/dmf-ui/breadcrumb/breadcrumb-link.astro",
+          "sha256": "8a1100753609c957077385c839162acd19053c1ff30db45a19f3773ca1c8a74c"
+        },
+        {
+          "path": "src/components/dmf-ui/breadcrumb/breadcrumb-list.astro",
+          "sha256": "3e46522798d77b59acf73602778a74a0bf358b547180f4f765f5f555a6e3a3fb"
+        },
+        {
+          "path": "src/components/dmf-ui/breadcrumb/breadcrumb-page.astro",
+          "sha256": "30cd6dd35d4758de79480411da660e77f0a700565afe0036172629c5b1c11238"
+        },
+        {
+          "path": "src/components/dmf-ui/breadcrumb/breadcrumb-separator.astro",
+          "sha256": "60d495637d3e2ecf054bb3755c12f3248b538e3489ef89dcc52a2c8dc42a1037"
+        },
+        {
           "path": "src/components/dmf-ui/breadcrumb/breadcrumb.astro",
-          "sha256": "2338ec419283e19f1ea5f987c9cb44fa182263b4f252c0176f82c70ab727c6c0"
+          "sha256": "9255f592a5354b7259ab31b4048299ff585e838214433a156b48a60ffcedc3e0"
         },
         {
           "path": "src/components/dmf-ui/breadcrumb/index.ts",
-          "sha256": "d3b1aa83c9497dfb2885922d73b4c52b5bf77dbbd3564c1e034aba27e9e5c18e"
+          "sha256": "060f034356fa0691ccfebe623df3c5d9d74ebc9c7a0fcb39d410355294c71378"
         }
       ],
       "gaps": [
@@ -4092,6 +4209,12 @@
         "../navigation-link.astro",
         "../navigation-types",
         "../utils",
+        "./breadcrumb-ellipsis.astro",
+        "./breadcrumb-item.astro",
+        "./breadcrumb-link.astro",
+        "./breadcrumb-list.astro",
+        "./breadcrumb-page.astro",
+        "./breadcrumb-separator.astro",
         "./breadcrumb.astro",
         "@lucide/astro",
         "astro/types"
@@ -18522,8 +18645,126 @@
       "entry": "./src/components/dmf-ui/pagination/index.ts",
       "parts": [
         {
-          "file": "src/components/dmf-ui/pagination/pagination.astro",
+          "file": "src/components/dmf-ui/pagination/pagination-content.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "pagination-content"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'ul'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'ul'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/pagination/pagination-ellipsis.astro",
           "slots": [],
+          "dataSlots": [
+            "pagination-ellipsis"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'span'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'span'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/pagination/pagination-item.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "pagination-item"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'li'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'li'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/pagination/pagination-link.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "pagination-link"
+          ],
+          "properties": [
+            {
+              "name": "href",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "isActive",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "size",
+              "type": "'default'|'icon'",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'a'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'a'>&{href:string;isActive?:boolean;size?:'default'|'icon';};"
+        },
+        {
+          "file": "src/components/dmf-ui/pagination/pagination-next.astro",
+          "slots": [],
+          "dataSlots": [
+            "pagination-link"
+          ],
+          "properties": [
+            {
+              "name": "href",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "text",
+              "type": "string",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'a'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'a'>&{href:string;text?:string;};"
+        },
+        {
+          "file": "src/components/dmf-ui/pagination/pagination-previous.astro",
+          "slots": [],
+          "dataSlots": [
+            "pagination-link"
+          ],
+          "properties": [
+            {
+              "name": "href",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "text",
+              "type": "string",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'a'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'a'>&{href:string;text?:string;};"
+        },
+        {
+          "file": "src/components/dmf-ui/pagination/pagination.astro",
+          "slots": [
+            "default"
+          ],
           "dataSlots": [
             "pagination"
           ],
@@ -18531,17 +18772,17 @@
             {
               "name": "page",
               "type": "number",
-              "optional": false
+              "optional": true
             },
             {
               "name": "totalPages",
               "type": "number",
-              "optional": false
+              "optional": true
             },
             {
               "name": "pageHref",
               "type": "(page:number)=>string",
-              "optional": false
+              "optional": true
             },
             {
               "name": "label",
@@ -18555,11 +18796,15 @@
             }
           ],
           "native": [],
-          "declaration": "interface Props extends HTMLAttributes<'nav'> {page:number;totalPages:number;pageHref:(page:number)=>string;label?:string;presentation?:Presentation;}"
+          "declaration": "interface Props extends HTMLAttributes<'nav'> {page?:number;totalPages?:number;pageHref?:(page:number)=>string;label?:string;presentation?:Presentation;}"
         }
       ],
       "variants": {},
       "defaults": {
+        "pagination-link.astro:isActive": "false",
+        "pagination-link.astro:size": "'default'",
+        "pagination-next.astro:text": "'Next'",
+        "pagination-previous.astro:text": "'Previous'",
         "pagination.astro:label": "'Pagination'",
         "pagination.astro:presentation": "'icon-label'"
       },
@@ -18569,12 +18814,12 @@
           "note": "Default authored composition."
         },
         "hover": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "pressed": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "focus": {
           "status": "not-established",
@@ -18713,7 +18958,9 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         }
       },
-      "tokens": [],
+      "tokens": [
+        "muted"
+      ],
       "reviewedContract": {
         "states": "One current page, previous/next links or unavailable noninteractive spans; ellipsis is descriptive, not an action.",
         "properties": "Required integer page/totalPages and pageHref callback; label=Pagination, presentation=icon-label. Bounds are validated. pageHref supplies real destinations; the Block/application owns fetching and routing.",
@@ -18746,11 +18993,35 @@
       "sources": [
         {
           "path": "src/components/dmf-ui/pagination/index.ts",
-          "sha256": "ea6ba89e573e81875e31ecc6aadacfa70c906f01df569f7a567d8240e5f2ff95"
+          "sha256": "96f3fa84a4985379b367adeb336194a400240c3c2e35a08a7af0f9263d2765b8"
+        },
+        {
+          "path": "src/components/dmf-ui/pagination/pagination-content.astro",
+          "sha256": "53ed310980503831f4d52024422d17b5d93748a98f412d84e8af87d9c0bbebba"
+        },
+        {
+          "path": "src/components/dmf-ui/pagination/pagination-ellipsis.astro",
+          "sha256": "ea4cd1a5230b58c26dc1210d62eb9fedce63a34198b8eea300b69b8b5a532186"
+        },
+        {
+          "path": "src/components/dmf-ui/pagination/pagination-item.astro",
+          "sha256": "2cb8be6a846010806fd89eda341f969a5dd5eda48d6d41ae990e9ab506ecdd3f"
+        },
+        {
+          "path": "src/components/dmf-ui/pagination/pagination-link.astro",
+          "sha256": "8fe8bb5681b53cbb5be3a42e3a4536a28a3346f5bfe04b3807504511e690c832"
+        },
+        {
+          "path": "src/components/dmf-ui/pagination/pagination-next.astro",
+          "sha256": "905aa520e5cf3df8e35464e34eabe32b218d032292a67a63937a61d0ec7cc526"
+        },
+        {
+          "path": "src/components/dmf-ui/pagination/pagination-previous.astro",
+          "sha256": "99eb344316a818225effc5ef5dee48c309287a0a71a7621a9cf710d1ee04872d"
         },
         {
           "path": "src/components/dmf-ui/pagination/pagination.astro",
-          "sha256": "c56ef509496a90c046947fb0db43271a54d1f005dcdbe9fcbc5ae7ac52590277"
+          "sha256": "d5963c3096f975eedc13f0a98ccfc99cf20a3b248796959ce133f02189280315"
         }
       ],
       "gaps": [
@@ -18776,6 +19047,12 @@
         "../navigation-link.astro",
         "../navigation-types",
         "../utils",
+        "./pagination-content.astro",
+        "./pagination-ellipsis.astro",
+        "./pagination-item.astro",
+        "./pagination-link.astro",
+        "./pagination-next.astro",
+        "./pagination-previous.astro",
         "./pagination.astro",
         "@lucide/astro",
         "astro/types"

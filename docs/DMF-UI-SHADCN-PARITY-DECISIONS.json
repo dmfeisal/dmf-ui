@@ -10,6 +10,24 @@
    "measured.color:kbd/*": "Kbd keeps foreground text: Nova's muted-foreground on bg-muted is about 4.4:1 in Neutral, below AA for its 12px text."
   },
   "tabs": {
+   "slots:tabs-indicator": "The active-tab marker that Data Slot's tabs runtime positions; shadcn's trigger draws its own.",
+   "variants.activationMode:auto": "When focus activates a tab: auto selects on arrow keys, manual waits for Enter. An option of Data Slot's tabs runtime.",
+   "variants.activationMode:manual": "When focus activates a tab: auto selects on arrow keys, manual waits for Enter. An option of Data Slot's tabs runtime.",
+   "props.Tabs.activationMode": "When focus activates a tab: auto selects on arrow keys, manual waits for Enter. An option of Data Slot's tabs runtime.",
+   "dataAttributes:data-activation-mode": "When focus activates a tab. An option of Data Slot's tabs runtime.",
+   "variants.orientation:horizontal": "Tab orientation, read by Data Slot's tabs runtime and styled through data-orientation.",
+   "variants.orientation:vertical": "Tab orientation, read by Data Slot's tabs runtime and styled through data-orientation.",
+   "dataAttributes:data-horizontal": "Orientation the tabs runtime sets; DMF UI styles it through data-orientation.",
+   "dataAttributes:data-vertical": "Orientation the tabs runtime sets; DMF UI styles it through data-orientation.",
+   "stateHooks:data-state": "The active state the tabs runtime sets on each trigger; the data-active variant also matches it.",
+   "props.TabsContent.hidden": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
+   "props.TabsContent.value": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
+   "props.TabsTrigger.type": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
+   "props.TabsTrigger.value": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
+   "props.Tabs.defaultValue": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
+   "dataAttributes:data-default-value": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
+   "dataAttributes:data-value": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
+   "dataAttributes:data-dmf-tabs-ready": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
    "stateHooks:data-active": "DMF UI styles the active trigger with data-[state=active]; the data-active custom variant (upstream/shadcn.css) matches it too, so Nova's classes apply as they are."
   },
   "field": {
@@ -561,6 +579,32 @@
    "dataAttributes:data-multiple": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
    "dataAttributes:data-orientation": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
    "dataAttributes:data-value": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
+  },
+  "breadcrumb": {
+   "slots:breadcrumb-link": "DMF UI marks its links with breadcrumb-link so its link styles apply; shadcn's BreadcrumbLink is an anchor with no slot of its own.",
+   "props.Breadcrumb.href": "Items mode: DMF UI builds the markup from data, as its data-driven API. The parts (shadcn's composition) are also available.",
+   "props.Breadcrumb.items": "Items mode: DMF UI builds the markup from data, as its data-driven API. The parts (shadcn's composition) are also available.",
+   "props.Breadcrumb.label": "The breadcrumb's accessible name (aria-label on the navigation landmark).",
+   "props.Breadcrumb.icon": "DMF UI's shared presentation model (label, icon-label, icon), not a Base UI prop.",
+   "props.Breadcrumb.presentation": "DMF UI's shared presentation model (label, icon-label, icon), not a Base UI prop.",
+   "dataAttributes:data-presentation": "DMF UI's shared presentation model (label, icon-label, icon), not a Base UI prop.",
+   "props.BreadcrumbLink.href": "Destination of the link. A native anchor needs an href, so DMF UI requires it on the link part."
+  },
+  "pagination": {
+   "variants.size:default": "DMF UI's size values for the link: default for text links such as Previous and Next, icon for numbered links.",
+   "variants.size:icon": "DMF UI's size values for the link: default for text links such as Previous and Next, icon for numbered links.",
+   "props.PaginationLink.size": "Default stays default for DMF UI's text links; the icon size is available by passing size=\"icon\".",
+   "props.Pagination.page": "Items mode: DMF UI builds the markup from data, as its data-driven API. The parts (shadcn's composition) are also available.",
+   "props.Pagination.totalPages": "Items mode: DMF UI builds the markup from data, as its data-driven API. The parts (shadcn's composition) are also available.",
+   "props.Pagination.pageHref": "Items mode: DMF UI builds the markup from data, as its data-driven API. The parts (shadcn's composition) are also available.",
+   "props.Pagination.label": "The pagination's accessible name (aria-label on the navigation landmark).",
+   "props.Pagination.presentation": "DMF UI's shared presentation model (label, icon-label, icon), not a Base UI prop.",
+   "dataAttributes:data-presentation": "DMF UI's shared presentation model (label, icon-label, icon), not a Base UI prop.",
+   "props.PaginationLink.href": "Destination of the link. A native anchor needs an href, so DMF UI requires it on the link part.",
+   "props.PaginationNext.href": "Destination of the link. A native anchor needs an href, so DMF UI requires it on the link part.",
+   "props.PaginationPrevious.href": "Destination of the link. A native anchor needs an href, so DMF UI requires it on the link part.",
+   "stateHooks:data-active": "DMF UI marks the current page with data-active, styled with data-active:, as well as aria-current.",
+   "stateHooks:data-icon": "Icons in Previous and Next carry data-icon, so the link's classes can space them."
   }
  }
 }

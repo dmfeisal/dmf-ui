@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'span'>;
+const {class:className,...props}=Astro.props;
+// The current page: announced as the current item and not interactive.
+---
+<span {...props} data-slot="breadcrumb-page" role="link" aria-disabled="true" aria-current="page" class={cn('text-foreground font-normal',className)}><slot/></span>

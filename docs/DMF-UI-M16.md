@@ -8,7 +8,8 @@
 | 2. Actions and inputs | Done (dmfeisal/dmf-ui#35, #36) |
 | 3. Selection | 3a (dmfeisal/dmf-ui#37) and 3b in this report |
 | 4. Overlays and menus | Gaps closed except drawer snap-point list; extras decided |
-| 5–6 | Planned |
+| 5. Navigation | In progress: Breadcrumb, Pagination and Tabs done; Navigation Menu and Sidebar open |
+| 6. Data display and feedback | Planned |
 
 ## Batch 1: shared foundations
 
@@ -346,3 +347,39 @@ Browser scenarios: the new submenu scenario, the documentation, modal, navigatio
 - **Dropdown Menu JS:** 30.8 → 34.2 KB (10.5 → 11.3 KB gzip). The submenu runtime and the checked-item change.
 - **Alert Dialog CSS:** 1.7 → 1.7 KB, with the sm width now in the class.
 - Drawer and Collapsible are unchanged.
+
+## Batch 5: navigation (in progress)
+
+Batch 5 started with 124 gaps. This part closes Breadcrumb, Pagination and Tabs. Navigation Menu (25 gaps) and Sidebar (76 gaps) are still open.
+
+**Breadcrumb**
+- **Parts:** `BreadcrumbList`, `BreadcrumbItem`, `BreadcrumbLink`, `BreadcrumbPage` (aria-current and disabled), `BreadcrumbSeparator` (decorative, with a default chevron) and `BreadcrumbEllipsis`.
+- **Root:** without `items`, the children are the parts. The items mode is unchanged.
+
+**Pagination**
+- **Parts:** `PaginationContent`, `PaginationItem`, `PaginationLink` (aria-current and data-active when current, `size` `default` or `icon`), `PaginationPrevious` and `PaginationNext` (with `text`, and `data-icon` on their chevrons), and `PaginationEllipsis`.
+- **Root:** without `page`, the children are the parts. The items mode is unchanged. Its props are now optional in the type, and a check enforces them in items mode.
+
+**Tabs:** it had no gaps; its 18 DMF-only options (activation mode, orientation, runtime attributes) now have recorded reasons.
+
+**Decided as intentional**
+- The breadcrumb link slot, and the items-mode props.
+- Pagination's `size` default: `default`, where shadcn's is `icon`. Switching would restyle every numbered link, so `icon` is available by passing it.
+- The tabs indicator and the activation mode, which Data Slot's tabs runtime owns.
+
+**Results**
+
+| | Before | Now |
+| --- | --- | --- |
+| Breadcrumb gaps | 11 | 0 |
+| Pagination gaps | 12 | 0 |
+| Tabs gaps | 0 | 0 |
+| Batch 5 gaps | 124 | 101 (Navigation Menu 25, Sidebar 76) |
+
+**Checks run locally**
+- `npm test` (83 pass), `precheck`, `astro check` (0 errors)
+- All 30 docs browser scenarios, including the existing navigation, pagination and breadcrumb scenarios in items mode.
+
+**Not yet tested in a browser:** the new parts. Their markup is covered by the type check and the existing items-mode scenarios, but they need a scenario of their own before this is merged.
+
+**Next:** Navigation Menu, which needs dropdown panels, a viewport and an indicator, and Sidebar, which needs a provider, collapse modes and a mobile sheet. Each is its own piece of work and needs a decision on scope.

@@ -1,3 +1,4 @@
+
 ---
 import type {HTMLAttributes} from 'astro/types';
 import {ChevronLeft,ChevronRight,Ellipsis} from '@lucide/astro';
@@ -5,9 +6,14 @@ import type {Presentation} from '../navigation-types';
 import Content from '../navigation-content.astro';
 import Link from '../navigation-link.astro';
 import {cn} from '../utils';
-interface Props extends HTMLAttributes<'nav'> {page:number;totalPages:number;pageHref:(page:number)=>string;label?:string;presentation?:Presentation;}
+interface Props extends HTMLAttributes<'nav'> {page?:number;totalPages?:number;pageHref?:(page:number)=>string;label?:string;presentation?:Presentation;}
 const {page,totalPages,pageHref,label='Pagination',presentation='icon-label',class:className,...props}=Astro.props;
-if(!Number.isSafeInteger(totalPages)||totalPages<1||!Number.isSafeInteger(page)||page<1||page>totalPages)throw new Error('Pagination requires integer page and totalPages, with 1 <= page <= totalPages.');
-const visible=[...new Set([1,totalPages,...Array.from({length:5},(_,i)=>page+i-2).filter(n=>n>0&&n<=totalPages)])].sort((a,b)=>a-b);
+// Without `page`, children are the parts (PaginationContent, PaginationItem, …), as in shadcn/ui.
+const items=page!==undefined;
+// Narrowed for the page-link branch; only read when `items` is true.
+const current=page??1,total=totalPages??1,link=pageHref??((_:number)=>'#');
+if(items&&!pageHref)throw new Error('Pagination requires pageHref to build page links.');
+if(items&&(!Number.isSafeInteger(totalPages)||totalPages!<1||!Number.isSafeInteger(page)||page!<1||page!>totalPages!))throw new Error('Pagination requires integer page and totalPages, with 1 <= page <= totalPages.');
+const visible=items?[...new Set([1,total,...Array.from({length:5},(_,i)=>current+i-2).filter(n=>n>0&&n<=total)])].sort((a,b)=>a-b):[];
 ---
-<nav data-slot="pagination" aria-label={label} data-presentation={presentation} class={cn('dmf-pagination',className)} {...props}><ul><li>{page>1?<Link item={{label:"Previous",href:pageHref(page-1),icon:ChevronLeft,rel:"prev"}} presentation={presentation}/>:<span aria-disabled="true"><Content label="Previous" icon={ChevronLeft} presentation={presentation}/></span>}</li>{visible.map((number,index)=><>{index>0&&number-visible[index-1]>1&&<li class="dmf-pagination-gap"><Ellipsis size={18} aria-hidden="true"/><span class="dmf-navigation-sr">More pages</span></li>}<li><a href={pageHref(number)} aria-label={`Page ${number}`} aria-current={number===page?'page':undefined}>{number}</a></li></>)}<li>{page<totalPages?<Link item={{label:"Next",href:pageHref(page+1),icon:ChevronRight,rel:"next"}} presentation={presentation}/>:<span aria-disabled="true"><Content label="Next" icon={ChevronRight} presentation={presentation}/></span>}</li></ul></nav>
+<nav data-slot="pagination" aria-label={label} data-presentation={presentation} class={cn('dmf-pagination',className)} {...props}>{items?<ul><li>{current>1?<Link item={{label:"Previous",href:link(current-1),icon:ChevronLeft,rel:"prev"}} presentation={presentation}/>:<span aria-disabled="true"><Content label="Previous" icon={ChevronLeft} presentation={presentation}/></span>}</li>{visible.map((number,index)=><>{index>0&&number-visible[index-1]>1&&<li class="dmf-pagination-gap"><Ellipsis size={18} aria-hidden="true"/><span class="dmf-navigation-sr">More pages</span></li>}<li><a href={link(number)} aria-label={`Page ${number}`} aria-current={number===page?'page':undefined}>{number}</a></li></>)}<li>{current<total?<Link item={{label:"Next",href:link(current+1),icon:ChevronRight,rel:"next"}} presentation={presentation}/>:<span aria-disabled="true"><Content label="Next" icon={ChevronRight} presentation={presentation}/></span>}</li></ul>:<slot/>}</nav>

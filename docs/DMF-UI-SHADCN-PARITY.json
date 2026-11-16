@@ -33,11 +33,11 @@
  ],
  "totals": {
   "families": 50,
-  "match": 762,
-  "intentional": 519,
-  "gap": 176,
+  "match": 788,
+  "intentional": 559,
+  "gap": 153,
   "differs": 1,
-  "extra": 197
+  "extra": 167
  },
  "families": {
   "accordion": {
@@ -2294,11 +2294,11 @@
     "docs": "vendor/shadcn/docs/breadcrumb.mdx"
    },
    "counts": {
-    "match": 2,
-    "intentional": 0,
-    "gap": 11,
+    "match": 13,
+    "intentional": 8,
+    "gap": 0,
     "differs": 0,
-    "extra": 6
+    "extra": 0
    },
    "parts": [
     {
@@ -2312,43 +2312,43 @@
      "id": "parts:BreadcrumbEllipsis",
      "value": "BreadcrumbEllipsis",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:BreadcrumbItem",
      "value": "BreadcrumbItem",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:BreadcrumbLink",
      "value": "BreadcrumbLink",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:BreadcrumbList",
      "value": "BreadcrumbList",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:BreadcrumbPage",
      "value": "BreadcrumbPage",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:BreadcrumbSeparator",
      "value": "BreadcrumbSeparator",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "slots": [
@@ -2363,36 +2363,44 @@
      "id": "slots:breadcrumb-ellipsis",
      "value": "breadcrumb-ellipsis",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:breadcrumb-item",
      "value": "breadcrumb-item",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
+    },
+    {
+     "id": "slots:breadcrumb-link",
+     "value": "breadcrumb-link",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "DMF UI marks its links with breadcrumb-link so its link styles apply; shadcn's BreadcrumbLink is an anchor with no slot of its own."
     },
     {
      "id": "slots:breadcrumb-list",
      "value": "breadcrumb-list",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:breadcrumb-page",
      "value": "breadcrumb-page",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:breadcrumb-separator",
      "value": "breadcrumb-separator",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "variants": {},
@@ -2405,7 +2413,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Items mode: DMF UI builds the markup from data, as its data-driven API. The parts (shadcn's composition) are also available."
     },
     {
      "id": "props.Breadcrumb.icon",
@@ -2415,7 +2424,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "DMF UI's shared presentation model (label, icon-label, icon), not a Base UI prop."
     },
     {
      "id": "props.Breadcrumb.items",
@@ -2425,7 +2435,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Items mode: DMF UI builds the markup from data, as its data-driven API. The parts (shadcn's composition) are also available."
     },
     {
      "id": "props.Breadcrumb.label",
@@ -2435,7 +2446,8 @@
      "dmf": {
       "default": "Breadcrumb"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "The breadcrumb's accessible name (aria-label on the navigation landmark)."
     },
     {
      "id": "props.Breadcrumb.presentation",
@@ -2445,7 +2457,19 @@
      "dmf": {
       "default": "label"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "DMF UI's shared presentation model (label, icon-label, icon), not a Base UI prop."
+    },
+    {
+     "id": "props.BreadcrumbLink.href",
+     "component": "BreadcrumbLink",
+     "prop": "href",
+     "shadcn": null,
+     "dmf": {
+      "default": null
+     },
+     "status": "intentional",
+     "reason": "Destination of the link. A native anchor needs an href, so DMF UI requires it on the link part."
     }
    ],
    "dataAttributes": [
@@ -2454,7 +2478,8 @@
      "value": "data-presentation",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "DMF UI's shared presentation model (label, icon-label, icon), not a Base UI prop."
     }
    ],
    "stateHooks": [],
@@ -12169,11 +12194,11 @@
     "docs": "vendor/shadcn/docs/pagination.mdx"
    },
    "counts": {
-    "match": 2,
-    "intentional": 0,
-    "gap": 12,
+    "match": 17,
+    "intentional": 14,
+    "gap": 0,
     "differs": 0,
-    "extra": 6
+    "extra": 0
    },
    "parts": [
     {
@@ -12187,43 +12212,43 @@
      "id": "parts:PaginationContent",
      "value": "PaginationContent",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:PaginationEllipsis",
      "value": "PaginationEllipsis",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:PaginationItem",
      "value": "PaginationItem",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:PaginationLink",
      "value": "PaginationLink",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:PaginationNext",
      "value": "PaginationNext",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:PaginationPrevious",
      "value": "PaginationPrevious",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "slots": [
@@ -12238,32 +12263,51 @@
      "id": "slots:pagination-content",
      "value": "pagination-content",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:pagination-ellipsis",
      "value": "pagination-ellipsis",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:pagination-item",
      "value": "pagination-item",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:pagination-link",
      "value": "pagination-link",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
-   "variants": {},
+   "variants": {
+    "size": [
+     {
+      "id": "variants.size:default",
+      "value": "default",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "DMF UI's size values for the link: default for text links such as Previous and Next, icon for numbered links."
+     },
+     {
+      "id": "variants.size:icon",
+      "value": "icon",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "DMF UI's size values for the link: default for text links such as Previous and Next, icon for numbered links."
+     }
+    ]
+   },
    "props": [
     {
      "id": "props.Pagination.label",
@@ -12273,7 +12317,8 @@
      "dmf": {
       "default": "Pagination"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "The pagination's accessible name (aria-label on the navigation landmark)."
     },
     {
      "id": "props.Pagination.page",
@@ -12283,7 +12328,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Items mode: DMF UI builds the markup from data, as its data-driven API. The parts (shadcn's composition) are also available."
     },
     {
      "id": "props.Pagination.pageHref",
@@ -12293,7 +12339,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Items mode: DMF UI builds the markup from data, as its data-driven API. The parts (shadcn's composition) are also available."
     },
     {
      "id": "props.Pagination.presentation",
@@ -12303,7 +12350,8 @@
      "dmf": {
       "default": "icon-label"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "DMF UI's shared presentation model (label, icon-label, icon), not a Base UI prop."
     },
     {
      "id": "props.Pagination.totalPages",
@@ -12313,7 +12361,90 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Items mode: DMF UI builds the markup from data, as its data-driven API. The parts (shadcn's composition) are also available."
+    },
+    {
+     "id": "props.PaginationLink.href",
+     "component": "PaginationLink",
+     "prop": "href",
+     "shadcn": null,
+     "dmf": {
+      "default": null
+     },
+     "status": "intentional",
+     "reason": "Destination of the link. A native anchor needs an href, so DMF UI requires it on the link part."
+    },
+    {
+     "id": "props.PaginationLink.isActive",
+     "component": "PaginationLink",
+     "prop": "isActive",
+     "shadcn": {
+      "default": null
+     },
+     "dmf": {
+      "default": "false"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.PaginationLink.size",
+     "component": "PaginationLink",
+     "prop": "size",
+     "shadcn": {
+      "default": "icon"
+     },
+     "dmf": {
+      "default": "default"
+     },
+     "status": "intentional",
+     "reason": "Default stays default for DMF UI's text links; the icon size is available by passing size=\"icon\"."
+    },
+    {
+     "id": "props.PaginationNext.href",
+     "component": "PaginationNext",
+     "prop": "href",
+     "shadcn": null,
+     "dmf": {
+      "default": null
+     },
+     "status": "intentional",
+     "reason": "Destination of the link. A native anchor needs an href, so DMF UI requires it on the link part."
+    },
+    {
+     "id": "props.PaginationNext.text",
+     "component": "PaginationNext",
+     "prop": "text",
+     "shadcn": {
+      "default": "Next"
+     },
+     "dmf": {
+      "default": "Next"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.PaginationPrevious.href",
+     "component": "PaginationPrevious",
+     "prop": "href",
+     "shadcn": null,
+     "dmf": {
+      "default": null
+     },
+     "status": "intentional",
+     "reason": "Destination of the link. A native anchor needs an href, so DMF UI requires it on the link part."
+    },
+    {
+     "id": "props.PaginationPrevious.text",
+     "component": "PaginationPrevious",
+     "prop": "text",
+     "shadcn": {
+      "default": "Previous"
+     },
+     "dmf": {
+      "default": "Previous"
+     },
+     "status": "match"
     }
    ],
    "dataAttributes": [
@@ -12321,25 +12452,43 @@
      "id": "dataAttributes:data-active",
      "value": "data-active",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "dataAttributes:data-icon",
      "value": "data-icon",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "dataAttributes:data-presentation",
      "value": "data-presentation",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "DMF UI's shared presentation model (label, icon-label, icon), not a Base UI prop."
     }
    ],
-   "stateHooks": [],
+   "stateHooks": [
+    {
+     "id": "stateHooks:data-active",
+     "value": "data-active",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "DMF UI marks the current page with data-active, styled with data-active:, as well as aria-current."
+    },
+    {
+     "id": "stateHooks:data-icon",
+     "value": "data-icon",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "Icons in Previous and Next carry data-icon, so the link's classes can space them."
+    }
+   ],
    "nova": {
     "classes": [
      "cn-pagination",
@@ -17596,10 +17745,10 @@
    },
    "counts": {
     "match": 19,
-    "intentional": 1,
+    "intentional": 19,
     "gap": 0,
     "differs": 0,
-    "extra": 18
+    "extra": 0
    },
    "parts": [
     {
@@ -17651,7 +17800,8 @@
      "value": "tabs-indicator",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "The active-tab marker that Data Slot's tabs runtime positions; shadcn's trigger draws its own."
     },
     {
      "id": "slots:tabs-list",
@@ -17675,14 +17825,16 @@
       "value": "auto",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "When focus activates a tab: auto selects on arrow keys, manual waits for Enter. An option of Data Slot's tabs runtime."
      },
      {
       "id": "variants.activationMode:manual",
       "value": "manual",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "When focus activates a tab: auto selects on arrow keys, manual waits for Enter. An option of Data Slot's tabs runtime."
      }
     ],
     "orientation": [
@@ -17691,14 +17843,16 @@
       "value": "horizontal",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "Tab orientation, read by Data Slot's tabs runtime and styled through data-orientation."
      },
      {
       "id": "variants.orientation:vertical",
       "value": "vertical",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "Tab orientation, read by Data Slot's tabs runtime and styled through data-orientation."
      }
     ],
     "variant": [
@@ -17727,7 +17881,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "When focus activates a tab: auto selects on arrow keys, manual waits for Enter. An option of Data Slot's tabs runtime."
     },
     {
      "id": "props.Tabs.defaultValue",
@@ -17737,7 +17892,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.Tabs.orientation",
@@ -17759,7 +17915,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.TabsContent.value",
@@ -17769,7 +17926,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.TabsList.variant",
@@ -17791,7 +17949,8 @@
      "dmf": {
       "default": "button"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "props.TabsTrigger.value",
@@ -17801,7 +17960,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     }
    ],
    "dataAttributes": [
@@ -17810,28 +17970,32 @@
      "value": "data-activation-mode",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "When focus activates a tab. An option of Data Slot's tabs runtime."
     },
     {
      "id": "dataAttributes:data-default-value",
      "value": "data-default-value",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-dmf-tabs-ready",
      "value": "data-dmf-tabs-ready",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-horizontal",
      "value": "data-horizontal",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Orientation the tabs runtime sets; DMF UI styles it through data-orientation."
     },
     {
      "id": "dataAttributes:data-orientation",
@@ -17845,7 +18009,8 @@
      "value": "data-value",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
     },
     {
      "id": "dataAttributes:data-variant",
@@ -17859,7 +18024,8 @@
      "value": "data-vertical",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Orientation the tabs runtime sets; DMF UI styles it through data-orientation."
     }
    ],
    "stateHooks": [
@@ -17897,7 +18063,8 @@
      "value": "data-state",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "The active state the tabs runtime sets on each trigger; the data-active variant also matches it."
     },
     {
      "id": "stateHooks:data-variant",

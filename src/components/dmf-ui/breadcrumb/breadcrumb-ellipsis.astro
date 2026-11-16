@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {Ellipsis} from '@lucide/astro';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'span'>;
+const {class:className,...props}=Astro.props;
+---
+<span {...props} data-slot="breadcrumb-ellipsis" role="presentation" aria-hidden="true" class={cn('flex size-9 items-center justify-center',className)}><Ellipsis class="size-4" aria-hidden="true"/><span class="sr-only">More pages</span></span>

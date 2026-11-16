@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {ChevronRight} from '@lucide/astro';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'a'>&{href:string;text?:string;};
+const {text='Next',class:className,...props}=Astro.props;
+---
+<a {...props} data-slot="pagination-link" aria-label="Go to next page" class={cn('hover:bg-muted data-[icon=inline-end]:pr-1.5 inline-flex h-8 items-center gap-1 rounded-lg px-2.5 text-sm font-medium',className)}><span class="hidden sm:block">{text}</span><ChevronRight data-icon="inline-end" class="size-4" aria-hidden="true"/></a>
