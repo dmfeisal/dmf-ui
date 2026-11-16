@@ -6,6 +6,8 @@ import { cn } from "../utils"
 
 type Props = HTMLAttributes<"button"> & {
   value: string
+  /** Controlled checked state, rendered on the server. Once the menu runtime is running it owns later changes. */
+  checked?: boolean
   defaultChecked?: boolean
   disabled?: boolean
   variant?: "default" | "destructive"
@@ -16,6 +18,7 @@ const {
   class: className,
   type = "button",
   value,
+  checked,
   defaultChecked,
   disabled,
   variant,
@@ -27,6 +30,8 @@ const {
 <button
   data-slot="dropdown-menu-checkbox-item"
   data-value={value}
+  data-checked={checked ? "" : undefined}
+  aria-checked={checked === undefined ? undefined : checked ? "true" : "false"}
   data-default-checked={defaultChecked}
   data-disabled={disabled || undefined}
   data-variant={variant}

@@ -1640,11 +1640,22 @@
           "dataSlots": [
             "dialog-close"
           ],
-          "properties": [],
+          "properties": [
+            {
+              "name": "variant",
+              "type": "ButtonVariantProps['variant']",
+              "optional": true
+            },
+            {
+              "name": "size",
+              "type": "ButtonVariantProps['size']",
+              "optional": true
+            }
+          ],
           "native": [
             "HTMLAttributes<'button'>"
           ],
-          "declaration": "type Props=HTMLAttributes<'button'>&ButtonVariantProps;"
+          "declaration": "type Props=HTMLAttributes<'button'>&ButtonVariantProps&{variant?:ButtonVariantProps['variant'];size?:ButtonVariantProps['size'];};"
         },
         {
           "file": "src/components/dmf-ui/alert-dialog/alert-dialog-content.astro",
@@ -1866,11 +1877,11 @@
         },
         {
           "path": "src/components/dmf-ui/alert-dialog/alert-dialog-cancel.astro",
-          "sha256": "d54d0c4ce7c50958858ded68898608ac0f6205f71604a880e4f0ea3015ec93c4"
+          "sha256": "96ec72a7ad6c682f579e61783ae0216204847511743c94f60eee5bf9455fe23f"
         },
         {
           "path": "src/components/dmf-ui/alert-dialog/alert-dialog-content.astro",
-          "sha256": "ad78972d24375e2bf107874d7ede94ee62d14f842653074e3de0da2132523eca"
+          "sha256": "8c692a9c42146cb9999110e78c960f663a117923ae237500ef6dde8389361db7"
         },
         {
           "path": "src/components/dmf-ui/alert-dialog/alert-dialog.astro",
@@ -10317,6 +10328,11 @@
               "optional": false
             },
             {
+              "name": "checked",
+              "type": "boolean",
+              "optional": true
+            },
+            {
               "name": "defaultChecked",
               "type": "boolean",
               "optional": true
@@ -10340,7 +10356,7 @@
           "native": [
             "HTMLAttributes<\"button\">"
           ],
-          "declaration": "type Props = HTMLAttributes<\"button\"> & {\n  value: string\n  defaultChecked?: boolean\n  disabled?: boolean\n  variant?: \"default\" | \"destructive\"\n  inset?: boolean\n}"
+          "declaration": "type Props = HTMLAttributes<\"button\"> & {\n  value: string\n  /** Controlled checked state, rendered on the server. Once the menu runtime is running it owns later changes. */\n  checked?: boolean\n  defaultChecked?: boolean\n  disabled?: boolean\n  variant?: \"default\" | \"destructive\"\n  inset?: boolean\n}"
         },
         {
           "file": "src/components/dmf-ui/dropdown-menu/dropdown-menu-content.astro",
@@ -10555,6 +10571,80 @@
           "declaration": "type Props = HTMLAttributes<\"span\">"
         },
         {
+          "file": "src/components/dmf-ui/dropdown-menu/dropdown-menu-sub-content.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "dropdown-menu-sub-content"
+          ],
+          "properties": [
+            {
+              "name": "side",
+              "type": "\"inline-end\" | \"inline-start\" | \"left\" | \"right\"",
+              "optional": true
+            },
+            {
+              "name": "sideOffset",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "align",
+              "type": "\"start\" | \"center\" | \"end\"",
+              "optional": true
+            },
+            {
+              "name": "alignOffset",
+              "type": "number",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<\"div\">"
+          ],
+          "declaration": "type Props = HTMLAttributes<\"div\"> & {\n  /** Which edge of the trigger the panel opens from. Logical sides follow reading direction. Default: inline-end. */\n  side?: \"inline-end\" | \"inline-start\" | \"left\" | \"right\"\n  /** Gap between the trigger and the panel, in pixels. Default: 4. */\n  sideOffset?: number\n  /** Where the panel lines up along the trigger. Default: start. */\n  align?: \"start\" | \"center\" | \"end\"\n  /** Shift along the trigger, in pixels. Default: 0. */\n  alignOffset?: number\n}"
+        },
+        {
+          "file": "src/components/dmf-ui/dropdown-menu/dropdown-menu-sub-trigger.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "dropdown-menu-sub-trigger"
+          ],
+          "properties": [
+            {
+              "name": "disabled",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "inset",
+              "type": "boolean",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<\"button\">"
+          ],
+          "declaration": "type Props = HTMLAttributes<\"button\"> & {\n  disabled?: boolean\n  inset?: boolean\n}"
+        },
+        {
+          "file": "src/components/dmf-ui/dropdown-menu/dropdown-menu-sub.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "dropdown-menu-sub"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<\"div\">"
+          ],
+          "declaration": "type Props = HTMLAttributes<\"div\">"
+        },
+        {
           "file": "src/components/dmf-ui/dropdown-menu/dropdown-menu-trigger.astro",
           "slots": [
             "default"
@@ -10661,6 +10751,11 @@
         "dropdown-menu-item.astro:as": "\"href\" in Astro.props ? \"a\" : \"button\"",
         "dropdown-menu-item.astro:type": "\"button\"",
         "dropdown-menu-radio-item.astro:type": "\"button\"",
+        "dropdown-menu-sub-content.astro:side": "\"inline-end\"",
+        "dropdown-menu-sub-content.astro:sideOffset": "4",
+        "dropdown-menu-sub-content.astro:align": "\"start\"",
+        "dropdown-menu-sub-content.astro:alignOffset": "0",
+        "dropdown-menu-sub-trigger.astro:type": "\"button\"",
         "dropdown-menu-trigger.astro:type": "\"button\""
       },
       "states": {
@@ -10669,20 +10764,20 @@
           "note": "Default authored composition."
         },
         "hover": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "pressed": {
           "status": "not-established",
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         },
         "focus": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "focus-visible": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "disabled": {
           "status": "source-evidence",
@@ -10729,8 +10824,8 @@
           "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "expanded": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "collapsed": {
           "status": "not-established",
@@ -10797,8 +10892,8 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         },
         "resizing": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "editing": {
           "status": "not-established",
@@ -10841,14 +10936,15 @@
           "tests/browser/dmf-ui-accessibility.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-navigation.mjs",
-          "tests/browser/dmf-ui-overlays.mjs"
+          "tests/browser/dmf-ui-overlays.mjs",
+          "tests/browser/dmf-ui-submenu.mjs"
         ]
       },
       "status": "partial",
       "sources": [
         {
           "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-checkbox-item.astro",
-          "sha256": "54af608fe52513448ba8d6e38620ef16f8930cb671b059116ca92a3f600328dd"
+          "sha256": "fd09a61843ccdb7192910554e1dce048a3c79ba669bfa456cab6e09dcd29b8a0"
         },
         {
           "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-content.astro",
@@ -10887,6 +10983,22 @@
           "sha256": "4325bbd465d6df975f17bb30e057d76f807dc99def6b3022ecefd722a932909f"
         },
         {
+          "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-sub-content.astro",
+          "sha256": "5e5b5437ba2b13fc2e73c85724a300e0a51c8238aa948aa3ab44e35ab2e39b69"
+        },
+        {
+          "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-sub-runtime.ts",
+          "sha256": "3b2318df5eee5af86df2bcda545ab47f417b6437e86d46e4bc7a9990e064de02"
+        },
+        {
+          "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-sub-trigger.astro",
+          "sha256": "d5745df828db59ea64b2073af5d54d3174d823dac12d7996c222316e753424c6"
+        },
+        {
+          "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-sub.astro",
+          "sha256": "2e607db3d16d26e83df6354d55c3e1a602c737b2d587378e77e715c44d297daf"
+        },
+        {
           "path": "src/components/dmf-ui/dropdown-menu/dropdown-menu-trigger.astro",
           "sha256": "aee140eec41baf1084a3d330cf16dd09d642266b75e416766b5c7b087eea3b12"
         },
@@ -10896,7 +11008,7 @@
         },
         {
           "path": "src/components/dmf-ui/dropdown-menu/index.ts",
-          "sha256": "34b9eada919e68ca00bc26a51c96199fd362cb2b02cfd10ffbfd8741e3b435f7"
+          "sha256": "2a0b3a3c30b1d32ba0d2f43b004e0bed580ec53b44409173fc051926d923dbd6"
         }
       ],
       "gaps": [
@@ -10930,10 +11042,14 @@
         "./dropdown-menu-radio-item.astro",
         "./dropdown-menu-separator.astro",
         "./dropdown-menu-shortcut.astro",
+        "./dropdown-menu-sub-content.astro",
+        "./dropdown-menu-sub-trigger.astro",
+        "./dropdown-menu-sub.astro",
         "./dropdown-menu-trigger.astro",
         "./dropdown-menu.astro",
         "@data-slot/dropdown-menu",
         "@lucide/astro/icons/check",
+        "@lucide/astro/icons/chevron-right",
         "astro/types"
       ]
     },
@@ -15037,7 +15153,8 @@
           "tests/browser/dmf-ui-overlays.mjs",
           "tests/browser/dmf-ui-pilot.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
-          "tests/browser/dmf-ui-select.mjs"
+          "tests/browser/dmf-ui-select.mjs",
+          "tests/browser/dmf-ui-submenu.mjs"
         ]
       },
       "status": "partial",
@@ -22604,6 +22721,7 @@
           "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-selection.mjs",
           "tests/browser/dmf-ui-sign-in-consumer.mjs",
+          "tests/browser/dmf-ui-submenu.mjs",
           "tests/browser/dmf-ui-switch.mjs",
           "tests/browser/dmf-ui-tabs.mjs",
           "tests/browser/dmf-ui-taxonomy.mjs",
@@ -26205,6 +26323,7 @@
           "tests/browser/dmf-ui-selection.mjs",
           "tests/browser/dmf-ui-shadcn-parity.mjs",
           "tests/browser/dmf-ui-sign-in-consumer.mjs",
+          "tests/browser/dmf-ui-submenu.mjs",
           "tests/browser/dmf-ui-tabs.mjs",
           "tests/browser/dmf-ui-taxonomy.mjs",
           "tests/browser/dmf-ui-tokens.mjs",

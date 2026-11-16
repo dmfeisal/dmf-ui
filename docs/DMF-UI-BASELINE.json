@@ -7,12 +7,12 @@
  },
  "stylesheet": {
   "compiled": {
-   "bytes": 74134,
-   "gzip": 12482
+   "bytes": 74058,
+   "gzip": 12472
   },
   "componentRules": {
-   "bytes": 29809,
-   "gzip": 5743
+   "bytes": 29733,
+   "gzip": 5732
   },
   "note": "dmf-ui.css compiled without utilities: theme, tokens, presets and hand-written rules. componentRules is the part attributed to a family; the rest is shared."
  },
@@ -20,14 +20,14 @@
   "families": 80,
   "withScripts": 31,
   "js": {
-   "bytes": 344010,
-   "gzip": 124923
+   "bytes": 347376,
+   "gzip": 125782
   },
   "sharedFamilies": {
    "count": 50,
    "dmfCss": {
-    "bytes": 308981,
-    "gzip": 70247
+    "bytes": 311390,
+    "gzip": 70665
    },
    "shadcnCss": {
     "bytes": 335824,
@@ -135,16 +135,16 @@
    "shadcn": true,
    "css": {
     "utilities": {
-     "bytes": 366,
-     "gzip": 242
+     "bytes": 469,
+     "gzip": 308
     },
     "rules": {
-     "bytes": 1339,
-     "gzip": 548
+     "bytes": 1263,
+     "gzip": 530
     },
     "total": {
-     "bytes": 1705,
-     "gzip": 723
+     "bytes": 1732,
+     "gzip": 758
     }
    },
    "shadcnCss": {
@@ -1064,16 +1064,16 @@
    "shadcn": true,
    "css": {
     "utilities": {
-     "bytes": 10133,
-     "gzip": 2359
+     "bytes": 12515,
+     "gzip": 2743
     },
     "rules": {
      "bytes": 248,
      "gzip": 173
     },
     "total": {
-     "bytes": 10381,
-     "gzip": 2444
+     "bytes": 12763,
+     "gzip": 2827
     }
    },
    "shadcnCss": {
@@ -1081,10 +1081,10 @@
     "gzip": 2450
    },
    "js": {
-    "scripts": 1,
+    "scripts": 2,
     "consumerRuntime": false,
-    "bytes": 30808,
-    "gzip": 10472
+    "bytes": 34174,
+    "gzip": 11331
    },
    "axe": {
     "light": [],
@@ -1093,14 +1093,14 @@
    "withoutJs": {
     "status": "same",
     "js": {
-     "visible": 7,
-     "focusable": 1,
-     "text": 39
+     "visible": 11,
+     "focusable": 2,
+     "text": 55
     },
     "noJs": {
-     "visible": 7,
-     "focusable": 1,
-     "text": 39
+     "visible": 11,
+     "focusable": 2,
+     "text": 55
     }
    }
   },
