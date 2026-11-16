@@ -1,0 +1,9 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {ChevronRight} from '@lucide/astro';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'li'>;
+const {class:className,...props}=Astro.props;
+// Decorative: hidden from assistive technology. Children replace the default chevron.
+---
+<li {...props} data-slot="breadcrumb-separator" role="presentation" aria-hidden="true" class={cn('[&>svg]:size-3.5',className)}>{Astro.slots.has('default')?<slot/>:<ChevronRight aria-hidden="true"/>}</li>

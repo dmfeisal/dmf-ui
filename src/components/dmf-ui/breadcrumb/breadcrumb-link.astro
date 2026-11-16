@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'a'>&{href:string;};
+const {class:className,...props}=Astro.props;
+---
+<a {...props} data-slot="breadcrumb-link" class={cn('hover:text-foreground transition-colors',className)}><slot/></a>

@@ -26,14 +26,14 @@
   "sharedFamilies": {
    "count": 50,
    "dmfCss": {
-    "bytes": 311390,
-    "gzip": 70665
+    "bytes": 315200,
+    "gzip": 71999
    },
    "shadcnCss": {
     "bytes": 335824,
     "gzip": 71327
    },
-   "smallerThanShadcn": 18
+   "smallerThanShadcn": 17
   },
   "axe": {
    "audited": 79,
@@ -412,16 +412,16 @@
    "shadcn": true,
    "css": {
     "utilities": {
-     "bytes": 0,
-     "gzip": 20
+     "bytes": 1767,
+     "gzip": 750
     },
     "rules": {
      "bytes": 1227,
      "gzip": 434
     },
     "total": {
-     "bytes": 1227,
-     "gzip": 434
+     "bytes": 2994,
+     "gzip": 1070
     }
    },
    "shadcnCss": {
@@ -1944,16 +1944,16 @@
    "shadcn": true,
    "css": {
     "utilities": {
-     "bytes": 28,
-     "gzip": 39
+     "bytes": 2071,
+     "gzip": 848
     },
     "rules": {
      "bytes": 1207,
      "gzip": 455
     },
     "total": {
-     "bytes": 1235,
-     "gzip": 466
+     "bytes": 3278,
+     "gzip": 1164
     }
    },
    "shadcnCss": {

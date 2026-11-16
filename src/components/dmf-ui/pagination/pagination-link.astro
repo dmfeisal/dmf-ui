@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'a'>&{href:string;isActive?:boolean;size?:'default'|'icon';};
+const {href,isActive=false,size='default',class:className,...props}=Astro.props;
+// The current page is marked with aria-current and data-active, as in shadcn/ui.
+---
+<a {...props} href={href} data-slot="pagination-link" data-active={isActive?'':undefined} aria-current={isActive?'page':undefined} class={cn('data-active:bg-muted hover:bg-muted inline-flex h-8 items-center justify-center gap-1 rounded-lg text-sm font-medium transition-colors',size==='icon'?'size-8':'min-w-8 px-2.5',className)}><slot/></a>
