@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'img'>&{src:string;alt?:string;};
+const {class:className,alt='',...props}=Astro.props;
+// Shown when it loads; the Avatar's script hides it when it fails, so the fallback shows instead.
+---
+<img {...props} src={props.src} alt={alt} data-slot="avatar-image" data-avatar-image width="80" height="80" loading="lazy" decoding="async" class={cn('aspect-square size-full object-cover',className)}/>

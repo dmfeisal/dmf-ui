@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'caption'>;
+const {class:className,...props}=Astro.props;
+// A caption part for a table built from parts. The Table component's `caption` prop renders the same element.
+---
+<caption {...props} data-slot="table-caption" class={cn('text-muted-foreground mt-4 text-sm',className)}><slot/></caption>

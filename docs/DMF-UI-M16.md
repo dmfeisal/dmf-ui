@@ -9,7 +9,7 @@
 | 3. Selection | 3a (dmfeisal/dmf-ui#37) and 3b in this report |
 | 4. Overlays and menus | Gaps closed except drawer snap-point list; extras decided |
 | 5. Navigation | 2 gaps open (Sidebar mobile sheet and data-open); the rest closed |
-| 6. Data display and feedback | Planned |
+| 6. Data display and feedback | Extras decided; 8 gaps open (Progress parts) |
 
 ## Batch 1: shared foundations
 
@@ -419,3 +419,36 @@ Batch 5 started with 124 gaps. This part closes Breadcrumb, Pagination and Tabs.
 **Fixed along the way:** the large-text scenario caught the Sidebar example overflowing on a phone at enlarged text; the example now stacks on narrow screens.
 
 **Size:** the Sidebar and Navigation Menu runtimes and styles are new, so their CSS and JS grow. I haven't measured the change here.
+
+## Batch 6: data display and feedback
+
+Batch 6 started with 41 gaps and 152 DMF-only props and attributes. It now has 8 gaps (all Progress) and no undecided extras.
+
+**Closed**
+- **Alert:** `variant` (`default`, `destructive`) is declared as a prop. It already worked; the contract could not see it.
+- **Attachment trigger:** `type` is declared. Buttons still default to `type="button"`.
+- **Table:** a `TableCaption` part, and the scroll wrapper carries `data-slot="table-container"`.
+- **Avatar:** parts `AvatarImage`, `AvatarFallback`, `AvatarBadge`, `AvatarGroup` and `AvatarGroupCount`. With no `name`, the root takes them as children. The image still hides itself when it fails, so the fallback shows.
+
+**Decided as intentional**
+- **React-only callbacks:** the carousel's `setApi` and `CarouselApi`, the toast manager, and the code block's copy `onClick`. Astro has no callbacks, so each runtime is driven directly.
+- **Data Slot runtime attributes:** the toast's stacking, swipe and animation attributes, and the toast's provider and portal, which Toaster renders through Data Slot.
+- **DMF names and defaults:** the resizable group, the carousel's orientation default, and the toast icon that follows the notification's kind.
+- **Table and avatar state:** tables have no row state, and avatar sizing uses classes, with `data-size` for hosts.
+
+**Still open: Progress (8 gaps)**
+- shadcn's track, indicator, label and value are separate parts. DMF's Progress is one component whose runtime keeps the bar in step with its value, so composing those parts needs that runtime to know about them. This is the next step for batch 6.
+
+**Extras**
+- 152 DMF-only props and attributes now have recorded reasons: runtime configuration, positioner and portal elements, part names, and option values. Nothing was removed.
+
+**Results**
+
+| | Before | Now |
+| --- | --- | --- |
+| Batch 6 gaps | 41 | 8 (Progress) |
+| Batch 6 undecided extras | 152 | 0 |
+
+**Checks:** unit tests (85 pass), `precheck`, the type check, and all 32 docs browser scenarios. The adapted attachment trigger was re-recorded with `import-fulldev-components.mjs --record`, because its source changed.
+
+**Not covered by a browser scenario yet:** the new Avatar and Table parts. The existing avatar and data-display scenarios cover the items mode.

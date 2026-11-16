@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'div'>;
+const {class:className,...props}=Astro.props;
+// The "+N" count after a group of avatars.
+---
+<div {...props} data-slot="avatar-group-count" class={cn('bg-muted text-muted-foreground ring-background flex size-8 items-center justify-center rounded-full text-sm ring-2',className)}><slot/></div>
