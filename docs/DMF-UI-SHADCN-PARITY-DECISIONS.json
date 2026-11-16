@@ -666,7 +666,8 @@
    "props.SidebarMenuSubButton.href": "Destination of the link. A native anchor needs an href, so DMF UI requires it.",
    "dataAttributes:data-active": "Marks the current item, styled with data-active:.",
    "dataAttributes:data-presentation": "DMF UI's shared presentation model (label, icon-label, icon).",
-   "dataAttributes:data-size": "The item's size (default, sm, lg), styled with data-[size=…]:."
+   "dataAttributes:data-size": "The item's size (default, sm, lg), styled with data-[size=…]:.",
+   "slots:sidebar-backdrop": "DMF UI's mobile sheet draws its own backdrop, which closes the sheet when clicked. shadcn draws the overlay inside its Sheet component."
   },
   "avatar": {
    "stateHooks:data-size": "DMF UI sizes the avatar through its size classes; data-size is set for hosts to read, and the styles do not match it.",

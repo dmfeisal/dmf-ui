@@ -24031,6 +24031,7 @@
           "tests/modal-components.test.mjs",
           "tests/browser/dmf-ui-content.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
+          "tests/browser/dmf-ui-navigation-parts.mjs",
           "tests/browser/dmf-ui-shadcn-parity.mjs"
         ]
       },
@@ -24548,6 +24549,7 @@
           "dataSlots": [
             "sidebar",
             "sidebar-gap",
+            "sidebar-backdrop",
             "sidebar-container",
             "sidebar-inner"
           ],
@@ -24897,7 +24899,7 @@
         },
         {
           "path": "src/components/dmf-ui/sidebar/sidebar-runtime.ts",
-          "sha256": "0a4647e79476dd2f970dad70db1fecc01c74f8cd4f18fb5be1e9e24dddf14b2e"
+          "sha256": "63caecd9daccbb325cd06bd6ef25ac9fd9fecdb46862ec0fc6337c3ada608868"
         },
         {
           "path": "src/components/dmf-ui/sidebar/sidebar-separator.astro",
@@ -24913,7 +24915,7 @@
         },
         {
           "path": "src/components/dmf-ui/sidebar/sidebar.astro",
-          "sha256": "b3082eb67945cfc2cbc1539fa7b588e69996f539a879940120cd4dc146d29072"
+          "sha256": "040a25978d6b2fb6de7f3d16cbf9dfcbadbd16804600514c5ea23d4cceb06a77"
         }
       ],
       "gaps": [

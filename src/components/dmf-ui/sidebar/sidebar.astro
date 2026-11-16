@@ -14,9 +14,10 @@ const {label='Sidebar',items,presentation='label',defaultOpen=true,side='left',v
 {items?(
 <aside data-slot="sidebar" data-presentation={presentation} aria-label={label} class={cn('dmf-sidebar',className)} {...props}><details open={defaultOpen} data-dmf-nav-disclosure><summary title={presentation==='icon'?label:undefined}><Content label={label} icon={PanelLeft} presentation={presentation}/><ChevronDown size={16} aria-hidden="true"/></summary><NavigationMenu label={`${label} links`} items={items} presentation={presentation} orientation="vertical"/></details></aside>
 ):(
-<div data-slot="sidebar" data-side={side} data-variant={variant} data-collapsible={collapsible} class={cn('group peer text-sidebar-foreground relative block',className)} {...props}>
+<div data-slot="sidebar" data-side={side} data-variant={variant} data-collapsible={collapsible} data-mobile="false" class={cn('group peer text-sidebar-foreground relative block',className)} {...props}>
  <div data-slot="sidebar-gap" class="relative w-64 bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[collapsible=icon]:group-data-[state=collapsed]:w-12"></div>
- <div data-slot="sidebar-container" data-side={side} class="fixed inset-y-0 z-10 hidden h-svh w-64 transition-[left,right,width] duration-200 ease-linear md:flex data-[side=left]:left-0 data-[side=right]:right-0">
+ <div data-slot="sidebar-backdrop" data-sidebar-toggle hidden class="fixed inset-0 z-30 bg-black/50 md:hidden"></div>
+ <div data-slot="sidebar-container" data-side={side} class="fixed inset-y-0 z-40 h-svh w-72 max-w-[85vw] transition-[left,right,width] duration-200 ease-linear max-md:hidden max-md:data-open:flex md:z-10 md:w-64 md:max-w-none md:flex data-[side=left]:left-0 data-[side=right]:right-0">
   <div data-slot="sidebar-inner" class="bg-sidebar flex h-full w-full flex-col"><slot/></div>
  </div>
 </div>
