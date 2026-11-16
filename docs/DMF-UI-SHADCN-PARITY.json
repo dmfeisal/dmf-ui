@@ -33,11 +33,11 @@
  ],
  "totals": {
   "families": 50,
-  "match": 788,
-  "intentional": 559,
-  "gap": 153,
+  "match": 888,
+  "intentional": 617,
+  "gap": 54,
   "differs": 1,
-  "extra": 167
+  "extra": 154
  },
  "families": {
   "accordion": {
@@ -11877,11 +11877,11 @@
     "docs": "vendor/shadcn/docs/navigation-menu.mdx"
    },
    "counts": {
-    "match": 2,
-    "intentional": 0,
-    "gap": 25,
+    "match": 20,
+    "intentional": 37,
+    "gap": 0,
     "differs": 0,
-    "extra": 8
+    "extra": 0
    },
    "parts": [
     {
@@ -11895,50 +11895,50 @@
      "id": "parts:NavigationMenuContent",
      "value": "NavigationMenuContent",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:NavigationMenuIndicator",
      "value": "NavigationMenuIndicator",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:NavigationMenuItem",
      "value": "NavigationMenuItem",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:NavigationMenuLink",
      "value": "NavigationMenuLink",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:NavigationMenuList",
      "value": "NavigationMenuList",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:NavigationMenuPositioner",
      "value": "NavigationMenuPositioner",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:NavigationMenuTrigger",
      "value": "NavigationMenuTrigger",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "slots": [
@@ -11953,60 +11953,130 @@
      "id": "slots:navigation-menu-content",
      "value": "navigation-menu-content",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:navigation-menu-indicator",
      "value": "navigation-menu-indicator",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:navigation-menu-item",
      "value": "navigation-menu-item",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:navigation-menu-link",
      "value": "navigation-menu-link",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:navigation-menu-list",
      "value": "navigation-menu-list",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
+    },
+    {
+     "id": "slots:navigation-menu-positioner",
+     "value": "navigation-menu-positioner",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "Holds a panel and carries its placement; Base UI's Positioner is the element that positions the popup."
     },
     {
      "id": "slots:navigation-menu-trigger",
      "value": "navigation-menu-trigger",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "variants": {
+    "align": [
+     {
+      "id": "variants.align:center",
+      "value": "center",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "Placement value for NavigationMenuPositioner, read by the navigation menu runtime."
+     },
+     {
+      "id": "variants.align:end",
+      "value": "end",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "Placement value for NavigationMenuPositioner, read by the navigation menu runtime."
+     },
+     {
+      "id": "variants.align:start",
+      "value": "start",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "Placement value for NavigationMenuPositioner, read by the navigation menu runtime."
+     }
+    ],
     "orientation": [
      {
       "id": "variants.orientation:horizontal",
       "value": "horizontal",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "Orientation of the navigation list, styled through data-orientation."
      },
      {
       "id": "variants.orientation:vertical",
       "value": "vertical",
       "shadcn": false,
       "dmf": true,
-      "status": "extra"
+      "status": "intentional",
+      "reason": "Orientation of the navigation list, styled through data-orientation."
+     }
+    ],
+    "side": [
+     {
+      "id": "variants.side:bottom",
+      "value": "bottom",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "Placement value for NavigationMenuPositioner, read by the navigation menu runtime."
+     },
+     {
+      "id": "variants.side:left",
+      "value": "left",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "Placement value for NavigationMenuPositioner, read by the navigation menu runtime."
+     },
+     {
+      "id": "variants.side:right",
+      "value": "right",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "Placement value for NavigationMenuPositioner, read by the navigation menu runtime."
+     },
+     {
+      "id": "variants.side:top",
+      "value": "top",
+      "shadcn": false,
+      "dmf": true,
+      "status": "intentional",
+      "reason": "Placement value for NavigationMenuPositioner, read by the navigation menu runtime."
      }
     ]
    },
@@ -12019,7 +12089,8 @@
       "default": "start"
      },
      "dmf": null,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Placement belongs to NavigationMenuPositioner in DMF UI, so each panel sets its own."
     },
     {
      "id": "props.NavigationMenu.items",
@@ -12029,7 +12100,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Items mode: DMF UI builds the links from data. The parts (shadcn's composition) are also available."
     },
     {
      "id": "props.NavigationMenu.label",
@@ -12039,7 +12111,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "The navigation's accessible name (aria-label on the landmark)."
     },
     {
      "id": "props.NavigationMenu.orientation",
@@ -12049,7 +12122,8 @@
      "dmf": {
       "default": "horizontal"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Orientation of the navigation list, styled through data-orientation."
     },
     {
      "id": "props.NavigationMenu.presentation",
@@ -12059,23 +12133,164 @@
      "dmf": {
       "default": "label"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "DMF UI's shared presentation model (label, icon-label, icon), not a Base UI prop."
+    },
+    {
+     "id": "props.NavigationMenuLink.active",
+     "component": "NavigationMenuLink",
+     "prop": "active",
+     "shadcn": null,
+     "dmf": {
+      "default": "false"
+     },
+     "status": "intentional",
+     "reason": "Marks the current page with aria-current and data-active."
+    },
+    {
+     "id": "props.NavigationMenuLink.href",
+     "component": "NavigationMenuLink",
+     "prop": "href",
+     "shadcn": null,
+     "dmf": {
+      "default": null
+     },
+     "status": "intentional",
+     "reason": "Destination of the link. A native anchor needs an href, so DMF UI requires it."
+    },
+    {
+     "id": "props.NavigationMenuPositioner.align",
+     "component": "NavigationMenuPositioner",
+     "prop": "align",
+     "shadcn": {
+      "default": "start"
+     },
+     "dmf": {
+      "default": "start"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.NavigationMenuPositioner.alignOffset",
+     "component": "NavigationMenuPositioner",
+     "prop": "alignOffset",
+     "shadcn": {
+      "default": "0"
+     },
+     "dmf": {
+      "default": "0"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.NavigationMenuPositioner.side",
+     "component": "NavigationMenuPositioner",
+     "prop": "side",
+     "shadcn": {
+      "default": "bottom"
+     },
+     "dmf": {
+      "default": "bottom"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.NavigationMenuPositioner.sideOffset",
+     "component": "NavigationMenuPositioner",
+     "prop": "sideOffset",
+     "shadcn": {
+      "default": "8"
+     },
+     "dmf": {
+      "default": "6"
+     },
+     "status": "intentional",
+     "reason": "DMF UI's default gap is 6px; shadcn's is 8. Callers can set either."
+    },
+    {
+     "id": "props.NavigationMenuTrigger.disabled",
+     "component": "NavigationMenuTrigger",
+     "prop": "disabled",
+     "shadcn": null,
+     "dmf": {
+      "default": "false"
+     },
+     "status": "intentional",
+     "reason": "Native disabled state on the trigger button."
     }
    ],
    "dataAttributes": [
+    {
+     "id": "dataAttributes:data-active",
+     "value": "data-active",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "Marks the current link, styled with data-active:."
+    },
+    {
+     "id": "dataAttributes:data-align",
+     "value": "data-align",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "Placement attribute set by NavigationMenuPositioner and read by the navigation menu runtime."
+    },
+    {
+     "id": "dataAttributes:data-align-offset",
+     "value": "data-align-offset",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "Placement attribute set by NavigationMenuPositioner and read by the navigation menu runtime."
+    },
     {
      "id": "dataAttributes:data-orientation",
      "value": "data-orientation",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Orientation of the navigation list, styled through data-orientation."
     },
     {
      "id": "dataAttributes:data-presentation",
      "value": "data-presentation",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "DMF UI's shared presentation model (label, icon-label, icon)."
+    },
+    {
+     "id": "dataAttributes:data-side",
+     "value": "data-side",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "Placement attribute set by NavigationMenuPositioner and read by the navigation menu runtime."
+    },
+    {
+     "id": "dataAttributes:data-side-offset",
+     "value": "data-side-offset",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "Placement attribute set by NavigationMenuPositioner and read by the navigation menu runtime."
+    },
+    {
+     "id": "dataAttributes:data-slot",
+     "value": "data-slot",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "Set on every part, so the runtime and styles can find each element; shadcn's parts set it too."
+    },
+    {
+     "id": "dataAttributes:data-state",
+     "value": "data-state",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "The runtime sets data-state on the trigger and panel; DMF UI's styles read data-open, which the custom variant also matches."
     }
    ],
    "stateHooks": [
@@ -12083,78 +12298,87 @@
      "id": "stateHooks:data-active",
      "value": "data-active",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-closed",
      "value": "data-closed",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's panels show and hide without enter or exit animation, so Base UI's animation hook is not set."
     },
     {
      "id": "stateHooks:data-ending-style",
      "value": "data-ending-style",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's panels show and hide without enter or exit animation, so Base UI's animation hook is not set."
     },
     {
      "id": "stateHooks:data-instant",
      "value": "data-instant",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's panels show and hide without enter or exit animation, so Base UI's animation hook is not set."
     },
     {
      "id": "stateHooks:data-motion",
      "value": "data-motion",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's panels show and hide without enter or exit animation, so Base UI's animation hook is not set."
     },
     {
      "id": "stateHooks:data-open",
      "value": "data-open",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-popup-open",
      "value": "data-popup-open",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's trigger reports its state with aria-expanded and data-state; Base UI's popup hook is not set."
     },
     {
      "id": "stateHooks:data-side",
      "value": "data-side",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "The positioner carries data-side for placement; the panel's styles do not read it."
     },
     {
      "id": "stateHooks:data-starting-style",
      "value": "data-starting-style",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's panels show and hide without enter or exit animation, so Base UI's animation hook is not set."
     },
     {
      "id": "stateHooks:data-state",
      "value": "data-state",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "The runtime sets data-state on the trigger and panel; DMF UI's styles read data-open, which the custom variant also matches."
     },
     {
      "id": "stateHooks:data-viewport",
      "value": "data-viewport",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI renders each panel beside its trigger, with no shared viewport element."
     }
    ],
    "nova": {
@@ -15117,11 +15341,11 @@
     "docs": "vendor/shadcn/docs/sidebar.mdx"
    },
    "counts": {
-    "match": 2,
-    "intentional": 0,
-    "gap": 76,
+    "match": 84,
+    "intentional": 21,
+    "gap": 2,
     "differs": 0,
-    "extra": 5
+    "extra": 0
    },
    "parts": [
     {
@@ -15132,158 +15356,190 @@
      "status": "match"
     },
     {
+     "id": "parts:SidebarContainer",
+     "value": "SidebarContainer",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "DMF UI exports this layout piece so consumers can compose the sidebar; shadcn keeps it internal to its Sidebar."
+    },
+    {
      "id": "parts:SidebarContent",
      "value": "SidebarContent",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarFooter",
      "value": "SidebarFooter",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
+    },
+    {
+     "id": "parts:SidebarGap",
+     "value": "SidebarGap",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "DMF UI exports this layout piece so consumers can compose the sidebar; shadcn keeps it internal to its Sidebar."
     },
     {
      "id": "parts:SidebarGroup",
      "value": "SidebarGroup",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarGroupAction",
      "value": "SidebarGroupAction",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarGroupContent",
      "value": "SidebarGroupContent",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarGroupLabel",
      "value": "SidebarGroupLabel",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarHeader",
      "value": "SidebarHeader",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
+    },
+    {
+     "id": "parts:SidebarInner",
+     "value": "SidebarInner",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "DMF UI exports this layout piece so consumers can compose the sidebar; shadcn keeps it internal to its Sidebar."
     },
     {
      "id": "parts:SidebarInput",
      "value": "SidebarInput",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarInset",
      "value": "SidebarInset",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarMenu",
      "value": "SidebarMenu",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarMenuAction",
      "value": "SidebarMenuAction",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarMenuBadge",
      "value": "SidebarMenuBadge",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarMenuButton",
      "value": "SidebarMenuButton",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarMenuItem",
      "value": "SidebarMenuItem",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarMenuSkeleton",
      "value": "SidebarMenuSkeleton",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarMenuSub",
      "value": "SidebarMenuSub",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarMenuSubButton",
      "value": "SidebarMenuSubButton",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarMenuSubItem",
      "value": "SidebarMenuSubItem",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarProvider",
      "value": "SidebarProvider",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarRail",
      "value": "SidebarRail",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarSeparator",
      "value": "SidebarSeparator",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SidebarTrigger",
      "value": "SidebarTrigger",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
+    },
+    {
+     "id": "parts:SidebarWrapper",
+     "value": "SidebarWrapper",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "DMF UI exports this layout piece so consumers can compose the sidebar; shadcn keeps it internal to its Sidebar."
     }
    ],
    "slots": [
@@ -15298,141 +15554,181 @@
      "id": "slots:sidebar-container",
      "value": "sidebar-container",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:sidebar-content",
      "value": "sidebar-content",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:sidebar-footer",
      "value": "sidebar-footer",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:sidebar-gap",
      "value": "sidebar-gap",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:sidebar-group",
      "value": "sidebar-group",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
+    },
+    {
+     "id": "slots:sidebar-group-action",
+     "value": "sidebar-group-action",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "DMF UI marks this element with its own slot so its styles and tests can find it; shadcn's element has no slot of this name."
     },
     {
      "id": "slots:sidebar-group-content",
      "value": "sidebar-group-content",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
+    },
+    {
+     "id": "slots:sidebar-group-label",
+     "value": "sidebar-group-label",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "DMF UI marks this element with its own slot so its styles and tests can find it; shadcn's element has no slot of this name."
     },
     {
      "id": "slots:sidebar-header",
      "value": "sidebar-header",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:sidebar-inner",
      "value": "sidebar-inner",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:sidebar-input",
      "value": "sidebar-input",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:sidebar-inset",
      "value": "sidebar-inset",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:sidebar-menu",
      "value": "sidebar-menu",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
+    },
+    {
+     "id": "slots:sidebar-menu-action",
+     "value": "sidebar-menu-action",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "DMF UI marks this element with its own slot so its styles and tests can find it; shadcn's element has no slot of this name."
     },
     {
      "id": "slots:sidebar-menu-badge",
      "value": "sidebar-menu-badge",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
+    },
+    {
+     "id": "slots:sidebar-menu-button",
+     "value": "sidebar-menu-button",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "DMF UI marks this element with its own slot so its styles and tests can find it; shadcn's element has no slot of this name."
     },
     {
      "id": "slots:sidebar-menu-item",
      "value": "sidebar-menu-item",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:sidebar-menu-skeleton",
      "value": "sidebar-menu-skeleton",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:sidebar-menu-sub",
      "value": "sidebar-menu-sub",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
+    },
+    {
+     "id": "slots:sidebar-menu-sub-button",
+     "value": "sidebar-menu-sub-button",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "DMF UI marks this element with its own slot so its styles and tests can find it; shadcn's element has no slot of this name."
     },
     {
      "id": "slots:sidebar-menu-sub-item",
      "value": "sidebar-menu-sub-item",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:sidebar-rail",
      "value": "sidebar-rail",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:sidebar-separator",
      "value": "sidebar-separator",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:sidebar-trigger",
      "value": "sidebar-trigger",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:sidebar-wrapper",
      "value": "sidebar-wrapper",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "variants": {
@@ -15441,22 +15737,22 @@
       "id": "variants.collapsible:icon",
       "value": "icon",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.collapsible:none",
       "value": "none",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.collapsible:offcanvas",
       "value": "offcanvas",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      }
     ],
     "side": [
@@ -15464,15 +15760,15 @@
       "id": "variants.side:left",
       "value": "left",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.side:right",
       "value": "right",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      }
     ],
     "size": [
@@ -15480,29 +15776,29 @@
       "id": "variants.size:default",
       "value": "default",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.size:lg",
       "value": "lg",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.size:md",
       "value": "md",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.size:sm",
       "value": "sm",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      }
     ],
     "variant": [
@@ -15510,36 +15806,36 @@
       "id": "variants.variant:default",
       "value": "default",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.variant:floating",
       "value": "floating",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.variant:inset",
       "value": "inset",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.variant:outline",
       "value": "outline",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      },
      {
       "id": "variants.variant:sidebar",
       "value": "sidebar",
       "shadcn": true,
-      "dmf": false,
-      "status": "gap"
+      "dmf": true,
+      "status": "match"
      }
     ]
    },
@@ -15551,8 +15847,10 @@
      "shadcn": {
       "default": "offcanvas"
      },
-     "dmf": null,
-     "status": "gap"
+     "dmf": {
+      "default": "offcanvas"
+     },
+     "status": "match"
     },
     {
      "id": "props.Sidebar.defaultOpen",
@@ -15562,7 +15860,8 @@
      "dmf": {
       "default": "true"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Sets the sidebar's initial state (expanded when true), read from the provider."
     },
     {
      "id": "props.Sidebar.dir",
@@ -15572,7 +15871,8 @@
       "default": null
      },
      "dmf": null,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "The text direction follows the page's dir attribute, which the sidebar's layout reads; there is no separate prop."
     },
     {
      "id": "props.Sidebar.items",
@@ -15582,7 +15882,8 @@
      "dmf": {
       "default": null
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "Items mode: DMF UI builds the sidebar's links from data. The parts (shadcn's composition) are also available."
     },
     {
      "id": "props.Sidebar.label",
@@ -15590,9 +15891,10 @@
      "prop": "label",
      "shadcn": null,
      "dmf": {
-      "default": null
+      "default": "Sidebar"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "The sidebar's accessible name (aria-label on the landmark)."
     },
     {
      "id": "props.Sidebar.presentation",
@@ -15602,7 +15904,8 @@
      "dmf": {
       "default": "label"
      },
-     "status": "extra"
+     "status": "intentional",
+     "reason": "DMF UI's shared presentation model (label, icon-label, icon), not a Base UI prop."
     },
     {
      "id": "props.Sidebar.side",
@@ -15611,8 +15914,10 @@
      "shadcn": {
       "default": "left"
      },
-     "dmf": null,
-     "status": "gap"
+     "dmf": {
+      "default": "left"
+     },
+     "status": "match"
     },
     {
      "id": "props.Sidebar.variant",
@@ -15621,17 +15926,180 @@
      "shadcn": {
       "default": "sidebar"
      },
+     "dmf": {
+      "default": "sidebar"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.SidebarMenuAction.showOnHover",
+     "component": "SidebarMenuAction",
+     "prop": "showOnHover",
+     "shadcn": {
+      "default": "false"
+     },
+     "dmf": {
+      "default": "false"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.SidebarMenuButton.isActive",
+     "component": "SidebarMenuButton",
+     "prop": "isActive",
+     "shadcn": {
+      "default": "false"
+     },
+     "dmf": {
+      "default": "false"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.SidebarMenuButton.size",
+     "component": "SidebarMenuButton",
+     "prop": "size",
+     "shadcn": {
+      "default": "default"
+     },
+     "dmf": {
+      "default": "default"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.SidebarMenuButton.tooltip",
+     "component": "SidebarMenuButton",
+     "prop": "tooltip",
+     "shadcn": {
+      "default": null
+     },
+     "dmf": {
+      "default": null
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.SidebarMenuButton.variant",
+     "component": "SidebarMenuButton",
+     "prop": "variant",
+     "shadcn": {
+      "default": "default"
+     },
+     "dmf": {
+      "default": "default"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.SidebarMenuSkeleton.showIcon",
+     "component": "SidebarMenuSkeleton",
+     "prop": "showIcon",
+     "shadcn": {
+      "default": "false"
+     },
+     "dmf": {
+      "default": "false"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.SidebarMenuSubButton.href",
+     "component": "SidebarMenuSubButton",
+     "prop": "href",
+     "shadcn": null,
+     "dmf": {
+      "default": null
+     },
+     "status": "intentional",
+     "reason": "Destination of the link. A native anchor needs an href, so DMF UI requires it."
+    },
+    {
+     "id": "props.SidebarMenuSubButton.isActive",
+     "component": "SidebarMenuSubButton",
+     "prop": "isActive",
+     "shadcn": {
+      "default": "false"
+     },
+     "dmf": {
+      "default": "false"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.SidebarMenuSubButton.size",
+     "component": "SidebarMenuSubButton",
+     "prop": "size",
+     "shadcn": {
+      "default": "md"
+     },
+     "dmf": {
+      "default": "md"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.SidebarProvider.defaultOpen",
+     "component": "SidebarProvider",
+     "prop": "defaultOpen",
+     "shadcn": {
+      "default": "true"
+     },
+     "dmf": {
+      "default": "true"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.SidebarProvider.onOpenChange",
+     "component": "SidebarProvider",
+     "prop": "onOpenChange",
+     "shadcn": {
+      "default": null
+     },
      "dmf": null,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "Astro has no callbacks. Listen for changes to data-state on the sidebar wrapper instead."
+    },
+    {
+     "id": "props.SidebarProvider.open",
+     "component": "SidebarProvider",
+     "prop": "open",
+     "shadcn": {
+      "default": null
+     },
+     "dmf": {
+      "default": null
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.SidebarTrigger.onClick",
+     "component": "SidebarTrigger",
+     "prop": "onClick",
+     "shadcn": {
+      "default": null
+     },
+     "dmf": null,
+     "status": "intentional",
+     "reason": "Astro has no callbacks. Listen for clicks on the trigger instead; the trigger also updates aria-expanded itself."
     }
    ],
    "dataAttributes": [
     {
+     "id": "dataAttributes:data-active",
+     "value": "data-active",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "Marks the current item, styled with data-active:."
+    },
+    {
      "id": "dataAttributes:data-collapsible",
      "value": "data-collapsible",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "dataAttributes:data-mobile",
@@ -15645,35 +16113,44 @@
      "value": "data-presentation",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "DMF UI's shared presentation model (label, icon-label, icon)."
     },
     {
      "id": "dataAttributes:data-side",
      "value": "data-side",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "dataAttributes:data-sidebar",
      "value": "data-sidebar",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
+    },
+    {
+     "id": "dataAttributes:data-size",
+     "value": "data-size",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "The item's size (default, sm, lg), styled with data-[size=…]:."
     },
     {
      "id": "dataAttributes:data-state",
      "value": "data-state",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "dataAttributes:data-variant",
      "value": "data-variant",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "stateHooks": [
@@ -15681,29 +16158,29 @@
      "id": "stateHooks:aria-disabled",
      "value": "aria-disabled",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:aria-expanded",
      "value": "aria-expanded",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-active",
      "value": "data-active",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-collapsible",
      "value": "data-collapsible",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-open",
@@ -15716,36 +16193,37 @@
      "id": "stateHooks:data-side",
      "value": "data-side",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-sidebar",
      "value": "data-sidebar",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "shadcn's styling hook for its parts; DMF UI styles each part by its data-slot instead."
     },
     {
      "id": "stateHooks:data-size",
      "value": "data-size",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-state",
      "value": "data-state",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "stateHooks:data-variant",
      "value": "data-variant",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "nova": {

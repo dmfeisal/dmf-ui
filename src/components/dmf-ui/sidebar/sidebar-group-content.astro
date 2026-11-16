@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'div'>;
+const {class:className,...props}=Astro.props;
+
+---
+<div {...props} data-slot="sidebar-group-content" class={cn('w-full text-sm',className)}><slot/></div>

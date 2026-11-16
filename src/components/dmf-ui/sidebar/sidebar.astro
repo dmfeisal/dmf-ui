@@ -5,8 +5,20 @@ import {PanelLeft,ChevronDown} from '@lucide/astro';
 import {NavigationMenu} from '../navigation-menu';
 import Content from '../navigation-content.astro';
 import {cn} from '../utils';
-interface Props extends HTMLAttributes<'aside'> {label:string;items:NavigationItem[];presentation?:Presentation;defaultOpen?:boolean;}
-const {label,items,presentation='label',defaultOpen=true,class:className,...props}=Astro.props;
+interface Props extends HTMLAttributes<'aside'> {label?:string;items?:NavigationItem[];presentation?:Presentation;defaultOpen?:boolean;side?:'left'|'right';variant?:'sidebar'|'floating'|'inset';collapsible?:'offcanvas'|'icon'|'none';}
+const {label='Sidebar',items,presentation='label',defaultOpen=true,side='left',variant='sidebar',collapsible='offcanvas',class:className,...props}=Astro.props;
+// With `items` this is the list-style sidebar. Without it, children are the parts (SidebarHeader, SidebarContent, …) in
+// shadcn/ui's layout: a gap that holds the column's width, then a fixed container with the inner panel. The layout follows
+// the SidebarProvider's state and this sidebar's collapsible mode.
 ---
+{items?(
 <aside data-slot="sidebar" data-presentation={presentation} aria-label={label} class={cn('dmf-sidebar',className)} {...props}><details open={defaultOpen} data-dmf-nav-disclosure><summary title={presentation==='icon'?label:undefined}><Content label={label} icon={PanelLeft} presentation={presentation}/><ChevronDown size={16} aria-hidden="true"/></summary><NavigationMenu label={`${label} links`} items={items} presentation={presentation} orientation="vertical"/></details></aside>
+):(
+<div data-slot="sidebar" data-side={side} data-variant={variant} data-collapsible={collapsible} class={cn('group peer text-sidebar-foreground relative block',className)} {...props}>
+ <div data-slot="sidebar-gap" class="relative w-64 bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[collapsible=icon]:group-data-[state=collapsed]:w-12"></div>
+ <div data-slot="sidebar-container" data-side={side} class="fixed inset-y-0 z-10 hidden h-svh w-64 transition-[left,right,width] duration-200 ease-linear md:flex data-[side=left]:left-0 data-[side=right]:right-0">
+  <div data-slot="sidebar-inner" class="bg-sidebar flex h-full w-full flex-col"><slot/></div>
+ </div>
+</div>
+)}
 <script>import '../navigation-disclosure';</script>

@@ -1,0 +1,9 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'button'>&{isActive?:boolean;size?:'default'|'sm'|'lg';variant?:'default'|'outline';tooltip?:string;};
+const {class:className,isActive=false,size='default',variant='default',tooltip,...props}=Astro.props;
+// The item's button. isActive marks the current item (aria-current and data-active). tooltip is shown as a native title,
+// which is what a collapsed icon-only sidebar needs to name its items.
+---
+<button {...props} type="button" data-slot="sidebar-menu-button" data-size={size} data-variant={variant} data-active={isActive?'':undefined} aria-current={isActive?'page':undefined} title={tooltip} class={cn('peer/menu-button hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground aria-expanded:bg-sidebar-accent aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[size=sm]:text-xs data-[size=lg]:h-12 data-[variant=outline]:border-sidebar-border data-[variant=outline]:bg-background data-[variant=outline]:border data-[variant=outline]:shadow-[0_0_0_1px_var(--sidebar-border)] flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 h-8',className)}><slot/></button>

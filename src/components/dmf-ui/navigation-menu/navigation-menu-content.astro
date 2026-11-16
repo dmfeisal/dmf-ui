@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'div'>;
+const {class:className,...props}=Astro.props;
+// The panel under a trigger. Hidden until opened; the runtime positions it fixed beside its trigger.
+---
+<div {...props} data-slot="navigation-menu-content" data-state="closed" hidden class={cn('bg-popover text-popover-foreground ring-foreground/10 fixed z-50 w-max rounded-lg p-2 shadow-md ring-1',className)}><slot/></div>
