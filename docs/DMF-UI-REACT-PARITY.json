@@ -25,9 +25,9 @@
  ],
  "totals": {
   "families": 13,
-  "match": 77,
+  "match": 80,
   "intentional": 25,
-  "gap": 19,
+  "gap": 16,
   "differs": 0,
   "extra": 0
  },
@@ -354,9 +354,9 @@
    ],
    "missingExports": [],
    "counts": {
-    "match": 1,
+    "match": 4,
     "intentional": 0,
-    "gap": 3,
+    "gap": 0,
     "differs": 0,
     "extra": 0
    },
@@ -374,15 +374,15 @@
      "id": "slots:switch",
      "value": "switch",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:switch-thumb",
      "value": "switch-thumb",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "props": [
@@ -393,8 +393,10 @@
      "shadcn": {
       "default": "default"
      },
-     "react": null,
-     "status": "gap"
+     "react": {
+      "default": "default"
+     },
+     "status": "match"
     }
    ],
    "variants": [],

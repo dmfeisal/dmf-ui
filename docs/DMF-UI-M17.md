@@ -14,14 +14,16 @@ This record covers the React adapter (`packages/react`, `@dmf-ui/react`) against
 
 | | Count |
 | --- | --- |
-| Match | 77 |
+| Match | 80 |
 | Intentional | 25 |
-| Gap | 19 |
+| Gap | 16 |
 | Extra | 0 |
+
+**Fixed in this milestone**
+- **Switch:** the input and thumb carry data-slot names, and `size` (`default`, `sm`) sets the track and thumb sizes. Switch now matches in all four measured parts.
 
 **Gaps**
 - **Select (16):** the React Select is a native `<select>` with native options and groups. shadcn's Select is a popup listbox with trigger, content, item, label, separator, value and scroll buttons. Closing these gaps means building a custom listbox, which is a decision for the owner: keep the native select as the React design, or build the listbox.
-- **Switch (3):** the track and thumb have no data-slot names, and there is no `size` prop. Both are small and can be done next.
 
 **Intentional (25)**
 - Native inputs for checkbox and radio: no indicator element, as in the Astro record.
@@ -36,3 +38,16 @@ This record covers the React adapter (`packages/react`, `@dmf-ui/react`) against
 - Batch 6, data display and feedback: 41 gaps, and 152 DMF-only props and attributes still to decide.
 - Two extras in the shared foundations still need a decision.
 - A dropdown bug: a second dropdown on a page stops the first from opening. It affects any page with two menus.
+
+## Presets: theme only
+
+AGENTS.md makes Nova the design profile and says presets change the theme only. The shadcn record compares against Nova's structure, so presets are checked separately.
+
+- **Scenario:** `tests/browser/dmf-ui-preset-theme.mjs` renders every parity case under the `dmf` preset and under each other preset (`cb-ui`, `hui`, `qdi`, `portfolio`).
+- **Compared:** height, padding, gaps, font size and weight, line height, letter spacing, border width and opacity. Colours, the corner radius and the font are theme properties and may differ.
+- **Not compared:** width. It follows the preset's font (text, and an input's intrinsic size), so it is a theme effect.
+- **Record:** `docs/DMF-UI-PRESET-THEME.json`. It fails when the set of structural differences changes; `DMF_UI_PRESET_WRITE=1` accepts a change.
+
+**Result:** 203 cases under four presets, 0 structural differences. The presets change theme only, on the measured properties.
+
+**Not checked by this:** the React components under presets, which are not rendered in this scenario.

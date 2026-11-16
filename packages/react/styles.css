@@ -5,6 +5,8 @@
 .dmf-ui .dmf-react-switch input { position:absolute; inline-size:32px; block-size:100%; inset-inline-start:0; inset-block-start:0; opacity:0; cursor:inherit; z-index:1; }
 .dmf-ui .dmf-react-switch-track { display:inline-flex; align-items:center; inline-size:32px; block-size:18.4px; padding:2px; flex-shrink:0; border-radius:999px; background:var(--muted-foreground); outline:1px solid var(--muted-foreground); }
 .dmf-ui .dmf-react-switch-thumb { inline-size:14px; block-size:14px; border-radius:50%; background:var(--background); }
+.dmf-ui .dmf-react-switch[data-size=sm] .dmf-react-switch-track { inline-size:24px; block-size:14px; }
+.dmf-ui .dmf-react-switch[data-size=sm] .dmf-react-switch-thumb { inline-size:12px; block-size:12px; }
 .dmf-ui .dmf-react-switch input:checked + .dmf-react-switch-track { background:var(--primary); justify-content:flex-end; }
 .dmf-ui .dmf-react-switch input:checked + .dmf-react-switch-track .dmf-react-switch-thumb { background:var(--primary-foreground); }
 .dmf-ui .dmf-react-switch input:focus-visible + .dmf-react-switch-track { outline:2px solid var(--foreground); outline-offset:3px; }

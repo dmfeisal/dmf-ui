@@ -46,18 +46,18 @@ export function readReact(source){
    if(ignored.has(prop))continue;
    props[prop]=el.initializer?el.initializer.getText(ast).replace(/^(["'])([^"']*)\1$/,'$2'):null;
   }
-  let slot=null;const classes=[];const attributes=new Set();
+  let slot=null;const slots=new Set();const classes=[];const attributes=new Set();
   walk(statement,node=>{
    if(!(ts.isJsxOpeningElement(node)||ts.isJsxSelfClosingElement(node)))return;
    for(const attr of node.attributes.properties){
     if(!ts.isJsxAttribute(attr)||!attr.initializer)continue;
     const attrName=attr.name.getText(ast);
-    if(attrName==='data-slot'){const value=literal(attr.initializer)??(ts.isJsxExpression(attr.initializer)?literal(attr.initializer.expression):undefined);if(value&&!slot)slot=value;}
+    if(attrName==='data-slot'){const value=literal(attr.initializer)??(ts.isJsxExpression(attr.initializer)?literal(attr.initializer.expression):undefined);if(value){slots.add(value);if(!slot)slot=value;}}
     else if(attrName.startsWith('data-'))attributes.add(attrName);
     if(attrName==='className'){walk(attr.initializer,c=>{const t=literal(c);if(t)classes.push(t);});}
    }
   });
-  components[component]={props,slot,classes:sorted(classes.join(' ').split(/\s+/).filter(Boolean)),attributes:sorted([...attributes])};
+  components[component]={props,slot,slots:sorted([...slots]),classes:sorted(classes.join(' ').split(/\s+/).filter(Boolean)),attributes:sorted([...attributes])};
  }
  return components;
 }
@@ -75,7 +75,7 @@ export async function build(){
   const reactExports=map.exports.filter(e=>react[e]);
   const missing=map.exports.filter(e=>!react[e]);
   const components=Object.fromEntries(reactExports.map(e=>[e,react[e]]));
-  const slots=sorted(reactExports.map(e=>components[e].slot).filter(Boolean));
+  const slots=sorted(reactExports.flatMap(e=>components[e].slots));
   const shadcnSlots=s.slots;
   const parts=compareSets(s.exports.filter(e=>/^[A-Z]/.test(e)),reactExports,dec,'parts');
   const slotItems=compareSets(shadcnSlots,slots,dec,'slots');
