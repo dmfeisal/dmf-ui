@@ -3238,8 +3238,8 @@
       },
       "tokens": [
         "background",
+        "foreground",
         "muted",
-        "muted-foreground",
         "primary",
         "primary-foreground"
       ],
@@ -3261,6 +3261,7 @@
           "tests/product-details.test.mjs",
           "tests/shadcn-parity.test.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
+          "tests/browser/dmf-ui-parts.mjs",
           "tests/browser/dmf-ui-product-details.mjs"
         ]
       },
@@ -3272,11 +3273,11 @@
         },
         {
           "path": "src/components/dmf-ui/avatar/avatar-fallback.astro",
-          "sha256": "653f8dd2591524aeb86f135200cd554df50f348051d50832c03d9910e3808466"
+          "sha256": "ecb2efef01bda7f6816e6c74e9c77be9f5a9f89192c6adc4dbbdf3ee06384920"
         },
         {
           "path": "src/components/dmf-ui/avatar/avatar-group-count.astro",
-          "sha256": "0b0c1d7b344d422c2b8be13f25dae49933e3152e0a720ed6811505f3c70dde34"
+          "sha256": "5b09608c89bfd70dce3ddca93628a1bfbcac6c0ee8fd06b26ad0c715dc20161c"
         },
         {
           "path": "src/components/dmf-ui/avatar/avatar-group.astro",
@@ -3288,7 +3289,7 @@
         },
         {
           "path": "src/components/dmf-ui/avatar/avatar.astro",
-          "sha256": "8a9248c0d617e2d32413f7069a4e71018db79bb213e4c7f86ef3ac3cb424985c"
+          "sha256": "a7e9669ea87912607a8e79905d67c7049ced8cce11ef405b2cfc1489d3e93eee"
         },
         {
           "path": "src/components/dmf-ui/avatar/index.ts",
@@ -14282,6 +14283,7 @@
           "tests/browser/dmf-ui-fulldev-catalog.mjs",
           "tests/browser/dmf-ui-hero-docs.mjs",
           "tests/browser/dmf-ui-merchant-card-consumer.mjs",
+          "tests/browser/dmf-ui-parts.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/native-dropdown-contrast.mjs"
         ]
@@ -15999,6 +16001,7 @@
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-overlays.mjs",
+          "tests/browser/dmf-ui-parts.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
           "tests/browser/dmf-ui-search.mjs",
@@ -20519,7 +20522,8 @@
         "sources": [
           "tests/feedback.test.mjs",
           "tests/browser/dmf-ui-feedback.mjs",
-          "tests/browser/dmf-ui-m5.mjs"
+          "tests/browser/dmf-ui-m5.mjs",
+          "tests/browser/dmf-ui-parts.mjs"
         ]
       },
       "status": "partial",
@@ -26558,6 +26562,7 @@
           "tests/browser/dmf-ui-m5.mjs",
           "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
+          "tests/browser/dmf-ui-parts.mjs",
           "tests/browser/dmf-ui-runtime.mjs",
           "tests/browser/dmf-ui-selection.mjs",
           "tests/browser/table-scroll-contrast.mjs"
@@ -27615,6 +27620,7 @@
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-overlays.mjs",
+          "tests/browser/dmf-ui-parts.mjs",
           "tests/browser/dmf-ui-pilot.mjs",
           "tests/browser/dmf-ui-portfolio.mjs",
           "tests/browser/dmf-ui-preset-theme.mjs",

@@ -26,8 +26,8 @@
   "sharedFamilies": {
    "count": 50,
    "dmfCss": {
-    "bytes": 341049,
-    "gzip": 77699
+    "bytes": 341037,
+    "gzip": 77696
    },
    "shadcnCss": {
     "bytes": 335824,
@@ -288,16 +288,16 @@
    "shadcn": true,
    "css": {
     "utilities": {
-     "bytes": 3533,
-     "gzip": 952
+     "bytes": 3521,
+     "gzip": 948
     },
     "rules": {
      "bytes": 725,
      "gzip": 361
     },
     "total": {
-     "bytes": 4258,
-     "gzip": 1194
+     "bytes": 4246,
+     "gzip": 1191
     }
    },
    "shadcnCss": {
@@ -317,14 +317,14 @@
    "withoutJs": {
     "status": "more",
     "js": {
-     "visible": 28,
+     "visible": 38,
      "focusable": 0,
-     "text": 130
+     "text": 142
     },
     "noJs": {
-     "visible": 29,
+     "visible": 40,
      "focusable": 0,
-     "text": 130
+     "text": 142
     }
    }
   },
@@ -2092,14 +2092,14 @@
    "withoutJs": {
     "status": "static",
     "js": {
-     "visible": 27,
+     "visible": 33,
      "focusable": 3,
-     "text": 182
+     "text": 198
     },
     "noJs": {
-     "visible": 27,
+     "visible": 33,
      "focusable": 3,
-     "text": 182
+     "text": 198
     }
    }
   },
@@ -2741,14 +2741,14 @@
    "withoutJs": {
     "status": "static",
     "js": {
-     "visible": 46,
-     "focusable": 5,
-     "text": 316
+     "visible": 57,
+     "focusable": 6,
+     "text": 353
     },
     "noJs": {
-     "visible": 46,
-     "focusable": 5,
-     "text": 316
+     "visible": 57,
+     "focusable": 6,
+     "text": 353
     }
    }
   },
