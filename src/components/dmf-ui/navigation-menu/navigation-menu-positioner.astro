@@ -1,0 +1,17 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'div'>&{
+  /** Edge of the trigger the panel opens from. Default: bottom. */
+  side?:'top'|'bottom'|'left'|'right';
+  /** Where the panel lines up along the trigger. Default: start. */
+  align?:'start'|'center'|'end';
+  /** Gap between trigger and panel, in pixels. Default: 6. */
+  sideOffset?:number;
+  /** Shift along the trigger, in pixels. Default: 0. */
+  alignOffset?:number;
+};
+const {class:className,side='bottom',align='start',sideOffset=6,alignOffset=0,...props}=Astro.props;
+// Holds a trigger's panel and carries its placement; the runtime reads these attributes. It adds no box of its own.
+---
+<div {...props} data-slot="navigation-menu-positioner" data-side={side} data-align={align} data-side-offset={sideOffset} data-align-offset={alignOffset} class={cn('contents',className)}><slot/></div>

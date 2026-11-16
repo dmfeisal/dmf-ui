@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'div'>;
+const {class:className,...props}=Astro.props;
+// Decorative pointer under an open trigger.
+---
+<div {...props} data-slot="navigation-menu-indicator" aria-hidden="true" class={cn('bg-border relative top-full flex h-2 items-end justify-center overflow-hidden opacity-0 group-data-open/navigation-menu-item:opacity-100',className)}><div class="bg-border relative top-[60%] size-2.5 rotate-45 rounded-tl-sm"></div></div>

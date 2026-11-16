@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'button'>;
+const {class:className,...props}=Astro.props;
+// A thin edge control that toggles the sidebar when pointed at or clicked. It is not a tab stop; SidebarTrigger is.
+---
+<button {...props} type="button" tabindex="-1" aria-label="Toggle sidebar" data-slot="sidebar-rail" data-sidebar-toggle class={cn('hover:after:bg-sidebar-border absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear group-data-[side=left]:-end-4 group-data-[side=right]:start-0 after:absolute after:inset-y-0 after:start-1/2 after:w-[2px] sm:flex',className)}></button>

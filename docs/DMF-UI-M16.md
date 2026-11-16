@@ -8,7 +8,7 @@
 | 2. Actions and inputs | Done (dmfeisal/dmf-ui#35, #36) |
 | 3. Selection | 3a (dmfeisal/dmf-ui#37) and 3b in this report |
 | 4. Overlays and menus | Gaps closed except drawer snap-point list; extras decided |
-| 5. Navigation | In progress: Breadcrumb, Pagination and Tabs done; Navigation Menu and Sidebar open |
+| 5. Navigation | 2 gaps open (Sidebar mobile sheet and data-open); the rest closed |
 | 6. Data display and feedback | Planned |
 
 ## Batch 1: shared foundations
@@ -383,3 +383,39 @@ Batch 5 started with 124 gaps. This part closes Breadcrumb, Pagination and Tabs.
 **Not yet tested in a browser:** the new parts. Their markup is covered by the type check and the existing items-mode scenarios, but they need a scenario of their own before this is merged.
 
 **Next:** Navigation Menu, which needs dropdown panels, a viewport and an indicator, and Sidebar, which needs a provider, collapse modes and a mobile sheet. Each is its own piece of work and needs a decision on scope.
+
+## Batch 5, part 2: Navigation Menu and Sidebar
+
+**Navigation Menu** now has its parts: `NavigationMenuList`, `Item`, `Trigger`, `Content`, `Link`, `Positioner` and `Indicator`.
+- **Panels:** each trigger opens its panel beside it. Only one panel is open at a time.
+- **Pointer:** a click opens or closes it; hovering opens it, and leaving the trigger and panel closes it after a short delay.
+- **Keyboard:** Enter, Space or ArrowDown opens and focuses the first link. ArrowLeft and ArrowRight move between triggers, reversed in right-to-left text. Escape closes and returns focus to the trigger. Focus leaving the item closes it.
+- **Placement:** `side`, `sideOffset`, `align` and `alignOffset` on `NavigationMenuPositioner`.
+- **No-JavaScript:** items mode still works without JavaScript. The parts need the runtime for their panels, as shadcn's do; the unit test checks that the component's only script loads that runtime.
+
+**Sidebar** now has shadcn's parts: `SidebarProvider`, `SidebarTrigger`, `SidebarRail`, `SidebarInset`, `SidebarHeader`, `SidebarContent`, `SidebarFooter`, the group parts, the menu parts (button, action, badge, sub, skeleton), `SidebarSeparator`, `SidebarInput`, plus the layout pieces (gap, container, inner, wrapper).
+- **Toggle:** the trigger and rail flip the provider's `data-state` between expanded and collapsed, and keep `aria-expanded` in step.
+- **Collapse modes:** `collapsible` (`offcanvas`, `icon`, `none`) and `side` and `variant` control the layout through the provider's state.
+- **Items mode:** unchanged.
+- **Inset:** rendered as a `div`, so a page that already has its own `main` doesn't nest one.
+
+**Still open in Sidebar (2 gaps)**
+- **Mobile sheet** (`data-mobile`): on small screens shadcn turns an offcanvas sidebar into a sheet. DMF UI doesn't do that yet.
+- **`data-open`**: shadcn styles its open state with this attribute, and DMF UI styles the sidebar's open state through `data-state`.
+
+**Recorded as intentional:** Astro callbacks (`onOpenChange` and `onClick` are replaced by reading `data-state` or listening for clicks), `dir` (read from the page), and `data-sidebar` (DMF UI styles its parts by `data-slot`), plus the navigation menu's animation hooks, which DMF UI doesn't use.
+
+**Results**
+
+| | Before part 2 | Now |
+| --- | --- | --- |
+| Navigation Menu gaps | 25 | 0 |
+| Sidebar gaps | 76 | 2 |
+| Batch 5 gaps | 101 | 2 |
+| Static gaps, all families | 177 | 42 |
+
+**Tests:** a new browser scenario (`navigation-parts`) covers the menu's click, hover, arrow keys, Escape and placement; the sidebar toggle; and the breadcrumb and pagination current pages. The full docs suite runs 31 scenarios and passes. Unit tests (83) and the type check pass.
+
+**Fixed along the way:** the large-text scenario caught the Sidebar example overflowing on a phone at enlarged text; the example now stacks on narrow screens.
+
+**Size:** the Sidebar and Navigation Menu runtimes and styles are new, so their CSS and JS grow. I haven't measured the change here.

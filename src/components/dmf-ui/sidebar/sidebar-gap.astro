@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'div'>;
+const {class:className,...props}=Astro.props;
+
+---
+<div {...props} data-slot="sidebar-gap" class={cn('relative w-64 bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[collapsible=icon]:group-data-[state=collapsed]:w-12',className)}><slot/></div>

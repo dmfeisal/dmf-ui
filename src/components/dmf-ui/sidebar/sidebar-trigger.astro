@@ -1,0 +1,9 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {PanelLeft} from '@lucide/astro';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'button'>;
+const {class:className,...props}=Astro.props;
+// Toggles the sidebar of its SidebarProvider between expanded and collapsed.
+---
+<button {...props} type="button" aria-label="Toggle sidebar" aria-expanded="true" data-slot="sidebar-trigger" data-sidebar-toggle class={cn('hover:bg-accent inline-flex size-7 items-center justify-center rounded-md outline-hidden focus-visible:ring-2 focus-visible:ring-ring/50 [&>svg]:size-4',className)}><PanelLeft aria-hidden="true"/><span class="sr-only">Toggle sidebar</span></button>

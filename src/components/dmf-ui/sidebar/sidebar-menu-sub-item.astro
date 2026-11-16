@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'li'>;
+const {class:className,...props}=Astro.props;
+
+---
+<li {...props} data-slot="sidebar-menu-sub-item" class={cn('group/menu-sub-item relative',className)}><slot/></li>
