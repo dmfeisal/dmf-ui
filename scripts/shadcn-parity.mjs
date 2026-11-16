@@ -299,7 +299,7 @@ const shadcnAxes=s=>{const axes=structuredClone(s.unionAxes);for(const c of Obje
 const decide=(decisions,id)=>decisions[id]??Object.entries(decisions).find(([k])=>k.endsWith('*')&&id.startsWith(k.slice(0,-1)))?.[1];
 
 // Compare two name lists. A shadcn-only item is a gap; a DMF-only item is an extra until a decision explains it.
-function compareSets(shadcn,dmf,decisions,prefix){
+export function compareSets(shadcn,dmf,decisions,prefix){
  const s=new Set(shadcn),d=new Set(dmf),items=[];
  for(const v of sorted([...s,...d])){
   const id=`${prefix}:${v}`,both=s.has(v)&&d.has(v);

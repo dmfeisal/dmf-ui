@@ -727,7 +727,7 @@
       },
       {
         "name": "SwitchProps",
-        "declaration": "export type SwitchProps = Omit<ComponentPropsWithRef<'input'>,'type'|'role'|'children'|'size'|'readOnly'> & {children:ReactNode};"
+        "declaration": "export type SwitchProps = Omit<ComponentPropsWithRef<'input'>,'type'|'role'|'children'|'size'|'readOnly'> & {children:ReactNode;size?:'default'|'sm'};"
       },
       {
         "name": "BadgeVariant",
@@ -855,7 +855,7 @@
       }
     ],
     "source": "packages/react/src/index.tsx",
-    "sha256": "8be1f7a459f49f03bffc050db11ca4ab4fc2164c4b1d8f6a2b7cbe496f94147a",
+    "sha256": "4011911cd0a920e2f36aac8881c445218e7946a25830b469300c305034748f9c",
     "status": "separate-web-alpha",
     "note": "React native props and controlled/uncontrolled patterns differ from Astro. No Astro parity claim."
   },
@@ -3446,6 +3446,7 @@
         "status": "references-only",
         "sources": [
           "tests/content.test.mjs",
+          "tests/react-parity.test.mjs",
           "tests/browser/dmf-ui-content-docs.mjs",
           "tests/browser/dmf-ui-content.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs"
@@ -14445,6 +14446,7 @@
           "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-overlays.mjs",
+          "tests/browser/dmf-ui-preset-theme.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
           "tests/browser/dmf-ui-reset-password-consumer.mjs",
@@ -27372,6 +27374,7 @@
           "tests/browser/dmf-ui-overlays.mjs",
           "tests/browser/dmf-ui-pilot.mjs",
           "tests/browser/dmf-ui-portfolio.mjs",
+          "tests/browser/dmf-ui-preset-theme.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
           "tests/browser/dmf-ui-reset-password-consumer.mjs",

@@ -41,11 +41,11 @@ export type CardProps = ComponentPropsWithRef<'div'> & {size?:'default'|'sm'};
 export function Card({size='default',className,...props}:CardProps) {
  return <div {...props} data-slot="card" data-size={size} className={join('ring-foreground/10 bg-card text-card-foreground min-w-0 max-w-full rounded-xl text-sm shadow-xs ring-1 flex flex-col [overflow-wrap:anywhere]',size==='sm'?'gap-3 p-3':'gap-4 p-4',className)} />;
 }
-export type SwitchProps = Omit<ComponentPropsWithRef<'input'>,'type'|'role'|'children'|'size'|'readOnly'> & {children:ReactNode};
-export function Switch({children,className,...props}:SwitchProps) {
- return <label className={join('dmf-react-switch',className)}>
-  <input {...props} type="checkbox" role="switch" />
-  <span className="dmf-react-switch-track" aria-hidden="true"><span className="dmf-react-switch-thumb" /></span>
+export type SwitchProps = Omit<ComponentPropsWithRef<'input'>,'type'|'role'|'children'|'size'|'readOnly'> & {children:ReactNode;size?:'default'|'sm'};
+export function Switch({children,className,size='default',...props}:SwitchProps) {
+ return <label className={join('dmf-react-switch',className)} data-size={size}>
+  <input {...props} type="checkbox" role="switch" data-slot="switch" />
+  <span className="dmf-react-switch-track" aria-hidden="true"><span className="dmf-react-switch-thumb" data-slot="switch-thumb" /></span>
   <span>{children}</span>
  </label>;
 }

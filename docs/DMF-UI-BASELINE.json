@@ -436,14 +436,14 @@
    "withoutJs": {
     "status": "more",
     "js": {
-     "visible": 92,
-     "focusable": 8,
-     "text": 154
+     "visible": 101,
+     "focusable": 9,
+     "text": 176
     },
     "noJs": {
-     "visible": 96,
-     "focusable": 8,
-     "text": 154
+     "visible": 105,
+     "focusable": 9,
+     "text": 176
     }
    }
   },
@@ -1893,14 +1893,14 @@
    "withoutJs": {
     "status": "more",
     "js": {
-     "visible": 84,
-     "focusable": 12,
-     "text": 167
+     "visible": 96,
+     "focusable": 15,
+     "text": 204
     },
     "noJs": {
-     "visible": 90,
-     "focusable": 12,
-     "text": 167
+     "visible": 102,
+     "focusable": 15,
+     "text": 204
     }
    }
   },
@@ -1973,14 +1973,14 @@
    "withoutJs": {
     "status": "more",
     "js": {
-     "visible": 80,
-     "focusable": 19,
-     "text": 175
+     "visible": 103,
+     "focusable": 23,
+     "text": 204
     },
     "noJs": {
-     "visible": 84,
-     "focusable": 19,
-     "text": 175
+     "visible": 107,
+     "focusable": 23,
+     "text": 204
     }
    }
   },
@@ -2536,14 +2536,14 @@
    "withoutJs": {
     "status": "more",
     "js": {
-     "visible": 126,
-     "focusable": 16,
-     "text": 200
+     "visible": 153,
+     "focusable": 20,
+     "text": 267
     },
     "noJs": {
-     "visible": 132,
-     "focusable": 16,
-     "text": 200
+     "visible": 159,
+     "focusable": 20,
+     "text": 267
     }
    }
   },

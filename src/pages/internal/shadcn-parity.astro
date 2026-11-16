@@ -18,7 +18,7 @@ const family=(slug:string)=>modules[`../../components/dmf-ui/${slug}/index.ts`];
 {data.cases.map((c:any)=>{const Component=c.component?family(c.family)[c.component]:null;return (
  <section data-parity-case={c.id} style="display:flex;gap:2rem;align-items:flex-start;padding:1rem">
   {/* Compositions lay out to their container, so both sides get the same width. */}
-  <div data-parity-side="dmf" style={c.kind==='compound'?'flex:0 0 24rem;min-width:0':undefined}>{'tree' in c?<ParityNode node={c.tree as any} family={family(c.family)}/>:c.void?<Component {...c.dmf.props}/>:<Component {...c.dmf.props}>{c.text}</Component>}</div>
+  <div data-parity-side="dmf" class="dmf-ui" data-system="dmf" style={c.kind==='compound'?'flex:0 0 24rem;min-width:0':undefined}>{'tree' in c?<ParityNode node={c.tree as any} family={family(c.family)}/>:c.void?<Component {...c.dmf.props}/>:<Component {...c.dmf.props}>{c.text}</Component>}</div>
   <div data-parity-side="shadcn" class="style-nova" style={c.kind==='compound'?'flex:0 0 24rem;min-width:0':undefined}></div>
  </section>
 );})}

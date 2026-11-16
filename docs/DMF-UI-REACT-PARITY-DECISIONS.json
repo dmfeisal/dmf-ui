@@ -1,0 +1,50 @@
+{
+ "about": "Owner decisions for docs/DMF-UI-REACT-PARITY.json (M17). Keys are item ids from that record (a trailing * covers a prefix). A decision that matches no difference fails `npm run react:check`.",
+ "families": {
+  "button": {
+   "props.Button.type": "Native button type. The adapter defaults it to button so a Button outside a form never submits; shadcn's Base UI button sets the same default."
+  },
+  "input": {
+   "props.Input.type": "Native input type, passed through to the element as a native attribute."
+  },
+  "card": {
+   "props.CardTitle.as": "Renders the title as a heading level or other element, as DMF UI's Astro CardTitle does (see the Astro record)."
+  },
+  "badge": {
+   "slots:badge": "DMF UI's React Badge marks its element with data-slot=badge; shadcn's Badge also sets data-slot=badge, so this is the same name under the React adapter's data-slot. Kept as extra for the adapter's own naming."
+  },
+  "alert": {
+   "props.Alert.role": "Defaults to role=note so an alert with no live region is still announced as a note; shadcn's Alert has no role of its own."
+  },
+  "separator": {
+   "props.Separator.decorative": "Chooses between role=separator and a presentational divider, as DMF UI's Astro Separator does."
+  },
+  "field": {
+   "slots:field-title": "The React adapter's name for the field title, as its FieldLabel is a label. shadcn's FieldTitle uses field-label.",
+   "props.Field.role": "Defaults to role=group so a field's controls are grouped for assistive technology; shadcn's Field has no role of its own.",
+   "props.FieldError.role": "Defaults to role=alert so errors are announced when they appear; shadcn's FieldError has no role of its own.",
+   "slots:field-separator-content": "The text inside a separator with a label. The adapter renders the separator text in the separator element itself."
+  },
+  "checkbox": {
+   "slots:checkbox-indicator": "The checkbox is a native input styled with its own pseudo-element, so there is no indicator element (as in the Astro record)."
+  },
+  "radio-group": {
+   "slots:radio-group-indicator": "The radio is a native input styled with its own pseudo-element, so there is no indicator element (as in the Astro record).",
+   "props.RadioGroup.defaultValue": "Initial value, uncontrolled, as native radios use.",
+   "props.RadioGroup.disabled": "Disables every item in the group.",
+   "props.RadioGroup.name": "Native name that submits with the form.",
+   "props.RadioGroup.onValueChange": "Callback for the selected value; React's form for change handling.",
+   "props.RadioGroup.orientation": "Lays the items out in a row or column, styled through data-orientation.",
+   "props.RadioGroup.required": "Native required on the group's radios.",
+   "props.RadioGroup.value": "Controlled value, the React form of the same selection.",
+   "props.RadioGroupItem.disabled": "Disables one item.",
+   "props.RadioGroupItem.onChange": "React change handler for the item's native input.",
+   "props.RadioGroupItem.value": "The native value this item submits."
+  },
+  "select": {
+   "parts:SelectOption": "The React Select is a native select, so its options are native option elements.",
+   "slots:select": "The native select element itself.",
+   "slots:select-option": "The native option element."
+  }
+ }
+}
