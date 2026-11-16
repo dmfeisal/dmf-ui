@@ -1,0 +1,10 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'div'>&{defaultOpen?:boolean;open?:boolean;};
+const {defaultOpen=true,open,class:className,...props}=Astro.props;
+const expanded=open??defaultOpen;
+// Holds the sidebar's expanded or collapsed state in data-state. SidebarTrigger and SidebarRail toggle it.
+---
+<div {...props} data-slot="sidebar-wrapper" data-state={expanded?'expanded':'collapsed'} class={cn('group/sidebar-wrapper flex min-h-svh w-full',className)}><slot/></div>
+<script>import './sidebar-runtime';</script>

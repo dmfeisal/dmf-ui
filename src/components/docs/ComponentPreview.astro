@@ -8,7 +8,7 @@ import SelectionPreview from './SelectionPreview.astro';
 import DataDisplayPreview from './DataDisplayPreview.astro';
 import FeedbackPreview from './FeedbackPreview.astro';
 import Presentations from './PresentationExamples.astro';
-import {Sidebar} from '../dmf-ui/sidebar';
+import {Sidebar,SidebarContent,SidebarFooter,SidebarGroup,SidebarGroupContent,SidebarGroupLabel,SidebarHeader,SidebarInset,SidebarMenu,SidebarMenuButton,SidebarMenuItem,SidebarProvider,SidebarTrigger} from '../dmf-ui/sidebar';
 import {ResponsiveNavigation} from '../dmf-ui/responsive-navigation';
 import {House,BookOpen,Palette} from '@lucide/astro';
 import {ArchiveIndex} from '../dmf-ui/archive-index';
@@ -18,9 +18,9 @@ import {SectionNavigation} from '../dmf-ui/section-navigation';
 import {Avatar} from '../dmf-ui/avatar';
 import {Rating} from '../dmf-ui/rating';
 import {Chip} from '../dmf-ui/chip';
-import {Breadcrumb} from '../dmf-ui/breadcrumb';
-import {Pagination} from '../dmf-ui/pagination';
-import {NavigationMenu} from '../dmf-ui/navigation-menu';
+import {Breadcrumb,BreadcrumbItem,BreadcrumbLink,BreadcrumbList,BreadcrumbPage,BreadcrumbSeparator} from '../dmf-ui/breadcrumb';
+import {Pagination,PaginationContent,PaginationEllipsis,PaginationItem,PaginationLink,PaginationNext,PaginationPrevious} from '../dmf-ui/pagination';
+import {NavigationMenu,NavigationMenuContent,NavigationMenuItem,NavigationMenuLink,NavigationMenuList,NavigationMenuTrigger} from '../dmf-ui/navigation-menu';
 import { Button } from '../dmf-ui/button';
 import { Input } from '../dmf-ui/input';
 import { Label } from '../dmf-ui/label';
@@ -53,6 +53,9 @@ const presetName='DMF UI';
 {slug==='code-tabs'&&<CodeTabs id="docs-code-tabs" items={[{value:'astro',label:'Astro',language:'astro',code:'<Button>Continue</Button>',title:'Button.astro'},{value:'react',label:'React',language:'tsx',code:'<Button>Continue</Button>',title:'Button.tsx'}]}/>}
 {slug==='command-block'&&<CommandBlock id="docs-command-block" commands={{npm:'npm install @lucide/astro',pnpm:'pnpm add @lucide/astro',yarn:'yarn add @lucide/astro',bun:'bun add @lucide/astro'}}/>}
 {slug==='sidebar'&&<Sidebar label="Workspace" items={[{label:'Home',href:'/',icon:House},{label:'Docs',href:'/docs/',icon:BookOpen,current:true},{label:'Create',href:'/create/',icon:Palette}]} presentation="icon-label"/>}
+{slug==='breadcrumb'&&<Breadcrumb label="Parts example"><BreadcrumbList><BreadcrumbItem><BreadcrumbLink href="/components/">Components</BreadcrumbLink></BreadcrumbItem><BreadcrumbSeparator/><BreadcrumbItem><BreadcrumbPage>Breadcrumb</BreadcrumbPage></BreadcrumbItem></BreadcrumbList></Breadcrumb>}
+{slug==='pagination'&&<Pagination label="Parts example"><PaginationContent><PaginationItem><PaginationPrevious href="/components/pagination/?page=1"/></PaginationItem><PaginationItem><PaginationLink href="/components/pagination/?page=1">1</PaginationLink></PaginationItem><PaginationItem><PaginationLink href="/components/pagination/?page=2" isActive>2</PaginationLink></PaginationItem><PaginationItem><PaginationEllipsis/></PaginationItem><PaginationItem><PaginationNext href="/components/pagination/?page=3"/></PaginationItem></PaginationContent></Pagination>}
+{slug==='sidebar'&&<div data-sidebar-parts class="[&_[data-slot=sidebar-wrapper]]:min-h-0 [&_[data-slot=sidebar-wrapper]]:flex-col [&_[data-slot=sidebar-wrapper]]:md:flex-row [&_[data-slot=sidebar-container]]:static [&_[data-slot=sidebar-container]]:h-72 [&_[data-slot=sidebar-container]]:w-full [&_[data-slot=sidebar-container]]:max-w-56 [&_[data-slot=sidebar-container]]:block [&_[data-slot=sidebar-gap]]:hidden [&_[data-slot=sidebar-inset]]:min-w-0 [&_[data-slot=sidebar-inset]]:flex-1"><SidebarProvider><Sidebar side="left" collapsible="icon"><SidebarHeader><SidebarMenu><SidebarMenuItem><SidebarMenuButton isActive tooltip="Projects">Projects</SidebarMenuButton></SidebarMenuItem></SidebarMenu></SidebarHeader><SidebarContent><SidebarGroup><SidebarGroupLabel>Library</SidebarGroupLabel><SidebarGroupContent><SidebarMenu><SidebarMenuItem><SidebarMenuButton tooltip="Components">Components</SidebarMenuButton></SidebarMenuItem><SidebarMenuItem><SidebarMenuButton tooltip="Settings">Settings</SidebarMenuButton></SidebarMenuItem></SidebarMenu></SidebarGroupContent></SidebarGroup></SidebarContent><SidebarFooter><p>Footer</p></SidebarFooter></Sidebar><SidebarInset><SidebarTrigger data-sidebar-trigger/><p>Content</p></SidebarInset></SidebarProvider></div>}
 {slug==='responsive-navigation'&&<ResponsiveNavigation label="Project menu" items={[{label:'Home',href:'/',icon:House},{label:'Docs',href:'/docs/',icon:BookOpen,current:true},{label:'Create',href:'/create/',icon:Palette}]} presentation="icon-label"/>}
 {slug==='archive-index'&&<div class="docs-preview-stack">{['Foundations','Components','Presets'].map((label,index)=><p><ArchiveIndex index={index}/>{label}</p>)}</div>}
 {slug==='tag-list'&&<TagList label="Example project topics" items={['Design systems','Product design','Accessible interfaces']}/>}
@@ -64,6 +67,7 @@ const presetName='DMF UI';
 {slug==='breadcrumb'&&<Breadcrumb label="Preview breadcrumb" items={[{label:'Home',href:'/'},{label:'Components',href:'/components/'},{label:'Breadcrumb'}]}/>}
 {slug==='pagination'&&<div class="docs-preview-stack"><Pagination label="Guide example pages" page={1} totalPages={3} pageHref={page=>`/examples/navigation/${page}/`}/><p class="docs-note">Open a page to browse the three-page guide collection.</p></div>}
 {slug==='navigation-menu'&&<NavigationMenu label="Preview project navigation" items={[{label:'Components',href:'/components/'},{label:'Navigation Menu',href:'/components/navigation-menu/',current:true},{label:'Presets',href:'/docs/presets/'},{label:'Registry (unavailable)',href:'#',disabled:true}]}/>}
+{slug==='navigation-menu'&&<NavigationMenu label="Preview sections"><NavigationMenuList><NavigationMenuItem><NavigationMenuTrigger data-navigation-menu-trigger>Foundations</NavigationMenuTrigger><NavigationMenuContent data-navigation-menu-panel aria-label="Foundations links"><NavigationMenuLink href="/docs/theming/">Theming</NavigationMenuLink><NavigationMenuLink href="/docs/presets/">Presets</NavigationMenuLink></NavigationMenuContent></NavigationMenuItem><NavigationMenuItem><NavigationMenuTrigger>Components</NavigationMenuTrigger><NavigationMenuContent><NavigationMenuLink href="/components/">All components</NavigationMenuLink><NavigationMenuLink href="/components/button/">Button</NavigationMenuLink></NavigationMenuContent></NavigationMenuItem><NavigationMenuItem><NavigationMenuLink href="/docs/accessibility/">Accessibility</NavigationMenuLink></NavigationMenuItem></NavigationMenuList></NavigationMenu>}
 {slug==='text'&&<div class="docs-preview-stack"><Text as="h3" size="title" weight="semibold">A clear starting point.</Text><Text>Semantic text follows the product’s font.</Text><Text tone="muted" size="sm">Choose the right heading level for your document.</Text></div>}
 {slug==='card'&&<Card as="article" aria-labelledby={`${id}-title`}><CardHeader><CardTitle as="h3" id={`${id}-title`}>Preset preview</CardTitle><CardDescription>Grouped content with native navigation.</CardDescription></CardHeader><CardContent><Text size="sm">A shared foundation leaves room for your product.</Text></CardContent><CardFooter><Badge as="a" variant="link" href="/create/">Configure a preset</Badge></CardFooter></Card>}
 {slug==='badge'&&<div class="docs-preview-row">{(['default','secondary','destructive','outline','ghost'] as const).map(variant=><Badge variant={variant}>{variant==='destructive'?'Needs review':variant==='default'?'Preview':variant==='secondary'?'Draft':variant==='outline'?'Not published':'Local only'}</Badge>)}<Badge as="a" variant="link" href="/docs/presets/">Read about presets</Badge></div>}

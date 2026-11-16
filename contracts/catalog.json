@@ -4148,6 +4148,7 @@
           "tests/navigation-components.test.mjs",
           "tests/navigation-patterns.test.mjs",
           "tests/browser/dmf-ui-navigation-components.mjs",
+          "tests/browser/dmf-ui-navigation-parts.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs"
         ]
       },
@@ -16231,6 +16232,7 @@
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-hero-consumer.mjs",
           "tests/browser/dmf-ui-large-text-reflow.mjs",
+          "tests/browser/dmf-ui-navigation-parts.mjs",
           "tests/browser/dmf-ui-runtime.mjs",
           "tests/browser/dmf-ui-sign-in-consumer.mjs"
         ]
@@ -17994,8 +17996,144 @@
       "entry": "./src/components/dmf-ui/navigation-menu/index.ts",
       "parts": [
         {
-          "file": "src/components/dmf-ui/navigation-menu/navigation-menu.astro",
+          "file": "src/components/dmf-ui/navigation-menu/navigation-menu-content.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "navigation-menu-content"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/navigation-menu/navigation-menu-indicator.astro",
           "slots": [],
+          "dataSlots": [
+            "navigation-menu-indicator"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/navigation-menu/navigation-menu-item.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "navigation-menu-item"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'li'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'li'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/navigation-menu/navigation-menu-link.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "navigation-menu-link"
+          ],
+          "properties": [
+            {
+              "name": "href",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "active",
+              "type": "boolean",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'a'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'a'>&{href:string;active?:boolean;};"
+        },
+        {
+          "file": "src/components/dmf-ui/navigation-menu/navigation-menu-list.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "navigation-menu-list"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'ul'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'ul'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/navigation-menu/navigation-menu-positioner.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "navigation-menu-positioner"
+          ],
+          "properties": [
+            {
+              "name": "side",
+              "type": "'top'|'bottom'|'left'|'right'",
+              "optional": true
+            },
+            {
+              "name": "align",
+              "type": "'start'|'center'|'end'",
+              "optional": true
+            },
+            {
+              "name": "sideOffset",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "alignOffset",
+              "type": "number",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>&{\n  /** Edge of the trigger the panel opens from. Default: bottom. */\n  side?:'top'|'bottom'|'left'|'right';\n  /** Where the panel lines up along the trigger. Default: start. */\n  align?:'start'|'center'|'end';\n  /** Gap between trigger and panel, in pixels. Default: 6. */\n  sideOffset?:number;\n  /** Shift along the trigger, in pixels. Default: 0. */\n  alignOffset?:number;\n};"
+        },
+        {
+          "file": "src/components/dmf-ui/navigation-menu/navigation-menu-trigger.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "navigation-menu-trigger"
+          ],
+          "properties": [
+            {
+              "name": "disabled",
+              "type": "boolean",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'button'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'button'>&{disabled?:boolean;};"
+        },
+        {
+          "file": "src/components/dmf-ui/navigation-menu/navigation-menu.astro",
+          "slots": [
+            "default"
+          ],
           "dataSlots": [
             "navigation-menu"
           ],
@@ -18003,7 +18141,7 @@
             {
               "name": "items",
               "type": "NavigationItem[]",
-              "optional": false
+              "optional": true
             },
             {
               "name": "label",
@@ -18022,11 +18160,17 @@
             }
           ],
           "native": [],
-          "declaration": "interface Props extends HTMLAttributes<'nav'> {items:NavigationItem[];label:string;orientation?:'horizontal'|'vertical';presentation?:Presentation;}"
+          "declaration": "interface Props extends HTMLAttributes<'nav'> {items?:NavigationItem[];label:string;orientation?:'horizontal'|'vertical';presentation?:Presentation;}"
         }
       ],
       "variants": {},
       "defaults": {
+        "navigation-menu-link.astro:active": "false",
+        "navigation-menu-positioner.astro:side": "'bottom'",
+        "navigation-menu-positioner.astro:align": "'start'",
+        "navigation-menu-positioner.astro:sideOffset": "6",
+        "navigation-menu-positioner.astro:alignOffset": "0",
+        "navigation-menu-trigger.astro:disabled": "false",
         "navigation-menu.astro:orientation": "'horizontal'",
         "navigation-menu.astro:presentation": "'label'"
       },
@@ -18036,20 +18180,20 @@
           "note": "Default authored composition."
         },
         "hover": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "pressed": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "focus": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "focus-visible": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "disabled": {
           "status": "source-evidence",
@@ -18084,20 +18228,20 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         },
         "current": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "open": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "closed": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "expanded": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "collapsed": {
           "status": "not-established",
@@ -18164,8 +18308,8 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         },
         "resizing": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "editing": {
           "status": "not-established",
@@ -18180,7 +18324,14 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         }
       },
-      "tokens": [],
+      "tokens": [
+        "border",
+        "foreground",
+        "muted",
+        "popover",
+        "popover-foreground",
+        "ring"
+      ],
       "reviewedContract": {
         "states": "Native current-page links and disabled noninteractive items. This is site navigation, not an ARIA menu or application menubar.",
         "properties": "Required label/items; orientation=horizontal, presentation=label. Items use NavigationItem label/href/icon?/current?/disabled?/rel?. More than one enabled current item is rejected.",
@@ -18204,6 +18355,7 @@
           "tests/navigation-components.test.mjs",
           "tests/navigation-patterns.test.mjs",
           "tests/browser/dmf-ui-navigation-components.mjs",
+          "tests/browser/dmf-ui-navigation-parts.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs"
         ]
       },
@@ -18211,11 +18363,43 @@
       "sources": [
         {
           "path": "src/components/dmf-ui/navigation-menu/index.ts",
-          "sha256": "56dd0be40e5d0133d0c9dc3ef121b5a01bf51198ff74adea9f629ebdb9be6c9c"
+          "sha256": "b05f38f283bfdb47cb44a84f0f7390177499a11cc9f0457b9e1d79562b2ab957"
+        },
+        {
+          "path": "src/components/dmf-ui/navigation-menu/navigation-menu-content.astro",
+          "sha256": "671ed02b86c422772bbaead9c4057bab4b9067d15c130fb9fd939f3518b89923"
+        },
+        {
+          "path": "src/components/dmf-ui/navigation-menu/navigation-menu-indicator.astro",
+          "sha256": "76060a9c8e3a1c658408fb9040d7498d95b183bdbfa60a9533d62a6f69e3c662"
+        },
+        {
+          "path": "src/components/dmf-ui/navigation-menu/navigation-menu-item.astro",
+          "sha256": "865d5651c8e89a1d8b1afe77f19c2ae93d0590a6d2edb9b344ff475c01a6a49f"
+        },
+        {
+          "path": "src/components/dmf-ui/navigation-menu/navigation-menu-link.astro",
+          "sha256": "9641d7cf2cdf676227ab8f142e6fcc48631eded3b4f319bd600a6613c3f8bc77"
+        },
+        {
+          "path": "src/components/dmf-ui/navigation-menu/navigation-menu-list.astro",
+          "sha256": "64532df8207451374ca5f3efe26ca0ba8ac0f10ba4e09d5f416d382180bf06b7"
+        },
+        {
+          "path": "src/components/dmf-ui/navigation-menu/navigation-menu-positioner.astro",
+          "sha256": "728e62aeeccfc624666d28103f47fa1a721b5a1ae52746ac2a7045c2542bc6f6"
+        },
+        {
+          "path": "src/components/dmf-ui/navigation-menu/navigation-menu-runtime.ts",
+          "sha256": "0eaa7a44b24db790a429041a1045cce42d524560d286136bdb50ae64d61cfe1c"
+        },
+        {
+          "path": "src/components/dmf-ui/navigation-menu/navigation-menu-trigger.astro",
+          "sha256": "2226e25f51e448b94b53f8bb4e99cf688a58ec6e98e5f7950a35fac8e6bef360"
         },
         {
           "path": "src/components/dmf-ui/navigation-menu/navigation-menu.astro",
-          "sha256": "b2684c0c975bf62e492be7076bbd37184cfc826b0a419bca5dc2699f7e9d0cef"
+          "sha256": "d96cb9192d8ee7d80a6dd649d82a9bd74a4335721df375e3239606cd53a55182"
         }
       ],
       "gaps": [
@@ -18240,7 +18424,15 @@
         "../navigation-link.astro",
         "../navigation-types",
         "../utils",
+        "./navigation-menu-content.astro",
+        "./navigation-menu-indicator.astro",
+        "./navigation-menu-item.astro",
+        "./navigation-menu-link.astro",
+        "./navigation-menu-list.astro",
+        "./navigation-menu-positioner.astro",
+        "./navigation-menu-trigger.astro",
         "./navigation-menu.astro",
+        "@lucide/astro",
         "astro/types"
       ]
     },
@@ -18986,6 +19178,7 @@
           "tests/browser/dmf-ui-discovery-consumer.mjs",
           "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-navigation-components.mjs",
+          "tests/browser/dmf-ui-navigation-parts.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs"
         ]
       },
@@ -23713,21 +23906,440 @@
       "entry": "./src/components/dmf-ui/sidebar/index.ts",
       "parts": [
         {
-          "file": "src/components/dmf-ui/sidebar/sidebar.astro",
+          "file": "src/components/dmf-ui/sidebar/sidebar-container.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-container"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-content.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-content"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-footer.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-footer"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-gap.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-gap"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-group-action.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-group-action"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'button'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'button'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-group-content.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-group-content"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-group-label.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-group-label"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-group.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-group"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-header.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-header"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-inner.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-inner"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-input.astro",
           "slots": [],
           "dataSlots": [
-            "sidebar"
+            "sidebar-input"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'input'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'input'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-inset.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-inset"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-menu-action.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-menu-action"
+          ],
+          "properties": [
+            {
+              "name": "showOnHover",
+              "type": "boolean",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'button'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'button'>&{showOnHover?:boolean;};"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-menu-badge.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-menu-badge"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-menu-button.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-menu-button"
+          ],
+          "properties": [
+            {
+              "name": "isActive",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "size",
+              "type": "'default'|'sm'|'lg'",
+              "optional": true
+            },
+            {
+              "name": "variant",
+              "type": "'default'|'outline'",
+              "optional": true
+            },
+            {
+              "name": "tooltip",
+              "type": "string",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'button'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'button'>&{isActive?:boolean;size?:'default'|'sm'|'lg';variant?:'default'|'outline';tooltip?:string;};"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-menu-item.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-menu-item"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'li'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'li'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-menu-skeleton.astro",
+          "slots": [],
+          "dataSlots": [
+            "sidebar-menu-skeleton"
+          ],
+          "properties": [
+            {
+              "name": "showIcon",
+              "type": "boolean",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>&{showIcon?:boolean;};"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-menu-sub-button.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-menu-sub-button"
+          ],
+          "properties": [
+            {
+              "name": "href",
+              "type": "string",
+              "optional": true
+            },
+            {
+              "name": "isActive",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "size",
+              "type": "'sm'|'md'",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'a'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'a'>&{href?:string;isActive?:boolean;size?:'sm'|'md';};"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-menu-sub-item.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-menu-sub-item"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'li'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'li'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-menu-sub.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-menu-sub"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'ul'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'ul'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-menu.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-menu"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'ul'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'ul'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-provider.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-wrapper"
+          ],
+          "properties": [
+            {
+              "name": "defaultOpen",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "open",
+              "type": "boolean",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>&{defaultOpen?:boolean;open?:boolean;};"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-rail.astro",
+          "slots": [],
+          "dataSlots": [
+            "sidebar-rail"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'button'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'button'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-separator.astro",
+          "slots": [],
+          "dataSlots": [
+            "sidebar-separator"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-trigger.astro",
+          "slots": [],
+          "dataSlots": [
+            "sidebar-trigger"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'button'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'button'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar-wrapper.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar-wrapper"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/sidebar/sidebar.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "sidebar",
+            "sidebar-gap",
+            "sidebar-container",
+            "sidebar-inner"
           ],
           "properties": [
             {
               "name": "label",
               "type": "string",
-              "optional": false
+              "optional": true
             },
             {
               "name": "items",
               "type": "NavigationItem[]",
-              "optional": false
+              "optional": true
             },
             {
               "name": "presentation",
@@ -23738,16 +24350,43 @@
               "name": "defaultOpen",
               "type": "boolean",
               "optional": true
+            },
+            {
+              "name": "side",
+              "type": "'left'|'right'",
+              "optional": true
+            },
+            {
+              "name": "variant",
+              "type": "'sidebar'|'floating'|'inset'",
+              "optional": true
+            },
+            {
+              "name": "collapsible",
+              "type": "'offcanvas'|'icon'|'none'",
+              "optional": true
             }
           ],
           "native": [],
-          "declaration": "interface Props extends HTMLAttributes<'aside'> {label:string;items:NavigationItem[];presentation?:Presentation;defaultOpen?:boolean;}"
+          "declaration": "interface Props extends HTMLAttributes<'aside'> {label?:string;items?:NavigationItem[];presentation?:Presentation;defaultOpen?:boolean;side?:'left'|'right';variant?:'sidebar'|'floating'|'inset';collapsible?:'offcanvas'|'icon'|'none';}"
         }
       ],
       "variants": {},
       "defaults": {
+        "sidebar-menu-action.astro:showOnHover": "false",
+        "sidebar-menu-button.astro:isActive": "false",
+        "sidebar-menu-button.astro:size": "'default'",
+        "sidebar-menu-button.astro:variant": "'default'",
+        "sidebar-menu-skeleton.astro:showIcon": "false",
+        "sidebar-menu-sub-button.astro:isActive": "false",
+        "sidebar-menu-sub-button.astro:size": "'md'",
+        "sidebar-provider.astro:defaultOpen": "true",
+        "sidebar.astro:label": "'Sidebar'",
         "sidebar.astro:presentation": "'label'",
-        "sidebar.astro:defaultOpen": "true"
+        "sidebar.astro:defaultOpen": "true",
+        "sidebar.astro:side": "'left'",
+        "sidebar.astro:variant": "'sidebar'",
+        "sidebar.astro:collapsible": "'offcanvas'"
       },
       "states": {
         "default": {
@@ -23755,24 +24394,24 @@
           "note": "Default authored composition."
         },
         "hover": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "pressed": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "focus": {
           "status": "not-established",
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         },
         "focus-visible": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "disabled": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "unselected": {
           "status": "not-established",
@@ -23803,8 +24442,8 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         },
         "current": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "open": {
           "status": "source-evidence",
@@ -23815,12 +24454,12 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         },
         "expanded": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "collapsed": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "valid": {
           "status": "not-established",
@@ -23843,8 +24482,8 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         },
         "loading": {
-          "status": "not-established",
-          "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
+          "status": "source-evidence",
+          "note": "Source contains this state vocabulary; not a certification of every part or combination."
         },
         "pending": {
           "status": "not-established",
@@ -23899,7 +24538,13 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         }
       },
-      "tokens": [],
+      "tokens": [
+        "accent",
+        "background",
+        "input",
+        "ring",
+        "sidebar-border"
+      ],
       "reviewedContract": {
         "states": "Native details open/closed and nested current-page navigation. No modal focus trap or application routing is implied.",
         "properties": "Required label/items; presentation=label, defaultOpen=true and native aside attributes. Composes NavigationMenu and an associated summary.",
@@ -23925,6 +24570,7 @@
           "tests/browser/dmf-ui-documentation-layout.mjs",
           "tests/browser/dmf-ui-documentation.mjs",
           "tests/browser/dmf-ui-large-text-reflow.mjs",
+          "tests/browser/dmf-ui-navigation-parts.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-search.mjs",
           "tests/browser/dmf-ui-taxonomy.mjs"
@@ -23934,11 +24580,119 @@
       "sources": [
         {
           "path": "src/components/dmf-ui/sidebar/index.ts",
-          "sha256": "a325457256fbffab2a3d5e26c58382e25bd094353f5a800f7550c2dd55b9c351"
+          "sha256": "361c85b2b1cac1a12cb0388b64dad04b5379a740601cdf6ec98ac7a80b7a7e70"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-container.astro",
+          "sha256": "80aa54ba910527321952b95886c8be05c536097fab8d21bb32dee49465cdf2bd"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-content.astro",
+          "sha256": "f016206c33f1eb40bdd4c28c90f9e9af4c8ede12e250c2b9e11ee9441c7438ae"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-footer.astro",
+          "sha256": "e256fe754c1ff1799a26c8c0e1e0ea4701ff59c1cf9414806fa7afb283d6f0ff"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-gap.astro",
+          "sha256": "cb7c75f4a8db116721fc3387e1e7b43ad5b8c90d00cee4bc898ef0381b4a46b6"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-group-action.astro",
+          "sha256": "b6ea61ae1e2d9108bb84372e27fc1e5663939a51e017d364164b2d02dc01241f"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-group-content.astro",
+          "sha256": "f7703653adb49986c88e9f942cf4ffd7513d77c30a6fbccf39630c13c339c1c5"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-group-label.astro",
+          "sha256": "214fbff2b4f693e43630c5846dde6cfd3bab31c1379334d7b9ca798454398156"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-group.astro",
+          "sha256": "1f699aee99a58cf5642a2d3248d110e8e2e675b69423d0cfc6fbb83a94116d9b"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-header.astro",
+          "sha256": "ee40819088eff106377a0ef830b3a053f04cb9f12741d3c1f009908df10a86ea"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-inner.astro",
+          "sha256": "2add7ebebdd500f2fc69827845b891ebda74699eee0d063aec82dcef427434d7"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-input.astro",
+          "sha256": "36dccf766042cb3f153ba27203408e3b0e0be7195ffb9dae68988c5d10e867e4"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-inset.astro",
+          "sha256": "1d66d297e3230770fc51a92f34b30252e6a143abdf76008885482cd147738027"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-menu-action.astro",
+          "sha256": "cb3cdfd0c47b487ebca8ed2f9d501e4c1a0dac6335d0f93fb0ee172366a724ee"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-menu-badge.astro",
+          "sha256": "bc2153ca665fd19ba2fad96543e17af87a9965d3f97d04ee45d0e0b02a6260bc"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-menu-button.astro",
+          "sha256": "c2ffad7fc9782957c1e6fc963d53cc8bfec6a48ec1ed31b95ab1bf7de575cfed"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-menu-item.astro",
+          "sha256": "0f9631d937627b4033ceb9b0faf1edca9de09ebd4110e85541b928040d6ff7a2"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-menu-skeleton.astro",
+          "sha256": "52bfe329e6255642a780a02063242ab23607858e9055738d11d5b51ee357a5f8"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-menu-sub-button.astro",
+          "sha256": "a178bf3c44b324836a058f308503991224f47e29d5ee202382252cd430ae4912"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-menu-sub-item.astro",
+          "sha256": "90c89ccbde85da38cd1a658ece4e4cf6d671aabaefa79eca014622835f244b94"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-menu-sub.astro",
+          "sha256": "87c7e46ba7050df700874e9670ce0f2345e37d0bbd8cf2632bae0295a25a874f"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-menu.astro",
+          "sha256": "c5264e660d53682114abe35e4c5e665033716f18c0677cbda46dab7e17517233"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-provider.astro",
+          "sha256": "d24f1dee367f0e589beeceaa2936018859f52a4c4ef48757fe243f286eb898fb"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-rail.astro",
+          "sha256": "853dcea46f5a25a1e085b266372bddbb10fcb024499f2c8850fcd3f277a8bbe2"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-runtime.ts",
+          "sha256": "0a4647e79476dd2f970dad70db1fecc01c74f8cd4f18fb5be1e9e24dddf14b2e"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-separator.astro",
+          "sha256": "57016452aac5ab8d9b00f8f9866e3ae3f05e09714662479e5c06cef71cfcebc2"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-trigger.astro",
+          "sha256": "4de8d976fb8b66c053d885e4880d892ca6c384ce8f29e9ac80513c013c9c4155"
+        },
+        {
+          "path": "src/components/dmf-ui/sidebar/sidebar-wrapper.astro",
+          "sha256": "377c79af615572bf47dc4d590214ec98883348616b1112e4cadd442b05a0671a"
         },
         {
           "path": "src/components/dmf-ui/sidebar/sidebar.astro",
-          "sha256": "839ba295d93e5ea2a5eb82817542ed5b07f2697df98234667770663148ea62cc"
+          "sha256": "b3082eb67945cfc2cbc1539fa7b588e69996f539a879940120cd4dc146d29072"
         }
       ],
       "gaps": [
@@ -23964,6 +24718,32 @@
         "../navigation-menu",
         "../navigation-types",
         "../utils",
+        "./sidebar-container.astro",
+        "./sidebar-content.astro",
+        "./sidebar-footer.astro",
+        "./sidebar-gap.astro",
+        "./sidebar-group-action.astro",
+        "./sidebar-group-content.astro",
+        "./sidebar-group-label.astro",
+        "./sidebar-group.astro",
+        "./sidebar-header.astro",
+        "./sidebar-inner.astro",
+        "./sidebar-input.astro",
+        "./sidebar-inset.astro",
+        "./sidebar-menu-action.astro",
+        "./sidebar-menu-badge.astro",
+        "./sidebar-menu-button.astro",
+        "./sidebar-menu-item.astro",
+        "./sidebar-menu-skeleton.astro",
+        "./sidebar-menu-sub-button.astro",
+        "./sidebar-menu-sub-item.astro",
+        "./sidebar-menu-sub.astro",
+        "./sidebar-menu.astro",
+        "./sidebar-provider.astro",
+        "./sidebar-rail.astro",
+        "./sidebar-separator.astro",
+        "./sidebar-trigger.astro",
+        "./sidebar-wrapper.astro",
         "./sidebar.astro",
         "@lucide/astro",
         "astro/types"
@@ -26586,6 +27366,7 @@
           "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-navigation-components.mjs",
+          "tests/browser/dmf-ui-navigation-parts.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-overlays.mjs",
@@ -28405,6 +29186,7 @@
           "tests/selection.test.mjs",
           "tests/browser/dmf-ui-fulldev-interactions.mjs",
           "tests/browser/dmf-ui-m1-architecture.mjs",
+          "tests/browser/dmf-ui-navigation-parts.mjs",
           "tests/browser/dmf-ui-overlays.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
           "tests/browser/dmf-ui-selection.mjs",

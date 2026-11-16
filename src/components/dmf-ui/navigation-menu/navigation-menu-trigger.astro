@@ -1,0 +1,9 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {ChevronDown} from '@lucide/astro';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'button'>&{disabled?:boolean;};
+const {class:className,disabled=false,...props}=Astro.props;
+// Opens its NavigationMenuContent. Starts closed; the navigation menu runtime owns its state after load.
+---
+<button {...props} type="button" data-slot="navigation-menu-trigger" data-state="closed" aria-expanded="false" disabled={disabled} class={cn('hover:bg-muted data-open:bg-muted data-open:text-foreground inline-flex h-8 items-center justify-center gap-1 rounded-lg px-2.5 text-sm font-medium transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50',className)}><slot/><ChevronDown class="relative top-px size-3 transition-transform group-data-open/navigation-menu-item:rotate-180" aria-hidden="true"/></button>

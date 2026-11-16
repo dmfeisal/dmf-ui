@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'input'>;
+const {class:className,...props}=Astro.props;
+---
+<input {...props} data-slot="sidebar-input" class={cn('bg-background border-input h-8 w-full rounded-md border px-2 text-sm shadow-none focus-visible:ring-2 focus-visible:ring-ring/50 outline-none',className)}/>

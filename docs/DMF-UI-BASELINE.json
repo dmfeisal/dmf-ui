@@ -18,16 +18,16 @@
  },
  "totals": {
   "families": 80,
-  "withScripts": 31,
+  "withScripts": 32,
   "js": {
-   "bytes": 347376,
-   "gzip": 125782
+   "bytes": 352022,
+   "gzip": 127509
   },
   "sharedFamilies": {
    "count": 50,
    "dmfCss": {
-    "bytes": 315200,
-    "gzip": 71999
+    "bytes": 335446,
+    "gzip": 76271
    },
    "shadcnCss": {
     "bytes": 335824,
@@ -1093,14 +1093,14 @@
    "withoutJs": {
     "status": "same",
     "js": {
-     "visible": 11,
-     "focusable": 2,
-     "text": 55
+     "visible": 7,
+     "focusable": 1,
+     "text": 39
     },
     "noJs": {
-     "visible": 11,
-     "focusable": 2,
-     "text": 55
+     "visible": 7,
+     "focusable": 1,
+     "text": 39
     }
    }
   },
@@ -1864,23 +1864,28 @@
    "shadcn": true,
    "css": {
     "utilities": {
-     "bytes": 0,
-     "gzip": 20
+     "bytes": 7779,
+     "gzip": 1805
     },
     "rules": {
      "bytes": 1701,
      "gzip": 559
     },
     "total": {
-     "bytes": 1701,
-     "gzip": 559
+     "bytes": 9480,
+     "gzip": 2194
     }
    },
    "shadcnCss": {
     "bytes": 16172,
     "gzip": 2581
    },
-   "js": null,
+   "js": {
+    "scripts": 1,
+    "consumerRuntime": false,
+    "bytes": 3906,
+    "gzip": 1506
+   },
    "axe": {
     "light": [],
     "dark": []
@@ -2502,16 +2507,16 @@
    "shadcn": true,
    "css": {
     "utilities": {
-     "bytes": 0,
-     "gzip": 20
+     "bytes": 12467,
+     "gzip": 2788
     },
     "rules": {
      "bytes": 1008,
      "gzip": 395
     },
     "total": {
-     "bytes": 1008,
-     "gzip": 395
+     "bytes": 13475,
+     "gzip": 3032
     }
    },
    "shadcnCss": {
@@ -2519,10 +2524,10 @@
     "gzip": 3446
    },
    "js": {
-    "scripts": 1,
+    "scripts": 2,
     "consumerRuntime": false,
-    "bytes": 494,
-    "gzip": 337
+    "bytes": 1234,
+    "gzip": 558
    },
    "axe": {
     "light": [],

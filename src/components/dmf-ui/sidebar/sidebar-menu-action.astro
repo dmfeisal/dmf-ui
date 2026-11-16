@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'button'>&{showOnHover?:boolean;};
+const {class:className,showOnHover=false,...props}=Astro.props;
+// A button placed beside a menu item, such as a more-options control.
+---
+<button {...props} type="button" data-slot="sidebar-menu-action" class={cn('text-sidebar-foreground hover:bg-sidebar-accent absolute end-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden [&>svg]:size-4 [&>svg]:shrink-0',showOnHover&&'peer-data-active/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 md:opacity-0',className)}><slot/></button>

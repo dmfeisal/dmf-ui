@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'ul'>;
+const {class:className,...props}=Astro.props;
+---
+<ul {...props} data-slot="navigation-menu-list" class={cn('flex list-none items-center gap-1',className)}><slot/></ul>

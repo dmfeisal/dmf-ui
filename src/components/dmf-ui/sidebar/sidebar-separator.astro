@@ -1,0 +1,7 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'div'>;
+const {class:className,...props}=Astro.props;
+---
+<div {...props} role="separator" aria-orientation="horizontal" data-slot="sidebar-separator" class={cn('bg-sidebar-border mx-2 h-px w-auto',className)}></div>

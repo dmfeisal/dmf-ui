@@ -3,8 +3,10 @@ import type {HTMLAttributes} from 'astro/types';
 import Link from '../navigation-link.astro';
 import type {NavigationItem,Presentation} from '../navigation-types';
 import {cn} from '../utils';
-interface Props extends HTMLAttributes<'nav'> {items:NavigationItem[];label:string;orientation?:'horizontal'|'vertical';presentation?:Presentation;}
+interface Props extends HTMLAttributes<'nav'> {items?:NavigationItem[];label:string;orientation?:'horizontal'|'vertical';presentation?:Presentation;}
 const {items,label,orientation='horizontal',presentation='label',class:className,...props}=Astro.props;
-if(items.filter(item=>item.current&&!item.disabled).length>1)throw new Error('NavigationMenu supports one current page per navigation.');
+if(items&&items.filter(item=>item.current&&!item.disabled).length>1)throw new Error('NavigationMenu supports one current page per navigation.');
+// With `items` the menu renders its own list of links. Without it, children are the parts (NavigationMenuList, …).
 ---
-<nav data-slot="navigation-menu" aria-label={label} data-orientation={orientation} data-presentation={presentation} class={cn('dmf-navigation-menu',className)} {...props}><ul>{items.map(item=><li><Link item={item} presentation={presentation} side={orientation==='vertical'?'inline-end':'bottom'}/></li>)}</ul></nav>
+<nav data-slot="navigation-menu" aria-label={label} data-orientation={orientation} data-presentation={presentation} class={cn('dmf-navigation-menu relative',className)} {...props}>{items?<ul>{items.map(item=><li><Link item={item} presentation={presentation} side={orientation==='vertical'?'inline-end':'bottom'}/></li>)}</ul>:<slot/>}</nav>
+<script>import './navigation-menu-runtime';</script>

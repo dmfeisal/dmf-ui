@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'div'>&{showIcon?:boolean;};
+const {class:className,showIcon=false,...props}=Astro.props;
+// A loading placeholder for a menu item. showIcon adds a placeholder for the item's icon.
+---
+<div {...props} data-slot="sidebar-menu-skeleton" class={cn('flex h-8 items-center gap-2 rounded-md px-2',className)}>{showIcon&&<span class="bg-sidebar-accent-foreground/10 size-4 rounded-md" data-sidebar="menu-skeleton-icon" aria-hidden="true"></span>}<span class="bg-sidebar-accent-foreground/10 h-4 max-w-(--skeleton-width,12rem) flex-1 rounded-md" aria-hidden="true"></span></div>

@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'a'>&{href:string;active?:boolean;};
+const {href,active=false,class:className,...props}=Astro.props;
+// The current destination is marked with aria-current and data-active.
+---
+<a {...props} href={href} data-slot="navigation-menu-link" data-active={active?'':undefined} aria-current={active?'page':undefined} class={cn('hover:bg-muted data-active:bg-muted inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm whitespace-nowrap outline-none focus-visible:ring-3 focus-visible:ring-ring/50',className)}><slot/></a>
