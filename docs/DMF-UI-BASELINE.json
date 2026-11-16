@@ -26,14 +26,14 @@
   "sharedFamilies": {
    "count": 50,
    "dmfCss": {
-    "bytes": 339215,
-    "gzip": 77193
+    "bytes": 340396,
+    "gzip": 77557
    },
    "shadcnCss": {
     "bytes": 335824,
     "gzip": 71327
    },
-   "smallerThanShadcn": 17
+   "smallerThanShadcn": 16
   },
   "axe": {
    "audited": 79,
@@ -2068,16 +2068,16 @@
    "shadcn": true,
    "css": {
     "utilities": {
-     "bytes": 21,
-     "gzip": 41
+     "bytes": 1202,
+     "gzip": 457
     },
     "rules": {
      "bytes": 1628,
      "gzip": 575
     },
     "total": {
-     "bytes": 1649,
-     "gzip": 578
+     "bytes": 2830,
+     "gzip": 942
     }
    },
    "shadcnCss": {

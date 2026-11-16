@@ -20233,8 +20233,80 @@
       "entry": "./src/components/dmf-ui/progress/index.ts",
       "parts": [
         {
-          "file": "src/components/dmf-ui/progress/progress.astro",
+          "file": "src/components/dmf-ui/progress/progress-indicator.astro",
           "slots": [],
+          "dataSlots": [
+            "progress-indicator"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'span'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'span'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/progress/progress-label.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "progress-label"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'span'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'span'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/progress/progress-track.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "progress-track"
+          ],
+          "properties": [
+            {
+              "name": "value",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "max",
+              "type": "number",
+              "optional": true
+            },
+            {
+              "name": "label",
+              "type": "string",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'span'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'span'>&{value?:number;max?:number;label?:string;};"
+        },
+        {
+          "file": "src/components/dmf-ui/progress/progress-value.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "progress-value"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'span'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'span'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/progress/progress.astro",
+          "slots": [
+            "default"
+          ],
           "dataSlots": [
             "progress"
           ],
@@ -20242,7 +20314,7 @@
             {
               "name": "label",
               "type": "string",
-              "optional": false
+              "optional": true
             },
             {
               "name": "value",
@@ -20268,11 +20340,12 @@
           "native": [
             "HTMLAttributes<'div'>"
           ],
-          "declaration": "interface Props extends Omit<HTMLAttributes<'div'>,'value'> {label:string;value?:number;max?:number;showValue?:boolean;size?:'sm'|'default'|'lg';}"
+          "declaration": "interface Props extends Omit<HTMLAttributes<'div'>,'value'> {label?:string;value?:number;max?:number;showValue?:boolean;size?:'sm'|'default'|'lg';}"
         }
       ],
       "variants": {},
       "defaults": {
+        "progress-track.astro:max": "100",
         "progress.astro:max": "100",
         "progress.astro:showValue": "true",
         "progress.astro:size": "'default'"
@@ -20427,7 +20500,9 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         }
       },
-      "tokens": [],
+      "tokens": [
+        "muted-foreground"
+      ],
       "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
@@ -20451,11 +20526,27 @@
       "sources": [
         {
           "path": "src/components/dmf-ui/progress/index.ts",
-          "sha256": "c674c755559ebd33b104fc0dc13bc9b820df5feb6ba5a1f6b6766558f9669614"
+          "sha256": "4c63861a9f5718624277e61c2ee70358c2b730fbabf66908e789ec407b31e346"
+        },
+        {
+          "path": "src/components/dmf-ui/progress/progress-indicator.astro",
+          "sha256": "9867055a4ce79503bc23cb22b7c95b52102b34da55f7dfbaf4b053180dd4391d"
+        },
+        {
+          "path": "src/components/dmf-ui/progress/progress-label.astro",
+          "sha256": "919cde433cb6999c8a4316583cf432fa7461b963368cf3b7d4a9a0402e672516"
+        },
+        {
+          "path": "src/components/dmf-ui/progress/progress-track.astro",
+          "sha256": "98e51760cf5e920d2cf189cc90358092473f042e56e7ec8a98b192992b50b3e8"
+        },
+        {
+          "path": "src/components/dmf-ui/progress/progress-value.astro",
+          "sha256": "7603f542b94bc99357db5db5cd23d13bb9f2b23b0a322b4970951411e3fd5c3d"
         },
         {
           "path": "src/components/dmf-ui/progress/progress.astro",
-          "sha256": "f2c25324fe852b6915880bcd3e2f1e7393fe7974a8ef5789361c859abf7ef7f1"
+          "sha256": "f05e46c16736e3147341713f67f0ec3f15059bb10ad9a89b3faaf088bfc52260"
         },
         {
           "path": "src/components/dmf-ui/progress/state.ts",
@@ -20482,6 +20573,10 @@
       },
       "dependencies": [
         "../utils",
+        "./progress-indicator.astro",
+        "./progress-label.astro",
+        "./progress-track.astro",
+        "./progress-value.astro",
         "./progress.astro",
         "./state",
         "astro/types"

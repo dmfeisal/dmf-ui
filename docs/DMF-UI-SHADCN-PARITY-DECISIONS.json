@@ -849,7 +849,10 @@
    "props.Progress.size": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
    "dataAttributes:data-indeterminate": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
    "dataAttributes:data-show-value": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
-   "dataAttributes:data-size": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
+   "dataAttributes:data-size": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
+   "props.ProgressTrack.value": "The track's native progress takes the value, so assistive technology announces it; shadcn's track has no value because its indicator is styled from the root.",
+   "props.ProgressTrack.max": "The track's native progress takes the maximum; shadcn's track has no maximum of its own.",
+   "props.ProgressTrack.label": "The native progress's accessible name (aria-label), since the track is the element that carries the value."
   },
   "skeleton": {
    "variants.shape:circle": "DMF UI option value, passed to the family's runtime.",

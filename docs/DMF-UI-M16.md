@@ -9,7 +9,7 @@
 | 3. Selection | 3a (dmfeisal/dmf-ui#37) and 3b in this report |
 | 4. Overlays and menus | Gaps closed except drawer snap-point list; extras decided |
 | 5. Navigation | 2 gaps open (Sidebar mobile sheet and data-open); the rest closed |
-| 6. Data display and feedback | Extras decided; 8 gaps open (Progress parts) |
+| 6. Data display and feedback | Done (dmfeisal/dmf-ui#44, and Progress parts in the follow-up PR) |
 
 ## Batch 1: shared foundations
 
@@ -436,8 +436,10 @@ Batch 6 started with 41 gaps and 152 DMF-only props and attributes. It now has 8
 - **DMF names and defaults:** the resizable group, the carousel's orientation default, and the toast icon that follows the notification's kind.
 - **Table and avatar state:** tables have no row state, and avatar sizing uses classes, with `data-size` for hosts.
 
-**Still open: Progress (8 gaps)**
-- shadcn's track, indicator, label and value are separate parts. DMF's Progress is one component whose runtime keeps the bar in step with its value, so composing those parts needs that runtime to know about them. This is the next step for batch 6.
+**Progress (follow-up)**
+- **Parts:** `ProgressTrack` (holds the native progress element, with `value`, `max` and `label`), `ProgressIndicator` (the moving bar while indeterminate), `ProgressLabel` and `ProgressValue`. With no `label`, the root takes them as children.
+- **Decided:** the track's value, max and label props, since the native progress is what carries them.
+- **Result:** Progress matches in 11 parts and has 13 recorded decisions, with no gaps and no extras.
 
 **Extras**
 - 152 DMF-only props and attributes now have recorded reasons: runtime configuration, positioner and portal elements, part names, and option values. Nothing was removed.
@@ -446,7 +448,7 @@ Batch 6 started with 41 gaps and 152 DMF-only props and attributes. It now has 8
 
 | | Before | Now |
 | --- | --- | --- |
-| Batch 6 gaps | 41 | 8 (Progress) |
+| Batch 6 gaps | 41 | 0 |
 | Batch 6 undecided extras | 152 | 0 |
 
 **Checks:** unit tests (85 pass), `precheck`, the type check, and all 32 docs browser scenarios. The adapted attachment trigger was re-recorded with `import-fulldev-components.mjs --record`, because its source changed.
