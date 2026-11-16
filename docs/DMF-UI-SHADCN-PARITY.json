@@ -33,9 +33,9 @@
  ],
  "totals": {
   "families": 50,
-  "match": 902,
-  "intentional": 793,
-  "gap": 22,
+  "match": 910,
+  "intentional": 796,
+  "gap": 14,
   "differs": 0,
   "extra": 2
  },
@@ -13465,9 +13465,9 @@
     "docs": "vendor/shadcn/docs/progress.mdx"
    },
    "counts": {
-    "match": 3,
-    "intentional": 10,
-    "gap": 8,
+    "match": 11,
+    "intentional": 13,
+    "gap": 0,
     "differs": 0,
     "extra": 0
    },
@@ -13483,29 +13483,29 @@
      "id": "parts:ProgressIndicator",
      "value": "ProgressIndicator",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:ProgressLabel",
      "value": "ProgressLabel",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:ProgressTrack",
      "value": "ProgressTrack",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:ProgressValue",
      "value": "ProgressValue",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "slots": [
@@ -13520,29 +13520,29 @@
      "id": "slots:progress-indicator",
      "value": "progress-indicator",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:progress-label",
      "value": "progress-label",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:progress-track",
      "value": "progress-track",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:progress-value",
      "value": "progress-value",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "variants": {
@@ -13629,6 +13629,39 @@
       "default": null
      },
      "status": "match"
+    },
+    {
+     "id": "props.ProgressTrack.label",
+     "component": "ProgressTrack",
+     "prop": "label",
+     "shadcn": null,
+     "dmf": {
+      "default": null
+     },
+     "status": "intentional",
+     "reason": "The native progress's accessible name (aria-label), since the track is the element that carries the value."
+    },
+    {
+     "id": "props.ProgressTrack.max",
+     "component": "ProgressTrack",
+     "prop": "max",
+     "shadcn": null,
+     "dmf": {
+      "default": "100"
+     },
+     "status": "intentional",
+     "reason": "The track's native progress takes the maximum; shadcn's track has no maximum of its own."
+    },
+    {
+     "id": "props.ProgressTrack.value",
+     "component": "ProgressTrack",
+     "prop": "value",
+     "shadcn": null,
+     "dmf": {
+      "default": null
+     },
+     "status": "intentional",
+     "reason": "The track's native progress takes the value, so assistive technology announces it; shadcn's track has no value because its indicator is styled from the root."
     }
    ],
    "dataAttributes": [

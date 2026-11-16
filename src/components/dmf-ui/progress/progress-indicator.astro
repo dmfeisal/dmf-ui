@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'span'>;
+const {class:className,...props}=Astro.props;
+// The moving bar for indeterminate work. Decorative: the track's native progress announces the state.
+---
+<span {...props} data-slot="progress-indicator" aria-hidden="true" class={cn('dmf-progress-indicator',className)}></span>

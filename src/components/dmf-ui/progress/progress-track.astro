@@ -1,0 +1,10 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'span'>&{value?:number;max?:number;label?:string;};
+const {value,max=100,label,class:className,...props}=Astro.props;
+if(!Number.isFinite(max)||max<=0||(value!==undefined&&(!Number.isFinite(value)||value<0||value>max)))throw new Error('ProgressTrack requires a positive max and a value between 0 and max, or no value for indeterminate work.');
+// The track holds the native progress element, which carries the value to assistive technology. A ProgressIndicator
+// inside it is drawn while the value is indeterminate.
+---
+<span {...props} data-slot="progress-track" class={cn('dmf-progress-track relative block',className)}><progress aria-label={label} value={value} max={max}/><slot/></span>

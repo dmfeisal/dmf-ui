@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'span'>;
+const {class:className,...props}=Astro.props;
+// The value as text, decorative for assistive technology; the track's native progress is what is announced.
+---
+<span {...props} data-slot="progress-value" data-progress-value aria-hidden="true" class={cn('text-muted-foreground text-sm tabular-nums',className)}><slot/></span>
