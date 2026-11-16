@@ -15,7 +15,7 @@ import {ArchiveIndex} from '../dmf-ui/archive-index';
 import {TagList} from '../dmf-ui/tag-list';
 import {ProjectActionBar} from '../dmf-ui/project-action-bar';
 import {SectionNavigation} from '../dmf-ui/section-navigation';
-import {Avatar} from '../dmf-ui/avatar';
+import {Avatar,AvatarBadge,AvatarFallback,AvatarGroup,AvatarGroupCount,AvatarImage} from '../dmf-ui/avatar';
 import {Rating} from '../dmf-ui/rating';
 import {Chip} from '../dmf-ui/chip';
 import {Breadcrumb,BreadcrumbItem,BreadcrumbLink,BreadcrumbList,BreadcrumbPage,BreadcrumbSeparator} from '../dmf-ui/breadcrumb';
@@ -61,6 +61,7 @@ const presetName='DMF UI';
 {slug==='tag-list'&&<TagList label="Example project topics" items={['Design systems','Product design','Accessible interfaces']}/>}
 {slug==='project-action-bar'&&<ProjectActionBar label="Explore the foundation" ariaLabel="Preview project actions" items={[{label:'Read the guide',href:'/docs/introduction/',emphasis:'primary'},{label:'Browse components',href:'/components/'}]}/>}
 {slug==='section-navigation'&&<div class="docs-preview-stack"><SectionNavigation label="Preview page sections" items={[{id:`${id}-overview`,label:'Overview'},{id:`${id}-details`,label:'Details'}]}/><section id={`${id}-overview`} style="scroll-margin-block-start:1rem"><h3>Overview</h3><p>Native anchors target real sections.</p></section><section id={`${id}-details`} style="scroll-margin-block-start:1rem"><h3>Details</h3><p>The host owns content and placement.</p></section></div>}
+{slug==='avatar'&&<div class="docs-preview-stack" data-avatar-parts><Avatar><AvatarImage src="/does-not-exist.png" alt="Missing picture"/><AvatarFallback>DM</AvatarFallback><AvatarBadge/></Avatar><AvatarGroup><Avatar><AvatarFallback>AB</AvatarFallback></Avatar><Avatar><AvatarFallback>CD</AvatarFallback></Avatar><AvatarGroupCount>+3</AvatarGroupCount></AvatarGroup></div>}
 {slug==='avatar'&&<div class="docs-preview-row"><Avatar name="DMF UI" size="sm"/><Avatar name="Product team"/><Avatar name="Image unavailable" src="data:image/png;base64,broken" size="lg"/><p class="docs-note">Initials remain when no image is supplied or an image fails.</p></div>}
 {slug==='rating'&&<div class="docs-preview-stack"><Rating label="Illustrative score" value={4.5}/><form data-product-form><Rating label="Your rating" name="rating" readOnly={false} required/><div class="docs-preview-row"><Button type="submit">Preview rating</Button><Button type="reset" variant="outline">Reset</Button></div><p role="status" data-product-status>No rating submitted.</p></form><Rating label="Rating unavailable" name="disabled-rating" readOnly={false} value={3} disabled/></div>}
 {slug==='chip'&&<form data-product-form><fieldset><legend>Filter categories</legend><div class="docs-preview-row"><Chip name="category" value="navigation" checked>Navigation</Chip><Chip name="category" value="forms">Forms</Chip><Chip name="category" value="content">Content</Chip><Chip name="category" value="unavailable" disabled>Unavailable filter</Chip></div></fieldset><div class="docs-preview-row"><Button type="submit">Preview filters</Button><Button type="reset" variant="outline">Reset</Button></div><p role="status" data-product-status>Navigation selected. Filters stay in this example.</p></form>}

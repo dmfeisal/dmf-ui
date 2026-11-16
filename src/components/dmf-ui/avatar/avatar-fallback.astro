@@ -4,4 +4,4 @@ import {cn} from '../utils';
 type Props=HTMLAttributes<'span'>;
 const {class:className,...props}=Astro.props;
 ---
-<span {...props} data-slot="avatar-fallback" aria-hidden="true" class={cn('bg-muted text-muted-foreground flex size-full items-center justify-center rounded-full text-sm',className)}><slot/></span>
+<span {...props} data-slot="avatar-fallback" aria-hidden="true" class={cn('bg-muted text-foreground flex size-full items-center justify-center rounded-full text-sm',className)}><slot/></span>
