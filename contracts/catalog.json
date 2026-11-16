@@ -1329,11 +1329,17 @@
           "dataSlots": [
             "alert"
           ],
-          "properties": [],
+          "properties": [
+            {
+              "name": "variant",
+              "type": "\"default\" | \"destructive\"",
+              "optional": true
+            }
+          ],
           "native": [
             "HTMLAttributes<\"div\">"
           ],
-          "declaration": "type Props = VariantProps<typeof variants> & HTMLAttributes<\"div\">"
+          "declaration": "type Props = VariantProps<typeof variants> & HTMLAttributes<\"div\"> & { variant?: \"default\" | \"destructive\" }"
         }
       ],
       "variants": {
@@ -1542,7 +1548,7 @@
         },
         {
           "path": "src/components/dmf-ui/alert/alert.astro",
-          "sha256": "a07a1faf57292c20cb29ddfc6633249d244d9d435825c243f068b7c1d2974c74"
+          "sha256": "01c3d01ea586bb2ce6fd1009fa8c6bd6c7ceb4fd2b7cf4b29a2453d0594c3b8e"
         },
         {
           "path": "src/components/dmf-ui/alert/index.ts",
@@ -2587,12 +2593,17 @@
               "name": "as",
               "type": "Tag",
               "optional": false
+            },
+            {
+              "name": "type",
+              "type": "\"button\" | \"submit\" | \"reset\"",
+              "optional": true
             }
           ],
           "native": [
             "Polymorphic<{ as: Tag }>"
           ],
-          "declaration": "type Props<Tag extends HTMLTag = \"button\"> = Polymorphic<{ as: Tag }>"
+          "declaration": "type Props<Tag extends HTMLTag = \"button\"> = Polymorphic<{ as: Tag }> & { type?: \"button\" | \"submit\" | \"reset\" }"
         },
         {
           "file": "src/components/dmf-ui/attachment/attachment.astro",
@@ -2848,7 +2859,7 @@
         },
         {
           "path": "src/components/dmf-ui/attachment/attachment-trigger.astro",
-          "sha256": "e8eb3e7106188aa5a216c534bb7e206322dc2fc6d8e4b126e24a55f088ab0439"
+          "sha256": "324f3b1eda45ca994a6d50be4aa758000d52ed2dac27251c70602612293b75d8"
         },
         {
           "path": "src/components/dmf-ui/attachment/attachment.astro",
@@ -2945,8 +2956,89 @@
       "entry": "./src/components/dmf-ui/avatar/index.ts",
       "parts": [
         {
-          "file": "src/components/dmf-ui/avatar/avatar.astro",
+          "file": "src/components/dmf-ui/avatar/avatar-badge.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "avatar-badge"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'span'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'span'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/avatar/avatar-fallback.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "avatar-fallback"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'span'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'span'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/avatar/avatar-group-count.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "avatar-group-count"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/avatar/avatar-group.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "avatar-group"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/avatar/avatar-image.astro",
           "slots": [],
+          "dataSlots": [
+            "avatar-image"
+          ],
+          "properties": [
+            {
+              "name": "src",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "alt",
+              "type": "string",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'img'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'img'>&{src:string;alt?:string;};"
+        },
+        {
+          "file": "src/components/dmf-ui/avatar/avatar.astro",
+          "slots": [
+            "default"
+          ],
           "dataSlots": [
             "avatar",
             "avatar-fallback"
@@ -2955,7 +3047,7 @@
             {
               "name": "name",
               "type": "string",
-              "optional": false
+              "optional": true
             },
             {
               "name": "src",
@@ -2984,11 +3076,12 @@
             }
           ],
           "native": [],
-          "declaration": "interface Props extends HTMLAttributes<'span'> {name:string;src?:string;fallback?:string;size?:'sm'|'default'|'lg';decorative?:boolean;presentation?:Presentation;}"
+          "declaration": "interface Props extends HTMLAttributes<'span'> {name?:string;src?:string;fallback?:string;size?:'sm'|'default'|'lg';decorative?:boolean;presentation?:Presentation;}"
         }
       ],
       "variants": {},
       "defaults": {
+        "avatar-image.astro:alt": "''",
         "avatar.astro:size": "'default'",
         "avatar.astro:decorative": "false",
         "avatar.astro:presentation": "'icon'"
@@ -3143,7 +3236,13 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         }
       },
-      "tokens": [],
+      "tokens": [
+        "background",
+        "muted",
+        "muted-foreground",
+        "primary",
+        "primary-foreground"
+      ],
       "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
@@ -3168,12 +3267,32 @@
       "status": "partial",
       "sources": [
         {
+          "path": "src/components/dmf-ui/avatar/avatar-badge.astro",
+          "sha256": "20ae357039cf8cbadf3f275805c20e7ec2c8f84f5eeb45264fb420e54b32992b"
+        },
+        {
+          "path": "src/components/dmf-ui/avatar/avatar-fallback.astro",
+          "sha256": "653f8dd2591524aeb86f135200cd554df50f348051d50832c03d9910e3808466"
+        },
+        {
+          "path": "src/components/dmf-ui/avatar/avatar-group-count.astro",
+          "sha256": "0b0c1d7b344d422c2b8be13f25dae49933e3152e0a720ed6811505f3c70dde34"
+        },
+        {
+          "path": "src/components/dmf-ui/avatar/avatar-group.astro",
+          "sha256": "8b852c3ea511b7890734bd326ad1844a27aa793f34587ac5e72e8aba25ce0b58"
+        },
+        {
+          "path": "src/components/dmf-ui/avatar/avatar-image.astro",
+          "sha256": "73f50e6c13e570051af3eb64f8fd4fe777975e77725043b6c829869a3f6eed9d"
+        },
+        {
           "path": "src/components/dmf-ui/avatar/avatar.astro",
-          "sha256": "9ba406797ed660dc1b46e1541df66d735f950d145aee5175a8e4c8853ba3532d"
+          "sha256": "8a9248c0d617e2d32413f7069a4e71018db79bb213e4c7f86ef3ac3cb424985c"
         },
         {
           "path": "src/components/dmf-ui/avatar/index.ts",
-          "sha256": "cdedf965b8390b696804f089db2eaa1648f42c140088cf274d9e7d6fd6f598bb"
+          "sha256": "1eabdee2529242b18a0280d4a7b092e08dd83b5e7ee2b3591469b1228efda79c"
         }
       ],
       "gaps": [
@@ -3197,6 +3316,11 @@
       "dependencies": [
         "../navigation-types",
         "../utils",
+        "./avatar-badge.astro",
+        "./avatar-fallback.astro",
+        "./avatar-group-count.astro",
+        "./avatar-group.astro",
+        "./avatar-image.astro",
         "./avatar.astro",
         "astro/types"
       ]
@@ -26036,6 +26160,20 @@
           "declaration": "type Props=HTMLAttributes<'tbody'>;"
         },
         {
+          "file": "src/components/dmf-ui/table/table-caption.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "table-caption"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'caption'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'caption'>;"
+        },
+        {
           "file": "src/components/dmf-ui/table/table-cell.astro",
           "slots": [
             "default"
@@ -26111,6 +26249,7 @@
             "default"
           ],
           "dataSlots": [
+            "table-container",
             "table"
           ],
           "properties": [
@@ -26290,7 +26429,9 @@
           "note": "No automatic support claim. Native or child composition may apply; otherwise unsupported until reviewed."
         }
       },
-      "tokens": [],
+      "tokens": [
+        "muted-foreground"
+      ],
       "reviewedContract": null,
       "presets": {
         "scope": "Shared semantic CSS variables; per-family brand acceptance remains partial.",
@@ -26329,11 +26470,15 @@
       "sources": [
         {
           "path": "src/components/dmf-ui/table/index.ts",
-          "sha256": "4d9652b333f7fc2653aa6651243094fe7dcf880bbac27710de25e2f3d22227b3"
+          "sha256": "4d946b246a539438936aecaf503b8c500527ad641226b88a2a0341a25e6c04a1"
         },
         {
           "path": "src/components/dmf-ui/table/table-body.astro",
           "sha256": "6e4494718d6760017fe4e28d68d46ff064e7c582c098d18a6026192869f0c0cb"
+        },
+        {
+          "path": "src/components/dmf-ui/table/table-caption.astro",
+          "sha256": "e84960bfc725d916747338172cd2d5db238e020180d8fdb2c62d019b3140a7f0"
         },
         {
           "path": "src/components/dmf-ui/table/table-cell.astro",
@@ -26357,7 +26502,7 @@
         },
         {
           "path": "src/components/dmf-ui/table/table.astro",
-          "sha256": "d9cc170ef1dad9f43e15c44e879d01c458597f2e69c788d7e78a49cd8da1e42d"
+          "sha256": "2a3a9eeebf17fcbde45edd64f964f295f1269a3505cec3409a443e506ae0a8d1"
         }
       ],
       "gaps": [
@@ -26381,6 +26526,7 @@
       "dependencies": [
         "../utils",
         "./table-body.astro",
+        "./table-caption.astro",
         "./table-cell.astro",
         "./table-footer.astro",
         "./table-head.astro",

@@ -90,7 +90,7 @@
         {
           "path": "src/components/dmf-ui/attachment/attachment-trigger.astro",
           "upstreamSha256": "e38afa9b35271dad424e339cd71adb8344ba713d1d06fa9f013c97a5bd02e70a",
-          "adoptedSha256": "e8eb3e7106188aa5a216c534bb7e206322dc2fc6d8e4b126e24a55f088ab0439"
+          "adoptedSha256": "324f3b1eda45ca994a6d50be4aa758000d52ed2dac27251c70602612293b75d8"
         },
         {
           "path": "src/components/dmf-ui/attachment/attachment.astro",
