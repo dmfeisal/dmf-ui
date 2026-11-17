@@ -4654,6 +4654,7 @@
           "tests/browser/dmf-ui-modal-components.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
+          "tests/browser/dmf-ui-parts.mjs",
           "tests/browser/dmf-ui-pilot.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
@@ -6393,6 +6394,7 @@
           "tests/navigation-patterns.test.mjs",
           "tests/product-details.test.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
+          "tests/browser/dmf-ui-parts.mjs",
           "tests/browser/dmf-ui-product-details.mjs"
         ]
       },
@@ -7688,6 +7690,58 @@
       "entry": "./src/components/dmf-ui/combobox/index.ts",
       "parts": [
         {
+          "file": "src/components/dmf-ui/combobox/combobox-chip.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "combobox-chip",
+            "combobox-chip-remove"
+          ],
+          "properties": [
+            {
+              "name": "value",
+              "type": "string",
+              "optional": false
+            },
+            {
+              "name": "showRemove",
+              "type": "boolean",
+              "optional": true
+            }
+          ],
+          "native": [
+            "HTMLAttributes<'span'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'span'>&{value:string;showRemove?:boolean;};"
+        },
+        {
+          "file": "src/components/dmf-ui/combobox/combobox-chips-input.astro",
+          "slots": [],
+          "dataSlots": [
+            "combobox-chip-input"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'input'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'input'>;"
+        },
+        {
+          "file": "src/components/dmf-ui/combobox/combobox-chips.astro",
+          "slots": [
+            "default"
+          ],
+          "dataSlots": [
+            "combobox-chips"
+          ],
+          "properties": [],
+          "native": [
+            "HTMLAttributes<'div'>"
+          ],
+          "declaration": "type Props=HTMLAttributes<'div'>;"
+        },
+        {
           "file": "src/components/dmf-ui/combobox/combobox-content.astro",
           "slots": [
             "default"
@@ -7871,6 +7925,16 @@
           ],
           "properties": [
             {
+              "name": "multiple",
+              "type": "boolean",
+              "optional": true
+            },
+            {
+              "name": "defaultValues",
+              "type": "string[]",
+              "optional": true
+            },
+            {
               "name": "id",
               "type": "string",
               "optional": false
@@ -7924,16 +7988,19 @@
           "native": [
             "HTMLAttributes<'select'>"
           ],
-          "declaration": "interface Props extends Omit<HTMLAttributes<'select'>,'id'|'size'|'multiple'> {id:string;label:string;items?:{value:string;label:string;disabled?:boolean;icon?:NavigationIcon}[];defaultValue?:string;placeholder?:string;emptyMessage?:string;}"
+          "declaration": "interface Props extends Omit<HTMLAttributes<'select'>,'id'|'size'|'multiple'> {multiple?:boolean;defaultValues?:string[];id:string;label:string;items?:{value:string;label:string;disabled?:boolean;icon?:NavigationIcon}[];defaultValue?:string;placeholder?:string;emptyMessage?:string;}"
         }
       ],
       "variants": {},
       "defaults": {
+        "combobox-chip.astro:showRemove": "true",
         "combobox-input.astro:showTrigger": "true",
         "combobox-input.astro:showClear": "false",
         "combobox-item.astro:disabled": "false",
         "combobox-item.astro:selected": "false",
         "combobox-trigger.astro:inInput": "false",
+        "combobox.astro:multiple": "false",
+        "combobox.astro:defaultValues": "[]",
         "combobox.astro:defaultValue": "''",
         "combobox.astro:placeholder": "'Choose an option'",
         "combobox.astro:emptyMessage": "'No matching options.'",
@@ -8095,9 +8162,12 @@
         "accent-foreground",
         "border",
         "foreground",
+        "input",
+        "muted",
         "muted-foreground",
         "popover",
-        "popover-foreground"
+        "popover-foreground",
+        "ring"
       ],
       "reviewedContract": {
         "states": "Committed value, query, highlighted option, empty search, open/closed, disabled field/option, required validity and focus-visible. Highlight does not commit; Escape/Tab/blur restore the committed label. Composition and text-editing keys remain available.",
@@ -8119,6 +8189,7 @@
         "status": "references-only",
         "sources": [
           "tests/selection.test.mjs",
+          "tests/browser/dmf-ui-parts.mjs",
           "tests/browser/dmf-ui-select.mjs",
           "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-selection.mjs"
@@ -8126,6 +8197,18 @@
       },
       "status": "partial",
       "sources": [
+        {
+          "path": "src/components/dmf-ui/combobox/combobox-chip.astro",
+          "sha256": "3516a85b9b7a24fd040488c303ee9bc0c779e133534157778b04cbff73b35208"
+        },
+        {
+          "path": "src/components/dmf-ui/combobox/combobox-chips-input.astro",
+          "sha256": "75b320e7e18ac634b18e08f6b608c42446eaf4ca96d3ed14b84f77feae5314aa"
+        },
+        {
+          "path": "src/components/dmf-ui/combobox/combobox-chips.astro",
+          "sha256": "3ed6107505b432a3c5cbdc22ced3dc4ae58987e641fb0b7dc01db20b6d429f5c"
+        },
         {
           "path": "src/components/dmf-ui/combobox/combobox-content.astro",
           "sha256": "901c9ac8cce5462af7c5a319e775bb7657c39b3f23b5423101af028c8a9f4ec7"
@@ -8168,11 +8251,11 @@
         },
         {
           "path": "src/components/dmf-ui/combobox/combobox.astro",
-          "sha256": "e7fb4c99020af1c14a16fdb5fc87af1da854cb96d928e7875bf21fd3c7989122"
+          "sha256": "7907a022f6f42813aa036f66463333dce9bb506cbf89cecfdaf5a1af972c16b4"
         },
         {
           "path": "src/components/dmf-ui/combobox/index.ts",
-          "sha256": "6dc2c347b5df9b1563e2fa2071535c851883f8415f5f83e20a8430f264fabc84"
+          "sha256": "47da4d587a7e161d4f780ede1666b4ce423bc1357401a2f9b8cfcf4dfb5ed02e"
         },
         {
           "path": "src/components/dmf-ui/combobox/items.ts",
@@ -8180,7 +8263,7 @@
         },
         {
           "path": "src/components/dmf-ui/combobox/runtime.ts",
-          "sha256": "15507bebeb37216e61e81c4632e5a3bcbf94b857d9f6b371fad106ec2fcb50d9"
+          "sha256": "7de5c0304ed47dc9fac403f84139096208d3f1281b1ae8023eca03451c7a9021"
         }
       ],
       "gaps": [
@@ -8205,6 +8288,9 @@
         "../input-group",
         "../navigation-types",
         "../utils",
+        "./combobox-chip.astro",
+        "./combobox-chips-input.astro",
+        "./combobox-chips.astro",
         "./combobox-content.astro",
         "./combobox-empty.astro",
         "./combobox-group.astro",
@@ -14572,6 +14658,7 @@
           "tests/browser/dmf-ui-merchant-listing-consumer.mjs",
           "tests/browser/dmf-ui-navigation-patterns.mjs",
           "tests/browser/dmf-ui-overlays.mjs",
+          "tests/browser/dmf-ui-parts.mjs",
           "tests/browser/dmf-ui-preset-theme.mjs",
           "tests/browser/dmf-ui-product-details.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",
@@ -23405,6 +23492,7 @@
           "tests/browser/dmf-ui-navigation.mjs",
           "tests/browser/dmf-ui-nova-docs.mjs",
           "tests/browser/dmf-ui-overlays.mjs",
+          "tests/browser/dmf-ui-parts.mjs",
           "tests/browser/dmf-ui-pilot.mjs",
           "tests/browser/dmf-ui-portfolio.mjs",
           "tests/browser/dmf-ui-react-consumer.mjs",

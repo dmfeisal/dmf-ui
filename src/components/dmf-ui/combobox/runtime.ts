@@ -12,6 +12,8 @@ function initialize(){for(const root of document.querySelectorAll<HTMLElement>('
  // ComboboxEmpty is optional in parts mode.
  const empty=root.querySelector<HTMLElement>('[data-combobox-empty]');
  const status=root.querySelector<HTMLElement>('[data-combobox-status]')!;
+ const multi=root.dataset.comboboxMultiple==='true';
+ const chips=[...root.querySelectorAll<HTMLElement>('[data-slot=combobox-chip]')];
  const triggers=[...root.querySelectorAll<HTMLButtonElement>('[data-combobox-trigger]')];
  const clears=[...root.querySelectorAll<HTMLButtonElement>('[data-combobox-clear]')];
  const values=[...root.querySelectorAll<HTMLElement>('[data-combobox-value]')];
@@ -55,14 +57,18 @@ function initialize(){for(const root of document.querySelectorAll<HTMLElement>('
   position();
   input.setAttribute('aria-expanded',String(!list.hidden));
  }
- function close(){popup.hidden=true;input.setAttribute('aria-expanded','false');highlight();status.textContent='';input.value=selectedLabel();input.setCustomValidity('');}
- function sync(){input.disabled=select.disabled;input.value=selectedLabel();input.required=select.dataset.comboboxRequired==='true';for(const option of options)option.setAttribute('aria-selected',String(option.dataset.value===select.value));for(const trigger of triggers)trigger.disabled=select.disabled;for(const clear of clears){clear.disabled=select.disabled;clear.hidden=!select.value;}for(const value of values)value.textContent=selectedLabel();close();}
- function commit(option:HTMLElement){if(option.getAttribute('aria-disabled')==='true')return;select.value=option.dataset.value!;sync();select.dispatchEvent(new Event('input',{bubbles:true}));select.dispatchEvent(new Event('change',{bubbles:true}));input.focus();}
+ const chosen=()=>[...select.selectedOptions].filter(o=>o.value);
+ function syncChips(){for(const option of options)option.setAttribute('aria-selected',String(chosen().some(o=>o.value===option.dataset.value)));for(const chip of chips)chip.hidden=!chosen().some(o=>o.value===chip.dataset.value);for(const value of values)value.textContent=chosen().map(o=>o.textContent).join(', ');}
+ function announce(){select.dispatchEvent(new Event('input',{bubbles:true}));select.dispatchEvent(new Event('change',{bubbles:true}));}
+ function close(){popup.hidden=true;input.setAttribute('aria-expanded','false');highlight();status.textContent='';input.value=multi?'':selectedLabel();input.setCustomValidity('');}
+ function sync(){if(multi){input.disabled=select.disabled;input.value='';syncChips();for(const trigger of triggers)trigger.disabled=select.disabled;close();return;}input.disabled=select.disabled;input.value=selectedLabel();input.required=select.dataset.comboboxRequired==='true';for(const option of options)option.setAttribute('aria-selected',String(option.dataset.value===select.value));for(const trigger of triggers)trigger.disabled=select.disabled;for(const clear of clears){clear.disabled=select.disabled;clear.hidden=!select.value;}for(const value of values)value.textContent=selectedLabel();close();}
+ function commit(option:HTMLElement){if(option.getAttribute('aria-disabled')==='true')return;if(multi){const o=[...select.options].find(x=>x.value===option.dataset.value);if(o){o.selected=!o.selected;syncChips();announce();input.value='';filter('');input.focus();}return;}select.value=option.dataset.value!;sync();select.dispatchEvent(new Event('input',{bubbles:true}));select.dispatchEvent(new Event('change',{bubbles:true}));input.focus();}
  input.addEventListener('click',()=>{if(popup.hidden)open();},{signal});
  input.addEventListener('compositionstart',()=>{composing=true;},{signal});input.addEventListener('compositionend',()=>{composing=false;open(input.value);},{signal});
  input.addEventListener('input',()=>{if(!composing){open(input.value);input.setCustomValidity(input.value&&input.value!==selectedLabel()?'Choose an option from the list.':'');}},{signal});
  input.addEventListener('keydown',event=>{
   if(event.isComposing||composing||input.disabled)return;
+  if(multi&&event.key==='Backspace'&&input.value===''){const last=chosen().at(-1);if(last){last.selected=false;sync();announce();}event.preventDefault();return;}
   if(event.key==='ArrowDown'||event.key==='ArrowUp'){
    event.preventDefault();if(popup.hidden)open();const items=available();const index=active?items.indexOf(active):-1;const next=event.key==='ArrowDown'?Math.min(index+1,items.length-1):(index<0?items.length-1:Math.max(index-1,0));highlight(items[next]);
   }else if(event.key==='Enter'&&!popup.hidden){event.preventDefault();if(active)commit(active);}
@@ -77,6 +83,7 @@ function initialize(){for(const root of document.querySelectorAll<HTMLElement>('
  document.addEventListener('pointerdown',event=>{if(event.target instanceof Node&&!root.contains(event.target))close();},{signal});
  select.addEventListener('change',sync,{signal});
  select.form?.addEventListener('reset',()=>setTimeout(()=>{if(!signal.aborted)sync();},0),{signal});
+ for(const chip of chips)chip.querySelector('[data-slot=combobox-chip-remove]')?.addEventListener('click',event=>{event.preventDefault();const o=[...select.options].find(x=>x.value===chip.dataset.value);if(o){o.selected=false;sync();announce();}input.focus();},{signal});
  window.addEventListener('resize',()=>{if(!popup.hidden)position();},{signal});
  document.addEventListener('scroll',()=>{if(!popup.hidden)position();},{signal,capture:true,passive:true});
  select.dataset.comboboxRequired=String(select.required);select.required=false;fallback.hidden=true;enhanced.hidden=false;sync();

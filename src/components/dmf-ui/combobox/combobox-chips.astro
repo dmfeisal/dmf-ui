@@ -1,0 +1,8 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'div'>;
+const {class:className,...props}=Astro.props;
+// The box that holds the selected chips and the search input in a multi-select Combobox.
+---
+<div {...props} data-slot="combobox-chips" class={cn('border-input focus-within:border-ring focus-within:ring-ring/50 flex min-h-8 flex-wrap items-center gap-1 rounded-lg border bg-transparent px-2.5 py-1 text-sm focus-within:ring-3',className)}><slot/></div>

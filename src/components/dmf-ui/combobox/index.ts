@@ -9,3 +9,6 @@ export {default as ComboboxList} from './combobox-list.astro';
 export {default as ComboboxSeparator} from './combobox-separator.astro';
 export {default as ComboboxTrigger} from './combobox-trigger.astro';
 export {default as ComboboxValue} from './combobox-value.astro';
+export {default as ComboboxChips} from "./combobox-chips.astro";
+export {default as ComboboxChip} from "./combobox-chip.astro";
+export {default as ComboboxChipsInput} from "./combobox-chips-input.astro";

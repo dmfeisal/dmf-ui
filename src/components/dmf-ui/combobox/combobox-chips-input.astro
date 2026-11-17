@@ -1,0 +1,9 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'input'>;
+const {class:className,...props}=Astro.props;
+// The search input in a multi-select Combobox. It is the input the runtime filters with; Backspace on an empty input
+// removes the last chip.
+---
+<input {...props} type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" autocomplete="off" spellcheck="false" data-slot="combobox-chip-input" class={cn('min-w-16 flex-1 bg-transparent outline-none',className)}/>
