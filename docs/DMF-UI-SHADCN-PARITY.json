@@ -34,10 +34,10 @@
  "totals": {
   "families": 50,
   "match": 920,
-  "intentional": 804,
+  "intentional": 806,
   "gap": 0,
   "differs": 0,
-  "extra": 2
+  "extra": 0
  },
  "families": {
   "accordion": {
@@ -2573,10 +2573,10 @@
    },
    "counts": {
     "match": 22,
-    "intentional": 2,
+    "intentional": 4,
     "gap": 0,
     "differs": 0,
-    "extra": 2
+    "extra": 0
    },
    "parts": [
     {
@@ -2751,14 +2751,16 @@
      "value": "data-size",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "DMF UI exposes the button's size as data-size for hosts and for DMF parts that read it (such as Input Group's buttons); shadcn's button leaves the size in its classes."
     },
     {
      "id": "dataAttributes:data-variant",
      "value": "data-variant",
      "shadcn": false,
      "dmf": true,
-     "status": "extra"
+     "status": "intentional",
+     "reason": "DMF UI exposes the button's variant as data-variant for hosts and for DMF parts that read it; shadcn's button leaves the variant in its classes."
     }
    ],
    "stateHooks": [

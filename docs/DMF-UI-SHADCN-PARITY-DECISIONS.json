@@ -4,7 +4,9 @@
   "button": {
    "variants.size:md": "Kept as an alias of default for existing consumers (DMF-UI-NOVA.md).",
    "props.Button.as": "Astro polymorphism: DMF UI renders <a> or <button> through `as` (and `href`) instead of Base UI's `render` prop.",
-   "measured.color:button/Button?variant=destructive*": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts)."
+   "measured.color:button/Button?variant=destructive*": "Destructive text mixes a fifth of the foreground into --destructive, keeping 4.5:1 on its tint where Nova's text-destructive gives about 4:1 (button-variants.ts).",
+   "dataAttributes:data-size": "DMF UI exposes the button's size as data-size for hosts and for DMF parts that read it (such as Input Group's buttons); shadcn's button leaves the size in its classes.",
+   "dataAttributes:data-variant": "DMF UI exposes the button's variant as data-variant for hosts and for DMF parts that read it; shadcn's button leaves the variant in its classes."
   },
   "kbd": {
    "measured.color:kbd/*": "Kbd keeps foreground text: Nova's muted-foreground on bg-muted is about 4.4:1 in Neutral, below AA for its 12px text."
