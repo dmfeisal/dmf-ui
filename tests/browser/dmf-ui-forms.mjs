@@ -53,7 +53,7 @@ export async function run({page,baseURL,navigate,mobile:setMobile,settle}) {
     assert(await page.evaluate(prefix => {
       const cb = document.querySelector(`[data-dmf-form="${prefix}-cb-ui"]`).closest('[data-system]');
       const dmf = document.querySelector(`[data-dmf-form="${prefix}-dmf"]`).closest('[data-system]');
-      return getComputedStyle(cb).getPropertyValue('--primary').trim() === '#26ade4' && getComputedStyle(dmf).getPropertyValue('--primary').trim() !== '#26ade4' && getComputedStyle(cb).fontFamily.includes('DMF CB Nunito');
+      return getComputedStyle(cb).getPropertyValue('--primary').trim() === '#157ea9' && getComputedStyle(dmf).getPropertyValue('--primary').trim() !== '#157ea9' && getComputedStyle(cb).fontFamily.includes('DMF CB Nunito');
     }, pagePrefix), 'CB preset or font was not scoped');
     await page.evaluate(() => document.documentElement.dataset.theme = 'dark');
     assert(await page.evaluate(prefix => {

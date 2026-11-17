@@ -138,7 +138,7 @@ New domain families are not planned without a concrete product.
 
 - Keep the confidential naming rules in `AGENTS.md` for every preset, past or future.
 - Natural sizing: no blanket 44px minimums. Header tools share 32px.
-- CB and HUI filled primary actions keep white labels by owner preference (about 2.57:1 and 4.29:1); they stay recorded exceptions, not WCAG AA passes.
+- CB and HUI filled primary actions keep white labels by owner preference. CB meets 4.5:1 (about 4.58:1, hover 5.46:1); HUI stays a recorded exception at about 4.29:1, not a WCAG AA pass.
 - Released versions are immutable and recorded in `releases/`.
 - **CI rule for browser suites** (decided in M13; applies to every future browser suite and deployment check):
   - **Triggers:**

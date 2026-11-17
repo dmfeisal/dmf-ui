@@ -21,10 +21,10 @@
       ],
       "actionTextPolicy": {
         "foreground": "#FFFFFF",
-        "background": "Existing primary unchanged",
+        "background": "Darkened from #26ade4 to #157ea9 so white labels meet 4.5:1; hover #137198",
         "source": "Owner-selected UI preference",
-        "contrastRatio": 2.5671966361741516,
-        "status": "known-normal-text-contrast-exception"
+        "contrastRatio": 4.576019,
+        "status": "meets-normal-text-contrast"
       }
     },
     "hui": {

@@ -2,7 +2,7 @@
 
 ## Direction and boundaries
 
-The owner selected Fulldev as the main component reference. This release preserves DMF's semantic neutral palette, primary action color, relative 14px documentation root and existing inherited fonts; CB uses its light reconstruction preset, bundled Nunito and #26ade4 primary. No alternate palette, font service, visual assets or motion dependency is introduced.
+The owner selected Fulldev as the main component reference. This release preserves DMF's semantic neutral palette, primary action color, relative 14px documentation root and existing inherited fonts; CB uses its light reconstruction preset, bundled Nunito and #157ea9 primary. No alternate palette, font service, visual assets or motion dependency is introduced.
 
 ENERGY 1 / RHYTHM 1 / MOTION 1: documentation is for inspecting components, so comparison and predictable hierarchy take priority. Existing page layouts remain. A live component preview is the focal point; usage and options follow. Neutral Card surfaces group related content with the small upstream shadow. Badge labels communicate actual example states in text. No decorative icons, gradients or repeated feature-card marketing sections are added. New links have specific destinations; static labels are not focusable controls.
 

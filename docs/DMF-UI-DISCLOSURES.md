@@ -6,7 +6,7 @@ Version 0.2.0 adds the Fulldev base-vega Accordion and Tooltip to the experiment
 
 Use `dmf-ui/accordion` for Accordion, AccordionItem, AccordionTrigger and AccordionContent; use `dmf-ui/tooltip` for Tooltip, TooltipTrigger and TooltipContent. Both are also in the aggregate export. `dmf-ui/examples/DisclosureExamples` is an optional source-owned specimen, included by SystemExamples in each preset.
 
-Standalone anchors are `#standalone-form-dmf-accordion-title` and `#standalone-form-dmf-tooltip-title`. The portfolio pilot uses `#pilot-form-dmf-accordion-title` and `#pilot-form-dmf-tooltip-title`. Replace `dmf` with `cb-ui` for the light-only CB reconstruction. Its primary remains `--dmf-cb-ui-color-primary: #26ade4`.
+Standalone anchors are `#standalone-form-dmf-accordion-title` and `#standalone-form-dmf-tooltip-title`. The portfolio pilot uses `#pilot-form-dmf-accordion-title` and `#pilot-form-dmf-tooltip-title`. Replace `dmf` with `cb-ui` for the light-only CB reconstruction. Its primary remains `--dmf-cb-ui-color-primary: #157ea9`.
 
 ## Accordion contract
 

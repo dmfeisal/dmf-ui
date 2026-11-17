@@ -7,7 +7,7 @@ import {JSDOM} from 'jsdom';
 test('production CSS includes adapter utilities, both presets, focus rules and bundled Nunito',async()=>{
  const assets=await readdir('dist/assets');const css=(await Promise.all(assets.filter(name=>name.endsWith('.css')).map(name=>readFile(join('dist/assets',name),'utf8')))).join('\n');
  for(const selector of ['.dmf-react-switch','.border-input','.text-2xl','.bg-primary','data-system=cb-ui','data-theme=dark','focus-visible'])assert.ok(css.includes(selector),`Missing compiled styling: ${selector}`);
- assert.match(css,/#26ade4/i);assert.match(css,/DMF CB Nunito/);assert.ok(!css.includes('@tailwind'),'Tailwind must be compiled');
+ assert.match(css,/#157ea9/i);assert.match(css,/DMF CB Nunito/);assert.ok(!css.includes('@tailwind'),'Tailwind must be compiled');
  const fontURLs=[...css.matchAll(/url\(([^)]+\.ttf[^)]*)\)/g)].map(match=>match[1].replace(/["']/g,''));assert.ok(fontURLs.length>0,'Bundled font URL missing');
  const original=await readFile('node_modules/@dmf-ui/core/dist/assets/fonts/nunito.ttf');
  const hash=bytes=>createHash('sha256').update(bytes).digest('hex');

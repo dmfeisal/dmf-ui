@@ -9,7 +9,7 @@ test('committed token outputs are deterministic and up to date',async()=>{
 test('portable values retain units, color spaces, shadows and CB alias relationships',()=>{
  const outputs=compileTokens(source),resolved=JSON.parse(outputs['tokens/resolved.json']);
  assert.deepEqual(resolved.groups['cb.light'].primary,resolved.groups['cb.light']['dmf-cb-ui-color-primary']);
- assert.equal(resolved.groups['cb.light'].primary.value.hex,'#26ade4');
+ assert.equal(resolved.groups['cb.light'].primary.value.hex,'#157ea9');
  assert.equal(resolved.groups['dmf.light'].primary.value.colorSpace,'oklch');
  assert.deepEqual(resolved.groups['dmf.light'].radius.value,{value:.625,unit:'rem'});
  assert.equal(resolved.groups['dmf.dark']['shadow-sm'].value.length,2);
