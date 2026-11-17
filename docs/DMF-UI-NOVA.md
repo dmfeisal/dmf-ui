@@ -25,7 +25,7 @@ This is a source-owned Astro adaptation with the existing native/Data Slot behav
 
 CB and HUI primary labels are white, including components that consume the primary foreground role. Their palette/fill values stay unchanged. This is an explicit owner choice, separate from official palette verification.
 
-At the base fill, white/CB primary has a measured ratio of approximately 2.57:1 and white/HUI primary approximately 4.29:1. These do not meet 4.5:1 for normal-size text; hover opacity can lower contrast further. Expected primary-label contrast findings remain in the browser report, not hidden under an accessibility all-clear. Other unknown violations still fail the scenario. Non-text Switch cues retain contrasting thumb/track treatments.
+At the base fill, white/CB primary has a measured ratio of approximately 4.58:1 (CB darkened to `#157ea9`; hover `#137198`, 5.46:1) and white/HUI primary approximately 4.29:1. These do not meet 4.5:1 for normal-size text; hover opacity can lower contrast further. Expected primary-label contrast findings remain in the browser report, not hidden under an accessibility all-clear. Other unknown violations still fail the scenario. Non-text Switch cues retain contrasting thumb/track treatments.
 
 ## Code components
 

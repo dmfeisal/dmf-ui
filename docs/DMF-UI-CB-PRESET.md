@@ -10,7 +10,7 @@ Raw palette, Nunito typography and shape values come from `public/css/cb-ui-toke
 
 | Role | Source value | Current use |
 | --- | --- | --- |
-| Primary / brand | CB 50, `#26ade4` | `--dmf-cb-ui-color-primary` feeds `--primary` and `--cb-brand`; action backgrounds and selected controls use this brand blue. Filled primary labels are white `#ffffff` by owner preference: about 2.57:1, a recorded contrast exception (`actionTextPolicy` in `contracts/brands.json`), not an AA pass |
+| Primary / brand | CB 50, `#157ea9` (darkened from `#26ade4` so white labels reach 4.5:1) | `--dmf-cb-ui-color-primary` feeds `--primary` and `--cb-brand`; action backgrounds and selected controls use this brand blue. Filled primary labels are white `#ffffff` by owner preference and meet 4.5:1 at 4.58:1 (`actionTextPolicy` in `contracts/brands.json`). Hover darkens to `#137198` (5.46:1), not lighter, so labels stay above 4.5:1 |
 | Focus / accent ink | CB 80, `#166788` | Focus ring and text on pale accent surfaces |
 | Secondary | Tosca 10 `#ebfffc` / Tosca 80 `#0d4a41` | Secondary surface and foreground |
 | Foreground | Semantic text, `#23282c` | Text on white, contrast 14.88:1 |

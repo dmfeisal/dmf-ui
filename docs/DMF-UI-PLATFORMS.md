@@ -8,7 +8,7 @@ Maintain one DMF design system with separate implementations for Astro, React we
 
 Share portable design tokens, semantic names, brand presets, component variants, states and behavior specifications. Keep rendering, interaction, accessibility and lifecycle code platform-specific. Do not attempt to reuse Astro components, browser DOM behavior or CSS directly as native components.
 
-Use interoperable design-token JSON as the eventual canonical source, generating web CSS variables, React Native values and Swift definitions. Migrate existing values without visual changes; preserve CB UI primary `#26ade4`. Keep platform mappings explicit for units, fonts, shadows and accessibility scaling.
+Use interoperable design-token JSON as the eventual canonical source, generating web CSS variables, React Native values and Swift definitions. Migrate existing values without visual changes; preserve CB UI primary `#157ea9`. Keep platform mappings explicit for units, fonts, shadows and accessibility scaling.
 
 ## Delivery order
 

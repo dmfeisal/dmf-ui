@@ -18,7 +18,7 @@ Consumers keep existing CSS imports and custom-property names. Two additive data
 
 ## Preserving current behavior
 
-The migration covers existing shared colors, radii, shadows and CB font roles only. It does not copy the portfolio's page-specific spacing, container or typography system, and does not change the host's relative 14px root. Existing aliases remain CSS custom-property references so runtime brand overrides still work. CB primary remains `--dmf-cb-ui-color-primary: #26ade4`, with light-only behavior and its original reconstruction attribution.
+The migration covers existing shared colors, radii, shadows and CB font roles only. It does not copy the portfolio's page-specific spacing, container or typography system, and does not change the host's relative 14px root. Existing aliases remain CSS custom-property references so runtime brand overrides still work. CB primary remains `--dmf-cb-ui-color-primary: #157ea9`, with light-only behavior and its original reconstruction attribution.
 
 OKLCH values retain their color space. sRGB values retain numeric components and consistent hex fallbacks. Dimensions retain `rem` or `px`; there is no implicit conversion to native points, density-independent pixels or scaled text. Shadows retain all layers, offsets, blur, spread and alpha. The CB destructive color retains its existing CSS sRGB mix through one validated web extension; the typed color also holds its numerically equivalent sRGB value. Original upstream hashes remain historical provenance, not hashes of generated files.
 

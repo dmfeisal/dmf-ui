@@ -34,5 +34,5 @@ test('QDI palette stays exact while semantic pairings meet text contrast',async(
  for(const [fg,bg] of [['primary-foreground','primary'],['secondary-foreground','secondary'],['accent-foreground','accent'],['muted-foreground','muted'],['fd-link','background']]){const a=luminance(q[fg].value),b=luminance(q[bg].value);assert((Math.max(a,b)+.05)/(Math.min(a,b)+.05)>=4.5,`${fg}/${bg}`);}
  assert.deepEqual(brands.brands.qdi.modes,['light']);assert(!groups['qdi.dark']);
  assert.equal(q['qdi-elevation-4'].value[0].blur.value,50);
- assert.equal(groups['cb.light'].primary.value.hex,'#26ade4');
+ assert.equal(groups['cb.light'].primary.value.hex,'#157ea9');
 });

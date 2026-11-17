@@ -15,9 +15,9 @@ test('Nova Neutral profile keeps pinned, licensed primary references and public 
 test('Neutral semantic primary roles are achromatic in both modes while preset fills stay owned',async()=>{
  const {groups}=await json('tokens/resolved.json');
  for(const group of ['dmf.light','dmf.dark'])for(const name of ['primary','primary-foreground','secondary','muted','accent']){const color=groups[group][name].value;assert.equal(color.colorSpace,'oklch');assert.equal(color.components[1],0);assert.equal(color.components[2],0);}
- assert.equal(groups['cb.light'].primary.value.hex,'#26ade4');assert.equal(groups['hui.light'].primary.value.hex,'#ec2a00');
+ assert.equal(groups['cb.light'].primary.value.hex,'#157ea9');assert.equal(groups['hui.light'].primary.value.hex,'#ec2a00');
 });
 test('white primary-label contrast exceptions are explicit and separate from palette verification',async()=>{
  const brands=await json('contracts/brands.json'),{groups}=await json('tokens/resolved.json');
- for(const [name,group] of [['cb-ui','cb.light'],['hui','hui.light']]){assert.equal(groups[group]['primary-foreground'].value.hex,'#ffffff');assert.equal(brands.brands[name].actionTextPolicy.status,'known-normal-text-contrast-exception');assert(brands.brands[name].actionTextPolicy.contrastRatio<4.5);}
+ for(const [name,group] of [['cb-ui','cb.light'],['hui','hui.light']]){assert.equal(groups[group]['primary-foreground'].value.hex,'#ffffff');const policy=brands.brands[name].actionTextPolicy;if(name==='cb-ui'){assert.equal(policy.status,'meets-normal-text-contrast');assert(policy.contrastRatio>=4.5);}else{assert.equal(policy.status,'known-normal-text-contrast-exception');assert(policy.contrastRatio<4.5);}}
 });

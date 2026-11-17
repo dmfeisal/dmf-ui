@@ -15,6 +15,7 @@ test('preset docs describe the recorded primary label and its contrast exception
     if (!policy) continue;
     assert.equal(policy.foreground.toLowerCase(), '#ffffff', `${id} policy is a white label`);
     const ratio = policy.contrastRatio.toFixed(2);
+    if (policy.status === 'meets-normal-text-contrast') { assert(blocks(text).some(s => /primary/i.test(s) && /white/i.test(s) && s.includes(`${ratio}:1`) && /4\.5:1/.test(s)), `${path} states that the white primary label meets 4.5:1 at ${ratio}:1`); continue; }
     assert(blocks(text).some(s => /primary/i.test(s) && /white/i.test(s) && s.includes(`${ratio}:1`) && /exception/i.test(s)), `${path} states the white primary label, ${ratio}:1 and that it is an exception`);
   }
 });

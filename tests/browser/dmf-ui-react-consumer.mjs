@@ -89,7 +89,7 @@ export async function run({page,baseURL,artifacts,settle,mobile,tap,resetBrowser
   for(const system of ['dmf','cb-ui'])for(const dark of [false,true]){
    await preset(system,dark);await audit(`desktop ${system} ${dark?'dark':'light'} surroundings`);
    if(system==='cb-ui'){
-    const font=await page.evaluate(async()=>{await document.fonts.load('400 14px "DMF CB Nunito"');await document.fonts.ready;return{family:getComputedStyle(document.querySelector('main')).fontFamily,loaded:[...document.fonts].some(font=>font.family.includes('DMF CB Nunito')&&font.status==='loaded'),primary:getComputedStyle(document.querySelector('main')).getPropertyValue('--dmf-cb-ui-color-primary').trim()};});assert(font.loaded&&font.family.includes('DMF CB Nunito')&&font.primary==='#26ade4',`CB font/primary failed: ${JSON.stringify(font)}`);
+    const font=await page.evaluate(async()=>{await document.fonts.load('400 14px "DMF CB Nunito"');await document.fonts.ready;return{family:getComputedStyle(document.querySelector('main')).fontFamily,loaded:[...document.fonts].some(font=>font.family.includes('DMF CB Nunito')&&font.status==='loaded'),primary:getComputedStyle(document.querySelector('main')).getPropertyValue('--dmf-cb-ui-color-primary').trim()};});assert(font.loaded&&font.family.includes('DMF CB Nunito')&&font.primary==='#157ea9',`CB font/primary failed: ${JSON.stringify(font)}`);
    }
    await page.screenshot({path:`${artifacts}/desktop-${system}-${dark?'dark':'light'}.png`});
   }

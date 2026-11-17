@@ -19,7 +19,7 @@ if(form){
   if(branded){settings.accent='default';settings.mode='light';control('accent').value='default';control('mode').value='light';}
   if(portfolio){settings.accent='default';control('accent').value='default';}
   control('accent').disabled=branded||portfolio;control('mode').disabled=branded;
-  document.querySelector('#accent-note')!.textContent=qdi?'QDI uses verified Yellow #FFED35 with black action labels.':portfolio?'Portfolio uses its source paper and ink palette.':hui?'HUI uses Off Red #EC2A00 with white primary-action labels.':cb?'CB keeps primary #26ade4 with white primary-action labels.':'Nova style · Neutral base · Neutral theme. Optional accents override the primary role.';
+  document.querySelector('#accent-note')!.textContent=qdi?'QDI uses verified Yellow #FFED35 with black action labels.':portfolio?'Portfolio uses its source paper and ink palette.':hui?'HUI uses Off Red #EC2A00 with white primary-action labels.':cb?'CB keeps primary #157ea9 with white primary-action labels.':'Nova style · Neutral base · Neutral theme. Optional accents override the primary role.';
   document.querySelector('#appearance-note')!.textContent=portfolio?'Portfolio supports Light, Dark and Yellow.':branded?'This product preset supports light appearance.':'DMF supports light and dark appearance.';
   document.querySelector<HTMLElement>('#hui-foundations')!.hidden=!hui;
   const values:Record<string,string>={};
