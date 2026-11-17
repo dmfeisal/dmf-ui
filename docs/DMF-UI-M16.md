@@ -467,3 +467,9 @@ Batch 5 was left with two Sidebar gaps. Both are closed.
 **Checks:** a browser scenario covers the sheet at phone width (starts collapsed, opens, the backdrop closes it). Desktop collapse is covered by the existing scenario. The full docs suite runs 32 scenarios and passes.
 
 **Results:** Sidebar has no gaps and no undecided extras.
+
+## Batch 4 follow-up: drawer snap points
+
+The drawer's snap-point list is recorded as an intentional decision. DMF UI's drawer runs on Data Slot, which supports one snap point (`snapPoint` and `defaultSnapPoint`) and no list. Supporting a list means writing the snapping and gesture handling ourselves, which the owner chose not to do now. The three gaps are closed as decisions.
+
+**Results:** drawer has no gaps.
