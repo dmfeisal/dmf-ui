@@ -20,14 +20,14 @@
   "families": 80,
   "withScripts": 32,
   "js": {
-   "bytes": 352651,
-   "gzip": 127733
+   "bytes": 353703,
+   "gzip": 127970
   },
   "sharedFamilies": {
    "count": 50,
    "dmfCss": {
-    "bytes": 341037,
-    "gzip": 77696
+    "bytes": 342778,
+    "gzip": 77994
    },
    "shadcnCss": {
     "bytes": 335824,
@@ -816,16 +816,16 @@
    "shadcn": true,
    "css": {
     "utilities": {
-     "bytes": 5400,
-     "gzip": 1530
+     "bytes": 7141,
+     "gzip": 1827
     },
     "rules": {
      "bytes": 963,
      "gzip": 456
     },
     "total": {
-     "bytes": 6363,
-     "gzip": 1805
+     "bytes": 8104,
+     "gzip": 2103
     }
    },
    "shadcnCss": {
@@ -835,8 +835,8 @@
    "js": {
     "scripts": 1,
     "consumerRuntime": false,
-    "bytes": 5785,
-    "gzip": 2032
+    "bytes": 6837,
+    "gzip": 2269
    },
    "axe": {
     "light": [],
@@ -845,14 +845,14 @@
    "withoutJs": {
     "status": "reduced",
     "js": {
-     "visible": 50,
-     "focusable": 8,
-     "text": 290
+     "visible": 63,
+     "focusable": 10,
+     "text": 388
     },
     "noJs": {
-     "visible": 25,
-     "focusable": 5,
-     "text": 545
+     "visible": 34,
+     "focusable": 6,
+     "text": 660
     }
    }
   },

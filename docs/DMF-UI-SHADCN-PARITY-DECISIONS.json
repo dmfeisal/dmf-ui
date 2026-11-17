@@ -232,7 +232,11 @@
    "stateHooks:aria-disabled": "Disabled options are aria-disabled, as the listbox pattern expects, and styled through it.",
    "stateHooks:data-active": "Styles the option the runtime highlights (data-active, with aria-activedescendant).",
    "measured.backgroundColor:combobox/compound#combobox-content": "DMF UI keeps opaque menus. Nova's source marks the popup cn-menu-translucent: a 70% background with a backdrop blur.",
-   "measured.backgroundColor:combobox/compound#combobox-separator": "Nova's translucent menu rule draws separators in foreground/5; DMF UI's opaque menu uses --border, as Nova's own separator rule does."
+   "measured.backgroundColor:combobox/compound#combobox-separator": "Nova's translucent menu rule draws separators in foreground/5; DMF UI's opaque menu uses --border, as Nova's own separator rule does.",
+   "props.ComboboxChip.value": "Identifies the option the chip stands for. shadcn's chips read the Combobox's value instead; DMF UI's runtime shows and hides each chip with its option.",
+   "dataAttributes:data-combobox-multiple": "DMF UI marks a multi-select Combobox on its root, which the runtime reads.",
+   "dataAttributes:data-chips": "shadcn sets data-chips on the content of a chips Combobox; DMF UI's chip parts carry their own styles, so the content needs no marker.",
+   "stateHooks:data-chips": "shadcn styles the content of a chips Combobox through data-chips; DMF UI's chip parts carry their own styles, so the content needs no marker."
   },
   "alert-dialog": {
    "slots:alert-dialog*": "Alert Dialog and Sheet share Dialog's runtime and slot names (dialog-content and friends). The overlay is identified by data-component, which DMF UI's styles and tests use; a separate slot would need a second runtime binding.",

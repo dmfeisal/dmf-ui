@@ -467,3 +467,16 @@ Batch 5 was left with two Sidebar gaps. Both are closed.
 **Checks:** a browser scenario covers the sheet at phone width (starts collapsed, opens, the backdrop closes it). Desktop collapse is covered by the existing scenario. The full docs suite runs 32 scenarios and passes.
 
 **Results:** Sidebar has no gaps and no undecided extras.
+
+## Batch 3 follow-up: Combobox chips
+
+Batch 3 left nine Combobox gaps: multi-select chips. They are closed.
+
+- **Parts:** `ComboboxChips` (the box), `ComboboxChip` (one selected option, with a remove button and `showRemove`) and `ComboboxChipsInput` (the search input).
+- **Root:** `multiple` and `defaultValues` in parts mode. The native fallback becomes a `select multiple`. Items mode stays single-select.
+- **Runtime:** choosing an option toggles it and keeps the list open. A chip shows while its option is selected. Its remove button clears it, and Backspace on an empty input removes the last chip.
+- **Decided:** the chip's `value`, which names its option; the multi-select marker `data-combobox-multiple`; and `data-chips`, which shadcn sets on the content but DMF UI doesn't need.
+
+**Checks:** the parts scenario covers the default, choosing with Enter, the remove button and Backspace. The docs suite runs 33 scenarios and passes; unit tests (85) and the type check pass.
+
+**Results:** Combobox has no gaps and no undecided extras.
