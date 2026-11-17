@@ -478,7 +478,10 @@
    "dataAttributes:data-snap-point": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
    "dataAttributes:data-swipe-direction": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
    "dataAttributes:data-trigger-id": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
-   "stateHooks:data-nested-swiping": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread."
+   "stateHooks:data-nested-swiping": "Option or state DMF UI's enhancement script reads for this family; Base UI takes the same option through its props spread.",
+   "props.Drawer.snapPoints": "DMF UI's drawer supports one snap point (snapPoint and defaultSnapPoint), as its Data Slot runtime does. A list of snap points is not supported; this is a recorded decision, not a gap.",
+   "dataAttributes:data-snap-points": "DMF UI's drawer supports one snap point (snapPoint and defaultSnapPoint), as its Data Slot runtime does. A list of snap points is not supported; this is a recorded decision, not a gap.",
+   "stateHooks:data-snap-points": "DMF UI's drawer supports one snap point (snapPoint and defaultSnapPoint), as its Data Slot runtime does. A list of snap points is not supported; this is a recorded decision, not a gap."
   },
   "popover": {
    "slots:popover-portal": "Element the family's positioning creates. Base UI renders the same element as its Positioner, Portal or Viewport.",

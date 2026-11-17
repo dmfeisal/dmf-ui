@@ -34,8 +34,8 @@
  "totals": {
   "families": 50,
   "match": 920,
-  "intentional": 801,
-  "gap": 3,
+  "intentional": 804,
+  "gap": 0,
   "differs": 0,
   "extra": 2
  },
@@ -6612,8 +6612,8 @@
    },
    "counts": {
     "match": 30,
-    "intentional": 53,
-    "gap": 3,
+    "intentional": 56,
+    "gap": 0,
     "differs": 0,
     "extra": 0
    },
@@ -6994,7 +6994,8 @@
       "default": null
      },
      "dmf": null,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's drawer supports one snap point (snapPoint and defaultSnapPoint), as its Data Slot runtime does. A list of snap points is not supported; this is a recorded decision, not a gap."
     },
     {
      "id": "props.Drawer.swipeDirection",
@@ -7250,7 +7251,8 @@
      "value": "data-snap-points",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's drawer supports one snap point (snapPoint and defaultSnapPoint), as its Data Slot runtime does. A list of snap points is not supported; this is a recorded decision, not a gap."
     },
     {
      "id": "dataAttributes:data-swipe-axis",
@@ -7321,7 +7323,8 @@
      "value": "data-snap-points",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "DMF UI's drawer supports one snap point (snapPoint and defaultSnapPoint), as its Data Slot runtime does. A list of snap points is not supported; this is a recorded decision, not a gap."
     },
     {
      "id": "stateHooks:data-starting-style",

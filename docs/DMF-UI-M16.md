@@ -480,3 +480,9 @@ Batch 3 left nine Combobox gaps: multi-select chips. They are closed.
 **Checks:** the parts scenario covers the default, choosing with Enter, the remove button and Backspace. The docs suite runs 33 scenarios and passes; unit tests (85) and the type check pass.
 
 **Results:** Combobox has no gaps and no undecided extras.
+
+## Batch 4 follow-up: drawer snap points
+
+The drawer's snap-point list is recorded as an intentional decision. DMF UI's drawer runs on Data Slot, which supports one snap point (`snapPoint` and `defaultSnapPoint`) and no list. Supporting a list means writing the snapping and gesture handling ourselves, which the owner chose not to do now. The three gaps are closed as decisions.
+
+**Results:** drawer has no gaps.
