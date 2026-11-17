@@ -1,0 +1,10 @@
+---
+import type {HTMLAttributes} from 'astro/types';
+import {X} from '@lucide/astro';
+import {cn} from '../utils';
+type Props=HTMLAttributes<'span'>&{value:string;showRemove?:boolean;};
+const {value,showRemove=true,class:className,...props}=Astro.props;
+if(!value)throw new Error('ComboboxChip needs the value of the option it stands for.');
+// A selected option. It is hidden until the runtime shows it, so chips follow the selection. The remove button clears it.
+---
+<span {...props} data-slot="combobox-chip" data-value={value} hidden class={cn('bg-muted text-foreground flex h-5 w-fit items-center justify-center gap-1 rounded-sm px-1.5 text-xs font-medium whitespace-nowrap',className)}><slot/>{showRemove&&<button type="button" data-slot="combobox-chip-remove" aria-label="Remove" class="-ml-1 flex size-4 items-center justify-center opacity-50 hover:opacity-100"><X class="size-3" aria-hidden="true"/></button>}</span>

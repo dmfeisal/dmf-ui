@@ -33,9 +33,9 @@
  ],
  "totals": {
   "families": 50,
-  "match": 912,
-  "intentional": 800,
-  "gap": 9,
+  "match": 920,
+  "intentional": 804,
+  "gap": 0,
   "differs": 0,
   "extra": 2
  },
@@ -4909,9 +4909,9 @@
     "docs": "vendor/shadcn/docs/combobox.mdx"
    },
    "counts": {
-    "match": 25,
-    "intentional": 33,
-    "gap": 9,
+    "match": 33,
+    "intentional": 37,
+    "gap": 0,
     "differs": 0,
     "extra": 0
    },
@@ -4927,22 +4927,22 @@
      "id": "parts:ComboboxChip",
      "value": "ComboboxChip",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:ComboboxChips",
      "value": "ComboboxChips",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:ComboboxChipsInput",
      "value": "ComboboxChipsInput",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:ComboboxCollection",
@@ -5036,29 +5036,29 @@
      "id": "slots:combobox-chip",
      "value": "combobox-chip",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:combobox-chip-input",
      "value": "combobox-chip-input",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:combobox-chip-remove",
      "value": "combobox-chip-remove",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:combobox-chips",
      "value": "combobox-chips",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:combobox-clear",
@@ -5148,6 +5148,29 @@
    ],
    "variants": {},
    "props": [
+    {
+     "id": "props.ComboboxChip.showRemove",
+     "component": "ComboboxChip",
+     "prop": "showRemove",
+     "shadcn": {
+      "default": "true"
+     },
+     "dmf": {
+      "default": "true"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.ComboboxChip.value",
+     "component": "ComboboxChip",
+     "prop": "value",
+     "shadcn": null,
+     "dmf": {
+      "default": null
+     },
+     "status": "intentional",
+     "reason": "Identifies the option the chip stands for. shadcn's chips read the Combobox's value instead; DMF UI's runtime shows and hides each chip with its option."
+    },
     {
      "id": "props.ComboboxContent.align",
      "component": "ComboboxContent",
@@ -5319,7 +5342,8 @@
      "value": "data-chips",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "shadcn sets data-chips on the content of a chips Combobox; DMF UI's chip parts carry their own styles, so the content needs no marker."
     },
     {
      "id": "dataAttributes:data-combobox-id",
@@ -5336,6 +5360,14 @@
      "dmf": true,
      "status": "intentional",
      "reason": "Configuration or state the DMF Combobox runtime reads or sets."
+    },
+    {
+     "id": "dataAttributes:data-combobox-multiple",
+     "value": "data-combobox-multiple",
+     "shadcn": false,
+     "dmf": true,
+     "status": "intentional",
+     "reason": "DMF UI marks a multi-select Combobox on its root, which the runtime reads."
     },
     {
      "id": "dataAttributes:data-combobox-required",
@@ -5408,7 +5440,8 @@
      "value": "data-chips",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "shadcn styles the content of a chips Combobox through data-chips; DMF UI's chip parts carry their own styles, so the content needs no marker."
     },
     {
      "id": "stateHooks:data-closed",

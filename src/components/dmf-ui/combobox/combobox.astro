@@ -8,19 +8,21 @@ import ComboboxInput from './combobox-input.astro';
 import ComboboxItem from './combobox-item.astro';
 import ComboboxList from './combobox-list.astro';
 import {readOptions,type ComboboxOption} from './items';
-interface Props extends Omit<HTMLAttributes<'select'>,'id'|'size'|'multiple'> {id:string;label:string;items?:{value:string;label:string;disabled?:boolean;icon?:NavigationIcon}[];defaultValue?:string;placeholder?:string;emptyMessage?:string;}
-const {id,label,items,defaultValue='',placeholder='Choose an option',emptyMessage='No matching options.',name,required=false,disabled=false,form,class:className,...props}=Astro.props;
+interface Props extends Omit<HTMLAttributes<'select'>,'id'|'size'|'multiple'> {multiple?:boolean;defaultValues?:string[];id:string;label:string;items?:{value:string;label:string;disabled?:boolean;icon?:NavigationIcon}[];defaultValue?:string;placeholder?:string;emptyMessage?:string;}
+const {id,label,items,multiple=false,defaultValues=[],defaultValue='',placeholder='Choose an option',emptyMessage='No matching options.',name,required=false,disabled=false,form,class:className,...props}=Astro.props;
 // Items mode renders the parts itself. Parts mode renders the children and reads their items back, so the
 // no-JavaScript <select> offers the same options.
 const parts=items?'':(Astro.slots.has('default')?await Astro.slots.render('default'):'');
 const options:ComboboxOption[]=items?items.map(item=>({value:item.value,label:item.label,disabled:!!item.disabled})):readOptions(parts);
 if(!options.length)throw new Error('Combobox needs items or ComboboxItem children.');
 if(new Set(options.map(item=>item.value)).size!==options.length||options.some(item=>!item.value||!item.label.trim()))throw new Error('Combobox requires unique nonempty values and visible option labels.');
-if(defaultValue&&!options.some(item=>item.value===defaultValue&&!item.disabled))throw new Error('Combobox defaultValue must reference an enabled option.');
+if(multiple&&items)throw new Error('Multi-select uses parts: render ComboboxChips with ComboboxChip and ComboboxChipsInput.');
+const selected=multiple?defaultValues:(defaultValue?[defaultValue]:[]);
+if(selected.some(value=>!options.some(item=>item.value===value&&!item.disabled)))throw new Error('Combobox defaults must reference enabled options.');
 const selectedLabel=options.find(item=>item.value===defaultValue)?.label??'';
 ---
-<div data-slot="combobox" data-combobox-id={id} data-combobox-label={label} class={cn('dmf-combobox',className)}>
- <div data-combobox-fallback><label for={`${id}-native`}>{label}</label><select {...props} id={`${id}-native`} name={name} required={required} disabled={disabled} form={form} data-combobox-select><option value="" selected={!defaultValue}>{placeholder}</option>{options.map(item=><option value={item.value} selected={item.value===defaultValue} disabled={item.disabled}>{item.label}</option>)}</select></div>
+<div data-slot="combobox" data-combobox-id={id} data-combobox-multiple={multiple?'true':undefined} data-combobox-label={label} class={cn('dmf-combobox',className)}>
+ <div data-combobox-fallback><label for={`${id}-native`}>{label}</label><select {...props} id={`${id}-native`} name={name} multiple={multiple||undefined} required={required} disabled={disabled} form={form} data-combobox-select>{!multiple&&<option value="" selected={!defaultValue}>{placeholder}</option>}{options.map(item=><option value={item.value} selected={selected.includes(item.value)} disabled={item.disabled}>{item.label}</option>)}</select></div>
  <div data-combobox-enhanced hidden><label for={id}>{label}</label>{items?<Fragment>
   <ComboboxInput id={id} aria-controls={`${id}-list`} placeholder={placeholder} value={selectedLabel} required={required} form={form} aria-describedby={props['aria-describedby']} aria-invalid={props['aria-invalid']}/>
   <ComboboxContent><ComboboxList id={`${id}-list`} aria-label={`${label} options`}>{!required&&<ComboboxItem id={`${id}-option-clear`} value="" label="Clear selection" selected={!defaultValue}/>}{items.map(({value,label:optionLabel,disabled:unavailable,icon},index)=><ComboboxItem id={`${id}-option-${index}`} value={value} label={optionLabel} disabled={unavailable} selected={value===defaultValue} icon={icon}/>)}</ComboboxList><ComboboxEmpty>{emptyMessage}</ComboboxEmpty></ComboboxContent>

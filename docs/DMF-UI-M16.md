@@ -468,6 +468,19 @@ Batch 5 was left with two Sidebar gaps. Both are closed.
 
 **Results:** Sidebar has no gaps and no undecided extras.
 
+## Batch 3 follow-up: Combobox chips
+
+Batch 3 left nine Combobox gaps: multi-select chips. They are closed.
+
+- **Parts:** `ComboboxChips` (the box), `ComboboxChip` (one selected option, with a remove button and `showRemove`) and `ComboboxChipsInput` (the search input).
+- **Root:** `multiple` and `defaultValues` in parts mode. The native fallback becomes a `select multiple`. Items mode stays single-select.
+- **Runtime:** choosing an option toggles it and keeps the list open. A chip shows while its option is selected. Its remove button clears it, and Backspace on an empty input removes the last chip.
+- **Decided:** the chip's `value`, which names its option; the multi-select marker `data-combobox-multiple`; and `data-chips`, which shadcn sets on the content but DMF UI doesn't need.
+
+**Checks:** the parts scenario covers the default, choosing with Enter, the remove button and Backspace. The docs suite runs 33 scenarios and passes; unit tests (85) and the type check pass.
+
+**Results:** Combobox has no gaps and no undecided extras.
+
 ## Batch 4 follow-up: drawer snap points
 
 The drawer's snap-point list is recorded as an intentional decision. DMF UI's drawer runs on Data Slot, which supports one snap point (`snapPoint` and `defaultSnapPoint`) and no list. Supporting a list means writing the snapping and gesture handling ourselves, which the owner chose not to do now. The three gaps are closed as decisions.
