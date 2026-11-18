@@ -35,3 +35,8 @@
 .dmf-ui .dmf-react-select[aria-invalid=true] { border-color:var(--destructive); }
 .dmf-ui .dmf-react-radio:focus-visible,
 .dmf-ui .dmf-react-select:focus-visible { outline:2px solid var(--foreground); outline-offset:3px; }
+
+.dmf-ui .dmf-react-select-root { position:relative; width:100%; min-width:0; }
+
+.dmf-ui .dmf-react-select-trigger { box-sizing:border-box; display:flex; align-items:center; justify-content:space-between; width:100%; min-width:0; max-width:100%; text-align:left; white-space:normal; overflow-wrap:anywhere; }
+.dmf-ui .dmf-react-select-content[hidden] { display:none; }

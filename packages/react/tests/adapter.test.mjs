@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createElement} from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
-import {Button,Text,Input,Switch,Card,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator,CardTitle,Field,FieldError,FieldSet,FieldLegend,RadioGroup,RadioGroupItem,Select,SelectOption,SelectGroup} from '../.test-dist/index.mjs';
+import {Button,Text,Input,Switch,Card,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator,CardTitle,Field,FieldError,FieldSet,FieldLegend,RadioGroup,RadioGroupItem,Select,SelectItem,SelectTrigger,SelectValue,SelectContent,SelectGroup} from '../.test-dist/index.mjs';
 test('server output preserves native semantics and explicit content hierarchy',()=>{
  const html=renderToStaticMarkup(createElement(Card,{},createElement(Text,{as:'h2',size:'title'},'Settings'),createElement(Button,{},'Save')));
  assert.match(html,/<h2[^>]+data-slot="text"/);assert.match(html,/<button[^>]+type="button"/);assert.doesNotMatch(html,/role="button"/);
@@ -40,5 +40,5 @@ test('selection controls preserve native SSR values and required/disabled semant
  const html=renderToStaticMarkup(createElement(RadioGroup,{name:'frequency',defaultValue:'monthly',required:true},createElement(FieldLegend,{},'Frequency'),createElement(RadioGroupItem,{value:'weekly'}),createElement(RadioGroupItem,{value:'monthly'})));
  assert.match(html,/<fieldset/);assert.equal((html.match(/type="radio"/g)||[]).length,2);assert.match(html,/name="frequency"/);assert.match(html,/checked=""/);assert.match(html,/required=""/);
  assert.throws(()=>renderToStaticMarkup(createElement(RadioGroupItem,{value:'orphan'})),/inside RadioGroup/);
- const select=renderToStaticMarkup(createElement(Select,{name:'channel',defaultValue:'email'},createElement(SelectGroup,{label:'Channels'},createElement(SelectOption,{value:'email'},'Email'))));assert.match(select,/<select/);assert.match(select,/<optgroup label="Channels"/);assert.match(select,/selected=""/);
+ const select=renderToStaticMarkup(createElement(Select,{name:'channel',defaultValue:'email'},createElement(SelectTrigger,{id:'channel-trigger'},createElement(SelectValue,{placeholder:'Choose'}))));assert.match(select,/role="combobox"/);assert.match(select,/<input[^>]*name="channel"[^>]*value="email"/);
 });

@@ -52,7 +52,7 @@ Label preserves authored label/control association and native refs. Textarea use
 
 Field adds native FieldSet/FieldLegend, FieldLabel, FieldDescription, FieldContent, FieldGroup, FieldTitle, FieldSeparator and FieldError composition. Hosts own IDs, descriptions, native disabled state and validation. FieldError deduplicates supplied messages, is absent when empty and defaults to role=alert; authored children and role override that output. No automatic validation, generated associations or root is added. Field orientation can be vertical/horizontal/responsive; responsive layout requires FieldGroup's container. The README records the fixed native elements and usage.
 
-RadioGroup/RadioGroupItem use a native fieldset and radios with shared or uniquely generated names. Hosts author group labels and controlled reset. Select/SelectOption/SelectGroup are native select/option/optgroup with browser-owned pickers, native events, refs, required/disabled/multiple and form/reset behavior. They do not expose the Astro custom-popup API. The README describes mode constraints and form naming.
+RadioGroup/RadioGroupItem use a native fieldset and radios with shared or uniquely generated names. Hosts author group labels and controlled reset. Select is a custom listbox (SelectTrigger, SelectValue, SelectContent, SelectItem, SelectGroup, SelectLabel, SelectSeparator). It submits through a hidden input, resets with its form, and supports keyboard navigation and type-ahead. Its value is controlled with value/defaultValue and onValueChange. The README describes the props and the limits, including the lack of portal or flip placement.
 
 ## Verification and limits
 

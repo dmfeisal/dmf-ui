@@ -25,11 +25,11 @@
  ],
  "totals": {
   "families": 13,
-  "match": 80,
-  "intentional": 25,
-  "gap": 16,
+  "match": 93,
+  "intentional": 31,
+  "gap": 0,
   "differs": 0,
-  "extra": 0
+  "extra": 13
  },
  "families": {
   "button": {
@@ -1156,16 +1156,21 @@
   "select": {
    "exports": [
     "Select",
-    "SelectOption",
-    "SelectGroup"
+    "SelectTrigger",
+    "SelectValue",
+    "SelectContent",
+    "SelectGroup",
+    "SelectItem",
+    "SelectLabel",
+    "SelectSeparator"
    ],
    "missingExports": [],
    "counts": {
-    "match": 3,
-    "intentional": 3,
-    "gap": 16,
+    "match": 16,
+    "intentional": 9,
+    "gap": 0,
     "differs": 0,
-    "extra": 0
+    "extra": 13
    },
    "parts": [
     {
@@ -1179,8 +1184,8 @@
      "id": "parts:SelectContent",
      "value": "SelectContent",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SelectGroup",
@@ -1193,58 +1198,52 @@
      "id": "parts:SelectItem",
      "value": "SelectItem",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SelectLabel",
      "value": "SelectLabel",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
-    },
-    {
-     "id": "parts:SelectOption",
-     "value": "SelectOption",
-     "shadcn": false,
      "dmf": true,
-     "status": "intentional",
-     "reason": "The React Select is a native select, so its options are native option elements."
+     "status": "match"
     },
     {
      "id": "parts:SelectScrollDownButton",
      "value": "SelectScrollDownButton",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "The listbox scrolls natively inside its max-height container; arrow-key and Home/End navigation replace the scroll buttons."
     },
     {
      "id": "parts:SelectScrollUpButton",
      "value": "SelectScrollUpButton",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "The listbox scrolls natively inside its max-height container; arrow-key and Home/End navigation replace the scroll buttons."
     },
     {
      "id": "parts:SelectSeparator",
      "value": "SelectSeparator",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SelectTrigger",
      "value": "SelectTrigger",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "parts:SelectValue",
      "value": "SelectValue",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
    "slots": [
@@ -1253,15 +1252,14 @@
      "value": "select",
      "shadcn": false,
      "dmf": true,
-     "status": "intentional",
-     "reason": "The native select element itself."
+     "status": "extra"
     },
     {
      "id": "slots:select-content",
      "value": "select-content",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:select-group",
@@ -1271,64 +1269,240 @@
      "status": "match"
     },
     {
+     "id": "slots:select-input",
+     "value": "select-input",
+     "shadcn": false,
+     "dmf": true,
+     "status": "extra"
+    },
+    {
      "id": "slots:select-item",
      "value": "select-item",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:select-label",
      "value": "select-label",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
-     "id": "slots:select-option",
-     "value": "select-option",
+     "id": "slots:select-listbox",
+     "value": "select-listbox",
      "shadcn": false,
      "dmf": true,
-     "status": "intentional",
-     "reason": "The native option element."
+     "status": "extra"
     },
     {
      "id": "slots:select-scroll-down-button",
      "value": "select-scroll-down-button",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "The listbox scrolls natively inside its max-height container; arrow-key and Home/End navigation replace the scroll buttons."
     },
     {
      "id": "slots:select-scroll-up-button",
      "value": "select-scroll-up-button",
      "shadcn": true,
      "dmf": false,
-     "status": "gap"
+     "status": "intentional",
+     "reason": "The listbox scrolls natively inside its max-height container; arrow-key and Home/End navigation replace the scroll buttons."
     },
     {
      "id": "slots:select-separator",
      "value": "select-separator",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:select-trigger",
      "value": "select-trigger",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     },
     {
      "id": "slots:select-value",
      "value": "select-value",
      "shadcn": true,
-     "dmf": false,
-     "status": "gap"
+     "dmf": true,
+     "status": "match"
     }
    ],
-   "props": [],
+   "props": [
+    {
+     "id": "props.SelectTrigger.disabled",
+     "component": "SelectTrigger",
+     "prop": "disabled",
+     "shadcn": null,
+     "react": {
+      "default": null
+     },
+     "status": "extra"
+    },
+    {
+     "id": "props.SelectTrigger.id",
+     "component": "SelectTrigger",
+     "prop": "id",
+     "shadcn": null,
+     "react": {
+      "default": null
+     },
+     "status": "extra"
+    },
+    {
+     "id": "props.SelectTrigger.onClick",
+     "component": "SelectTrigger",
+     "prop": "onClick",
+     "shadcn": null,
+     "react": {
+      "default": null
+     },
+     "status": "extra"
+    },
+    {
+     "id": "props.SelectTrigger.onKeyDown",
+     "component": "SelectTrigger",
+     "prop": "onKeyDown",
+     "shadcn": null,
+     "react": {
+      "default": null
+     },
+     "status": "extra"
+    },
+    {
+     "id": "props.SelectTrigger.size",
+     "component": "SelectTrigger",
+     "prop": "size",
+     "shadcn": {
+      "default": "default"
+     },
+     "react": {
+      "default": "default"
+     },
+     "status": "match"
+    },
+    {
+     "id": "props.SelectValue.placeholder",
+     "component": "SelectValue",
+     "prop": "placeholder",
+     "shadcn": null,
+     "react": {
+      "default": null
+     },
+     "status": "extra"
+    },
+    {
+     "id": "props.SelectContent.align",
+     "component": "SelectContent",
+     "prop": "align",
+     "shadcn": {
+      "default": "center"
+     },
+     "react": null,
+     "status": "intentional",
+     "reason": "The listbox is positioned below the trigger with CSS (top-full); the Radix-style placement prop is not implemented."
+    },
+    {
+     "id": "props.SelectContent.alignItemWithTrigger",
+     "component": "SelectContent",
+     "prop": "alignItemWithTrigger",
+     "shadcn": {
+      "default": "true"
+     },
+     "react": null,
+     "status": "intentional",
+     "reason": "The listbox is positioned below the trigger with CSS (top-full); the Radix-style placement prop is not implemented."
+    },
+    {
+     "id": "props.SelectContent.alignOffset",
+     "component": "SelectContent",
+     "prop": "alignOffset",
+     "shadcn": {
+      "default": "0"
+     },
+     "react": null,
+     "status": "intentional",
+     "reason": "The listbox is positioned below the trigger with CSS (top-full); the Radix-style placement prop is not implemented."
+    },
+    {
+     "id": "props.SelectContent.onKeyDown",
+     "component": "SelectContent",
+     "prop": "onKeyDown",
+     "shadcn": null,
+     "react": {
+      "default": null
+     },
+     "status": "extra"
+    },
+    {
+     "id": "props.SelectContent.side",
+     "component": "SelectContent",
+     "prop": "side",
+     "shadcn": {
+      "default": "bottom"
+     },
+     "react": null,
+     "status": "intentional",
+     "reason": "The listbox is positioned below the trigger with CSS (top-full); the Radix-style placement prop is not implemented."
+    },
+    {
+     "id": "props.SelectContent.sideOffset",
+     "component": "SelectContent",
+     "prop": "sideOffset",
+     "shadcn": {
+      "default": "4"
+     },
+     "react": null,
+     "status": "intentional",
+     "reason": "The listbox is positioned below the trigger with CSS (top-full); the Radix-style placement prop is not implemented."
+    },
+    {
+     "id": "props.SelectItem.disabled",
+     "component": "SelectItem",
+     "prop": "disabled",
+     "shadcn": null,
+     "react": {
+      "default": "false"
+     },
+     "status": "extra"
+    },
+    {
+     "id": "props.SelectItem.onClick",
+     "component": "SelectItem",
+     "prop": "onClick",
+     "shadcn": null,
+     "react": {
+      "default": null
+     },
+     "status": "extra"
+    },
+    {
+     "id": "props.SelectItem.onKeyDown",
+     "component": "SelectItem",
+     "prop": "onKeyDown",
+     "shadcn": null,
+     "react": {
+      "default": null
+     },
+     "status": "extra"
+    },
+    {
+     "id": "props.SelectItem.value",
+     "component": "SelectItem",
+     "prop": "value",
+     "shadcn": null,
+     "react": {
+      "default": null
+     },
+     "status": "extra"
+    }
+   ],
    "variants": [],
    "shadcn": {
     "source": "vendor/shadcn/base/select.tsx.txt",

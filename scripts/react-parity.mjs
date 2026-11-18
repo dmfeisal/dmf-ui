@@ -28,7 +28,7 @@ export const families={
  label:{exports:['Label']},textarea:{exports:['Textarea']},checkbox:{exports:['Checkbox']},separator:{exports:['Separator']},
  field:{exports:['Field','FieldGroup','FieldContent','FieldLabel','FieldTitle','FieldDescription','FieldError','FieldSet','FieldLegend','FieldSeparator']},
  'radio-group':{exports:['RadioGroup','RadioGroupItem']},
- select:{exports:['Select','SelectOption','SelectGroup']},
+ select:{exports:['Select','SelectTrigger','SelectValue','SelectContent','SelectGroup','SelectItem','SelectLabel','SelectSeparator']},
 };
 export const dmfOnly=['Text','OTPVerificationBlock','ResetPasswordBlock','SignUpBlock','PasswordRecoveryBlock','SearchFiltersBlock','SignInBlock','HeroBlock','MerchantListingBlock','MerchantCard'];
 
@@ -66,7 +66,7 @@ export async function build(){
  const nova=novaRules(await read('vendor/shadcn/style-nova.css'));
  const manifest=await json('vendor/shadcn/MANIFEST.json');
  const decisions=await json(decisionsPath).catch(()=>({families:{}}));
- const react=readReact(await read('packages/react/src/index.tsx'));
+ const react=readReact(await read('packages/react/src/index.tsx')+'\n'+await read('packages/react/src/select.tsx'));
  const buttonVariants=readShadcn('button-variants.ts',await read('src/components/dmf-ui/button/button-variants.ts'),nova);
  const out={};
  for(const [slug,map] of Object.entries(families)){

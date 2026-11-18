@@ -78,14 +78,14 @@ export async function run({page,baseURL,artifacts,settle,mobile,tap,resetBrowser
   assert(await page.evaluate(()=>{const textarea=document.querySelector('[name=notes]'),error=document.querySelector('[data-slot=field-error]');return textarea.getAttribute('aria-invalid')==='true'&&textarea.getAttribute('aria-describedby').split(' ').includes(error.id)&&error.getAttribute('role')==='alert';}),'Host-owned Field error association missing');
   await page.focus('[name=delivery][value=weekly]');await page.keyboard.press('ArrowDown');
   assert(await page.evaluate(()=>document.activeElement.value==='monthly'&&document.querySelector('[name=delivery][value=monthly]').checked),'Native radio arrows did not skip the disabled choice');
-  await page.selectOption('select[name=channel]','digest');await page.focus('select[name=channel]');await page.keyboard.press('e');
-  assert(await page.evaluate(()=>document.querySelector('select[name=channel]').value==='email'),'Native Select typeahead failed');
-  assert(await page.evaluate(()=>document.querySelector('select[name=channel] option[value=sms]').matches(':disabled')),'Native optgroup disabled semantics missing');
-  await page.selectOption('select[name=channel]','digest');
+  await page.click('form[data-choice-controls] [role=combobox]');await page.click('[role=option][data-value=digest]');await page.focus('form[data-choice-controls] [role=combobox]');await page.keyboard.press('Enter');await page.keyboard.press('e');
+  assert(await page.evaluate(()=>document.activeElement.dataset.value==='email'),'Listbox type-ahead failed');await page.keyboard.press('Escape');
+  assert(await page.evaluate(()=>document.querySelector('[role=option][data-value=sms]').getAttribute('aria-disabled')==='true'),'Listbox disabled option semantics missing');
+  await page.click('form[data-choice-controls] [role=combobox]');await page.click('[role=option][data-value=digest]');
   await page.click('form[data-choice-controls] button[type=submit]');
   assert(await page.evaluate(()=>{const v=JSON.parse(document.querySelector('[data-choice-result]').textContent);return v.delivery==='monthly'&&v.format==='summary'&&v.channel==='digest';}),'Selection form submission failed');
-  await page.click('form[data-choice-controls] button[type=reset]');assert(await page.evaluate(()=>document.querySelector('[name=delivery][value=weekly]').checked&&document.querySelector('select[name=channel]').value===''),'Selection host reset failed');
-  await page.click('form[data-choice-controls] button[type=submit]');assert(await page.evaluate(()=>document.activeElement.name==='channel'&&!document.querySelector('form[data-choice-controls]').checkValidity()),'Required Select validation failed');
+  await page.click('form[data-choice-controls] button[type=reset]');assert(await page.evaluate(()=>document.querySelector('[name=delivery][value=weekly]').checked&&document.querySelector('input[name=channel]').value===''),'Selection host reset failed');
+  await page.click('form[data-choice-controls] button[type=submit]');assert(await page.evaluate(()=>document.activeElement.getAttribute('role')==='combobox'&&!document.querySelector('form[data-choice-controls]').checkValidity()),'Required Select validation failed');
   for(const system of ['dmf','cb-ui'])for(const dark of [false,true]){
    await preset(system,dark);await audit(`desktop ${system} ${dark?'dark':'light'} surroundings`);
    if(system==='cb-ui'){
@@ -142,8 +142,8 @@ export async function run({page,baseURL,artifacts,settle,mobile,tap,resetBrowser
     await page.click('form[data-basic-controls] button[type=reset]');
     await page.focus('[name=delivery][value=weekly]');await page.keyboard.press('ArrowDown');
     assert(await page.evaluate(()=>document.activeElement.value==='monthly'&&document.activeElement.checked&&getComputedStyle(document.activeElement).appearance==='auto'&&parseFloat(getComputedStyle(document.activeElement).outlineWidth)>=2),'Forced-colors native radio state/focus failed');
-    await page.selectOption('select[name=channel]','digest');await page.focus('select[name=channel]');
-    assert(await page.evaluate(()=>document.activeElement.value==='digest'&&getComputedStyle(document.activeElement).appearance==='auto'&&parseFloat(getComputedStyle(document.activeElement).outlineWidth)>=2),'Forced-colors native Select focus failed');
+    await page.click('form[data-choice-controls] [role=combobox]');await page.click('[role=option][data-value=digest]');await page.focus('form[data-choice-controls] [role=combobox]');
+    assert(await page.evaluate(()=>document.activeElement.getAttribute('role')==='combobox'&&parseFloat(getComputedStyle(document.activeElement).outlineWidth)>=2),'Forced-colors listbox focus failed');
     await page.click('form[data-choice-controls] button[type=reset]');
     forced.push({scheme,system,...state});await page.screenshot({path:`${artifacts}/forced-${system}-${scheme}.png`});
    }

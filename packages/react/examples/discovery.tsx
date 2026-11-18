@@ -1,6 +1,6 @@
 import {useEffect,useRef,useState} from 'react';
 import type {MouseEvent} from 'react';
-import {Button,MerchantCard,MerchantListingBlock,SearchFiltersBlock,Select,SelectOption} from '../src/index';
+import {Button,MerchantCard,MerchantListingBlock,SearchFiltersBlock,Select,SelectItem,SelectTrigger,SelectValue,SelectContent} from '../src/index';
 import {discoveryOptions,discoveryResults,discoveryURL,emptySelection,readDiscoverySelection} from './discovery-model';
 import type {DiscoverySelection} from './discovery-model';
 export type DiscoveryAssets={icons:{verified:string;hours:string;distance:string;star:string};photos:readonly {src:string;alt:string}[]};
@@ -16,9 +16,9 @@ export function DiscoveryExample({assets,action='/examples/discovery/'}:{assets:
   <p>Six illustrative records for testing search and filtering. These are not real merchant listings, ratings or availability claims. Photos reuse the supplied card reference.</p>
   {!ready&&<p data-static-discovery>Interactive filtering requires JavaScript in this static example. In an application, the native GET form needs a host endpoint that renders the requested results.</p>}
   <fieldset className="discovery-tools" disabled={!ready}><legend>Example appearance and result states</legend>
-   <label>Preset<Select data-discovery-preset value={preset} onChange={e=>setPreset(e.target.value)}><SelectOption value="dmf">Neutral</SelectOption><SelectOption value="hui">HUI</SelectOption></Select></label>
-   <label>Appearance<Select data-discovery-mode disabled={preset==='hui'} value={preset==='hui'?'light':mode} onChange={e=>setMode(e.target.value)}><SelectOption value="light">Light</SelectOption><SelectOption value="dark">Dark</SelectOption></Select></label>
-   <label>Result state preview<Select data-discovery-state value={status} onChange={e=>setStatus(e.target.value as typeof status)}><SelectOption value="ready">Ready</SelectOption><SelectOption value="loading">Loading illustration</SelectOption><SelectOption value="error">Error illustration</SelectOption></Select></label>
+   <label>Preset<Select value={preset} onValueChange={v=>setPreset(v as typeof preset)}><SelectTrigger data-discovery-preset><SelectValue/></SelectTrigger><SelectContent><SelectItem value="dmf">Neutral</SelectItem><SelectItem value="hui">HUI</SelectItem></SelectContent></Select></label>
+   <label>Appearance<Select disabled={preset==='hui'} value={preset==='hui'?'light':mode} onValueChange={v=>setMode(v as typeof mode)}><SelectTrigger data-discovery-mode><SelectValue/></SelectTrigger><SelectContent><SelectItem value="light">Light</SelectItem><SelectItem value="dark">Dark</SelectItem></SelectContent></Select></label>
+   <label>Result state preview<Select value={status} onValueChange={v=>setStatus(v as typeof status)}><SelectTrigger data-discovery-state><SelectValue/></SelectTrigger><SelectContent><SelectItem value="ready">Ready</SelectItem><SelectItem value="loading">Loading illustration</SelectItem><SelectItem value="error">Error illustration</SelectItem></SelectContent></Select></label>
    <p>State previews do not send requests.</p>
   </fieldset>
   <SearchFiltersBlock key={formVersion} ref={form} id="discovery-filters" action={action} title="Filter sample merchants" query={selection.q} options={discoveryOptions} selectedValue={selection.category} filters={[{name:'photos',label:'With supplied photos only',value:'yes',checked:selection.photos}]} pending={status==='loading'}

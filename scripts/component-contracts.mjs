@@ -68,7 +68,7 @@ export async function inventory(){
   walk(ast,node=>{if(ts.isInterfaceDeclaration(node)&&name(node)==='Props')declaration=node.getText(ast);if(ts.isVariableDeclaration(node)&&ts.isObjectBindingPattern(node.name)&&node.initializer?.getText(ast)==='Astro.props')for(const item of node.name.elements){if(item.initializer)defaults[item.propertyName?.text??item.name.getText(ast)]=item.initializer.getText(ast);}});
   blocks.push({...doc,entry:'dmf-ui/blocks',framework:'Astro',source:path,sha256:hash(source),declaration,defaults,slots:[...new Set([...source.matchAll(/<slot(?:\s+name="([^"]+)")?/g)].map(m=>m[1]??'default').concat([...source.matchAll(/Astro\.slots\.render\(['"]([^'"]+)/g)].map(m=>m[1])))],status:'partial',acceptance:'Native behavior and scoped browser evidence; cross-browser, real device and spoken AT remain separate.'});
  }
- const react=await read('packages/react/src/index.tsx');
+ const react=await read('packages/react/src/index.tsx');const reactSelect=await read('packages/react/src/select.tsx');
  const reactDeclarations=[];walk(parse('index.tsx',react),node=>{if(ts.isTypeAliasDeclaration(node)&&node.modifiers?.some(m=>m.kind===ts.SyntaxKind.ExportKeyword))reactDeclarations.push({name:name(node),declaration:node.getText()});});
  const reactBlocks=[];
  for(const slug of ['sign-in','sign-up','password-recovery','reset-password','otp-verification','hero','merchant-listing','merchant-card','search-filters']){
@@ -76,7 +76,7 @@ export async function inventory(){
   walk(ast,node=>{if(ts.isTypeAliasDeclaration(node)&&node.modifiers?.some(m=>m.kind===ts.SyntaxKind.ExportKeyword))types.push({name:name(node),declaration:node.getText()});if(ts.isFunctionDeclaration(node)&&node.modifiers?.some(m=>m.kind===ts.SyntaxKind.ExportKeyword))blockName=name(node);});
   reactBlocks.push({name:blockName,entry:'@dmf-ui/react',source:path,sha256:hash(source),types,status:'experimental',stateOwnership:['sign-in','sign-up','password-recovery','reset-password','otp-verification'].includes(slug)?'Native uncontrolled fields; host owns submission, pending, errors and reset policy.':slug==='search-filters'?'Native uncontrolled GET fields and reset; host owns URL state, results, pending and errors.':slug==='hero'?'Static composition; host owns actions, media, destinations and loading/error behavior.':slug==='merchant-listing'?'Host owns items, stable keys, item rendering, status, pagination and data services.':'Host supplies merchant data, photo/icon URLs, verification and native destination; no business services.'});
  }
- const reactExports=[...react.matchAll(/export function (\w+)/g)].map(m=>m[1]).concat(reactBlocks.map(block=>block.name));
+ const reactExports=[...(react+'\n'+reactSelect).matchAll(/export function (\w+)/g)].map(m=>m[1]).concat(reactBlocks.map(block=>block.name));
  for(const component of components){
   const publicName=component.name.replace(/[^a-zA-Z0-9]/g,'');
   component.support={astro:{status:'experimental',entry:`dmf-ui/${component.slug}`},react:{status:reactExports.includes(publicName)?'experimental':'not-implemented',entry:reactExports.includes(publicName)?'@dmf-ui/react':null,exportName:reactExports.includes(publicName)?publicName:null},platform:'web',verification:'Scoped automated/browser evidence; manual platform and spoken AT acceptance remain separate.'};
