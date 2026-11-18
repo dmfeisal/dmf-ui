@@ -9,6 +9,9 @@
 .dmf-ui .dmf-react-switch[data-size=sm] .dmf-react-switch-thumb { inline-size:12px; block-size:12px; }
 .dmf-ui .dmf-react-switch input:checked + .dmf-react-switch-track { background:var(--primary); justify-content:flex-end; }
 .dmf-ui .dmf-react-switch input:checked + .dmf-react-switch-track .dmf-react-switch-thumb { background:var(--primary-foreground); }
+/* The core thumb moves only with data-checked; React Switch marks the checked state on the input, so move the thumb here. */
+.dmf-ui .dmf-react-switch input:checked + .dmf-react-switch-track .dmf-react-switch-thumb { transform:translateX(16px); }
+.dmf-ui .dmf-react-switch[data-size=sm] input:checked + .dmf-react-switch-track .dmf-react-switch-thumb { transform:translateX(10px); }
 .dmf-ui .dmf-react-switch input:focus-visible + .dmf-react-switch-track { outline:2px solid var(--foreground); outline-offset:3px; }
 .dmf-ui .dmf-react-switch:has(input:disabled) { opacity:.5; cursor:not-allowed; }
 /* Control boundaries need stronger contrast than decorative surface dividers. */
