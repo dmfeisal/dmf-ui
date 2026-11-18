@@ -167,9 +167,5 @@ export function RadioGroupItem({value,disabled=false,onChange,className,...props
  const selection=group.value===undefined?{defaultChecked:group.defaultValue===value}:{checked:group.value===value};
  return <input {...props} {...selection} value={value} type="radio" name={group.name} required={group.required} disabled={group.disabled||disabled} onChange={event=>{onChange?.(event);if(!event.defaultPrevented&&event.currentTarget.checked)group.onValueChange?.(value);}} data-slot="radio-group-item" className={join('dmf-react-radio size-4 shrink-0 disabled:cursor-not-allowed disabled:opacity-50',className)}/>;
 }
-export type SelectProps=ComponentPropsWithRef<'select'>;
-export function Select({className,...props}:SelectProps){return <select {...props} data-slot="select" className={join('dmf-react-select min-h-9 min-w-0 w-full rounded-md border bg-background px-2.5 py-2 text-base text-foreground disabled:cursor-not-allowed disabled:opacity-50',className)}/>;}
-export type SelectOptionProps=ComponentPropsWithRef<'option'>;
-export function SelectOption(props:SelectOptionProps){return <option {...props} data-slot="select-option"/>;}
-export type SelectGroupProps=Omit<ComponentPropsWithRef<'optgroup'>,'label'> & {label:string};
-export function SelectGroup(props:SelectGroupProps){return <optgroup {...props} data-slot="select-group"/>;}
+export {Select,SelectTrigger,SelectValue,SelectContent,SelectItem,SelectGroup,SelectLabel,SelectSeparator} from './select';
+export type {SelectProps,SelectTriggerProps,SelectContentProps,SelectItemProps,SelectGroupProps,SelectLabelProps,SelectSeparatorProps} from './select';

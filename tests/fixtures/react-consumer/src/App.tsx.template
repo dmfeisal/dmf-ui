@@ -1,5 +1,5 @@
 import {useEffect,useId,useRef,useState} from 'react';
-import {Button,Card,Input,Switch,Text,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator,CardHeader,CardTitle,CardDescription,CardAction,CardContent,CardFooter,Field,FieldGroup,FieldContent,FieldLabel,FieldTitle,FieldDescription,FieldError,FieldSet,FieldLegend,FieldSeparator,RadioGroup,RadioGroupItem,Select,SelectOption,SelectGroup} from '@dmf-ui/react';
+import {Button,Card,Input,Switch,Text,Badge,Alert,AlertTitle,AlertDescription,AlertAction,Label,Textarea,Checkbox,Separator,CardHeader,CardTitle,CardDescription,CardAction,CardContent,CardFooter,Field,FieldGroup,FieldContent,FieldLabel,FieldTitle,FieldDescription,FieldError,FieldSet,FieldLegend,FieldSeparator,RadioGroup,RadioGroupItem,Select,SelectItem,SelectTrigger,SelectValue,SelectContent,SelectLabel,SelectGroup} from '@dmf-ui/react';
 export function App({initialPreset='dmf'}:{initialPreset?:'dmf'|'cb-ui'}){
  const [preset,setPreset]=useState<'dmf'|'cb-ui'>(initialPreset);
  const [ready,setReady]=useState(false);
@@ -109,11 +109,7 @@ export function App({initialPreset='dmf'}:{initialPreset?:'dmf'|'cb-ui'}){
       <Label className="consumer-check-label"><RadioGroupItem value="summary"/>Summary</Label>
       <Label className="consumer-check-label"><RadioGroupItem value="full"/>Full details</Label>
      </RadioGroup>
-     <Field><FieldLabel htmlFor={`${id}-channel`}>Delivery channel</FieldLabel><Select id={`${id}-channel`} name="channel" value={channel} onChange={event=>setChannel(event.currentTarget.value)} required>
-      <SelectOption value="" disabled>Choose a channel</SelectOption>
-      <SelectGroup label="Available channels"><SelectOption value="email">Email</SelectOption><SelectOption value="digest">Digest</SelectOption></SelectGroup>
-      <SelectGroup label="Unavailable channels" disabled><SelectOption value="sms">SMS (unavailable)</SelectOption></SelectGroup>
-     </Select></Field>
+     <Field><FieldLabel htmlFor={`${id}-channel`}>Delivery channel</FieldLabel><Select name="channel" value={channel} onValueChange={setChannel} required><SelectTrigger id={`${id}-channel`}><SelectValue placeholder="Choose a channel"/></SelectTrigger><SelectContent><SelectGroup><SelectLabel>Available channels</SelectLabel><SelectItem value="email">Email</SelectItem><SelectItem value="digest">Digest</SelectItem></SelectGroup><SelectGroup><SelectLabel>Unavailable channels</SelectLabel><SelectItem value="sms" disabled>SMS (unavailable)</SelectItem></SelectGroup></SelectContent></Select></Field>
      <div className="consumer-actions"><Button type="submit">Preview selections</Button><Button type="reset" variant="outline">Reset selections</Button></div>
     </FieldSet>
    </form>

@@ -633,7 +633,7 @@
         "name": "SearchFiltersBlock",
         "entry": "@dmf-ui/react",
         "source": "packages/react/src/blocks/search-filters.tsx",
-        "sha256": "538c93748f8e64f177f86ab73036d353d3b1ec0b70b8e8833d8109230968451f",
+        "sha256": "a91c7154e21ec929a73266f131698a333d0552ed5b5b1444af940ecc4e932141",
         "types": [
           {
             "name": "SearchFiltersBlockProps",
@@ -696,8 +696,13 @@
       "RadioGroup",
       "RadioGroupItem",
       "Select",
-      "SelectOption",
+      "SelectTrigger",
+      "SelectValue",
+      "SelectContent",
+      "SelectItem",
       "SelectGroup",
+      "SelectLabel",
+      "SelectSeparator",
       "SignInBlock",
       "SignUpBlock",
       "PasswordRecoveryBlock",
@@ -840,22 +845,10 @@
       {
         "name": "RadioGroupItemProps",
         "declaration": "export type RadioGroupItemProps=Omit<ComponentPropsWithRef<'input'>,'name'|'type'|'role'|'checked'|'defaultChecked'|'required'|'readOnly'|'children'|'size'|'value'> & {value:string};"
-      },
-      {
-        "name": "SelectProps",
-        "declaration": "export type SelectProps=ComponentPropsWithRef<'select'>;"
-      },
-      {
-        "name": "SelectOptionProps",
-        "declaration": "export type SelectOptionProps=ComponentPropsWithRef<'option'>;"
-      },
-      {
-        "name": "SelectGroupProps",
-        "declaration": "export type SelectGroupProps=Omit<ComponentPropsWithRef<'optgroup'>,'label'> & {label:string};"
       }
     ],
     "source": "packages/react/src/index.tsx",
-    "sha256": "4011911cd0a920e2f36aac8881c445218e7946a25830b469300c305034748f9c",
+    "sha256": "d04ab40afbaf405608b605403d2712e8a5c53b9621ec8ae95a0c8dcfe64003c6",
     "status": "separate-web-alpha",
     "note": "React native props and controlled/uncontrolled patterns differ from Astro. No Astro parity claim."
   },
@@ -8190,6 +8183,7 @@
         "sources": [
           "tests/selection.test.mjs",
           "tests/browser/dmf-ui-parts.mjs",
+          "tests/browser/dmf-ui-react-consumer.mjs",
           "tests/browser/dmf-ui-select.mjs",
           "tests/browser/dmf-ui-selection-contract.mjs",
           "tests/browser/dmf-ui-selection.mjs"

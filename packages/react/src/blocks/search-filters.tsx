@@ -1,5 +1,5 @@
 import type {ComponentPropsWithRef,ReactNode} from 'react';
-import {Field,FieldLabel,Input,Select,SelectOption,Checkbox,Button,Alert,AlertDescription} from '../index';
+import {Field,FieldLabel,Input,Select,SelectItem,SelectTrigger,SelectValue,SelectContent,Checkbox,Button,Alert,AlertDescription} from '../index';
 
 export type SearchFiltersBlockProps=Omit<ComponentPropsWithRef<'form'>,'id'|'action'|'method'|'title'> & {
  id:string;action:string;title?:string;headingLevel?:'h1'|'h2'|'h3';
@@ -19,7 +19,7 @@ export function SearchFiltersBlock({id,action,title='Search and filter',headingL
   <Heading id={`${id}-title`}>{title}</Heading>
   {error&&<Alert variant="destructive" role="alert"><AlertDescription>{error}</AlertDescription></Alert>}
   <fieldset disabled={disabled||pending} className="dmf-block-fields"><legend className="sr-only">{title}</legend>
-   <div className="dmf-block-filter-grid"><Field><FieldLabel htmlFor={`${id}-query`}>{queryLabel}</FieldLabel><Input type="search" id={`${id}-query`} name={queryName} defaultValue={query} required={queryRequired}/></Field><Field><FieldLabel htmlFor={`${id}-choice`}>{choiceLabel}</FieldLabel><Select id={`${id}-choice`} name={choiceName} defaultValue={selectedValue}><SelectOption value="">{allLabel}</SelectOption>{options.map(option=><SelectOption key={option.value} value={option.value} disabled={option.disabled}>{option.label}</SelectOption>)}</Select></Field></div>
+   <div className="dmf-block-filter-grid"><Field><FieldLabel htmlFor={`${id}-query`}>{queryLabel}</FieldLabel><Input type="search" id={`${id}-query`} name={queryName} defaultValue={query} required={queryRequired}/></Field><Field><FieldLabel htmlFor={`${id}-choice`}>{choiceLabel}</FieldLabel><Select name={choiceName} defaultValue={selectedValue}><SelectTrigger id={`${id}-choice`}><SelectValue placeholder={allLabel}/></SelectTrigger><SelectContent><SelectItem value="">{allLabel}</SelectItem>{options.map(option=><SelectItem key={option.value} value={option.value} disabled={option.disabled}>{option.label}</SelectItem>)}</SelectContent></Select></Field></div>
    {filters.length>0&&<div className="dmf-block-filter-options">{filters.map((filter,index)=><label key={`${filter.name}-${index}`} htmlFor={`${id}-filter-${index}`}><Checkbox id={`${id}-filter-${index}`} name={filter.name} value={filter.value??'on'} defaultChecked={filter.checked} disabled={filter.disabled}/><span>{filter.label}</span></label>)}</div>}
    {fields}<div className="dmf-block-actions"><Button type="submit" disabled={submitDisabled} data-block-submit>{submitLabel}</Button><Button type="reset" variant="outline">{resetLabel}</Button></div>
   </fieldset><p role="status" className="sr-only">{pending?pendingLabel:''}</p>{children}
